@@ -40,18 +40,37 @@ body, html {
 
 .conteiner-playlist {
     width: 100%;
-    background-color: red;
-    /* height */
+    overflow-y: scroll;
+    max-height: calc(100vh - 100px);
+    height: calc(100vh - 100px);
 
+    /* Settings Scroll */
+    margin-left: -5px;
+    padding: 0 0 0 20px;
 }
+.conteiner-playlist::-webkit-scrollbar {
+    width: 10px;
+    padding: 60px;
+    position: absolute;
+}
+
+
+.conteiner-playlist::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+
+.conteiner-playlist::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
+}
+
 .conteiner-playlist .item-playlist {
     width: 460px;
-    /* height: 80px; */
     margin: 0 auto 10px auto;
     background-color: var(--color-blue-3);
-
+    
     display: flex;
-    /* align-items: center; */
     padding: 10px 20px;
     justify-content: space-between;
 }
