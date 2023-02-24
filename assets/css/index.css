@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-blue-1: #081B39;
+    --color-blue-2: #3C93CF;
+    --color-blue-3: #3E5162;
+    --color-blue-4: #0C264E;
+    --color-black: #2B2B2B;
+    --color-red-1: #260101;
+    --color-red-2: #BF1F1F;
+    --color-red-3: #40060B;
+    --color-red-4: #731010;
+    --color-white-1: #F5FAFC;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+.main-playlist {
+    width: 500px;
+    background-color: var(--color-blue-1);
+    height: 100%;
+}
+.main-playlist .title-playlist {
+    font-size: 36px;
+    color: var(--color-white-1);
+    padding-top: 35px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+
+.conteiner-playlist {
+    width: 100%;
+    background-color: red;
+    /* height */
+
+}
+.conteiner-playlist .item-playlist {
+    width: 460px;
+    /* height: 80px; */
+    margin: 0 auto 10px auto;
+    background-color: var(--color-blue-3);
+
+    display: flex;
+    /* align-items: center; */
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+.item-playlist .cover-item {
+    width: 108px;
+    height: 60px;
+    background-color: brown;
+}
+.item-playlist .box-wrapper {
+    display: flex;
+}
+.item-playlist .info-item{
+    color: var(--color-white-1);
+    padding-left: 5px;
+}
+.info-item .title-info {
+    font-size: 16px;
+}
+.info-item .gender-info {
+    font-size: 12px;
+}
+.item-playlist .play-button-item {
+    display: flex;
+    align-items: center;
+}
+.item-playlist .play-button-item ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+}
