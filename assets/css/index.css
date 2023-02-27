@@ -24,6 +24,20 @@ body {
 body, html {
     height: 100%;
 }
+body {
+    max-height: 100vh;
+}
+.super-main {
+    display: grid;
+    grid-template-columns: 500px auto;
+    max-height: 100vh;
+    grid-template-rows: calc(100vh - 120px) auto;
+    /* flex-wrap: wrap; */
+
+}
+
+/* Main PlayList */
+
 .main-playlist {
     width: 500px;
     background-color: var(--color-blue-1);
@@ -35,14 +49,15 @@ body, html {
     padding-top: 35px;
     padding-left: 20px;
     padding-bottom: 20px;
+    overflow: hidden;
 }
 
 
 .conteiner-playlist {
     width: 100%;
     overflow-y: scroll;
-    max-height: calc(100vh - 100px);
-    height: calc(100vh - 100px);
+    max-height: calc(100vh - 220px);
+    height: calc(100vh - 220px);
 
     /* Settings Scroll */
     margin-left: -5px;
@@ -77,8 +92,12 @@ body, html {
 .item-playlist .cover-item {
     width: 108px;
     height: 60px;
-    background-color: brown;
 }
+.item-playlist .cover-item img {
+    width: 100%;
+    /* height: 100%; */
+}
+
 .item-playlist .box-wrapper {
     display: flex;
 }
@@ -100,4 +119,155 @@ body, html {
     width: 40px;
     height: 40px;
     color: var(--color-white-1);
+}
+
+/* Main Diplay */
+
+.main-display {
+    width: 100%;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-display .background-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: -500;
+
+    background: url("https:pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg") no-repeat center center / cover;
+    filter: blur(12.94px);
+}
+.main-display .current-cover {
+    max-width: 1000px;
+    margin: 0 20px;
+}
+.main-display .current-cover img {
+    width: 100%;
+}
+
+
+.main-display .conteiner-search {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+
+.main-display .conteiner-search {
+    /* width: 465px; */
+    /* background-color: red; */
+
+    display: flex;
+}
+.conteiner-search .search-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-black);
+    border-radius: 50%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-icon ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+}
+
+.conteiner-search .search-bar {
+    margin-left: 5px;
+    /* background-color: red; */
+    /* height: 40px; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-bar input {
+    height: 40px;
+    width: 400px;
+    padding-left: 16px;
+    border-radius: 10px;
+    border: 2px solid var(--color-black);
+}
+.search-bar input::placeholder {
+    color: var(--color-black);
+    font-size: 14px;
+}
+
+.search-bar .search-bar-close {
+    /* background-color: red; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-30px);
+}
+.search-bar .search-bar-close ion-icon {
+    width: 20px;
+    height: 20px;
+}
+
+
+.main-display .user-settings {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-blue-2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: 2px solid var(--color-black);
+}
+.main-display .user-settings ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+}
+
+.main-display .clock-settings {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-blue-2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: 2px solid var(--color-black);
+}
+.main-display .clock-settings ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+}
+/* Main Controls */
+
+.main-controls {
+    /* Em testes */
+    width: 100%;
+    display: flex;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    background-color: blue;
+    height: 120px;
+    max-height: 120px;
+    overflow: hidden;
 }
