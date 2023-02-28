@@ -274,7 +274,6 @@ body {
 }
 
 .main-controls .conteiner-side-1 {
-    background-image: linear-gradient(#0C264E, #000000);
     min-width: 500px;
 
     display: flex;
@@ -330,7 +329,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: aqua; */
     margin-left: -3px;
 }
 .conteiner-side-1 .current-music-favorite ion-icon {
@@ -340,3 +338,17 @@ body {
 }
 
 
+.main-controls .conteiner-side-2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.conteiner-side-2 .conteiner-controls {
+    display: flex;
+    /* background-color: red; */
+}
+.conteiner-side-2 .conteiner-controls ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+}
