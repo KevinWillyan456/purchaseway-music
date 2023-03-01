@@ -95,7 +95,6 @@ body {
 }
 .item-playlist .cover-item img {
     width: 100%;
-    /* height: 100%; */
 }
 
 .item-playlist .box-wrapper {
@@ -104,12 +103,26 @@ body {
 .item-playlist .info-item{
     color: var(--color-white-1);
     padding-left: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .info-item .title-info {
+    max-width: 260px;
     font-size: 16px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .info-item .gender-info {
+    max-width: 260px;
     font-size: 12px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .item-playlist .play-button-item {
     display: flex;
@@ -286,16 +299,41 @@ body {
 
     display: flex;
     align-items: center;
+    position: relative;
 }
 .conteiner-side-1 .music-animation-status {
-    /* background-color: rgb(50, 50, 130); */
     display: flex;
+    align-items: flex-end;
     margin-left: 20px;
+    height: 25px;
 }
 .music-animation-status div {
+    background-color: var(--color-white-1);
+}
+.music-animation-status.run div {
+    animation: music-animation-status 200ms infinite alternate linear var(--i) backwards;
+}
+
+.music-animation-status div:nth-child(1){
     width: 5px;
     height: 20px;
-    background-color: var(--color-white-1);
+    align-self: flex-end;
+}
+.music-animation-status div:nth-child(2){
+    width: 5px;
+    height: 25px;
+}
+.music-animation-status div:nth-child(3){
+    width: 5px;
+    height: 15px;
+}
+@keyframes music-animation-status {
+    0% {
+        height: 5px;
+    }
+    100% {
+        height: 25px;
+    }
 }
 
 .conteiner-side-1 .cover-current-music {
@@ -309,12 +347,17 @@ body {
 }
 
 .conteiner-side-1 .info-current-music {
-    min-width: 224px;
+    max-width: 204px;
     color: var(--color-white-1);
     margin-left: 10px;
+
 }
 .info-current-music .title-info-current-music {
     font-size: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .info-current-music .gender-info-current-music {
     font-size: 12px;
@@ -338,6 +381,10 @@ body {
     align-items: center;
     justify-content: center;
     margin-left: -3px;
+
+    position: absolute;
+    right: 20px;
+
 }
 .conteiner-side-1 .current-music-favorite ion-icon {
     width: 40px;
