@@ -8,6 +8,8 @@ const audioControllerNext = document.querySelector('#audio-next');
 const coverCurrentMusic = document.querySelector('.cover-current-music img');
 const titleCurrentMusic = document.querySelector('.title-info-current-music');
 const genderCurrentMusic = document.querySelector('.gender-info-current-music');
+const currentCover = document.querySelector('.current-cover img');
+const backgroundCover = document.querySelector('.main-display .background-cover');
 
 const musicAnimationStatus = document.querySelector('.music-animation-status');
 
@@ -62,6 +64,8 @@ audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
 function inicia(){
     audioGlobal.src = musicData[0].audioUrl;
     coverCurrentMusic.src = musicData[0].coverUrl;
+    currentCover.src = musicData[0].coverUrl;
+    backgroundCover.style.setProperty("background-image", `url('${musicData[0].coverUrl}')`);
     titleCurrentMusic.innerHTML = musicData[0].title;
     genderCurrentMusic.innerHTML = musicData[0].gender;
 }
@@ -95,6 +99,8 @@ function audioControllerNextFunction(){
 
     audioGlobal.src = musicData[indexAudio].audioUrl;
     coverCurrentMusic.src = musicData[indexAudio].coverUrl;
+    currentCover.src = musicData[indexAudio].coverUrl;
+    backgroundCover.style.setProperty("background-image", `url('${musicData[indexAudio].coverUrl}')`);
     titleCurrentMusic.innerHTML = musicData[indexAudio].title;
     genderCurrentMusic.innerHTML = musicData[indexAudio].gender;
 
@@ -108,6 +114,8 @@ function audioControllerPrevFunction(){
 
     audioGlobal.src = musicData[indexAudio].audioUrl;
     coverCurrentMusic.src = musicData[indexAudio].coverUrl;
+    currentCover.src = musicData[indexAudio].coverUrl;
+    backgroundCover.style.setProperty("background-image", `url('${musicData[indexAudio].coverUrl}')`);
     titleCurrentMusic.innerHTML = musicData[indexAudio].title;
     genderCurrentMusic.innerHTML = musicData[indexAudio].gender;
 
