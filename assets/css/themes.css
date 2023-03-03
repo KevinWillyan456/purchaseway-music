@@ -1,0 +1,43 @@
+/* Rock Version Theme */
+
+.main-playlist.rock-version {
+    background-color: var(--color-red-1);
+}
+.conteiner-playlist.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
+.search-bar.rock-version input:focus {
+    box-shadow: 0 0 0 5px var(--color-red-2), 0 0 25px var(--color-red-2);
+}
+.conteiner-settings .user-settings.rock-version {
+    background-color: var(--color-red-2);
+}
+.main-display .clock-settings.rock-version {
+    background-color: var(--color-red-2);
+}
+.conteiner-side-1 .current-music-rating.rock-version ion-icon {
+    color: var(--color-red-2);
+}
+.conteiner-side-1 .current-music-favorite.rock-version ion-icon {
+    color: var(--color-red-2);
+}
+.slider-music-duration.rock-version input[type=range] {
+    /* Será controlado por JavaScript */
+    background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.slider-music-duration.rock-version input[type=range]::-webkit-slider-thumb {
+    background-color: var(--color-red-2);
+}
+.conteiner-volume .slider-music-volume.rock-version input[type=range] {
+    /* Será controlado por JavaScript */
+    background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.conteiner-volume .slider-music-volume.rock-version input[type=range]::-webkit-slider-thumb {
+    background-color: var(--color-red-2);
+}
+.conteiner-playlist .item-playlist.rock-version {
+    background-color: var(--color-red-3);
+}
+.main-controls.rock-version {
+    background-image: linear-gradient(#731010, #000000);
+}

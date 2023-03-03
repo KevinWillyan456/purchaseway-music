@@ -95,7 +95,7 @@ body {
 }
 .item-playlist .cover-item img {
     width: 100%;
-    pointer-events: none;
+    cursor: pointer;
 }
 
 .item-playlist .box-wrapper {
