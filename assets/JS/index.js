@@ -13,6 +13,9 @@ const backgroundCover = document.querySelector('.main-display .background-cover'
 
 const musicAnimationStatus = document.querySelector('.music-animation-status');
 
+const conteinerPlaylist = document.querySelector('.conteiner-playlist');
+const body = document.body;
+
 let musicData = [
     {
         id: 1,
@@ -68,6 +71,9 @@ function inicia(){
     backgroundCover.style.setProperty("background-image", `url('${musicData[0].coverUrl}')`);
     titleCurrentMusic.innerHTML = musicData[0].title;
     genderCurrentMusic.innerHTML = musicData[0].gender;
+
+    generatorConteinerPlaylistData();
+    generatorConteinerPlaylistDataPlay();
 }
 
 function audioControllerPlayFunction(){
@@ -91,35 +97,95 @@ function audioControllerPlayFunctionNoPause(){
     musicAnimationStatus.classList.add('run');
 }
 
-function audioControllerNextFunction(){
-    indexAudio++;
-    if(indexAudio >= musicData.length){
-        indexAudio = 0;
-    }
-
+function allSongValueSetters(){
     audioGlobal.src = musicData[indexAudio].audioUrl;
     coverCurrentMusic.src = musicData[indexAudio].coverUrl;
     currentCover.src = musicData[indexAudio].coverUrl;
     backgroundCover.style.setProperty("background-image", `url('${musicData[indexAudio].coverUrl}')`);
     titleCurrentMusic.innerHTML = musicData[indexAudio].title;
     genderCurrentMusic.innerHTML = musicData[indexAudio].gender;
+}
 
+function audioControllerNextFunction(){
+    indexAudio++;
+    if(indexAudio >= musicData.length){
+        indexAudio = 0;
+    }
+    let selectedTheme = musicData[indexAudio].theme
+
+    allSongValueSetters();
     audioControllerPlayFunctionNoPause()
+    themeChanger(selectedTheme);
 }
 function audioControllerPrevFunction(){
     indexAudio--;
     if(indexAudio < 0){
         indexAudio = musicData.length - 1;
     }
+    let selectedTheme = musicData[indexAudio].theme
 
-    audioGlobal.src = musicData[indexAudio].audioUrl;
-    coverCurrentMusic.src = musicData[indexAudio].coverUrl;
-    currentCover.src = musicData[indexAudio].coverUrl;
-    backgroundCover.style.setProperty("background-image", `url('${musicData[indexAudio].coverUrl}')`);
-    titleCurrentMusic.innerHTML = musicData[indexAudio].title;
-    genderCurrentMusic.innerHTML = musicData[indexAudio].gender;
-
+    allSongValueSetters();
     audioControllerPlayFunctionNoPause()
+    themeChanger(selectedTheme);
+}
+
+function generatorConteinerPlaylistData(){
+    musicData.forEach((element) => {
+
+        conteinerPlaylist.innerHTML += `
+            <div class="item-playlist">
+                <div class="box-wrapper">
+                    <div class="cover-item" data-id="${element.id}" data-theme="${element.theme}">
+                        <img src="${element.coverUrl}">
+                    </div>
+                    <div class="info-item">
+                        <div class="title-info">
+                            ${element.title}
+                        </div>
+                        <div class="gender-info">
+                            ${element.gender}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="play-button-item" data-id="${element.id}" data-theme="${element.theme}">
+                    <ion-icon name="play-circle"></ion-icon>
+                </div>
+            </div>
+        `
+    })
+}
+
+function generatorConteinerPlaylistDataPlay(){
+    const itemsPlaylist = document.querySelectorAll('.conteiner-playlist .item-playlist .play-button-item, .cover-item');
+
+    itemsPlaylist.forEach((element)=> {
+        element.addEventListener('click', function(){
+            indexAudio = musicData.indexOf(musicData.find(element => element.id == $(this).data('id')))
+            let selectedTheme = $(this).data('theme')
+
+            allSongValueSetters();
+            audioControllerPlayFunctionNoPause();
+            themeChanger(selectedTheme);
+        });
+    })
+}
+
+function themeChanger(selectedTheme){
+    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls");
+    let serviceLogo = document.querySelector('.service-logo img');
+
+    if(selectedTheme == "Original"){
+        allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version"));
+        serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo.png";
+        return;
+    }
+    if(selectedTheme == "Rock Version"){
+        allElementsChangeableByTheme.forEach(element => element.classList.add("rock-version"));
+        serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-rock-version.png";
+        return;
+    }
 }
 
 inicia();
+themeChanger()
