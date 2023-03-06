@@ -425,14 +425,21 @@ body {
     font-size: 16px;
 }
 .conteiner-duration-status .current-duration {
-    margin-right: 20px;
+    width: 56px;
+    max-width: 56px;
+    /* margin-right: 20px; */
 }
 .conteiner-duration-status .total-duration {
+    width: 56px;
+    max-width: 56px;
     margin-left: 20px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 .slider-music-duration {
     width: 450px;
+}
+.slider-music-duration-wrapper {
+    position: relative;
 }
 .slider-music-duration input[type=range] {
     -webkit-appearance: none;
@@ -443,17 +450,30 @@ body {
     
     outline: none;
     cursor: pointer;
+    z-index: 100;
 
+    
     /* Será controlado por JavaScript */
-    background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+    /* background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%); */
 }
 
 .slider-music-duration input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+.slider-music-duration .slider-music-duration-dot {
+    transform: translateX(-10px);
+    position: absolute;
+    top: 0;
+    left: calc(2% - 10px);
     border: none;
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
     background-color: var(--color-blue-2);
 }
 
@@ -485,7 +505,8 @@ body {
     
     outline: none;
     cursor: pointer;
-
+    z-index: 100;
+    
     /* Será controlado por JavaScript */
     background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
 }
@@ -495,6 +516,7 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    z-index: 150;
     background-color: var(--color-blue-2);
 }
 

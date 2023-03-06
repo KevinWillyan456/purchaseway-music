@@ -16,6 +16,13 @@ const musicAnimationStatus = document.querySelector('.music-animation-status');
 const conteinerPlaylist = document.querySelector('.conteiner-playlist');
 const body = document.body;
 
+const currentDuration = document.querySelector('.conteiner-duration-status .current-duration');
+const sliderMusicDuration = document.querySelector('.slider-music-duration .slider-music-duration-wrapper input');
+const sliderMusicDurationDot = document.querySelector('.slider-music-duration-wrapper .slider-music-duration-dot');
+const totalDuration = document.querySelector('.conteiner-duration-status .total-duration');
+
+
+
 let musicData = [
     {
         id: 1,
@@ -74,6 +81,30 @@ function inicia(){
 
     generatorConteinerPlaylistData();
     generatorConteinerPlaylistDataPlay();
+    musicStateControllers();
+
+    sliderMusicDuration.addEventListener("mousedown", () => {
+        canMoveTheSlider = false
+    })
+    sliderMusicDuration.addEventListener("mouseup", () => {
+        audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
+        audioGlobal.play();
+        audioControllerPlayToggle = false;
+        audioControllerPlay.name = 'pause-circle';
+        musicAnimationStatus.classList.add('run');
+        canMoveTheSlider = true
+    })
+    sliderMusicDuration.oninput = () => {
+        if(musicData[indexAudio].theme == 'Original'){
+            sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
+            sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+        }
+        if(musicData[indexAudio].theme == 'Rock Version'){
+            sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
+            sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+        }
+        sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+    }
 }
 
 function audioControllerPlayFunction(){
@@ -172,7 +203,7 @@ function generatorConteinerPlaylistDataPlay(){
 }
 
 function themeChanger(selectedTheme){
-    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls");
+    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls");
     let serviceLogo = document.querySelector('.service-logo img');
 
     if(selectedTheme == "Original"){
@@ -185,6 +216,44 @@ function themeChanger(selectedTheme){
         serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-rock-version.png";
         return;
     }
+}
+
+let canMoveTheSlider = true;
+function musicStateControllers(){
+    audioGlobal.addEventListener('timeupdate', () => {
+        let minCurrent = Math.floor(audioGlobal.currentTime / 60);
+        let segCurrent = Math.floor(audioGlobal.currentTime % 60);
+
+        if(segCurrent < 10){
+            segCurrent = `0${segCurrent}`
+        }
+
+        //audioGlobal.playbackRate = 16 // TESTE
+        currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
+
+        if(canMoveTheSlider){
+            sliderMusicDuration.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
+            if(musicData[indexAudio].theme == 'Original'){
+                sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
+                sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+            }
+            if(musicData[indexAudio].theme == 'Rock Version'){
+                sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
+                sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+            }
+        }
+    })
+    audioGlobal.oncanplaythrough = () => {
+        let minTotal = Math.floor(audioGlobal.duration / 60);
+        let segTotal = Math.floor(audioGlobal.duration % 60);
+        
+        if(segTotal < 10){
+            segTotal = `0${segTotal}`
+        }
+        totalDuration.innerHTML = `${minTotal}:${segTotal}`
+    };
+    
+    
 }
 
 inicia();
