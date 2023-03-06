@@ -28,6 +28,9 @@
 .slider-music-duration.rock-version input[type=range]::-webkit-slider-thumb {
     background-color: var(--color-red-2);
 }
+.slider-music-duration-wrapper .slider-music-duration-dot.rock-version {
+    background-color: var(--color-red-2);
+}
 .conteiner-volume .slider-music-volume.rock-version input[type=range] {
     /* Será controlado por JavaScript */
     background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
