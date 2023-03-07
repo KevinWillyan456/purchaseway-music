@@ -50,3 +50,6 @@
 .conteiner-funcions .repeat-icon.rock-version ion-icon.active {
     color: var(--color-red-2);
 }
+.conteiner-funcions .shuffle-icon.rock-version ion-icon.active {
+    color: var(--color-red-2);
+}
