@@ -457,7 +457,7 @@ body {
 
     
     /* Será controlado por JavaScript */
-    /* background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%); */
+    background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
 }
 
 .slider-music-duration .slider-music-duration-wrapper input[type=range]::-webkit-slider-thumb {
@@ -534,7 +534,6 @@ body {
 }
 
 .conteiner-funcions {
-    /* background-color: red; */
     display: flex;
     align-items: center;
 
@@ -543,22 +542,23 @@ body {
 .conteiner-funcions .repeat-icon {
     display: flex;
     align-items: center;
-    /* background-color: red; */
 }
 .conteiner-funcions .repeat-icon ion-icon, .conteiner-funcions .shuffle-icon ion-icon {
+    transition: 200ms;
     width: 40px;
     height: 40px;
     color: var(--color-white-1);
     cursor: pointer;
-
+    
     margin-right: 20px;
 }
 .conteiner-funcions .shuffle-icon, .conteiner-funcions .repeat-icon {
-    /* background-color: cadetblue; */
     display: flex;
 }
+.conteiner-funcions .repeat-icon ion-icon.active {
+    color: var(--color-blue-2);
+}
 .conteiner-side-2 .service-logo {
-    /* background-color: red; */
     display: flex;
     margin-left: 30px;
 }

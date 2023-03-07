@@ -24,7 +24,9 @@ const totalDuration = document.querySelector('.conteiner-duration-status .total-
 const sliderMusicVolume = document.querySelector('.slider-music-volume .slider-music-volume-wrapper input');
 const sliderMusicVolumeDot = document.querySelector('.slider-music-volume-wrapper .slider-music-volume-dot');
 
-console.log(sliderMusicVolume)
+const repeatIcon = document.querySelector('.conteiner-funcions .repeat-icon ion-icon')
+const shuffleIcon = document.querySelector('.conteiner-funcions .shuffle-icon ion-icon')
+
 
 let musicData = [
     {
@@ -78,6 +80,7 @@ function inicia(){
     allSongValueSetters();
     generatorConteinerPlaylistData();
     generatorConteinerPlaylistDataPlay();
+    themeChanger(musicData[indexAudio].theme);
     musicStateControllers();
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
@@ -179,9 +182,10 @@ function generatorConteinerPlaylistDataPlay(){
 }
 
 function themeChanger(selectedTheme){
-    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls");
+    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls, .conteiner-funcions .repeat-icon");
     let serviceLogo = document.querySelector('.service-logo img');
 
+    initDurationSlider();
     initVolumeSlider();
     
     if(selectedTheme == "Original"){
@@ -200,14 +204,8 @@ let canMoveTheSliderDuration = true;
 // let canMoveTheSliderVolume = true;
 function musicStateControllers(){
     audioGlobal.addEventListener('timeupdate', () => {
-        let minCurrent = Math.floor(audioGlobal.currentTime / 60);
-        let segCurrent = Math.floor(audioGlobal.currentTime % 60);
 
-        if(segCurrent < 10){
-            segCurrent = `0${segCurrent}`
-        }
         // audioGlobal.playbackRate = 16 // TESTE
-        currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
 
         if(canMoveTheSliderDuration){
             sliderMusicDuration.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
@@ -219,6 +217,15 @@ function musicStateControllers(){
                 sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
                 sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
             }
+
+            let minCurrent = Math.floor(audioGlobal.currentTime / 60);
+            let segCurrent = Math.floor(audioGlobal.currentTime % 60);
+
+            if(segCurrent < 10){
+                segCurrent = `0${segCurrent}`
+            }
+
+            currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
         }
     })
     audioGlobal.oncanplaythrough = () => {
@@ -233,6 +240,7 @@ function musicStateControllers(){
 
     audioGlobal.addEventListener("ended", audioControllerNextFunction);
 
+    repeatIcon.addEventListener("click", repeatToggle);
 }
 
 
@@ -271,6 +279,17 @@ function durationSliderEventGenerator(){
             sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
         }
         sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+
+
+        let interactionWithTheSlider = ((sliderMusicDuration.value) / 100) * (audioGlobal.duration)
+
+        let minCurrent = Math.floor(interactionWithTheSlider / 60);
+        let segCurrent = Math.floor(interactionWithTheSlider % 60);
+
+        if(segCurrent < 10){
+            segCurrent = `0${segCurrent}`
+        }
+        currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
     }
 }
 
@@ -302,6 +321,20 @@ function volumeSliderEventGenerator(){
 
         audioGlobal.volume = sliderMusicVolume.value / 100;
     }
+
+    audioGlobal.volume = sliderMusicVolume.value / 100;
+}
+
+function initDurationSlider(){
+    if(musicData[indexAudio].theme == 'Original'){
+        sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
+        sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+    }
+    if(musicData[indexAudio].theme == 'Rock Version'){
+        sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
+        sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+    }
+    sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
 }
 
 function initVolumeSlider(){
@@ -316,6 +349,19 @@ function initVolumeSlider(){
     sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
 }
 
+let repeatToggleControl = true;
+function repeatToggle(){
+    if(repeatToggleControl){
+        audioGlobal.loop = true;
+        repeatToggleControl = false
+        repeatIcon.classList.add('active');
+    }
+    else {
+        audioGlobal.loop = false;
+        repeatToggleControl = true
+        repeatIcon.classList.remove('active');
+    }
+}
+
 
 inicia();
-themeChanger()
