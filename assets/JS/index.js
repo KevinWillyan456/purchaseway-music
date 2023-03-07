@@ -182,7 +182,7 @@ function generatorConteinerPlaylistDataPlay(){
 }
 
 function themeChanger(selectedTheme){
-    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls, .conteiner-funcions .repeat-icon");
+    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls, .conteiner-funcions .repeat-icon, .conteiner-funcions .shuffle-icon");
     let serviceLogo = document.querySelector('.service-logo img');
 
     initDurationSlider();
@@ -241,6 +241,7 @@ function musicStateControllers(){
     audioGlobal.addEventListener("ended", audioControllerNextFunction);
 
     repeatIcon.addEventListener("click", repeatToggle);
+    shuffleIcon.addEventListener("click", shuffleToggle);
 }
 
 
@@ -355,11 +356,33 @@ function repeatToggle(){
         audioGlobal.loop = true;
         repeatToggleControl = false
         repeatIcon.classList.add('active');
+
+        if(!shuffleToggleControl){
+            shuffleToggle();
+        }
     }
     else {
         audioGlobal.loop = false;
         repeatToggleControl = true
         repeatIcon.classList.remove('active');
+    }
+}
+
+let shuffleToggleControl = true;
+function shuffleToggle(){
+    if(shuffleToggleControl){
+        shuffleIcon.classList.add('active');
+        shuffleToggleControl = false
+
+        // Super Function!!!
+
+        if(!repeatToggleControl){
+            repeatToggle();
+        }
+    }
+    else {
+        shuffleIcon.classList.remove('active');
+        shuffleToggleControl = true
     }
 }
 

@@ -558,6 +558,9 @@ body {
 .conteiner-funcions .repeat-icon ion-icon.active {
     color: var(--color-blue-2);
 }
+.conteiner-funcions .shuffle-icon ion-icon.active {
+    color: var(--color-blue-2);
+}
 .conteiner-side-2 .service-logo {
     display: flex;
     margin-left: 30px;
