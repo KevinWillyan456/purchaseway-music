@@ -21,7 +21,10 @@ const sliderMusicDuration = document.querySelector('.slider-music-duration .slid
 const sliderMusicDurationDot = document.querySelector('.slider-music-duration-wrapper .slider-music-duration-dot');
 const totalDuration = document.querySelector('.conteiner-duration-status .total-duration');
 
+const sliderMusicVolume = document.querySelector('.slider-music-volume .slider-music-volume-wrapper input');
+const sliderMusicVolumeDot = document.querySelector('.slider-music-volume-wrapper .slider-music-volume-dot');
 
+console.log(sliderMusicVolume)
 
 let musicData = [
     {
@@ -84,7 +87,10 @@ function inicia(){
     musicStateControllers();
 
     sliderMusicDuration.addEventListener("mousedown", () => {
-        canMoveTheSlider = false
+        canMoveTheSliderDuration = false
+    })
+    sliderMusicDuration.addEventListener("touchstart", () => {
+        canMoveTheSliderDuration = false
     })
     sliderMusicDuration.addEventListener("mouseup", () => {
         audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
@@ -92,8 +98,31 @@ function inicia(){
         audioControllerPlayToggle = false;
         audioControllerPlay.name = 'pause-circle';
         musicAnimationStatus.classList.add('run');
-        canMoveTheSlider = true
+        canMoveTheSliderDuration = true
     })
+    sliderMusicDuration.addEventListener("touchend", () => {
+        audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
+        audioGlobal.play();
+        audioControllerPlayToggle = false;
+        audioControllerPlay.name = 'pause-circle';
+        musicAnimationStatus.classList.add('run');
+        canMoveTheSliderDuration = true
+    })
+
+    sliderMusicVolume.addEventListener("mousedown", () => {
+        canMoveTheSliderVolume = false
+    })
+    sliderMusicVolume.addEventListener("touchstart", () => {
+        canMoveTheSliderVolume = false
+    })
+    sliderMusicVolume.addEventListener("mouseup", () => {
+        canMoveTheSliderVolume = true
+    })
+    sliderMusicVolume.addEventListener("touchend", () => {
+        canMoveTheSliderVolume = true
+    })
+
+
     sliderMusicDuration.oninput = () => {
         if(musicData[indexAudio].theme == 'Original'){
             sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
@@ -105,6 +134,30 @@ function inicia(){
         }
         sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
     }
+    sliderMusicVolume.oninput = () => {
+        if(musicData[indexAudio].theme == 'Original'){
+            sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
+            sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
+        }
+        if(musicData[indexAudio].theme == 'Rock Version'){
+            sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%)`);
+            sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
+        }
+        sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
+
+        audioGlobal.volume = sliderMusicVolume.value / 100;
+    }
+
+
+    if(musicData[indexAudio].theme == 'Original'){
+        sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
+        sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
+    }
+    if(musicData[indexAudio].theme == 'Rock Version'){
+        sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%)`);
+        sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
+    }
+    sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
 }
 
 function audioControllerPlayFunction(){
@@ -203,7 +256,7 @@ function generatorConteinerPlaylistDataPlay(){
 }
 
 function themeChanger(selectedTheme){
-    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls");
+    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls");
     let serviceLogo = document.querySelector('.service-logo img');
 
     if(selectedTheme == "Original"){
@@ -218,7 +271,8 @@ function themeChanger(selectedTheme){
     }
 }
 
-let canMoveTheSlider = true;
+let canMoveTheSliderDuration = true;
+// let canMoveTheSliderVolume = true;
 function musicStateControllers(){
     audioGlobal.addEventListener('timeupdate', () => {
         let minCurrent = Math.floor(audioGlobal.currentTime / 60);
@@ -227,11 +281,10 @@ function musicStateControllers(){
         if(segCurrent < 10){
             segCurrent = `0${segCurrent}`
         }
-
-        //audioGlobal.playbackRate = 16 // TESTE
+        // audioGlobal.playbackRate = 16 // TESTE
         currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
 
-        if(canMoveTheSlider){
+        if(canMoveTheSliderDuration){
             sliderMusicDuration.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
             if(musicData[indexAudio].theme == 'Original'){
                 sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
@@ -252,8 +305,9 @@ function musicStateControllers(){
         }
         totalDuration.innerHTML = `${minTotal}:${segTotal}`
     };
-    
-    
+
+    audioGlobal.addEventListener("ended", audioControllerNextFunction);
+
 }
 
 inicia();

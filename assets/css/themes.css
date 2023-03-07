@@ -38,6 +38,9 @@
 .conteiner-volume .slider-music-volume.rock-version input[type=range]::-webkit-slider-thumb {
     background-color: var(--color-red-2);
 }
+.slider-music-volume-wrapper .slider-music-volume-dot.rock-version {
+    background-color: var(--color-red-2);
+}
 .conteiner-playlist .item-playlist.rock-version {
     background-color: var(--color-red-3);
 }

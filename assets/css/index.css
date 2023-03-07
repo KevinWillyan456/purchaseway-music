@@ -441,6 +441,9 @@ body {
 .slider-music-duration-wrapper {
     position: relative;
 }
+.slider-music-volume-wrapper {
+    position: relative;
+}
 .slider-music-duration input[type=range] {
     -webkit-appearance: none;
     appearance: none;
@@ -457,13 +460,26 @@ body {
     /* background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%); */
 }
 
-.slider-music-duration input[type=range]::-webkit-slider-thumb {
+.slider-music-duration .slider-music-duration-wrapper input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 0;
     height: 0;
     background-color: transparent;
 }
-.slider-music-duration .slider-music-duration-dot {
+.slider-music-duration .slider-music-duration-wrapper .slider-music-duration-dot {
+    transform: translateX(-10px);
+    position: absolute;
+    top: 0;
+    left: 0%;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    background-color: var(--color-blue-2);
+}
+.slider-music-volume .slider-music-volume-wrapper .slider-music-volume-dot {
     transform: translateX(-10px);
     position: absolute;
     top: 0;
@@ -510,14 +526,11 @@ body {
     /* Será controlado por JavaScript */
     background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
 }
-.conteiner-volume .slider-music-volume input[type=range]::-webkit-slider-thumb {
+.slider-music-volume .slider-music-volume-wrapper input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    border: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    z-index: 150;
-    background-color: var(--color-blue-2);
+    width: 0;
+    height: 0;
+    background-color: transparent;
 }
 
 .conteiner-funcions {
