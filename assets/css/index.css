@@ -145,6 +145,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 50;
 }
 .main-display .background-cover {
     position: absolute;
@@ -183,6 +184,7 @@ body {
     display: flex;
 }
 .conteiner-search .search-icon {
+    transition: 200ms;
     width: 60px;
     height: 60px;
     background-color: var(--color-black);
@@ -191,6 +193,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+.conteiner-search .search-icon:hover {
+    box-shadow: 0 0 20px var(--color-white-1);
 }
 .search-icon ion-icon {
     width: 40px;
@@ -231,6 +237,7 @@ body {
     align-items: center;
     justify-content: center;
     transform: translateX(-30px);
+    cursor: pointer;
 }
 .search-bar .search-bar-close ion-icon {
     width: 20px;
@@ -283,6 +290,132 @@ body {
     height: 40px;
     color: var(--color-white-1);
 }
+
+/* Search */
+
+.conteiner-search-result {
+    width: 100%;
+    height: calc(100% - 120px);
+
+    position: absolute;
+    top: 100px;
+
+    display: flex;
+    justify-content: center;
+
+    z-index: 30;
+}
+
+.layer-search-result {
+    background-color: var(--color-blue-1);
+    width: calc(100% - 40px);
+    height: 100%;
+    border-radius: 20px;
+    border: 2px solid var(--color-white-1);
+
+    display: flex;
+    align-items: center;
+}
+.box-search-result {
+    width: 100%;
+    height: calc(100% - 15px);
+    overflow-y: scroll;
+    margin-left: -3px;
+    padding: 0 0 0 20px;
+}
+.box-search-result::-webkit-scrollbar {
+    width: 10px;
+    padding: 60px;
+    position: absolute;
+}
+.box-search-result::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+.box-search-result::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
+}
+.box-search-result .title-search-result {
+    font-size: 36px;
+    width: 500px;
+    color: var(--color-white-1);
+    padding-top: 32.5px;
+}
+.box-search-result .conteiner-items {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.item-playlist-search {
+    width: calc(100% - 5px);
+    background-color: var(--color-blue-3);
+    margin-bottom: 10px;
+    
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+.item-playlist-search .cover-item-search {
+    width: 108px;
+    height: 60px;
+}
+.item-playlist-search .cover-item-search img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.item-playlist-search .box-wrapper-search {
+    display: flex;
+}
+.item-playlist-search .info-item-search{
+    color: var(--color-white-1);
+    padding-left: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.info-item-search .title-info-search {
+    max-width: 1100px;
+    /* background-color: red; */
+    font-size: 16px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.info-item-search .gender-info-search {
+    max-width: 260px;
+    font-size: 12px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-playlist-search .play-button-item {
+    display: flex;
+    align-items: center;
+}
+.item-playlist-search .play-button-item ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}
+
+
+.focus-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    z-index: 20;
+}
+
 /* Main Controls */
 
 .main-controls {
