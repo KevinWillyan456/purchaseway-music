@@ -27,6 +27,7 @@ const sliderMusicVolumeDot = document.querySelector('.slider-music-volume-wrappe
 const repeatIcon = document.querySelector('.conteiner-funcions .repeat-icon ion-icon')
 const shuffleIcon = document.querySelector('.conteiner-funcions .shuffle-icon ion-icon')
 
+const searchButton = document.querySelector('.conteiner-search .search-icon');
 
 let musicData = [
     {
@@ -71,6 +72,11 @@ let musicData = [
     }
 ]
 
+$('.focus-shadow').click(()=>{
+    $('.focus-shadow').hide(200)
+    $('.conteiner-search-result').hide(200)
+})
+
 let audioControllerPlayToggle = true;
 audioControllerPlay.addEventListener("click", audioControllerPlayFunction)
 audioControllerNext.addEventListener("click", audioControllerNextFunction)
@@ -84,6 +90,7 @@ function inicia(){
     musicStateControllers();
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
+    searchEvents();
 }
 
 function audioControllerPlayFunction(){
@@ -384,6 +391,18 @@ function shuffleToggle(){
         shuffleIcon.classList.remove('active');
         shuffleToggleControl = true
     }
+}
+
+function searchEvents(){
+    searchButton.addEventListener("click", () => {
+        $('.search-bar').toggle(400)
+        $('.search-bar input').val("")
+    })
+    $('.search-bar-close').click(() => $('.search-bar input').val(""));
+    $('.search-bar input').click(function() {
+        $('.conteiner-search-result').show(200)
+        $('.focus-shadow').show(200)
+      });
 }
 
 
