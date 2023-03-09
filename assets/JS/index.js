@@ -72,6 +72,8 @@ let musicData = [
     }
 ]
 
+let musicDataShuffled = [...musicData];
+
 $('.focus-shadow').click(()=>{
     $('.focus-shadow').hide(200)
     $('.conteiner-search-result').hide(200)
@@ -86,7 +88,7 @@ function inicia(){
     allSongValueSetters();
     generatorConteinerPlaylistData();
     generatorConteinerPlaylistDataPlay();
-    themeChanger(musicData[indexAudio].theme);
+    themeChanger(musicDataShuffled[indexAudio].theme);
     musicStateControllers();
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
@@ -115,21 +117,22 @@ function audioControllerPlayFunctionNoPause(){
 }
 
 function allSongValueSetters(){
-    audioGlobal.src = musicData[indexAudio].audioUrl;
-    coverCurrentMusic.src = musicData[indexAudio].coverUrl;
-    currentCover.src = musicData[indexAudio].coverUrl;
-    backgroundCover.style.setProperty("background-image", `url('${musicData[indexAudio].coverUrl}')`);
-    titleCurrentMusic.innerHTML = musicData[indexAudio].title;
-    genderCurrentMusic.innerHTML = musicData[indexAudio].gender;
+    audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
+    coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+    currentCover.src = musicDataShuffled[indexAudio].coverUrl;
+    backgroundCover.style.setProperty("background-image", `url('${musicDataShuffled[indexAudio].coverUrl}')`);
+    titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
+    genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
 }
 
 function audioControllerNextFunction(){
     indexAudio++;
-    if(indexAudio >= musicData.length){
+    if(indexAudio >= musicDataShuffled.length){
         indexAudio = 0;
     }
-    let selectedTheme = musicData[indexAudio].theme
-
+    
+    let selectedTheme = musicDataShuffled[indexAudio].theme
+    
     allSongValueSetters();
     audioControllerPlayFunctionNoPause()
     themeChanger(selectedTheme);
@@ -137,9 +140,9 @@ function audioControllerNextFunction(){
 function audioControllerPrevFunction(){
     indexAudio--;
     if(indexAudio < 0){
-        indexAudio = musicData.length - 1;
+        indexAudio = musicDataShuffled.length - 1;
     }
-    let selectedTheme = musicData[indexAudio].theme
+    let selectedTheme = musicDataShuffled[indexAudio].theme
 
     allSongValueSetters();
     audioControllerPlayFunctionNoPause()
@@ -147,7 +150,7 @@ function audioControllerPrevFunction(){
 }
 
 function generatorConteinerPlaylistData(){
-    musicData.forEach((element) => {
+    musicDataShuffled.forEach((element) => {
 
         conteinerPlaylist.innerHTML += `
             <div class="item-playlist">
@@ -178,7 +181,7 @@ function generatorConteinerPlaylistDataPlay(){
 
     itemsPlaylist.forEach((element)=> {
         element.addEventListener('click', function(){
-            indexAudio = musicData.indexOf(musicData.find(element => element.id == $(this).data('id')))
+            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element.id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
 
             allSongValueSetters();
@@ -216,11 +219,11 @@ function musicStateControllers(){
 
         if(canMoveTheSliderDuration){
             sliderMusicDuration.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
-            if(musicData[indexAudio].theme == 'Original'){
+            if(musicDataShuffled[indexAudio].theme == 'Original'){
                 sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
                 sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
             }
-            if(musicData[indexAudio].theme == 'Rock Version'){
+            if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
                 sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
                 sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
             }
@@ -278,16 +281,15 @@ function durationSliderEventGenerator(){
 
 
     sliderMusicDuration.oninput = () => {
-        if(musicData[indexAudio].theme == 'Original'){
+        if(musicDataShuffled[indexAudio].theme == 'Original'){
             sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
             sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
         }
-        if(musicData[indexAudio].theme == 'Rock Version'){
+        if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
             sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
             sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
         }
         sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-
 
         let interactionWithTheSlider = ((sliderMusicDuration.value) / 100) * (audioGlobal.duration)
 
@@ -317,11 +319,11 @@ function volumeSliderEventGenerator(){
 
 
     sliderMusicVolume.oninput = () => {
-        if(musicData[indexAudio].theme == 'Original'){
+        if(musicDataShuffled[indexAudio].theme == 'Original'){
             sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
             sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
         }
-        if(musicData[indexAudio].theme == 'Rock Version'){
+        if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
             sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%)`);
             sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
         }
@@ -334,11 +336,11 @@ function volumeSliderEventGenerator(){
 }
 
 function initDurationSlider(){
-    if(musicData[indexAudio].theme == 'Original'){
+    if(musicDataShuffled[indexAudio].theme == 'Original'){
         sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
         sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
     }
-    if(musicData[indexAudio].theme == 'Rock Version'){
+    if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
         sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
         sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
     }
@@ -346,11 +348,11 @@ function initDurationSlider(){
 }
 
 function initVolumeSlider(){
-    if(musicData[indexAudio].theme == 'Original'){
+    if(musicDataShuffled[indexAudio].theme == 'Original'){
         sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
         sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
     }
-    if(musicData[indexAudio].theme == 'Rock Version'){
+    if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
         sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%)`);
         sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
     }
@@ -375,14 +377,29 @@ function repeatToggle(){
     }
 }
 
+function shuffleArray(preShuffleArray) {
+    
+    const size = preShuffleArray.length;
+    let currentIndex = size - 1;
+    while (currentIndex > 0) {
+        let ramdomIndex = Math.floor(Math.random() * size);
+        let aux = preShuffleArray[currentIndex];
+        preShuffleArray[currentIndex] = preShuffleArray[ramdomIndex];
+        preShuffleArray[ramdomIndex] = aux
+        currentIndex -= 1;
+    }
+    audioControllerPrevFunction()
+}
+
 let shuffleToggleControl = true;
+
 function shuffleToggle(){
     if(shuffleToggleControl){
         shuffleIcon.classList.add('active');
         shuffleToggleControl = false
 
-        // Super Function!!!
-
+        shuffleArray(musicDataShuffled)
+        
         if(!repeatToggleControl){
             repeatToggle();
         }
@@ -390,6 +407,9 @@ function shuffleToggle(){
     else {
         shuffleIcon.classList.remove('active');
         shuffleToggleControl = true
+        musicDataShuffled = [...musicData];
+        indexAudio = 1
+        audioControllerPrevFunction()
     }
 }
 
