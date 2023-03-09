@@ -29,6 +29,8 @@ const shuffleIcon = document.querySelector('.conteiner-funcions .shuffle-icon io
 
 const searchButton = document.querySelector('.conteiner-search .search-icon');
 
+const conteinerItemsSearch = document.querySelector('.conteiner-items')
+
 let musicData = [
     {
         id: 1,
@@ -93,6 +95,10 @@ function inicia(){
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
     searchEvents();
+
+
+    generatorConteinerSearchData()
+    generatorConteinerSearchDataPlay()
 }
 
 function audioControllerPlayFunction(){
@@ -191,8 +197,53 @@ function generatorConteinerPlaylistDataPlay(){
     })
 }
 
+function generatorConteinerSearchData(){
+    // Filter
+    musicDataShuffled.forEach((element) => {
+
+        conteinerItemsSearch.innerHTML += `
+            <div class="item-playlist-search">
+                <div class="box-wrapper-search">
+                    <div class="cover-item-search" data-id="${element.id}" data-theme="${element.theme}">
+                        <img src="${element.coverUrl}">
+                    </div>
+                    <div class="info-item-search">
+                        <div class="title-info-search">
+                            ${element.title}
+                        </div>
+                        <div class="gender-info-search">
+                            ${element.gender}
+                        </div>
+                    </div>
+                </div>
+                <div class="play-button-item" data-id="${element.id}" data-theme="${element.theme}">
+                    <ion-icon name="play-circle"></ion-icon>
+                </div>
+            </div>
+        `
+    })
+}
+
+function generatorConteinerSearchDataPlay(){
+    const itemsPlaylistSearch = document.querySelectorAll('.conteiner-items .item-playlist-search .play-button-item, .cover-item-search');
+
+    itemsPlaylistSearch.forEach((element)=> {
+        element.addEventListener('click', function(){
+            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element.id == $(this).data('id')))
+            let selectedTheme = $(this).data('theme')
+
+            allSongValueSetters();
+            audioControllerPlayFunctionNoPause();
+            themeChanger(selectedTheme);
+            
+            $('.focus-shadow').hide(200);
+            $('.conteiner-search-result').hide(200);
+        });
+    })
+}
+
 function themeChanger(selectedTheme){
-    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls, .conteiner-funcions .repeat-icon, .conteiner-funcions .shuffle-icon");
+    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls, .conteiner-funcions .repeat-icon, .conteiner-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search");
     let serviceLogo = document.querySelector('.service-logo img');
 
     initDurationSlider();

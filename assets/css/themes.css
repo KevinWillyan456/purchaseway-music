@@ -53,3 +53,12 @@
 .conteiner-funcions .shuffle-icon.rock-version ion-icon.active {
     color: var(--color-red-2);
 }
+.layer-search-result.rock-version {
+    background-color: var(--color-red-1);
+}
+.box-search-result.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
+.item-playlist-search.rock-version {
+    background-color: var(--color-red-3);
+}
