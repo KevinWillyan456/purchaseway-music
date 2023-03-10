@@ -30,6 +30,7 @@ const shuffleIcon = document.querySelector('.conteiner-funcions .shuffle-icon io
 const searchButton = document.querySelector('.conteiner-search .search-icon');
 
 const conteinerItemsSearch = document.querySelector('.conteiner-items')
+const searchBarInput = document.querySelector('#search-bar-input');
 
 let musicData = [
     {
@@ -75,11 +76,9 @@ let musicData = [
 ]
 
 let musicDataShuffled = [...musicData];
+let musicDataFiltered = [...musicData];
 
-$('.focus-shadow').click(()=>{
-    $('.focus-shadow').hide(200)
-    $('.conteiner-search-result').hide(200)
-})
+
 
 let audioControllerPlayToggle = true;
 audioControllerPlay.addEventListener("click", audioControllerPlayFunction)
@@ -95,8 +94,6 @@ function inicia(){
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
     searchEvents();
-
-
     generatorConteinerSearchData()
     generatorConteinerSearchDataPlay()
 }
@@ -198,8 +195,7 @@ function generatorConteinerPlaylistDataPlay(){
 }
 
 function generatorConteinerSearchData(){
-    // Filter
-    musicDataShuffled.forEach((element) => {
+    musicDataFiltered.forEach((element) => {
 
         conteinerItemsSearch.innerHTML += `
             <div class="item-playlist-search">
@@ -262,7 +258,7 @@ function themeChanger(selectedTheme){
 }
 
 let canMoveTheSliderDuration = true;
-// let canMoveTheSliderVolume = true;
+
 function musicStateControllers(){
     audioGlobal.addEventListener('timeupdate', () => {
 
@@ -464,16 +460,47 @@ function shuffleToggle(){
     }
 }
 
+function musicFilteringFunction(){
+    conteinerItemsSearch.innerHTML = "";
+
+    $('.song-not-found').hide();
+    
+    musicDataFiltered = musicData.filter(
+        (music) =>
+        music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
+        )
+    
+    generatorConteinerSearchData()
+    generatorConteinerSearchDataPlay()
+    themeChanger(musicDataShuffled[indexAudio].theme);
+    
+    if (conteinerItemsSearch.innerHTML == ''){
+        $('.song-not-found').show();
+    }
+}
+
 function searchEvents(){
     searchButton.addEventListener("click", () => {
         $('.search-bar').toggle(400)
         $('.search-bar input').val("")
     })
-    $('.search-bar-close').click(() => $('.search-bar input').val(""));
+    $('.search-bar-close').click(() => {
+        $('.search-bar input').val("");
+        musicFilteringFunction();
+    })
     $('.search-bar input').click(function() {
         $('.conteiner-search-result').show(200)
         $('.focus-shadow').show(200)
-      });
+    });
+
+    $('.focus-shadow').click(()=>{
+        $('.focus-shadow').hide(200)
+        $('.conteiner-search-result').hide(200)
+    })
+
+    searchBarInput.oninput = () => {
+        musicFilteringFunction();
+    };
 }
 
 
