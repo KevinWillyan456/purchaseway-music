@@ -32,6 +32,8 @@ const searchButton = document.querySelector('.conteiner-search .search-icon');
 const conteinerItemsSearch = document.querySelector('.conteiner-items')
 const searchBarInput = document.querySelector('#search-bar-input');
 
+const userSettings = document.querySelector('.user-settings');
+
 let musicData = [
     {
         id: 1,
