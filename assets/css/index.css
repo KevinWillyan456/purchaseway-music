@@ -415,6 +415,24 @@ body {
     z-index: 20;
 }
 
+.song-not-found {
+    animation: song-not-found-animation 500ms;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-15px);
+    color: var(--color-white-1);
+    font-size: 30px;
+}
+
+@keyframes song-not-found-animation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 /* Main Controls */
 
 .main-controls {
