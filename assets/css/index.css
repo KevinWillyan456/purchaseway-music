@@ -510,6 +510,91 @@ body {
     display: flex;
     align-items: center;
 }
+
+.box-user-information {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.box-user-information .user-name {
+    font-size: 36px;
+}
+.box-user-information .registration-date {
+    font-size: 12px;
+}
+
+.title-wrapper {
+    display: flex;
+    /* background-color: red; */
+    width: 100%;
+    justify-content: space-between;
+}
+.title-profile:nth-child(2) {
+    text-align: end;
+    margin-right: 5px;
+}
+
+.conteiner-favorite {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.item-playlist-favorite {
+
+}
+.box-wrapper-favorite {
+
+}
+.cover-item-favorite {
+
+}
+.info-item-favorite {
+
+}
+.title-info-favorite {
+
+}
+.gender-info-favorite {
+
+}
+.item-playlist-favorite .play-button-item {
+
+}
+.item-playlist-favorite .play-button-item ion-icon {
+
+}
+
+.item-playlist-favorite {
+    
+}
+.box-wrapper-favorite {
+    
+}
+.cover-item-favorite {
+    
+}
+.info-item-favorite {
+    
+}
+.title-info-favorite {
+    
+}
+.gender-info-favorite {
+    
+}
+.item-playlist-favorite .play-button-item {
+    
+}
+.item-playlist-favorite .play-button-item ion-icon {
+    
+}
+
+
+.conteiner-historic {
+    width: 100%;
+    margin-top: 20px;
+}
+
 /* Main Controls */
 
 .main-controls {
