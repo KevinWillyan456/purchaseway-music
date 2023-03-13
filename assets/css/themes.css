@@ -62,3 +62,18 @@
 .item-playlist-search.rock-version {
     background-color: var(--color-red-3);
 }
+.layer-user-settings.rock-version {
+    background-color: var(--color-red-1);
+}
+.box-user-settings.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
+.box-profile .user-settings.rock-version {
+    background-color: var(--color-red-2);
+}
+.item-playlist-favorite.rock-version {
+    background-color: var(--color-red-3);
+}
+.item-playlist-historic.rock-version {
+    background-color: var(--color-red-3);
+}
