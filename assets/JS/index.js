@@ -80,6 +80,16 @@ let musicData = [
     }
 ]
 
+let userData = [
+    {
+        id: 1,
+        name: "Joe Dawn",
+        registrationDate: 'ISODate("2023-02-15T14:10:30.000Z")',
+        favoriteSongs: [1,4],
+        musicHistory: [2,3]
+    }
+]
+
 let musicDataShuffled = [...musicData];
 let musicDataFiltered = [...musicData];
 
