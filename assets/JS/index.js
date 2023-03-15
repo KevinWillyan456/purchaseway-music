@@ -37,6 +37,11 @@ const userSettings = document.querySelector('.user-settings');
 const conteinerItemsFavorite = document.querySelector('.conteiner-favorite');
 const conteinerItemsHistoric = document.querySelector('.conteiner-historic');
 
+const showFavoriteSongs = document.querySelector('#show-favorite-songs');
+const userName = document.querySelector('.user-name');
+const registrationDate = document.querySelector('.registration-date');
+
+
 let musicData = [
     {
         id: 1,
@@ -80,15 +85,13 @@ let musicData = [
     }
 ]
 
-let userData = [
-    {
+let userData = {
         id: 1,
         name: "Joe Dawn",
-        registrationDate: 'ISODate("2023-02-15T14:10:30.000Z")',
-        favoriteSongs: [1,4],
-        musicHistory: [2,3]
+        registrationDate: 'ISODate("2023-02-28T14:10:30.000Z")',
+        favoriteSongs: [5,1,2],
+        musicHistory: [1,2,3,4,5]
     }
-]
 
 let musicDataShuffled = [...musicData];
 let musicDataFiltered = [...musicData];
@@ -102,6 +105,7 @@ audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
 
 function inicia(){
     allSongValueSetters();
+    setUserSettings();
     generatorConteinerPlaylistData();
     generatorConteinerPlaylistDataPlay();
     themeChanger(musicDataShuffled[indexAudio].theme);
@@ -146,6 +150,57 @@ function allSongValueSetters(){
     backgroundCover.style.setProperty("background-image", `url('${musicDataShuffled[indexAudio].coverUrl}')`);
     titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
     genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+}
+
+function setUserSettings(){
+    userName.innerHTML = userData.name;
+
+    let day = parseInt(userData.registrationDate.substring(17,19))
+    let month = parseInt(userData.registrationDate.substring(14,16))
+    let year = parseInt(userData.registrationDate.substring(9,13))
+
+    switch (month) {
+        case 1:
+            month = "janeiro";
+            break;
+        case 2:
+            month = "fevereiro";
+            break;
+        case 3:
+            month = "março";
+            break;
+        case 4:
+            month = "abril";
+            break;
+        case 5:
+            month = "maio";
+            break;
+        case 6:
+            month = "junho";
+            break;
+        case 7:
+            month = "julho";
+            break;
+        case 8:
+            month = "agosto";
+            break;
+        case 9:
+            month = "setembro";
+            break;
+        case 10:
+            month = "outubro";
+            break;
+        case 11:
+            month = "novembro";
+            break;
+        case 12:
+            month = "dezembro";
+            break;
+      }
+
+    registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
+
+
 }
 
 function audioControllerNextFunction(){
@@ -260,8 +315,22 @@ function generatorConteinerSearchDataPlay(){
 }
 
 function generatorConteinerFavoriteData(){
-    // Esta função será adaptada no futuro
-    musicDataFiltered.forEach((element) => {
+    let favoriteSongs = [];
+
+    for (let i = 0; i < userData.favoriteSongs.length; i++) {
+        let song = musicDataShuffled.find(element => element.id == userData.favoriteSongs[i])
+        if(song){
+            if(!favoriteSongs.find(element => element.id == userData.favoriteSongs[i])){
+                favoriteSongs.push(song);
+            }
+        }
+    }
+
+    favoriteSongs.reverse();
+
+    showFavoriteSongs.innerHTML = `${favoriteSongs.length} Adicionadas`
+
+    favoriteSongs.forEach((element) => {
 
         conteinerItemsFavorite.innerHTML += `
             <div class="item-playlist-favorite">
@@ -305,9 +374,27 @@ function generatorConteinerFavoriteDataPlay(){
     })
 }
 
+
 function generatorConteinerHistoricData(){
-    // Esta função será adaptada no futuro
-    musicDataFiltered.forEach((element) => {
+    let historicSongs = [];
+
+    for (let i = 0; i < userData.musicHistory.length; i++) {
+        let song = musicDataShuffled.find(element => element.id == userData.musicHistory[i])
+
+        if(historicSongs.length >= 20){
+            historicSongs.shift()
+        }
+
+        if(song){
+            if(!historicSongs.find(element => element.id == userData.musicHistory[i])){
+                historicSongs.push(song);
+            }
+        }
+    }
+
+    historicSongs.reverse()
+    
+    historicSongs.forEach((element) => {
 
         conteinerItemsHistoric.innerHTML += `
             <div class="item-playlist-historic">
