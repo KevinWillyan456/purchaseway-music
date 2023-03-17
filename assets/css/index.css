@@ -504,6 +504,11 @@ body {
 }
 .box-user-information .user-name {
     font-size: 36px;
+    max-width: 1100px;
+
+    white-space: nowrap;
+    overflow: hidden;   
+    text-overflow: ellipsis;
 }
 .box-user-information .registration-date {
     font-size: 12px;
@@ -921,4 +926,53 @@ body {
 .conteiner-side-2 .service-logo {
     display: flex;
     margin-left: 30px;
+}
+
+/* Media Queries */
+
+@media (max-width: 1900px)
+{
+    .service-logo {
+        display: none !important;
+    }
+    .title-info-search, .title-info-favorite, .title-info-historic {
+        max-width: 850px !important;
+    }
+    .box-user-information .user-name {
+        max-width: 920px;
+    }
+}
+@media (max-width: 1670px)
+{
+    .slider-music-duration {
+        width: 350px;
+    }
+    .title-info-search, .title-info-favorite, .title-info-historic {
+        max-width: 650px !important;
+    }
+    .box-user-information .user-name {
+        max-width: 800px;
+    }
+}
+@media (max-width: 1550px)
+{
+    .slider-music-duration {
+        width: 250px;
+    }
+    .conteiner-volume .slider-music-volume {
+        width: 100px;
+    }
+    .conteiner-side-2 .conteiner-volume {
+        margin-left: 10px;
+    }
+    .conteiner-funcions {
+        margin-left: 20px;
+    }
+
+    .title-info-search, .title-info-favorite, .title-info-historic {
+        max-width: 550px !important;
+    }
+    .box-user-information .user-name {
+        max-width: 600px;
+    }
 }
