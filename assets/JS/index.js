@@ -13,29 +13,29 @@ const backgroundCover = document.querySelector('.main-display .background-cover'
 
 const musicAnimationStatus = document.querySelector('.music-animation-status');
 
-const conteinerPlaylist = document.querySelector('.conteiner-playlist');
+const containerPlaylist = document.querySelector('.container-playlist');
 const body = document.body;
 
-const currentDuration = document.querySelector('.conteiner-duration-status .current-duration');
+const currentDuration = document.querySelector('.container-duration-status .current-duration');
 const sliderMusicDuration = document.querySelector('.slider-music-duration .slider-music-duration-wrapper input');
 const sliderMusicDurationDot = document.querySelector('.slider-music-duration-wrapper .slider-music-duration-dot');
-const totalDuration = document.querySelector('.conteiner-duration-status .total-duration');
+const totalDuration = document.querySelector('.container-duration-status .total-duration');
 
 const sliderMusicVolume = document.querySelector('.slider-music-volume .slider-music-volume-wrapper input');
 const sliderMusicVolumeDot = document.querySelector('.slider-music-volume-wrapper .slider-music-volume-dot');
 
-const repeatIcon = document.querySelector('.conteiner-funcions .repeat-icon ion-icon')
-const shuffleIcon = document.querySelector('.conteiner-funcions .shuffle-icon ion-icon')
+const repeatIcon = document.querySelector('.container-funcions .repeat-icon ion-icon')
+const shuffleIcon = document.querySelector('.container-funcions .shuffle-icon ion-icon')
 
-const searchButton = document.querySelector('.conteiner-search .search-icon');
+const searchButton = document.querySelector('.container-search .search-icon');
 
-const conteinerItemsSearch = document.querySelector('.conteiner-items')
+const containerItemsSearch = document.querySelector('.container-items')
 const searchBarInput = document.querySelector('#search-bar-input');
 
 const userSettings = document.querySelector('.user-settings');
 
-const conteinerItemsFavorite = document.querySelector('.conteiner-favorite');
-const conteinerItemsHistoric = document.querySelector('.conteiner-historic');
+const containerItemsFavorite = document.querySelector('.container-favorite');
+const containerItemsHistoric = document.querySelector('.container-historic');
 
 const showFavoriteSongs = document.querySelector('#show-favorite-songs');
 const userName = document.querySelector('.user-name');
@@ -87,7 +87,7 @@ let musicData = [
 
 let userData = {
         id: 1,
-        name: "Joe Dawn djsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjkdjsakjdaksjdskajdkasdjasldjaskldjaskldjaksjldghkdashdgasdgajsdashgdsdasjgdsahjk",
+        name: "Joe Dawn",
         registrationDate: 'ISODate("2023-02-28T14:10:30.000Z")',
         favoriteSongs: [5,1,2],
         musicHistory: [1,2,3,4,5]
@@ -106,20 +106,20 @@ audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
 function inicia(){
     allSongValueSetters();
     setUserSettings();
-    generatorConteinerPlaylistData();
-    generatorConteinerPlaylistDataPlay();
+    generatorContainerPlaylistData();
+    generatorContainerPlaylistDataPlay();
     themeChanger(musicDataShuffled[indexAudio].theme);
     musicStateControllers();
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
     searchEvents();
 
-    generatorConteinerSearchData()
-    generatorConteinerSearchDataPlay()
-    generatorConteinerFavoriteData()
-    generatorConteinerFavoriteDataPlay()
-    generatorConteinerHistoricData()
-    generatorConteinerHistoricDataPlay()
+    generatorContainerSearchData()
+    generatorContainerSearchDataPlay()
+    generatorContainerFavoriteData()
+    generatorContainerFavoriteDataPlay()
+    generatorContainerHistoricData()
+    generatorContainerHistoricDataPlay()
 }
 
 function audioControllerPlayFunction(){
@@ -227,10 +227,10 @@ function audioControllerPrevFunction(){
     themeChanger(selectedTheme);
 }
 
-function generatorConteinerPlaylistData(){
+function generatorContainerPlaylistData(){
     musicDataShuffled.forEach((element) => {
 
-        conteinerPlaylist.innerHTML += `
+        containerPlaylist.innerHTML += `
             <div class="item-playlist">
                 <div class="box-wrapper">
                     <div class="cover-item" data-id="${element.id}" data-theme="${element.theme}">
@@ -254,8 +254,8 @@ function generatorConteinerPlaylistData(){
     })
 }
 
-function generatorConteinerPlaylistDataPlay(){
-    const itemsPlaylist = document.querySelectorAll('.conteiner-playlist .item-playlist .play-button-item, .cover-item');
+function generatorContainerPlaylistDataPlay(){
+    const itemsPlaylist = document.querySelectorAll('.container-playlist .item-playlist .play-button-item, .cover-item');
 
     itemsPlaylist.forEach((element)=> {
         element.addEventListener('click', function(){
@@ -269,10 +269,10 @@ function generatorConteinerPlaylistDataPlay(){
     })
 }
 
-function generatorConteinerSearchData(){
+function generatorContainerSearchData(){
     musicDataFiltered.forEach((element) => {
 
-        conteinerItemsSearch.innerHTML += `
+        containerItemsSearch.innerHTML += `
             <div class="item-playlist-search">
                 <div class="box-wrapper-search">
                     <div class="cover-item-search" data-id="${element.id}" data-theme="${element.theme}">
@@ -295,8 +295,8 @@ function generatorConteinerSearchData(){
     })
 }
 
-function generatorConteinerSearchDataPlay(){
-    const itemsPlaylistSearch = document.querySelectorAll('.conteiner-items .item-playlist-search .play-button-item, .cover-item-search');
+function generatorContainerSearchDataPlay(){
+    const itemsPlaylistSearch = document.querySelectorAll('.container-items .item-playlist-search .play-button-item, .cover-item-search');
 
     itemsPlaylistSearch.forEach((element)=> {
         element.addEventListener('click', function(){
@@ -308,13 +308,13 @@ function generatorConteinerSearchDataPlay(){
             themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
-            $('.conteiner-search-result').hide(200);
+            $('.container-search-result').hide(200);
             profileWasClicked = true;
         });
     })
 }
 
-function generatorConteinerFavoriteData(){
+function generatorContainerFavoriteData(){
     let favoriteSongs = [];
 
     for (let i = 0; i < userData.favoriteSongs.length; i++) {
@@ -332,7 +332,7 @@ function generatorConteinerFavoriteData(){
 
     favoriteSongs.forEach((element) => {
 
-        conteinerItemsFavorite.innerHTML += `
+        containerItemsFavorite.innerHTML += `
             <div class="item-playlist-favorite">
                 <div class="box-wrapper-favorite">
                     <div class="cover-item-favorite" data-id="${element.id}" data-theme="${element.theme}">
@@ -355,8 +355,8 @@ function generatorConteinerFavoriteData(){
     })
 }
 
-function generatorConteinerFavoriteDataPlay(){
-    const itemsPlaylistFavorite = document.querySelectorAll('.conteiner-favorite .item-playlist-favorite .play-button-item, .cover-item-favorite');
+function generatorContainerFavoriteDataPlay(){
+    const itemsPlaylistFavorite = document.querySelectorAll('.container-favorite .item-playlist-favorite .play-button-item, .cover-item-favorite');
 
     itemsPlaylistFavorite.forEach((element)=> {
         element.addEventListener('click', function(){
@@ -368,14 +368,14 @@ function generatorConteinerFavoriteDataPlay(){
             themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
-            $('.conteiner-user-settings').hide(200);
+            $('.container-user-settings').hide(200);
             profileWasClicked = true;
         });
     })
 }
 
 
-function generatorConteinerHistoricData(){
+function generatorContainerHistoricData(){
     let historicSongs = [];
 
     for (let i = 0; i < userData.musicHistory.length; i++) {
@@ -396,7 +396,7 @@ function generatorConteinerHistoricData(){
     
     historicSongs.forEach((element) => {
 
-        conteinerItemsHistoric.innerHTML += `
+        containerItemsHistoric.innerHTML += `
             <div class="item-playlist-historic">
                 <div class="box-wrapper-historic">
                     <div class="cover-item-historic" data-id="${element.id}" data-theme="${element.theme}">
@@ -419,8 +419,8 @@ function generatorConteinerHistoricData(){
     })
 }
 
-function generatorConteinerHistoricDataPlay(){
-    const itemsPlaylistHistoric = document.querySelectorAll('.conteiner-historic .item-playlist-historic .play-button-item, .cover-item-historic');
+function generatorContainerHistoricDataPlay(){
+    const itemsPlaylistHistoric = document.querySelectorAll('.container-historic .item-playlist-historic .play-button-item, .cover-item-historic');
 
     itemsPlaylistHistoric.forEach((element)=> {
         element.addEventListener('click', function(){
@@ -432,14 +432,14 @@ function generatorConteinerHistoricDataPlay(){
             themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
-            $('.conteiner-user-settings').hide(200);
+            $('.container-user-settings').hide(200);
             profileWasClicked = true;
         });
     })
 }
 
 function themeChanger(selectedTheme){
-    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .conteiner-playlist, .search-bar, .conteiner-settings .user-settings, .main-display .clock-settings, .conteiner-side-1 .current-music-rating, .conteiner-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .conteiner-volume .slider-music-volume, .conteiner-volume .slider-music-volume, .conteiner-playlist .item-playlist, .main-controls, .conteiner-funcions .repeat-icon, .conteiner-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic");
+    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .container-playlist, .search-bar, .container-settings .user-settings, .main-display .clock-settings, .container-side-1 .current-music-rating, .container-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .container-volume .slider-music-volume, .container-volume .slider-music-volume, .container-playlist .item-playlist, .main-controls, .container-funcions .repeat-icon, .container-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic");
     let serviceLogo = document.querySelector('.service-logo img');
 
     initDurationSlider();
@@ -461,8 +461,6 @@ let canMoveTheSliderDuration = true;
 
 function musicStateControllers(){
     audioGlobal.addEventListener('timeupdate', () => {
-
-        // audioGlobal.playbackRate = 16 // TESTE
 
         if(canMoveTheSliderDuration){
             sliderMusicDuration.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
@@ -661,7 +659,7 @@ function shuffleToggle(){
 }
 
 function musicFilteringFunction(){
-    conteinerItemsSearch.innerHTML = "";
+    containerItemsSearch.innerHTML = "";
 
     $('.song-not-found').hide();
     
@@ -670,11 +668,11 @@ function musicFilteringFunction(){
         music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
         )
     
-    generatorConteinerSearchData()
-    generatorConteinerSearchDataPlay()
+    generatorContainerSearchData()
+    generatorContainerSearchDataPlay()
     themeChanger(musicDataShuffled[indexAudio].theme);
     
-    if (conteinerItemsSearch.innerHTML == ''){
+    if (containerItemsSearch.innerHTML == ''){
         $('.song-not-found').show();
     }
 }
@@ -691,30 +689,30 @@ function searchEvents(){
         musicFilteringFunction();
     })
     $('.search-bar input').click(function() {
-        $('.conteiner-search-result').show(200)
+        $('.container-search-result').show(200)
         $('.focus-shadow').show(200)
-        $('.conteiner-user-settings').hide(200)
+        $('.container-user-settings').hide(200)
         profileWasClicked = true;
     });
-    $('.conteiner-settings .user-settings').click(function() {
+    $('.container-settings .user-settings').click(function() {
         if(profileWasClicked){
-            $('.conteiner-user-settings').show(200)
+            $('.container-user-settings').show(200)
             $('.focus-shadow').show(200)
-            $('.conteiner-search-result').hide(200)
+            $('.container-search-result').hide(200)
             profileWasClicked = false;
         }
         else {
             $('.focus-shadow').hide(200)
-            $('.conteiner-search-result').hide(200)
-            $('.conteiner-user-settings').hide(200)
+            $('.container-search-result').hide(200)
+            $('.container-user-settings').hide(200)
             profileWasClicked = true;
         }
     });
     
     $('.focus-shadow').click(()=>{
         $('.focus-shadow').hide(200)
-        $('.conteiner-search-result').hide(200)
-        $('.conteiner-user-settings').hide(200)
+        $('.container-search-result').hide(200)
+        $('.container-user-settings').hide(200)
         profileWasClicked = true;
     })
 
