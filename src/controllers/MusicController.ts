@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
 
@@ -36,4 +37,35 @@ async function store(req: Request, res: Response) {
     }
 }
 
-export { index, store }
+async function update(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { audioUrl, coverUrl, title, gender, theme } = req.body
+    const { id } = req.params
+
+    if (!audioUrl && !coverUrl && !title && !gender && !theme) {
+        return res.status(400).json({ error: 'You must enter a new data' })
+    }
+
+    const filter = { _id: id };
+    const updateDoc = {
+      $set: {
+        audioUrl,
+        coverUrl,
+        title,
+        gender,
+        theme,
+      },
+    };
+    
+    try {
+        await Music.updateOne(filter, updateDoc);
+
+        return res.status(200).json({ message: 'Music updated succesfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+export { index, store, update }
