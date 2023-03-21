@@ -1,0 +1,39 @@
+import { Request, Response } from 'express'
+import { v4 as uuid } from 'uuid'
+import { Music } from '../models/Music'
+
+async function index(req: Request, res: Response) {
+    try {
+        const songs = await Music.find()
+        return res.status(200).json({ songs })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+async function store(req: Request, res: Response) {
+    const { audioUrl, coverUrl, title, gender, theme } = req.body
+
+    if (!audioUrl || !coverUrl || !title || !gender || !theme) {
+        return res.status(400).json({ error: 'data is missing' })
+    }
+
+    const music = new Music({
+        _id: uuid(),
+        audioUrl,
+        coverUrl,
+        title,
+        gender,
+        theme,
+    })
+
+    try {
+        await music.save()
+
+        return res.status(201).json({ message: 'Music added succesfully!' })
+    } catch (err) {
+        res.status(400).json({ error: err })
+    }
+}
+
+export { index, store }
