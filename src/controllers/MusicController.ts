@@ -48,19 +48,19 @@ async function update(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    const filter = { _id: id };
+    const filter = { _id: id }
     const updateDoc = {
-      $set: {
-        audioUrl,
-        coverUrl,
-        title,
-        gender,
-        theme,
-      },
-    };
-    
+        $set: {
+            audioUrl,
+            coverUrl,
+            title,
+            gender,
+            theme,
+        },
+    }
+
     try {
-        await Music.updateOne(filter, updateDoc);
+        await Music.updateOne(filter, updateDoc)
 
         return res.status(200).json({ message: 'Music updated succesfully!' })
     } catch (err) {
@@ -68,4 +68,19 @@ async function update(
     }
 }
 
-export { index, store, update }
+async function deleteMusic(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { id } = req.params
+    const filter = { _id: id }
+
+    try {
+        await Music.deleteOne(filter)
+        return res.status(200).json({ message: 'Music removed succesfully!' })
+    } catch (err) {
+        return res.status(500).json({ error: err })
+    }
+}
+
+export { index, store, update, deleteMusic }

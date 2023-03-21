@@ -15,7 +15,7 @@ async function getMusic(
 
     try {
         const music = await Music.findById(id)
-        // res.music = music;
+        
         if (!music) {
             return res.status(404).json({ error: 'Music not found' })
         }
