@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-interface IMusic {
+export interface IMusic {
     _id: string
     audioUrl: string
     coverUrl: string
