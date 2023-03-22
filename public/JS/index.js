@@ -42,59 +42,19 @@ const userName = document.querySelector('.user-name');
 const registrationDate = document.querySelector('.registration-date');
 
 
-let musicData = [
-    {
-        id: 1,
-        audioUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).mp3",
-        coverUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg",
-        title: "Nightcore - Numb (Lyrics)",
-        gender: "Nightcore",
-        theme: "Original"
-    },
-    {
-        id: 2,
-        audioUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20I%20Wanna%20Be%20Your%20Slave%20(Lyrics).mp3",
-        coverUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20I%20Wanna%20Be%20Your%20Slave%20(Lyrics).jpg",
-        title: "Nightcore - I Wanna Be Your Slave (Lyrics)",
-        gender: "Nightcore",
-        theme: "Original"
-    },
-    {
-        id: 3,
-        audioUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Last%20Friday%20Night%20(T.G.I.F.)%20(Rock%20Version)%20(Lyrics).mp3",
-        coverUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Last%20Friday%20Night%20(Rock%20Version)%20(Lyrics).jpg",
-        title: "Nightcore - Last Friday Night (T.G.I.F.) (Rock Version) (Lyrics)",
-        gender: "Nightcore",
-        theme: "Rock Version"
-    },
-    {
-        id: 4,
-        audioUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Bad%20Romance%20(Rock%20Version)%20(Lyrics).mp3",
-        coverUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Bad%20Romance%20(Rock%20Version)%20(Lyrics).jpg",
-        title: "Nightcore - Bad Romance (Rock Version) (Lyrics)",
-        gender: "Nightcore",
-        theme: "Rock Version"
-    },
-    {
-        id: 5,
-        audioUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).mp3",
-        coverUrl: "https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg",
-        title: "Nightcore - Without Me (Rock Version) (Lyrics)",
-        gender: "Nightcore",
-        theme: "Rock Version"
-    }
-]
+let musicData = [];
+let musicDataShuffled = [];
+let musicDataFiltered = [];
 
 let userData = {
         id: 1,
         name: "Joe Dawn",
         registrationDate: 'ISODate("2023-02-28T14:10:30.000Z")',
-        favoriteSongs: [5,1,2],
+        favoriteSongs: [5,1,2,"f82c55fc-6807-40ba-bf21-8a75582bced2"],
         musicHistory: [1,2,3,4,5]
     }
 
-let musicDataShuffled = [...musicData];
-let musicDataFiltered = [...musicData];
+
 
 
 
@@ -108,7 +68,6 @@ function inicia(){
     setUserSettings();
     generatorContainerPlaylistData();
     generatorContainerPlaylistDataPlay();
-    themeChanger(musicDataShuffled[indexAudio].theme);
     musicStateControllers();
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
@@ -120,6 +79,8 @@ function inicia(){
     generatorContainerFavoriteDataPlay()
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
+
+    themeChanger(musicDataShuffled[indexAudio].theme);
 }
 
 function audioControllerPlayFunction(){
@@ -233,7 +194,7 @@ function generatorContainerPlaylistData(){
         containerPlaylist.innerHTML += `
             <div class="item-playlist">
                 <div class="box-wrapper">
-                    <div class="cover-item" data-id="${element.id}" data-theme="${element.theme}">
+                    <div class="cover-item" data-id="${element._id}" data-theme="${element.theme}">
                         <img src="${element.coverUrl}">
                     </div>
                     <div class="info-item">
@@ -246,7 +207,7 @@ function generatorContainerPlaylistData(){
                     </div>
                 </div>
 
-                <div class="play-button-item" data-id="${element.id}" data-theme="${element.theme}">
+                <div class="play-button-item" data-id="${element._id}" data-theme="${element.theme}">
                     <ion-icon name="play-circle"></ion-icon>
                 </div>
             </div>
@@ -259,7 +220,7 @@ function generatorContainerPlaylistDataPlay(){
 
     itemsPlaylist.forEach((element)=> {
         element.addEventListener('click', function(){
-            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element.id == $(this).data('id')))
+            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
 
             allSongValueSetters();
@@ -275,7 +236,7 @@ function generatorContainerSearchData(){
         containerItemsSearch.innerHTML += `
             <div class="item-playlist-search">
                 <div class="box-wrapper-search">
-                    <div class="cover-item-search" data-id="${element.id}" data-theme="${element.theme}">
+                    <div class="cover-item-search" data-id="${element._id}" data-theme="${element.theme}">
                         <img src="${element.coverUrl}">
                     </div>
                     <div class="info-item-search">
@@ -287,7 +248,7 @@ function generatorContainerSearchData(){
                         </div>
                     </div>
                 </div>
-                <div class="play-button-item" data-id="${element.id}" data-theme="${element.theme}">
+                <div class="play-button-item" data-id="${element._id}" data-theme="${element.theme}">
                     <ion-icon name="play-circle"></ion-icon>
                 </div>
             </div>
@@ -300,7 +261,7 @@ function generatorContainerSearchDataPlay(){
 
     itemsPlaylistSearch.forEach((element)=> {
         element.addEventListener('click', function(){
-            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element.id == $(this).data('id')))
+            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
 
             allSongValueSetters();
@@ -318,9 +279,9 @@ function generatorContainerFavoriteData(){
     let favoriteSongs = [];
 
     for (let i = 0; i < userData.favoriteSongs.length; i++) {
-        let song = musicDataShuffled.find(element => element.id == userData.favoriteSongs[i])
+        let song = musicDataShuffled.find(element => element._id == userData.favoriteSongs[i])
         if(song){
-            if(!favoriteSongs.find(element => element.id == userData.favoriteSongs[i])){
+            if(!favoriteSongs.find(element => element._id == userData.favoriteSongs[i])){
                 favoriteSongs.push(song);
             }
         }
@@ -335,7 +296,7 @@ function generatorContainerFavoriteData(){
         containerItemsFavorite.innerHTML += `
             <div class="item-playlist-favorite">
                 <div class="box-wrapper-favorite">
-                    <div class="cover-item-favorite" data-id="${element.id}" data-theme="${element.theme}">
+                    <div class="cover-item-favorite" data-id="${element._id}" data-theme="${element.theme}">
                         <img src="${element.coverUrl}">
                     </div>
                     <div class="info-item-favorite">
@@ -347,7 +308,7 @@ function generatorContainerFavoriteData(){
                         </div>
                     </div>
                 </div>
-                <div class="play-button-item" data-id="${element.id}" data-theme="${element.theme}">
+                <div class="play-button-item" data-id="${element._id}" data-theme="${element.theme}">
                     <ion-icon name="play-circle"></ion-icon>
                 </div>
             </div>
@@ -360,7 +321,7 @@ function generatorContainerFavoriteDataPlay(){
 
     itemsPlaylistFavorite.forEach((element)=> {
         element.addEventListener('click', function(){
-            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element.id == $(this).data('id')))
+            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
 
             allSongValueSetters();
@@ -379,14 +340,14 @@ function generatorContainerHistoricData(){
     let historicSongs = [];
 
     for (let i = 0; i < userData.musicHistory.length; i++) {
-        let song = musicDataShuffled.find(element => element.id == userData.musicHistory[i])
+        let song = musicDataShuffled.find(element => element._id == userData.musicHistory[i])
 
         if(historicSongs.length >= 20){
             historicSongs.shift()
         }
 
         if(song){
-            if(!historicSongs.find(element => element.id == userData.musicHistory[i])){
+            if(!historicSongs.find(element => element._id == userData.musicHistory[i])){
                 historicSongs.push(song);
             }
         }
@@ -399,7 +360,7 @@ function generatorContainerHistoricData(){
         containerItemsHistoric.innerHTML += `
             <div class="item-playlist-historic">
                 <div class="box-wrapper-historic">
-                    <div class="cover-item-historic" data-id="${element.id}" data-theme="${element.theme}">
+                    <div class="cover-item-historic" data-id="${element._id}" data-theme="${element.theme}">
                         <img src="${element.coverUrl}">
                     </div>
                     <div class="info-item-historic">
@@ -411,7 +372,7 @@ function generatorContainerHistoricData(){
                         </div>
                     </div>
                 </div>
-                <div class="play-button-item" data-id="${element.id}" data-theme="${element.theme}">
+                <div class="play-button-item" data-id="${element._id}" data-theme="${element.theme}">
                     <ion-icon name="play-circle"></ion-icon>
                 </div>
             </div>
@@ -424,7 +385,7 @@ function generatorContainerHistoricDataPlay(){
 
     itemsPlaylistHistoric.forEach((element)=> {
         element.addEventListener('click', function(){
-            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element.id == $(this).data('id')))
+            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
 
             allSongValueSetters();
@@ -721,5 +682,15 @@ function searchEvents(){
     };
 }
 
+async function musicListingService() {
+    const response = await fetch('/songs');
+    songs = await response.json();
+    musicData = songs.songs
+    
+    musicDataShuffled = [...musicData];
+    musicDataFiltered = [...musicData];
 
-inicia();
+    inicia();
+}
+
+musicListingService();
