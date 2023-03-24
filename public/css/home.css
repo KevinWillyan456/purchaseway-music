@@ -1,3 +1,16 @@
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+body::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+}
+
 .cabecalho {
     width: 100%;
     background-color: var(--color-blue-1);
@@ -6,7 +19,8 @@
     align-items: center;
     padding: 10px 20px;
 
-    position: absolute;
+    position: fixed;
+    top: 0;
     z-index: 1000;
 }
 
@@ -41,6 +55,24 @@
     cursor: pointer;
 }
 
+.section-banner .button-register {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.button-register button {
+    position: absolute;
+    top: 80.5555%;
+
+    width: 200px;
+    color: var(--color-white-1);
+    font-size: 25px;
+    padding: 15px 0;
+    background-color: var(--color-blue-4);
+    border: none;
+    cursor: pointer;
+}
+
 .section-banner {
     width: 100%;
     min-height: 100vh;
@@ -58,8 +90,134 @@
     font-size: 70px;
     position: absolute;
 
-    top: 220px;
+    top: 20.3703%;
     width: 100%;
     text-align: center;
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+
+.section-banner .title-2 {
+    font-size: 60px;
+    position: absolute;
+
+    top: 71.9444%;
+    width: 100%;
+    text-align: center;
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+
+.section-banner .title-3 {
+    font-size: 25px;
+    position: absolute;
+
+    top: 89.8114%;
+    width: 100%;
+    text-align: center;
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+
+.section-listen {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-blue-4);
+
+    background-image: url('https://pw-music-database.kevinsouza456.repl.co/background-2.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+}
+.section-listen .box-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.section-listen .box-wrapper .title-1 {
+    font-size: 60px;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+.section-listen .box-wrapper .title-2 {
+    font-size: 40px;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+
+/*  */
+
+.section-very-high-quality {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-blue-4);
+
+    background-image: url('https://pw-music-database.kevinsouza456.repl.co/background-3.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+}
+.section-very-high-quality .box-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.section-very-high-quality .box-wrapper .title-1 {
+    font-size: 60px;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+.section-very-high-quality .box-wrapper .title-2 {
+    display: flex;
+    align-items: center;
+    font-size: 80px;
+    margin-top: 20px;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+.section-very-high-quality .box-wrapper .title-2 ion-icon {
+    width: 150px;
+    height: 150px;
+    margin-right: 10px;
+}
+
+.rodape {
+    width: 100%;
+    background-color: var(--color-blue-1);
+    height: 160px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rodape .box-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.rodape .name-service {
+    font-size: 32px;
+    color: var(--color-white-1);
+    margin-bottom: 20px;
+}
+.rodape .copyright {
+    font-size: 16px;
     color: var(--color-white-1);
 }
