@@ -7,6 +7,7 @@ export interface IMusic {
     title: string
     gender: string
     theme: string
+    additionDate: Date
 }
 
 const musicSchema = new Schema<IMusic>({
@@ -16,6 +17,7 @@ const musicSchema = new Schema<IMusic>({
     title: { type: String, required: true },
     gender: { type: String, required: true },
     theme: { type: String, required: true },
+    additionDate: { type: Date, required: true },
 })
 
 export const Music = model<IMusic>('Music', musicSchema)

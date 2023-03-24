@@ -26,6 +26,7 @@ async function store(req: Request, res: Response) {
         title,
         gender,
         theme,
+        additionDate: new Date()
     })
 
     try {
