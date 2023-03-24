@@ -1,0 +1,65 @@
+.cabecalho {
+    width: 100%;
+    background-color: var(--color-blue-1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+
+    position: absolute;
+    z-index: 1000;
+}
+
+.cabecalho .box-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho .list-options {
+    display: flex;
+    list-style-type: none;
+    color: var(--color-white-1);
+}
+.list-options li {
+    margin-right: 40px;
+}
+.list-options li div {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.box-wrapper .button-login {
+    display: flex;
+}
+.button-login button {
+    width: 150px;
+    color: var(--color-white-1);
+    font-size: 25px;
+    padding: 15px 0;
+    background-color: var(--color-blue-4);
+    border: none;
+    cursor: pointer;
+}
+
+.section-banner {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-blue-4);
+
+    background-image: url('https://pw-music-database.kevinsouza456.repl.co/background-1.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: relative;
+}
+
+.section-banner .title-1 {
+    font-size: 70px;
+    position: absolute;
+
+    top: 220px;
+    width: 100%;
+    text-align: center;
+    color: var(--color-white-1);
+}

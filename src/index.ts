@@ -23,6 +23,9 @@ app.use(express.static('public'));
 app.get("/", (req, res) => {
     res.render('index');
 });
+app.get("/home", (req, res) => {
+    res.render('home');
+});
 
 app.listen(port, () =>
   console.log(`Servidor rodando na porta: ${port} - http://localhost:${port}`)
