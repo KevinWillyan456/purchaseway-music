@@ -155,8 +155,6 @@ body::-webkit-scrollbar-thumb {
     text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 
-/*  */
-
 .section-very-high-quality {
     width: 100%;
     min-height: 100vh;
@@ -196,6 +194,121 @@ body::-webkit-scrollbar-thumb {
     width: 150px;
     height: 150px;
     margin-right: 10px;
+}
+
+/*  */
+
+.section-reactive {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-blue-4);
+
+    background-image: url('https://pw-music-database.kevinsouza456.repl.co/background-4.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+.section-reactive .box-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+.section-reactive .box-wrapper .title-1 {
+    font-size: 80px;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+.section-reactive .box-wrapper .title-2 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    margin-top: 20px;
+    width: 600px;
+    text-align: center;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+}
+
+.section-reactive .blue-blur {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-color: var(--color-blue-2);
+    filter: blur(50px);
+    
+    border-radius: 50%;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+
+    top: 80px;
+    left: 80px;
+}
+.section-reactive .blue-blur-title {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+
+    font-size: 64px;
+
+    top: 80px;
+    left: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-reactive .red-blur {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-color: var(--color-red-2);
+    filter: blur(50px);
+    
+    border-radius: 50%;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+
+    top: 37.0370%;
+    left: 64.5833%;
+}
+.section-reactive .red-blur-title {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+
+    color: var(--color-white-1);
+
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+
+    font-size: 64px;
+
+    top: 37.0370%;
+    left: 64.5833%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rodape {
