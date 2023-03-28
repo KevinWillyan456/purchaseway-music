@@ -11,6 +11,11 @@ body::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 79px;
+}
+
 .cabecalho {
     width: 100%;
     background-color: var(--color-blue-1);
@@ -37,9 +42,15 @@ body::-webkit-scrollbar-thumb {
 .list-options li {
     margin-right: 40px;
 }
-.list-options li div {
+.list-options li a {
+    transition: 200ms;
     font-size: 25px;
     cursor: pointer;
+    color: var(--color-white-1);
+    text-decoration: none;
+}
+.list-options li a:hover {
+    color: var(--color-blue-2);
 }
 
 .box-wrapper .button-login {

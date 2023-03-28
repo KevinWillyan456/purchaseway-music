@@ -26,6 +26,9 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
     res.render('home');
 });
+app.get("/denied", (req, res) => {
+    res.render('denied');
+});
 
 app.listen(port, () =>
   console.log(`Servidor rodando na porta: ${port} - http://localhost:${port}`)
