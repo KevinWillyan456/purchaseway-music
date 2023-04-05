@@ -197,6 +197,7 @@ body {
     height: 40px;
     width: 400px;
     padding-left: 16px;
+    padding-right: 36px;
     border-radius: 10px;
     border: 2px solid var(--color-black);
     outline: none;
