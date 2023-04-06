@@ -436,6 +436,7 @@ body {
     align-items: center;
 }
 .box-user-settings {
+    position: relative;
     width: 100%;
     height: calc(100% - 15px);
     overflow-y: scroll;
@@ -457,13 +458,20 @@ body {
     border-radius: 10px;
 }
 
+.box-user-settings .logout {
+    position: absolute;
+    top: 32.5px;
+    right: 20px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
 .box-user-settings .title-profile {
     font-size: 36px;
     width: 500px;
     color: var(--color-white-1);
     padding-top: 32.5px;
 }
-
 .box-profile .user-settings {
     width: 100px;
     height: 100px;
