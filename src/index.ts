@@ -32,6 +32,9 @@ app.get("/denied", (req, res) => {
 app.get("/signup", (req, res) => {
     res.render('signup');
 });
+app.get("/login", (req, res) => {
+    res.render('login');
+});
 
 app.listen(port, () =>
   console.log(`Servidor rodando na porta: ${port} - http://localhost:${port}`)

@@ -39,6 +39,9 @@ html {
     list-style-type: none;
     color: var(--color-white-1);
 }
+.cabecalho .service-logo {
+    cursor: pointer;
+}
 .list-options li {
     margin-right: 40px;
 }

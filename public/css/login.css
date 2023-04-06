@@ -16,8 +16,6 @@ body {
     top: 100px;
     left: 50%;
     transform: translateX(-50%);
-
-    cursor: pointer;
 }
 
 .container {
