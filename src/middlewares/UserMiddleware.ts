@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import { validate as isUuid } from 'uuid'
-import { Music } from '../models/Music'
+import { User } from '../models/User'
 
-async function getMusic(req: Request, res: Response, next: NextFunction) {
+async function getUser(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params
 
     if (!isUuid(id)) {
@@ -10,10 +10,10 @@ async function getMusic(req: Request, res: Response, next: NextFunction) {
     }
 
     try {
-        const music = await Music.findById(id)
+        const user = await User.findById(id)
 
-        if (!music) {
-            return res.status(404).json({ error: 'Music not found' })
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
         }
     } catch (err) {
         return res.status(500).json({ error: err })
@@ -22,4 +22,4 @@ async function getMusic(req: Request, res: Response, next: NextFunction) {
     next()
 }
 
-export { getMusic }
+export { getUser }

@@ -3,7 +3,7 @@ import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
 
-async function index(req: Request, res: Response) {
+async function indexMusic(req: Request, res: Response) {
     try {
         const songs = await Music.find()
         return res.status(200).json({ songs })
@@ -12,7 +12,7 @@ async function index(req: Request, res: Response) {
     }
 }
 
-async function store(req: Request, res: Response) {
+async function storeMusic(req: Request, res: Response) {
     const { audioUrl, coverUrl, title, gender, theme } = req.body
 
     if (!audioUrl || !coverUrl || !title || !gender || !theme) {
@@ -26,7 +26,7 @@ async function store(req: Request, res: Response) {
         title,
         gender,
         theme,
-        additionDate: new Date()
+        additionDate: new Date(),
     })
 
     try {
@@ -38,7 +38,7 @@ async function store(req: Request, res: Response) {
     }
 }
 
-async function update(
+async function updateMusic(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
 ) {
@@ -84,4 +84,4 @@ async function deleteMusic(
     }
 }
 
-export { index, store, update, deleteMusic }
+export { indexMusic, storeMusic, updateMusic, deleteMusic }

@@ -514,11 +514,7 @@ body {
     font-size: 12px;
 }
 
-.title-wrapper {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
+
 .title-profile:nth-child(2) {
     text-align: end;
     margin-right: 5px;

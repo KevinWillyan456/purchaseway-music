@@ -37,7 +37,6 @@ const userSettings = document.querySelector('.user-settings');
 const containerItemsFavorite = document.querySelector('.container-favorite');
 const containerItemsHistoric = document.querySelector('.container-historic');
 
-const showFavoriteSongs = document.querySelector('#show-favorite-songs');
 const userName = document.querySelector('.user-name');
 const registrationDate = document.querySelector('.registration-date');
 
@@ -289,7 +288,6 @@ function generatorContainerFavoriteData(){
 
     favoriteSongs.reverse();
 
-    showFavoriteSongs.innerHTML = `${favoriteSongs.length} Adicionadas`
 
     favoriteSongs.forEach((element) => {
 
@@ -337,7 +335,7 @@ function generatorContainerFavoriteDataPlay(){
 
 
 function generatorContainerHistoricData(){
-    let historicSongs = [];
+    let historicSongs = [...musicData];
 
     for (let i = 0; i < userData.musicHistory.length; i++) {
         let song = musicDataShuffled.find(element => element._id == userData.musicHistory[i])
