@@ -16,6 +16,29 @@ html {
     scroll-padding-top: 79px;
 }
 
+.select-service {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+
+    width: 60px;
+    height: 60px;
+
+    background-color: var(--color-blue-4);
+    border-radius: 50%;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.select-service ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}
+
 .cabecalho {
     width: 100%;
     background-color: var(--color-blue-1);

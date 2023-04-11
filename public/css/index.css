@@ -18,15 +18,39 @@ body {
     background-color: var(--color-blue-1);
     height: 100%;
 }
-.main-playlist .title-playlist {
-    font-size: 36px;
-    color: var(--color-white-1);
+
+.main-playlist .box-wrapper-info {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+
     padding-top: 35px;
     padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 20px;
+}
+.main-playlist .box-wrapper-info .title-playlist {
+    font-size: 36px;
+    color: var(--color-white-1);
     overflow: hidden;
 }
+.main-playlist .box-wrapper-info .more-playlist {
+    color: var(--color-white-1);
+    font-size: 20px;
+    background-color: var(--color-blue-3);
 
+    width: 80px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    cursor: pointer;
+}
 
 .container-playlist {
     width: 100%;
