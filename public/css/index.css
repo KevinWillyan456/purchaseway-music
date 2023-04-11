@@ -91,6 +91,12 @@ body {
 .item-playlist .cover-item {
     width: 108px;
     height: 60px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .item-playlist .cover-item img {
     width: 100%;
@@ -361,6 +367,12 @@ body {
 .item-playlist-search .cover-item-search {
     width: 108px;
     height: 60px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .item-playlist-search .cover-item-search img {
     width: 100%;
@@ -561,6 +573,12 @@ body {
 .item-playlist-favorite .cover-item-favorite {
     width: 108px;
     height: 60px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .item-playlist-favorite .cover-item-favorite img {
     width: 100%;
@@ -621,6 +639,12 @@ body {
 .item-playlist-historic .cover-item-historic {
     width: 108px;
     height: 60px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .item-playlist-historic .cover-item-historic img {
     width: 100%;
@@ -732,6 +756,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    pointer-events: none;
 }
 .cover-current-music img {
     width: 100%;
