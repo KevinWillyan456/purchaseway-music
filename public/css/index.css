@@ -723,9 +723,15 @@ body {
 
 .container-side-1 .cover-current-music {
     width: 144px;
-    height: 80px;
+    height: 81px;
     margin-left: 20px;
     position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .cover-current-music img {
     width: 100%;

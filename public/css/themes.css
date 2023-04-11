@@ -77,3 +77,6 @@
 .item-playlist-historic.rock-version {
     background-color: var(--color-red-3);
 }
+.main-playlist .box-wrapper-info .more-playlist.rock-version {
+    background-color: var(--color-red-3);
+}
