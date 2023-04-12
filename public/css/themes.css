@@ -44,6 +44,9 @@
 .container-playlist .item-playlist.rock-version {
     background-color: var(--color-red-3);
 }
+.container-playlist .item-playlist.rock-version .box-wrapper .info-item.music-playing {
+    color: #f53636;
+}
 .main-controls.rock-version {
     background-image: linear-gradient(#731010, #000000);
 }

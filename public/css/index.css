@@ -107,12 +107,16 @@ body {
     display: flex;
 }
 .item-playlist .info-item{
+    transition: 200ms;
     color: var(--color-white-1);
     padding-left: 5px;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.container-playlist .item-playlist .box-wrapper .info-item.music-playing {
+    color: #3decff;
 }
 .info-item .title-info {
     max-width: 260px;

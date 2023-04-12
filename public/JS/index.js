@@ -1,5 +1,6 @@
 const audioGlobal = document.querySelector('#audio-global');
 let indexAudio = 0;
+let indexAudioId = "";
 
 const audioControllerPrev = document.querySelector('#audio-prev');
 const audioControllerPlay = document.querySelector('#audio-play');
@@ -80,6 +81,8 @@ function inicia(){
     generatorContainerHistoricDataPlay()
 
     themeChanger(musicDataShuffled[indexAudio].theme);
+    indexAudioId = musicDataShuffled[indexAudio]._id;
+    setMusicPlayTag();
 }
 
 function audioControllerPlayFunction(){
@@ -105,6 +108,7 @@ function audioControllerPlayFunctionNoPause(){
 
 function allSongValueSetters(){
     audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
+    indexAudioId = musicDataShuffled[indexAudio]._id;
     coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
     currentCover.src = musicDataShuffled[indexAudio].coverUrl;
     backgroundCover.style.setProperty("background-image", `url('${musicDataShuffled[indexAudio].coverUrl}')`);
@@ -170,21 +174,26 @@ function audioControllerNextFunction(){
     }
     
     let selectedTheme = musicDataShuffled[indexAudio].theme
+    indexAudioId = musicDataShuffled[indexAudio]._id;
     
     allSongValueSetters();
     audioControllerPlayFunctionNoPause()
     themeChanger(selectedTheme);
+    setMusicPlayTag();
 }
 function audioControllerPrevFunction(){
     indexAudio--;
     if(indexAudio < 0){
         indexAudio = musicDataShuffled.length - 1;
     }
+
     let selectedTheme = musicDataShuffled[indexAudio].theme
+    indexAudioId = musicDataShuffled[indexAudio]._id;
 
     allSongValueSetters();
     audioControllerPlayFunctionNoPause()
     themeChanger(selectedTheme);
+    setMusicPlayTag();
 }
 
 function generatorContainerPlaylistData(){
@@ -221,10 +230,12 @@ function generatorContainerPlaylistDataPlay(){
         element.addEventListener('click', function(){
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
-
+            indexAudioId = musicDataShuffled[indexAudio]._id;
+            
             allSongValueSetters();
             audioControllerPlayFunctionNoPause();
             themeChanger(selectedTheme);
+            setMusicPlayTag();
         });
     })
 }
@@ -262,10 +273,12 @@ function generatorContainerSearchDataPlay(){
         element.addEventListener('click', function(){
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
+            indexAudioId = musicDataShuffled[indexAudio]._id;
 
             allSongValueSetters();
             audioControllerPlayFunctionNoPause();
             themeChanger(selectedTheme);
+            setMusicPlayTag();
             
             $('.focus-shadow').hide(200);
             $('.container-search-result').hide(200);
@@ -321,10 +334,12 @@ function generatorContainerFavoriteDataPlay(){
         element.addEventListener('click', function(){
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
+            indexAudioId = musicDataShuffled[indexAudio]._id;
 
             allSongValueSetters();
             audioControllerPlayFunctionNoPause();
             themeChanger(selectedTheme);
+            setMusicPlayTag();
             
             $('.focus-shadow').hide(200);
             $('.container-user-settings').hide(200);
@@ -385,10 +400,12 @@ function generatorContainerHistoricDataPlay(){
         element.addEventListener('click', function(){
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
+            indexAudioId = musicDataShuffled[indexAudio]._id;
 
             allSongValueSetters();
             audioControllerPlayFunctionNoPause();
             themeChanger(selectedTheme);
+            setMusicPlayTag();
             
             $('.focus-shadow').hide(200);
             $('.container-user-settings').hide(200);
@@ -678,6 +695,11 @@ function searchEvents(){
     searchBarInput.oninput = () => {
         musicFilteringFunction();
     };
+}
+
+function setMusicPlayTag() {
+    $(".music-playing").removeClass("music-playing");
+    $(`div[data-id="${indexAudioId}"]`).siblings("div.info-item").addClass("music-playing");
 }
 
 async function musicListingService() {
