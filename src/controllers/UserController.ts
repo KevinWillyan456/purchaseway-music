@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
+import bcrypt from 'bcryptjs';
+import jwt from "jsonwebtoken"
 import { User } from '../models/User'
 
 async function indexUser(req: Request, res: Response) {
@@ -19,10 +21,13 @@ async function storeUser(req: Request, res: Response) {
         return res.status(400).json({ error: 'data is missing' })
     }
 
+    const encryptedPassword = await bcrypt.hash(password, 8)
+    console.log(encryptedPassword)
+
     const user = new User({
         _id: uuid(),
         name,
-        password,
+        password: encryptedPassword,
         additionDate: new Date(),
     })
 
@@ -32,6 +37,41 @@ async function storeUser(req: Request, res: Response) {
         return res.status(201).json({ message: 'User added succesfully!' })
     } catch (err) {
         res.status(400).json({ error: err })
+    }
+}
+
+async function loginUser(req: Request, res: Response) {
+    const { name, password } = req.body
+
+    if (!name || !password) {
+        return res.status(400).json({ error: 'data is missing' })
+    }
+
+    try {
+        const user = await User.findOne({name})
+
+        if (!user) {
+            return res.status(400).json({ error: 'wrong name or password - Nome' })
+        }
+
+        if(!(await bcrypt.compare(password, user?.password))){
+            return res.status(400).json({ error: 'wrong name or password - Senha' })
+        }
+
+        const token = jwt.sign({id: user?._id}, `${process.env.SECRET}`, {
+            expiresIn: 60
+        })
+
+
+        // Salva o Token
+        return res.status(200).json({
+            erro: false,
+            mensagem: "Login",
+            token
+        })
+
+    } catch (err) {
+        return res.status(500).json({ error: err })
     }
 }
 
@@ -78,4 +118,4 @@ async function deleteUser(
     }
 }
 
-export { indexUser, storeUser, updateUser, deleteUser }
+export { indexUser, storeUser, loginUser, updateUser, deleteUser }

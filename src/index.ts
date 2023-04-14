@@ -1,6 +1,7 @@
 import express from "express";
 import { config } from "dotenv"
 import cors from "cors"
+import cookieParser from "cookie-parser"
 import { connectToDatabase } from "./database";
 import { routes } from "./routes";
 
@@ -13,6 +14,7 @@ const port = 3000;
 app.use(cors());
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+app.use(cookieParser())
 app.use(routes)
 
 app.set("view engine", "ejs")
