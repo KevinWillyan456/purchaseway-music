@@ -64,17 +64,6 @@ form .input-nome:focus, form .input-senha:focus {
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
 
-
-/* Erros nos inputs */
-
-/* form .input-nome, form .input-senha {
-    box-shadow: 0 0 0 5px var(--color-red-2), 0 0 25px var(--color-red-2);
-    color: var(--color-red-2);
-}
-form .input-nome::placeholder, form .input-senha::placeholder {
-    color: var(--color-red-2);
-} */
-
 .warning {
     animation: warning-anime-color 1s infinite alternate, warning-anime-entrace 500ms linear;
     position: absolute;

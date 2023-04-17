@@ -11,7 +11,7 @@ login.addEventListener("click", () => {
     window.location = '/login'
 })
 document.querySelector('.service-logo').addEventListener("click", () => {
-    window.location = '/home'
+    window.location = '/'
 })
 
 termsOfUse.addEventListener("click", () => {

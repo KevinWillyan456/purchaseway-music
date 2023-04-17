@@ -20,10 +20,12 @@ async function validationForm(){
     let passwordValue = inputPasswordUser.value
 
     if(nameValue == ""){
-        return warning.classList.remove("hidden")
+        warning.classList.remove("hidden")
+        return warning.innerHTML = "Nome ou Senha incorretos!"
     }
     if(passwordValue == ""){
-        return warning.classList.remove("hidden")
+        warning.classList.remove("hidden")
+        return warning.innerHTML = "Nome ou Senha incorretos!"
     }
     if(passwordValue.length < 6){
         warning.classList.remove("hidden")
