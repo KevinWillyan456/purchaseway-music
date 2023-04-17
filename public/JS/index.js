@@ -111,7 +111,7 @@ function allSongValueSetters(){
     indexAudioId = musicDataShuffled[indexAudio]._id;
     coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
     currentCover.src = musicDataShuffled[indexAudio].coverUrl;
-    backgroundCover.style.setProperty("background-image", `url('${musicDataShuffled[indexAudio].coverUrl}')`);
+    backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
     titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
     genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
 }
@@ -644,6 +644,10 @@ function musicFilteringFunction(){
         music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
         )
     
+        while (musicDataFiltered.length > 5) {
+            musicDataFiltered.pop();
+        }
+    
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     themeChanger(musicDataShuffled[indexAudio].theme);
@@ -708,7 +712,15 @@ async function musicListingService() {
     musicData = songs.songs
     
     musicDataShuffled = [...musicData];
-    musicDataFiltered = [...musicData];
+
+    musicDataFiltered = musicData.filter(
+        (music) =>
+        music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
+        )
+    
+        while (musicDataFiltered.length > 5) {
+            musicDataFiltered.pop();
+        }
 
     inicia();
 }

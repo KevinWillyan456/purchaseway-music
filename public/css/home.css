@@ -16,7 +16,7 @@ html {
     scroll-padding-top: 79px;
 }
 
-.select-service {
+.terms-of-use {
     position: fixed;
     bottom: 50px;
     right: 50px;
@@ -32,9 +32,9 @@ html {
     align-items: center;
     justify-content: center;
 }
-.select-service ion-icon {
-    width: 40px;
-    height: 40px;
+.terms-of-use ion-icon {
+    width: 35px;
+    height: 35px;
     color: var(--color-white-1);
     cursor: pointer;
 }
