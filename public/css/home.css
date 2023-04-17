@@ -39,6 +39,74 @@ html {
     cursor: pointer;
 }
 
+.terms-of-use-text {
+    animation: terms-animate 500ms;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.terms-of-use-text .box-wrapper {
+    position: relative;
+    width: 320px;
+    color: var(--color-white-1);
+    font-size: 25px;
+    margin-bottom: 20px;
+    background-color: var(--color-blue-1);
+    padding: 20px;
+
+    border: 2px solid var(--color-white-1);
+    border-radius: 10px;
+}
+.terms-of-use-text .box-wrapper .title {
+    color: var(--color-white-1);
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.terms-of-use-text .box-wrapper .text {
+    color: var(--color-white-1);
+    font-size: 18px;
+    text-align: justify;
+}
+.terms-of-use-text .box-wrapper .close {
+    top: 18px;
+    right: 10px;
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border-radius: 50%;
+
+    padding: 2px;
+
+    position: absolute;
+    color: var(--color-white-1);
+
+    cursor: pointer;
+}
+
+@keyframes terms-animate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
 .cabecalho {
     width: 100%;
     background-color: var(--color-blue-1);
