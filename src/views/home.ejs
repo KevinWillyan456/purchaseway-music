@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,85 +11,271 @@
     <link rel="shortcut icon" href="https://pw-music-database.kevinsouza456.repl.co/pw-music-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/globalStyles.css">
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/themes.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <div class="terms-of-use">
-        <ion-icon name="newspaper"></ion-icon>
-    </div>
+    <main class="super-main">
 
-    <div class="terms-of-use-text hidden">
-        <div class="box-wrapper">
-            <div class="close" id="terms-of-use-close"><ion-icon name="close"></ion-icon></div>
-            <div class="title">Termos de Uso</div>
-            <div class="text">Ao assinar o Purchaseway Music você concorda com o uso de Cookies em seu navegador, destinado para o funcionamento correto do sistema. Não há garantia que o serviço esteja funcionando o tempo inteiro. A criação de contas é responsabilidade do cliente, nós não temos um método de recuperação de senhas. Não nos responsabilizamos com o consumo exagerado de rede, recomendamos que evite usar os dados móveis ao utilizar o sistema.</div>
-        </div>
-    </div>
-    
-    <header class="cabecalho">
-        <div class="service-logo">
-            <img src="https://pw-music-database.kevinsouza456.repl.co/pw-music-logo.png">
-        </div>
+        <section class="main-playlist">
 
-        <div class="box-wrapper">
-            <ul class="list-options">
-                <li><a href="#">Topo</a></li>
-                <li><a href="#section-listen">Escute</a></li>
-                <li><a href="#section-very-high-quality">Som</a></li>
-                <li><a href="#section-reactive">Reativo</a></li>
-            </ul>
-            <div class="button-login">
-                <button id="login">Login</button>
+            <div class="box-wrapper-info">
+                <div class="title-playlist">Recentes</div>
+                <div class="more-playlist">Mais</div>
             </div>
-        </div>
-    </header>
 
-    <section class="section-banner">
-        <div class="title-1">As melhores músicas Nightcore</div>
-        <div class="title-2">Inscreva-se agora no PwMusic</div>
+            <div class="container-playlist">
 
-        <div class="button-register">
-            <button id="signup">Cadastrar-se</button>
-        </div>
+                 <!-- <div class="item-playlist">
+                    <div class="box-wrapper">
+                        <div class="cover-item">
+                            <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+                        </div>
+                        <div class="info-item">
+                            <div class="title-info">
+                                Título
+                            </div>
+                            <div class="gender-info">
+                                Nightcore
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="title-3">Necessário a criação de conta para acessar nossos serviços</div>
+                    <div class="play-button-item">
+                        <ion-icon name="play-circle"></ion-icon>
+                    </div>
+                </div> -->
 
-    </section>
-
-    <section class="section-listen" id="section-listen">
-        <div class="box-wrapper">
-            <div class="title-1">Escute em dispositivos diferentes</div>
-            <div class="title-2">Suporte para Desktop e Mobile</div>
-        </div>
-    </section>
-
-    <section class="section-very-high-quality" id="section-very-high-quality">
-        <div class="box-wrapper">
-            <div class="title-1">Som de altíssima qualidade</div>
-            <div class="title-2">
-                <ion-icon name="volume-high"></ion-icon>
-                MP3
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section-reactive" id="section-reactive">
-        <div class="box-wrapper">
-            <div class="title-1">Reativo</div>
-            <div class="title-2">Alterne entre o tema Original e Rock Version, dependendo da música que está sendo tocada</div>
-        </div>
-        <div class="blue-blur"></div>
-        <div class="blue-blur-title">Original</div>
-        <div class="red-blur"></div>
-        <div class="red-blur-title">Rock Version</div>
-    </section>
+        <section class="main-display">
 
-    <footer class="rodape">
-        <div class="box-wrapper">
-            <div class="name-service">Purchaseway Music</div>
-            <div class="copyright">Todos os direitos reservados - 2023</div>
-        </div>
-    </footer>
+            <div class="background-cover"></div>
+
+            <div class="container-search">
+
+                <div class="search-icon">
+                    <ion-icon name="search"></ion-icon>
+                </div>
+                <div class="search-bar" style="display: none;">
+                    <input id="search-bar-input" type="text" placeholder="Digite o nome da música...">
+                    <div class="search-bar-close">
+                        <ion-icon name="close"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
+            <div class="current-cover">
+                <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+            </div>
+
+            <div class="container-settings">
+                <div class="clock-settings">
+                    <ion-icon name="time"></ion-icon>
+                </div>
+                <div class="user-settings">
+                    <ion-icon name="person"></ion-icon>
+                </div>
+            </div>
+
+            <div class="container-search-result" style="display: none;">
+                <div class="layer-search-result">
+                    <div class="box-search-result">
+                        <div class="title-search-result">Resultados da Pesquisa</div>
+                        <div class="container-items">
+
+                            <!-- <div class="item-playlist-search">
+                                <div class="box-wrapper-search">
+                                    <div class="cover-item-search">
+                                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+                                    </div>
+                                    <div class="info-item-search">
+                                        <div class="title-info-search">
+                                            Título
+                                        </div>
+                                        <div class="gender-info-search">
+                                            Nightcore
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="play-button-item">
+                                    <ion-icon name="play-circle"></ion-icon>
+                                </div>
+                            </div> -->
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="song-not-found" style="display: none;">Nenhuma música foi encontrada</div>
+
+            </div>
+
+            <div class="container-user-settings" style="display: none;">
+                <div class="layer-user-settings">
+                    <div class="box-user-settings">
+                        <div class="title-profile">Perfil</div>
+                        <div class="logout"><ion-icon name="exit"></ion-icon></div>
+                        <div class="box-profile">
+                            <div class="user-settings">
+                                <ion-icon name="person"></ion-icon>
+                            </div>
+                            <div class="box-user-information">
+                                <div class="user-name">Joe Dawn</div>
+                                <div class="registration-date">Registrou-se em: 15 fevereiro 2023</div>
+                            </div>
+                        </div>
+                        
+                        <div class="title-profile">Músicas Favoritas</div>
+
+                        <div class="container-favorite">
+
+                            <!-- <div class="item-playlist-favorite">
+                                <div class="box-wrapper-favorite">
+                                    <div class="cover-item-favorite">
+                                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+                                    </div>
+                                    <div class="info-item-favorite">
+                                        <div class="title-info-favorite">
+                                            Título
+                                        </div>
+                                        <div class="gender-info-favorite">
+                                            Nightcore
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="play-button-item">
+                                    <ion-icon name="play-circle"></ion-icon>
+                                </div>
+                            </div> -->
+
+                        </div>
+                        
+                        <div class="title-profile">Histórico</div>
+                        
+                        <div class="container-historic">
+
+                            <!-- <div class="item-playlist-historic">
+                                <div class="box-wrapper-historic">
+                                    <div class="cover-item-historic">
+                                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+                                    </div>
+                                    <div class="info-item-historic">
+                                        <div class="title-info-historic">
+                                            Título
+                                        </div>
+                                        <div class="gender-info-historic">
+                                            Nightcore
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="play-button-item">
+                                    <ion-icon name="play-circle"></ion-icon>
+                                </div>
+                            </div> -->
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="main-controls">
+            
+            <div class="container-side-1">
+
+                <div class="music-animation-status">
+                    <div style="margin-right: 5px; --i:0s;"></div>
+                    <div style="margin-right: 5px; --i:100ms;"></div>
+                    <div style="--i:200ms;"></div>
+                </div>
+                <div class="cover-current-music">
+                    <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+                </div>
+                <div class="info-current-music">
+                    <div class="title-info-current-music">
+                        Nightcore - Numb (Lyrics) Nightcore - Numb (Lyrics)
+                    </div>
+                    <div class="gender-info-current-music">
+                        Nightcore
+                    </div>
+
+
+                    <div class="current-music-rating">
+                        <ion-icon name="star" style="margin-right: 2px;"></ion-icon>
+                        <ion-icon name="star" style="margin-right: 2px;"></ion-icon>
+                        <ion-icon name="star" style="margin-right: 2px;"></ion-icon>
+                        <ion-icon name="star" style="margin-right: 2px;"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+                    </div>
+
+                </div>
+
+                <div class="current-music-favorite">
+                    <ion-icon name="heart-outline"></ion-icon>
+                </div>
+
+            </div>
+
+            <div class="container-side-2">
+
+                <!-- Audio Manager -->
+                <audio id="audio-global"></audio>
+
+                <div class="container-controls">
+                    <ion-icon name="play-skip-back-circle" style="margin-right: 10px;" id="audio-prev"></ion-icon>
+                    <ion-icon name="play-circle" style="margin-right: 10px;" id="audio-play"></ion-icon>
+                    <ion-icon name="play-skip-forward-circle" id="audio-next"></ion-icon>
+                </div>
+
+                <div class="container-duration-status">
+                    <div class="current-duration">0:00</div>
+                    <div class="slider-music-duration">
+                        <div class="slider-music-duration-wrapper">
+                            <input type="range" min="0" max="100" value="0">
+                            <div class="slider-music-duration-dot"></div>
+                        </div>
+                    </div>
+                    <div class="total-duration">0:00</div>
+                </div>
+                
+                <div class="container-volume">
+                    <div class="volume-icon">
+                        <ion-icon name="volume-high"></ion-icon>
+                    </div>
+                    <div class="slider-music-volume">
+                        <div class="slider-music-volume-wrapper">
+                            <input type="range" min="0" max="100" value="60">
+                            <div class="slider-music-volume-dot"></div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="container-funcions">
+                    <div class="repeat-icon">
+                        <ion-icon name="repeat"></ion-icon>
+                    </div>
+                    <div class="shuffle-icon">
+                        <ion-icon name="shuffle"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="service-logo">
+                    <img src="https://pw-music-database.kevinsouza456.repl.co/pw-music-logo.png">
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="focus-shadow" style="display: none;"></div>
+
+    </main>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

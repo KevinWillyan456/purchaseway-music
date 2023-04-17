@@ -16,6 +16,7 @@ body {
     top: 100px;
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer;
 }
 
 .container {
@@ -61,6 +62,70 @@ form .input-nome::placeholder, form .input-senha::placeholder {
 }
 form .input-nome:focus, form .input-senha:focus {
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+
+
+/* Erros nos inputs */
+
+/* form .input-nome, form .input-senha {
+    box-shadow: 0 0 0 5px var(--color-red-2), 0 0 25px var(--color-red-2);
+    color: var(--color-red-2);
+}
+form .input-nome::placeholder, form .input-senha::placeholder {
+    color: var(--color-red-2);
+} */
+
+.warning {
+    animation: warning-anime-color 1s infinite alternate, warning-anime-entrace 500ms linear;
+    position: absolute;
+
+    top: 20px;
+    left: 0;
+    color: var(--color-red-2);
+    background-color: var(--color-red-1);
+    font-size: 22px;
+    width: calc(100% - 40px);
+    transform: translateX(20px);
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-red-2);
+}
+
+@keyframes warning-anime-color {
+    0% {
+        color: var(--color-red-2);
+    }
+    100% {
+        color: var(--color-white-1);
+    }
+}
+@keyframes warning-anime-entrace {
+    0% {
+        top: 0px;
+        opacity: 0;
+    }
+    100% {
+        top: 20px;
+        opacity: 1;
+    }
+}
+
+.warning.success {
+    animation: warning-anime-color-2 1s infinite alternate;
+    color: var(--color-blue-2);
+    background-color: var(--color-blue-1);
+    border: 2px solid var(--color-blue-2);
+}
+@keyframes warning-anime-color-2 {
+    0% {
+        color: var(--color-blue-2);
+    }
+    100% {
+        color: var(--color-white-1);
+    }
 }
 
 form .input-checkbox {
@@ -122,4 +187,8 @@ form .info a {
     cursor: pointer;
     margin-left: 5px;
     font-weight: bold;
+}
+
+.hidden {
+    display: none;
 }

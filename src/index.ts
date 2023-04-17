@@ -4,6 +4,7 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import { connectToDatabase } from "./database";
 import { routes } from "./routes";
+import { eAdmin } from "./middlewares/AuthMiddleware";
 
 config();
 connectToDatabase();
@@ -25,7 +26,7 @@ app.use(express.static('public'));
 app.get("/", (req, res) => {
     res.render('index');
 });
-app.get("/home", (req, res) => {
+app.get("/home", eAdmin, (req, res) => {
     res.render('home');
 });
 app.get("/denied", (req, res) => {
