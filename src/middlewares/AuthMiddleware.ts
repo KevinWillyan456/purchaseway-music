@@ -3,43 +3,41 @@ import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 
 async function eAdmin(req: Request, res: Response, next: NextFunction) {
     const SECRET_KEY: Secret = `${process.env.SECRET}`
+
     interface CustomRequest extends Request {
         token: string | JwtPayload
+    }
+    interface idUser {
+        id: string
     }
 
     try {
         const authHeader = req.cookies.token
     
         if (!authHeader) {
-            return res.status(400).json({
-                erro: true,
-                mensagem:
-                    'Erro: Necessário realizar o login para acessar a página! Falta o token A',
-            })
+            res.clearCookie("user");
+            res.clearCookie("token");
+            return res.status(400).redirect("/denied")
         }
 
         const [, token] = authHeader.split(' ')
 
         if (!token) {
-            return res.status(400).json({
-                erro: true,
-                mensagem:
-                    'Erro: Necessário realizar o login para acessar a página! Falta o token B',
-            })
+            res.clearCookie("user");
+            res.clearCookie("token");
+            return res.status(400).redirect("/denied")
         }
 
         const decoded = jwt.verify(token, SECRET_KEY)
         ;(req as CustomRequest).token = decoded
 
+        res.cookie('user', (<idUser>decoded).id)
+
         next()
     } catch (err) {
+        res.clearCookie("user");
+        res.clearCookie("token");
         return res.status(400).redirect("/denied")
-
-        // return res.status(400).json({
-        //     erro: true,
-        //     mensagem:
-        //         'Erro: Necessário realizar o login para acessar a página! Token Inválido',
-        // })
     }
 }
 

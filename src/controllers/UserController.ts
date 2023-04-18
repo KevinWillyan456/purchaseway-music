@@ -27,7 +27,6 @@ async function storeUser(req: Request, res: Response) {
     }
 
     const encryptedPassword = await bcrypt.hash(password, 8)
-    console.log(encryptedPassword)
 
     const user = new User({
         _id: uuid(),
