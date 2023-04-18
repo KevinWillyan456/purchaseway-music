@@ -57,6 +57,5 @@ async function validationForm(){
     if(resposta.status != 200){
         warning.innerHTML = "Nome ou Senha incorretos!"
         warning.classList.remove("hidden")
-        console.log(await resposta.json())
     }
 }

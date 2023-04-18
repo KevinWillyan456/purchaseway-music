@@ -7,6 +7,7 @@ export interface IMusic {
     title: string
     gender: string
     theme: string
+    isVideo: boolean
     additionDate: Date
 }
 
@@ -17,6 +18,7 @@ const musicSchema = new Schema<IMusic>({
     title: { type: String, required: true },
     gender: { type: String, required: true },
     theme: { type: String, required: true },
+    isVideo: { type: Boolean, default: false},
     additionDate: { type: Date, required: true },
 })
 

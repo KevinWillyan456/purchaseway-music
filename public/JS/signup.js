@@ -57,6 +57,5 @@ async function validationForm(){
     if(resposta.status != 201){
         warning.innerHTML = "Usuário já existe"
         warning.classList.remove("hidden")
-        console.log(await resposta.json())
     }
 }

@@ -13,7 +13,7 @@ async function indexMusic(req: Request, res: Response) {
 }
 
 async function storeMusic(req: Request, res: Response) {
-    const { audioUrl, coverUrl, title, gender, theme } = req.body
+    const { audioUrl, coverUrl, title, gender, isVideo, theme } = req.body
 
     if (!audioUrl || !coverUrl || !title || !gender || !theme) {
         return res.status(400).json({ error: 'data is missing' })
@@ -26,6 +26,7 @@ async function storeMusic(req: Request, res: Response) {
         title,
         gender,
         theme,
+        isVideo,
         additionDate: new Date(),
     })
 
@@ -42,10 +43,10 @@ async function updateMusic(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
 ) {
-    const { audioUrl, coverUrl, title, gender, theme } = req.body
+    const { audioUrl, coverUrl, title, gender, isVideo, theme } = req.body
     const { id } = req.params
 
-    if (!audioUrl && !coverUrl && !title && !gender && !theme) {
+    if (!audioUrl && !coverUrl && !title && !gender && !isVideo && !theme) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
@@ -56,6 +57,7 @@ async function updateMusic(
             coverUrl,
             title,
             gender,
+            isVideo,
             theme,
         },
     }

@@ -41,6 +41,7 @@ const containerItemsHistoric = document.querySelector('.container-historic');
 const userName = document.querySelector('.user-name');
 const registrationDate = document.querySelector('.registration-date');
 
+const containerFrameVideo = document.querySelector(".container-frame");
 
 let musicData = [];
 let musicDataShuffled = [];
@@ -103,13 +104,42 @@ function audioControllerPlayFunction(){
     }
 }
 function audioControllerPlayFunctionNoPause(){
+    if(musicDataShuffled[indexAudio].isVideo){
+        audioGlobal.pause()
+        containerFrameVideo.style.display = "block"
+        currentCover.style.display = "none"
+        document.querySelector(".container-side-2").style.display = "none"
+
+        return;
+    }
+
     audioGlobal.play();
     audioControllerPlayToggle = false;
     audioControllerPlay.name = 'pause-circle';
     musicAnimationStatus.classList.add('run');
+
+    containerFrameVideo.style.display = "none"
+    currentCover.style.display = "block"
+    document.querySelector(".container-side-1").style.display = "flex"
+    document.querySelector(".container-side-2").style.display = "flex"
 }
 
 function allSongValueSetters(){
+    if(musicDataShuffled[indexAudio].isVideo){
+        indexAudioId = musicDataShuffled[indexAudio]._id;
+        coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+        currentCover.src = musicDataShuffled[indexAudio].coverUrl;
+        backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
+        titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
+        genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+
+        containerFrameVideo.innerHTML = `
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        `
+
+        return;
+    }
+
     audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
     indexAudioId = musicDataShuffled[indexAudio]._id;
     coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
@@ -117,6 +147,7 @@ function allSongValueSetters(){
     backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
     titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
     genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+    containerFrameVideo.innerHTML = "";
 }
 
 function setUserSettings(){
@@ -712,7 +743,11 @@ function setMusicPlayTag() {
 
 
 function videoResizingFunction() {
-    // O redimensionamento do vídeo ocorrerá aqui
+    var widthOfVideo = getComputedStyle(currentCover).width;
+    var heightOfVideo = getComputedStyle(currentCover).height;
+
+    containerFrameVideo.style.width = widthOfVideo;
+    containerFrameVideo.style.height = heightOfVideo;
 }
 
 async function musicListingService() {

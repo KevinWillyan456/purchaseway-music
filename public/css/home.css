@@ -178,16 +178,21 @@ body {
     background-image: linear-gradient(black, rgba(0,0,0,0.4));
 }
 
-.main-display .current-cover, iframe {
-    /* max-width: 1000px; */
-    width: 1000px;
+.main-display .current-cover, .container-frame {
+    max-width: 1000px;
+    /* width: 1000px; */
     /* height: calc(1000px * 0.5625px); */
-    height: 562.50px;
+    /* height: 562.50px; */
     margin: 0 20px;
     /* pointer-events: none; */
 }
+iframe {
+    width: inherit;
+    height: inherit;
+}
 .main-display .current-cover img {
     width: 100%;
+    pointer-events: none;
 }
 
 

@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"
 import { connectToDatabase } from "./database";
 import { routes } from "./routes";
 import { eAdmin } from "./middlewares/AuthMiddleware";
+import { verifyTokenExists } from "./middlewares/verifyMiddleware";
 
 config();
 connectToDatabase();
@@ -35,8 +36,7 @@ app.get("/denied", (req, res) => {
 app.get("/signup", (req, res) => {
     res.render('signup');
 });
-// Verificar se o token existe e se ele é valido
-app.get("/login", (req, res) => {
+app.get("/login", verifyTokenExists, (req, res) => {
     res.render('login');
 });
 
