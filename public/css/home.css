@@ -178,10 +178,13 @@ body {
     background-image: linear-gradient(black, rgba(0,0,0,0.4));
 }
 
-.main-display .current-cover {
-    max-width: 1000px;
+.main-display .current-cover, iframe {
+    /* max-width: 1000px; */
+    width: 1000px;
+    /* height: calc(1000px * 0.5625px); */
+    height: 562.50px;
     margin: 0 20px;
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 .main-display .current-cover img {
     width: 100%;

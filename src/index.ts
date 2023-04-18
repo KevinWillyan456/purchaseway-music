@@ -35,6 +35,7 @@ app.get("/denied", (req, res) => {
 app.get("/signup", (req, res) => {
     res.render('signup');
 });
+// Verificar se o token existe e se ele é valido
 app.get("/login", (req, res) => {
     res.render('login');
 });

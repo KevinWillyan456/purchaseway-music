@@ -60,6 +60,8 @@ audioControllerPlay.addEventListener("click", audioControllerPlayFunction)
 audioControllerNext.addEventListener("click", audioControllerNextFunction)
 audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
 
+window.addEventListener("resize", videoResizingFunction);
+
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
 })
@@ -705,6 +707,12 @@ function searchEvents(){
 function setMusicPlayTag() {
     $(".music-playing").removeClass("music-playing");
     $(`div[data-id="${indexAudioId}"]`).siblings("div.info-item").addClass("music-playing");
+}
+
+
+
+function videoResizingFunction() {
+    // O redimensionamento do vídeo ocorrerá aqui
 }
 
 async function musicListingService() {

@@ -67,7 +67,7 @@ async function loginUser(req: Request, res: Response) {
         }
 
         const token = jwt.sign({ id: user?._id }, `${process.env.SECRET}`, {
-            expiresIn: 60,
+            expiresIn: '2d',
         })
 
         // Salva o Token
