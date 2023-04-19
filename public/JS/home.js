@@ -109,6 +109,7 @@ function audioControllerPlayFunctionNoPause(){
         containerFrameVideo.style.display = "block"
         currentCover.style.display = "none"
         document.querySelector(".container-side-2").style.display = "none"
+        musicAnimationStatus.classList.remove('run');
 
         return;
     }
@@ -136,6 +137,8 @@ function allSongValueSetters(){
         containerFrameVideo.innerHTML = `
             <iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         `
+
+        videoResizingFunction();
 
         return;
     }
@@ -741,13 +744,25 @@ function setMusicPlayTag() {
 }
 
 
-
 function videoResizingFunction() {
-    var widthOfVideo = getComputedStyle(currentCover).width;
-    var heightOfVideo = getComputedStyle(currentCover).height;
+    document.querySelector(".container-frame iframe").style.width = 0 + "px";
+    document.querySelector(".container-frame iframe").style.height = 0 + "px";
 
-    containerFrameVideo.style.width = widthOfVideo;
-    containerFrameVideo.style.height = heightOfVideo;
+    var widthOfVideo = parseInt(getComputedStyle(document.querySelector('.ghost-frame')).width);
+    var heightOfVideo;
+
+    heightOfVideo = parseFloat(widthOfVideo) * (563 / 1000) + "px";
+    widthOfVideo = widthOfVideo + "px";
+    if (parseFloat(widthOfVideo) > 1000) {
+        widthOfVideo = 1000 + "px";
+    }
+    if (parseFloat(heightOfVideo) > 566.5) {
+        heightOfVideo = 566.5 + "px";
+    }
+    if(document.querySelector(".container-frame iframe")){
+        document.querySelector(".container-frame iframe").style.width = widthOfVideo;
+        document.querySelector(".container-frame iframe").style.height = heightOfVideo;
+    }
 }
 
 async function musicListingService() {
