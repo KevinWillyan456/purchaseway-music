@@ -45,7 +45,7 @@ async function storeUser(req: Request, res: Response) {
 }
 
 async function loginUser(req: Request, res: Response) {
-    const { name, password } = req.body
+    const { name, password, hasConnect } = req.body
 
     if (!name || !password) {
         return res.status(400).json({ error: 'data is missing' })
@@ -53,6 +53,7 @@ async function loginUser(req: Request, res: Response) {
 
     try {
         const user = await User.findOne({ name })
+        let dateTokenExpires: string | number;
 
         if (!user) {
             return res
@@ -66,8 +67,14 @@ async function loginUser(req: Request, res: Response) {
                 .json({ error: 'wrong name or password - Senha' })
         }
 
+        if(hasConnect){
+            dateTokenExpires = '2d'
+        } else {
+            dateTokenExpires = 600
+        }
+
         const token = jwt.sign({ id: user?._id }, `${process.env.SECRET}`, {
-            expiresIn: '2d',
+            expiresIn: dateTokenExpires,
         })
 
         // Salva o Token

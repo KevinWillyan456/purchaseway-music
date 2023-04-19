@@ -34,7 +34,17 @@ async function validationForm(){
 
     const user = {
         name: nameValue,
-        password: passwordValue
+        password: passwordValue,
+        hasConnect: inputConectedUserVerify()
+    }
+
+    function inputConectedUserVerify() {
+        if(inputConectedUser.checked){
+            return true
+        }
+        else {
+            return false
+        }
     }
 
     const resposta = await fetch("/users", {
@@ -52,10 +62,22 @@ async function validationForm(){
         warning.innerHTML = "Usuário Criado com sucesso!"
         warning.classList.add("success")
         warning.classList.remove("hidden")
-        return setTimeout(() => window.location = '/home', 2000); 
     }
     if(resposta.status != 201){
         warning.innerHTML = "Usuário já existe"
         warning.classList.remove("hidden")
+        return
+    }
+
+    const resposta2 = await fetch("/login", {
+        method: "POST",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    });
+    if(resposta2.status == 200){
+        return setTimeout(() => window.location = '/home', 2000);
     }
 }

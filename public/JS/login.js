@@ -34,7 +34,17 @@ async function validationForm(){
 
     const user = {
         name: nameValue,
-        password: passwordValue
+        password: passwordValue,
+        hasConnect: inputConectedUserVerify()
+    }
+
+    function inputConectedUserVerify() {
+        if(inputConectedUser.checked){
+            return true
+        }
+        else {
+            return false
+        }
     }
 
     const resposta = await fetch("/login", {
