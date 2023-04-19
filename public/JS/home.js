@@ -43,6 +43,8 @@ const registrationDate = document.querySelector('.registration-date');
 
 const containerFrameVideo = document.querySelector(".container-frame");
 
+const logout = document.querySelector(".logout");
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -62,6 +64,8 @@ audioControllerNext.addEventListener("click", audioControllerNextFunction)
 audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
 
 window.addEventListener("resize", videoResizingFunction);
+
+logout.addEventListener("click", logoutService);
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -763,6 +767,12 @@ function videoResizingFunction() {
         document.querySelector(".container-frame iframe").style.width = widthOfVideo;
         document.querySelector(".container-frame iframe").style.height = heightOfVideo;
     }
+}
+
+function logoutService() {
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+
+    window.location = '/'
 }
 
 async function musicListingService() {
