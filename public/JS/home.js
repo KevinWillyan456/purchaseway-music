@@ -49,13 +49,15 @@ let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
 
-let userData = {
-        id: 1,
-        name: "Joe Dawn",
-        additionDate: 'ISODate("2023-02-28T14:10:30.000Z")',
-        favoriteSongs: [5,1,2,"f82c55fc-6807-40ba-bf21-8a75582bced2"],
-        musicHistory: [1,2,3,4,5]
-    }
+let userData;
+
+// let userData = {
+//         id: 1,
+//         name: "Joe Dawn",
+//         additionDate: 'ISODate("2023-02-28T14:10:30.000Z")',
+//         favoriteSongs: [5,1,2,"f82c55fc-6807-40ba-bf21-8a75582bced2"],
+//         musicHistory: [1,2,3,4,5]
+//     }
 
 
 let audioControllerPlayToggle = true;
@@ -138,9 +140,7 @@ function allSongValueSetters(){
         titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
 
-        containerFrameVideo.innerHTML = `
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        `
+        containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 
         videoResizingFunction();
 
@@ -160,9 +160,9 @@ function allSongValueSetters(){
 function setUserSettings(){
     userName.innerHTML = userData.name;
 
-    let day = parseInt(userData.additionDate.substring(17,19))
-    let month = parseInt(userData.additionDate.substring(14,16))
-    let year = parseInt(userData.additionDate.substring(9,13))
+    let day = parseInt(userData.additionDate.substring(8,10))
+    let month = parseInt(userData.additionDate.substring(5,7))
+    let year = parseInt(userData.additionDate.substring(0,4))
 
     switch (month) {
         case 1:
@@ -775,11 +775,35 @@ function logoutService() {
     window.location = '/'
 }
 
+function getCookie(k) {
+    var cookies = " " + document.cookie;
+    var key = " " + k + "=";
+    var start = cookies.indexOf(key);
+
+    if (start === -1) return null;
+
+    var pos = start + key.length;
+    var last = cookies.indexOf(";", pos);
+
+    if (last !== -1) return cookies.substring(pos, last);
+
+    return cookies.substring(pos);
+}
+
+getCookie("user")
+
 async function musicListingService() {
-    const response = await fetch('/songs');
-    const songs = await response.json();
+    const idUserConnected = getCookie("user")
+
+    const responseSongs = await fetch('/songs');
+    const songs = await responseSongs.json();
+
+    const responseUser = await fetch(`/users/${idUserConnected}`);
+    const user = await responseUser.json();
+
     musicData = songs.songs
-    
+    userData = user.user;
+
     musicDataShuffled = [...musicData];
 
     musicDataFiltered = musicData.filter(

@@ -6,7 +6,7 @@ export interface IUser {
     password: string
     additionDate: Date
     favoriteSongs: string
-    musicHistory: string[]
+    musicHistory: string
 }
 
 const userSchema = new Schema<IUser>({
