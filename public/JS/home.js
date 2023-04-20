@@ -52,7 +52,7 @@ let musicDataFiltered = [];
 let userData = {
         id: 1,
         name: "Joe Dawn",
-        registrationDate: 'ISODate("2023-02-28T14:10:30.000Z")',
+        additionDate: 'ISODate("2023-02-28T14:10:30.000Z")',
         favoriteSongs: [5,1,2,"f82c55fc-6807-40ba-bf21-8a75582bced2"],
         musicHistory: [1,2,3,4,5]
     }
@@ -160,9 +160,9 @@ function allSongValueSetters(){
 function setUserSettings(){
     userName.innerHTML = userData.name;
 
-    let day = parseInt(userData.registrationDate.substring(17,19))
-    let month = parseInt(userData.registrationDate.substring(14,16))
-    let year = parseInt(userData.registrationDate.substring(9,13))
+    let day = parseInt(userData.additionDate.substring(17,19))
+    let month = parseInt(userData.additionDate.substring(14,16))
+    let year = parseInt(userData.additionDate.substring(9,13))
 
     switch (month) {
         case 1:

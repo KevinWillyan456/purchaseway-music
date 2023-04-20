@@ -5,6 +5,8 @@ export interface IUser {
     name: string
     password: string
     additionDate: Date
+    favoriteSongs: string
+    musicHistory: string[]
 }
 
 const userSchema = new Schema<IUser>({
@@ -12,6 +14,8 @@ const userSchema = new Schema<IUser>({
     name: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     additionDate: { type: Date, required: true },
+    favoriteSongs: [{ musicId: String }],
+    musicHistory: [{ musicId: String }],
 })
 
 export const User = model<IUser>('User', userSchema)

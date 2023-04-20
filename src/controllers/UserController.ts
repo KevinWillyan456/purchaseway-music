@@ -5,6 +5,15 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { User } from '../models/User'
 
+async function indexUser(req: Request, res: Response) {
+    try {
+        const users = await User.find({}, '-password')
+        return res.status(200).json({ users })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
 async function indexUserById(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
@@ -53,7 +62,7 @@ async function loginUser(req: Request, res: Response) {
 
     try {
         const user = await User.findOne({ name })
-        let dateTokenExpires: string | number;
+        let dateTokenExpires: string | number
 
         if (!user) {
             return res
@@ -67,7 +76,7 @@ async function loginUser(req: Request, res: Response) {
                 .json({ error: 'wrong name or password - Senha' })
         }
 
-        if(hasConnect){
+        if (hasConnect) {
             dateTokenExpires = '2d'
         } else {
             dateTokenExpires = 600
@@ -132,4 +141,63 @@ async function deleteUser(
     }
 }
 
-export { indexUserById, storeUser, loginUser, updateUser, deleteUser }
+async function updateUserFavoriteSongs(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { musicId } = req.body
+    const { id } = req.params
+
+    if (!musicId) {
+        return res.status(400).json({ error: 'You must enter a new data' })
+    }
+
+    const filter = { _id: id }
+    const updateDoc = {
+        $push: { favoriteSongs: { musicId } },
+    }
+
+    try {
+        await User.updateOne(filter, updateDoc)
+
+        return res.status(200).json({ message: 'User updated succesfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+async function updateUserMusicHistoric(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { musicId } = req.body
+    const { id } = req.params
+
+    if (!musicId) {
+        return res.status(400).json({ error: 'You must enter a new data' })
+    }
+
+    const filter = { _id: id }
+    const updateDoc = {
+        $push: { musicHistory: { musicId } },
+    }
+
+    try {
+        await User.updateOne(filter, updateDoc)
+
+        return res.status(200).json({ message: 'User updated succesfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+export {
+    indexUser,
+    indexUserById,
+    storeUser,
+    loginUser,
+    updateUser,
+    deleteUser,
+    updateUserFavoriteSongs,
+    updateUserMusicHistoric,
+}
