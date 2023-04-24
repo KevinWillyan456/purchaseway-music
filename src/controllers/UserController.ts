@@ -177,14 +177,38 @@ async function updateUserMusicHistoric(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    const filter = { _id: id }
-    const updateDoc = {
+    const user = await User.findById(id)
+
+    const historySize = user?.musicHistory.length || 0
+    
+    const updateDoc1 = {
         $push: { musicHistory: { musicId } },
     }
+    const updateDoc2 = {
+        $pop: { musicHistory: -1 },
+    }
+    const updateDoc3 = {
+        $pull: { musicHistory: { musicId } }
+    }
 
+    const filter = { _id: id }
+
+ 
     try {
-        await User.updateOne(filter, updateDoc)
-
+        const musicExists = await User.find({musicHistory: {$elemMatch: {musicId}}}, "-password")
+        console.log(musicExists)
+        if(musicExists){
+            await User.updateOne(filter, updateDoc1)
+            await User.updateOne(filter, updateDoc3)
+        }
+        if(historySize >= 3){
+            await User.updateOne(filter, updateDoc2) //? 3 and 4
+            await User.updateOne(filter, updateDoc1)
+            return res.status(200).json({ message: 'User updated succesfully!' })
+        } else {
+            await User.updateOne(filter, updateDoc1)
+        }
+    
         return res.status(200).json({ message: 'User updated succesfully!' })
     } catch (err) {
         res.status(500).json({ error: err })

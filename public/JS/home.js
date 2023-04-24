@@ -51,14 +51,6 @@ let musicDataFiltered = [];
 
 let userData;
 
-// let userData = {
-//         id: 1,
-//         name: "Joe Dawn",
-//         additionDate: 'ISODate("2023-02-28T14:10:30.000Z")',
-//         favoriteSongs: [5,1,2,"f82c55fc-6807-40ba-bf21-8a75582bced2"],
-//         musicHistory: [1,2,3,4,5]
-//     }
-
 
 let audioControllerPlayToggle = true;
 audioControllerPlay.addEventListener("click", audioControllerPlayFunction)
@@ -221,6 +213,7 @@ function audioControllerNextFunction(){
     audioControllerPlayFunctionNoPause()
     themeChanger(selectedTheme);
     setMusicPlayTag();
+    manageHistoric();
 }
 function audioControllerPrevFunction(){
     indexAudio--;
@@ -235,6 +228,7 @@ function audioControllerPrevFunction(){
     audioControllerPlayFunctionNoPause()
     themeChanger(selectedTheme);
     setMusicPlayTag();
+    manageHistoric();
 }
 
 function generatorContainerPlaylistData(){
@@ -277,6 +271,7 @@ function generatorContainerPlaylistDataPlay(){
             audioControllerPlayFunctionNoPause();
             themeChanger(selectedTheme);
             setMusicPlayTag();
+            manageHistoric();
         });
     })
 }
@@ -320,6 +315,7 @@ function generatorContainerSearchDataPlay(){
             audioControllerPlayFunctionNoPause();
             themeChanger(selectedTheme);
             setMusicPlayTag();
+            manageHistoric();
             
             $('.focus-shadow').hide(200);
             $('.container-search-result').hide(200);
@@ -381,6 +377,7 @@ function generatorContainerFavoriteDataPlay(){
             audioControllerPlayFunctionNoPause();
             themeChanger(selectedTheme);
             setMusicPlayTag();
+            manageHistoric();
             
             $('.focus-shadow').hide(200);
             $('.container-user-settings').hide(200);
@@ -391,21 +388,29 @@ function generatorContainerFavoriteDataPlay(){
 
 
 function generatorContainerHistoricData(){
-    let historicSongs = [...musicData];
+    // let historicSongs = [...musicData];
+    let historicSongs = [];
+
+    // userData.musicHistory.forEach((music, index) => {
+    //     // 7d386f0f-7636-432d-930e-91707cd8812a
+    //     let preM = musicDataShuffled.find(element => element._id == music.musicHistory[index].musicId)
+    //     if(preM){
+    //         console.log("ADD")
+    //         historicSongs.push(preM)
+    //     }
+    // })
 
     for (let i = 0; i < userData.musicHistory.length; i++) {
-        let song = musicDataShuffled.find(element => element._id == userData.musicHistory[i])
-
-        if(historicSongs.length >= 20){
-            historicSongs.shift()
-        }
+        let song = musicDataShuffled.find(element => element._id == userData.musicHistory[i].musicId)
 
         if(song){
-            if(!historicSongs.find(element => element._id == userData.musicHistory[i])){
+            if(!historicSongs.find(element => element._id == userData.musicHistory[i].musicId)){
                 historicSongs.push(song);
             }
         }
     }
+
+
 
     historicSongs.reverse()
     
@@ -447,6 +452,7 @@ function generatorContainerHistoricDataPlay(){
             audioControllerPlayFunctionNoPause();
             themeChanger(selectedTheme);
             setMusicPlayTag();
+            manageHistoric();
             
             $('.focus-shadow').hide(200);
             $('.container-user-settings').hide(200);
@@ -790,7 +796,39 @@ function getCookie(k) {
     return cookies.substring(pos);
 }
 
-getCookie("user")
+async function manageHistoric() {
+    const idUserConnected = getCookie("user")
+    let music = { musicId: indexAudioId }
+
+    const resposta = await fetch(`/songs-historic/${idUserConnected}`, {
+        method: "POST",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(music)
+    });
+    if(resposta.status == 200){
+        refreshUser();
+    }
+    if(resposta.status != 200){
+        alert("Internal Error!")
+    }
+}
+
+
+async function refreshUser() {
+    const idUserConnected = getCookie("user")
+    const responseUser = await fetch(`/users/${idUserConnected}`);
+    const user = await responseUser.json();
+
+    userData = user.user;
+    
+    //inicia(); // ...
+    containerItemsHistoric.innerHTML = ""
+    generatorContainerHistoricData();
+    generatorContainerHistoricDataPlay();
+}
 
 async function musicListingService() {
     const idUserConnected = getCookie("user")
