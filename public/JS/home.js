@@ -45,6 +45,8 @@ const containerFrameVideo = document.querySelector(".container-frame");
 
 const logout = document.querySelector(".logout");
 
+const musicFavoriteIcon = document.querySelector(".current-music-favorite ion-icon")
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -85,6 +87,7 @@ function inicia(){
     themeChanger(musicDataShuffled[indexAudio].theme);
     indexAudioId = musicDataShuffled[indexAudio]._id;
     setMusicPlayTag();
+    refreshFavorite();
 }
 
 function audioControllerPlayFunction(){
@@ -213,6 +216,7 @@ function audioControllerNextFunction(){
     audioControllerPlayFunctionNoPause()
     setMusicPlayTag();
     manageHistoric();
+    refreshFavorite();
     themeChanger(selectedTheme);
 }
 function audioControllerPrevFunction(){
@@ -228,6 +232,7 @@ function audioControllerPrevFunction(){
     audioControllerPlayFunctionNoPause()
     setMusicPlayTag();
     manageHistoric();
+    refreshFavorite();
     themeChanger(selectedTheme);
 }
 
@@ -271,6 +276,7 @@ function generatorContainerPlaylistDataPlay(){
             audioControllerPlayFunctionNoPause();
             setMusicPlayTag();
             manageHistoric();
+            refreshFavorite();
             themeChanger(selectedTheme);
         });
     })
@@ -315,6 +321,7 @@ function generatorContainerSearchDataPlay(){
             audioControllerPlayFunctionNoPause();
             setMusicPlayTag();
             manageHistoric();
+            refreshFavorite();
             themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
@@ -377,6 +384,7 @@ function generatorContainerFavoriteDataPlay(){
             audioControllerPlayFunctionNoPause();
             setMusicPlayTag();
             manageHistoric();
+            refreshFavorite();
             themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
@@ -440,6 +448,7 @@ function generatorContainerHistoricDataPlay(){
             audioControllerPlayFunctionNoPause();
             setMusicPlayTag();
             manageHistoric();
+            refreshFavorite();
             themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
@@ -804,6 +813,26 @@ async function manageHistoric() {
     }
 }
 
+async function manageFavorite() {
+    const idUserConnected = getCookie("user")
+    let music = { musicId: indexAudioId }
+
+    const resposta = await fetch(`/songs-favorite/${idUserConnected}`, {
+        method: "POST",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(music)
+    });
+    if(resposta.status == 200){
+        await refreshUser()
+        refreshFavorite();
+    }
+    if(resposta.status != 200){
+        alert("Internal Error!")
+    }
+}
 
 async function refreshUser() {
     const idUserConnected = getCookie("user")
@@ -816,6 +845,26 @@ async function refreshUser() {
     generatorContainerHistoricData();
     generatorContainerHistoricDataPlay();
     themeChanger(musicDataShuffled[indexAudio].theme);
+}
+
+async function refreshFavorite() {
+    let isFound = false;
+    for (let i = 0; i < userData.favoriteSongs.length; i++) {
+        let songFavorite = musicDataShuffled.find(element => element._id == userData.favoriteSongs[i].musicId)
+
+        if(songFavorite){
+            musicFavoriteIcon.name = "heart"
+            isFound = true;
+            break;
+        }
+    }
+    if (!isFound) {
+        musicFavoriteIcon.name = "heart-outline"
+    }
+}
+
+for (let i = 0; i < 10; i++) {
+    console.log(i)
 }
 
 async function musicListingService() {
