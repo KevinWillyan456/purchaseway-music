@@ -177,10 +177,23 @@ async function updateUserMusicHistoric(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    const user = await User.findById(id)
+    interface UserExists {
+        _id: string
+        name: string
+        password: string
+        additionDate: Date
+        favoriteSongs: string[]
+        musicHistory: [
+            {
+                musicId: string
+            }
+        ]
+    }
+
+    const user: UserExists | null = await User.findById(id, '-password')
 
     const historySize = user?.musicHistory.length || 0
-    
+
     const updateDoc1 = {
         $push: { musicHistory: { musicId } },
     }
@@ -188,27 +201,46 @@ async function updateUserMusicHistoric(
         $pop: { musicHistory: -1 },
     }
     const updateDoc3 = {
-        $pull: { musicHistory: { musicId } }
+        $pull: { musicHistory: { musicId } },
     }
 
     const filter = { _id: id }
 
- 
     try {
-        const musicExists = await User.find({musicHistory: {$elemMatch: {musicId}}}, "-password")
+        const [...musicHistory] = user?.musicHistory || []
+        const musicExists = musicHistory.find(
+            (music) => music.musicId == musicId
+        )
+        const maxSizeHistoric = 3
+
         console.log(musicExists)
-        if(musicExists){
-            await User.updateOne(filter, updateDoc1)
+
+        if (musicExists && historySize <= 1) {
+            return res
+                .status(200)
+                .json({ message: 'User updated succesfully!' })
+        }
+        if (musicExists) {
             await User.updateOne(filter, updateDoc3)
-        }
-        if(historySize >= 3){
-            await User.updateOne(filter, updateDoc2) //? 3 and 4
             await User.updateOne(filter, updateDoc1)
-            return res.status(200).json({ message: 'User updated succesfully!' })
-        } else {
-            await User.updateOne(filter, updateDoc1)
+            return res
+                .status(200)
+                .json({ message: 'User updated succesfully!' })
         }
-    
+        if (historySize < maxSizeHistoric) {
+            await User.updateOne(filter, updateDoc1)
+            return res
+                .status(200)
+                .json({ message: 'User updated succesfully!' })
+        }
+        if (historySize >= maxSizeHistoric) {
+            await User.updateOne(filter, updateDoc2)
+            await User.updateOne(filter, updateDoc1)
+            return res
+                .status(200)
+                .json({ message: 'User updated succesfully!' })
+        }
+
         return res.status(200).json({ message: 'User updated succesfully!' })
     } catch (err) {
         res.status(500).json({ error: err })

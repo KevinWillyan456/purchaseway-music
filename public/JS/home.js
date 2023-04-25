@@ -211,9 +211,9 @@ function audioControllerNextFunction(){
     
     allSongValueSetters();
     audioControllerPlayFunctionNoPause()
-    themeChanger(selectedTheme);
     setMusicPlayTag();
     manageHistoric();
+    themeChanger(selectedTheme);
 }
 function audioControllerPrevFunction(){
     indexAudio--;
@@ -226,9 +226,9 @@ function audioControllerPrevFunction(){
 
     allSongValueSetters();
     audioControllerPlayFunctionNoPause()
-    themeChanger(selectedTheme);
     setMusicPlayTag();
     manageHistoric();
+    themeChanger(selectedTheme);
 }
 
 function generatorContainerPlaylistData(){
@@ -269,9 +269,9 @@ function generatorContainerPlaylistDataPlay(){
             
             allSongValueSetters();
             audioControllerPlayFunctionNoPause();
-            themeChanger(selectedTheme);
             setMusicPlayTag();
             manageHistoric();
+            themeChanger(selectedTheme);
         });
     })
 }
@@ -313,9 +313,9 @@ function generatorContainerSearchDataPlay(){
 
             allSongValueSetters();
             audioControllerPlayFunctionNoPause();
-            themeChanger(selectedTheme);
             setMusicPlayTag();
             manageHistoric();
+            themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
             $('.container-search-result').hide(200);
@@ -375,9 +375,9 @@ function generatorContainerFavoriteDataPlay(){
 
             allSongValueSetters();
             audioControllerPlayFunctionNoPause();
-            themeChanger(selectedTheme);
             setMusicPlayTag();
             manageHistoric();
+            themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
             $('.container-user-settings').hide(200);
@@ -388,17 +388,7 @@ function generatorContainerFavoriteDataPlay(){
 
 
 function generatorContainerHistoricData(){
-    // let historicSongs = [...musicData];
     let historicSongs = [];
-
-    // userData.musicHistory.forEach((music, index) => {
-    //     // 7d386f0f-7636-432d-930e-91707cd8812a
-    //     let preM = musicDataShuffled.find(element => element._id == music.musicHistory[index].musicId)
-    //     if(preM){
-    //         console.log("ADD")
-    //         historicSongs.push(preM)
-    //     }
-    // })
 
     for (let i = 0; i < userData.musicHistory.length; i++) {
         let song = musicDataShuffled.find(element => element._id == userData.musicHistory[i].musicId)
@@ -409,8 +399,6 @@ function generatorContainerHistoricData(){
             }
         }
     }
-
-
 
     historicSongs.reverse()
     
@@ -450,9 +438,9 @@ function generatorContainerHistoricDataPlay(){
 
             allSongValueSetters();
             audioControllerPlayFunctionNoPause();
-            themeChanger(selectedTheme);
             setMusicPlayTag();
             manageHistoric();
+            themeChanger(selectedTheme);
             
             $('.focus-shadow').hide(200);
             $('.container-user-settings').hide(200);
@@ -824,10 +812,10 @@ async function refreshUser() {
 
     userData = user.user;
     
-    //inicia(); // ...
     containerItemsHistoric.innerHTML = ""
     generatorContainerHistoricData();
     generatorContainerHistoricDataPlay();
+    themeChanger(musicDataShuffled[indexAudio].theme);
 }
 
 async function musicListingService() {
