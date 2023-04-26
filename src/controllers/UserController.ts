@@ -213,8 +213,6 @@ async function updateUserMusicHistoric(
         )
         const maxSizeHistoric = 3
 
-        console.log(musicExists)
-
         if (musicExists && historySize <= 1) {
             return res
                 .status(200)

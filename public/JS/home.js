@@ -61,6 +61,28 @@ audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
 
 window.addEventListener("resize", videoResizingFunction);
 
+let canKeyboardEvents = true;
+document.addEventListener("keyup", function(event){
+    if(canKeyboardEvents){
+        switch(event.key){
+            case " ":
+                if(!musicDataShuffled[indexAudio].isVideo){
+                    audioControllerPlayFunction();
+                }
+                break;
+            case "ArrowRight":
+                audioControllerNextFunction();
+                break;
+            case "ArrowLeft":
+                audioControllerPrevFunction()
+                break;
+            case "p":
+                toggleTemplateUser();
+                break;
+        }
+    }
+})
+
 logout.addEventListener("click", logoutService);
 
 document.querySelector('.service-logo').addEventListener("click", () => {
@@ -327,6 +349,7 @@ function generatorContainerSearchDataPlay(){
             $('.focus-shadow').hide(200);
             $('.container-search-result').hide(200);
             profileWasClicked = true;
+            canKeyboardEvents = true;
         });
     })
 }
@@ -390,6 +413,7 @@ function generatorContainerFavoriteDataPlay(){
             $('.focus-shadow').hide(200);
             $('.container-user-settings').hide(200);
             profileWasClicked = true;
+            canKeyboardEvents = true;
         });
     })
 }
@@ -454,6 +478,7 @@ function generatorContainerHistoricDataPlay(){
             $('.focus-shadow').hide(200);
             $('.container-user-settings').hide(200);
             profileWasClicked = true;
+            canKeyboardEvents = true;
         });
     })
 }
@@ -717,20 +742,10 @@ function searchEvents(){
         $('.focus-shadow').show(200)
         $('.container-user-settings').hide(200)
         profileWasClicked = true;
+        canKeyboardEvents = false;
     });
     $('.container-settings .user-settings').click(function() {
-        if(profileWasClicked){
-            $('.container-user-settings').show(200)
-            $('.focus-shadow').show(200)
-            $('.container-search-result').hide(200)
-            profileWasClicked = false;
-        }
-        else {
-            $('.focus-shadow').hide(200)
-            $('.container-search-result').hide(200)
-            $('.container-user-settings').hide(200)
-            profileWasClicked = true;
-        }
+        toggleTemplateUser();
     });
     
     $('.focus-shadow').click(()=>{
@@ -738,11 +753,29 @@ function searchEvents(){
         $('.container-search-result').hide(200)
         $('.container-user-settings').hide(200)
         profileWasClicked = true;
+        canKeyboardEvents = true;
     })
 
     searchBarInput.oninput = () => {
         musicFilteringFunction();
     };
+}
+
+function toggleTemplateUser() {
+    if(profileWasClicked){
+        $('.container-user-settings').show(200)
+        $('.focus-shadow').show(200)
+        $('.container-search-result').hide(200)
+        profileWasClicked = false;
+        canKeyboardEvents = false;
+    }
+    else {
+        $('.focus-shadow').hide(200)
+        $('.container-search-result').hide(200)
+        $('.container-user-settings').hide(200)
+        profileWasClicked = true;
+        canKeyboardEvents = true;
+    }
 }
 
 function setMusicPlayTag() {
@@ -861,10 +894,6 @@ async function refreshFavorite() {
     if (!isFound) {
         musicFavoriteIcon.name = "heart-outline"
     }
-}
-
-for (let i = 0; i < 10; i++) {
-    console.log(i)
 }
 
 async function musicListingService() {
