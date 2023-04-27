@@ -47,6 +47,8 @@ const logout = document.querySelector(".logout");
 
 const musicFavoriteIcon = document.querySelector(".current-music-favorite ion-icon")
 
+const clearHistoricIcon = document.querySelector(".trash-icon")
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -84,6 +86,8 @@ document.addEventListener("keyup", function(event){
 })
 
 logout.addEventListener("click", logoutService);
+clearHistoricIcon.addEventListener("click", manageHistoricClear);
+musicFavoriteIcon.addEventListener("click", manageFavorite);
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -110,6 +114,7 @@ function inicia(){
     indexAudioId = musicDataShuffled[indexAudio]._id;
     setMusicPlayTag();
     refreshFavorite();
+    manageHistoric();
 }
 
 function audioControllerPlayFunction(){
@@ -358,9 +363,9 @@ function generatorContainerFavoriteData(){
     let favoriteSongs = [];
 
     for (let i = 0; i < userData.favoriteSongs.length; i++) {
-        let song = musicDataShuffled.find(element => element._id == userData.favoriteSongs[i])
+        let song = musicDataShuffled.find(element => element._id == userData.favoriteSongs[i].musicId)
         if(song){
-            if(!favoriteSongs.find(element => element._id == userData.favoriteSongs[i])){
+            if(!favoriteSongs.find(element => element._id == userData.favoriteSongs[i].musicId)){
                 favoriteSongs.push(song);
             }
         }
@@ -846,11 +851,11 @@ async function manageHistoric() {
     }
 }
 
-async function manageFavorite() {
+async function manageHistoricClear() {
     const idUserConnected = getCookie("user")
-    let music = { musicId: indexAudioId }
+    let music = { musicId: "clear" }
 
-    const resposta = await fetch(`/songs-favorite/${idUserConnected}`, {
+    const resposta = await fetch(`/songs-historic/${idUserConnected}`, {
         method: "POST",
         headers: {
         Accept: "application/json",
@@ -859,10 +864,39 @@ async function manageFavorite() {
         body: JSON.stringify(music)
     });
     if(resposta.status == 200){
-        await refreshUser()
-        refreshFavorite();
+        refreshUser();
     }
     if(resposta.status != 200){
+        alert("Internal Error!")
+    }
+}
+
+async function manageFavorite() {
+    const idUserConnected = getCookie("user")
+    let music = { musicId: indexAudioId }
+    musicFavoriteIcon.style.pointerEvents = "none"
+    
+    const resposta = await fetch(`/songs-favorite/${idUserConnected}`, {
+        method: "POST",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(music)
+    });
+
+    const respostaJson = await resposta.json()
+
+    if(respostaJson.message == "limit reached"){
+        alert("Limite de músicas favoritas atingido!")
+    }
+    if(resposta.status == 200){
+        await refreshUser()
+        refreshFavorite();
+        musicFavoriteIcon.style.pointerEvents = "auto"
+    }
+    if(resposta.status != 200){
+        musicFavoriteIcon.style.pointerEvents = "auto"
         alert("Internal Error!")
     }
 }
@@ -882,18 +916,22 @@ async function refreshUser() {
 
 async function refreshFavorite() {
     let isFound = false;
-    for (let i = 0; i < userData.favoriteSongs.length; i++) {
-        let songFavorite = musicDataShuffled.find(element => element._id == userData.favoriteSongs[i].musicId)
+    
+    let songFavorite = userData.favoriteSongs.find(element => element.musicId == musicDataShuffled[indexAudio]._id)
 
-        if(songFavorite){
-            musicFavoriteIcon.name = "heart"
-            isFound = true;
-            break;
-        }
+    if(songFavorite){
+        musicFavoriteIcon.name = "heart"
+        isFound = true;
     }
+    
     if (!isFound) {
         musicFavoriteIcon.name = "heart-outline"
     }
+
+    containerItemsFavorite.innerHTML = ""
+    generatorContainerFavoriteData()
+    generatorContainerFavoriteDataPlay()
+    themeChanger(musicDataShuffled[indexAudio].theme);
 }
 
 async function musicListingService() {

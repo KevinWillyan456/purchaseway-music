@@ -152,13 +152,61 @@ async function updateUserFavoriteSongs(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    const filter = { _id: id }
-    const updateDoc = {
-        $push: { favoriteSongs: { musicId } },
+    interface UserExists {
+        _id: string
+        name: string
+        password: string
+        additionDate: Date
+        favoriteSongs: [
+            {
+                musicId: string
+            }
+        ]
+        musicHistory: [
+            {
+                musicId: string
+            }
+        ]
     }
 
+    const user: UserExists | null = await User.findById(id, '-password')
+
+    const favoriteSize = user?.favoriteSongs.length || 0
+
+    const updateDoc1 = {
+        $push: { favoriteSongs: { musicId } },
+    }
+    const updateDoc2 = {
+        $pull: { favoriteSongs: { musicId } },
+    }
+
+    const filter = { _id: id }
+
     try {
-        await User.updateOne(filter, updateDoc)
+        const [...favoriteSongs] = user?.favoriteSongs || []
+        const musicExists = favoriteSongs.find(
+            (music) => music.musicId == musicId
+        )
+
+        const maxSizeFavorite = 2
+
+        if (musicExists) {
+            await User.updateOne(filter, updateDoc2)
+            return res
+            .status(200)
+            .json({ message: 'User updated succesfully!' })
+        }
+        if (favoriteSize >= maxSizeFavorite) {
+            return res
+                .status(200)
+                .json({ message: 'limit reached' })
+        }
+        if (!musicExists) {
+            await User.updateOne(filter, updateDoc1)
+            return res
+                .status(200)
+                .json({ message: 'User updated succesfully!' })
+        }
 
         return res.status(200).json({ message: 'User updated succesfully!' })
     } catch (err) {
@@ -182,7 +230,11 @@ async function updateUserMusicHistoric(
         name: string
         password: string
         additionDate: Date
-        favoriteSongs: string[]
+        favoriteSongs: [
+            {
+                musicId: string
+            }
+        ]
         musicHistory: [
             {
                 musicId: string
@@ -203,15 +255,25 @@ async function updateUserMusicHistoric(
     const updateDoc3 = {
         $pull: { musicHistory: { musicId } },
     }
+    const updateDoc4 = {
+        $set: { musicHistory: [] },
+    }
 
     const filter = { _id: id }
 
     try {
+        if (musicId == 'clear') {
+            await User.updateOne(filter, updateDoc4)
+            return res
+                .status(200)
+                .json({ message: 'User updated succesfully!' })
+        }
+
         const [...musicHistory] = user?.musicHistory || []
         const musicExists = musicHistory.find(
             (music) => music.musicId == musicId
         )
-        const maxSizeHistoric = 3
+        const maxSizeHistoric = 10
 
         if (musicExists && historySize <= 1) {
             return res
@@ -221,6 +283,12 @@ async function updateUserMusicHistoric(
         if (musicExists) {
             await User.updateOne(filter, updateDoc3)
             await User.updateOne(filter, updateDoc1)
+
+            if (historySize > maxSizeHistoric) {
+                for (let i = 0; i < historySize - maxSizeHistoric; i++) {
+                    await User.updateOne(filter, updateDoc2)
+                }
+            }
             return res
                 .status(200)
                 .json({ message: 'User updated succesfully!' })
@@ -232,7 +300,9 @@ async function updateUserMusicHistoric(
                 .json({ message: 'User updated succesfully!' })
         }
         if (historySize >= maxSizeHistoric) {
-            await User.updateOne(filter, updateDoc2)
+            for (let i = 0; i <= historySize - maxSizeHistoric; i++) {
+                await User.updateOne(filter, updateDoc2)
+            }
             await User.updateOne(filter, updateDoc1)
             return res
                 .status(200)
