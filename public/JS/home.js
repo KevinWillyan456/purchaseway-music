@@ -49,6 +49,9 @@ const musicFavoriteIcon = document.querySelector(".current-music-favorite ion-ic
 
 const clearHistoricIcon = document.querySelector(".trash-icon")
 
+const morePlaylist = document.querySelector(".more-playlist");
+const backPlaylist = document.querySelector(".select-playlist-back");
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -89,6 +92,8 @@ document.addEventListener("keyup", function(event){
 logout.addEventListener("click", logoutService);
 clearHistoricIcon.addEventListener("click", manageHistoricClear);
 musicFavoriteIcon.addEventListener("click", manageFavorite);
+morePlaylist.addEventListener("click", toggleMorePlaylists);
+backPlaylist.addEventListener("click", toggleMorePlaylists);
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -969,6 +974,10 @@ async function refreshFavorite() {
     generatorContainerFavoriteData()
     generatorContainerFavoriteDataPlay()
     themeChanger(musicDataShuffled[indexAudio].theme);
+}
+
+function toggleMorePlaylists() {
+    $(".main-select-playlists").toggle(200);
 }
 
 async function musicListingService() {

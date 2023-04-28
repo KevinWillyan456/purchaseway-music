@@ -1019,6 +1019,95 @@ iframe {
     cursor: pointer;
 }
 
+.main-select-playlists {
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: var(--color-blue-1);
+    z-index: 1000;
+}
+.main-select-playlists .select-playlist-back {
+    position: absolute;
+
+    top: 40px;
+    left: 40px;
+
+    width: 80px;
+    height: 40px;
+    background-color: var(--color-blue-3);
+    color: var(--color-white-1);
+
+    border: 2px solid var(--color-white-1);
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+.main-select-playlists .title-select-playlist {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    
+    font-size: 64px;
+    color: var(--color-white-1);
+}
+
+.main-select-playlists .container-select-playlists {
+    display: grid;
+    width: 100%;
+
+    grid-template-columns: repeat(3, 460px);
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+.container-select-playlists .item-select-playlist {
+    width: 460px;
+    background-color: var(--color-blue-3);
+}
+.item-select-playlist .cover-item-select-playlist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white-1);
+
+    width: 100%;
+    height: 258.75px;
+}
+.item-select-playlist .cover-item-select-playlist img {
+    width: 100%;
+}
+.item-select-playlist .info-item-select-playlist {
+    margin: 10px auto 20px auto;
+    width: calc(100% - 40px);
+    color: var(--color-white-1);
+}
+.info-item-select-playlist .title-item-select-playlist {
+    font-size: 24px;
+}
+.info-item-select-playlist .description-item-select-playlist {
+    font-size: 12px;
+    margin-top: 10px;
+    height: 60px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.info-item-select-playlist .total-music-item-select-playlist {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
 /* Media Queries */
 
 @media (max-width: 1900px)
@@ -1058,6 +1147,9 @@ iframe {
     }
     .container-funcions {
         margin-left: 20px;
+    }
+    .main-select-playlists .container-select-playlists {   
+        grid-template-columns: repeat(2, 460px);
     }
 
     .title-info-search, .title-info-favorite, .title-info-historic {
