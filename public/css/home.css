@@ -87,6 +87,8 @@ body {
     display: flex;
     padding: 10px 20px;
     justify-content: space-between;
+
+    cursor: pointer;
 }
 .item-playlist .cover-item {
     width: 108px;
@@ -381,6 +383,8 @@ iframe {
     display: flex;
     padding: 10px 20px;
     justify-content: space-between;
+
+    cursor: pointer;
 }
 .item-playlist-search .cover-item-search {
     width: 108px;
@@ -605,6 +609,8 @@ iframe {
     display: flex;
     padding: 10px 20px;
     justify-content: space-between;
+
+    cursor: pointer;
 }
 .item-playlist-favorite .cover-item-favorite {
     width: 108px;
@@ -671,6 +677,8 @@ iframe {
     display: flex;
     padding: 10px 20px;
     justify-content: space-between;
+
+    cursor: pointer;
 }
 .item-playlist-historic .cover-item-historic {
     width: 108px;

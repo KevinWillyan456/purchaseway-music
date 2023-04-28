@@ -64,6 +64,7 @@ audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
 window.addEventListener("resize", videoResizingFunction);
 
 let canKeyboardEvents = true;
+let canKeyboardEventsProfile = true;
 document.addEventListener("keyup", function(event){
     if(canKeyboardEvents){
         switch(event.key){
@@ -78,10 +79,10 @@ document.addEventListener("keyup", function(event){
             case "ArrowLeft":
                 audioControllerPrevFunction()
                 break;
-            case "p":
-                toggleTemplateUser();
-                break;
+            }
         }
+    if(canKeyboardEventsProfile && event.key == "p"){
+        toggleTemplateUser();
     }
 })
 
@@ -267,9 +268,9 @@ function generatorContainerPlaylistData(){
     musicDataShuffled.forEach((element) => {
 
         containerPlaylist.innerHTML += `
-            <div class="item-playlist">
+            <div class="item-playlist" data-id="${element._id}" data-theme="${element.theme}">
                 <div class="box-wrapper">
-                    <div class="cover-item" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="cover-item">
                         <img src="${element.coverUrl}">
                     </div>
                     <div class="info-item">
@@ -282,7 +283,7 @@ function generatorContainerPlaylistData(){
                     </div>
                 </div>
 
-                <div class="play-button-item" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="play-button-item">
                     <ion-icon name="play-circle"></ion-icon>
                 </div>
             </div>
@@ -291,20 +292,27 @@ function generatorContainerPlaylistData(){
 }
 
 function generatorContainerPlaylistDataPlay(){
-    const itemsPlaylist = document.querySelectorAll('.container-playlist .item-playlist .play-button-item, .cover-item');
+    const itemsPlaylist = document.querySelectorAll('.container-playlist .item-playlist');
 
     itemsPlaylist.forEach((element)=> {
         element.addEventListener('click', function(){
+            let cannotPlayTheMusic = false;
+            if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                cannotPlayTheMusic = true;
+            }
+
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
             indexAudioId = musicDataShuffled[indexAudio]._id;
             
-            allSongValueSetters();
-            audioControllerPlayFunctionNoPause();
-            setMusicPlayTag();
-            manageHistoric();
-            refreshFavorite();
-            themeChanger(selectedTheme);
+            if (!cannotPlayTheMusic) {
+                allSongValueSetters();
+                audioControllerPlayFunctionNoPause();
+                setMusicPlayTag();
+                manageHistoric();
+                refreshFavorite();
+                themeChanger(selectedTheme);
+            }
         });
     })
 }
@@ -313,9 +321,9 @@ function generatorContainerSearchData(){
     musicDataFiltered.forEach((element) => {
 
         containerItemsSearch.innerHTML += `
-            <div class="item-playlist-search">
+            <div class="item-playlist-search" data-id="${element._id}" data-theme="${element.theme}">
                 <div class="box-wrapper-search">
-                    <div class="cover-item-search" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="cover-item-search">
                         <img src="${element.coverUrl}">
                     </div>
                     <div class="info-item-search">
@@ -327,7 +335,7 @@ function generatorContainerSearchData(){
                         </div>
                     </div>
                 </div>
-                <div class="play-button-item" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="play-button-item">
                     <ion-icon name="play-circle"></ion-icon>
                 </div>
             </div>
@@ -336,25 +344,33 @@ function generatorContainerSearchData(){
 }
 
 function generatorContainerSearchDataPlay(){
-    const itemsPlaylistSearch = document.querySelectorAll('.container-items .item-playlist-search .play-button-item, .cover-item-search');
+    const itemsPlaylistSearch = document.querySelectorAll('.container-items .item-playlist-search');
 
     itemsPlaylistSearch.forEach((element)=> {
         element.addEventListener('click', function(){
+            let cannotPlayTheMusic = false;
+            if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                cannotPlayTheMusic = true;
+            }
+
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
             indexAudioId = musicDataShuffled[indexAudio]._id;
 
-            allSongValueSetters();
-            audioControllerPlayFunctionNoPause();
-            setMusicPlayTag();
-            manageHistoric();
-            refreshFavorite();
-            themeChanger(selectedTheme);
+            if (!cannotPlayTheMusic) {
+                allSongValueSetters();
+                audioControllerPlayFunctionNoPause();
+                setMusicPlayTag();
+                manageHistoric();
+                refreshFavorite();
+                themeChanger(selectedTheme);
             
-            $('.focus-shadow').hide(200);
-            $('.container-search-result').hide(200);
-            profileWasClicked = true;
-            canKeyboardEvents = true;
+                $('.focus-shadow').hide(200);
+                $('.container-search-result').hide(200);
+                profileWasClicked = true;
+                canKeyboardEvents = true;
+                canKeyboardEventsProfile = true;
+            }
         });
     })
 }
@@ -377,9 +393,9 @@ function generatorContainerFavoriteData(){
     favoriteSongs.forEach((element) => {
 
         containerItemsFavorite.innerHTML += `
-            <div class="item-playlist-favorite">
+            <div class="item-playlist-favorite" data-id="${element._id}" data-theme="${element.theme}">
                 <div class="box-wrapper-favorite">
-                    <div class="cover-item-favorite" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="cover-item-favorite">
                         <img src="${element.coverUrl}">
                     </div>
                     <div class="info-item-favorite">
@@ -391,7 +407,7 @@ function generatorContainerFavoriteData(){
                         </div>
                     </div>
                 </div>
-                <div class="play-button-item" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="play-button-item">
                     <ion-icon name="play-circle"></ion-icon>
                 </div>
             </div>
@@ -400,25 +416,33 @@ function generatorContainerFavoriteData(){
 }
 
 function generatorContainerFavoriteDataPlay(){
-    const itemsPlaylistFavorite = document.querySelectorAll('.container-favorite .item-playlist-favorite .play-button-item, .cover-item-favorite');
+    const itemsPlaylistFavorite = document.querySelectorAll('.container-favorite .item-playlist-favorite');
 
     itemsPlaylistFavorite.forEach((element)=> {
         element.addEventListener('click', function(){
+            let cannotPlayTheMusic = false;
+            if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                cannotPlayTheMusic = true;
+            }
+
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
             indexAudioId = musicDataShuffled[indexAudio]._id;
 
-            allSongValueSetters();
-            audioControllerPlayFunctionNoPause();
-            setMusicPlayTag();
-            manageHistoric();
-            refreshFavorite();
-            themeChanger(selectedTheme);
-            
-            $('.focus-shadow').hide(200);
-            $('.container-user-settings').hide(200);
-            profileWasClicked = true;
-            canKeyboardEvents = true;
+            if (!cannotPlayTheMusic) {
+                allSongValueSetters();
+                audioControllerPlayFunctionNoPause();
+                setMusicPlayTag();
+                manageHistoric();
+                refreshFavorite();
+                themeChanger(selectedTheme);
+                
+                $('.focus-shadow').hide(200);
+                $('.container-user-settings').hide(200);
+                profileWasClicked = true;
+                canKeyboardEvents = true;
+                canKeyboardEventsProfile = true;
+            }
         });
     })
 }
@@ -442,9 +466,9 @@ function generatorContainerHistoricData(){
     historicSongs.forEach((element) => {
 
         containerItemsHistoric.innerHTML += `
-            <div class="item-playlist-historic">
+            <div class="item-playlist-historic" data-id="${element._id}" data-theme="${element.theme}">
                 <div class="box-wrapper-historic">
-                    <div class="cover-item-historic" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="cover-item-historic">
                         <img src="${element.coverUrl}">
                     </div>
                     <div class="info-item-historic">
@@ -456,7 +480,7 @@ function generatorContainerHistoricData(){
                         </div>
                     </div>
                 </div>
-                <div class="play-button-item" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="play-button-item">
                     <ion-icon name="play-circle"></ion-icon>
                 </div>
             </div>
@@ -465,25 +489,33 @@ function generatorContainerHistoricData(){
 }
 
 function generatorContainerHistoricDataPlay(){
-    const itemsPlaylistHistoric = document.querySelectorAll('.container-historic .item-playlist-historic .play-button-item, .cover-item-historic');
+    const itemsPlaylistHistoric = document.querySelectorAll('.container-historic .item-playlist-historic');
 
     itemsPlaylistHistoric.forEach((element)=> {
         element.addEventListener('click', function(){
+            let cannotPlayTheMusic = false;
+            if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                cannotPlayTheMusic = true;
+            }
+
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
             indexAudioId = musicDataShuffled[indexAudio]._id;
 
-            allSongValueSetters();
-            audioControllerPlayFunctionNoPause();
-            setMusicPlayTag();
-            manageHistoric();
-            refreshFavorite();
-            themeChanger(selectedTheme);
-            
-            $('.focus-shadow').hide(200);
-            $('.container-user-settings').hide(200);
-            profileWasClicked = true;
-            canKeyboardEvents = true;
+            if (!cannotPlayTheMusic) {
+                allSongValueSetters();
+                audioControllerPlayFunctionNoPause();
+                setMusicPlayTag();
+                manageHistoric();
+                refreshFavorite();
+                themeChanger(selectedTheme);
+                
+                $('.focus-shadow').hide(200);
+                $('.container-user-settings').hide(200);
+                profileWasClicked = true;
+                canKeyboardEvents = true;
+                canKeyboardEventsProfile = true;
+            }
         });
     })
 }
@@ -748,6 +780,7 @@ function searchEvents(){
         $('.container-user-settings').hide(200)
         profileWasClicked = true;
         canKeyboardEvents = false;
+        canKeyboardEventsProfile = false;
     });
     $('.container-settings .user-settings').click(function() {
         toggleTemplateUser();
@@ -759,6 +792,7 @@ function searchEvents(){
         $('.container-user-settings').hide(200)
         profileWasClicked = true;
         canKeyboardEvents = true;
+        canKeyboardEventsProfile = true;
     })
 
     searchBarInput.oninput = () => {
@@ -773,6 +807,7 @@ function toggleTemplateUser() {
         $('.container-search-result').hide(200)
         profileWasClicked = false;
         canKeyboardEvents = false;
+        canKeyboardEventsProfile = true;
     }
     else {
         $('.focus-shadow').hide(200)
@@ -780,31 +815,33 @@ function toggleTemplateUser() {
         $('.container-user-settings').hide(200)
         profileWasClicked = true;
         canKeyboardEvents = true;
+        canKeyboardEventsProfile = true;
     }
 }
 
 function setMusicPlayTag() {
     $(".music-playing").removeClass("music-playing");
-    $(`div[data-id="${indexAudioId}"]`).siblings("div.info-item").addClass("music-playing");
+    $(`div[data-id="${indexAudioId}"] .box-wrapper .info-item`).addClass("music-playing");
 }
 
 
 function videoResizingFunction() {
-    document.querySelector(".container-frame iframe").style.width = 0 + "px";
-    document.querySelector(".container-frame iframe").style.height = 0 + "px";
-
-    var widthOfVideo = parseInt(getComputedStyle(document.querySelector('.ghost-frame')).width);
-    var heightOfVideo;
-
-    heightOfVideo = parseFloat(widthOfVideo) * (563 / 1000) + "px";
-    widthOfVideo = widthOfVideo + "px";
-    if (parseFloat(widthOfVideo) > 1000) {
-        widthOfVideo = 1000 + "px";
-    }
-    if (parseFloat(heightOfVideo) > 566.5) {
-        heightOfVideo = 566.5 + "px";
-    }
     if(document.querySelector(".container-frame iframe")){
+        document.querySelector(".container-frame iframe").style.width = 0 + "px";
+        document.querySelector(".container-frame iframe").style.height = 0 + "px";
+
+        var widthOfVideo = parseInt(getComputedStyle(document.querySelector('.ghost-frame')).width);
+        var heightOfVideo;
+
+        heightOfVideo = parseFloat(widthOfVideo) * (563 / 1000) + "px";
+        widthOfVideo = widthOfVideo + "px";
+        if (parseFloat(widthOfVideo) > 1000) {
+            widthOfVideo = 1000 + "px";
+        }
+        if (parseFloat(heightOfVideo) > 566.5) {
+            heightOfVideo = 566.5 + "px";
+        }
+        
         document.querySelector(".container-frame iframe").style.width = widthOfVideo;
         document.querySelector(".container-frame iframe").style.height = heightOfVideo;
     }
