@@ -18,8 +18,16 @@ import {
     updateUserMusicHistoric,
 } from './controllers/UserController'
 
+import {
+    deletePlaylist,
+    indexPlaylist,
+    storePlaylist,
+    updatePlaylist,
+} from './controllers/PlaylistController'
+
 import { getMusic } from './middlewares/MusicMiddleware'
 import { getUser } from './middlewares/UserMiddleware'
+import { getPlaylist } from './middlewares/PlaylistMiddleware'
 
 export const routes = express.Router()
 
@@ -37,3 +45,8 @@ routes.delete('/users/:id', getUser, deleteUser)
 
 routes.post('/songs-favorite/:id', getUser, updateUserFavoriteSongs)
 routes.post('/songs-historic/:id', getUser, updateUserMusicHistoric)
+
+routes.get('/playlists', indexPlaylist)
+routes.post('/playlists', storePlaylist)
+routes.put('/playlists/:id', getPlaylist, updatePlaylist)
+routes.delete('/playlists/:id', getPlaylist, deletePlaylist)
