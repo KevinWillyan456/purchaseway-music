@@ -1083,6 +1083,12 @@ iframe {
 
     width: 100%;
     height: 258.75px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .item-select-playlist .cover-item-select-playlist img {
     width: 100%;

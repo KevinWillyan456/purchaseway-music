@@ -83,3 +83,12 @@
 .main-playlist .box-wrapper-info .more-playlist.rock-version {
     background-color: var(--color-red-3);
 }
+.main-select-playlists.rock-version {
+    background-color: var(--color-red-1);
+}
+.main-select-playlists .select-playlist-back.rock-version {
+    background-color: var(--color-red-3);
+}
+.container-select-playlists .item-select-playlist.rock-version {
+    background-color: var(--color-red-3);
+}

@@ -52,11 +52,15 @@ const clearHistoricIcon = document.querySelector(".trash-icon")
 const morePlaylist = document.querySelector(".more-playlist");
 const backPlaylist = document.querySelector(".select-playlist-back");
 
+const containerPlaylistSelect = document.querySelector('.container-select-playlists');
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
 
 let userData;
+
+let playlistData = [];
 
 
 let audioControllerPlayToggle = true;
@@ -104,6 +108,8 @@ function inicia(){
     setUserSettings();
     generatorContainerPlaylistData();
     generatorContainerPlaylistDataPlay();
+    generatorContainerPlaylistSelectData();
+    generatorContainerPlaylistSelectDataPlay();
     musicStateControllers();
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
@@ -322,6 +328,35 @@ function generatorContainerPlaylistDataPlay(){
     })
 }
 
+function generatorContainerPlaylistSelectData(){
+    playlistData.forEach((element) => {
+
+        containerPlaylistSelect.innerHTML += `
+            <div class="item-select-playlist">
+                <div class="cover-item-select-playlist">
+                    <img src="${element.coverUrl}">
+                </div>
+                <div class="info-item-select-playlist">
+                    <div class="title-item-select-playlist">
+                        ${element.title}
+                    </div>
+                    <div class="description-item-select-playlist">
+                        ${element.description}
+                    </div>
+                    <div class="total-music-item-select-playlist">
+                        Total de 94 músicas
+                    </div>
+                </div>
+            </div>
+        `
+    })
+
+    containerPlaylistSelect
+}
+function generatorContainerPlaylistSelectDataPlay(){
+
+}
+
 function generatorContainerSearchData(){
     musicDataFiltered.forEach((element) => {
 
@@ -526,7 +561,7 @@ function generatorContainerHistoricDataPlay(){
 }
 
 function themeChanger(selectedTheme){
-    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .container-playlist, .search-bar, .container-settings .user-settings, .main-display .clock-settings, .container-side-1 .current-music-rating, .container-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .container-volume .slider-music-volume, .container-volume .slider-music-volume, .container-playlist .item-playlist, .main-controls, .container-funcions .repeat-icon, .container-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic, .main-playlist .box-wrapper-info .more-playlist");
+    let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .container-playlist, .search-bar, .container-settings .user-settings, .main-display .clock-settings, .container-side-1 .current-music-rating, .container-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .container-volume .slider-music-volume, .container-volume .slider-music-volume, .container-playlist .item-playlist, .main-controls, .container-funcions .repeat-icon, .container-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic, .main-playlist .box-wrapper-info .more-playlist, .main-select-playlists, .main-select-playlists .select-playlist-back, .container-select-playlists .item-select-playlist");
     let serviceLogo = document.querySelector('.service-logo img');
 
     initDurationSlider();
@@ -988,9 +1023,13 @@ async function musicListingService() {
 
     const responseUser = await fetch(`/users/${idUserConnected}`);
     const user = await responseUser.json();
+    
+    const responsePlaylists = await fetch('/playlists');
+    const playlists = await responsePlaylists.json();
 
-    musicData = songs.songs
+    musicData = songs.songs;
     userData = user.user;
+    playlistData = playlists.playlists;
 
     musicDataShuffled = [...musicData];
 
