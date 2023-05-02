@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
+import { Music } from '../models/Music'
 import { Playlist } from '../models/Playlist'
 
 async function indexPlaylist(req: Request, res: Response) {
@@ -86,4 +87,20 @@ async function deletePlaylist(
     }
 }
 
-export { indexPlaylist, storePlaylist, updatePlaylist, deletePlaylist }
+async function selectPlaylist(req: Request, res: Response) {
+    const { playlist } = req.query
+    
+    if (!playlist) {
+        return res.status(400).json({ error: 'You must enter a new data' })
+    }
+
+    try {
+        const songs = await Music.find({gender: playlist}).sort({title: 1}).collation({locale: "pt", strength: 2})
+
+        return res.status(200).json({ songs })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+export { indexPlaylist, storePlaylist, updatePlaylist, deletePlaylist, selectPlaylist }

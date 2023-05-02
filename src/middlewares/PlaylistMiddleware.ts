@@ -10,9 +10,9 @@ async function getPlaylist(req: Request, res: Response, next: NextFunction) {
     }
 
     try {
-        const music = await Playlist.findById(id)
+        const playlist = await Playlist.findById(id)
 
-        if (!music) {
+        if (!playlist) {
             return res.status(404).json({ error: 'Playlist not found' })
         }
     } catch (err) {

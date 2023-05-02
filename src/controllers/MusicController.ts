@@ -5,7 +5,7 @@ import { Music } from '../models/Music'
 
 async function indexMusic(req: Request, res: Response) {
     try {
-        const songs = await Music.find()
+        const songs = await Music.find().sort({title: 1}).collation({locale: "pt", strength: 2})
         return res.status(200).json({ songs })
     } catch (err) {
         res.status(500).json({ error: err })

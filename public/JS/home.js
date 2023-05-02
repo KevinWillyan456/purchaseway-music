@@ -127,6 +127,7 @@ function inicia(){
     setMusicPlayTag();
     refreshFavorite();
     manageHistoric();
+    audioControllerPlayAudioAndVideo();
 }
 
 function audioControllerPlayFunction(){
@@ -146,8 +147,6 @@ function audioControllerPlayFunction(){
 function audioControllerPlayFunctionNoPause(){
     if(musicDataShuffled[indexAudio].isVideo){
         audioGlobal.pause()
-        containerFrameVideo.style.display = "block"
-        currentCover.style.display = "none"
         document.querySelector(".container-side-2").style.display = "none"
         musicAnimationStatus.classList.remove('run');
 
@@ -159,8 +158,6 @@ function audioControllerPlayFunctionNoPause(){
     audioControllerPlay.name = 'pause-circle';
     musicAnimationStatus.classList.add('run');
 
-    containerFrameVideo.style.display = "none"
-    currentCover.style.display = "block"
     document.querySelector(".container-side-1").style.display = "flex"
     document.querySelector(".container-side-2").style.display = "flex"
 }
@@ -169,7 +166,8 @@ function allSongValueSetters(){
     if(musicDataShuffled[indexAudio].isVideo){
         indexAudioId = musicDataShuffled[indexAudio]._id;
         coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
-        currentCover.src = musicDataShuffled[indexAudio].coverUrl;
+        containerFrameVideo.style.display = "block"
+        currentCover.style.display = "none"
         backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
         titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
@@ -184,6 +182,8 @@ function allSongValueSetters(){
     audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
     indexAudioId = musicDataShuffled[indexAudio]._id;
     coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+    containerFrameVideo.style.display = "none"
+    currentCover.style.display = "block"
     currentCover.src = musicDataShuffled[indexAudio].coverUrl;
     backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
     titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
@@ -333,7 +333,7 @@ function generatorContainerPlaylistSelectData(){
 
         containerPlaylistSelect.innerHTML += `
             <div class="item-select-playlist">
-                <div class="cover-item-select-playlist">
+                <div class="cover-item-select-playlist" data-gender="${element.gender}">
                     <img src="${element.coverUrl}">
                 </div>
                 <div class="info-item-select-playlist">
@@ -350,14 +350,29 @@ function generatorContainerPlaylistSelectData(){
             </div>
         `
     })
-
-    containerPlaylistSelect
 }
 function generatorContainerPlaylistSelectDataPlay(){
+    const itemsSelectPlaylist = document.querySelectorAll('.container-select-playlists .item-select-playlist .cover-item-select-playlist');
 
+    itemsSelectPlaylist.forEach((element)=> {
+        element.addEventListener('click', function(){
+            const playlistValue = $(this).data('gender')
+            toggleMorePlaylists();
+            selectNewPlaylist(playlistValue);
+        });
+    })
 }
 
 function generatorContainerSearchData(){
+    musicDataFiltered = musicData.filter(
+        (music) =>
+        music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
+    )
+    
+    while (musicDataFiltered.length > 10) {
+        musicDataFiltered.pop();
+    }
+
     musicDataFiltered.forEach((element) => {
 
         containerItemsSearch.innerHTML += `
@@ -785,15 +800,6 @@ function musicFilteringFunction(){
 
     $('.song-not-found').hide();
     
-    musicDataFiltered = musicData.filter(
-        (music) =>
-        music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
-        )
-    
-        while (musicDataFiltered.length > 5) {
-            musicDataFiltered.pop();
-        }
-    
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     themeChanger(musicDataShuffled[indexAudio].theme);
@@ -913,7 +919,7 @@ async function manageHistoric() {
     let music = { musicId: indexAudioId }
 
     const resposta = await fetch(`/songs-historic/${idUserConnected}`, {
-        method: "POST",
+        method: "PUT",
         headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -933,7 +939,7 @@ async function manageHistoricClear() {
     let music = { musicId: "clear" }
 
     const resposta = await fetch(`/songs-historic/${idUserConnected}`, {
-        method: "POST",
+        method: "PUT",
         headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -954,7 +960,7 @@ async function manageFavorite() {
     musicFavoriteIcon.style.pointerEvents = "none"
     
     const resposta = await fetch(`/songs-favorite/${idUserConnected}`, {
-        method: "POST",
+        method: "PUT",
         headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -1014,33 +1020,88 @@ async function refreshFavorite() {
 function toggleMorePlaylists() {
     $(".main-select-playlists").toggle(200);
 }
+function audioControllerPlayAudioAndVideo() {
+    if(musicDataShuffled[indexAudio].isVideo){
+        document.querySelector(".container-side-2").style.display = "none"
+        musicAnimationStatus.classList.remove('run');
+    } else {
+        document.querySelector(".container-side-1").style.display = "flex"
+        document.querySelector(".container-side-2").style.display = "flex"
+    }
+}
+
+async function selectNewPlaylist(playlistSelect) {
+    const idUserConnected = getCookie("user")
+    let playlistSelectForSend = { lastAccessedPlaylist: playlistSelect }
+
+    const resposta = await fetch(`/playlists-historic/${idUserConnected}`, {
+        method: "PUT",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(playlistSelectForSend)
+    });
+    if(resposta.status != 200){
+        alert("Internal Error!")
+    }
+
+    const responsePlaylist = await fetch(`/playlists-select/?playlist=${playlistSelect}`);
+    const playlist = await responsePlaylist.json();
+
+    musicData = playlist.songs;
+    musicDataShuffled = [...musicData];
+
+    containerPlaylist.innerHTML = "";
+    containerItemsSearch.innerHTML = "";
+    containerItemsFavorite.innerHTML = "";
+    containerItemsHistoric.innerHTML = "";
+
+    indexAudio = 0;
+    audioGlobal.pause()
+    audioControllerPlay.name = 'play-circle';
+    musicAnimationStatus.classList.remove('run');
+    audioControllerPlayToggle = true;
+
+    shuffleIcon.classList.remove('active');
+    shuffleToggleControl = true;
+
+    allSongValueSetters()
+    generatorContainerPlaylistData();
+    generatorContainerPlaylistDataPlay();
+    generatorContainerSearchData()
+    generatorContainerSearchDataPlay()
+    generatorContainerFavoriteData()
+    generatorContainerFavoriteDataPlay()
+    generatorContainerHistoricData()
+    generatorContainerHistoricDataPlay()
+
+    themeChanger(musicDataShuffled[indexAudio].theme);
+    indexAudioId = musicDataShuffled[indexAudio]._id;
+    setMusicPlayTag();
+    refreshFavorite();
+    manageHistoric();
+    audioControllerPlayAudioAndVideo();
+}
 
 async function musicListingService() {
     const idUserConnected = getCookie("user")
 
-    const responseSongs = await fetch('/songs');
-    const songs = await responseSongs.json();
-
     const responseUser = await fetch(`/users/${idUserConnected}`);
     const user = await responseUser.json();
-    
+
+    userData = user.user;
+
     const responsePlaylists = await fetch('/playlists');
     const playlists = await responsePlaylists.json();
 
+    const responseSongs = await fetch(`/playlists-select/?playlist=${userData.lastAccessedPlaylist}`);
+    const songs = await responseSongs.json();
+
     musicData = songs.songs;
-    userData = user.user;
     playlistData = playlists.playlists;
 
     musicDataShuffled = [...musicData];
-
-    musicDataFiltered = musicData.filter(
-        (music) =>
-        music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
-        )
-    
-        while (musicDataFiltered.length > 5) {
-            musicDataFiltered.pop();
-        }
 
     inicia();
 }

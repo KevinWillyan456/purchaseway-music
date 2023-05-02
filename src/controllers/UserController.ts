@@ -3,7 +3,7 @@ import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { User } from '../models/User'
+import { IUser, User } from '../models/User'
 
 async function indexUser(req: Request, res: Response) {
     try {
@@ -152,24 +152,7 @@ async function updateUserFavoriteSongs(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    interface UserExists {
-        _id: string
-        name: string
-        password: string
-        additionDate: Date
-        favoriteSongs: [
-            {
-                musicId: string
-            }
-        ]
-        musicHistory: [
-            {
-                musicId: string
-            }
-        ]
-    }
-
-    const user: UserExists | null = await User.findById(id, '-password')
+    const user: IUser | null = await User.findById(id, '-password')
 
     const favoriteSize = user?.favoriteSongs.length || 0
 
@@ -193,13 +176,11 @@ async function updateUserFavoriteSongs(
         if (musicExists) {
             await User.updateOne(filter, updateDoc2)
             return res
-            .status(200)
-            .json({ message: 'User updated succesfully!' })
+                .status(200)
+                .json({ message: 'User updated succesfully!' })
         }
         if (favoriteSize >= maxSizeFavorite) {
-            return res
-                .status(200)
-                .json({ message: 'limit reached' })
+            return res.status(200).json({ message: 'limit reached' })
         }
         if (!musicExists) {
             await User.updateOne(filter, updateDoc1)
@@ -225,24 +206,7 @@ async function updateUserMusicHistoric(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    interface UserExists {
-        _id: string
-        name: string
-        password: string
-        additionDate: Date
-        favoriteSongs: [
-            {
-                musicId: string
-            }
-        ]
-        musicHistory: [
-            {
-                musicId: string
-            }
-        ]
-    }
-
-    const user: UserExists | null = await User.findById(id, '-password')
+    const user: IUser | null = await User.findById(id, '-password')
 
     const historySize = user?.musicHistory.length || 0
 
@@ -315,6 +279,31 @@ async function updateUserMusicHistoric(
     }
 }
 
+async function updateUserPlaylistSelected(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { lastAccessedPlaylist } = req.body
+    const { id } = req.params
+
+    if (!lastAccessedPlaylist) {
+        return res.status(400).json({ error: 'You must enter a new data 2' })
+    }
+
+    const updateDoc1 = {
+        $set: { lastAccessedPlaylist },
+    }
+
+    const filter = { _id: id }
+
+    try {
+        await User.updateOne(filter, updateDoc1)
+        return res.status(200).json({ message: 'User updated succesfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
 export {
     indexUser,
     indexUserById,
@@ -324,4 +313,5 @@ export {
     deleteUser,
     updateUserFavoriteSongs,
     updateUserMusicHistoric,
+    updateUserPlaylistSelected,
 }

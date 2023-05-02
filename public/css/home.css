@@ -1089,6 +1089,20 @@ iframe {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    cursor: pointer;
+}
+
+.item-select-playlist .cover-item-select-playlist:hover img {
+    animation: cover-item-select-playlist-animation-in 200ms forwards;
+}
+@keyframes cover-item-select-playlist-animation-in {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
 }
 .item-select-playlist .cover-item-select-playlist img {
     width: 100%;
