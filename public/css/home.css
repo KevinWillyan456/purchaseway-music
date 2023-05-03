@@ -32,8 +32,11 @@ body {
 }
 .main-playlist .box-wrapper-info .title-playlist {
     font-size: 36px;
+    width: 375px;
     color: var(--color-white-1);
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .main-playlist .box-wrapper-info .more-playlist {
     color: var(--color-white-1);

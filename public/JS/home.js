@@ -124,6 +124,7 @@ function inicia(){
 
     themeChanger(musicDataShuffled[indexAudio].theme);
     indexAudioId = musicDataShuffled[indexAudio]._id;
+    $(".title-playlist").html(userData.lastAccessedPlaylistName);
     setMusicPlayTag();
     refreshFavorite();
     manageHistoric();
@@ -163,6 +164,10 @@ function audioControllerPlayFunctionNoPause(){
 }
 
 function allSongValueSetters(){
+    if(musicData.length <= 0){
+        alert("A PlayList atual não tem conteúdo");
+        return
+    }
     if(musicDataShuffled[indexAudio].isVideo){
         indexAudioId = musicDataShuffled[indexAudio]._id;
         coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
@@ -333,7 +338,7 @@ function generatorContainerPlaylistSelectData(){
 
         containerPlaylistSelect.innerHTML += `
             <div class="item-select-playlist">
-                <div class="cover-item-select-playlist" data-gender="${element.gender}">
+                <div class="cover-item-select-playlist" data-gender="${element.gender}" data-title="${element.title}">
                     <img src="${element.coverUrl}">
                 </div>
                 <div class="info-item-select-playlist">
@@ -357,8 +362,9 @@ function generatorContainerPlaylistSelectDataPlay(){
     itemsSelectPlaylist.forEach((element)=> {
         element.addEventListener('click', function(){
             const playlistValue = $(this).data('gender')
+            const playlistName = $(this).data('title')
             toggleMorePlaylists();
-            selectNewPlaylist(playlistValue);
+            selectNewPlaylist(playlistValue, playlistName);
         });
     })
 }
@@ -1030,9 +1036,14 @@ function audioControllerPlayAudioAndVideo() {
     }
 }
 
-async function selectNewPlaylist(playlistSelect) {
+async function selectNewPlaylist(playlistSelect, playlistName) {
     const idUserConnected = getCookie("user")
-    let playlistSelectForSend = { lastAccessedPlaylist: playlistSelect }
+    let playlistSelectForSend = { 
+        lastAccessedPlaylist: playlistSelect,
+        lastAccessedPlaylistName: playlistName
+    }
+
+    $(".title-playlist").html(playlistName);
 
     const resposta = await fetch(`/playlists-historic/${idUserConnected}`, {
         method: "PUT",

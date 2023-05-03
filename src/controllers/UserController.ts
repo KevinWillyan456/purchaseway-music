@@ -283,15 +283,15 @@ async function updateUserPlaylistSelected(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
 ) {
-    const { lastAccessedPlaylist } = req.body
+    const { lastAccessedPlaylist, lastAccessedPlaylistName } = req.body
     const { id } = req.params
 
-    if (!lastAccessedPlaylist) {
-        return res.status(400).json({ error: 'You must enter a new data 2' })
+    if (!lastAccessedPlaylist && !lastAccessedPlaylistName) {
+        return res.status(400).json({ error: 'You must enter a new data' })
     }
 
     const updateDoc1 = {
-        $set: { lastAccessedPlaylist },
+        $set: { lastAccessedPlaylist, lastAccessedPlaylistName },
     }
 
     const filter = { _id: id }
