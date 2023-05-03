@@ -6,6 +6,7 @@ export interface IPlaylist {
     coverUrl: string
     description: string
     gender: string
+    totalSongs: number
     additionDate: Date
 }
 
@@ -15,6 +16,7 @@ const playlistSchema = new Schema<IPlaylist>({
     coverUrl: { type: String, required: true },
     description: { type: String, required: true },
     gender: { type: String, required: true },
+    totalSongs: { type: Number, default: 0 },
     additionDate: { type: Date, required: true }
 })
 

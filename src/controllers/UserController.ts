@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { IUser, User } from '../models/User'
+import { Music } from '../models/Music'
 
 async function indexUser(req: Request, res: Response) {
     try {
@@ -286,7 +287,7 @@ async function updateUserPlaylistSelected(
     const { lastAccessedPlaylist, lastAccessedPlaylistName } = req.body
     const { id } = req.params
 
-    if (!lastAccessedPlaylist && !lastAccessedPlaylistName) {
+    if (!lastAccessedPlaylist || !lastAccessedPlaylistName) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 

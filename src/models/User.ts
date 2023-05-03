@@ -8,11 +8,13 @@ export interface IUser {
     favoriteSongs: [
         {
             musicId: string
+            musicGender: string
         }
     ]
     musicHistory: [
         {
             musicId: string
+            musicGender: string
         }
     ]
     lastAccessedPlaylist: string
@@ -24,8 +26,18 @@ const userSchema = new Schema<IUser>({
     name: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     additionDate: { type: Date, required: true },
-    favoriteSongs: [{ musicId: String }],
-    musicHistory: [{ musicId: String }],
+    favoriteSongs: [
+        {
+            musicId: { type: String },
+            musicGender: { type: String },
+        },
+    ],
+    musicHistory: [
+        {
+            musicId: { type: String },
+            musicGender: { type: String },
+        },
+    ],
     lastAccessedPlaylist: { type: String, default: 'Nightcore' },
     lastAccessedPlaylistName: { type: String, default: 'Nightcores' },
 })

@@ -6,7 +6,24 @@ import { Playlist } from '../models/Playlist'
 
 async function indexPlaylist(req: Request, res: Response) {
     try {
+        const playlistsBefore = await Playlist.find()
+
+        playlistsBefore.forEach(async (field) => {
+            const totalSongs = await Music.count({ gender: field.gender })
+
+            const filter = { _id: field._id }
+            const updateDoc = {
+                $set: {
+                    totalSongs,
+                },
+            }
+
+            await Playlist.updateOne(filter, updateDoc)
+        })
+
+
         const playlists = await Playlist.find()
+
         return res.status(200).json({ playlists })
     } catch (err) {
         res.status(500).json({ error: err })
@@ -89,13 +106,15 @@ async function deletePlaylist(
 
 async function selectPlaylist(req: Request, res: Response) {
     const { playlist } = req.query
-    
+
     if (!playlist) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
     try {
-        const songs = await Music.find({gender: playlist}).sort({title: 1}).collation({locale: "pt", strength: 2})
+        const songs = await Music.find({ gender: playlist })
+            .sort({ title: 1 })
+            .collation({ locale: 'pt', strength: 2 })
 
         return res.status(200).json({ songs })
     } catch (err) {
@@ -103,4 +122,10 @@ async function selectPlaylist(req: Request, res: Response) {
     }
 }
 
-export { indexPlaylist, storePlaylist, updatePlaylist, deletePlaylist, selectPlaylist }
+export {
+    indexPlaylist,
+    storePlaylist,
+    updatePlaylist,
+    deletePlaylist,
+    selectPlaylist,
+}

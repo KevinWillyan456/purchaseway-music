@@ -1,6 +1,7 @@
 const audioGlobal = document.querySelector('#audio-global');
 let indexAudio = 0;
 let indexAudioId = "";
+let indexAudioGender = "";
 
 const audioControllerPrev = document.querySelector('#audio-prev');
 const audioControllerPlay = document.querySelector('#audio-play');
@@ -124,6 +125,7 @@ function inicia(){
 
     themeChanger(musicDataShuffled[indexAudio].theme);
     indexAudioId = musicDataShuffled[indexAudio]._id;
+    indexAudioGender = musicDataShuffled[indexAudio].gender;
     $(".title-playlist").html(userData.lastAccessedPlaylistName);
     setMusicPlayTag();
     refreshFavorite();
@@ -170,6 +172,7 @@ function allSongValueSetters(){
     }
     if(musicDataShuffled[indexAudio].isVideo){
         indexAudioId = musicDataShuffled[indexAudio]._id;
+        indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
         containerFrameVideo.style.display = "block"
         currentCover.style.display = "none"
@@ -186,6 +189,7 @@ function allSongValueSetters(){
 
     audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
     indexAudioId = musicDataShuffled[indexAudio]._id;
+    indexAudioGender = musicDataShuffled[indexAudio].gender;
     coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
     containerFrameVideo.style.display = "none"
     currentCover.style.display = "block"
@@ -255,6 +259,7 @@ function audioControllerNextFunction(){
     
     let selectedTheme = musicDataShuffled[indexAudio].theme
     indexAudioId = musicDataShuffled[indexAudio]._id;
+    indexAudioGender = musicDataShuffled[indexAudio].gender;
     
     allSongValueSetters();
     audioControllerPlayFunctionNoPause()
@@ -271,6 +276,7 @@ function audioControllerPrevFunction(){
 
     let selectedTheme = musicDataShuffled[indexAudio].theme
     indexAudioId = musicDataShuffled[indexAudio]._id;
+    indexAudioGender = musicDataShuffled[indexAudio].gender;
 
     allSongValueSetters();
     audioControllerPlayFunctionNoPause()
@@ -320,6 +326,7 @@ function generatorContainerPlaylistDataPlay(){
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
             indexAudioId = musicDataShuffled[indexAudio]._id;
+            indexAudioGender = musicDataShuffled[indexAudio].gender;
             
             if (!cannotPlayTheMusic) {
                 allSongValueSetters();
@@ -349,7 +356,7 @@ function generatorContainerPlaylistSelectData(){
                         ${element.description}
                     </div>
                     <div class="total-music-item-select-playlist">
-                        Total de 94 músicas
+                        Total de ${element.totalSongs} músicas
                     </div>
                 </div>
             </div>
@@ -417,6 +424,7 @@ function generatorContainerSearchDataPlay(){
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
             indexAudioId = musicDataShuffled[indexAudio]._id;
+            indexAudioGender = musicDataShuffled[indexAudio].gender;
 
             if (!cannotPlayTheMusic) {
                 allSongValueSetters();
@@ -489,6 +497,7 @@ function generatorContainerFavoriteDataPlay(){
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
             indexAudioId = musicDataShuffled[indexAudio]._id;
+            indexAudioGender = musicDataShuffled[indexAudio].gender;
 
             if (!cannotPlayTheMusic) {
                 allSongValueSetters();
@@ -562,6 +571,7 @@ function generatorContainerHistoricDataPlay(){
             indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
             let selectedTheme = $(this).data('theme')
             indexAudioId = musicDataShuffled[indexAudio]._id;
+            indexAudioGender = musicDataShuffled[indexAudio].gender;
 
             if (!cannotPlayTheMusic) {
                 allSongValueSetters();
@@ -922,7 +932,10 @@ function getCookie(k) {
 
 async function manageHistoric() {
     const idUserConnected = getCookie("user")
-    let music = { musicId: indexAudioId }
+    let music = {
+        musicId: indexAudioId,
+        musicGender: indexAudioGender
+    }
 
     const resposta = await fetch(`/songs-historic/${idUserConnected}`, {
         method: "PUT",
@@ -962,7 +975,10 @@ async function manageHistoricClear() {
 
 async function manageFavorite() {
     const idUserConnected = getCookie("user")
-    let music = { musicId: indexAudioId }
+    let music = {
+        musicId: indexAudioId,
+        musicGender: indexAudioGender
+    }
     musicFavoriteIcon.style.pointerEvents = "none"
     
     const resposta = await fetch(`/songs-favorite/${idUserConnected}`, {
@@ -1089,6 +1105,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
 
     themeChanger(musicDataShuffled[indexAudio].theme);
     indexAudioId = musicDataShuffled[indexAudio]._id;
+    indexAudioGender = musicDataShuffled[indexAudio].gender;
     setMusicPlayTag();
     refreshFavorite();
     manageHistoric();
