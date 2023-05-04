@@ -955,7 +955,10 @@ async function manageHistoric() {
 
 async function manageHistoricClear() {
     const idUserConnected = getCookie("user")
-    let music = { musicId: "clear" }
+    let music = {
+        musicId: "clear",
+        musicGender: indexAudioGender
+    }
 
     const resposta = await fetch(`/songs-historic/${idUserConnected}`, {
         method: "PUT",

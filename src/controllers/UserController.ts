@@ -146,19 +146,71 @@ async function updateUserFavoriteSongs(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
 ) {
-    const { musicId } = req.body
+    const { musicId, musicGender } = req.body
     const { id } = req.params
 
-    if (!musicId) {
+    if (!musicId || !musicGender) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
     const user: IUser | null = await User.findById(id, '-password')
+    const musicGenderUser: string[] = await Music.distinct('gender')
 
-    const favoriteSize = user?.favoriteSongs.length || 0
+    if (!musicGenderUser.includes(musicGender)) {
+        return res.status(400).json({ error: 'You must enter valid values' })
+    }
+
+    interface Contador {
+        name: string
+        count: number
+    }
+
+    const counterDistinctPlaylists = (
+        musicGender: string[],
+        user: IUser | null
+    ) => {
+        const countsPre: Contador[] = []
+
+        for (let i = 0; i < musicGender.length; i++) {
+            countsPre.push({ name: musicGender[i], count: 0 })
+        }
+
+        if (user != null) {
+            for (let j = 0; j < user.favoriteSongs.length; j++) {
+                for (let k = 0; k < countsPre.length; k++) {
+                    if (
+                        user.favoriteSongs[j].musicGender == countsPre[k].name
+                    ) {
+                        countsPre[k].count++
+                    }
+                }
+            }
+        }
+        const counts = countsPre.filter((item) => item.count > 0)
+
+        return counts
+    }
+
+    const favoriteSizes = counterDistinctPlaylists(musicGenderUser, user)
+    
+    const favoriteSizeDefinition = () => {
+        if(favoriteSizes.length <= 0){
+            return 0
+        }
+        
+        const finded = favoriteSizes.find(item => item.name == musicGender)
+
+        if(finded == undefined){
+            return 0
+        }
+        
+        return finded?.count
+    }
+
+    const favoriteSize = favoriteSizeDefinition()
 
     const updateDoc1 = {
-        $push: { favoriteSongs: { musicId } },
+        $push: { favoriteSongs: { musicId, musicGender } },
     }
     const updateDoc2 = {
         $pull: { favoriteSongs: { musicId } },
@@ -200,30 +252,82 @@ async function updateUserMusicHistoric(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
 ) {
-    const { musicId } = req.body
+    const { musicId, musicGender } = req.body
     const { id } = req.params
 
-    if (!musicId) {
+    if (!musicId || !musicGender) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
     const user: IUser | null = await User.findById(id, '-password')
+    const musicGenderUser: string[] = await Music.distinct('gender')
 
-    const historySize = user?.musicHistory.length || 0
+    if (!musicGenderUser.includes(musicGender)) {
+        return res.status(400).json({ error: 'You must enter valid values' })
+    }
+
+    interface Contador {
+        name: string
+        count: number
+    }
+
+    const counterDistinctPlaylists = (
+        musicGender: string[],
+        user: IUser | null
+    ) => {
+        const countsPre: Contador[] = []
+
+        for (let i = 0; i < musicGender.length; i++) {
+            countsPre.push({ name: musicGender[i], count: 0 })
+        }
+
+        if (user != null) {
+            for (let j = 0; j < user.musicHistory.length; j++) {
+                for (let k = 0; k < countsPre.length; k++) {
+                    if (
+                        user.musicHistory[j].musicGender == countsPre[k].name
+                    ) {
+                        countsPre[k].count++
+                    }
+                }
+            }
+        }
+        const counts = countsPre.filter((item) => item.count > 0)
+
+        return counts
+    }
+
+    const historicSizes = counterDistinctPlaylists(musicGenderUser, user)
+    
+    const historicSizeDefinition = () => {
+        if(historicSizes.length <= 0){
+            return 0
+        }
+        
+        const finded = historicSizes.find(item => item.name == musicGender)
+
+        if(finded == undefined){
+            return 0
+        }
+        
+        return finded?.count
+    }
+
+    const historySize = historicSizeDefinition()
 
     const updateDoc1 = {
-        $push: { musicHistory: { musicId } },
+        $push: { musicHistory: { musicId, musicGender } },
     }
     const updateDoc2 = {
-        $pop: { musicHistory: -1 },
+        $pop: { musicHistory: -1 }
     }
     const updateDoc3 = {
         $pull: { musicHistory: { musicId } },
     }
     const updateDoc4 = {
-        $set: { musicHistory: [] },
+        $pull: { musicHistory: { musicGender } },
     }
-
+    
     const filter = { _id: id }
 
     try {
