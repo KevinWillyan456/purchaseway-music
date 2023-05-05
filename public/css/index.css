@@ -31,12 +31,12 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 .terms-of-use ion-icon {
     width: 35px;
     height: 35px;
     color: var(--color-white-1);
-    cursor: pointer;
 }
 
 .terms-of-use-text {
@@ -438,4 +438,85 @@ html {
 .rodape .copyright {
     font-size: 16px;
     color: var(--color-white-1);
+}
+@media (max-width: 1800px)
+{
+    .section-reactive .blue-blur {
+        width: 500px;
+        height: 500px;
+    }
+    .section-reactive .blue-blur-title {
+        width: 500px;
+        height: 500px;
+        font-size: 50px;
+    }
+    .section-reactive .red-blur {
+        width: 500px;
+        height: 500px;
+    }
+    .section-reactive .red-blur-title {
+        width: 500px;
+        height: 500px;
+        font-size: 50px;
+    }
+
+    .section-reactive .box-wrapper .title-1 {
+        font-size: 60px;
+    }
+    .section-reactive .box-wrapper .title-2 {
+        font-size: 24px;
+        width: 450px;
+    }
+}
+@media (max-width: 1500px)
+{
+    .section-banner .title-1 {
+        font-size: 50px;
+    }
+    .section-banner .title-2 {
+        font-size: 40px;
+    }
+    .section-banner .title-3 {
+        font-size: 20px;
+    }
+    
+    .section-listen .box-wrapper .title-1, .section-very-high-quality .box-wrapper .title-1 {
+        font-size: 50px;
+    }
+    .section-very-high-quality .box-wrapper .title-2 {
+        font-size: 60px;
+    }
+    .section-very-high-quality .box-wrapper .title-2 ion-icon {
+        width: 110px;
+        height: 110px;
+    }
+    .section-listen .box-wrapper .title-2 {
+        font-size: 30px;
+    }
+    .section-reactive .blue-blur {
+        width: 450px;
+        height: 450px;
+    }
+    .section-reactive .blue-blur-title {
+        width: 450px;
+        height: 450px;
+        font-size: 40px;
+    }
+    .section-reactive .red-blur {
+        width: 450px;
+        height: 450px;
+    }
+    .section-reactive .red-blur-title {
+        width: 450px;
+        height: 450px;
+        font-size: 40px;
+    }
+
+    .section-reactive .box-wrapper .title-1 {
+        font-size: 60px;
+    }
+    .section-reactive .box-wrapper .title-2 {
+        font-size: 24px;
+        width: 300px;
+    }
 }

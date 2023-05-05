@@ -22,7 +22,7 @@ async function indexPlaylist(req: Request, res: Response) {
         })
 
 
-        const playlists = await Playlist.find()
+        const playlists = await Playlist.find().sort({title: 1}).collation({locale: "pt", strength: 2})
 
         return res.status(200).json({ playlists })
     } catch (err) {

@@ -22,7 +22,6 @@
     color: var(--color-red-2);
 }
 .slider-music-duration.rock-version input[type=range] {
-    /* Será controlado por JavaScript */
     background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
 }
 .slider-music-duration.rock-version input[type=range]::-webkit-slider-thumb {
@@ -32,7 +31,6 @@
     background-color: var(--color-red-2);
 }
 .container-volume .slider-music-volume.rock-version input[type=range] {
-    /* Será controlado por JavaScript */
     background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
 }
 .container-volume .slider-music-volume.rock-version input[type=range]::-webkit-slider-thumb {
@@ -45,10 +43,10 @@
     background-color: var(--color-red-3);
 }
 .container-playlist .item-playlist.rock-version .box-wrapper .info-item.music-playing {
-    color: #f53636;
+    color: var(--color-red-5);
 }
 .main-controls.rock-version {
-    background-image: linear-gradient(#731010, #000000);
+    background-image: linear-gradient(var(--color-red-4), #000000);
 }
 .container-funcions .repeat-icon.rock-version ion-icon.active {
     color: var(--color-red-2);
@@ -91,4 +89,97 @@
 }
 .container-select-playlists .item-select-playlist.rock-version {
     background-color: var(--color-red-3);
+}
+
+/* Hatsune Miku Version Theme */
+
+.main-playlist.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.container-playlist.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
+}
+.search-bar.hatsune-miku-version input:focus {
+    box-shadow: 0 0 0 5px var(--color-miku-2), 0 0 25px var(--color-miku-2);
+}
+.container-settings .user-settings.hatsune-miku-version {
+    background-color: var(--color-miku-2);
+}
+.main-display .clock-settings.hatsune-miku-version {
+    background-color: var(--color-miku-2);
+}
+.container-side-1 .current-music-rating.hatsune-miku-version ion-icon {
+    color: var(--color-miku-2);
+}
+.container-side-1 .current-music-favorite.hatsune-miku-version ion-icon {
+    color: var(--color-miku-2);
+}
+.slider-music-duration.hatsune-miku-version input[type=range] {
+    background-image: linear-gradient(to right, var(--color-miku-2) 0%, var(--color-miku-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.slider-music-duration.hatsune-miku-version input[type=range]::-webkit-slider-thumb {
+    background-color: var(--color-miku-2);
+}
+.slider-music-duration-wrapper .slider-music-duration-dot.hatsune-miku-version {
+    background-color: var(--color-miku-2);
+}
+.container-volume .slider-music-volume.hatsune-miku-version input[type=range] {
+    background-image: linear-gradient(to right, var(--color-miku-2) 0%, var(--color-miku-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.container-volume .slider-music-volume.hatsune-miku-version input[type=range]::-webkit-slider-thumb {
+    background-color: var(--color-miku-2);
+}
+.slider-music-volume-wrapper .slider-music-volume-dot.hatsune-miku-version {
+    background-color: var(--color-miku-2);
+}
+.container-playlist .item-playlist.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.container-playlist .item-playlist.hatsune-miku-version .box-wrapper .info-item.music-playing {
+    color: var(--color-miku-5);
+}
+.main-controls.hatsune-miku-version {
+    background-image: linear-gradient(var(--color-miku-4), #000000);
+}
+.container-funcions .repeat-icon.hatsune-miku-version ion-icon.active {
+    color: var(--color-miku-2);
+}
+.container-funcions .shuffle-icon.hatsune-miku-version ion-icon.active {
+    color: var(--color-miku-2);
+}
+.layer-search-result.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.box-search-result.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
+}
+.item-playlist-search.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.layer-user-settings.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.box-user-settings.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
+}
+.box-profile .user-settings.hatsune-miku-version {
+    background-color: var(--color-miku-2);
+}
+.item-playlist-favorite.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.item-playlist-historic.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.main-playlist .box-wrapper-info .more-playlist.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.main-select-playlists.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.main-select-playlists .select-playlist-back.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.container-select-playlists .item-select-playlist.hatsune-miku-version {
+    background-color: var(--color-miku-3);
 }

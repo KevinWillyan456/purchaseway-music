@@ -9,12 +9,22 @@
     --color-blue-2: #3C93CF;
     --color-blue-3: #3E5162;
     --color-blue-4: #0C264E;
-    --color-black: #2B2B2B;
+    --color-blue-5: #3decff;
+
     --color-red-1: #260101;
     --color-red-2: #BF1F1F;
     --color-red-3: #40060B;
     --color-red-4: #731010;
+    --color-red-5: #f53636;
+    
+    --color-miku-1: #12211c;
+    --color-miku-2: #229e89;
+    --color-miku-3: #3f5d5b;
+    --color-miku-4: #0b5c54;
+    --color-miku-5: #3dffe8;
+    
     --color-white-1: #F5FAFC;
+    --color-black: #2B2B2B;
 }
 
 body {

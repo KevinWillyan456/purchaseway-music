@@ -599,13 +599,24 @@ function themeChanger(selectedTheme){
     initVolumeSlider();
     
     if(selectedTheme == "Original"){
-        allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version"));
+        allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version", "hatsune-miku-version"));
         serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo.png";
         return;
     }
     if(selectedTheme == "Rock Version"){
-        allElementsChangeableByTheme.forEach(element => element.classList.add("rock-version"));
+        allElementsChangeableByTheme.forEach(element => {
+            element.classList.remove("hatsune-miku-version")
+            element.classList.add("rock-version")
+        });
         serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-rock-version.png";
+        return;
+    }
+    if(selectedTheme == "Hatsune Miku Version"){
+        allElementsChangeableByTheme.forEach(element => {
+            element.classList.remove("rock-version")
+            element.classList.add("hatsune-miku-version")
+        });
+        serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-hatsune-miku-version.png";
         return;
     }
 }

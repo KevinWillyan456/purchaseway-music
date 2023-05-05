@@ -181,3 +181,10 @@ form .info a {
 .hidden {
     display: none;
 }
+
+@media (max-width: 1500px)
+{
+    .service-logo {
+        display: none;
+    }
+}
