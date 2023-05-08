@@ -5,18 +5,14 @@ export interface IUser {
     name: string
     password: string
     additionDate: Date
-    favoriteSongs: [
-        {
-            musicId: string
-            musicGender: string
-        }
-    ]
-    musicHistory: [
-        {
-            musicId: string
-            musicGender: string
-        }
-    ]
+    favoriteSongs: {
+        musicId: string
+        musicGender: string
+    }[]
+    musicHistory: {
+        musicId: string
+        musicGender: string
+    }[]
     lastAccessedPlaylist: string
     lastAccessedPlaylistName: string
 }

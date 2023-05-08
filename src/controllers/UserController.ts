@@ -192,18 +192,18 @@ async function updateUserFavoriteSongs(
     }
 
     const favoriteSizes = counterDistinctPlaylists(musicGenderUser, user)
-    
-    const favoriteSizeDefinition = () => {
-        if(favoriteSizes.length <= 0){
-            return 0
-        }
-        
-        const finded = favoriteSizes.find(item => item.name == musicGender)
 
-        if(finded == undefined){
+    const favoriteSizeDefinition = () => {
+        if (favoriteSizes.length <= 0) {
             return 0
         }
-        
+
+        const finded = favoriteSizes.find((item) => item.name == musicGender)
+
+        if (finded == undefined) {
+            return 0
+        }
+
         return finded?.count
     }
 
@@ -254,6 +254,7 @@ async function updateUserMusicHistoric(
 ) {
     const { musicId, musicGender } = req.body
     const { id } = req.params
+    const maxSizeHistoric = 3
 
     if (!musicId || !musicGender) {
         return res.status(400).json({ error: 'You must enter a new data' })
@@ -284,9 +285,7 @@ async function updateUserMusicHistoric(
         if (user != null) {
             for (let j = 0; j < user.musicHistory.length; j++) {
                 for (let k = 0; k < countsPre.length; k++) {
-                    if (
-                        user.musicHistory[j].musicGender == countsPre[k].name
-                    ) {
+                    if (user.musicHistory[j].musicGender == countsPre[k].name) {
                         countsPre[k].count++
                     }
                 }
@@ -297,29 +296,71 @@ async function updateUserMusicHistoric(
         return counts
     }
 
-    const historicSizes = counterDistinctPlaylists(musicGenderUser, user)
-    
-    const historicSizeDefinition = () => {
-        if(historicSizes.length <= 0){
-            return 0
-        }
-        
-        const finded = historicSizes.find(item => item.name == musicGender)
+    const checkArrayExceedsSize = (
+        user: IUser | null,
+        tamanhoMaximoDeHistorico: number,
+        currentGender: string
+    ): string[] => {
+        const historyExeceeds: string[] = []
+        if (user != null) {
+            const currentHistoric = user.musicHistory.filter(
+                (music) => music.musicGender == currentGender
+            )
 
-        if(finded == undefined){
+            currentHistoric.reverse()
+
+            if (currentHistoric.length <= tamanhoMaximoDeHistorico) {
+                return historyExeceeds
+            }
+
+            if (currentHistoric.length > tamanhoMaximoDeHistorico) {
+                for (
+                    let i = currentHistoric.length;
+                    i > tamanhoMaximoDeHistorico;
+                    i--
+                ) {
+                    const exced = currentHistoric[i - 1].musicId
+                    historyExeceeds.push(exced)
+                }
+            }
+
+            historyExeceeds.reverse()
+        }
+
+        return historyExeceeds
+    }
+
+    const historicSizes = counterDistinctPlaylists(musicGenderUser, user)
+
+    const historicSizeDefinition = () => {
+        if (historicSizes.length <= 0) {
             return 0
         }
-        
+
+        const finded = historicSizes.find((item) => item.name == musicGender)
+
+        if (finded == undefined) {
+            return 0
+        }
+
         return finded?.count
     }
 
     const historySize = historicSizeDefinition()
 
+    const checkArrayExceedsSizeResult = checkArrayExceedsSize(
+        user,
+        maxSizeHistoric,
+        musicGender
+    )
+
     const updateDoc1 = {
         $push: { musicHistory: { musicId, musicGender } },
     }
     const updateDoc2 = {
-        $pop: { musicHistory: -1 }
+        $pull: {
+            musicHistory: { musicId: { $in: checkArrayExceedsSizeResult } },
+        },
     }
     const updateDoc3 = {
         $pull: { musicHistory: { musicId } },
@@ -327,7 +368,7 @@ async function updateUserMusicHistoric(
     const updateDoc4 = {
         $pull: { musicHistory: { musicGender } },
     }
-    
+
     const filter = { _id: id }
 
     try {
@@ -342,7 +383,6 @@ async function updateUserMusicHistoric(
         const musicExists = musicHistory.find(
             (music) => music.musicId == musicId
         )
-        const maxSizeHistoric = 10
 
         if (musicExists && historySize <= 1) {
             return res
@@ -352,12 +392,6 @@ async function updateUserMusicHistoric(
         if (musicExists) {
             await User.updateOne(filter, updateDoc3)
             await User.updateOne(filter, updateDoc1)
-
-            if (historySize > maxSizeHistoric) {
-                for (let i = 0; i < historySize - maxSizeHistoric; i++) {
-                    await User.updateOne(filter, updateDoc2)
-                }
-            }
             return res
                 .status(200)
                 .json({ message: 'User updated succesfully!' })
@@ -369,9 +403,7 @@ async function updateUserMusicHistoric(
                 .json({ message: 'User updated succesfully!' })
         }
         if (historySize >= maxSizeHistoric) {
-            for (let i = 0; i <= historySize - maxSizeHistoric; i++) {
-                await User.updateOne(filter, updateDoc2)
-            }
+            await User.updateOne(filter, updateDoc2)
             await User.updateOne(filter, updateDoc1)
             return res
                 .status(200)
