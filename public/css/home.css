@@ -1071,10 +1071,23 @@ iframe {
 
     grid-template-columns: repeat(3, 460px);
     gap: 40px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     justify-items: center;
+
+    height: 80vh;
+    overflow-y: scroll;
 }
+.main-select-playlists .container-select-playlists::-webkit-scrollbar {
+    width: 10px;
+}
+.main-select-playlists .container-select-playlists::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+.main-select-playlists .container-select-playlists::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+}
+
 .container-select-playlists .item-select-playlist {
     width: 460px;
     background-color: var(--color-blue-3);

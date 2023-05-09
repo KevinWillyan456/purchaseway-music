@@ -84,6 +84,9 @@
 .main-select-playlists.rock-version {
     background-color: var(--color-red-1);
 }
+.main-select-playlists.rock-version .container-select-playlists::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
 .main-select-playlists .select-playlist-back.rock-version {
     background-color: var(--color-red-3);
 }
@@ -176,6 +179,9 @@
 }
 .main-select-playlists.hatsune-miku-version {
     background-color: var(--color-miku-1);
+}
+.main-select-playlists.hatsune-miku-version .container-select-playlists::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
 }
 .main-select-playlists .select-playlist-back.hatsune-miku-version {
     background-color: var(--color-miku-3);

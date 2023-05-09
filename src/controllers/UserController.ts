@@ -254,7 +254,7 @@ async function updateUserMusicHistoric(
 ) {
     const { musicId, musicGender } = req.body
     const { id } = req.params
-    const maxSizeHistoric = 3
+    const maxSizeHistoric = 10
 
     if (!musicId || !musicGender) {
         return res.status(400).json({ error: 'You must enter a new data' })
@@ -354,12 +354,25 @@ async function updateUserMusicHistoric(
         musicGender
     )
 
+    const maxSizeHistoricOneLess = maxSizeHistoric - 1
+
+    const checkArrayExceedsSizeResultA = checkArrayExceedsSize(
+        user,
+        maxSizeHistoricOneLess,
+        musicGender
+    )
+
     const updateDoc1 = {
         $push: { musicHistory: { musicId, musicGender } },
     }
     const updateDoc2 = {
         $pull: {
             musicHistory: { musicId: { $in: checkArrayExceedsSizeResult } },
+        },
+    }
+    const updateDoc2a = {
+        $pull: {
+            musicHistory: { musicId: { $in: checkArrayExceedsSizeResultA } },
         },
     }
     const updateDoc3 = {
@@ -392,19 +405,25 @@ async function updateUserMusicHistoric(
         if (musicExists) {
             await User.updateOne(filter, updateDoc3)
             await User.updateOne(filter, updateDoc1)
+
+            if (historySize > maxSizeHistoric) {
+                await User.updateOne(filter, updateDoc2)
+            }
             return res
                 .status(200)
                 .json({ message: 'User updated succesfully!' })
         }
         if (historySize < maxSizeHistoric) {
             await User.updateOne(filter, updateDoc1)
+
             return res
                 .status(200)
                 .json({ message: 'User updated succesfully!' })
         }
         if (historySize >= maxSizeHistoric) {
-            await User.updateOne(filter, updateDoc2)
+            await User.updateOne(filter, updateDoc2a)
             await User.updateOne(filter, updateDoc1)
+
             return res
                 .status(200)
                 .json({ message: 'User updated succesfully!' })
