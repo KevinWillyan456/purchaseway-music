@@ -3,13 +3,28 @@ import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
 import { Playlist } from '../models/Playlist'
+import { IUser, User } from '../models/User'
 
 async function indexPlaylist(req: Request, res: Response) {
+    const { id } = req.params
+
     try {
         const playlistsBefore = await Playlist.find()
 
         playlistsBefore.forEach(async (field) => {
-            const totalSongs = await Music.count({ gender: field.gender })
+            let totalSongs: number
+
+            if (field.gender == 'Favorite') {
+                const user: IUser | null = await User.findById(id, '-password')
+
+                if (user != null) {
+                    totalSongs = user?.favoriteSongs.length
+                } else {
+                    totalSongs = 0
+                }
+            } else {
+                totalSongs = await Music.count({ gender: field.gender })
+            }
 
             const filter = { _id: field._id }
             const updateDoc = {
@@ -21,8 +36,9 @@ async function indexPlaylist(req: Request, res: Response) {
             await Playlist.updateOne(filter, updateDoc)
         })
 
-
-        const playlists = await Playlist.find().sort({title: 1}).collation({locale: "pt", strength: 2})
+        const playlists = await Playlist.find()
+            .sort({ title: 1 })
+            .collation({ locale: 'pt', strength: 2 })
 
         return res.status(200).json({ playlists })
     } catch (err) {
@@ -106,12 +122,30 @@ async function deletePlaylist(
 
 async function selectPlaylist(req: Request, res: Response) {
     const { playlist } = req.query
+    const { id } = req.params
 
     if (!playlist) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
     try {
+        if (playlist == 'Favorite') {
+            const user: IUser | null = await User.findById(id, '-password')
+            const userFavoriteSongs: string[] = []
+
+            if (user != null) {
+                user.favoriteSongs.forEach((music) => {
+                    userFavoriteSongs.push(music.musicId)
+                })
+            }
+
+            const songs = await Music.find({ _id: { $in: userFavoriteSongs } })
+                .sort({ title: 1 })
+                .collation({ locale: 'pt', strength: 2 })
+
+            return res.status(200).json({ songs })
+        }
+
         const songs = await Music.find({ gender: playlist })
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })

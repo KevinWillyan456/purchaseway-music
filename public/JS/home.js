@@ -1087,7 +1087,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         alert("Internal Error!")
     }
 
-    const responsePlaylist = await fetch(`/playlists-select/?playlist=${playlistSelect}`);
+    const responsePlaylist = await fetch(`/playlists-select/${idUserConnected}/?playlist=${playlistSelect}`);
     const playlist = await responsePlaylist.json();
 
     musicData = playlist.songs;
@@ -1134,10 +1134,10 @@ async function musicListingService() {
 
     userData = user.user;
 
-    const responsePlaylists = await fetch('/playlists');
+    const responsePlaylists = await fetch(`/playlists/${idUserConnected}`);
     const playlists = await responsePlaylists.json();
 
-    const responseSongs = await fetch(`/playlists-select/?playlist=${userData.lastAccessedPlaylist}`);
+    const responseSongs = await fetch(`/playlists-select/${idUserConnected}/?playlist=${userData.lastAccessedPlaylist}`);
     const songs = await responseSongs.json();
 
     musicData = songs.songs;
