@@ -189,3 +189,99 @@
 .container-select-playlists .item-select-playlist.hatsune-miku-version {
     background-color: var(--color-miku-3);
 }
+
+/* AMV Brasileiro Version Theme */
+
+.main-playlist.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.container-playlist.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.search-bar.amv-brasileiro-version input:focus {
+    box-shadow: 0 0 0 5px var(--color-amv-br-2), 0 0 25px var(--color-amv-br-2);
+}
+.container-settings .user-settings.amv-brasileiro-version {
+    background-color: var(--color-amv-br-2);
+}
+.main-display .clock-settings.amv-brasileiro-version {
+    background-color: var(--color-amv-br-2);
+}
+.container-side-1 .current-music-rating.amv-brasileiro-version ion-icon {
+    color: var(--color-amv-br-2);
+}
+.container-side-1 .current-music-favorite.amv-brasileiro-version ion-icon {
+    color: var(--color-amv-br-2);
+}
+.slider-music-duration.amv-brasileiro-version input[type=range] {
+    background-image: linear-gradient(to right, var(--color-amv-br-2) 0%, var(--color-amv-br-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.slider-music-duration.amv-brasileiro-version input[type=range]::-webkit-slider-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.slider-music-duration-wrapper .slider-music-duration-dot.amv-brasileiro-version {
+    background-color: var(--color-amv-br-2);
+}
+.container-volume .slider-music-volume.amv-brasileiro-version input[type=range] {
+    background-image: linear-gradient(to right, var(--color-amv-br-2) 0%, var(--color-amv-br-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.container-volume .slider-music-volume.amv-brasileiro-version input[type=range]::-webkit-slider-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.slider-music-volume-wrapper .slider-music-volume-dot.amv-brasileiro-version {
+    background-color: var(--color-amv-br-2);
+}
+.container-playlist .item-playlist.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.container-playlist .item-playlist.amv-brasileiro-version .box-wrapper .info-item.music-playing {
+    color: var(--color-amv-br-5);
+}
+.main-controls.amv-brasileiro-version {
+    background-image: linear-gradient(var(--color-amv-br-4), #000000);
+}
+.container-funcions .repeat-icon.amv-brasileiro-version ion-icon.active {
+    color: var(--color-amv-br-2);
+}
+.container-funcions .shuffle-icon.amv-brasileiro-version ion-icon.active {
+    color: var(--color-amv-br-2);
+}
+.layer-search-result.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.box-search-result.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.item-playlist-search.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.layer-user-settings.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.box-user-settings.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.box-profile .user-settings.amv-brasileiro-version {
+    background-color: var(--color-amv-br-2);
+}
+.item-playlist-favorite.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.item-playlist-historic.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.main-playlist .box-wrapper-info .more-playlist.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.main-select-playlists.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.main-select-playlists.amv-brasileiro-version .container-select-playlists::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.main-select-playlists .select-playlist-back.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.container-select-playlists .item-select-playlist.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
