@@ -11,6 +11,13 @@ body {
     grid-template-rows: calc(100vh - 120px) auto;
 }
 
+@media (max-width: 1359px)
+{
+    .super-main {
+        display: none;
+    }
+}
+
 /* Main PlayList */
 
 .main-playlist {
@@ -70,7 +77,6 @@ body {
     padding: 60px;
     position: absolute;
 }
-
 
 .container-playlist::-webkit-scrollbar-track {
     background: var(--color-black);

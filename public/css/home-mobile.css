@@ -1,0 +1,273 @@
+.super-main-mobile {
+    background-color: var(--color-blue-1);
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+@media (max-width: 1359px)
+{
+    .super-main-mobile {
+        display: block !important;
+    }
+}
+
+.header-mobile {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-mobile .box-wrapper-header-mobile {
+    display: flex;
+}
+.header-mobile .service-logo-mobile {
+    cursor: pointer;
+    width: 120px;
+}
+.header-mobile .service-logo-mobile img {
+    width: 100%;
+}
+.header-mobile .search-icon-mobile {
+    transition: 200ms;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-black);
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    margin-right: 20px;
+}
+
+.header-mobile .search-icon-mobile:hover {
+    box-shadow: 0 0 10px var(--color-white-1);
+}
+.header-mobile .search-icon-mobile ion-icon{
+    width: 33.333px;
+    height: 33.333px;
+    color: var(--color-white-1);
+}
+
+.header-mobile .user-settings {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-blue-2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: 2px solid var(--color-black);
+    cursor: pointer;
+}
+.header-mobile .user-settings ion-icon {
+    width: 35px;
+    height: 35px;
+    color: var(--color-white-1);
+}
+
+.main-playlist-mobile {
+    width: 100%;
+    background-color: var(--color-blue-1);
+    margin: 0 auto;
+}
+.main-playlist-mobile .box-wrapper-info-mobile {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.box-wrapper-info-mobile .title-playlist-mobile {
+    font-size: 24px;
+    width: calc(100% - 65px);
+    color: var(--color-white-1);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 20px;
+}
+.box-wrapper-info-mobile .more-playlist-mobile {
+    color: var(--color-white-1);
+    font-size: 16px;
+    background-color: var(--color-blue-3);
+
+    min-width: 60px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.main-playlist-mobile .container-playlist-mobile {
+    width: 100%;
+    overflow-y: scroll;
+    min-height: calc(100vh - 235px);
+    height: calc(100vh - 235px);
+
+    padding-right: 5px;
+    margin-bottom: 5px;
+    padding-left: 0;
+
+    margin-left: -5px;
+}
+
+.container-playlist-mobile::-webkit-scrollbar {
+    width: 10px;
+    padding: 60px;
+    position: absolute;
+}
+.container-playlist-mobile::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+
+.container-playlist-mobile::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
+}
+
+.container-playlist-mobile .item-playlist-mobile {
+    width: calc(100% - 25px);
+    margin: 0 0 10px 25px;
+    background-color: var(--color-blue-3);
+    
+    display: flex;
+    padding: 10px 10px;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+.item-playlist-mobile .box-wrapper {
+    display: flex;
+}
+.item-playlist-mobile .box-wrapper .cover-item {
+    width: 70px;
+    height: 38.89px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item-playlist-mobile .box-wrapper .cover-item img {
+    width: 100%;
+    cursor: pointer;
+}
+.item-playlist-mobile .info-item {
+    transition: 200ms;
+    color: var(--color-white-1);
+    padding-left: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.container-playlist-mobile .item-playlist-mobile .box-wrapper .info-item.music-playing {
+    color: var(--color-blue-5);
+}
+.item-playlist-mobile .info-item .title-info {
+    max-width: 180px;
+    font-size: 14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-playlist-mobile .info-item .gender-info {
+    max-width: 180px;
+    font-size: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-playlist-mobile .play-button-item {
+    display: flex;
+    align-items: center;
+}
+.item-playlist-mobile .play-button-item ion-icon {
+    width: 31px;
+    height: 31px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}
+
+.main-controls-mobile {
+    padding: 0 20px;
+    width: 100%;
+    min-height: 100px;
+    position: relative;
+    background-image: linear-gradient(var(--color-blue-4), #000000);
+    overflow: hidden;
+
+    display: flex;
+    justify-content: space-between;
+}
+.main-controls-mobile .display-music-duration-mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
+}
+.main-controls-mobile .box-wrapper {
+    display: flex;
+    align-items: center;
+}
+.main-controls-mobile .box-wrapper .cover-item {
+    width: 80px;
+    height: 44.44px;
+    margin-right: 5px;
+}
+.main-controls-mobile .box-wrapper .cover-item img {
+    width: 100%;
+}
+.main-controls-mobile .box-wrapper .info-item {
+    color: var(--color-white-1);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform: translateY(-5px);
+}
+.main-controls-mobile .box-wrapper .info-item .title-info {
+    max-width: 180px;
+    font-size: 14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.main-controls-mobile .box-wrapper .info-item .gender-info {
+    max-width: 180px;
+    font-size: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.main-controls-mobile .play-button-item {
+    display: flex;
+    align-items: center;
+}
+.main-controls-mobile .play-button-item ion-icon {
+    width: 37px;
+    height: 37px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}

@@ -3,6 +3,9 @@ let indexAudio = 0;
 let indexAudioId = "";
 let indexAudioGender = "";
 
+let screenWidth = 0;
+let screenHeight = 0;
+
 const audioControllerPrev = document.querySelector('#audio-prev');
 const audioControllerPlay = document.querySelector('#audio-play');
 const audioControllerNext = document.querySelector('#audio-next');
@@ -55,6 +58,8 @@ const backPlaylist = document.querySelector(".select-playlist-back");
 
 const containerPlaylistSelect = document.querySelector('.container-select-playlists');
 
+const containerPlaylistMobile = document.querySelector('.container-playlist-mobile')
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -69,7 +74,7 @@ audioControllerPlay.addEventListener("click", audioControllerPlayFunction)
 audioControllerNext.addEventListener("click", audioControllerNextFunction)
 audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
 
-window.addEventListener("resize", videoResizingFunction);
+window.addEventListener("resize", allFunctionResizing);
 
 let canKeyboardEvents = true;
 let canKeyboardEventsProfile = true;
@@ -105,6 +110,7 @@ document.querySelector('.service-logo').addEventListener("click", () => {
 })
 
 function inicia(){
+    setScreenWidthAndHeight();
     allSongValueSetters();
     setUserSettings();
     generatorContainerPlaylistData();
@@ -170,39 +176,68 @@ function allSongValueSetters(){
         alert("A PlayList atual não tem conteúdo");
         return
     }
-    if(musicDataShuffled[indexAudio].isVideo){
+    if (screenWidth >= 1360) {
+        if(musicDataShuffled[indexAudio].isVideo){
+            indexAudioId = musicDataShuffled[indexAudio]._id;
+            indexAudioGender = musicDataShuffled[indexAudio].gender;
+            coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+            containerFrameVideo.style.display = "block"
+            currentCover.style.display = "none"
+            backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
+            titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
+            genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+
+            containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+
+            videoResizingFunction();
+
+            return;
+        }
+
+        audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
-        containerFrameVideo.style.display = "block"
-        currentCover.style.display = "none"
+        containerFrameVideo.style.display = "none"
+        currentCover.style.display = "block"
+        currentCover.src = musicDataShuffled[indexAudio].coverUrl;
         backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
         titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+        containerFrameVideo.innerHTML = "";
+    } else {
+        if(musicDataShuffled[indexAudio].isVideo){
+            indexAudioId = musicDataShuffled[indexAudio]._id;
+            indexAudioGender = musicDataShuffled[indexAudio].gender;
+            // coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+            // containerFrameVideo.style.display = "block"
+            // currentCover.style.display = "none"
+            // backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
+            // titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
+            // genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
 
-        containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+            // containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 
-        videoResizingFunction();
+            videoResizingFunction();
 
-        return;
+            return;
+        }
+
+        // audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
+        indexAudioId = musicDataShuffled[indexAudio]._id;
+        indexAudioGender = musicDataShuffled[indexAudio].gender;
+        // coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+        // containerFrameVideo.style.display = "none"
+        // currentCover.style.display = "block"
+        // currentCover.src = musicDataShuffled[indexAudio].coverUrl;
+        // backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
+        // titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
+        // genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+        // containerFrameVideo.innerHTML = "";
     }
-
-    audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
-    indexAudioId = musicDataShuffled[indexAudio]._id;
-    indexAudioGender = musicDataShuffled[indexAudio].gender;
-    coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
-    containerFrameVideo.style.display = "none"
-    currentCover.style.display = "block"
-    currentCover.src = musicDataShuffled[indexAudio].coverUrl;
-    backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
-    titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
-    genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
-    containerFrameVideo.innerHTML = "";
 }
 
 function setUserSettings(){
-    userName.innerHTML = userData.name;
-
     let day = parseInt(userData.additionDate.substring(8,10))
     let month = parseInt(userData.additionDate.substring(5,7))
     let year = parseInt(userData.additionDate.substring(0,4))
@@ -246,9 +281,13 @@ function setUserSettings(){
             break;
       }
 
-    registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
-
-
+    if (screenWidth >= 1360) {
+        registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
+        userName.innerHTML = userData.name;
+    } else {
+        // registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
+        // userName.innerHTML = userData.name;
+    }
 }
 
 function audioControllerNextFunction(){
@@ -287,57 +326,111 @@ function audioControllerPrevFunction(){
 }
 
 function generatorContainerPlaylistData(){
-    musicDataShuffled.forEach((element) => {
+    if (screenWidth >= 1360) {
+        musicDataShuffled.forEach((element) => {
 
-        containerPlaylist.innerHTML += `
-            <div class="item-playlist" data-id="${element._id}" data-theme="${element.theme}">
-                <div class="box-wrapper">
-                    <div class="cover-item">
-                        <img src="${element.coverUrl}">
+            containerPlaylist.innerHTML += `
+                <div class="item-playlist" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="box-wrapper">
+                        <div class="cover-item">
+                            <img src="${element.coverUrl}">
+                        </div>
+                        <div class="info-item">
+                            <div class="title-info">
+                                ${element.title}
+                            </div>
+                            <div class="gender-info">
+                                ${element.gender}
+                            </div>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <div class="title-info">
-                            ${element.title}
-                        </div>
-                        <div class="gender-info">
-                            ${element.gender}
-                        </div>
+
+                    <div class="play-button-item">
+                        <ion-icon name="play-circle"></ion-icon>
                     </div>
                 </div>
+            `
+        })
+    } else {
+        musicDataShuffled.forEach((element) => {
 
-                <div class="play-button-item">
-                    <ion-icon name="play-circle"></ion-icon>
+            containerPlaylistMobile.innerHTML += `
+                <div class="item-playlist-mobile" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="box-wrapper">
+                        <div class="cover-item">
+                            <img src="${element.coverUrl}">
+                        </div>
+                        <div class="info-item">
+                            <div class="title-info">
+                                ${element.title}
+                            </div>
+                            <div class="gender-info">
+                                ${element.gender}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="play-button-item">
+                        <ion-icon name="play-circle"></ion-icon>
+                    </div>
                 </div>
-            </div>
-        `
-    })
+            `
+        })
+    }
 }
 
 function generatorContainerPlaylistDataPlay(){
-    const itemsPlaylist = document.querySelectorAll('.container-playlist .item-playlist');
+    if (screenWidth >= 1360) {
+        const itemsPlaylist = document.querySelectorAll('.container-playlist .item-playlist');
 
-    itemsPlaylist.forEach((element)=> {
-        element.addEventListener('click', function(){
-            let cannotPlayTheMusic = false;
-            if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                cannotPlayTheMusic = true;
-            }
+        itemsPlaylist.forEach((element)=> {
+            element.addEventListener('click', function(){
+                let cannotPlayTheMusic = false;
+                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                    cannotPlayTheMusic = true;
+                }
 
-            indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
-            let selectedTheme = $(this).data('theme')
-            indexAudioId = musicDataShuffled[indexAudio]._id;
-            indexAudioGender = musicDataShuffled[indexAudio].gender;
-            
-            if (!cannotPlayTheMusic) {
-                allSongValueSetters();
-                audioControllerPlayFunctionNoPause();
-                setMusicPlayTag();
-                manageHistoric();
-                refreshFavorite();
-                themeChanger(selectedTheme);
-            }
-        });
-    })
+                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                let selectedTheme = $(this).data('theme')
+                indexAudioId = musicDataShuffled[indexAudio]._id;
+                indexAudioGender = musicDataShuffled[indexAudio].gender;
+                
+                if (!cannotPlayTheMusic) {
+                    allSongValueSetters();
+                    audioControllerPlayFunctionNoPause();
+                    setMusicPlayTag();
+                    manageHistoric();
+                    refreshFavorite();
+                    themeChanger(selectedTheme);
+                }
+            });
+        })
+    } else {
+        const itemsPlaylistMobile = document.querySelectorAll('.container-playlist-mobile .item-playlist-mobile');
+
+        itemsPlaylistMobile.forEach((element)=> {
+            element.addEventListener('click', function(){
+                let cannotPlayTheMusic = false;
+                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                    cannotPlayTheMusic = true;
+                }
+
+                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                let selectedTheme = $(this).data('theme')
+                indexAudioId = musicDataShuffled[indexAudio]._id;
+                indexAudioGender = musicDataShuffled[indexAudio].gender;
+                
+                if (!cannotPlayTheMusic) {
+                    allSongValueSetters();
+                    audioControllerPlayFunctionNoPause();
+                    setMusicPlayTag();
+                    manageHistoric();
+                    refreshFavorite();
+                    themeChanger(selectedTheme);
+                }
+            });
+        })
+    }
 }
 
 function generatorContainerPlaylistSelectData(){
@@ -905,6 +998,10 @@ function setMusicPlayTag() {
     $(`div[data-id="${indexAudioId}"] .box-wrapper .info-item`).addClass("music-playing");
 }
 
+function allFunctionResizing() {
+    videoResizingFunction();
+    setScreenWidthAndHeight();
+}
 
 function videoResizingFunction() {
     if(document.querySelector(".container-frame iframe")){
@@ -926,6 +1023,11 @@ function videoResizingFunction() {
         document.querySelector(".container-frame iframe").style.width = widthOfVideo;
         document.querySelector(".container-frame iframe").style.height = heightOfVideo;
     }
+}
+
+function setScreenWidthAndHeight() {
+    screenWidth = window.innerWidth;
+    screenHeight = window.innerHeight;
 }
 
 function logoutService() {
