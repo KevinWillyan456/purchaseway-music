@@ -1,0 +1,89 @@
+/* Rock Version Theme */
+
+.super-main-mobile.rock-version {
+    background-color: var(--color-red-1);
+}
+.header-mobile .user-settings.rock-version {
+    background-color: var(--color-red-2);
+}
+.main-playlist-mobile.rock-version {
+    background-color: var(--color-red-1);
+}
+.box-wrapper-info-mobile .more-playlist-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
+.container-playlist-mobile.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
+.container-playlist-mobile .item-playlist-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
+.container-playlist-mobile .item-playlist-mobile.rock-version .box-wrapper .info-item.music-playing {
+    color: var(--color-red-5);
+}
+.main-controls-mobile.rock-version {
+    background-image: linear-gradient(var(--color-red-4), #000000);
+}
+.main-controls-mobile .display-music-duration-mobile.rock-version {
+    background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
+}
+
+/* Hatsune Miku Version Theme */
+
+.super-main-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.header-mobile .user-settings.hatsune-miku-version {
+    background-color: var(--color-miku-2);
+}
+.main-playlist-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.box-wrapper-info-mobile .more-playlist-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.container-playlist-mobile.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
+}
+.container-playlist-mobile .item-playlist-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.container-playlist-mobile .item-playlist-mobile.hatsune-miku-version .box-wrapper .info-item.music-playing {
+    color: var(--color-miku-5);
+}
+.main-controls-mobile.hatsune-miku-version {
+    background-image: linear-gradient(var(--color-miku-4), #000000);
+}
+.main-controls-mobile .display-music-duration-mobile.hatsune-miku-version {
+    background-image: linear-gradient(to right, var(--color-miku-2) 0%, var(--color-miku-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
+}
+
+/* AMV Brasileiro Version Theme */
+
+.super-main-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.header-mobile .user-settings.amv-brasileiro-version {
+    background-color: var(--color-amv-br-2);
+}
+.main-playlist-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.box-wrapper-info-mobile .more-playlist-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.container-playlist-mobile.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.container-playlist-mobile .item-playlist-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.container-playlist-mobile .item-playlist-mobile.amv-brasileiro-version .box-wrapper .info-item.music-playing {
+    color: var(--color-amv-br-5);
+}
+.main-controls-mobile.amv-brasileiro-version {
+    background-image: linear-gradient(var(--color-amv-br-4), #000000);
+}
+.main-controls-mobile .display-music-duration-mobile.amv-brasileiro-version {
+    background-image: linear-gradient(to right, var(--color-amv-br-2) 0%, var(--color-amv-br-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
+}
