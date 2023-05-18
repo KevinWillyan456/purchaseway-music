@@ -180,7 +180,7 @@
     color: var(--color-blue-5);
 }
 .item-playlist-mobile .info-item .title-info {
-    max-width: 180px;
+    max-width: 1120px;
     font-size: 14px;
 
     white-space: nowrap;
@@ -246,7 +246,7 @@
     transform: translateY(-5px);
 }
 .main-controls-mobile .box-wrapper .info-item .title-info {
-    max-width: 180px;
+    max-width: 1120px;
     font-size: 14px;
 
     white-space: nowrap;
@@ -270,4 +270,235 @@
     height: 37px;
     color: var(--color-white-1);
     cursor: pointer;
+}
+
+.main-display-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    background-color: var(--color-black);
+}
+
+.main-display-mobile .background-cover-mobile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    z-index: -500;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    filter: blur(12.94px);
+}
+.main-display-mobile .background-layer-1-mobile {
+    position: absolute;
+    top: 0;
+    min-height: 50vh;
+    width: 100%;
+    z-index: -400;
+    background-image: linear-gradient(180deg,#000000,#00000000);
+}
+.main-display-mobile .background-layer-2-mobile {
+    position: absolute;
+    bottom: 0;
+    min-height: 50vh;
+    width: 100%;
+    z-index: -400;
+    background-image: linear-gradient(0deg,#000000,#00000000);
+}
+
+.main-display-mobile .display-back {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    color: var(--color-white-1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.main-display-mobile .display-back ion-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.main-display-mobile .current-cover-mobile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 320px;
+    height: 177.78px;
+}
+.main-display-mobile .current-cover-mobile img {
+    width: 100%;
+    pointer-events: none;
+}
+
+.main-display-mobile .info-current-music-mobile {
+    position: absolute;
+    bottom: 185px;
+    left: 20px;
+    max-width: 1200px;
+    color: var(--color-white-1);
+}
+.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile {
+    font-size: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
+}
+.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile {
+    font-size: 16px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
+}
+
+.main-display-mobile .current-music-favorite-mobile {
+    position: absolute;
+    bottom: 181.25px;
+    right: 20px;
+
+    color: var(--color-blue-2);
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+}
+
+.main-display-mobile .current-music-favorite-mobile ion-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.main-display-mobile .container-controls-mobile {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+}
+.main-display-mobile .container-controls-mobile ion-icon {
+    width: 50px;
+    height: 50px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}
+
+.main-display-mobile .repeat-icon-mobile {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(calc(-50% - 130px));
+
+    display: flex;
+}
+.main-display-mobile .repeat-icon-mobile ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}
+.main-display-mobile .shuffle-icon-mobile {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(calc(-50% + 130px));
+
+    display: flex;
+}
+.main-display-mobile .shuffle-icon-mobile ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}
+
+@media (max-width: 1300px)
+{
+    .item-playlist-mobile .info-item .title-info {
+        max-width: 900px;
+    }
+    .main-controls-mobile .box-wrapper .info-item .title-info {
+        max-width: 900px;
+    }
+    .main-display-mobile .info-current-music-mobile {
+        max-width: 1000px;
+    }
+}
+@media (max-width: 1100px)
+{
+    .item-playlist-mobile .info-item .title-info {
+        max-width: 680px;
+    }
+    .main-controls-mobile .box-wrapper .info-item .title-info {
+        max-width: 680px;
+    }
+    .main-display-mobile .info-current-music-mobile {
+        max-width: 760px;
+    }
+}
+@media (max-width: 870px)
+{
+    .item-playlist-mobile .info-item .title-info {
+        max-width: 550px;
+    }
+    .main-controls-mobile .box-wrapper .info-item .title-info {
+        max-width: 550px;
+    }
+    .main-display-mobile .info-current-music-mobile {
+        max-width: 650px;
+    }
+}
+@media (max-width: 750px)
+{
+    .item-playlist-mobile .info-item .title-info {
+        max-width: 400px;
+    }
+    .main-controls-mobile .box-wrapper .info-item .title-info {
+        max-width: 400px;
+    }
+    .main-display-mobile .info-current-music-mobile {
+        max-width: 480px;
+    }
+}
+@media (max-width: 580px)
+{
+    .item-playlist-mobile .info-item .title-info {
+        max-width: 300px;
+    }
+    .main-controls-mobile .box-wrapper .info-item .title-info {
+        max-width: 300px;
+    }
+    .main-display-mobile .info-current-music-mobile {
+        max-width: 390px;
+    }
+}
+@media (max-width: 490px)
+{
+    .item-playlist-mobile .info-item .title-info {
+        max-width: 180px;
+    }
+    .main-controls-mobile .box-wrapper .info-item .title-info {
+        max-width: 180px;
+    }
+    .main-display-mobile .info-current-music-mobile {
+        max-width: 270px;
+    }
 }

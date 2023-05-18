@@ -60,6 +60,11 @@ const containerPlaylistSelect = document.querySelector('.container-select-playli
 
 const containerPlaylistMobile = document.querySelector('.container-playlist-mobile')
 
+const coverCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .cover-item img');
+const titleCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .info-item .title-info');
+const genderCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .info-item .gender-info');
+const backgroundCoverMobile = document.querySelector('.main-display-mobile .background-cover-mobile');
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -209,12 +214,12 @@ function allSongValueSetters(){
         if(musicDataShuffled[indexAudio].isVideo){
             indexAudioId = musicDataShuffled[indexAudio]._id;
             indexAudioGender = musicDataShuffled[indexAudio].gender;
-            // coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+            coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
             // containerFrameVideo.style.display = "block"
             // currentCover.style.display = "none"
-            // backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
-            // titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
-            // genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+            backgroundCoverMobile.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
+            titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title;
+            genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
 
             // containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 
@@ -223,16 +228,16 @@ function allSongValueSetters(){
             return;
         }
 
-        // audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
+        audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
-        // coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+        coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
         // containerFrameVideo.style.display = "none"
         // currentCover.style.display = "block"
         // currentCover.src = musicDataShuffled[indexAudio].coverUrl;
-        // backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
-        // titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
-        // genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+        backgroundCoverMobile.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
+        titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title;
+        genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
         // containerFrameVideo.innerHTML = "";
     }
 }
