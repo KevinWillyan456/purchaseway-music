@@ -63,12 +63,15 @@ const containerPlaylistMobile = document.querySelector('.container-playlist-mobi
 const coverCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .cover-item img');
 const titleCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .info-item .title-info');
 const genderCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .info-item .gender-info');
+const titleCurrentMusicDisplayMobile = document.querySelector('.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile');
+const genderCurrentMusicDisplayMobile = document.querySelector('.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile');
 
 const controlsMobile = document.querySelector('.main-controls-mobile');
 const displayMobile = document.querySelector('.main-display-mobile');
 const backgroundCoverMobile = document.querySelector('.main-display-mobile .background-cover-mobile');
 const backDisplayMobile = document.querySelector(".main-display-mobile .display-back")
-
+const currentCoverMobile = document.querySelector('.main-display-mobile .current-cover-mobile img');
+const containerFrameVideoMobile = document.querySelector(".container-frame-mobile");
 
 let musicData = [];
 let musicDataShuffled = [];
@@ -166,21 +169,34 @@ function audioControllerPlayFunction(){
     }
 }
 function audioControllerPlayFunctionNoPause(){
-    if(musicDataShuffled[indexAudio].isVideo){
-        audioGlobal.pause()
-        document.querySelector(".container-side-2").style.display = "none"
-        musicAnimationStatus.classList.remove('run');
+    if (screenWidth >= 1360) {
+        if(musicDataShuffled[indexAudio].isVideo){
+            audioGlobal.pause()
+            document.querySelector(".container-side-2").style.display = "none"
+            musicAnimationStatus.classList.remove('run');
 
-        return;
+            return;
+        }
+
+        audioGlobal.play();
+        audioControllerPlayToggle = false;
+        audioControllerPlay.name = 'pause-circle';
+        musicAnimationStatus.classList.add('run');
+
+        document.querySelector(".container-side-2").style.display = "flex"
+    } else {
+        if(musicDataShuffled[indexAudio].isVideo){
+            audioGlobal.pause()
+            document.querySelector(".main-display-mobile").classList.add("video-mode")
+
+            return;
+        }
+
+        audioGlobal.play();
+        audioControllerPlayToggle = false;
+        // audioControllerPlay.name = 'pause-circle';
+        document.querySelector(".main-display-mobile").classList.remove("video-mode")
     }
-
-    audioGlobal.play();
-    audioControllerPlayToggle = false;
-    audioControllerPlay.name = 'pause-circle';
-    musicAnimationStatus.classList.add('run');
-
-    document.querySelector(".container-side-1").style.display = "flex"
-    document.querySelector(".container-side-2").style.display = "flex"
 }
 
 function allSongValueSetters(){
@@ -222,13 +238,15 @@ function allSongValueSetters(){
             indexAudioId = musicDataShuffled[indexAudio]._id;
             indexAudioGender = musicDataShuffled[indexAudio].gender;
             coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
-            // containerFrameVideo.style.display = "block"
-            // currentCover.style.display = "none"
+            containerFrameVideoMobile.style.display = "block"
+            currentCoverMobile.style.display = "none"
             backgroundCoverMobile.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
             titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title;
             genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
+            titleCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].title;
+            genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
 
-            // containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+            containerFrameVideoMobile.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 
             videoResizingFunction();
 
@@ -239,13 +257,15 @@ function allSongValueSetters(){
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
-        // containerFrameVideo.style.display = "none"
-        // currentCover.style.display = "block"
-        // currentCover.src = musicDataShuffled[indexAudio].coverUrl;
+        containerFrameVideoMobile.style.display = "none"
+        currentCoverMobile.style.display = "block"
+        currentCoverMobile.src = musicDataShuffled[indexAudio].coverUrl;
         backgroundCoverMobile.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
         titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
-        // containerFrameVideo.innerHTML = "";
+        titleCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].title;
+        genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
+        containerFrameVideoMobile.innerHTML = "";
     }
 }
 
@@ -432,6 +452,8 @@ function generatorContainerPlaylistDataPlay(){
                 indexAudioId = musicDataShuffled[indexAudio]._id;
                 indexAudioGender = musicDataShuffled[indexAudio].gender;
                 
+                toggleDisplayMobile();
+
                 if (!cannotPlayTheMusic) {
                     allSongValueSetters();
                     audioControllerPlayFunctionNoPause();
@@ -1235,7 +1257,6 @@ function audioControllerPlayAudioAndVideo() {
         document.querySelector(".container-side-2").style.display = "none"
         musicAnimationStatus.classList.remove('run');
     } else {
-        document.querySelector(".container-side-1").style.display = "flex"
         document.querySelector(".container-side-2").style.display = "flex"
     }
 }

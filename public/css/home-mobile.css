@@ -368,6 +368,14 @@
     width: 100%;
     pointer-events: none;
 }
+.main-display-mobile .current-cover-mobile .container-frame-mobile {
+    width: 320px;
+    height: 177.78px;
+}
+.main-display-mobile .current-cover-mobile .container-frame-mobile iframe {
+    width: 100%;
+    height: 100%;
+}
 
 .main-display-mobile .info-current-music-mobile {
     position: absolute;
@@ -384,6 +392,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
+    padding-left: 2px;
+
     text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
 }
 .main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile {
@@ -392,6 +402,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    padding-left: 2px;
 
     text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
 }
@@ -421,6 +433,9 @@
 
     display: flex;
 }
+.main-display-mobile.video-mode .container-controls-mobile {
+    display: none;
+}
 .main-display-mobile .container-controls-mobile ion-icon {
     width: 50px;
     height: 50px;
@@ -433,9 +448,13 @@
     bottom: 60px;
     left: 50%;
     transform: translateX(calc(-50% - 130px));
-
+    
     display: flex;
 }
+.main-display-mobile.video-mode .repeat-icon-mobile {
+    display: none;
+}
+
 .main-display-mobile .repeat-icon-mobile ion-icon {
     width: 40px;
     height: 40px;
@@ -449,6 +468,9 @@
     transform: translateX(calc(-50% + 130px));
 
     display: flex;
+}
+.main-display-mobile.video-mode .shuffle-icon-mobile {
+    display: none;
 }
 .main-display-mobile .shuffle-icon-mobile ion-icon {
     width: 40px;
@@ -464,6 +486,9 @@
     color: var(--color-white-1);
     font-size: 12px;
 }
+.main-display-mobile.video-mode .current-duration-mobile {
+    display: none;
+}
 .main-display-mobile .total-duration-mobile {
     position: absolute;
     bottom: 126px;
@@ -471,11 +496,17 @@
     color: var(--color-white-1);
     font-size: 12px;
 }
+.main-display-mobile.video-mode .total-duration-mobile {
+    display: none;
+}
 .main-display-mobile .slider-music-duration-mobile {
     position: absolute;
     bottom: 144px;
     left: calc(50% - 160px);
     width: 320px;
+}
+.main-display-mobile.video-mode .slider-music-duration-mobile {
+    display: none;
 }
 
 .main-display-mobile .slider-music-duration-mobile .slider-music-duration-wrapper-mobile {
