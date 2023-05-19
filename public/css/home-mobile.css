@@ -216,6 +216,7 @@
 
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 .main-controls-mobile .display-music-duration-mobile {
     position: absolute;
@@ -280,6 +281,31 @@
     min-height: 100vh;
 
     background-color: var(--color-black);
+}
+.main-display-mobile.show {
+    animation: up-display 500ms ease-in-out forwards;
+    display: block !important;
+}
+.main-display-mobile.exit {
+    animation: down-display 500ms ease-in-out forwards;
+    display: block !important;
+}
+
+@keyframes up-display {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes down-display {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
 }
 
 .main-display-mobile .background-cover-mobile {
@@ -346,10 +372,11 @@
 .main-display-mobile .info-current-music-mobile {
     position: absolute;
     bottom: 185px;
-    left: 20px;
-    max-width: 1200px;
+    left: calc(50% - 160px);
+    max-width: 270px;
     color: var(--color-white-1);
 }
+
 .main-display-mobile .info-current-music-mobile .title-info-current-music-mobile {
     font-size: 20px;
 
@@ -372,7 +399,7 @@
 .main-display-mobile .current-music-favorite-mobile {
     position: absolute;
     bottom: 181.25px;
-    right: 20px;
+    right: calc(50% - 163px);
 
     color: var(--color-blue-2);
     width: 40px;
@@ -430,6 +457,65 @@
     cursor: pointer;
 }
 
+.main-display-mobile .current-duration-mobile {
+    position: absolute;
+    bottom: 126px;
+    left: calc(50% - 160px);
+    color: var(--color-white-1);
+    font-size: 12px;
+}
+.main-display-mobile .total-duration-mobile {
+    position: absolute;
+    bottom: 126px;
+    right: calc(50% - 160px);
+    color: var(--color-white-1);
+    font-size: 12px;
+}
+.main-display-mobile .slider-music-duration-mobile {
+    position: absolute;
+    bottom: 144px;
+    left: calc(50% - 160px);
+    width: 320px;
+}
+
+.main-display-mobile .slider-music-duration-mobile .slider-music-duration-wrapper-mobile {
+    position: relative;
+}
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 10px;
+    
+    outline: none;
+    cursor: pointer;
+    z-index: 100;
+
+    /* Será controlado por JavaScript */
+    background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile {
+    transform: translate(-10px,-4px);
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    border: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    background-color: var(--color-blue-2);
+}
+
 @media (max-width: 1300px)
 {
     .item-playlist-mobile .info-item .title-info {
@@ -437,9 +523,6 @@
     }
     .main-controls-mobile .box-wrapper .info-item .title-info {
         max-width: 900px;
-    }
-    .main-display-mobile .info-current-music-mobile {
-        max-width: 1000px;
     }
 }
 @media (max-width: 1100px)
@@ -450,9 +533,6 @@
     .main-controls-mobile .box-wrapper .info-item .title-info {
         max-width: 680px;
     }
-    .main-display-mobile .info-current-music-mobile {
-        max-width: 760px;
-    }
 }
 @media (max-width: 870px)
 {
@@ -461,9 +541,6 @@
     }
     .main-controls-mobile .box-wrapper .info-item .title-info {
         max-width: 550px;
-    }
-    .main-display-mobile .info-current-music-mobile {
-        max-width: 650px;
     }
 }
 @media (max-width: 750px)
@@ -474,9 +551,6 @@
     .main-controls-mobile .box-wrapper .info-item .title-info {
         max-width: 400px;
     }
-    .main-display-mobile .info-current-music-mobile {
-        max-width: 480px;
-    }
 }
 @media (max-width: 580px)
 {
@@ -486,9 +560,6 @@
     .main-controls-mobile .box-wrapper .info-item .title-info {
         max-width: 300px;
     }
-    .main-display-mobile .info-current-music-mobile {
-        max-width: 390px;
-    }
 }
 @media (max-width: 490px)
 {
@@ -497,8 +568,5 @@
     }
     .main-controls-mobile .box-wrapper .info-item .title-info {
         max-width: 180px;
-    }
-    .main-display-mobile .info-current-music-mobile {
-        max-width: 270px;
     }
 }

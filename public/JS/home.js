@@ -63,7 +63,12 @@ const containerPlaylistMobile = document.querySelector('.container-playlist-mobi
 const coverCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .cover-item img');
 const titleCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .info-item .title-info');
 const genderCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .info-item .gender-info');
+
+const controlsMobile = document.querySelector('.main-controls-mobile');
+const displayMobile = document.querySelector('.main-display-mobile');
 const backgroundCoverMobile = document.querySelector('.main-display-mobile .background-cover-mobile');
+const backDisplayMobile = document.querySelector(".main-display-mobile .display-back")
+
 
 let musicData = [];
 let musicDataShuffled = [];
@@ -109,6 +114,8 @@ clearHistoricIcon.addEventListener("click", manageHistoricClear);
 musicFavoriteIcon.addEventListener("click", manageFavorite);
 morePlaylist.addEventListener("click", toggleMorePlaylists);
 backPlaylist.addEventListener("click", toggleMorePlaylists);
+backDisplayMobile.addEventListener("click", toggleDisplayMobile)
+controlsMobile.addEventListener("click", toggleDisplayMobile)
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1208,6 +1215,20 @@ async function refreshFavorite() {
 
 function toggleMorePlaylists() {
     $(".main-select-playlists").toggle(200);
+}
+function toggleDisplayMobile() {
+    if (!displayMobile.classList.contains("show")){
+        displayMobile.classList.remove("exit");
+        displayMobile.classList.add("show");
+    } else {
+        displayMobile.classList.remove("show");
+        displayMobile.classList.add("exit");
+        displayMobile.addEventListener("animationend", (event) => {
+            if (event.animationName == "down-display") {
+                displayMobile.classList.remove("exit");
+            }
+        });
+    }
 }
 function audioControllerPlayAudioAndVideo() {
     if(musicDataShuffled[indexAudio].isVideo){
