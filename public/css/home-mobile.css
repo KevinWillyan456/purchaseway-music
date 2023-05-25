@@ -456,11 +456,16 @@
 }
 
 .main-display-mobile .repeat-icon-mobile ion-icon {
+    transition: 200ms;
     width: 40px;
     height: 40px;
     color: var(--color-white-1);
     cursor: pointer;
 }
+.main-display-mobile .repeat-icon-mobile ion-icon.active {
+    color: var(--color-blue-2);
+}
+
 .main-display-mobile .shuffle-icon-mobile {
     position: absolute;
     bottom: 60px;
@@ -473,10 +478,14 @@
     display: none;
 }
 .main-display-mobile .shuffle-icon-mobile ion-icon {
+    transition: 200ms;
     width: 40px;
     height: 40px;
     color: var(--color-white-1);
     cursor: pointer;
+}
+.main-display-mobile .shuffle-icon-mobile ion-icon.active {
+    color: var(--color-blue-2);
 }
 
 .main-display-mobile .current-duration-mobile {
@@ -504,6 +513,7 @@
     bottom: 144px;
     left: calc(50% - 160px);
     width: 320px;
+    padding-right: 7px;
 }
 .main-display-mobile.video-mode .slider-music-duration-mobile {
     display: none;

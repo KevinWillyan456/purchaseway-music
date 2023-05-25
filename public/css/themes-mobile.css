@@ -27,6 +27,28 @@
 .main-controls-mobile .display-music-duration-mobile.rock-version {
     background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
 }
+/*  */
+.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile.rock-version {
+    text-shadow: 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1);
+}
+.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile.rock-version {
+    text-shadow: 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1);
+}
+.main-display-mobile .current-music-favorite-mobile.rock-version {
+    color: var(--color-red-2);
+}
+.main-display-mobile .repeat-icon-mobile.rock-version ion-icon.active {
+    color: var(--color-red-2);
+}
+.main-display-mobile .shuffle-icon-mobile.rock-version ion-icon.active {
+    color: var(--color-red-2);
+}
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile.rock-version input[type=range] {
+    background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile.rock-version {
+    background-color: var(--color-red-2);
+}
 
 /* Hatsune Miku Version Theme */
 
