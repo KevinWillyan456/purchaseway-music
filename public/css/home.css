@@ -1094,7 +1094,7 @@ iframe {
 .main-select-playlists .container-select-playlists::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
-
+/*  */
 .container-select-playlists .item-select-playlist {
     width: 460px;
     background-color: var(--color-blue-3);

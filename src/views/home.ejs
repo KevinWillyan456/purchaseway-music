@@ -17,6 +17,8 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
+    
+    <audio id="audio-global"></audio>
 
     <main class="super-main">
 
@@ -81,7 +83,7 @@
             </div>
 
             <div class="container-settings">
-                <div class="clock-settings">
+                <div class="clock-settings" style="display: none;">
                     <ion-icon name="time"></ion-icon>
                 </div>
                 <div class="user-settings">
@@ -237,9 +239,6 @@
 
             <div class="container-side-2">
 
-                <!-- Audio Manager -->
-                <audio id="audio-global"></audio>
-
                 <div class="container-controls">
                     <ion-icon name="play-skip-back-circle" style="margin-right: 10px;" id="audio-prev"></ion-icon>
                     <ion-icon name="play-circle" style="margin-right: 10px;" id="audio-play"></ion-icon>
@@ -289,7 +288,7 @@
 
         <div class="focus-shadow" style="display: none;"></div>
 
-        <div class="main-select-playlists" style="display: none;">
+        <section class="main-select-playlists" style="display: none;">
             <div class="select-playlist-back">Voltar</div>
             <div class="title-select-playlist">PlayLists</div>
 
@@ -314,7 +313,7 @@
 
             </div>
 
-        </div>
+        </section>
 
     </main>
 
@@ -428,6 +427,109 @@
                 <ion-icon name="shuffle"></ion-icon>
             </div>
 
+        </section>
+
+        <section class="main-select-playlists-mobile" style="display: none;">
+            <div class="select-playlist-back-mobile">Voltar</div>
+            <div class="title-select-playlist-mobile">PlayLists</div>
+
+            <div class="container-select-playlists-wrapper">
+                <div class="container-select-playlists-mobile">
+
+                    <!-- <div class="item-select-playlist-mobile">
+                        <div class="cover-item-select-playlist-mobile" onclick="suaFuncao()">
+                            <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+                        </div>
+                        <div class="info-item-select-playlist-mobile">
+                            <div class="title-item-select-playlist-mobile">
+                                Título
+                            </div>
+                            <div class="description-item-select-playlist-mobile">
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima eveniet recusandae, consequuntur nisi dicta maiores eligendi, deleniti, distinctio ea vero architecto ratione accusantium quia harum? Delectus impedit tenetur magni quos!
+                            </div>
+                            <div class="total-music-item-select-playlist-mobile">
+                                Total de 94 músicas
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="main-user-settings-mobile" style="display: none;">
+            <div class="layer-user-settings-mobile">
+                <div class="box-user-settings-mobile">
+                    <div class="title-profile-mobile">Perfil</div>
+                    <div class="logout-mobile"><ion-icon name="exit"></ion-icon></div>
+                    <div class="box-profile-mobile">
+                        <div class="user-settings-mobile">
+                            <ion-icon name="person"></ion-icon>
+                        </div>
+                        <div class="box-user-information-mobile">
+                            <div class="user-name-mobile">Joe Dawn</div>
+                            <div class="registration-date-mobile">Registrou-se em: 15 fevereiro 2023</div>
+                        </div>
+                    </div>
+                    
+                    <div class="title-profile-mobile">Músicas Favoritas</div>
+
+                    <div class="container-favorite-mobile">
+
+                        <!-- <div class="item-playlist-favorite">
+                            <div class="box-wrapper-favorite">
+                                <div class="cover-item-favorite">
+                                    <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+                                </div>
+                                <div class="info-item-favorite">
+                                    <div class="title-info-favorite">
+                                        Título
+                                    </div>
+                                    <div class="gender-info-favorite">
+                                        Nightcore
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="play-button-item">
+                                <ion-icon name="play-circle"></ion-icon>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    
+                    <div class="title-wrapper-mobile">
+                        <div class="title-profile-mobile">Histórico</div>
+                        <div class="trash-icon-mobile">
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
+                    </div>
+                    
+                    <div class="container-historic-mobile">
+
+                        <!-- <div class="item-playlist-historic">
+                            <div class="box-wrapper-historic">
+                                <div class="cover-item-historic">
+                                    <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Numb%20(Lyrics).jpg">
+                                </div>
+                                <div class="info-item-historic">
+                                    <div class="title-info-historic">
+                                        Título
+                                    </div>
+                                    <div class="gender-info-historic">
+                                        Nightcore
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="play-button-item">
+                                <ion-icon name="play-circle"></ion-icon>
+                            </div>
+                        </div> -->
+                        
+                    </div>
+                    
+                </div>
+            </div>
         </section>
 
     </main>

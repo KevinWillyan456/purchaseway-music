@@ -86,6 +86,11 @@ const sliderMusicDurationDotMobile = document.querySelector('.slider-music-durat
 const currentDurationMobile = document.querySelector('.main-display-mobile .current-duration-mobile');
 const totalDurationMobile = document.querySelector('.main-display-mobile .total-duration-mobile');
 
+const morePlaylistMobile = document.querySelector(".more-playlist-mobile");
+const backPlaylistMobile = document.querySelector(".select-playlist-back-mobile");
+
+const containerPlaylistSelectMobile = document.querySelector('.container-select-playlists-mobile');
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -136,6 +141,8 @@ musicFavoriteIcon.addEventListener("click", manageFavorite);
 morePlaylist.addEventListener("click", toggleMorePlaylists);
 backPlaylist.addEventListener("click", toggleMorePlaylists);
 backDisplayMobile.addEventListener("click", toggleDisplayMobile)
+morePlaylistMobile.addEventListener("click", toggleMorePlaylists);
+backPlaylistMobile.addEventListener("click", toggleMorePlaylists);
 controlsMobile.addEventListener("click", toggleDisplayMobile)
 
 document.querySelector('.service-logo').addEventListener("click", () => {
@@ -522,27 +529,27 @@ function generatorContainerPlaylistSelectData(){
             `
         })
     } else {
-        // playlistData.forEach((element) => {
+        playlistData.forEach((element) => {
 
-        //     containerPlaylistSelect.innerHTML += `
-        //         <div class="item-select-playlist">
-        //             <div class="cover-item-select-playlist" data-gender="${element.gender}" data-title="${element.title}">
-        //                 <img src="${element.coverUrl}">
-        //             </div>
-        //             <div class="info-item-select-playlist">
-        //                 <div class="title-item-select-playlist">
-        //                     ${element.title}
-        //                 </div>
-        //                 <div class="description-item-select-playlist">
-        //                     ${element.description}
-        //                 </div>
-        //                 <div class="total-music-item-select-playlist">
-        //                     Total de ${element.totalSongs} músicas
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     `
-        // })
+            containerPlaylistSelectMobile.innerHTML += `
+                <div class="item-select-playlist-mobile">
+                    <div class="cover-item-select-playlist-mobile" data-gender="${element.gender}" data-title="${element.title}">
+                        <img src="${element.coverUrl}">
+                    </div>
+                    <div class="info-item-select-playlist-mobile">
+                        <div class="title-item-select-playlist-mobile">
+                            ${element.title}
+                        </div>
+                        <div class="description-item-select-playlist-mobile">
+                            ${element.description}
+                        </div>
+                        <div class="total-music-item-select-playlist-mobile">
+                            Total de ${element.totalSongs} músicas
+                        </div>
+                    </div>
+                </div>
+            `
+        })
     }
 }
 
@@ -559,16 +566,16 @@ function generatorContainerPlaylistSelectDataPlay(){
             });
         })
     } else {
-        // const itemsSelectPlaylist = document.querySelectorAll('.container-select-playlists .item-select-playlist .cover-item-select-playlist');
+        const itemsSelectPlaylistMobile = document.querySelectorAll('.item-select-playlist-mobile .cover-item-select-playlist-mobile');
 
-        // itemsSelectPlaylist.forEach((element)=> {
-        //     element.addEventListener('click', function(){
-        //         const playlistValue = $(this).data('gender')
-        //         const playlistName = $(this).data('title')
-        //         toggleMorePlaylists();
-        //         selectNewPlaylist(playlistValue, playlistName);
-        //     });
-        // })
+        itemsSelectPlaylistMobile.forEach((element)=> {
+            element.addEventListener('click', function(){
+                const playlistValue = $(this).data('gender')
+                const playlistName = $(this).data('title')
+                toggleMorePlaylists();
+                selectNewPlaylist(playlistValue, playlistName);
+            });
+        })
     }
 }
 
@@ -1398,6 +1405,9 @@ function searchEvents(){ // Adicionar os elementos Mobile aqui
     $('.container-settings .user-settings').click(function() {
         toggleTemplateUser();
     });
+    $('.header-mobile .box-wrapper-header-mobile .user-settings').click(function() {
+        toggleTemplateUser();
+    });
     
     $('.focus-shadow').click(()=>{
         $('.focus-shadow').hide(200)
@@ -1625,12 +1635,20 @@ async function refreshFavorite() {
 }
 
 function toggleMorePlaylists() {
-    $(".main-select-playlists").toggle(200);
+    if (screenWidth >= 1360) {
+        $(".main-select-playlists").toggle(200);
+    } else {
+        $(".main-select-playlists-mobile").toggle(200);
+    }
 }
 function toggleDisplayMobile() {
     if (!displayMobile.classList.contains("show")){
         displayMobile.classList.remove("exit");
         displayMobile.classList.add("show");
+
+        if (!musicDataShuffled[indexAudio].isVideo) {
+            audioControllerPlayFunctionNoPause()
+        }
     } else {
         displayMobile.classList.remove("show");
         displayMobile.classList.add("exit");
@@ -1657,7 +1675,11 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         lastAccessedPlaylistName: playlistName
     }
 
-    $(".title-playlist").html(playlistName);
+    if (screenWidth >= 1360) {
+        $(".title-playlist").html(playlistName);
+    } else {
+        $(".title-playlist-mobile").html(playlistName);
+    }
 
     const resposta = await fetch(`/playlists-historic/${idUserConnected}`, {
         method: "PUT",
@@ -1677,18 +1699,33 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     musicData = playlist.songs;
     musicDataShuffled = [...musicData];
 
-    containerPlaylist.innerHTML = "";
-    containerItemsSearch.innerHTML = "";
-    containerItemsFavorite.innerHTML = "";
-    containerItemsHistoric.innerHTML = "";
+    if (screenWidth >= 1360) {
+        containerPlaylist.innerHTML = "";
+        containerItemsSearch.innerHTML = "";
+        containerItemsFavorite.innerHTML = "";
+        containerItemsHistoric.innerHTML = "";
+    } else {
+        containerPlaylistMobile.innerHTML = "";
+        // containerItemsSearch.innerHTML = "";
+        // containerItemsFavorite.innerHTML = "";
+        // containerItemsHistoric.innerHTML = "";
+    }
 
     indexAudio = 0;
     audioGlobal.pause()
-    audioControllerPlay.name = 'play-circle';
-    musicAnimationStatus.classList.remove('run');
+    if (screenWidth >= 1360) {
+        audioControllerPlay.name = 'play-circle';
+        musicAnimationStatus.classList.remove('run');
+    } else {
+        audioControllerPlayMobile.name = 'play-circle';
+    }
     audioControllerPlayToggle = true;
 
-    shuffleIcon.classList.remove('active');
+    if (screenWidth >= 1360) {
+        shuffleIcon.classList.remove('active');
+    } else {
+        shuffleIconMobile.classList.remove('active');
+    }
     shuffleToggleControl = true;
 
     allSongValueSetters()
