@@ -703,6 +703,161 @@
     z-index: 1000;
 }
 
+.main-user-settings-mobile .display-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: var(--color-white-1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.main-user-settings-mobile .display-back ion-icon {
+    width: 100%;
+    height: 100%;
+}
+.main-user-settings-mobile .logout-mobile {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: var(--color-white-1);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.main-user-settings-mobile .logout-mobile ion-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.main-user-settings-mobile .title-profile-mobile {
+    font-size: 36px;
+    color: var(--color-white-1);
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.main-user-settings-mobile .box-profile-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.main-user-settings-mobile .box-profile-mobile .user-settings-mobile {
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-blue-2);
+    color: var(--color-white-1);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: 2px solid var(--color-black);
+    cursor: pointer;
+}
+.main-user-settings-mobile .box-profile-mobile .user-settings-mobile ion-icon {
+    width: 67px;
+    height: 67px;
+}
+.main-user-settings-mobile .box-profile-mobile .box-user-information-mobile {
+    color: var(--color-white-1);
+    margin-top: 10px;   
+}
+.main-user-settings-mobile .box-profile-mobile .box-user-information-mobile .user-name-mobile {
+    font-size: 24px;
+    max-width: 320px;
+
+    white-space: nowrap;
+    overflow: hidden;   
+    text-overflow: ellipsis;
+
+    text-align: center;
+}
+.main-user-settings-mobile .box-profile-mobile .box-user-information-mobile .registration-date-mobile {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}
+.main-user-settings-mobile .title-2-profile-mobile {
+    font-size: 16px;
+    color: var(--color-white-1);
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+
+.container-favorite-mobile .item-favorite-mobile {
+    width: calc(100% - 25px);
+    margin: 0 0 10px 25px;
+    background-color: var(--color-blue-3);
+    
+    display: flex;
+    padding: 10px 10px;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+.item-favorite-mobile .box-wrapper-favorite {
+    display: flex;
+}
+.item-favorite-mobile .box-wrapper-favorite .cover-item-favorite {
+    width: 70px;
+    height: 38.89px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item-favorite-mobile .box-wrapper-favorite .cover-item-favorite img {
+    width: 100%;
+    cursor: pointer;
+}
+.item-favorite-mobile .info-item {
+    transition: 200ms;
+    color: var(--color-white-1);
+    padding-left: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.container-favorite-mobile .item-favorite-mobile .box-wrapper-favorite .info-item.music-playing {
+    color: var(--color-blue-5);
+}
+.item-favorite-mobile .info-item .title-info {
+    max-width: 1120px;
+    font-size: 14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-favorite-mobile .info-item .gender-info {
+    max-width: 180px;
+    font-size: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-favorite-mobile .play-button-item {
+    display: flex;
+    align-items: center;
+}
+.item-favorite-mobile .play-button-item ion-icon {
+    width: 31px;
+    height: 31px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}
+
 @media (max-width: 1300px)
 {
     .item-playlist-mobile .info-item .title-info {
