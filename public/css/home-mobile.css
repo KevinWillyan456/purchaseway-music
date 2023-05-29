@@ -234,6 +234,12 @@
     width: 80px;
     height: 44.44px;
     margin-right: 5px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .main-controls-mobile .box-wrapper .cover-item img {
     width: 100%;

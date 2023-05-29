@@ -91,6 +91,8 @@ const backPlaylistMobile = document.querySelector(".select-playlist-back-mobile"
 
 const containerPlaylistSelectMobile = document.querySelector('.container-select-playlists-mobile');
 
+const displayMusicDurationMobile = document.querySelector(".main-controls-mobile .display-music-duration-mobile")
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -283,6 +285,7 @@ function allSongValueSetters(){
             genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
             titleCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].title;
             genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
+            $(displayMusicDurationMobile).hide()
 
             containerFrameVideoMobile.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 
@@ -292,6 +295,7 @@ function allSongValueSetters(){
         }
 
         audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
+        audioGlobal.volume = 1
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
@@ -304,6 +308,7 @@ function allSongValueSetters(){
         titleCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
         containerFrameVideoMobile.innerHTML = "";
+        $(displayMusicDurationMobile).show()
     }
 }
 
@@ -1076,10 +1081,12 @@ function musicStateControllers(){
                 sliderMusicDurationMobile.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
                 if(musicDataShuffled[indexAudio].theme == 'Original'){
                     sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
+                    displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
                     sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
                 }
                 if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
                     sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
+                    displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
                     sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
                 }
 
@@ -1261,10 +1268,12 @@ function initDurationSlider(){
     } else {
         if(musicDataShuffled[indexAudio].theme == 'Original'){
             sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
+            displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
             sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
         }
         if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
             sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
+            displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
             sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
         }
         sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
