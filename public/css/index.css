@@ -133,6 +133,10 @@ html {
 .cabecalho .service-logo {
     cursor: pointer;
 }
+.cabecalho .service-logo img {
+    width: 100%;
+}
+
 .list-options li {
     margin-right: 40px;
 }
@@ -162,13 +166,12 @@ html {
 
 .section-banner .button-register {
     display: flex;
-    width: 100%;
     justify-content: center;
-}
-.button-register button {
+    width: 100%;
     position: absolute;
     top: 80.5555%;
-
+}
+.button-register button {
     width: 200px;
     color: var(--color-white-1);
     font-size: 25px;
@@ -518,5 +521,42 @@ html {
     .section-reactive .box-wrapper .title-2 {
         font-size: 24px;
         width: 300px;
+    }
+}
+
+@media (max-width: 1359px)
+{
+    .cabecalho .list-options {
+        display: none;
+    }
+    .cabecalho .service-logo {
+        width: 110px;
+        height: 24.93px;
+    }
+    .cabecalho {
+        height: 60px;
+    }
+    .button-login button {
+        width: 80px;
+        height: 40px;
+        font-size: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .section-banner .title-1 {
+        font-size: 32px;
+    }
+    .section-banner .title-2 {
+        font-size: 24px;
+        width: 320px;
+        left: calc(50% - 320px / 2);
+    }
+    .section-banner .title-3 {
+        display: none;
+    }
+    .terms-of-use {
+        display: none;
     }
 }

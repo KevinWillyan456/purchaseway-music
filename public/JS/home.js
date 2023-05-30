@@ -93,6 +93,18 @@ const containerPlaylistSelectMobile = document.querySelector('.container-select-
 
 const displayMusicDurationMobile = document.querySelector(".main-controls-mobile .display-music-duration-mobile")
 
+const userNameMobile = document.querySelector('.user-name-mobile');
+const registrationDateMobile = document.querySelector('.registration-date-mobile');
+
+const containerItemsFavoriteMobile = document.querySelector('.container-favorite-mobile');
+const containerItemsHistoricMobile = document.querySelector('.container-historic-mobile');
+
+const musicFavoriteIconMobile = document.querySelector(".main-display-mobile .current-music-favorite-mobile ion-icon")
+
+const logoutMobile = document.querySelector(".logout-mobile");
+
+const clearHistoricIconMobile = document.querySelector(".content-profile-mobile .title-2-wrapper-mobile .trash-icon-mobile")
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -138,8 +150,11 @@ document.addEventListener("keyup", function(event){
 })
 
 logout.addEventListener("click", logoutService);
+logoutMobile.addEventListener("click", logoutService);
 clearHistoricIcon.addEventListener("click", manageHistoricClear);
+clearHistoricIconMobile.addEventListener("click", manageHistoricClear);
 musicFavoriteIcon.addEventListener("click", manageFavorite);
+musicFavoriteIconMobile.addEventListener("click", manageFavorite);
 morePlaylist.addEventListener("click", toggleMorePlaylists);
 backPlaylist.addEventListener("click", toggleMorePlaylists);
 backDisplayMobile.addEventListener("click", toggleDisplayMobile)
@@ -360,8 +375,8 @@ function setUserSettings(){
         registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
         userName.innerHTML = userData.name;
     } else {
-        // registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
-        // userName.innerHTML = userData.name;
+        registrationDateMobile.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
+        userNameMobile.innerHTML = userData.name;
     }
 }
 
@@ -750,29 +765,29 @@ function generatorContainerFavoriteData(){
             `
         })
     } else {
-        // favoriteSongs.forEach((element) => {
+        favoriteSongs.forEach((element) => {
 
-        //     containerItemsFavorite.innerHTML += `
-        //         <div class="item-playlist-favorite" data-id="${element._id}" data-theme="${element.theme}">
-        //             <div class="box-wrapper-favorite">
-        //                 <div class="cover-item-favorite">
-        //                     <img src="${element.coverUrl}">
-        //                 </div>
-        //                 <div class="info-item-favorite">
-        //                     <div class="title-info-favorite">
-        //                         ${element.title}
-        //                     </div>
-        //                     <div class="gender-info-favorite">
-        //                         ${element.gender}
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //             <div class="play-button-item">
-        //                 <ion-icon name="play-circle"></ion-icon>
-        //             </div>
-        //         </div>
-        //     `
-        // })
+            containerItemsFavoriteMobile.innerHTML += `
+                <div class="item-favorite-mobile" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="box-wrapper-favorite">
+                        <div class="cover-item-favorite">
+                            <img src="${element.coverUrl}">
+                        </div>
+                        <div class="info-item-favorite">
+                            <div class="title-info">
+                                ${element.title}
+                            </div>
+                            <div class="gender-info">
+                                ${element.gender}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="play-button-item">
+                        <ion-icon name="play-circle"></ion-icon>
+                    </div>
+                </div>
+            `
+        })
     }
 }
 
@@ -809,36 +824,37 @@ function generatorContainerFavoriteDataPlay(){
             });
         })
     } else {
-        // const itemsPlaylistFavorite = document.querySelectorAll('.container-favorite .item-playlist-favorite');
+        const itemsPlaylistFavoriteMobile = document.querySelectorAll('.container-favorite-mobile .item-favorite-mobile');
 
-        // itemsPlaylistFavorite.forEach((element)=> {
-        //     element.addEventListener('click', function(){
-        //         let cannotPlayTheMusic = false;
-        //         if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-        //             cannotPlayTheMusic = true;
-        //         }
+        itemsPlaylistFavoriteMobile.forEach((element)=> {
+            element.addEventListener('click', function(){
+                let cannotPlayTheMusic = false;
+                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                    cannotPlayTheMusic = true;
+                }
 
-        //         indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
-        //         let selectedTheme = $(this).data('theme')
-        //         indexAudioId = musicDataShuffled[indexAudio]._id;
-        //         indexAudioGender = musicDataShuffled[indexAudio].gender;
+                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                let selectedTheme = $(this).data('theme')
+                indexAudioId = musicDataShuffled[indexAudio]._id;
+                indexAudioGender = musicDataShuffled[indexAudio].gender;
+                
+                $('.main-user-settings-mobile').hide(200);
+                toggleDisplayMobile()
 
-        //         if (!cannotPlayTheMusic) {
-        //             allSongValueSetters();
-        //             audioControllerPlayFunctionNoPause();
-        //             setMusicPlayTag();
-        //             manageHistoric();
-        //             refreshFavorite();
-        //             themeChanger(selectedTheme);
+                if (!cannotPlayTheMusic) {
+                    allSongValueSetters();
+                    audioControllerPlayFunctionNoPause();
+                    setMusicPlayTag();
+                    manageHistoric();
+                    refreshFavorite();
+                    themeChanger(selectedTheme);
                     
-        //             $('.focus-shadow').hide(200);
-        //             $('.container-user-settings').hide(200);
-        //             profileWasClicked = true;
-        //             canKeyboardEvents = true;
-        //             canKeyboardEventsProfile = true;
-        //         }
-        //     });
-        // })
+                    profileWasClicked = true;
+                    canKeyboardEvents = true;
+                    canKeyboardEventsProfile = true;
+                }
+            });
+        })
     }
 }
 
@@ -883,29 +899,29 @@ function generatorContainerHistoricData(){
             `
         })
     } else {
-        // historicSongs.forEach((element) => {
+        historicSongs.forEach((element) => {
 
-        //     containerItemsHistoric.innerHTML += `
-        //         <div class="item-playlist-historic" data-id="${element._id}" data-theme="${element.theme}">
-        //             <div class="box-wrapper-historic">
-        //                 <div class="cover-item-historic">
-        //                     <img src="${element.coverUrl}">
-        //                 </div>
-        //                 <div class="info-item-historic">
-        //                     <div class="title-info-historic">
-        //                         ${element.title}
-        //                     </div>
-        //                     <div class="gender-info-historic">
-        //                         ${element.gender}
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //             <div class="play-button-item">
-        //                 <ion-icon name="play-circle"></ion-icon>
-        //             </div>
-        //         </div>
-        //     `
-        // })
+            containerItemsHistoricMobile.innerHTML += `
+                <div class="item-historic-mobile" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="box-wrapper-historic">
+                        <div class="cover-item-historic">
+                            <img src="${element.coverUrl}">
+                        </div>
+                        <div class="info-item-historic">
+                            <div class="title-info">
+                                ${element.title}
+                            </div>
+                            <div class="gender-info">
+                                ${element.gender}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="play-button-item">
+                        <ion-icon name="play-circle"></ion-icon>
+                    </div>
+                </div>
+            `
+        })
     }
 }
 
@@ -942,36 +958,37 @@ function generatorContainerHistoricDataPlay(){
             });
         })
     } else {
-        // const itemsPlaylistHistoric = document.querySelectorAll('.container-historic .item-playlist-historic');
+        const itemsPlaylistHistoricMobile = document.querySelectorAll('.container-historic-mobile .item-historic-mobile');
 
-        // itemsPlaylistHistoric.forEach((element)=> {
-        //     element.addEventListener('click', function(){
-        //         let cannotPlayTheMusic = false;
-        //         if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-        //             cannotPlayTheMusic = true;
-        //         }
+        itemsPlaylistHistoricMobile.forEach((element)=> {
+            element.addEventListener('click', function(){
+                let cannotPlayTheMusic = false;
+                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                    cannotPlayTheMusic = true;
+                }
 
-        //         indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
-        //         let selectedTheme = $(this).data('theme')
-        //         indexAudioId = musicDataShuffled[indexAudio]._id;
-        //         indexAudioGender = musicDataShuffled[indexAudio].gender;
+                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                let selectedTheme = $(this).data('theme')
+                indexAudioId = musicDataShuffled[indexAudio]._id;
+                indexAudioGender = musicDataShuffled[indexAudio].gender;
 
-        //         if (!cannotPlayTheMusic) {
-        //             allSongValueSetters();
-        //             audioControllerPlayFunctionNoPause();
-        //             setMusicPlayTag();
-        //             manageHistoric();
-        //             refreshFavorite();
-        //             themeChanger(selectedTheme);
+                $('.main-user-settings-mobile').hide(200);
+                toggleDisplayMobile()
+
+                if (!cannotPlayTheMusic) {
+                    allSongValueSetters();
+                    audioControllerPlayFunctionNoPause();
+                    setMusicPlayTag();
+                    manageHistoric();
+                    refreshFavorite();
+                    themeChanger(selectedTheme);
                     
-        //             $('.focus-shadow').hide(200);
-        //             $('.container-user-settings').hide(200);
-        //             profileWasClicked = true;
-        //             canKeyboardEvents = true;
-        //             canKeyboardEventsProfile = true;
-        //         }
-        //     });
-        // })
+                    profileWasClicked = true;
+                    canKeyboardEvents = true;
+                    canKeyboardEventsProfile = true;
+                }
+            });
+        })
     }
 }
 
@@ -1430,43 +1447,31 @@ function searchEvents(){ // Adicionar os elementos Mobile aqui
     searchBarInput.oninput = () => {
         musicFilteringFunction();
     };
+
+    $('.header-mobile .user-settings').click(()=>{
+        $('.main-user-settings-mobile').toggle(200)
+    })
+    $('.main-user-settings-mobile .display-back').click(()=>{
+        $('.main-user-settings-mobile').toggle(200)
+    })
 }
 
 function toggleTemplateUser() {
-    if (screenWidth >= 1360) {
-        if(profileWasClicked){
-            $('.container-user-settings').show(200)
-            $('.focus-shadow').show(200)
-            $('.container-search-result').hide(200)
-            profileWasClicked = false;
-            canKeyboardEvents = false;
-            canKeyboardEventsProfile = true;
-        }
-        else {
-            $('.focus-shadow').hide(200)
-            $('.container-search-result').hide(200)
-            $('.container-user-settings').hide(200)
-            profileWasClicked = true;
-            canKeyboardEvents = true;
-            canKeyboardEventsProfile = true;
-        }
-    } else {
-        // if(profileWasClicked){
-        //     $('.container-user-settings').show(200)
-        //     $('.focus-shadow').show(200)
-        //     $('.container-search-result').hide(200)
-        //     profileWasClicked = false;
-        //     canKeyboardEvents = false;
-        //     canKeyboardEventsProfile = true;
-        // }
-        // else {
-        //     $('.focus-shadow').hide(200)
-        //     $('.container-search-result').hide(200)
-        //     $('.container-user-settings').hide(200)
-        //     profileWasClicked = true;
-        //     canKeyboardEvents = true;
-        //     canKeyboardEventsProfile = true;
-        // }
+    if(profileWasClicked){
+        $('.container-user-settings').show(200)
+        $('.focus-shadow').show(200)
+        $('.container-search-result').hide(200)
+        profileWasClicked = false;
+        canKeyboardEvents = false;
+        canKeyboardEventsProfile = true;
+    }
+    else {
+        $('.focus-shadow').hide(200)
+        $('.container-search-result').hide(200)
+        $('.container-user-settings').hide(200)
+        profileWasClicked = true;
+        canKeyboardEvents = true;
+        canKeyboardEventsProfile = true;
     }
 }
 
@@ -1583,7 +1588,12 @@ async function manageFavorite() {
         musicId: indexAudioId,
         musicGender: indexAudioGender
     }
-    musicFavoriteIcon.style.pointerEvents = "none"
+
+    if (screenWidth >= 1360) {
+        musicFavoriteIcon.style.pointerEvents = "none"
+    } else {
+        musicFavoriteIconMobile.style.pointerEvents = "none"
+    }
     
     const resposta = await fetch(`/songs-favorite/${idUserConnected}`, {
         method: "PUT",
@@ -1602,11 +1612,20 @@ async function manageFavorite() {
     if(resposta.status == 200){
         await refreshUser()
         refreshFavorite();
-        musicFavoriteIcon.style.pointerEvents = "auto"
+        if (screenWidth >= 1360) {
+            musicFavoriteIcon.style.pointerEvents = "auto"
+        } else {
+            musicFavoriteIconMobile.style.pointerEvents = "auto"
+        }
     }
     if(resposta.status != 200){
-        musicFavoriteIcon.style.pointerEvents = "auto"
-        alert("Internal Error!")
+        if (screenWidth >= 1360) {
+            musicFavoriteIcon.style.pointerEvents = "auto"
+            alert("Internal Error!")
+        } else {
+            musicFavoriteIconMobile.style.pointerEvents = "auto"
+            alert("Internal Error!")
+        }
     }
 }
 
@@ -1617,7 +1636,11 @@ async function refreshUser() {
 
     userData = user.user;
     
-    containerItemsHistoric.innerHTML = ""
+    if (screenWidth >= 1360) {
+        containerItemsHistoric.innerHTML = ""
+    } else {
+        containerItemsHistoricMobile.innerHTML = ""
+    }
     generatorContainerHistoricData();
     generatorContainerHistoricDataPlay();
     themeChanger(musicDataShuffled[indexAudio].theme);
@@ -1628,16 +1651,30 @@ async function refreshFavorite() {
     
     let songFavorite = userData.favoriteSongs.find(element => element.musicId == musicDataShuffled[indexAudio]._id)
 
-    if(songFavorite){
-        musicFavoriteIcon.name = "heart"
-        isFound = true;
-    }
-    
-    if (!isFound) {
-        musicFavoriteIcon.name = "heart-outline"
+    if (screenWidth >= 1360) {
+        if(songFavorite){
+            musicFavoriteIcon.name = "heart"
+            isFound = true;
+        }
+        
+        if (!isFound) {
+            musicFavoriteIcon.name = "heart-outline"
+        }
+
+        containerItemsFavorite.innerHTML = ""
+    } else {
+        if(songFavorite){
+            musicFavoriteIconMobile.name = "heart"
+            isFound = true;
+        }
+        
+        if (!isFound) {
+            musicFavoriteIconMobile.name = "heart-outline"
+        }
+
+        containerItemsFavoriteMobile.innerHTML = ""
     }
 
-    containerItemsFavorite.innerHTML = ""
     generatorContainerFavoriteData()
     generatorContainerFavoriteDataPlay()
     themeChanger(musicDataShuffled[indexAudio].theme);
@@ -1669,11 +1706,19 @@ function toggleDisplayMobile() {
     }
 }
 function audioControllerPlayAudioAndVideo() {
-    if(musicDataShuffled[indexAudio].isVideo){
-        document.querySelector(".container-side-2").style.display = "none"
-        musicAnimationStatus.classList.remove('run');
+    if (screenWidth >= 1360) {
+        if(musicDataShuffled[indexAudio].isVideo){
+            document.querySelector(".container-side-2").style.display = "none"
+            musicAnimationStatus.classList.remove('run');
+        } else {
+            document.querySelector(".container-side-2").style.display = "flex"
+        }
     } else {
-        document.querySelector(".container-side-2").style.display = "flex"
+        if(musicDataShuffled[indexAudio].isVideo){
+            document.querySelector(".main-display-mobile").classList.add("video-mode")
+        } else {
+            document.querySelector(".main-display-mobile").classList.remove("video-mode")
+        }
     }
 }
 
@@ -1716,8 +1761,8 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     } else {
         containerPlaylistMobile.innerHTML = "";
         // containerItemsSearch.innerHTML = "";
-        // containerItemsFavorite.innerHTML = "";
-        // containerItemsHistoric.innerHTML = "";
+        containerItemsFavoriteMobile.innerHTML = "";
+        containerItemsHistoricMobile.innerHTML = "";
     }
 
     indexAudio = 0;
