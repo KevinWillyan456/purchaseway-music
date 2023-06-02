@@ -218,6 +218,9 @@
     justify-content: space-between;
     cursor: pointer;
 }
+.main-controls-mobile.fixed {
+    z-index: 1500;
+}
 .main-controls-mobile .display-music-duration-mobile {
     position: absolute;
     top: 0;
@@ -619,7 +622,8 @@
     justify-items: center;
     align-content: flex-start;
 
-    height: 80vh;
+    min-height: calc(100vh - 139px);
+    height: calc(100vh - 139px);
     overflow-y: scroll;
 
     padding-left: 10px;
@@ -787,8 +791,8 @@
 .main-user-settings-mobile .content-profile-mobile {
     width: 100%;
     overflow-y: scroll;
-    min-height: 56vh;
-    height: 56vh;
+    min-height: calc(100vh - 338px);
+    height: calc(100vh - 338px);
 
     padding-right: 5px;
     margin-bottom: 5px;
@@ -968,39 +972,219 @@
     cursor: pointer;
 }
 
+.main-search-mobile {
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: var(--color-blue-1);
+    z-index: 1000;
+}
+
+.main-search-mobile .display-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: var(--color-white-1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.main-search-mobile .display-back ion-icon {
+    width: 100%;
+    height: 100%;
+}
+.main-search-mobile .title {
+    width: 100%;
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 40px;
+    font-size: 24px;
+    color: var(--color-white-1);
+}
+.main-search-mobile .search-bar-mobile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+.main-search-mobile .search-bar-mobile input {
+    transition: 200ms;
+    height: 40px;
+    width: calc(100% - 40px);
+    padding-left: 16px;
+    padding-right: 36px;
+    border-radius: 10px;
+    border: 2px solid var(--color-black);
+    outline: none;
+}
+.main-search-mobile .search-bar-mobile input::placeholder {
+    color: var(--color-black);
+    font-size: 14px;
+}
+.main-search-mobile .search-bar-mobile input:focus {
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+
+.main-search-mobile .search-bar-mobile .search-bar-close-mobile {
+    position: absolute;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    cursor: pointer;
+}
+.main-search-mobile .search-bar-mobile .search-bar-close-mobile ion-icon {
+    width: 100%;
+    height: 100%;
+}
+.main-search-mobile .content-search-mobile {
+    width: 100%;
+    overflow-y: scroll;
+    min-height: calc(100vh - 304px);
+    height: calc(100vh - 304px);
+
+    padding-right: 5px;
+    margin-bottom: 5px;
+    padding-left: 0;
+
+    margin-left: -5px;
+}
+.main-search-mobile .content-search-mobile::-webkit-scrollbar {
+    width: 10px;
+    padding: 60px;
+    position: absolute;
+}
+.main-search-mobile .content-search-mobile::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+
+.main-search-mobile .content-search-mobile::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
+}
+/*  */
+.container-search-mobile .item-search-mobile {
+    width: calc(100% - 25px);
+    margin: 0 0 10px 25px;
+    background-color: var(--color-blue-3);
+    
+    display: flex;
+    padding: 10px 10px;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+.item-search-mobile .box-wrapper-search {
+    display: flex;
+}
+.item-search-mobile .box-wrapper-search .cover-item-search {
+    width: 70px;
+    height: 38.89px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item-search-mobile .box-wrapper-search .cover-item-search img {
+    width: 100%;
+    cursor: pointer;
+}
+.item-search-mobile .info-item-search {
+    transition: 200ms;
+    color: var(--color-white-1);
+    padding-left: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-search-mobile .info-item-search .title-info {
+    max-width: 1120px;
+    font-size: 14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-search-mobile .info-item-search .gender-info {
+    max-width: 180px;
+    font-size: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-search-mobile .play-button-item {
+    display: flex;
+    align-items: center;
+}
+.item-search-mobile .play-button-item ion-icon {
+    width: 31px;
+    height: 31px;
+    color: var(--color-white-1);
+    cursor: pointer;
+}
+.song-not-found-mobile {
+    animation: song-not-found-mobile-animation 500ms;
+    position: absolute;
+    top: 50%;
+    width: 320px;
+    left: calc(50% - 320px / 2);
+    text-align: center;
+    color: var(--color-white-1);
+    font-size: 20px;
+}
+
+@keyframes song-not-found-mobile-animation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 @media (max-width: 1300px)
 {
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info {
+    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
         max-width: 900px;
     }
 }
 @media (max-width: 1100px)
 {
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info {
+    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
         max-width: 680px;
     }
 }
 @media (max-width: 870px)
 {
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info {
+    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
         max-width: 550px;
     }
 }
 @media (max-width: 750px)
 {
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info {
+    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
         max-width: 400px;
     }
 }
 @media (max-width: 580px)
 {
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info {
+    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
         max-width: 300px;
     }
 }
 @media (max-width: 490px)
 {
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info {
+    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
         max-width: 180px;
     }
 }

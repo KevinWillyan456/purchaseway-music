@@ -105,6 +105,10 @@ const logoutMobile = document.querySelector(".logout-mobile");
 
 const clearHistoricIconMobile = document.querySelector(".content-profile-mobile .title-2-wrapper-mobile .trash-icon-mobile")
 
+const containerItemsSearchMobile = document.querySelector('.container-search-mobile')
+
+const searchBarInputMobile = document.querySelector('#search-bar-input-mobile');
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -600,16 +604,16 @@ function generatorContainerPlaylistSelectDataPlay(){
 }
 
 function generatorContainerSearchData(){
-    musicDataFiltered = musicData.filter(
-        (music) =>
-        music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
-    )
-    
-    while (musicDataFiltered.length > 10) {
-        musicDataFiltered.pop();
-    }
-
     if (screenWidth >= 1360) {
+        musicDataFiltered = musicData.filter(
+            (music) =>
+            music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
+        )
+        
+        while (musicDataFiltered.length > 10) {
+            musicDataFiltered.pop();
+        }
+
         musicDataFiltered.forEach((element) => {
 
             containerItemsSearch.innerHTML += `
@@ -634,29 +638,38 @@ function generatorContainerSearchData(){
             `
         })
     } else {
-        // musicDataFiltered.forEach((element) => {
+        musicDataFiltered = musicData.filter(
+            (music) =>
+            music.title.toLowerCase().includes(searchBarInputMobile.value.toLowerCase())
+        )
+        
+        while (musicDataFiltered.length > 10) {
+            musicDataFiltered.pop();
+        }
+        
+        musicDataFiltered.forEach((element) => {
 
-        //     containerItemsSearch.innerHTML += `
-        //         <div class="item-playlist-search" data-id="${element._id}" data-theme="${element.theme}">
-        //             <div class="box-wrapper-search">
-        //                 <div class="cover-item-search">
-        //                     <img src="${element.coverUrl}">
-        //                 </div>
-        //                 <div class="info-item-search">
-        //                     <div class="title-info-search">
-        //                         ${element.title}
-        //                     </div>
-        //                     <div class="gender-info-search">
-        //                         ${element.gender}
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //             <div class="play-button-item">
-        //                 <ion-icon name="play-circle"></ion-icon>
-        //             </div>
-        //         </div>
-        //     `
-        // })
+            containerItemsSearchMobile.innerHTML += `
+                <div class="item-search-mobile" data-id="${element._id}" data-theme="${element.theme}">
+                    <div class="box-wrapper-search">
+                        <div class="cover-item-search">
+                            <img src="${element.coverUrl}"">
+                        </div>
+                        <div class="info-item-search">
+                            <div class="title-info">
+                                ${element.title}
+                            </div>
+                            <div class="gender-info">
+                                ${element.gender}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="play-button-item">
+                        <ion-icon name="play-circle"></ion-icon>
+                    </div>
+                </div>
+            `
+        })
     }
 }
 
@@ -693,36 +706,37 @@ function generatorContainerSearchDataPlay(){
             });
         })
     } else {
-        // const itemsPlaylistSearch = document.querySelectorAll('.container-items .item-playlist-search');
+        const itemsPlaylistSearchMobile = document.querySelectorAll('.container-search-mobile .item-search-mobile');
 
-        // itemsPlaylistSearch.forEach((element)=> {
-        //     element.addEventListener('click', function(){
-        //         let cannotPlayTheMusic = false;
-        //         if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-        //             cannotPlayTheMusic = true;
-        //         }
+        itemsPlaylistSearchMobile.forEach((element)=> {
+            element.addEventListener('click', function(){
+                let cannotPlayTheMusic = false;
+                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
+                    cannotPlayTheMusic = true;
+                }
 
-        //         indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
-        //         let selectedTheme = $(this).data('theme')
-        //         indexAudioId = musicDataShuffled[indexAudio]._id;
-        //         indexAudioGender = musicDataShuffled[indexAudio].gender;
+                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                let selectedTheme = $(this).data('theme')
+                indexAudioId = musicDataShuffled[indexAudio]._id;
+                indexAudioGender = musicDataShuffled[indexAudio].gender;
 
-        //         if (!cannotPlayTheMusic) {
-        //             allSongValueSetters();
-        //             audioControllerPlayFunctionNoPause();
-        //             setMusicPlayTag();
-        //             manageHistoric();
-        //             refreshFavorite();
-        //             themeChanger(selectedTheme);
+                $('.main-search-mobile').hide(200)
+                toggleDisplayMobile()
+
+                if (!cannotPlayTheMusic) {
+                    allSongValueSetters();
+                    audioControllerPlayFunctionNoPause();
+                    setMusicPlayTag();
+                    manageHistoric();
+                    refreshFavorite();
+                    themeChanger(selectedTheme);
                 
-        //             $('.focus-shadow').hide(200);
-        //             $('.container-search-result').hide(200);
-        //             profileWasClicked = true;
-        //             canKeyboardEvents = true;
-        //             canKeyboardEventsProfile = true;
-        //         }
-        //     });
-        // })
+                    profileWasClicked = true;
+                    canKeyboardEvents = true;
+                    canKeyboardEventsProfile = true;
+                }
+            });
+        })
     }
 }
 
@@ -1395,29 +1409,33 @@ function musicFilteringFunction(){
             $('.song-not-found').show();
         }
     } else {
-        // containerItemsSearch.innerHTML = "";
+        containerItemsSearchMobile.innerHTML = "";
 
-        // $('.song-not-found').hide();
+        $('.song-not-found-mobile').hide();
         
-        // generatorContainerSearchData()
-        // generatorContainerSearchDataPlay()
-        // themeChanger(musicDataShuffled[indexAudio].theme);
+        generatorContainerSearchData()
+        generatorContainerSearchDataPlay()
+        themeChanger(musicDataShuffled[indexAudio].theme);
         
-        // if (containerItemsSearch.innerHTML == ''){
-        //     $('.song-not-found').show();
-        // }
+        if (containerItemsSearchMobile.innerHTML == ''){
+            $('.song-not-found-mobile').show();
+        }
     }
 }
 
 let profileWasClicked = true;
 
-function searchEvents(){ // Adicionar os elementos Mobile aqui
+function searchEvents(){
     searchButton.addEventListener("click", () => {
         $('.search-bar').toggle(400)
         $('.search-bar input').val("")
     })
     $('.search-bar-close').click(() => {
         $('.search-bar input').val("");
+        musicFilteringFunction();
+    })
+    $('.main-search-mobile .search-bar-mobile .search-bar-close-mobile').click(() => {
+        $('.main-search-mobile .search-bar-mobile input').val("");
         musicFilteringFunction();
     })
     $('.search-bar input').click(function() {
@@ -1447,12 +1465,23 @@ function searchEvents(){ // Adicionar os elementos Mobile aqui
     searchBarInput.oninput = () => {
         musicFilteringFunction();
     };
+    searchBarInputMobile.oninput = () => {
+        musicFilteringFunction();
+    };
 
     $('.header-mobile .user-settings').click(()=>{
         $('.main-user-settings-mobile').toggle(200)
     })
     $('.main-user-settings-mobile .display-back').click(()=>{
         $('.main-user-settings-mobile').toggle(200)
+    })
+    $('.header-mobile .search-icon-mobile').click(()=>{
+        $('.main-search-mobile').toggle(200)
+        $('.main-controls-mobile').addClass("fixed")
+    })
+    $('.main-search-mobile .display-back').click(()=>{
+        $('.main-search-mobile').toggle(200)
+        $('.main-controls-mobile').removeClass("fixed")
     })
 }
 
@@ -1695,6 +1724,8 @@ function toggleDisplayMobile() {
         if (!musicDataShuffled[indexAudio].isVideo) {
             audioControllerPlayFunctionNoPause()
         }
+        $('.main-search-mobile').hide(200)
+        $('.main-controls-mobile').removeClass("fixed")
     } else {
         displayMobile.classList.remove("show");
         displayMobile.classList.add("exit");
@@ -1760,7 +1791,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         containerItemsHistoric.innerHTML = "";
     } else {
         containerPlaylistMobile.innerHTML = "";
-        // containerItemsSearch.innerHTML = "";
+        containerItemsSearchMobile.innerHTML = "";
         containerItemsFavoriteMobile.innerHTML = "";
         containerItemsHistoricMobile.innerHTML = "";
     }
