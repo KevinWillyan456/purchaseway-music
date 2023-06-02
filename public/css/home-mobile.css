@@ -1068,7 +1068,6 @@
     background-color: var(--color-blue-2);
     border-radius: 10px;
 }
-/*  */
 .container-search-mobile .item-search-mobile {
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;

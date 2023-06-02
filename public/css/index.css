@@ -243,6 +243,7 @@ html {
     display: flex;
     align-items: center;
     padding-left: 100px;
+    position: relative;
 }
 .section-listen .box-wrapper {
     display: flex;
@@ -276,6 +277,7 @@ html {
     display: flex;
     align-items: center;
     padding-left: 100px;
+    position: relative;
 }
 .section-very-high-quality .box-wrapper {
     display: flex;
@@ -552,11 +554,89 @@ html {
         font-size: 24px;
         width: 320px;
         left: calc(50% - 320px / 2);
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-banner .title-3 {
         display: none;
     }
     .terms-of-use {
         display: none;
+    }
+    .section-listen .box-wrapper .title-1 {
+        position: absolute;
+
+        width: 320px;
+        bottom: 100px;
+        left: calc(50% - 320px / 2);
+        font-size: 24px;
+        text-align: center;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+    }
+    .section-listen .box-wrapper .title-2 {
+        position: absolute;
+
+        width: 320px;
+        bottom: 40px;
+        left: calc(50% - 320px / 2);
+        font-size: 16px;
+        text-align: center;
+
+        text-shadow: 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1);
+    }
+    .section-listen {
+        background-image: url('https://drive.google.com/uc?export=download&id=1Y-4_UslZPCPTEEVVrXD0-mHYUSkS0rXT');
+    }
+    .section-very-high-quality {
+        background-image: url('https://drive.google.com/uc?export=download&id=1wWApcT8fFsA8zBwzU-hvpfMCzFiHVAuE');
+    }
+    .section-very-high-quality .box-wrapper .title-1 {
+        position: absolute;
+
+        width: 320px;
+        bottom: 100px;
+        left: calc(50% - 320px / 2);
+        font-size: 24px;
+        text-align: center;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+    }
+    .section-very-high-quality .box-wrapper .title-2 {
+        position: absolute;
+        bottom: 40px;
+        width: 320px;
+        left: calc(50% - 320px /2);
+        font-size: 32px;
+        justify-content: center;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+    }
+    .section-very-high-quality .box-wrapper .title-2 ion-icon {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+    .section-reactive .box-wrapper .title-1 {
+        font-size: 32px;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+    }
+    .section-reactive .box-wrapper .title-2 {
+        width: 320px;
+        font-size: 16px;
+        justify-content: center;
+
+        text-shadow: 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1);
+    }
+    .rodape {
+        height: 100px;
+    }
+    .rodape .name-service {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .rodape .copyright {
+        font-size: 12px;
     }
 }

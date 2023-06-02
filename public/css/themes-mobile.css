@@ -49,6 +49,45 @@
 .slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile.rock-version {
     background-color: var(--color-red-2);
 }
+.main-select-playlists-mobile.rock-version {
+    background-color: var(--color-red-1);
+}
+.main-select-playlists-mobile .select-playlist-back-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
+.main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
+.container-select-playlists-mobile .item-select-playlist-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
+.main-user-settings-mobile.rock-version {
+    background-color: var(--color-red-1);
+}
+.main-user-settings-mobile .box-profile-mobile .user-settings-mobile.rock-version {
+    background-color: var(--color-red-2);
+}
+.main-user-settings-mobile .content-profile-mobile.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
+.container-favorite-mobile .item-favorite-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
+.container-historic-mobile .item-historic-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
+.main-search-mobile.rock-version {
+    background-color: var(--color-red-1);
+}
+.main-search-mobile .search-bar-mobile.rock-version input:focus {
+    box-shadow: 0 0 0 5px var(--color-red-2), 0 0 25px var(--color-red-2);
+}
+.main-search-mobile .content-search-mobile.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
+.container-search-mobile .item-search-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
 
 /* Hatsune Miku Version Theme */
 
@@ -79,6 +118,66 @@
 .main-controls-mobile .display-music-duration-mobile.hatsune-miku-version {
     background-image: linear-gradient(to right, var(--color-miku-2) 0%, var(--color-miku-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
 }
+.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile.hatsune-miku-version {
+    text-shadow: 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1);
+}
+.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile.hatsune-miku-version {
+    text-shadow: 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1), 0 0 2px var(--color-miku-1);
+}
+.main-display-mobile .current-music-favorite-mobile.hatsune-miku-version {
+    color: var(--color-miku-2);
+}
+.main-display-mobile .repeat-icon-mobile.hatsune-miku-version ion-icon.active {
+    color: var(--color-miku-2);
+}
+.main-display-mobile .shuffle-icon-mobile.hatsune-miku-version ion-icon.active {
+    color: var(--color-miku-2);
+}
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile.hatsune-miku-version input[type=range] {
+    background-image: linear-gradient(to right, var(--color-miku-2) 0%, var(--color-miku-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-2);
+}
+.main-select-playlists-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.main-select-playlists-mobile .select-playlist-back-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
+}
+.container-select-playlists-mobile .item-select-playlist-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.main-user-settings-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.main-user-settings-mobile .box-profile-mobile .user-settings-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-2);
+}
+.main-user-settings-mobile .content-profile-mobile.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
+}
+.container-favorite-mobile .item-favorite-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.container-historic-mobile .item-historic-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.main-search-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.main-search-mobile .search-bar-mobile.hatsune-miku-version input:focus {
+    box-shadow: 0 0 0 5px var(--color-miku-2), 0 0 25px var(--color-miku-2);
+}
+.main-search-mobile .content-search-mobile.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
+}
+.container-search-mobile .item-search-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
 
 /* AMV Brasileiro Version Theme */
 
@@ -108,4 +207,65 @@
 }
 .main-controls-mobile .display-music-duration-mobile.amv-brasileiro-version {
     background-image: linear-gradient(to right, var(--color-amv-br-2) 0%, var(--color-amv-br-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
+}
+/*  */
+.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile.amv-brasileiro-version {
+    text-shadow: 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1);
+}
+.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile.amv-brasileiro-version {
+    text-shadow: 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1), 0 0 2px var(--color-amv-br-1);
+}
+.main-display-mobile .current-music-favorite-mobile.amv-brasileiro-version {
+    color: var(--color-amv-br-2);
+}
+.main-display-mobile .repeat-icon-mobile.amv-brasileiro-version ion-icon.active {
+    color: var(--color-amv-br-2);
+}
+.main-display-mobile .shuffle-icon-mobile.amv-brasileiro-version ion-icon.active {
+    color: var(--color-amv-br-2);
+}
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile.amv-brasileiro-version input[type=range] {
+    background-image: linear-gradient(to right, var(--color-amv-br-2) 0%, var(--color-amv-br-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+}
+.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-2);
+}
+.main-select-playlists-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.main-select-playlists-mobile .select-playlist-back-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.container-select-playlists-mobile .item-select-playlist-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.main-user-settings-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.main-user-settings-mobile .box-profile-mobile .user-settings-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-2);
+}
+.main-user-settings-mobile .content-profile-mobile.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.container-favorite-mobile .item-favorite-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.container-historic-mobile .item-historic-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.main-search-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.main-search-mobile .search-bar-mobile.amv-brasileiro-version input:focus {
+    box-shadow: 0 0 0 5px var(--color-amv-br-2), 0 0 25px var(--color-amv-br-2);
+}
+.main-search-mobile .content-search-mobile.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
+}
+.container-search-mobile .item-search-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
 }

@@ -189,3 +189,9 @@ form .info a {
         display: none;
     }
 }
+@media (max-width: 1359px)
+{
+    .warning {
+        font-size: 20px;
+    }
+}
