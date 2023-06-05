@@ -744,14 +744,12 @@ iframe {
 /* Main Controls */
 
 .main-controls {
-    /* Em testes */
     width: 100%;
     display: flex;
     grid-column-start: 1;
     grid-column-end: 3;
 
     background-image: linear-gradient(var(--color-blue-4), #000000);
-    /* background-image: linear-gradient(#732952, #000000); */
     height: 120px;
     max-height: 120px;
     overflow: hidden;
@@ -1094,7 +1092,7 @@ iframe {
 .main-select-playlists .container-select-playlists::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
-/*  */
+
 .container-select-playlists .item-select-playlist {
     width: 460px;
     background-color: var(--color-blue-3);
@@ -1151,8 +1149,6 @@ iframe {
     margin-top: 20px;
     font-size: 14px;
 }
-
-/* Media Queries */
 
 @media (max-width: 1900px)
 {

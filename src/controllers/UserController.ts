@@ -68,13 +68,13 @@ async function loginUser(req: Request, res: Response) {
         if (!user) {
             return res
                 .status(400)
-                .json({ error: 'wrong name or password - Nome' })
+                .json({ error: 'wrong name or password' })
         }
 
         if (!(await bcrypt.compare(password, user?.password))) {
             return res
                 .status(400)
-                .json({ error: 'wrong name or password - Senha' })
+                .json({ error: 'wrong name or password' })
         }
 
         if (hasConnect) {
@@ -224,7 +224,7 @@ async function updateUserFavoriteSongs(
             (music) => music.musicId == musicId
         )
 
-        const maxSizeFavorite = 2
+        const maxSizeFavorite = 20
 
         if (musicExists) {
             await User.updateOne(filter, updateDoc2)

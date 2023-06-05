@@ -2,7 +2,6 @@ body::-webkit-scrollbar {
     width: 10px;
 }
 
-
 body::-webkit-scrollbar-track {
     background: var(--color-black);
 }
@@ -305,8 +304,6 @@ html {
     height: 150px;
     margin-right: 10px;
 }
-
-/*  */
 
 .section-reactive {
     width: 100%;

@@ -6,6 +6,8 @@ let indexAudioGender = "";
 let screenWidth = 0;
 let screenHeight = 0;
 
+let initialDevice = "";
+
 const audioControllerPrev = document.querySelector('#audio-prev');
 const audioControllerPlay = document.querySelector('#audio-play');
 const audioControllerNext = document.querySelector('#audio-next');
@@ -194,10 +196,12 @@ function inicia(){
     indexAudioId = musicDataShuffled[indexAudio]._id;
     indexAudioGender = musicDataShuffled[indexAudio].gender;
     $(".title-playlist").html(userData.lastAccessedPlaylistName);
+    $(".title-playlist-mobile").html(userData.lastAccessedPlaylistName);
     setMusicPlayTag();
     refreshFavorite();
     manageHistoric();
     audioControllerPlayAudioAndVideo();
+    initialDeviceDefinition();
 }
 
 function audioControllerPlayFunction(){
@@ -1215,7 +1219,7 @@ function durationSliderEventGenerator(){
             audioGlobal.currentTime = ((sliderMusicDurationMobile.value) / 100) * audioGlobal.duration;
             audioGlobal.play();
             audioControllerPlayToggle = false;
-            audioControllerPlay.name = 'pause-circle';
+            audioControllerPlayMobile.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
             canMoveTheSliderDuration = true
         })
@@ -1223,7 +1227,7 @@ function durationSliderEventGenerator(){
             audioGlobal.currentTime = ((sliderMusicDurationMobile.value) / 100) * audioGlobal.duration;
             audioGlobal.play();
             audioControllerPlayToggle = false;
-            audioControllerPlay.name = 'pause-circle';
+            audioControllerPlayMobile.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
             canMoveTheSliderDuration = true
         })
@@ -1328,12 +1332,9 @@ function repeatToggle(){
     if(repeatToggleControl){
         audioGlobal.loop = true;
         repeatToggleControl = false
-        
-        if (screenWidth >= 1360) {
-            repeatIcon.classList.add('active');
-        } else {
-            repeatIconMobile.classList.add('active');
-        }
+
+        repeatIcon.classList.add('active');
+        repeatIconMobile.classList.add('active');
 
         if(!shuffleToggleControl){
             shuffleToggle();
@@ -1343,11 +1344,8 @@ function repeatToggle(){
         audioGlobal.loop = false;
         repeatToggleControl = true
 
-        if (screenWidth >= 1360) {
-            repeatIcon.classList.remove('active');
-        } else {
-            repeatIconMobile.classList.remove('active');
-        }
+        repeatIcon.classList.remove('active');
+        repeatIconMobile.classList.remove('active');
     }
 }
 
@@ -1369,11 +1367,9 @@ let shuffleToggleControl = true;
 
 function shuffleToggle(){
     if(shuffleToggleControl){
-        if (screenWidth >= 1360) {
-            shuffleIcon.classList.add('active');
-        } else {
-            shuffleIconMobile.classList.add('active');
-        }
+        shuffleIcon.classList.add('active');
+        shuffleIconMobile.classList.add('active');
+        
         shuffleToggleControl = false
 
         shuffleArray(musicDataShuffled)
@@ -1383,11 +1379,9 @@ function shuffleToggle(){
         }
     }
     else {
-        if (screenWidth >= 1360) {
-            shuffleIcon.classList.remove('active');
-        } else {
-            shuffleIconMobile.classList.remove('active');
-        }
+        shuffleIcon.classList.remove('active');
+        shuffleIconMobile.classList.remove('active');
+
         shuffleToggleControl = true
         musicDataShuffled = [...musicData];
         indexAudio = 1
@@ -1515,6 +1509,7 @@ function allFunctionResizing() {
     }
 
     setScreenWidthAndHeight();
+    deviceDefinition();
 }
 
 function videoResizingFunction() {
@@ -1751,6 +1746,90 @@ function audioControllerPlayAudioAndVideo() {
             document.querySelector(".main-display-mobile").classList.remove("video-mode")
         }
     }
+}
+
+function initialDeviceDefinition() {
+    if (screenWidth >= 1360) {
+        initialDevice = "Desktop"
+    } else {
+        initialDevice = "Mobile"
+    }
+}
+
+function deviceDefinition() {
+    let previousDevice, nextDevice;
+
+    previousDevice = initialDevice;
+    
+    if (screenWidth >= 1360) {
+        initialDevice = "Desktop"
+    } else {
+        initialDevice = "Mobile"
+    }
+
+    nextDevice = initialDevice;
+
+    if (previousDevice != nextDevice) {
+        changeMobileOrDesktop();
+    }
+}
+
+function changeMobileOrDesktop() {
+    if (screenWidth >= 1360) {
+        containerPlaylist.innerHTML = "";
+        containerItemsSearch.innerHTML = "";
+        containerItemsFavorite.innerHTML = "";
+        containerItemsHistoric.innerHTML = "";
+        containerFrameVideoMobile.innerHTML = "";
+        containerPlaylistSelect.innerHTML = "";
+        $(".title-playlist").html(userData.lastAccessedPlaylistName);
+        $('.search-bar input').val("");
+        musicFilteringFunction();
+        audioGlobal.volume = 0.6
+        sliderMusicVolume.value = 60;
+    } else {
+        containerPlaylistMobile.innerHTML = "";
+        containerItemsSearchMobile.innerHTML = "";
+        containerItemsFavoriteMobile.innerHTML = "";
+        containerItemsHistoricMobile.innerHTML = "";
+        containerFrameVideo.innerHTML = "";
+        containerPlaylistSelectMobile.innerHTML = "";
+        $(".title-playlist-mobile").html(userData.lastAccessedPlaylistName);
+        $('.main-search-mobile .search-bar-mobile input').val("");
+        musicFilteringFunction();
+    }
+
+    audioGlobal.pause()
+
+    if (screenWidth >= 1360) {
+        audioControllerPlay.name = 'play-circle';
+        musicAnimationStatus.classList.remove('run');
+    } else {
+        audioControllerPlayMobile.name = 'play-circle';
+    }
+
+    audioControllerPlayToggle = true;
+
+    allSongValueSetters()
+    generatorContainerPlaylistSelectData();
+    generatorContainerPlaylistSelectDataPlay();
+    generatorContainerPlaylistData();
+    generatorContainerPlaylistDataPlay();
+    generatorContainerSearchData()
+    generatorContainerSearchDataPlay()
+    generatorContainerFavoriteData()
+    generatorContainerFavoriteDataPlay()
+    generatorContainerHistoricData()
+    generatorContainerHistoricDataPlay()
+
+    themeChanger(musicDataShuffled[indexAudio].theme);
+    indexAudioId = musicDataShuffled[indexAudio]._id;
+    indexAudioGender = musicDataShuffled[indexAudio].gender;
+    setMusicPlayTag();
+    refreshFavorite();
+    manageHistoric();
+    audioControllerPlayAudioAndVideo();
+    setUserSettings()
 }
 
 async function selectNewPlaylist(playlistSelect, playlistName) {
