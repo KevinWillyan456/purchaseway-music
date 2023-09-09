@@ -56,6 +56,9 @@ const musicFavoriteIcon = document.querySelector(".current-music-favorite ion-ic
 const clearHistoricIcon = document.querySelector(".trash-icon")
 
 const morePlaylist = document.querySelector(".more-playlist");
+const selectPlaylist = document.querySelector('#selectPlaylist');
+const selectFavorites = document.querySelector('#selectFavorites');
+const backMenu = document.querySelector('#backMenu');
 const backPlaylist = document.querySelector(".select-playlist-back");
 
 const containerPlaylistSelect = document.querySelector('.container-select-playlists');
@@ -161,7 +164,16 @@ clearHistoricIcon.addEventListener("click", manageHistoricClear);
 clearHistoricIconMobile.addEventListener("click", manageHistoricClear);
 musicFavoriteIcon.addEventListener("click", manageFavorite);
 musicFavoriteIconMobile.addEventListener("click", manageFavorite);
-morePlaylist.addEventListener("click", toggleMorePlaylists);
+selectPlaylist.addEventListener("click", () => {
+    toggleMenu()
+    toggleMorePlaylists()
+});
+selectFavorites.addEventListener('click' , () => {
+    toggleMenu()
+    selectNewPlaylist("Favorite", "Músicas Favoritas")
+})
+morePlaylist.addEventListener("click", toggleMenu); // &&
+backMenu.addEventListener("click", toggleMenu); // &&
 backPlaylist.addEventListener("click", toggleMorePlaylists);
 backDisplayMobile.addEventListener("click", toggleDisplayMobile)
 morePlaylistMobile.addEventListener("click", toggleMorePlaylists);
@@ -591,6 +603,7 @@ function generatorContainerPlaylistSelectDataPlay(){
                 const playlistName = $(this).data('title')
                 toggleMorePlaylists();
                 selectNewPlaylist(playlistValue, playlistName);
+
             });
         })
     } else {
@@ -1702,6 +1715,10 @@ async function refreshFavorite() {
     generatorContainerFavoriteData()
     generatorContainerFavoriteDataPlay()
     themeChanger(musicDataShuffled[indexAudio].theme);
+}
+
+function toggleMenu() {
+    $(".menu-options").toggle(200)
 }
 
 function toggleMorePlaylists() {

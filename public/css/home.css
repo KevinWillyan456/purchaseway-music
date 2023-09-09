@@ -21,6 +21,7 @@ body {
 /* Main PlayList */
 
 .main-playlist {
+    position: relative;
     width: 500px;
     background-color: var(--color-blue-1);
     height: 100%;
@@ -61,10 +62,61 @@ body {
     border: 2px solid var(--color-white-1);
     cursor: pointer;
 }
-
+.main-playlist .menu-options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blue-1);
+    z-index: 100;
+    display: none;
+}
+.main-playlist .menu-options .container-option {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+}
+.main-playlist .menu-options .box-wrapper-info .title-menu-options {
+    font-size: 36px;
+    width: 375px;
+    color: var(--color-white-1);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.main-playlist .menu-options .box-wrapper-info .back-menu-options {
+    color: var(--color-white-1);
+    font-size: 20px;
+    background-color: var(--color-blue-3);
+    width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    cursor: pointer;
+}
+.main-playlist .menu-options .option {
+    width: 332px;
+    height: 80px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background-color: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 20px;
+    font-weight: 400;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
 .container-playlist {
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: calc(100vh - 220px);
     height: calc(100vh - 220px);
 
