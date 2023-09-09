@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "outDir": "build",
+      "outDir": "dist",
       "rootDir": "src",
       /* Visit https://aka.ms/tsconfig to read more about this file */
   

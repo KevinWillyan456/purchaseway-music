@@ -20,7 +20,7 @@ app.use(cookieParser())
 app.use(routes)
 
 app.set("view engine", "ejs")
-app.set ('views', __dirname + '/views')
+app.set ('views', 'src/views')
 
 app.use(express.static('public'));
 

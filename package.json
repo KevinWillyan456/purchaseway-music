@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch src/ --exec ts-node src/index.ts -e ts"
+    "build": "tsc",
+    "dev": "nodemon --watch src/ --exec ts-node src/index.ts -e ts",
+    "start": "nodemon dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +37,7 @@
     "nodemon": "^2.0.21",
     "prettier": "^2.8.5",
     "ts-node": "^10.9.1",
-    "tsc": "^2.0.4"
+    "tsc": "^2.0.4",
+    "typescript": "^5.2.2"
   }
 }
