@@ -408,7 +408,7 @@ iframe {
 .box-search-result {
     width: 100%;
     height: calc(100% - 15px);
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-left: -3px;
     padding: 0 0 0 20px;
 }
@@ -558,7 +558,7 @@ iframe {
     position: relative;
     width: 100%;
     height: calc(100% - 15px);
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-left: -3px;
     padding: 0 0 0 20px;
     color: var(--color-white-1);
@@ -1133,7 +1133,7 @@ iframe {
     align-content: flex-start;
 
     height: 80vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .main-select-playlists .container-select-playlists::-webkit-scrollbar {
     width: 10px;

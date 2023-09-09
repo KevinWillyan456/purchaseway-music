@@ -88,6 +88,15 @@
 .container-search-mobile .item-search-mobile.rock-version {
     background-color: var(--color-red-3);
 }
+.main-playlist-mobile .menu-options-mobile.rock-version {
+    background-color: var(--color-red-1);
+}
+.main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
+.main-playlist-mobile .menu-options-mobile .option-mobile.rock-version {
+    background-color: var(--color-red-3);
+}
 
 /* Hatsune Miku Version Theme */
 
@@ -176,6 +185,15 @@
     background-color: var(--color-miku-2);
 }
 .container-search-mobile .item-search-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.main-playlist-mobile .menu-options-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.main-playlist-mobile .menu-options-mobile .option-mobile.hatsune-miku-version {
     background-color: var(--color-miku-3);
 }
 
@@ -267,5 +285,14 @@
     background-color: var(--color-amv-br-2);
 }
 .container-search-mobile .item-search-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.main-playlist-mobile .menu-options-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.main-playlist-mobile .menu-options-mobile .option-mobile.amv-brasileiro-version {
     background-color: var(--color-amv-br-3);
 }

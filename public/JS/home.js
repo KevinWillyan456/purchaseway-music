@@ -57,8 +57,11 @@ const clearHistoricIcon = document.querySelector(".trash-icon")
 
 const morePlaylist = document.querySelector(".more-playlist");
 const selectPlaylist = document.querySelector('#selectPlaylist');
+const selectPlaylistMobile = document.querySelector('#selectPlaylistMobile');
 const selectFavorites = document.querySelector('#selectFavorites');
+const selectFavoritesMobile = document.querySelector('#selectFavoritesMobile');
 const backMenu = document.querySelector('#backMenu');
+const backMenuMobile = document.querySelector('#backMenuMobile');
 const backPlaylist = document.querySelector(".select-playlist-back");
 
 const containerPlaylistSelect = document.querySelector('.container-select-playlists');
@@ -168,17 +171,29 @@ selectPlaylist.addEventListener("click", () => {
     toggleMenu()
     toggleMorePlaylists()
 });
+selectPlaylistMobile.addEventListener("click", () => {
+    toggleMenu()
+    toggleMorePlaylists()
+});
 selectFavorites.addEventListener('click' , () => {
     toggleMenu()
     selectNewPlaylist("Favorite", "Músicas Favoritas")
 })
-morePlaylist.addEventListener("click", toggleMenu); // &&
-backMenu.addEventListener("click", toggleMenu); // &&
+selectFavoritesMobile.addEventListener('click' , () => {
+    toggleMenu()
+    selectNewPlaylist("Favorite", "Músicas Favoritas")
+})
+morePlaylist.addEventListener("click", toggleMenu);
+backMenu.addEventListener("click", toggleMenu);
+backMenuMobile.addEventListener("click", toggleMenu);
 backPlaylist.addEventListener("click", toggleMorePlaylists);
 backDisplayMobile.addEventListener("click", toggleDisplayMobile)
-morePlaylistMobile.addEventListener("click", toggleMorePlaylists);
+morePlaylistMobile.addEventListener("click", toggleMenu);
 backPlaylistMobile.addEventListener("click", toggleMorePlaylists);
-controlsMobile.addEventListener("click", toggleDisplayMobile)
+controlsMobile.addEventListener("click", () => {
+    toggleDisplayMobile()
+    $(".menu-options-mobile").hide(200)
+})
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1025,7 +1040,7 @@ function generatorContainerHistoricDataPlay(){
 
 function themeChanger(selectedTheme){
     if (screenWidth >= 1360) {
-        let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .container-playlist, .search-bar, .container-settings .user-settings, .main-display .clock-settings, .container-side-1 .current-music-rating, .container-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .container-volume .slider-music-volume, .container-volume .slider-music-volume, .container-playlist .item-playlist, .main-controls, .container-funcions .repeat-icon, .container-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic, .main-playlist .box-wrapper-info .more-playlist, .main-select-playlists, .main-select-playlists .select-playlist-back, .container-select-playlists .item-select-playlist");
+        let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .container-playlist, .search-bar, .container-settings .user-settings, .main-display .clock-settings, .container-side-1 .current-music-rating, .container-side-1 .current-music-favorite, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .container-volume .slider-music-volume, .container-volume .slider-music-volume, .container-playlist .item-playlist, .main-controls, .container-funcions .repeat-icon, .container-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic, .main-playlist .box-wrapper-info .more-playlist, .main-select-playlists, .main-select-playlists .select-playlist-back, .container-select-playlists .item-select-playlist, .main-playlist .menu-options, .main-playlist .menu-options .box-wrapper-info .back-menu-options, .main-playlist .menu-options .option");
         let serviceLogo = document.querySelector('.service-logo img');
 
         initDurationSlider();
@@ -1061,7 +1076,7 @@ function themeChanger(selectedTheme){
             return;
         }
     } else {
-        let allElementsChangeableByTheme = document.querySelectorAll(".super-main-mobile, .header-mobile .user-settings, .main-playlist-mobile, .box-wrapper-info-mobile .more-playlist-mobile, .container-playlist-mobile, .container-playlist-mobile .item-playlist-mobile, .main-controls-mobile, .main-controls-mobile .display-music-duration-mobile, .main-display-mobile .info-current-music-mobile .title-info-current-music-mobile, .main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile, .main-display-mobile .current-music-favorite-mobile, .main-display-mobile .repeat-icon-mobile, .main-display-mobile .shuffle-icon-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile, .main-select-playlists-mobile, .main-select-playlists-mobile .select-playlist-back-mobile, .main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile, .container-select-playlists-mobile .item-select-playlist-mobile, .main-user-settings-mobile, .main-user-settings-mobile .box-profile-mobile .user-settings-mobile, .main-user-settings-mobile .content-profile-mobile, .container-favorite-mobile .item-favorite-mobile, .container-historic-mobile .item-historic-mobile, .main-search-mobile, .main-search-mobile .search-bar-mobile, .main-search-mobile .content-search-mobile, .container-search-mobile .item-search-mobile");
+        let allElementsChangeableByTheme = document.querySelectorAll(".super-main-mobile, .header-mobile .user-settings, .main-playlist-mobile, .box-wrapper-info-mobile .more-playlist-mobile, .container-playlist-mobile, .container-playlist-mobile .item-playlist-mobile, .main-controls-mobile, .main-controls-mobile .display-music-duration-mobile, .main-display-mobile .info-current-music-mobile .title-info-current-music-mobile, .main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile, .main-display-mobile .current-music-favorite-mobile, .main-display-mobile .repeat-icon-mobile, .main-display-mobile .shuffle-icon-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile, .main-select-playlists-mobile, .main-select-playlists-mobile .select-playlist-back-mobile, .main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile, .container-select-playlists-mobile .item-select-playlist-mobile, .main-user-settings-mobile, .main-user-settings-mobile .box-profile-mobile .user-settings-mobile, .main-user-settings-mobile .content-profile-mobile, .container-favorite-mobile .item-favorite-mobile, .container-historic-mobile .item-historic-mobile, .main-search-mobile, .main-search-mobile .search-bar-mobile, .main-search-mobile .content-search-mobile, .container-search-mobile .item-search-mobile, .main-playlist-mobile .menu-options-mobile, .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile, .main-playlist-mobile .menu-options-mobile .option-mobile");
         let serviceLogo = document.querySelector('.header-mobile .service-logo-mobile img');
 
         initDurationSlider();
@@ -1449,6 +1464,7 @@ function searchEvents(){
         $('.container-search-result').show(200)
         $('.focus-shadow').show(200)
         $('.container-user-settings').hide(200)
+        $(".menu-options").hide(200)
         profileWasClicked = true;
         canKeyboardEvents = false;
         canKeyboardEventsProfile = false;
@@ -1478,12 +1494,14 @@ function searchEvents(){
 
     $('.header-mobile .user-settings').click(()=>{
         $('.main-user-settings-mobile').toggle(200)
+        $(".menu-options-mobile").hide(200)
     })
     $('.main-user-settings-mobile .display-back').click(()=>{
         $('.main-user-settings-mobile').toggle(200)
     })
     $('.header-mobile .search-icon-mobile').click(()=>{
         $('.main-search-mobile').toggle(200)
+        $(".menu-options-mobile").hide(200)
         $('.main-controls-mobile').addClass("fixed")
     })
     $('.main-search-mobile .display-back').click(()=>{
@@ -1497,6 +1515,7 @@ function toggleTemplateUser() {
         $('.container-user-settings').show(200)
         $('.focus-shadow').show(200)
         $('.container-search-result').hide(200)
+        $(".menu-options").hide(200)
         profileWasClicked = false;
         canKeyboardEvents = false;
         canKeyboardEventsProfile = true;
@@ -1718,7 +1737,11 @@ async function refreshFavorite() {
 }
 
 function toggleMenu() {
-    $(".menu-options").toggle(200)
+    if (screenWidth >= 1360) {
+        $(".menu-options").toggle(200)
+    } else {
+        $(".menu-options-mobile").toggle(200)
+    }
 }
 
 function toggleMorePlaylists() {
