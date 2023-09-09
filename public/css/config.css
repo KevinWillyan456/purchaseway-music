@@ -1,0 +1,89 @@
+body {
+    background-color: var(--color-blue-1);
+}
+.user-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 185px;
+}
+.user-info .icon-user {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-blue-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-black);
+    cursor: pointer;
+}
+.user-info .icon-user ion-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-white-1);
+}
+.user-info .wrap-text .access {
+    color: var(--color-white-1);
+    font-size: 12px;
+}
+.user-info .wrap-text .name {
+    color: var(--color-white-1);
+    font-size: 16px;
+    max-width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.container-total-overflow {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container-total {
+    display: flex;
+    gap: 20px;
+}
+.container-total .content-total {
+    position: relative;
+    width: 360px;
+    height: 160px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background-color: var(--color-blue-3);
+}
+.container-total .content-total .title {
+    color: var(----color-white-1, #F5FAFC);
+    font-size: 20px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.container-total .content-total .icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-blue-2);
+    display: grid;
+    place-items: center;
+    color: var(--color-white-1);
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+.container-total .content-total .icon ion-icon {
+    font-size: 40px;
+    transform: translateX(-2px);
+}
+.container-total .content-total .total {
+    color: var(--color-blue-2);
+    font-size: 48px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

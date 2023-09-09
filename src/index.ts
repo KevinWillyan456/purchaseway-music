@@ -39,6 +39,9 @@ app.get("/signup", (req, res) => {
 app.get("/login", verifyTokenExists, (req, res) => {
     res.render('login');
 });
+app.get("/config", (req, res) => {
+    res.render('config');
+});
 
 app.listen(port, () =>
   console.log(`Servidor rodando na porta: ${port} - http://localhost:${port}`)
