@@ -176,6 +176,7 @@ body::-webkit-scrollbar-thumb {
     font-size: 16px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .content-playlist .playlist-item .part {
     display: flex;
@@ -202,6 +203,18 @@ body::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-1);
     display: flex;
     justify-content: center;
+    overflow: auto;
+}
+.container-playlist-to-manage-overflow::-webkit-scrollbar {
+    width: 10px;
+}
+
+.container-playlist-to-manage-overflow::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+
+.container-playlist-to-manage-overflow::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
 }
 .container-playlist-to-manage-overflow .playlist-to-manage-back {
     position: absolute;
@@ -286,4 +299,184 @@ body::-webkit-scrollbar-thumb {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 400px;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .interactions {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+}
+.container-playlist-to-manage .interactions .btn-adicionar {
+    width: 280px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.container-playlist-to-manage .interactions .btn-adicionar ion-icon {
+    font-size: 30px;
+}
+.container-playlist-to-manage .interactions .btn-editar {
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background-color: var(--color-blue-4);
+    color: var(--color-white-1);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.container-playlist-to-manage .interactions .btn-editar ion-icon {
+    font-size: 30px;
+}
+.container-playlist-to-manage .interactions .btn-excluir {
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background-color: var(--color-red-2);
+    color: var(--color-white-1);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.container-playlist-to-manage .interactions .btn-excluir ion-icon {
+    font-size: 30px;
+}
+
+.container-playlist-to-manage-overflow .container-playlist-to-manage .title-all-songs {
+    color: var(--color-white-1);
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item {
+    width: 100%;
+    height: 80px;
+    background: var(--color-blue-3);
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 30px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-cover {
+    width: 108px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-cover img {
+    width: 100%;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-title {
+    padding-left: 5px;
+    margin-right: 20px;
+    color: var(--color-white-1);
+    font-size: 16px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .blank {
+    width: 100%;
+    height: 60px;
+    background-color: transparent;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .focus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000000cc;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+.focus .song .main-song {
+    width: 1000px;
+    height: 265px;
+    background: var(--color-blue-3);
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+.focus .song .main-song .cover {
+    width: 400px;
+    height: 225px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+.focus .song .main-song .cover img {
+    width: 100%;
+}
+.focus .song .main-song .content {
+    height: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.focus .song .main-song .content .title {
+    color: var(--color-white-1);
+    font-size: 24px;
+    margin-bottom: 20px;
+    overflow: auto;
+    padding-right: 10px;
+}
+.focus .song .main-song .content .title::-webkit-scrollbar {
+    width: 10px;
+    padding: 60px;
+    position: absolute;
+}
+.focus .song .main-song .content .title::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+.focus .song .main-song .content .title::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
+}
+.focus .song .main-song .content .details {
+    color: var(--color-white-1);
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.focus .song .main-song .content .details .gender {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 500px;
 }
