@@ -13,7 +13,7 @@ body::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
 .user-info {
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 20px;
     display: flex;
@@ -22,7 +22,16 @@ body::-webkit-scrollbar-thumb {
     width: 185px;
     z-index: 100;
 }
-.user-info .icon-user {
+.user-info-m {
+    margin-top: 20px;
+    margin-left: 20px;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    width: 185px;
+    z-index: 100;
+}
+.user-info .icon-user, .user-info-m .icon-user {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -33,16 +42,16 @@ body::-webkit-scrollbar-thumb {
     border: 2px solid var(--color-black);
     cursor: pointer;
 }
-.user-info .icon-user ion-icon {
+.user-info .icon-user ion-icon, .user-info-m .icon-user ion-icon {
     width: 40px;
     height: 40px;
     color: var(--color-white-1);
 }
-.user-info .wrap-text .access {
+.user-info .wrap-text .access, .user-info-m .wrap-text .access {
     color: var(--color-white-1);
     font-size: 12px;
 }
-.user-info .wrap-text .name {
+.user-info .wrap-text .name, .user-info-m .wrap-text .name {
     color: var(--color-white-1);
     font-size: 16px;
     max-width: 120px;
@@ -59,6 +68,8 @@ body::-webkit-scrollbar-thumb {
 .container-total {
     display: flex;
     gap: 20px;
+    width: 100%;
+    justify-content: center;
 }
 .container-total .content-total {
     position: relative;
@@ -180,12 +191,18 @@ body::-webkit-scrollbar-thumb {
 }
 .content-playlist .playlist-item .part {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 .content-playlist .playlist-item .part .item-total-de-musicas-text {
     white-space: nowrap;
     color: var(--color-white-1);
     font-size: 16px;
+}
+.content-playlist .playlist-item .part .item-total-de-musicas-text-m {
+    display: none;
+    color: var(--color-white-1);
+    font-size: 14px;
 }
 .content-playlist .playlist-item .part .item-total-de-musicas {
     color: var(--color-blue-2);
@@ -201,7 +218,7 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     height: 100vh;
     background-color: var(--color-blue-1);
-    display: flex;
+    display: grid;
     justify-content: center;
     overflow: auto;
 }
@@ -239,6 +256,7 @@ body::-webkit-scrollbar-thumb {
 }
 .container-playlist-to-manage-overflow .container-playlist-to-manage .main-playlist {
     width: 100%;
+    height: 265px;
     max-height: 265px;
     background: var(--color-blue-3);
     display: grid;
@@ -322,6 +340,23 @@ body::-webkit-scrollbar-thumb {
 }
 .container-playlist-to-manage .interactions .btn-adicionar ion-icon {
     font-size: 30px;
+}
+.container-playlist-to-manage .interactions .btn-adicionar-m {
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 14px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+    cursor: pointer;
+}
+.container-playlist-to-manage .interactions .btn-adicionar-m ion-icon {
+    font-size: 20px;
 }
 .container-playlist-to-manage .interactions .btn-editar {
     width: 200px;
@@ -415,7 +450,7 @@ body::-webkit-scrollbar-thumb {
     background: #000000cc;
     width: 100%;
     height: 100vh;
-    display: grid;
+    display: none;
     place-items: center;
 }
 .focus .song .main-song {
@@ -816,7 +851,6 @@ body::-webkit-scrollbar-thumb {
     animation: animation-btn 1s infinite linear;
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
-/*  */
 .container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-delete-overflow {
     position: fixed;
     top: 0;
@@ -911,4 +945,179 @@ body::-webkit-scrollbar-thumb {
 }
 #formAddPlaylist, #formEditPlaylist, #formDeletePlaylist {
     display: none;
+}
+
+@media (max-width: 1359px) {
+    .user-info {
+        left: 20px;
+        z-index: 0;
+    }
+    .user-info-m {
+        display: flex;
+    }
+    .container-total-overflow {
+        margin-top: 100px;
+    }
+    .container-total {
+        margin: 0 20px;
+    }
+    .container-total .content-total {
+        width: 100%;
+        height: 100px;
+    }
+    .container-total .content-total .title {
+        font-size: 16px;
+        top: 10px;
+        left: 10px;
+        text-align: center;
+        width: calc(100%);
+        transform: translateX(-10px);
+    }
+    .container-total .content-total .total {
+        font-size: 32px;
+        bottom: 10px;
+        right: 10px;
+    }
+    .container-total .content-total .icon {
+        width: 40px;
+        height: 40px;
+        bottom: 10px;
+        left: 10px;
+    }
+    .container-total .content-total .icon ion-icon {
+        font-size: 26px;
+        transform: translateX(-1px);
+    }
+    .container-playlist-overflow .container-playlist .header-playlist .title {
+        font-size: 20px;
+    }
+    .container-playlist-overflow .container-playlist .header-playlist .btn-adicionar {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+        gap: 0px;
+    }
+    .container-playlist-overflow .container-playlist .header-playlist .btn-adicionar ion-icon {
+        font-size: 21px;
+    }
+    .content-playlist .playlist-item {
+        height: 60px;
+        grid-template-columns: 70px 1fr 44px;
+    }
+    .content-playlist .playlist-item .item-cover {
+        width: 70px;
+        height: 38.889px;
+    }
+    .content-playlist .playlist-item .item-title {
+        font-size: 14px;
+    }
+    .content-playlist .playlist-item .part {
+        gap: 5px;
+        align-items: center;
+    }
+    .content-playlist .playlist-item .part .item-total-de-musicas-text {
+        display: none;
+    }
+    .content-playlist .playlist-item .part .item-total-de-musicas-text-m {
+        display: block;
+    }
+    .content-playlist .playlist-item .part .item-total-de-musicas {
+        font-size: 14px;
+    }
+    .container-playlist-to-manage-overflow {
+        display: block;
+    }
+    .container-playlist-to-manage-overflow .playlist-to-manage-back {
+        top: 100px;
+        left: 20px;
+        width: 65px;
+        height: 30px;
+        font-size: 16px;
+    }
+    .container-playlist-to-manage-overflow .container-playlist-to-manage {
+        margin-top: 60px;
+    }
+    .container-playlist-to-manage .interactions .btn-adicionar {
+        display: none;
+    }
+    .container-playlist-to-manage .interactions .btn-adicionar-m {
+        display: flex;
+        position: absolute;
+        top: 100px;
+        right: 170px;
+    }
+    .container-playlist-to-manage .interactions .btn-editar {
+        position: absolute;
+        top: 100px;
+        right: 95px;
+        width: 70px;
+        height: 30px;
+        font-size: 14px;
+        gap: 1px;
+    }
+    .container-playlist-to-manage .interactions .btn-editar ion-icon {
+        font-size: 15px;
+    }
+    .container-playlist-to-manage .interactions .btn-excluir {
+        position: absolute;
+        top: 100px;
+        right: 20px;
+        width: 70px;
+        height: 30px;
+        font-size: 14px;
+        gap: 0px;
+    }
+    .container-playlist-to-manage .interactions .btn-excluir ion-icon {
+        font-size: 16px;
+    }
+    .container-playlist-to-manage-overflow .container-playlist-to-manage .main-playlist {
+        height: 432px;
+        max-height: 432px;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        gap: 10px;
+    }
+    .container-playlist-to-manage .main-playlist .cover {
+        width: 100%;
+        height: 180px;
+    }
+    .container-playlist-to-manage .main-playlist .content .title {
+        font-size: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+    }
+    .container-playlist-to-manage .main-playlist .content .description {
+        height: 106px;
+        padding-left: 30px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+        transform: translateX(-10px);
+    }
+    .container-playlist-to-manage .main-playlist .content .details {
+        flex-direction: column;
+        gap: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+    .container-playlist-to-manage-overflow .container-playlist-to-manage .title-all-songs {
+        font-size: 20px;
+    }
+    .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item {
+        height: 60px;
+        grid-template-columns: 70px 1fr;
+    }
+    .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-cover {
+        width: 70px;
+        height: 38.889px;
+    }
+    .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-title {
+        font-size: 14px;
+    }
+    .content-playlist .playlist-item .part {
+        gap: 5px;
+        align-items: center;
+    }
 }
