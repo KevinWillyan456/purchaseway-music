@@ -164,11 +164,56 @@
                     <button class="btn-add" type="submit">Salvar</button>
                 </form>
             </div>
-            <div class="form-delete-overflow" id="formDeleteSong">
-                <div class="form-delete">
+            <div class="form-song-delete-overflow" id="formDeleteSong">
+                <div class="form-song-delete">
                     <div class="title">Tem certeza que deseja excluir esta Música?</div>
                     <div class="song-delete-name">Minha Música</div>
                     <div class="song-delete-warning">Esta ação é irreversível</div>
+                    <div class="interactions-delete">
+                        <div class="cancel">Cancelar</div>
+                        <div class="delete">Excluir</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-playlist-overflow" id="formAddPlaylist">
+                <form class="form-playlist">
+                    <div class="title">Adicionar uma nova Playlist</div>
+                    <div class="fields">
+                        <input class="field" type="text" placeholder="Nome">
+                        <input class="field" type="text" placeholder="Gênero">
+                        <input class="field" type="text" placeholder="Thumbnail">
+                    </div>
+                    <div class="preview-thumbnail">
+                        <div class="preview-text">Preview</div>
+                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
+                    </div>
+                    <textarea class="field-area" placeholder="Descrição" maxlength="1500"></textarea>
+                    <button class="btn-add" type="submit">Adicionar</button>
+                </form>
+            </div>
+            <div class="form-playlist-overflow" id="formEditPlaylist">
+                <form class="form-playlist">
+                    <div class="title">Editar Playlist</div>
+                    <div class="fields">
+                        <input class="field" type="text" placeholder="Nome">
+                        <input class="field" type="text" placeholder="Gênero">
+                        <input class="field" type="text" placeholder="Thumbnail">
+                    </div>
+                    <div class="preview-thumbnail">
+                        <div class="preview-text">Preview</div>
+                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
+                    </div>
+                    <textarea class="field-area" placeholder="Descrição" maxlength="1500"></textarea>
+                    <button class="btn-add" type="submit">Salvar</button>
+                </form>
+            </div>
+            <div class="form-playlist-delete-overflow" id="formDeletePlaylist">
+                <div class="form-playlist-delete">
+                    <div class="title">Tem certeza que deseja excluir esta Playlist?</div>
+                    <div class="playlist-delete-name">Minha Playlist</div>
+                    <input class="field" type="text" placeholder="Digite o nome da playlist para confirmar...">
+                    <div class="playlist-delete-warning">Esta ação é irreversível</div>
+                    <div class="playlist-delete-warning">Esta ação apagará todas as músicas nessa playlist</div>
                     <div class="interactions-delete">
                         <div class="cancel">Cancelar</div>
                         <div class="delete">Excluir</div>

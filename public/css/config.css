@@ -542,7 +542,44 @@ body::-webkit-scrollbar-thumb {
     font-size: 15px;
     outline: none;
 }
-
+.form-playlist-overflow .form-playlist .field-area {
+    transition: 200ms;
+    min-width: 400px;
+    max-width: 400px;
+    width: 100%;
+    min-height: 120px;
+    max-height: 120px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: var(--color-white-1);
+    color: var(--color-blue-3);
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 20px;
+}
+.form-playlist-overflow .form-playlist .field-area:focus {
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+.form-playlist-overflow .form-playlist .field-area::placeholder {
+    color: var(--color-blue-3);
+    font-size: 15px;
+}
+.form-playlist-overflow .form-playlist .field-area::-webkit-scrollbar {
+    width: 10px;
+    padding: 60px;
+    position: absolute;
+}
+.form-playlist-overflow .form-playlist .field-area::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+.form-playlist-overflow .form-playlist .field-area::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
+}
 .form-song-overflow .form-song .fields .field:focus {
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
@@ -598,7 +635,7 @@ body::-webkit-scrollbar-thumb {
         filter: hue-rotate(360deg);
     }
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-delete-overflow {
+.container-playlist-to-manage-overflow .container-playlist-to-manage .form-song-delete-overflow {
     position: fixed;
     top: 0;
     left: 0;
@@ -608,7 +645,7 @@ body::-webkit-scrollbar-thumb {
     display: grid;
     place-items: center;
 }
-.form-delete-overflow .form-delete {
+.form-song-delete-overflow .form-song-delete {
     width: 720px;
     height: 342px;
     border-radius: 10px;
@@ -618,13 +655,13 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column;
     align-items: center;
 }
-.form-delete-overflow .form-delete .title {
+.form-song-delete-overflow .form-song-delete .title {
     color: var(--color-white-1);
     font-size: 24px;
     margin-top: 80px;
     margin-bottom: 60px;
 }
-.form-delete-overflow .form-delete .song-delete-name {
+.form-song-delete-overflow .form-song-delete .song-delete-name {
     color: var(--color-white-1);
     font-size: 20px;
     margin-bottom: 20px;
@@ -633,16 +670,16 @@ body::-webkit-scrollbar-thumb {
     text-overflow: ellipsis;
     max-width: 640px;
 }
-.form-delete-overflow .form-delete .song-delete-warning {
+.form-song-delete-overflow .form-song-delete .song-delete-warning {
     color: var(--color-red-2);
     font-size: 16px;
     margin-bottom: 20px;
 }
-.form-delete-overflow .form-delete .interactions-delete {
+.form-song-delete-overflow .form-song-delete .interactions-delete {
     display: flex;
     gap: 20px;
 }
-.form-delete-overflow .form-delete .interactions-delete .cancel {
+.form-song-delete-overflow .form-song-delete .interactions-delete .cancel {
     width: 250px;
     height: 60px;
     border-radius: 10px;
@@ -654,7 +691,7 @@ body::-webkit-scrollbar-thumb {
     place-items: center;
     cursor: pointer;
 }
-.form-delete-overflow .form-delete .interactions-delete .delete {
+.form-song-delete-overflow .form-song-delete .interactions-delete .delete {
     width: 250px;
     height: 60px;
     border-radius: 10px;
@@ -667,5 +704,211 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer;
 }
 #formAddSong, #formEditSong, #formDeleteSong {
+    display: none;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-overflow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000000cc;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    overflow: auto;
+    padding: 20px 0;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-overflow::-webkit-scrollbar {
+    width: 10px;
+    padding: 60px;
+    position: absolute;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-overflow::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-overflow::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+}
+.form-playlist-overflow .form-playlist {
+    width: 720px;
+    height: 717px;
+    border-radius: 10px;
+    border: 3px solid var(--color-white-1);
+    background: var(--color-blue-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-playlist-overflow .form-playlist .title {
+    color: var(--color-white-1);
+    font-size: 24px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+.form-playlist-overflow .form-playlist .fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.form-playlist-overflow .form-playlist .fields .field {
+    transition: 200ms;
+    max-width: 400px;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: var(--color-white-1);
+    color: var(--color-blue-3);
+    font-size: 15px;
+    outline: none;
+}
+
+.form-playlist-overflow .form-playlist .fields .field:focus {
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+.form-playlist-overflow .form-playlist .fields .field::placeholder {
+    color: var(--color-blue-3);
+    font-size: 15px;
+}
+.form-playlist-overflow .form-playlist .preview-thumbnail {
+    position: relative;
+    width: 248px;
+    height: 138px;
+    pointer-events: none;
+    margin-bottom: 20px;
+}
+.form-playlist-overflow .form-playlist .preview-thumbnail .preview-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: #00000099;
+    color: var(--color-white-1);
+    font-size: 15px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+.form-playlist-overflow .form-playlist .preview-thumbnail img {
+    width: 100%;
+}
+.form-playlist-overflow .form-playlist .btn-add {
+    transition: 200ms;
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    background: var(--color-blue-4);
+    display: grid;
+    place-items: center;
+    color: var(--color-white-1);
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+.form-playlist-overflow .form-playlist .btn-add:hover {
+    animation: animation-btn 1s infinite linear;
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+/*  */
+.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-delete-overflow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000000cc;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+.form-playlist-delete-overflow .form-playlist-delete {
+    width: 720px;
+    height: 416px;
+    border-radius: 10px;
+    border: 3px solid var(--color-white-1);
+    background: var(--color-blue-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-playlist-delete-overflow .form-playlist-delete .title {
+    color: var(--color-white-1);
+    font-size: 24px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+.form-playlist-delete-overflow .form-playlist-delete .playlist-delete-name {
+    color: var(--color-white-1);
+    font-size: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 640px;
+}
+.form-playlist-delete-overflow .form-playlist-delete .field {
+    transition: 200ms;
+    max-width: 400px;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: var(--color-white-1);
+    color: var(--color-blue-3);
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 20px;
+}
+.form-playlist-delete-overflow .form-playlist-delete .field:focus {
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+.form-playlist-delete-overflow .form-playlist-delete .field::placeholder {
+    color: var(--color-blue-3);
+    font-size: 15px;
+}
+.form-playlist-delete-overflow .form-playlist-delete .playlist-delete-warning {
+    color: var(--color-red-2);
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.form-playlist-delete-overflow .form-playlist-delete .interactions-delete {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+}
+.form-playlist-delete-overflow .form-playlist-delete .interactions-delete .cancel {
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+.form-playlist-delete-overflow .form-playlist-delete .interactions-delete .delete {
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-red-2);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+#formAddPlaylist, #formEditPlaylist, #formDeletePlaylist {
     display: none;
 }
