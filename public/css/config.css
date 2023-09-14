@@ -450,7 +450,7 @@ body::-webkit-scrollbar-thumb {
     background: #000000cc;
     width: 100%;
     height: 100vh;
-    display: grid;
+    display: none;
     place-items: center;
 }
 .focus .song .main-song {
@@ -1174,5 +1174,47 @@ body::-webkit-scrollbar-thumb {
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 20px;
+    }
+    .focus .song .main-song .content .details .gender {
+        max-width: 100vw;
+        width: calc(100vw - 80px);
+    }
+    .form-song-overflow .form-song {
+        width: 320px;
+        height: 592px;
+    }
+    .form-song-overflow .form-song .title {
+        font-size: 20px;
+    }
+    .form-song-overflow .form-song .fields .field {
+        width: calc(100% - 40px);
+    }
+    .form-song-delete-overflow .form-song-delete {
+        width: 320px;
+        height: 306px;
+    }
+    .form-song-delete-overflow .form-song-delete .title {
+        margin-top: 60px;
+        margin-bottom: 40px;
+        font-size: 20px;
+        text-align: center;
+        padding: 0 30px;
+    }
+    .form-song-delete-overflow .form-song-delete .song-delete-name {
+        font-size: 16px;
+        max-width: 280px;
+    }
+    .form-song-delete-overflow .form-song-delete .song-delete-warning {
+        margin-bottom: 30px;
+    }
+    .form-song-delete-overflow .form-song-delete .interactions-delete .cancel {
+        width: 120px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .form-song-delete-overflow .form-song-delete .interactions-delete .delete {
+        width: 120px;
+        height: 40px;
+        font-size: 16px;
     }
 }
