@@ -450,7 +450,7 @@ body::-webkit-scrollbar-thumb {
     background: #000000cc;
     width: 100%;
     height: 100vh;
-    display: none;
+    display: grid;
     place-items: center;
 }
 .focus .song .main-song {
@@ -514,6 +514,19 @@ body::-webkit-scrollbar-thumb {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 500px;
+}
+.focus .song .interactions {
+    gap: 5px;
+    margin-top: 10px;
+}
+.focus .song .interactions .btn-editar, .focus .song .interactions .btn-excluir {
+    position: static;
+}
+.focus .song .interactions .btn-editar {
+    gap: 1px;
+}
+.focus .song .interactions .btn-excluir {
+    gap: 0px;
 }
 .container-playlist-to-manage-overflow .container-playlist-to-manage .form-song-overflow {
     position: fixed;
@@ -1119,5 +1132,47 @@ body::-webkit-scrollbar-thumb {
     .content-playlist .playlist-item .part {
         gap: 5px;
         align-items: center;
+    }
+    .focus .song {
+        height: 407px;
+        max-height: 407px;
+        width: calc(100% - 40px);
+    }
+    .focus .song .main-song {
+        width: 100%;
+        height: 360px;
+        max-height: 360px;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        gap: 10px;
+    }
+    .focus .song .main-song .cover {
+        width: 100%;
+        height: 180px;
+    }
+    .focus .song .main-song .content {
+        width: 100%;
+    }
+    .focus .song .main-song .content .title {
+        font-size: 20px;
+        padding-left: 30px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+        transform: translateX(-10px);
+    }
+    .focus .song .main-song .content .description {
+        height: 106px;
+        padding-left: 30px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+        transform: translateX(-10px);
+    }
+    .focus .song .main-song .content .details {
+        flex-direction: column;
+        gap: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
     }
 }
