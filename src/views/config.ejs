@@ -46,7 +46,7 @@
         <div class="container-playlist">
             <div class="header-playlist">
                 <div class="title">Todas as Playlists</div>
-                <div class="btn-adicionar">
+                <div class="btn-adicionar" id="btnAddPlaylist">
                     <ion-icon name="add"></ion-icon>
                     Adicionar
                 </div>
@@ -67,7 +67,24 @@
         </div>
     </div>
 
-    <div class="container-playlist-to-manage-overflow">
+    <div class="form-playlist-overflow hidden" id="formAddPlaylist">
+        <form class="form-playlist">
+            <div class="title">Adicionar uma nova Playlist</div>
+            <div class="fields">
+                <input class="field" type="text" placeholder="Nome">
+                <input class="field" type="text" placeholder="Gênero">
+                <input class="field" type="text" placeholder="Thumbnail">
+            </div>
+            <div class="preview-thumbnail">
+                <div class="preview-text">Preview</div>
+                <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
+            </div>
+            <textarea class="field-area" placeholder="Descrição" maxlength="1500"></textarea>
+            <button class="btn-add" type="submit">Adicionar</button>
+        </form>
+    </div>
+
+    <div class="container-playlist-to-manage-overflow hidden" id="containerPlaylistToManage">
         <div class="user-info-m">
             <div class="icon-user">
                 <ion-icon name="person"></ion-icon>
@@ -77,7 +94,7 @@
                 <div class="name">Joe Dawn</div>
             </div>
         </div>
-        <div class="playlist-to-manage-back">Voltar</div>
+        <div class="playlist-to-manage-back" id="playlistToManageBack">Voltar</div>
         <div class="container-playlist-to-manage">
             <div class="main-playlist">
                 <div class="cover">
@@ -94,19 +111,19 @@
                 </div>
             </div>
             <div class="interactions">
-                <div class="btn-adicionar">
+                <div class="btn-adicionar" id="btnAddSong">
                     <ion-icon name="add"></ion-icon>
                     Adicionar Música
                 </div>
-                <div class="btn-adicionar-m">
+                <div class="btn-adicionar-m" id="btnAddSongMobile">
                     <ion-icon name="add"></ion-icon>
                     Música
                 </div>
-                <div class="btn-editar">
+                <div class="btn-editar" id="btnEditPlaylist">
                     <ion-icon name="pencil"></ion-icon>
                     Editar
                 </div>
-                <div class="btn-excluir">
+                <div class="btn-excluir" id="btnDeletePlaylist">
                     <ion-icon name="close"></ion-icon>
                     Excluir
                 </div>
@@ -121,7 +138,7 @@
                 </div>
             </div>
             <div class="blank"></div>
-            <div class="focus">
+            <div class="focus hidden" id="focusSong">
                 <div class="song">
                     <div class="main-song">
                         <div class="cover">
@@ -137,18 +154,18 @@
                         </div>
                     </div>
                     <div class="interactions">
-                        <div class="btn-editar">
+                        <div class="btn-editar" id="btnEditSong">
                             <ion-icon name="pencil"></ion-icon>
                             Editar
                         </div>
-                        <div class="btn-excluir">
+                        <div class="btn-excluir" id="btnDeleteSong">
                             <ion-icon name="close"></ion-icon>
                             Excluir
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="form-song-overflow" id="formAddSong">
+            <div class="form-song-overflow hidden" id="formAddSong">
                 <form class="form-song">
                     <div class="title">Adicionar uma nova Música</div>
                     <div class="fields">
@@ -163,7 +180,7 @@
                     <button class="btn-add" type="submit">Adicionar</button>
                 </form>
             </div>
-            <div class="form-song-overflow" id="formEditSong">
+            <div class="form-song-overflow hidden" id="formEditSong">
                 <form class="form-song">
                     <div class="title">Editar Música</div>
                     <div class="fields">
@@ -178,34 +195,18 @@
                     <button class="btn-add" type="submit">Salvar</button>
                 </form>
             </div>
-            <div class="form-song-delete-overflow" id="formDeleteSong">
+            <div class="form-song-delete-overflow hidden" id="formDeleteSong">
                 <div class="form-song-delete">
                     <div class="title">Tem certeza que deseja excluir esta Música?</div>
                     <div class="song-delete-name">Minha Música</div>
                     <div class="song-delete-warning">Esta ação é irreversível</div>
                     <div class="interactions-delete">
-                        <div class="cancel">Cancelar</div>
+                        <div class="cancel" id="formSongCancel">Cancelar</div>
                         <div class="delete">Excluir</div>
                     </div>
                 </div>
             </div>
-            <div class="form-playlist-overflow" id="formAddPlaylist">
-                <form class="form-playlist">
-                    <div class="title">Adicionar uma nova Playlist</div>
-                    <div class="fields">
-                        <input class="field" type="text" placeholder="Nome">
-                        <input class="field" type="text" placeholder="Gênero">
-                        <input class="field" type="text" placeholder="Thumbnail">
-                    </div>
-                    <div class="preview-thumbnail">
-                        <div class="preview-text">Preview</div>
-                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
-                    </div>
-                    <textarea class="field-area" placeholder="Descrição" maxlength="1500"></textarea>
-                    <button class="btn-add" type="submit">Adicionar</button>
-                </form>
-            </div>
-            <div class="form-playlist-overflow" id="formEditPlaylist">
+            <div class="form-playlist-overflow hidden" id="formEditPlaylist">
                 <form class="form-playlist">
                     <div class="title">Editar Playlist</div>
                     <div class="fields">
@@ -221,7 +222,7 @@
                     <button class="btn-add" type="submit">Salvar</button>
                 </form>
             </div>
-            <div class="form-playlist-delete-overflow" id="formDeletePlaylist">
+            <div class="form-playlist-delete-overflow hidden" id="formDeletePlaylist">
                 <div class="form-playlist-delete">
                     <div class="title">Tem certeza que deseja excluir esta Playlist?</div>
                     <div class="playlist-delete-name">Minha Playlist</div>
@@ -229,7 +230,7 @@
                     <div class="playlist-delete-warning">Esta ação é irreversível</div>
                     <div class="playlist-delete-warning">Esta ação apagará todas as músicas nessa playlist</div>
                     <div class="interactions-delete">
-                        <div class="cancel">Cancelar</div>
+                        <div class="cancel" id="formPlaylistCancel">Cancelar</div>
                         <div class="delete">Excluir</div>
                     </div>
                 </div>

@@ -212,6 +212,7 @@ body::-webkit-scrollbar-thumb {
 /* Playlist to Manage */
 
 .container-playlist-to-manage-overflow {
+    animation: animate-scale-opacity-entrace 500ms;
     top: 0;
     left: 0;
     position: fixed;
@@ -444,14 +445,18 @@ body::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
 .container-playlist-to-manage-overflow .container-playlist-to-manage .focus {
+    
     position: fixed;
     top: 0;
     left: 0;
     background: #000000cc;
     width: 100%;
     height: 100vh;
-    display: none;
+    display: grid;
     place-items: center;
+}
+.focus .song {
+    animation: animate-scale-opacity-entrace 500ms;
 }
 .focus .song .main-song {
     width: 1000px;
@@ -552,6 +557,7 @@ body::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
 .form-song-overflow .form-song {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 597px;
     border-radius: 10px;
@@ -694,6 +700,7 @@ body::-webkit-scrollbar-thumb {
     place-items: center;
 }
 .form-song-delete-overflow .form-song-delete {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 342px;
     border-radius: 10px;
@@ -751,10 +758,7 @@ body::-webkit-scrollbar-thumb {
     place-items: center;
     cursor: pointer;
 }
-#formAddSong, #formEditSong, #formDeleteSong {
-    display: none;
-}
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-overflow {
+.form-playlist-overflow {
     position: fixed;
     top: 0;
     left: 0;
@@ -766,18 +770,19 @@ body::-webkit-scrollbar-thumb {
     overflow: auto;
     padding: 20px 0;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-overflow::-webkit-scrollbar {
+.form-playlist-overflow::-webkit-scrollbar {
     width: 10px;
     padding: 60px;
     position: absolute;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-overflow::-webkit-scrollbar-track {
+.form-playlist-overflow::-webkit-scrollbar-track {
     background: var(--color-black);
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-overflow::-webkit-scrollbar-thumb {
+.form-playlist-overflow::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
 .form-playlist-overflow .form-playlist {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 717px;
     border-radius: 10px;
@@ -875,6 +880,7 @@ body::-webkit-scrollbar-thumb {
     place-items: center;
 }
 .form-playlist-delete-overflow .form-playlist-delete {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 416px;
     border-radius: 10px;
@@ -955,9 +961,6 @@ body::-webkit-scrollbar-thumb {
     display: grid;
     place-items: center;
     cursor: pointer;
-}
-#formAddPlaylist, #formEditPlaylist, #formDeletePlaylist {
-    display: none;
 }
 
 @media (max-width: 1359px) {
@@ -1274,4 +1277,17 @@ body::-webkit-scrollbar-thumb {
         height: 40px;
         font-size: 16px;
     }
+}
+@keyframes animate-scale-opacity-entrace {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.hidden {
+    display: none !important;
 }
