@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { IUser, User } from '../models/User'
 import { Music } from '../models/Music'
+import { Playlist } from '../models/Playlist'
 
 async function indexUser(req: Request, res: Response) {
     try {
@@ -66,15 +67,11 @@ async function loginUser(req: Request, res: Response) {
         let dateTokenExpires: string | number
 
         if (!user) {
-            return res
-                .status(400)
-                .json({ error: 'wrong name or password' })
+            return res.status(400).json({ error: 'wrong name or password' })
         }
 
         if (!(await bcrypt.compare(password, user?.password))) {
-            return res
-                .status(400)
-                .json({ error: 'wrong name or password' })
+            return res.status(400).json({ error: 'wrong name or password' })
         }
 
         if (hasConnect) {
@@ -460,6 +457,22 @@ async function updateUserPlaylistSelected(
     }
 }
 
+async function allSongAndPlaylistData(req: Request, res: Response) {
+    try {
+        const playlists = await Playlist.find()
+            .sort({ title: 1 })
+            .collation({ locale: 'pt', strength: 2 })
+
+        const songs = await Music.find()
+            .sort({ title: 1 })
+            .collation({ locale: 'pt', strength: 2 })
+
+        return res.status(200).json({ playlists, songs })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
 export {
     indexUser,
     indexUserById,
@@ -470,4 +483,5 @@ export {
     updateUserFavoriteSongs,
     updateUserMusicHistoric,
     updateUserPlaylistSelected,
+    allSongAndPlaylistData,
 }

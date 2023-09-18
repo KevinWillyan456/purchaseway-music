@@ -8,6 +8,7 @@ import {
 } from './controllers/MusicController'
 
 import {
+    allSongAndPlaylistData,
     deleteUser,
     indexUser,
     indexUserById,
@@ -54,3 +55,5 @@ routes.get('/playlists-select/:id', getUser, selectPlaylist)
 routes.post('/playlists', storePlaylist)
 routes.put('/playlists/:id', getPlaylist, updatePlaylist)
 routes.delete('/playlists/:id', getPlaylist, deletePlaylist)
+
+routes.get('/songs-playlists', allSongAndPlaylistData)
