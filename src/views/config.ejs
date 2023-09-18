@@ -30,14 +30,14 @@
                 <div class="icon">
                     <ion-icon name="musical-notes"></ion-icon>
                 </div>
-                <div class="total">23</div>
+                <div class="total" id="totalPlaylists">0</div>
             </div>
             <div class="content-total">
                 <div class="title">Total de Músicas</div>
                 <div class="icon">
                     <ion-icon name="musical-notes"></ion-icon>
                 </div>
-                <div class="total">420</div>
+                <div class="total" id="totalMusics">0</div>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
                     Adicionar
                 </div>
             </div>
-            <div class="content-playlist">
+            <div class="content-playlist" id="contentPlaylist">
                 <div class="playlist-item">
                     <div class="item-cover">
                         <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
@@ -68,19 +68,19 @@
     </div>
 
     <div class="form-playlist-overflow hidden" id="formAddPlaylist">
-        <form class="form-playlist">
+        <form class="form-playlist" id="formAddPlaylistIn">
             <div class="title">Adicionar uma nova Playlist</div>
             <div class="fields">
-                <input class="field" type="text" placeholder="Nome">
-                <input class="field" type="text" placeholder="Gênero">
-                <input class="field" type="text" placeholder="Thumbnail">
+                <input class="field" type="text" placeholder="Nome" id="formAddPlaylistInName">
+                <input class="field" type="text" placeholder="Gênero" id="formAddPlaylistInGender">
+                <input class="field" type="text" placeholder="Thumbnail" id="formAddPlaylistInThumbnail">
             </div>
             <div class="preview-thumbnail">
                 <div class="preview-text">Preview</div>
-                <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
+                <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg" id="formAddPlaylistInPreviewThumbnail">
             </div>
-            <textarea class="field-area" placeholder="Descrição" maxlength="1500"></textarea>
-            <button class="btn-add" type="submit">Adicionar</button>
+            <textarea class="field-area" placeholder="Descrição" maxlength="1500" id="formAddPlaylistInDescription"></textarea>
+            <button class="btn-add" type="submit" id="formAddPlaylistInBtnAdd">Adicionar</button>
         </form>
     </div>
 
