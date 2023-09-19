@@ -69,7 +69,7 @@
                 <img src="" id="formAddPlaylistInPreviewThumbnail">
             </div>
             <textarea class="field-area" placeholder="Descrição" maxlength="1500" id="formAddPlaylistInDescription"></textarea>
-            <button class="btn-add" type="submit" id="formAddPlaylistInBtnAdd">Adicionar</button>
+            <button class="btn-add" type="submit">Adicionar</button>
         </form>
     </div>
 
@@ -155,16 +155,16 @@
                 </div>
             </div>
             <div class="form-song-overflow hidden" id="formAddSong">
-                <form class="form-song">
+                <form class="form-song" id="formAddSongIn">
                     <div class="title">Adicionar uma nova Música</div>
                     <div class="fields">
-                        <input class="field" type="text" placeholder="Nome">
-                        <input class="field" type="text" placeholder="URL">
-                        <input class="field" type="text" placeholder="Thumbnail">
+                        <input class="field" type="text" placeholder="Nome" id="formSongAddSongInputNome">
+                        <input class="field" type="text" placeholder="URL" id="formSongAddSongInputURL">
+                        <input class="field" type="text" placeholder="Thumbnail" id="formSongAddSongInputThumbnail">
                     </div>
                     <div class="preview-thumbnail">
                         <div class="preview-text">Preview</div>
-                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
+                        <img src="" id="formSongAddSongPreviewThumbnail">
                     </div>
                     <button class="btn-add" type="submit">Adicionar</button>
                 </form>

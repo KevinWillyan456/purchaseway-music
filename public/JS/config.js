@@ -1,4 +1,7 @@
 let data = []
+let changedData = {
+    playlistName: null,
+}
 
 const containerPlaylistToManage = document.querySelector(
     '#containerPlaylistToManage'
@@ -72,6 +75,7 @@ function listPlaylists() {
             containerPlaylistToManage.classList.remove('hidden')
             document.body.style.overflow = 'hidden'
             listMusic(musicsByPlaylist, playlist)
+            changedData.playlistName = playlist.gender
         })
 
         let divItemCover = document.createElement('div')
@@ -192,7 +196,6 @@ function listMusic(musics, playlistInfo) {
 }
 
 function listFocusMusic(music) {
-    console.log(music)
     document.querySelector('#focusSongCover').src = music.coverUrl
     document.querySelector('#focusSongTitle').textContent = music.title
 
@@ -235,40 +238,46 @@ function listFocusMusic(music) {
     ).textContent = `Gênero: ${music.gender}`
 }
 
-const inputNome = document.querySelector('#formAddPlaylistInName')
-const inputGenero = document.querySelector('#formAddPlaylistInGender')
-const inputThumbnail = document.querySelector('#formAddPlaylistInThumbnail')
-const formAddPlaylistpreviewThumbnail = document.querySelector(
+const formAddPlaylistInputNome = document.querySelector(
+    '#formAddPlaylistInName'
+)
+const formAddPlaylistInputGenero = document.querySelector(
+    '#formAddPlaylistInGender'
+)
+const formAddPlaylistInputThumbnail = document.querySelector(
+    '#formAddPlaylistInThumbnail'
+)
+const formAddPlaylistPreviewThumbnail = document.querySelector(
     '#formAddPlaylistInPreviewThumbnail'
 )
 const textareaDescricao = document.querySelector(
     '#formAddPlaylistInDescription'
 )
-const btnAdicionar = document.querySelector('#formAddPlaylistInBtnAdd')
 
 const formPlaylist = document.querySelector('#formAddPlaylistIn')
 
-inputThumbnail.addEventListener('input', () => {
-    formAddPlaylistpreviewThumbnail.src = inputThumbnail.value
+formAddPlaylistInputThumbnail.addEventListener('input', () => {
+    formAddPlaylistPreviewThumbnail.src = formAddPlaylistInputThumbnail.value
 })
 
 formPlaylist.addEventListener('submit', async function (event) {
     event.preventDefault()
 
-    if (inputNome.value.trim() === '') {
+    if (formAddPlaylistInputNome.value.trim() === '') {
         alert('Por favor, preencha o campo Nome.')
         return
     }
     const NomeExiste = data[0].some(
         (musica) =>
-            musica.title.toLowerCase() === inputNome.value.trim().toLowerCase()
+            musica.title.toLowerCase() ===
+            formAddPlaylistInputNome.value.trim().toLowerCase()
     )
     if (NomeExiste) {
         alert('O Nome já existe, escolha outro.')
         return
     }
 
-    if (inputGenero.value.trim() === '') {
+    if (formAddPlaylistInputGenero.value.trim() === '') {
         alert('Por favor, preencha o campo Gênero.')
         return
     }
@@ -276,14 +285,14 @@ formPlaylist.addEventListener('submit', async function (event) {
     const generoExiste = data[0].some(
         (musica) =>
             musica.gender.toLowerCase() ===
-            inputGenero.value.trim().toLowerCase()
+            formAddPlaylistInputGenero.value.trim().toLowerCase()
     )
     if (generoExiste) {
         alert('O gênero já existe, escolha outro.')
         return
     }
 
-    if (inputThumbnail.value.trim() === '') {
+    if (formAddPlaylistInputThumbnail.value.trim() === '') {
         alert('Por favor, preencha o campo Thumbnail.')
         return
     }
@@ -294,10 +303,10 @@ formPlaylist.addEventListener('submit', async function (event) {
     }
 
     const dataResponse = {
-        title: inputNome.value.trim(),
-        coverUrl: inputThumbnail.value.trim(),
+        title: formAddPlaylistInputNome.value.trim(),
+        coverUrl: formAddPlaylistInputThumbnail.value.trim(),
         description: textareaDescricao.value.trim(),
-        gender: inputGenero.value.trim(),
+        gender: formAddPlaylistInputGenero.value.trim(),
     }
 
     const response = await fetch('/playlists', {
@@ -312,13 +321,93 @@ formPlaylist.addEventListener('submit', async function (event) {
 
     if (result.message == 'Playlist added succesfully!') {
         alert('Playlist adicionada com sucesso!')
-        inputNome.value = ''
-        inputThumbnail.value = ''
+        formAddPlaylistInputNome.value = ''
+        formAddPlaylistInputThumbnail.value = ''
         textareaDescricao.value = ''
-        inputGenero.value = ''
-        formAddPlaylistpreviewThumbnail.src = ''
+        formAddPlaylistInputGenero.value = ''
+        formAddPlaylistPreviewThumbnail.src = ''
         formAddPlaylist.classList.add('hidden')
 
+        await dataFetch()
+        defineTotalNumbers()
+        listPlaylists()
+    }
+})
+
+const formSong = document.querySelector('#formAddSongIn')
+
+const formSongAddSongInputNome = document.querySelector(
+    '#formSongAddSongInputNome'
+)
+const formSongAddSongInputURL = document.querySelector(
+    '#formSongAddSongInputURL'
+)
+const formSongAddSongInputThumbnail = document.querySelector(
+    '#formSongAddSongInputThumbnail'
+)
+const formSongAddSongPreviewThumbnail = document.querySelector(
+    '#formSongAddSongPreviewThumbnail'
+)
+
+formSongAddSongInputThumbnail.addEventListener('input', () => {
+    formSongAddSongPreviewThumbnail.src = formSongAddSongInputThumbnail.value
+})
+
+formSong.addEventListener('submit', async function (event) {
+    event.preventDefault()
+
+    if (formSongAddSongInputNome.value.trim() === '') {
+        alert('Por favor, preencha o campo Nome.')
+        return
+    }
+    const NomeExiste = data[1].some(
+        (musica) =>
+            musica.title.toLowerCase() ===
+            formSongAddSongInputNome.value.trim().toLowerCase()
+    )
+    if (NomeExiste) {
+        alert('O Nome já existe, escolha outro.')
+        return
+    }
+
+    if (formSongAddSongInputURL.value.trim() === '') {
+        alert('Por favor, preencha o campo Gênero.')
+        return
+    }
+
+    if (formSongAddSongInputThumbnail.value.trim() === '') {
+        alert('Por favor, preencha o campo Thumbnail.')
+        return
+    }
+
+    const dataResponse = {
+        title: formSongAddSongInputNome.value.trim(),
+        coverUrl: formSongAddSongInputThumbnail.value.trim(),
+        audioUrl: formSongAddSongInputURL.value.trim(),
+        gender: changedData.playlistName,
+        theme: 'Original',
+        isVideo: true,
+    }
+
+    const response = await fetch('/songs', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataResponse),
+    })
+
+    const result = await response.json()
+
+    if (result.message == 'Music added succesfully!') {
+        alert('Música adicionada com sucesso!')
+        formSongAddSongInputNome.value = ''
+        formSongAddSongInputURL.value = ''
+        formSongAddSongInputThumbnail.value = ''
+        formSongAddSongPreviewThumbnail.src = ''
+        formAddSong.classList.add('hidden')
+        containerPlaylistToManage.classList.add('hidden')
+        document.body.style.overflow = 'auto'
         await dataFetch()
         defineTotalNumbers()
         listPlaylists()
