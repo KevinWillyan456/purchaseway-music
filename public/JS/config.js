@@ -56,15 +56,21 @@ function listPlaylists() {
 
     data[0].forEach((playlist) => {
         let contador = 0
+        let musicsByPlaylist = []
 
         for (let playlist_music of data[1]) {
             if (playlist_music.gender === playlist.gender) {
+                musicsByPlaylist.push(playlist_music)
                 contador++
             }
         }
 
         let divPlaylistItem = document.createElement('div')
         divPlaylistItem.classList.add('playlist-item')
+        divPlaylistItem.addEventListener('click', () => {
+            containerPlaylistToManage.classList.remove('hidden')
+            listMusic(musicsByPlaylist, playlist)
+        })
 
         let divItemCover = document.createElement('div')
         divItemCover.classList.add('item-cover')
@@ -102,6 +108,56 @@ function listPlaylists() {
 
         contentPlaylist.appendChild(divPlaylistItem)
     })
+}
+
+function listMusic(musics, playlistInfo) {
+    console.log(musics, playlistInfo)
+
+    document.querySelector('#containerPlaylistToManageCover').src =
+        playlistInfo.coverUrl
+    document.querySelector('#containerPlaylistToManageTitle').textContent =
+        playlistInfo.title
+    document.querySelector(
+        '#containerPlaylistToManageDescription'
+    ).textContent = playlistInfo.description
+
+    function converterData(dataString) {
+        const meses = [
+            'janeiro',
+            'fevereiro',
+            'março',
+            'abril',
+            'maio',
+            'junho',
+            'julho',
+            'agosto',
+            'setembro',
+            'outubro',
+            'novembro',
+            'dezembro',
+        ]
+
+        const data = new Date(dataString)
+        const dia = data.getDate()
+        const mes = meses[data.getMonth()]
+        const ano = data.getFullYear()
+
+        return `Criada em: ${dia} de ${mes} de ${ano}`
+    }
+
+    const dataOriginal = playlistInfo.additionDate
+    const novaData = converterData(dataOriginal)
+
+    document.querySelector('#containerPlaylistToManageCreated').textContent =
+        novaData
+    document.querySelector(
+        '#containerPlaylistToManageTotalMusics'
+    ).textContent = `Total de ${musics.length} ${
+        musics.length === 1 || musics.length === 0 ? 'música' : 'músicas'
+    }`
+    document.querySelector(
+        '#containerPlaylistToManageGender'
+    ).textContent = `Gênero: ${playlistInfo.gender}`
 }
 
 const inputNome = document.querySelector('#formAddPlaylistInName')
