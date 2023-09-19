@@ -36,6 +36,7 @@ const formPlaylistCancel = document.querySelector('#formPlaylistCancel')
 const totalPlaylists = document.querySelector('#totalPlaylists')
 const totalMusics = document.querySelector('#totalMusics')
 const contentPlaylist = document.querySelector('#contentPlaylist')
+const contentSongs = document.querySelector('#contentSongs')
 
 async function dataFetch() {
     data = []
@@ -69,6 +70,7 @@ function listPlaylists() {
         divPlaylistItem.classList.add('playlist-item')
         divPlaylistItem.addEventListener('click', () => {
             containerPlaylistToManage.classList.remove('hidden')
+            document.body.style.overflow = 'hidden'
             listMusic(musicsByPlaylist, playlist)
         })
 
@@ -111,8 +113,6 @@ function listPlaylists() {
 }
 
 function listMusic(musics, playlistInfo) {
-    console.log(musics, playlistInfo)
-
     document.querySelector('#containerPlaylistToManageCover').src =
         playlistInfo.coverUrl
     document.querySelector('#containerPlaylistToManageTitle').textContent =
@@ -158,6 +158,35 @@ function listMusic(musics, playlistInfo) {
     document.querySelector(
         '#containerPlaylistToManageGender'
     ).textContent = `Gênero: ${playlistInfo.gender}`
+
+    contentSongs.innerHTML = ''
+
+    console.log(musics)
+
+    musics.forEach((music) => {
+        const songsItem = document.createElement('div')
+        songsItem.classList.add('songs-item')
+
+        const itemCover = document.createElement('div')
+        itemCover.classList.add('item-cover')
+
+        const coverImage = document.createElement('img')
+        coverImage.src = music.coverUrl
+
+        const itemTitle = document.createElement('div')
+        itemTitle.classList.add('item-title')
+        itemTitle.innerText = music.title
+
+        itemCover.appendChild(coverImage)
+        songsItem.appendChild(itemCover)
+        songsItem.appendChild(itemTitle)
+
+        contentSongs.appendChild(songsItem)
+    })
+
+    if (musics.length <= 0) {
+        contentSongs.innerHTML = '<div class="no-songs">Sem Músicas<div>'
+    }
 }
 
 const inputNome = document.querySelector('#formAddPlaylistInName')
@@ -268,6 +297,7 @@ async function inicia() {
 
     playlistToManageBack.addEventListener('click', () => {
         containerPlaylistToManage.classList.add('hidden')
+        document.body.style.overflow = 'auto'
     })
     btnAddSong.addEventListener('click', () => {
         formAddSong.classList.remove('hidden')

@@ -1,5 +1,6 @@
 body {
     background-color: var(--color-blue-1);
+    
 }
 body::-webkit-scrollbar {
     width: 10px;
@@ -407,6 +408,10 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .no-songs {
+    color: var(--color-white-1);
+    font-size: 20px;
 }
 .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item {
     width: 100%;
