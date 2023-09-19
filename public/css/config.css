@@ -528,6 +528,9 @@ body::-webkit-scrollbar-thumb {
     text-overflow: ellipsis;
     max-width: 500px;
 }
+.focus .song .main-song .content .details .url a {
+    color: inherit;
+}
 .focus .song .interactions {
     gap: 5px;
     margin-top: 10px;

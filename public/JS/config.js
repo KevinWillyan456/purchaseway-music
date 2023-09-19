@@ -161,11 +161,13 @@ function listMusic(musics, playlistInfo) {
 
     contentSongs.innerHTML = ''
 
-    console.log(musics)
-
     musics.forEach((music) => {
         const songsItem = document.createElement('div')
         songsItem.classList.add('songs-item')
+        songsItem.addEventListener('click', () => {
+            focusSong.classList.remove('hidden')
+            listFocusMusic(music)
+        })
 
         const itemCover = document.createElement('div')
         itemCover.classList.add('item-cover')
@@ -187,6 +189,50 @@ function listMusic(musics, playlistInfo) {
     if (musics.length <= 0) {
         contentSongs.innerHTML = '<div class="no-songs">Sem Músicas<div>'
     }
+}
+
+function listFocusMusic(music) {
+    console.log(music)
+    document.querySelector('#focusSongCover').src = music.coverUrl
+    document.querySelector('#focusSongTitle').textContent = music.title
+
+    function converterData(dataString) {
+        const meses = [
+            'janeiro',
+            'fevereiro',
+            'março',
+            'abril',
+            'maio',
+            'junho',
+            'julho',
+            'agosto',
+            'setembro',
+            'outubro',
+            'novembro',
+            'dezembro',
+        ]
+
+        const data = new Date(dataString)
+        const dia = data.getDate()
+        const mes = meses[data.getMonth()]
+        const ano = data.getFullYear()
+
+        return `Criada em: ${dia} de ${mes} de ${ano}`
+    }
+
+    const dataOriginal = music.additionDate
+    const novaData = converterData(dataOriginal)
+
+    document.querySelector('#focusSongCreated').textContent = novaData
+    document.querySelector(
+        '#focusSongURL'
+    ).href = `https://youtu.be/${music.audioUrl}`
+    document.querySelector(
+        '#focusSongURL'
+    ).textContent = `https://youtu.be/${music.audioUrl}`
+    document.querySelector(
+        '#focusSongGender'
+    ).textContent = `Gênero: ${music.gender}`
 }
 
 const inputNome = document.querySelector('#formAddPlaylistInName')
