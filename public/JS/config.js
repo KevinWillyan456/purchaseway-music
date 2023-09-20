@@ -38,6 +38,8 @@ const formAddSong = document.querySelector('#formAddSong')
 const formSongCancel = document.querySelector('#formSongCancel')
 const formPlaylistCancel = document.querySelector('#formPlaylistCancel')
 
+const formSongDeleteBtn = document.querySelector('#formSongDeleteBtn')
+
 const totalPlaylists = document.querySelector('#totalPlaylists')
 const totalMusics = document.querySelector('#totalMusics')
 const contentPlaylist = document.querySelector('#contentPlaylist')
@@ -260,6 +262,8 @@ function listFocusMusic(music) {
     formSongEditSongInputURL.value = music.audioUrl
     formSongEditSongInputThumbnail.value = music.coverUrl
     formSongEditSongPreviewThumbnail.src = music.coverUrl
+
+    document.querySelector('#songDeleteName').textContent = music.title
 }
 
 const formAddPlaylistInputNome = document.querySelector(
@@ -479,6 +483,28 @@ formEditSongIn.addEventListener('submit', async function (event) {
         formSongEditSongInputThumbnail.value = ''
         formSongEditSongPreviewThumbnail.src = ''
         formEditSong.classList.add('hidden')
+        focusSong.classList.add('hidden')
+        containerPlaylistToManage.classList.add('hidden')
+        document.body.style.overflow = 'auto'
+        await dataFetch()
+        defineTotalNumbers()
+        listPlaylists()
+    }
+})
+
+formSongDeleteBtn.addEventListener('click', async () => {
+    const response = await fetch(`/songs/${changedData.songId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+
+    const result = await response.json()
+
+    if (result.message == 'Music removed succesfully!') {
+        alert('Música deletada com sucesso!')
+        formDeleteSong.classList.add('hidden')
         focusSong.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
         document.body.style.overflow = 'auto'
