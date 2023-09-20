@@ -1,6 +1,8 @@
 let data = []
 let changedData = {
     playlistName: null,
+    songId: null,
+    playlistId: null,
 }
 
 const containerPlaylistToManage = document.querySelector(
@@ -115,6 +117,21 @@ function listPlaylists() {
         contentPlaylist.appendChild(divPlaylistItem)
     })
 }
+
+const formEditSongIn = document.querySelector('#formEditSongIn')
+
+const formSongEditSongInputNome = document.querySelector(
+    '#formSongEditSongInputNome'
+)
+const formSongEditSongInputURL = document.querySelector(
+    '#formSongEditSongInputURL'
+)
+const formSongEditSongInputThumbnail = document.querySelector(
+    '#formSongEditSongInputThumbnail'
+)
+const formSongEditSongPreviewThumbnail = document.querySelector(
+    '#formSongEditSongPreviewThumbnail'
+)
 
 function listMusic(musics, playlistInfo) {
     document.querySelector('#containerPlaylistToManageCover').src =
@@ -236,6 +253,13 @@ function listFocusMusic(music) {
     document.querySelector(
         '#focusSongGender'
     ).textContent = `Gênero: ${music.gender}`
+
+    changedData.songId = music._id
+
+    formSongEditSongInputNome.value = music.title
+    formSongEditSongInputURL.value = music.audioUrl
+    formSongEditSongInputThumbnail.value = music.coverUrl
+    formSongEditSongPreviewThumbnail.src = music.coverUrl
 }
 
 const formAddPlaylistInputNome = document.querySelector(
@@ -406,6 +430,56 @@ formSong.addEventListener('submit', async function (event) {
         formSongAddSongInputThumbnail.value = ''
         formSongAddSongPreviewThumbnail.src = ''
         formAddSong.classList.add('hidden')
+        containerPlaylistToManage.classList.add('hidden')
+        document.body.style.overflow = 'auto'
+        await dataFetch()
+        defineTotalNumbers()
+        listPlaylists()
+    }
+})
+
+formEditSongIn.addEventListener('submit', async function (event) {
+    event.preventDefault()
+
+    if (formSongEditSongInputNome.value.trim() === '') {
+        alert('Por favor, preencha o campo Nome.')
+        return
+    }
+
+    if (formSongEditSongInputURL.value.trim() === '') {
+        alert('Por favor, preencha o campo Gênero.')
+        return
+    }
+
+    if (formSongEditSongInputThumbnail.value.trim() === '') {
+        alert('Por favor, preencha o campo Thumbnail.')
+        return
+    }
+
+    const dataResponse = {
+        title: formSongEditSongInputNome.value.trim(),
+        audioUrl: formSongEditSongInputURL.value.trim(),
+        coverUrl: formSongEditSongInputThumbnail.value.trim(),
+    }
+
+    const response = await fetch(`/songs/${changedData.songId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataResponse),
+    })
+
+    const result = await response.json()
+
+    if (result.message == 'Music updated succesfully!') {
+        alert('Música atualizada com sucesso!')
+        formSongEditSongInputNome.value = ''
+        formSongEditSongInputURL.value = ''
+        formSongEditSongInputThumbnail.value = ''
+        formSongEditSongPreviewThumbnail.src = ''
+        formEditSong.classList.add('hidden')
+        focusSong.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
         document.body.style.overflow = 'auto'
         await dataFetch()
