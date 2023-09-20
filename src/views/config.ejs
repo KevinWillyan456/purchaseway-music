@@ -173,13 +173,13 @@
                 <form class="form-song" id="formEditSongIn">
                     <div class="title">Editar Música</div>
                     <div class="fields">
-                        <input class="field" type="text" placeholder="Nome" id="formSongEditSongInputNome">
-                        <input class="field" type="text" placeholder="URL" id="formSongEditSongInputURL">
-                        <input class="field" type="text" placeholder="Thumbnail" id="formSongEditSongInputThumbnail">
+                        <input class="field" type="text" placeholder="Nome" id="formSongEditInputNome">
+                        <input class="field" type="text" placeholder="URL" id="formSongEditInputURL">
+                        <input class="field" type="text" placeholder="Thumbnail" id="formSongEditInputThumbnail">
                     </div>
                     <div class="preview-thumbnail">
                         <div class="preview-text">Preview</div>
-                        <img src="" id="formSongEditSongPreviewThumbnail">
+                        <img src="" id="formSongEditPreviewThumbnail">
                     </div>
                     <button class="btn-add" type="submit">Salvar</button>
                 </form>
@@ -214,13 +214,13 @@
             <div class="form-playlist-delete-overflow hidden" id="formDeletePlaylist">
                 <div class="form-playlist-delete">
                     <div class="title">Tem certeza que deseja excluir esta Playlist?</div>
-                    <div class="playlist-delete-name">Minha Playlist</div>
-                    <input class="field" type="text" placeholder="Digite o nome da playlist para confirmar...">
+                    <div class="playlist-delete-name" id="playlistDeleteName">Minha Playlist</div>
+                    <input class="field" type="text" placeholder="Digite o nome da playlist para confirmar..." id="playlistDeleteNameInputToConfirm">
                     <div class="playlist-delete-warning">Esta ação é irreversível</div>
                     <div class="playlist-delete-warning">Esta ação apagará todas as músicas nessa playlist</div>
                     <div class="interactions-delete">
                         <div class="cancel" id="formPlaylistCancel">Cancelar</div>
-                        <div class="delete">Excluir</div>
+                        <div class="delete" id="formPlaylistDeleteBtn">Excluir</div>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ const playlistSchema = new Schema<IPlaylist>({
     title: { type: String, required: true, unique: true },
     coverUrl: { type: String, required: true },
     description: { type: String, required: true },
-    gender: { type: String, required: true },
+    gender: { type: String, required: true, unique: true },
     totalSongs: { type: Number, default: 0 },
     additionDate: { type: Date, required: true }
 })

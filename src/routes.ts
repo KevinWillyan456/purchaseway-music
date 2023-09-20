@@ -26,6 +26,7 @@ import {
     storePlaylist,
     updatePlaylist,
     selectPlaylist,
+    deletePlaylistAndSongs,
 } from './controllers/PlaylistController'
 
 import { getMusic } from './middlewares/MusicMiddleware'
@@ -55,5 +56,6 @@ routes.get('/playlists-select/:id', getUser, selectPlaylist)
 routes.post('/playlists', storePlaylist)
 routes.put('/playlists/:id', getPlaylist, updatePlaylist)
 routes.delete('/playlists/:id', getPlaylist, deletePlaylist)
+routes.delete('/songs-playlists/:id', getPlaylist, deletePlaylistAndSongs)
 
 routes.get('/songs-playlists', allSongAndPlaylistData)

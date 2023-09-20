@@ -120,6 +120,26 @@ async function deletePlaylist(
     }
 }
 
+async function deletePlaylistAndSongs(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { id } = req.params
+    const filter = { _id: id }
+
+    try {
+        const playlist = await Playlist.findById(id)
+
+        await Music.deleteMany({ gender: playlist?.gender })
+        await Playlist.deleteOne(filter)
+        return res
+            .status(200)
+            .json({ message: 'Playlist and songs removed succesfully!' })
+    } catch (err) {
+        return res.status(500).json({ error: err })
+    }
+}
+
 async function selectPlaylist(req: Request, res: Response) {
     const { playlist } = req.query
     const { id } = req.params
@@ -161,5 +181,6 @@ export {
     storePlaylist,
     updatePlaylist,
     deletePlaylist,
+    deletePlaylistAndSongs,
     selectPlaylist,
 }

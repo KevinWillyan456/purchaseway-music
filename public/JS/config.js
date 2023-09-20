@@ -39,11 +39,20 @@ const formSongCancel = document.querySelector('#formSongCancel')
 const formPlaylistCancel = document.querySelector('#formPlaylistCancel')
 
 const formSongDeleteBtn = document.querySelector('#formSongDeleteBtn')
+const formPlaylistDeleteBtn = document.querySelector('#formPlaylistDeleteBtn')
 
 const totalPlaylists = document.querySelector('#totalPlaylists')
 const totalMusics = document.querySelector('#totalMusics')
 const contentPlaylist = document.querySelector('#contentPlaylist')
 const contentSongs = document.querySelector('#contentSongs')
+
+const playlistDeleteNameInputToConfirm = document.querySelector(
+    '#playlistDeleteNameInputToConfirm'
+)
+
+playlistDeleteNameInputToConfirm.addEventListener('paste', (e) => {
+    e.preventDefault()
+})
 
 async function dataFetch() {
     data = []
@@ -105,6 +114,9 @@ function listPlaylists() {
             formPlaylistEditInputThumbnail.value = playlist.coverUrl
             formPlaylistEditPreviewThumbnail.src = playlist.coverUrl
             formPlaylistEditDescription.value = playlist.description
+
+            document.querySelector('#playlistDeleteName').textContent =
+                playlist.title
         })
 
         let divItemCover = document.createElement('div')
@@ -543,6 +555,39 @@ formSongDeleteBtn.addEventListener('click', async () => {
         alert('Música deletada com sucesso!')
         formDeleteSong.classList.add('hidden')
         focusSong.classList.add('hidden')
+        containerPlaylistToManage.classList.add('hidden')
+        document.body.style.overflow = 'auto'
+        await dataFetch()
+        defineTotalNumbers()
+        listPlaylists()
+    }
+})
+
+formPlaylistDeleteBtn.addEventListener('click', async () => {
+    if (
+        playlistDeleteNameInputToConfirm.value !=
+        document.querySelector('#playlistDeleteName').textContent
+    ) {
+        return alert('Por favor, escreva o nome da playlist corretamente.')
+    }
+
+    const response = await fetch(`/songs-playlists/${changedData.playlistId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+
+    const result = await response.json()
+
+    if (result.message != 'Playlist and songs removed succesfully!') {
+        return alert('Internal Error')
+    }
+
+    if (result.message == 'Playlist and songs removed succesfully!') {
+        alert('Playlist deletada com sucesso!')
+        playlistDeleteNameInputToConfirm.value = ''
+        formDeletePlaylist.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
         document.body.style.overflow = 'auto'
         await dataFetch()
