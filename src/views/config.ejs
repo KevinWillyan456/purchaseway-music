@@ -196,18 +196,18 @@
                 </div>
             </div>
             <div class="form-playlist-overflow hidden" id="formEditPlaylist">
-                <form class="form-playlist">
+                <form class="form-playlist" id="formEditPlaylistIn">
                     <div class="title">Editar Playlist</div>
                     <div class="fields">
-                        <input class="field" type="text" placeholder="Nome">
-                        <input class="field" type="text" placeholder="Gênero">
-                        <input class="field" type="text" placeholder="Thumbnail">
+                        <input class="field" type="text" placeholder="Nome" id="formPlaylistEditInputNome">
+                        <input class="field" type="text" placeholder="Gênero" id="formPlaylistEditInputGender">
+                        <input class="field" type="text" placeholder="Thumbnail" id="formPlaylistEditInputThumbnail">
                     </div>
                     <div class="preview-thumbnail">
                         <div class="preview-text">Preview</div>
-                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
+                        <img src="" id="formPlaylistEditPreviewThumbnail">
                     </div>
-                    <textarea class="field-area" placeholder="Descrição" maxlength="1500"></textarea>
+                    <textarea class="field-area" placeholder="Descrição" maxlength="1500" id="formPlaylistEditDescription"></textarea>
                     <button class="btn-add" type="submit">Salvar</button>
                 </form>
             </div>

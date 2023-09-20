@@ -59,6 +59,24 @@ function defineTotalNumbers() {
     totalMusics.textContent = data[1].length
 }
 
+const formEditPlaylistIn = document.querySelector('#formEditPlaylistIn')
+
+const formPlaylistEditInputNome = document.querySelector(
+    '#formPlaylistEditInputNome'
+)
+const formPlaylistEditInputGender = document.querySelector(
+    '#formPlaylistEditInputGender'
+)
+const formPlaylistEditInputThumbnail = document.querySelector(
+    '#formPlaylistEditInputThumbnail'
+)
+const formPlaylistEditPreviewThumbnail = document.querySelector(
+    '#formPlaylistEditPreviewThumbnail'
+)
+const formPlaylistEditDescription = document.querySelector(
+    '#formPlaylistEditDescription'
+)
+
 function listPlaylists() {
     contentPlaylist.innerHTML = ''
 
@@ -80,6 +98,13 @@ function listPlaylists() {
             document.body.style.overflow = 'hidden'
             listMusic(musicsByPlaylist, playlist)
             changedData.playlistName = playlist.gender
+            changedData.playlistId = playlist._id
+
+            formPlaylistEditInputNome.value = playlist.title
+            formPlaylistEditInputGender.value = playlist.gender
+            formPlaylistEditInputThumbnail.value = playlist.coverUrl
+            formPlaylistEditPreviewThumbnail.src = playlist.coverUrl
+            formPlaylistEditDescription.value = playlist.description
         })
 
         let divItemCover = document.createElement('div')
@@ -122,17 +147,13 @@ function listPlaylists() {
 
 const formEditSongIn = document.querySelector('#formEditSongIn')
 
-const formSongEditSongInputNome = document.querySelector(
-    '#formSongEditSongInputNome'
+const formSongEditInputNome = document.querySelector('#formSongEditInputNome')
+const formSongEditInputURL = document.querySelector('#formSongEditInputURL')
+const formSongEditInputThumbnail = document.querySelector(
+    '#formSongEditInputThumbnail'
 )
-const formSongEditSongInputURL = document.querySelector(
-    '#formSongEditSongInputURL'
-)
-const formSongEditSongInputThumbnail = document.querySelector(
-    '#formSongEditSongInputThumbnail'
-)
-const formSongEditSongPreviewThumbnail = document.querySelector(
-    '#formSongEditSongPreviewThumbnail'
+const formSongEditPreviewThumbnail = document.querySelector(
+    '#formSongEditPreviewThumbnail'
 )
 
 function listMusic(musics, playlistInfo) {
@@ -258,10 +279,10 @@ function listFocusMusic(music) {
 
     changedData.songId = music._id
 
-    formSongEditSongInputNome.value = music.title
-    formSongEditSongInputURL.value = music.audioUrl
-    formSongEditSongInputThumbnail.value = music.coverUrl
-    formSongEditSongPreviewThumbnail.src = music.coverUrl
+    formSongEditInputNome.value = music.title
+    formSongEditInputURL.value = music.audioUrl
+    formSongEditInputThumbnail.value = music.coverUrl
+    formSongEditPreviewThumbnail.src = music.coverUrl
 
     document.querySelector('#songDeleteName').textContent = music.title
 }
@@ -347,6 +368,10 @@ formPlaylist.addEventListener('submit', async function (event) {
 
     const result = await response.json()
 
+    if (result.message != 'Playlist added succesfully!') {
+        return alert('Internal Error')
+    }
+
     if (result.message == 'Playlist added succesfully!') {
         alert('Playlist adicionada com sucesso!')
         formAddPlaylistInputNome.value = ''
@@ -427,6 +452,10 @@ formSong.addEventListener('submit', async function (event) {
 
     const result = await response.json()
 
+    if (result.message != 'Music added succesfully!') {
+        return alert('Internal Error')
+    }
+
     if (result.message == 'Music added succesfully!') {
         alert('Música adicionada com sucesso!')
         formSongAddSongInputNome.value = ''
@@ -445,25 +474,25 @@ formSong.addEventListener('submit', async function (event) {
 formEditSongIn.addEventListener('submit', async function (event) {
     event.preventDefault()
 
-    if (formSongEditSongInputNome.value.trim() === '') {
+    if (formSongEditInputNome.value.trim() === '') {
         alert('Por favor, preencha o campo Nome.')
         return
     }
 
-    if (formSongEditSongInputURL.value.trim() === '') {
+    if (formSongEditInputURL.value.trim() === '') {
         alert('Por favor, preencha o campo Gênero.')
         return
     }
 
-    if (formSongEditSongInputThumbnail.value.trim() === '') {
+    if (formSongEditInputThumbnail.value.trim() === '') {
         alert('Por favor, preencha o campo Thumbnail.')
         return
     }
 
     const dataResponse = {
-        title: formSongEditSongInputNome.value.trim(),
-        audioUrl: formSongEditSongInputURL.value.trim(),
-        coverUrl: formSongEditSongInputThumbnail.value.trim(),
+        title: formSongEditInputNome.value.trim(),
+        audioUrl: formSongEditInputURL.value.trim(),
+        coverUrl: formSongEditInputThumbnail.value.trim(),
     }
 
     const response = await fetch(`/songs/${changedData.songId}`, {
@@ -476,12 +505,16 @@ formEditSongIn.addEventListener('submit', async function (event) {
 
     const result = await response.json()
 
+    if (result.message != 'Music updated succesfully!') {
+        return alert('Internal Error')
+    }
+
     if (result.message == 'Music updated succesfully!') {
         alert('Música atualizada com sucesso!')
-        formSongEditSongInputNome.value = ''
-        formSongEditSongInputURL.value = ''
-        formSongEditSongInputThumbnail.value = ''
-        formSongEditSongPreviewThumbnail.src = ''
+        formSongEditInputNome.value = ''
+        formSongEditInputURL.value = ''
+        formSongEditInputThumbnail.value = ''
+        formSongEditPreviewThumbnail.src = ''
         formEditSong.classList.add('hidden')
         focusSong.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
@@ -502,10 +535,73 @@ formSongDeleteBtn.addEventListener('click', async () => {
 
     const result = await response.json()
 
+    if (result.message != 'Music removed succesfully!') {
+        return alert('Internal Error')
+    }
+
     if (result.message == 'Music removed succesfully!') {
         alert('Música deletada com sucesso!')
         formDeleteSong.classList.add('hidden')
         focusSong.classList.add('hidden')
+        containerPlaylistToManage.classList.add('hidden')
+        document.body.style.overflow = 'auto'
+        await dataFetch()
+        defineTotalNumbers()
+        listPlaylists()
+    }
+})
+
+formEditPlaylistIn.addEventListener('submit', async function (event) {
+    event.preventDefault()
+
+    if (formPlaylistEditInputNome.value.trim() === '') {
+        alert('Por favor, preencha o campo Nome.')
+        return
+    }
+
+    if (formPlaylistEditInputGender.value.trim() === '') {
+        alert('Por favor, preencha o campo Gênero.')
+        return
+    }
+
+    if (formPlaylistEditInputThumbnail.value.trim() === '') {
+        alert('Por favor, preencha o campo Thumbnail.')
+        return
+    }
+
+    if (formPlaylistEditDescription.value.trim() === '') {
+        alert('Por favor, preencha o campo descrição.')
+        return
+    }
+
+    const dataResponse = {
+        title: formPlaylistEditInputNome.value.trim(),
+        coverUrl: formPlaylistEditInputThumbnail.value.trim(),
+        gender: formPlaylistEditInputGender.value.trim(),
+        description: formPlaylistEditDescription.value.trim(),
+    }
+
+    const response = await fetch(`/playlists/${changedData.playlistId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataResponse),
+    })
+
+    const result = await response.json()
+
+    if (result.message != 'Playlist updated succesfully!') {
+        return alert('Internal Error')
+    }
+
+    if (result.message == 'Playlist updated succesfully!') {
+        alert('Playlist atualizada com sucesso!')
+        formPlaylistEditInputNome.value = ''
+        formPlaylistEditInputThumbnail.value = ''
+        formPlaylistEditInputGender.value = ''
+        formPlaylistEditDescription.value = ''
+        formEditPlaylist.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
         document.body.style.overflow = 'auto'
         await dataFetch()
