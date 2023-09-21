@@ -1201,6 +1201,9 @@ iframe {
     margin-top: 20px;
     font-size: 14px;
 }
+.hidden {
+    display: none !important;
+}
 
 @media (max-width: 1900px)
 {

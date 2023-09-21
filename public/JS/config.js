@@ -436,7 +436,7 @@ formSong.addEventListener('submit', async function (event) {
     }
 
     if (formSongAddSongInputURL.value.trim() === '') {
-        alert('Por favor, preencha o campo Gênero.')
+        alert('Por favor, preencha o campo URL.')
         return
     }
 

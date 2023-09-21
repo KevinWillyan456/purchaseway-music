@@ -58,6 +58,8 @@ const clearHistoricIcon = document.querySelector(".trash-icon")
 const morePlaylist = document.querySelector(".more-playlist");
 const selectPlaylist = document.querySelector('#selectPlaylist');
 const selectPlaylistMobile = document.querySelector('#selectPlaylistMobile');
+const selectManagementSystem = document.querySelector('#selectManagementSystem');
+const selectManagementSystemMobile = document.querySelector('#selectManagementSystemMobile');
 const selectFavorites = document.querySelector('#selectFavorites');
 const selectFavoritesMobile = document.querySelector('#selectFavoritesMobile');
 const backMenu = document.querySelector('#backMenu');
@@ -183,6 +185,7 @@ selectFavoritesMobile.addEventListener('click' , () => {
     toggleMenu()
     selectNewPlaylist("Favorite", "Músicas Favoritas")
 })
+
 morePlaylist.addEventListener("click", toggleMenu);
 backMenu.addEventListener("click", toggleMenu);
 backMenuMobile.addEventListener("click", toggleMenu);
@@ -229,6 +232,7 @@ function inicia(){
     manageHistoric();
     audioControllerPlayAudioAndVideo();
     initialDeviceDefinition();
+    setManagementSystem()
 }
 
 function audioControllerPlayFunction(){
@@ -1870,6 +1874,19 @@ function changeMobileOrDesktop() {
     manageHistoric();
     audioControllerPlayAudioAndVideo();
     setUserSettings()
+}
+
+function setManagementSystem(){
+    if (userData.type == "admin") {
+        selectManagementSystem.classList.remove("hidden");
+        selectManagementSystemMobile.classList.remove("hidden")
+    }
+    selectManagementSystem.addEventListener("click", () => {
+        window.location = '/config'
+    })
+    selectManagementSystemMobile.addEventListener("click", () => {
+        window.location = '/config'
+    })
 }
 
 async function selectNewPlaylist(playlistSelect, playlistName) {

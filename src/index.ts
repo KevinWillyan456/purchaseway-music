@@ -6,6 +6,7 @@ import { connectToDatabase } from "./database";
 import { routes } from "./routes";
 import { eAdmin } from "./middlewares/AuthMiddleware";
 import { verifyTokenExists } from "./middlewares/verifyMiddleware";
+import { eAdminManager } from "./middlewares/AuthAdminMiddleware";
 
 config();
 connectToDatabase();
@@ -39,7 +40,7 @@ app.get("/signup", (req, res) => {
 app.get("/login", verifyTokenExists, (req, res) => {
     res.render('login');
 });
-app.get("/config", (req, res) => {
+app.get("/config", eAdminManager, (req, res) => {
     res.render('config');
 });
 
