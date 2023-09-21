@@ -107,11 +107,13 @@ async function updateUser(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
+    const encryptedPassword = await bcrypt.hash(password, 8)
+
     const filter = { _id: id }
     const updateDoc = {
         $set: {
             name,
-            password,
+            password: encryptedPassword,
         },
     }
 
