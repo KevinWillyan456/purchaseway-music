@@ -280,20 +280,31 @@ function listFocusMusic(music) {
     const novaData = converterData(dataOriginal)
 
     document.querySelector('#focusSongCreated').textContent = novaData
-    document.querySelector(
-        '#focusSongURL'
-    ).href = `https://youtu.be/${music.audioUrl}`
-    document.querySelector(
-        '#focusSongURL'
-    ).textContent = `https://youtu.be/${music.audioUrl}`
+
+    if (music.audioUrl.endsWith('.mp3')) {
+        document.querySelector('#focusSongURL').href = music.audioUrl
+        document.querySelector('#focusSongURL').textContent = music.audioUrl
+    } else {
+        document.querySelector(
+            '#focusSongURL'
+        ).href = `https://youtu.be/${music.audioUrl}`
+        document.querySelector(
+            '#focusSongURL'
+        ).textContent = `https://youtu.be/${music.audioUrl}`
+    }
+
     document.querySelector(
         '#focusSongGender'
     ).textContent = `Gênero: ${music.gender}`
 
     changedData.songId = music._id
 
+    function gerarLinkDoVideo(id) {
+        return `https://youtu.be/${id}`
+    }
+
     formSongEditInputNome.value = music.title
-    formSongEditInputURL.value = music.audioUrl
+    formSongEditInputURL.value = gerarLinkDoVideo(music.audioUrl)
     formSongEditInputThumbnail.value = music.coverUrl
     formSongEditPreviewThumbnail.src = music.coverUrl
 
@@ -446,10 +457,27 @@ formSong.addEventListener('submit', async function (event) {
         return
     }
 
+    function extrairIdDoVideo(url) {
+        if (url.endsWith('.mp3')) {
+            return url
+        } else {
+            const regex =
+                /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S*?(\?si=\S+))?/
+
+            const match = url.match(regex)
+
+            if (match && match[1]) {
+                return match[1]
+            } else {
+                return null
+            }
+        }
+    }
+
     const dataResponse = {
         title: formSongAddSongInputNome.value.trim(),
         coverUrl: formSongAddSongInputThumbnail.value.trim(),
-        audioUrl: formSongAddSongInputURL.value.trim(),
+        audioUrl: extrairIdDoVideo(formSongAddSongInputURL.value.trim()),
         gender: changedData.playlistName,
         theme: 'Original',
         isVideo: true,
@@ -502,9 +530,26 @@ formEditSongIn.addEventListener('submit', async function (event) {
         return
     }
 
+    function extrairIdDoVideo(url) {
+        if (url.endsWith('.mp3')) {
+            return url
+        } else {
+            const regex =
+                /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S*?(\?si=\S+))?/
+
+            const match = url.match(regex)
+
+            if (match && match[1]) {
+                return match[1]
+            } else {
+                return null
+            }
+        }
+    }
+
     const dataResponse = {
         title: formSongEditInputNome.value.trim(),
-        audioUrl: formSongEditInputURL.value.trim(),
+        audioUrl: extrairIdDoVideo(formSongEditInputURL.value.trim()),
         coverUrl: formSongEditInputThumbnail.value.trim(),
     }
 
