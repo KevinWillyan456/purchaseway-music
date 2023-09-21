@@ -4,6 +4,7 @@ let changedData = {
     songId: null,
     playlistId: null,
 }
+let userData
 
 const containerPlaylistToManage = document.querySelector(
     '#containerPlaylistToManage'
@@ -655,10 +656,38 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
     }
 })
 
+async function setUserInfo() {
+    function getCookie(k) {
+        var cookies = ' ' + document.cookie
+        var key = ' ' + k + '='
+        var start = cookies.indexOf(key)
+
+        if (start === -1) return null
+
+        var pos = start + key.length
+        var last = cookies.indexOf(';', pos)
+
+        if (last !== -1) return cookies.substring(pos, last)
+
+        return cookies.substring(pos)
+    }
+
+    const idUserConnected = getCookie('user')
+
+    const responseUser = await fetch(`/users/${idUserConnected}`)
+    const user = await responseUser.json()
+
+    userData = user.user
+
+    document.querySelector('#userName').textContent = userData.name
+    document.querySelector('#userNameMobile').textContent = userData.name
+}
+
 async function inicia() {
     await dataFetch()
     defineTotalNumbers()
     listPlaylists()
+    await setUserInfo()
 
     playlistItems.forEach((item) => {
         item.addEventListener('click', () => {

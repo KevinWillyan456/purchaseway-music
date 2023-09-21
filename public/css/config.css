@@ -60,6 +60,22 @@ body::-webkit-scrollbar-thumb {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.voltar-para-o-site {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 260px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
 .container-total-overflow {
     margin-top: 60px;
     width: 100%;
@@ -983,6 +999,14 @@ body::-webkit-scrollbar-thumb {
     }
     .user-info-m {
         display: flex;
+    }
+    .voltar-para-o-site {
+        left: auto;
+        top: 35px;
+        right: 20px;
+        width: 145px;
+        height: 30px;
+        font-size: 12px;
     }
     .container-total-overflow {
         margin-top: 100px;
