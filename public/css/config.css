@@ -674,6 +674,10 @@ body::-webkit-scrollbar-thumb {
     height: 138px;
     pointer-events: none;
     margin-bottom: 40px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .form-song-overflow .form-song .preview-thumbnail .preview-text {
     position: absolute;
@@ -862,8 +866,10 @@ body::-webkit-scrollbar-thumb {
     height: 138px;
     pointer-events: none;
     margin-bottom: 20px;
-
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .form-playlist-overflow .form-playlist .preview-thumbnail .preview-text {
     position: absolute;

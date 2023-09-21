@@ -332,6 +332,9 @@ const formPlaylist = document.querySelector('#formAddPlaylistIn')
 formAddPlaylistInputThumbnail.addEventListener('input', () => {
     formAddPlaylistPreviewThumbnail.src = formAddPlaylistInputThumbnail.value
 })
+formPlaylistEditInputThumbnail.addEventListener('input', () => {
+    formPlaylistEditPreviewThumbnail.src = formPlaylistEditInputThumbnail.value
+})
 
 formPlaylist.addEventListener('submit', async function (event) {
     event.preventDefault()
@@ -428,6 +431,9 @@ const formSongAddSongPreviewThumbnail = document.querySelector(
 
 formSongAddSongInputThumbnail.addEventListener('input', () => {
     formSongAddSongPreviewThumbnail.src = formSongAddSongInputThumbnail.value
+})
+formSongEditInputThumbnail.addEventListener('input', () => {
+    formSongEditPreviewThumbnail.src = formSongEditInputThumbnail.value
 })
 
 formSong.addEventListener('submit', async function (event) {
