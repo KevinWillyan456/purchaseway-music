@@ -51,6 +51,8 @@ const playlistDeleteNameInputToConfirm = document.querySelector(
     '#playlistDeleteNameInputToConfirm'
 )
 
+const warning = document.querySelector('#warning')
+
 playlistDeleteNameInputToConfirm.addEventListener('paste', (e) => {
     e.preventDefault()
 })
@@ -300,7 +302,11 @@ function listFocusMusic(music) {
     changedData.songId = music._id
 
     function gerarLinkDoVideo(id) {
-        return `https://youtu.be/${id}`
+        if (id.endsWith('.mp3')) {
+            return id
+        } else {
+            return `https://youtu.be/${id}`
+        }
     }
 
     formSongEditInputNome.value = music.title
@@ -340,7 +346,12 @@ formPlaylist.addEventListener('submit', async function (event) {
     event.preventDefault()
 
     if (formAddPlaylistInputNome.value.trim() === '') {
-        alert('Por favor, preencha o campo Nome.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Nome.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
     const NomeExiste = data[0].some(
@@ -349,12 +360,22 @@ formPlaylist.addEventListener('submit', async function (event) {
             formAddPlaylistInputNome.value.trim().toLowerCase()
     )
     if (NomeExiste) {
-        alert('O Nome já existe, escolha outro.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'O Nome já existe, escolha outro.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
 
     if (formAddPlaylistInputGenero.value.trim() === '') {
-        alert('Por favor, preencha o campo Gênero.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Gênero.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
 
@@ -364,17 +385,32 @@ formPlaylist.addEventListener('submit', async function (event) {
             formAddPlaylistInputGenero.value.trim().toLowerCase()
     )
     if (generoExiste) {
-        alert('O gênero já existe, escolha outro.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'O gênero já existe, escolha outro.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
 
     if (formAddPlaylistInputThumbnail.value.trim() === '') {
-        alert('Por favor, preencha o campo Thumbnail.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Thumbnail.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
 
     if (textareaDescricao.value.trim() === '') {
-        alert('Por favor, preencha o campo Descrição.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Descrição.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
 
@@ -396,11 +432,23 @@ formPlaylist.addEventListener('submit', async function (event) {
     const result = await response.json()
 
     if (result.message != 'Playlist added succesfully!') {
-        return alert('Internal Error')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Internal Error'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
     }
 
     if (result.message == 'Playlist added succesfully!') {
-        alert('Playlist adicionada com sucesso!')
+        warning.classList.remove('hidden')
+        warning.classList.add('success')
+        warning.textContent = 'Playlist adicionada com sucesso!'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         formAddPlaylistInputNome.value = ''
         formAddPlaylistInputThumbnail.value = ''
         textareaDescricao.value = ''
@@ -440,7 +488,12 @@ formSong.addEventListener('submit', async function (event) {
     event.preventDefault()
 
     if (formSongAddSongInputNome.value.trim() === '') {
-        alert('Por favor, preencha o campo Nome.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Nome.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
     const NomeExiste = data[1].some(
@@ -449,22 +502,40 @@ formSong.addEventListener('submit', async function (event) {
             formSongAddSongInputNome.value.trim().toLowerCase()
     )
     if (NomeExiste) {
-        alert('O Nome já existe, escolha outro.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'O Nome já existe, escolha outro.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
 
     if (formSongAddSongInputURL.value.trim() === '') {
-        alert('Por favor, preencha o campo URL.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo URL.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
 
     if (formSongAddSongInputThumbnail.value.trim() === '') {
-        alert('Por favor, preencha o campo Thumbnail.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Thumbnail.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
         return
     }
 
+    let isVideo = true
+
     function extrairIdDoVideo(url) {
         if (url.endsWith('.mp3')) {
+            isVideo = false
             return url
         } else {
             const regex =
@@ -475,7 +546,7 @@ formSong.addEventListener('submit', async function (event) {
             if (match && match[1]) {
                 return match[1]
             } else {
-                return null
+                return url
             }
         }
     }
@@ -486,7 +557,7 @@ formSong.addEventListener('submit', async function (event) {
         audioUrl: extrairIdDoVideo(formSongAddSongInputURL.value.trim()),
         gender: changedData.playlistName,
         theme: 'Original',
-        isVideo: true,
+        isVideo,
     }
 
     const response = await fetch('/songs', {
@@ -500,11 +571,23 @@ formSong.addEventListener('submit', async function (event) {
     const result = await response.json()
 
     if (result.message != 'Music added succesfully!') {
-        return alert('Internal Error')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Internal Error'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
     }
 
     if (result.message == 'Music added succesfully!') {
-        alert('Música adicionada com sucesso!')
+        warning.classList.remove('hidden')
+        warning.classList.add('success')
+        warning.textContent = 'Música adicionada com sucesso!'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         formSongAddSongInputNome.value = ''
         formSongAddSongInputURL.value = ''
         formSongAddSongInputThumbnail.value = ''
@@ -522,22 +605,43 @@ formEditSongIn.addEventListener('submit', async function (event) {
     event.preventDefault()
 
     if (formSongEditInputNome.value.trim() === '') {
-        alert('Por favor, preencha o campo Nome.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Nome.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         return
     }
 
     if (formSongEditInputURL.value.trim() === '') {
-        alert('Por favor, preencha o campo Gênero.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo URL.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         return
     }
 
     if (formSongEditInputThumbnail.value.trim() === '') {
-        alert('Por favor, preencha o campo Thumbnail.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Thumbnail.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         return
     }
 
+    let isVideo = true
+
     function extrairIdDoVideo(url) {
         if (url.endsWith('.mp3')) {
+            isVideo = false
             return url
         } else {
             const regex =
@@ -548,7 +652,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
             if (match && match[1]) {
                 return match[1]
             } else {
-                return null
+                return url
             }
         }
     }
@@ -557,6 +661,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
         title: formSongEditInputNome.value.trim(),
         audioUrl: extrairIdDoVideo(formSongEditInputURL.value.trim()),
         coverUrl: formSongEditInputThumbnail.value.trim(),
+        isVideo,
     }
 
     const response = await fetch(`/songs/${changedData.songId}`, {
@@ -570,11 +675,23 @@ formEditSongIn.addEventListener('submit', async function (event) {
     const result = await response.json()
 
     if (result.message != 'Music updated succesfully!') {
-        return alert('Internal Error')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Internal Error'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
     }
 
     if (result.message == 'Music updated succesfully!') {
-        alert('Música atualizada com sucesso!')
+        warning.classList.remove('hidden')
+        warning.classList.add('success')
+        warning.textContent = 'Música atualizada com sucesso!'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         formSongEditInputNome.value = ''
         formSongEditInputURL.value = ''
         formSongEditInputThumbnail.value = ''
@@ -600,11 +717,23 @@ formSongDeleteBtn.addEventListener('click', async () => {
     const result = await response.json()
 
     if (result.message != 'Music removed succesfully!') {
-        return alert('Internal Error')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Internal Error'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
     }
 
     if (result.message == 'Music removed succesfully!') {
-        alert('Música deletada com sucesso!')
+        warning.classList.remove('hidden')
+        warning.classList.add('success')
+        warning.textContent = 'Música deletada com sucesso!'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         formDeleteSong.classList.add('hidden')
         focusSong.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
@@ -620,7 +749,14 @@ formPlaylistDeleteBtn.addEventListener('click', async () => {
         playlistDeleteNameInputToConfirm.value !=
         document.querySelector('#playlistDeleteName').textContent
     ) {
-        return alert('Por favor, escreva o nome da playlist corretamente.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent =
+            'Por favor, escreva o nome da playlist corretamente.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
     }
 
     const response = await fetch(`/songs-playlists/${changedData.playlistId}`, {
@@ -633,11 +769,23 @@ formPlaylistDeleteBtn.addEventListener('click', async () => {
     const result = await response.json()
 
     if (result.message != 'Playlist and songs removed succesfully!') {
-        return alert('Internal Error')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Internal Error'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
     }
 
     if (result.message == 'Playlist and songs removed succesfully!') {
-        alert('Playlist deletada com sucesso!')
+        warning.classList.remove('hidden')
+        warning.classList.add('success')
+        warning.textContent = 'Playlist deletada com sucesso!'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         playlistDeleteNameInputToConfirm.value = ''
         formDeletePlaylist.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
@@ -652,22 +800,46 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
     event.preventDefault()
 
     if (formPlaylistEditInputNome.value.trim() === '') {
-        alert('Por favor, preencha o campo Nome.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Nome.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         return
     }
 
     if (formPlaylistEditInputGender.value.trim() === '') {
-        alert('Por favor, preencha o campo Gênero.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Gênero.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         return
     }
 
     if (formPlaylistEditInputThumbnail.value.trim() === '') {
-        alert('Por favor, preencha o campo Thumbnail.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo Thumbnail.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         return
     }
 
     if (formPlaylistEditDescription.value.trim() === '') {
-        alert('Por favor, preencha o campo descrição.')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Por favor, preencha o campo descrição.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         return
     }
 
@@ -689,11 +861,23 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
     const result = await response.json()
 
     if (result.message != 'Playlist updated succesfully!') {
-        return alert('Internal Error')
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'Internal Error'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
     }
 
     if (result.message == 'Playlist updated succesfully!') {
-        alert('Playlist atualizada com sucesso!')
+        warning.classList.remove('hidden')
+        warning.classList.add('success')
+        warning.textContent = 'Playlist atualizada com sucesso!'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
         formPlaylistEditInputNome.value = ''
         formPlaylistEditInputThumbnail.value = ''
         formPlaylistEditInputGender.value = ''
@@ -763,6 +947,7 @@ async function inicia() {
     })
     btnAddPlaylist.addEventListener('click', () => {
         formAddPlaylist.classList.remove('hidden')
+        document.body.style.overflow = 'hidden'
     })
     btnEditPlaylist.addEventListener('click', () => {
         formEditPlaylist.classList.remove('hidden')
@@ -780,6 +965,7 @@ async function inicia() {
     formAddPlaylist.addEventListener('click', (e) => {
         if (e.target.classList[0] == 'form-playlist-overflow') {
             formAddPlaylist.classList.add('hidden')
+            document.body.style.overflow = 'auto'
         }
     })
     formAddSong.addEventListener('click', (e) => {
