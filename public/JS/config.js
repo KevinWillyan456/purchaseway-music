@@ -421,7 +421,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         gender: formAddPlaylistInputGenero.value.trim(),
     }
 
-    const response = await fetch('/playlists', {
+    const response = await fetch(`/playlists?userId=${userData._id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -560,7 +560,7 @@ formSong.addEventListener('submit', async function (event) {
         isVideo,
     }
 
-    const response = await fetch('/songs', {
+    const response = await fetch(`/songs?userId=${userData._id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -664,13 +664,16 @@ formEditSongIn.addEventListener('submit', async function (event) {
         isVideo,
     }
 
-    const response = await fetch(`/songs/${changedData.songId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataResponse),
-    })
+    const response = await fetch(
+        `/songs/${changedData.songId}?userId=${userData._id}`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataResponse),
+        }
+    )
 
     const result = await response.json()
 
@@ -707,12 +710,15 @@ formEditSongIn.addEventListener('submit', async function (event) {
 })
 
 formSongDeleteBtn.addEventListener('click', async () => {
-    const response = await fetch(`/songs/${changedData.songId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
+    const response = await fetch(
+        `/songs/${changedData.songId}?userId=${userData._id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+    )
 
     const result = await response.json()
 
@@ -759,12 +765,15 @@ formPlaylistDeleteBtn.addEventListener('click', async () => {
         return
     }
 
-    const response = await fetch(`/songs-playlists/${changedData.playlistId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
+    const response = await fetch(
+        `/songs-playlists/${changedData.playlistId}?userId=${userData._id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+    )
 
     const result = await response.json()
 
@@ -850,13 +859,16 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         description: formPlaylistEditDescription.value.trim(),
     }
 
-    const response = await fetch(`/playlists/${changedData.playlistId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataResponse),
-    })
+    const response = await fetch(
+        `/playlists/${changedData.playlistId}?userId=${userData._id}`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataResponse),
+        }
+    )
 
     const result = await response.json()
 

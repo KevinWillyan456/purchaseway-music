@@ -32,15 +32,16 @@ import {
 import { getMusic } from './middlewares/MusicMiddleware'
 import { getUser } from './middlewares/UserMiddleware'
 import { getPlaylist } from './middlewares/PlaylistMiddleware'
+import { eAdminManagerRequest } from './middlewares/AuthAdminMiddleware'
 
 export const routes = express.Router()
 
 routes.get('/songs', indexMusic)
-routes.post('/songs', storeMusic)
-routes.put('/songs/:id', getMusic, updateMusic)
-routes.delete('/songs/:id', getMusic, deleteMusic)
+routes.post('/songs', eAdminManagerRequest, storeMusic)
+routes.put('/songs/:id', eAdminManagerRequest, getMusic, updateMusic)
+routes.delete('/songs/:id', eAdminManagerRequest, getMusic, deleteMusic)
 
-routes.get('/users', indexUser)
+routes.get('/users', eAdminManagerRequest, indexUser)
 routes.post('/users', storeUser)
 routes.post('/login', loginUser)
 routes.get('/users/:id', getUser, indexUserById)
@@ -53,9 +54,19 @@ routes.put('/playlists-historic/:id', getUser, updateUserPlaylistSelected)
 
 routes.get('/playlists/:id', getUser, indexPlaylist)
 routes.get('/playlists-select/:id', getUser, selectPlaylist)
-routes.post('/playlists', storePlaylist)
-routes.put('/playlists/:id', getPlaylist, updatePlaylist)
-routes.delete('/playlists/:id', getPlaylist, deletePlaylist)
-routes.delete('/songs-playlists/:id', getPlaylist, deletePlaylistAndSongs)
+routes.post('/playlists', eAdminManagerRequest, storePlaylist)
+routes.put('/playlists/:id', eAdminManagerRequest, getPlaylist, updatePlaylist)
+routes.delete(
+    '/playlists/:id',
+    eAdminManagerRequest,
+    getPlaylist,
+    deletePlaylist
+)
+routes.delete(
+    '/songs-playlists/:id',
+    eAdminManagerRequest,
+    getPlaylist,
+    deletePlaylistAndSongs
+)
 
 routes.get('/songs-playlists', allSongAndPlaylistData)

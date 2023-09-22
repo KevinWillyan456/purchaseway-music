@@ -29,10 +29,6 @@ async function eAdminManager(req: Request, res: Response, next: NextFunction) {
         const decoded = jwt.verify(token, SECRET_KEY)
         ;(req as CustomRequest).token = decoded
 
-        res.cookie('user', (<idUser>decoded).id, {
-            maxAge: 172800000,
-        })
-
         const user = await User.findById(authId, '-password')
 
         if (!user) {
@@ -49,4 +45,24 @@ async function eAdminManager(req: Request, res: Response, next: NextFunction) {
     }
 }
 
-export { eAdminManager }
+async function eAdminManagerRequest(
+    req: Request,
+    res: Response,
+    next: NextFunction
+) {
+    const userId = req.query.userId
+
+    try {
+        const user = await User.findById(userId, '-password')
+
+        if (user && user.type === 'admin') {
+            next()
+        } else {
+            return res.status(403).json({ message: 'Access denied' })
+        }
+    } catch (err) {
+        return res.status(500).json({ error: err })
+    }
+}
+
+export { eAdminManager, eAdminManagerRequest }
