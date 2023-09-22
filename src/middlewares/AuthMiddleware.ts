@@ -13,31 +13,33 @@ async function eAdmin(req: Request, res: Response, next: NextFunction) {
 
     try {
         const authHeader = req.cookies.token
-    
+
         if (!authHeader) {
-            res.clearCookie("user");
-            res.clearCookie("token");
-            return res.status(400).redirect("/denied")
+            res.clearCookie('user')
+            res.clearCookie('token')
+            return res.status(400).redirect('/denied')
         }
 
         const [, token] = authHeader.split(' ')
 
         if (!token) {
-            res.clearCookie("user");
-            res.clearCookie("token");
-            return res.status(400).redirect("/denied")
+            res.clearCookie('user')
+            res.clearCookie('token')
+            return res.status(400).redirect('/denied')
         }
 
         const decoded = jwt.verify(token, SECRET_KEY)
         ;(req as CustomRequest).token = decoded
 
-        res.cookie('user', (<idUser>decoded).id)
+        res.cookie('user', (<idUser>decoded).id, {
+            maxAge: 172800000,
+        })
 
         next()
     } catch (err) {
-        res.clearCookie("user");
-        res.clearCookie("token");
-        return res.status(400).redirect("/denied")
+        res.clearCookie('user')
+        res.clearCookie('token')
+        return res.status(400).redirect('/denied')
     }
 }
 

@@ -65,6 +65,7 @@ async function loginUser(req: Request, res: Response) {
     try {
         const user = await User.findOne({ name })
         let dateTokenExpires: string | number
+        let dateCookieExpires: number
 
         if (!user) {
             return res.status(400).json({ error: 'wrong name or password' })
@@ -76,16 +77,19 @@ async function loginUser(req: Request, res: Response) {
 
         if (hasConnect) {
             dateTokenExpires = '2d'
+            dateCookieExpires = 172800000
         } else {
             dateTokenExpires = 600
+            dateCookieExpires = 600000
         }
 
         const token = jwt.sign({ id: user?._id }, `${process.env.SECRET}`, {
             expiresIn: dateTokenExpires,
         })
 
-        // Salva o Token
-        res.cookie('token', `Bearer ${token}`)
+        res.cookie('token', `Bearer ${token}`, {
+            maxAge: dateCookieExpires,
+        })
         return res.status(200).json({
             erro: false,
             mensagem: 'Login',

@@ -29,7 +29,9 @@ async function eAdminManager(req: Request, res: Response, next: NextFunction) {
         const decoded = jwt.verify(token, SECRET_KEY)
         ;(req as CustomRequest).token = decoded
 
-        res.cookie('user', (<idUser>decoded).id)
+        res.cookie('user', (<idUser>decoded).id, {
+            maxAge: 172800000,
+        })
 
         const user = await User.findById(authId, '-password')
 
