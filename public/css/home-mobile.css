@@ -112,6 +112,7 @@
     margin-right: 20px;
 }
 .main-playlist-mobile .menu-options-mobile {
+    overflow: auto;
     position: absolute;
     top: 0;
     left: 0;
@@ -120,6 +121,16 @@
     background-color: var(--color-blue-1);
     z-index: 100;
     display: none;
+    padding-bottom: 20px;
+}
+.main-playlist-mobile .menu-options-mobile::-webkit-scrollbar {
+    width: 10px;
+}
+.main-playlist-mobile .menu-options-mobile::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+.main-playlist-mobile .menu-options-mobile::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
 }
 .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile {
     display: flex;
@@ -677,7 +688,7 @@
     display: grid;
     width: 100%;
 
-    grid-template-columns: repeat(1, 320px);
+    grid-template-columns: repeat(auto-fill, 320px);
     gap: 40px;
     align-items: flex-start;
     justify-content: center;
@@ -689,6 +700,7 @@
     overflow-y: scroll;
 
     padding-left: 10px;
+    padding-bottom: 20px;
 }
 .main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile::-webkit-scrollbar {
     width: 10px;

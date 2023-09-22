@@ -91,6 +91,9 @@
 .main-playlist-mobile .menu-options-mobile.rock-version {
     background-color: var(--color-red-1);
 }
+.main-playlist-mobile .menu-options-mobile.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
 .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile.rock-version {
     background-color: var(--color-red-3);
 }
@@ -189,6 +192,9 @@
 }
 .main-playlist-mobile .menu-options-mobile.hatsune-miku-version {
     background-color: var(--color-miku-1);
+}
+.main-playlist-mobile .menu-options-mobile.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
 }
 .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile.hatsune-miku-version {
     background-color: var(--color-miku-3);
@@ -289,6 +295,9 @@
 }
 .main-playlist-mobile .menu-options-mobile.amv-brasileiro-version {
     background-color: var(--color-amv-br-1);
+}
+.main-playlist-mobile .menu-options-mobile.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
 }
 .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile.amv-brasileiro-version {
     background-color: var(--color-amv-br-3);

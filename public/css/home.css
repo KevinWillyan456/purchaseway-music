@@ -63,6 +63,7 @@ body {
     cursor: pointer;
 }
 .main-playlist .menu-options {
+    overflow: auto;
     position: absolute;
     top: 0;
     left: 0;
@@ -72,8 +73,18 @@ body {
     z-index: 100;
     display: none;
 }
+.main-playlist .menu-options::-webkit-scrollbar {
+    width: 10px;
+}
+.main-playlist .menu-options::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+.main-playlist .menu-options::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+}
 .main-playlist .menu-options .container-option {
     margin-top: 20px;
+    padding-bottom: 20px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -1125,7 +1136,7 @@ iframe {
     display: grid;
     width: 100%;
 
-    grid-template-columns: repeat(3, 460px);
+    grid-template-columns: repeat(auto-fill, 460px);
     gap: 40px;
     align-items: flex-start;
     justify-content: center;
@@ -1134,6 +1145,7 @@ iframe {
 
     height: 80vh;
     overflow-y: auto;
+    padding-bottom: 40px;
 }
 .main-select-playlists .container-select-playlists::-webkit-scrollbar {
     width: 10px;
@@ -1243,10 +1255,6 @@ iframe {
     .container-funcions {
         margin-left: 20px;
     }
-    .main-select-playlists .container-select-playlists {   
-        grid-template-columns: repeat(2, 460px);
-    }
-
     .title-info-search, .title-info-favorite, .title-info-historic {
         max-width: 550px !important;
     }
