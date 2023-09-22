@@ -154,6 +154,7 @@ html {
     display: flex;
 }
 .button-login button {
+    transition: 200ms;
     width: 150px;
     color: var(--color-white-1);
     font-size: 25px;
@@ -162,7 +163,9 @@ html {
     border: none;
     cursor: pointer;
 }
-
+.button-login button:hover {
+    animation: color-button 500ms infinite alternate;
+}
 .section-banner .button-register {
     display: flex;
     justify-content: center;
@@ -179,7 +182,19 @@ html {
     border: none;
     cursor: pointer;
 }
-
+.button-register button:hover {
+    animation: color-button 500ms infinite alternate;
+}
+@keyframes color-button {
+    0% {
+        box-shadow: 0 0 5px var(--color-blue-2), 0 0 10px var(--color-blue-2);
+        color: var(--color-blue-2);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--color-white-1), 0 0 10px var(--color-white-1);
+        color: var(--color-white-1);
+    }
+}
 .section-banner {
     width: 100%;
     min-height: 100vh;
@@ -348,76 +363,6 @@ html {
     text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 
-.section-reactive .blue-blur {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background-color: var(--color-blue-2);
-    filter: blur(50px);
-    
-    border-radius: 50%;
-
-    color: var(--color-white-1);
-
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
-
-    top: 80px;
-    left: 80px;
-}
-.section-reactive .blue-blur-title {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-
-    color: var(--color-white-1);
-
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
-
-    font-size: 64px;
-
-    top: 80px;
-    left: 80px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.section-reactive .red-blur {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background-color: var(--color-red-2);
-    filter: blur(50px);
-    
-    border-radius: 50%;
-
-    color: var(--color-white-1);
-
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
-
-    top: 37.0370%;
-    left: 64.5833%;
-}
-.section-reactive .red-blur-title {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-
-    color: var(--color-white-1);
-
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
-
-    font-size: 64px;
-
-    top: 37.0370%;
-    left: 64.5833%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .rodape {
     width: 100%;
     background-color: var(--color-blue-1);
@@ -443,25 +388,6 @@ html {
 }
 @media (max-width: 1800px)
 {
-    .section-reactive .blue-blur {
-        width: 500px;
-        height: 500px;
-    }
-    .section-reactive .blue-blur-title {
-        width: 500px;
-        height: 500px;
-        font-size: 50px;
-    }
-    .section-reactive .red-blur {
-        width: 500px;
-        height: 500px;
-    }
-    .section-reactive .red-blur-title {
-        width: 500px;
-        height: 500px;
-        font-size: 50px;
-    }
-
     .section-reactive .box-wrapper .title-1 {
         font-size: 60px;
     }
@@ -474,19 +400,29 @@ html {
 {
     .section-banner .title-1 {
         font-size: 50px;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-banner .title-2 {
         font-size: 40px;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-banner .title-3 {
         font-size: 20px;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     
     .section-listen .box-wrapper .title-1, .section-very-high-quality .box-wrapper .title-1 {
         font-size: 50px;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-very-high-quality .box-wrapper .title-2 {
         font-size: 60px;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-very-high-quality .box-wrapper .title-2 ion-icon {
         width: 110px;
@@ -494,32 +430,19 @@ html {
     }
     .section-listen .box-wrapper .title-2 {
         font-size: 30px;
-    }
-    .section-reactive .blue-blur {
-        width: 450px;
-        height: 450px;
-    }
-    .section-reactive .blue-blur-title {
-        width: 450px;
-        height: 450px;
-        font-size: 40px;
-    }
-    .section-reactive .red-blur {
-        width: 450px;
-        height: 450px;
-    }
-    .section-reactive .red-blur-title {
-        width: 450px;
-        height: 450px;
-        font-size: 40px;
-    }
 
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+    }
     .section-reactive .box-wrapper .title-1 {
         font-size: 60px;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-reactive .box-wrapper .title-2 {
         font-size: 24px;
         width: 300px;
+
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
 }
 
