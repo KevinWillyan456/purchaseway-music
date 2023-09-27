@@ -100,6 +100,9 @@
 .main-playlist-mobile .menu-options-mobile .option-mobile.rock-version {
     background-color: var(--color-red-3);
 }
+.info-item-select-playlist-mobile .description-item-select-playlist-mobile.rock-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-red-2);
+}
 
 /* Hatsune Miku Version Theme */
 
@@ -201,6 +204,9 @@
 }
 .main-playlist-mobile .menu-options-mobile .option-mobile.hatsune-miku-version {
     background-color: var(--color-miku-3);
+}
+.info-item-select-playlist-mobile .description-item-select-playlist-mobile.hatsune-miku-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-miku-2);
 }
 
 /* AMV Brasileiro Version Theme */
@@ -304,4 +310,7 @@
 }
 .main-playlist-mobile .menu-options-mobile .option-mobile.amv-brasileiro-version {
     background-color: var(--color-amv-br-3);
+}
+.info-item-select-playlist-mobile .description-item-select-playlist-mobile.amv-brasileiro-version::-webkit-scrollbar-thumb {
+    background-color: var(--color-amv-br-2);
 }

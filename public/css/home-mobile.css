@@ -761,9 +761,19 @@
     font-size: 12px;
     margin-top: 10px;
     height: 90px;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding-right: 5px;
+    overflow: auto;
+}
+.info-item-select-playlist-mobile .description-item-select-playlist-mobile::-webkit-scrollbar {
+    width: 10px;
+}
+.info-item-select-playlist-mobile .description-item-select-playlist-mobile::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+.info-item-select-playlist-mobile .description-item-select-playlist-mobile::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
 }
 .info-item-select-playlist-mobile .total-music-item-select-playlist-mobile {
     margin-top: 20px;

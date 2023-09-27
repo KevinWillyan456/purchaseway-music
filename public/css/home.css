@@ -1205,9 +1205,19 @@ iframe {
     font-size: 12px;
     margin-top: 10px;
     height: 60px;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding-right: 5px;
+    overflow: auto;
+}
+.info-item-select-playlist .description-item-select-playlist::-webkit-scrollbar {
+    width: 10px;
+}
+.info-item-select-playlist .description-item-select-playlist::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+.info-item-select-playlist .description-item-select-playlist::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
 }
 .info-item-select-playlist .total-music-item-select-playlist {
     margin-top: 20px;
