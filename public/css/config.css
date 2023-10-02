@@ -596,6 +596,10 @@ body::-webkit-scrollbar-thumb {
     text-overflow: ellipsis;
     max-width: 500px;
 }
+.focus .song .main-song .content .details .url {
+    display: flex;
+    gap: 5px;
+}
 .focus .song .main-song .content .details .url a {
     color: inherit;
 }
@@ -1282,6 +1286,12 @@ body::-webkit-scrollbar-thumb {
     .focus .song .main-song .content .details .gender {
         max-width: 100vw;
         width: calc(100vw - 80px);
+    }
+    .focus .song .main-song .content .details .url a {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: calc(100vw - 77px);
     }
     .form-song-overflow .form-song {
         width: 320px;
