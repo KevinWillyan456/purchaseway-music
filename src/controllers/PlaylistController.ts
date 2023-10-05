@@ -93,7 +93,19 @@ async function updatePlaylist(
     }
 
     try {
+        const playlist = await Playlist.findById(id)
         await Playlist.updateOne(filter, updateDoc)
+
+        if (gender != playlist?.gender) {
+            await Music.updateMany(
+                { gender: playlist?.gender },
+                {
+                    $set: {
+                        gender,
+                    },
+                }
+            )
+        }
 
         return res
             .status(200)
