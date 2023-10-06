@@ -20,7 +20,7 @@ body {
 .container .title-1 {
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
 
     font-size: 70px;
     margin-bottom: 12px;
@@ -29,7 +29,7 @@ body {
 .container .title-2 {
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
 
     font-size: 32px;
     margin-bottom: 20px;
@@ -54,13 +54,9 @@ body {
     .container .title-1 {
         font-size: 64px;
         margin-bottom: 20px;
-
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .container .title-2 {
         font-size: 24px;
         width: 280px;
-
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
 }
