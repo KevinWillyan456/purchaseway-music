@@ -120,11 +120,17 @@ const containerItemsSearchMobile = document.querySelector('.container-search-mob
 const searchBarInputMobile = document.querySelector('#search-bar-input-mobile');
 
 const btnDeleteAccount = document.querySelector('#btnDeleteAccount');
+const btnDeleteAccountMobile = document.querySelector('#btnDeleteAccountMobile');
 const formDeleteAccount = document.querySelector('#formDeleteAccount');
+const formDeleteAccountMobile = document.querySelector('#formDeleteAccountMobile');
 const formDeleteAccountCancel = document.querySelector('#formDeleteAccountCancel');
+const formDeleteAccountCancelMobile = document.querySelector('#formDeleteAccountCancelMobile');
 const btnDeleteAccountConfirmed = document.querySelector('#btnDeleteAccountConfirmed');
+const btnDeleteAccountConfirmedMobile = document.querySelector('#btnDeleteAccountConfirmedMobile');
 const deleteAccountInputToConfirm = document.querySelector('#deleteAccountInputToConfirm');
+const deleteAccountInputToConfirmMobile = document.querySelector('#deleteAccountInputToConfirmMobile');
 const warning = document.querySelector('#warning');
+const warningMobile = document.querySelector('#warningMobile');
 
 let musicData = [];
 let musicDataShuffled = [];
@@ -207,9 +213,16 @@ controlsMobile.addEventListener("click", () => {
 btnDeleteAccount.addEventListener("click", () => {
     formDeleteAccount.classList.remove("hidden")
 })
+btnDeleteAccountMobile.addEventListener("click", () => {
+    formDeleteAccountMobile.classList.remove("hidden")
+})
 formDeleteAccountCancel.addEventListener("click", () => {
     formDeleteAccount.classList.add("hidden")
     deleteAccountInputToConfirm.value = ""
+})
+formDeleteAccountCancelMobile.addEventListener("click", () => {
+    formDeleteAccountMobile.classList.add("hidden")
+    deleteAccountInputToConfirmMobile.value = ""
 })
 formDeleteAccount.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'form-delete-account-overflow') {
@@ -217,10 +230,20 @@ formDeleteAccount.addEventListener('click', (e) => {
         deleteAccountInputToConfirm.value = ""
     }
 })
+formDeleteAccountMobile.addEventListener('click', (e) => {
+    if (e.target.classList[0] == 'form-delete-account-overflow-mobile') {
+        formDeleteAccountMobile.classList.add("hidden")
+        deleteAccountInputToConfirmMobile.value = ""
+    }
+})
 deleteAccountInputToConfirm.addEventListener("paste", (e) => {
     e.preventDefault()
 })
+deleteAccountInputToConfirmMobile.addEventListener("paste", (e) => {
+    e.preventDefault()
+})
 btnDeleteAccountConfirmed.addEventListener("click", manageUserAccountDeletion)
+btnDeleteAccountConfirmedMobile.addEventListener("click", manageUserAccountDeletion)
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1914,24 +1937,46 @@ function setManagementSystem(){
 }
 
 async function manageUserAccountDeletion() {
-    if (deleteAccountInputToConfirm.value !== "Quero deletar minha conta e aceito as condições") {
-        warning.classList.remove('hidden')
-        warning.textContent = 'Por favor, escreva a frase corretamente.'
-        setTimeout(() => {
-            warning.classList.add('hidden')
-        }, 3000)
-        return
-    }
+    if (screenWidth >= 1360) {
+        if (deleteAccountInputToConfirm.value !== "Quero deletar minha conta e aceito as condições") {
+            warning.classList.remove('hidden')
+            warning.textContent = 'Por favor, escreva a frase corretamente.'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+            return
+        }
 
-    btnDeleteAccountConfirmed.disabled = true
+        btnDeleteAccountConfirmed.disabled = true
 
-    const userToDelete = await fetch(`/users/${userData._id}`, {
-        method: "DELETE"
-    })
-    const response = await userToDelete.json()
+        const userToDelete = await fetch(`/users/${userData._id}`, {
+            method: "DELETE"
+        })
+        const response = await userToDelete.json()
 
-    if (response.message === "User removed succesfully!") {
-        logoutService();
+        if (response.message === "User removed succesfully!") {
+            logoutService();
+        }
+    } else {
+        if (deleteAccountInputToConfirmMobile.value !== "Quero deletar minha conta e aceito as condições") {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Por favor, escreva a frase corretamente.'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+            return
+        }
+
+        btnDeleteAccountConfirmedMobile.disabled = true
+
+        const userToDelete = await fetch(`/users/${userData._id}`, {
+            method: "DELETE"
+        })
+        const response = await userToDelete.json()
+
+        if (response.message === "User removed succesfully!") {
+            logoutService();
+        }
     }
 }
 

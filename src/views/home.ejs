@@ -250,6 +250,8 @@
 
     <main class="super-main-mobile" style="display: none;">
 
+        <div class="warning hidden" id="warningMobile"></div>
+
         <section class="header-mobile">
 
             <div class="service-logo-mobile">
@@ -420,6 +422,23 @@
                 </div>
                 
                 <div class="container-historic-mobile">
+                </div>
+
+                <div class="container-delete-account-mobile">
+                    <button class="btn-delete-account-mobile" id="btnDeleteAccountMobile">Deletar sua conta</button>
+                </div>
+
+                <div class="form-delete-account-overflow-mobile hidden" id="formDeleteAccountMobile">
+                    <div class="form-delete-account-mobile">
+                        <div class="title">Tem certeza que deseja deletar sua conta?</div>
+                        <div class="delete-account-name" id="playlistDeleteNameMobile">Quero deletar minha conta e aceito as condições</div>
+                        <input class="field" type="text" placeholder="Digite a frase para confirmar..." id="deleteAccountInputToConfirmMobile">
+                        <div class="delete-account-warning">Todos os seus dados serão excluídos e não será possível recuperá-los</div>
+                        <div class="interactions-delete">
+                            <button class="cancel" id="formDeleteAccountCancelMobile">Cancelar</button>
+                            <button class="delete" id="btnDeleteAccountConfirmedMobile">Excluir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
