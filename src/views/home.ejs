@@ -22,10 +22,12 @@
 
     <main class="super-main">
 
+        <div class="warning hidden" id="warning"></div>
+
         <section class="main-playlist">
 
             <div class="box-wrapper-info">
-                <div class="title-playlist">Recentes</div>
+                <div class="title-playlist">Carregando...</div>
                 <div class="more-playlist">Mais</div>
             </div>
 
@@ -106,7 +108,7 @@
                                 <ion-icon name="person"></ion-icon>
                             </div>
                             <div class="box-user-information">
-                                <div class="user-name">Joe Dawn</div>
+                                <div class="user-name">Carregando...</div>
                                 <div class="registration-date">Registrou-se em: 15 fevereiro 2023</div>
                             </div>
                         </div>
@@ -125,11 +127,26 @@
                         
                         <div class="container-historic">
                         </div>
-                        
+
+                        <div class="container-delete-account">
+                            <button class="btn-delete-account" id="btnDeleteAccount">Deletar sua conta</button>
+                        </div>
+
+                        <div class="form-delete-account-overflow hidden" id="formDeleteAccount">
+                            <div class="form-delete-account">
+                                <div class="title">Tem certeza que deseja deletar sua conta?</div>
+                                <div class="delete-account-name" id="playlistDeleteName">Quero deletar minha conta e aceito as condições</div>
+                                <input class="field" type="text" placeholder="Digite a frase para confirmar..." id="deleteAccountInputToConfirm">
+                                <div class="delete-account-warning">Todos os seus dados serão excluídos e não será possível recuperá-los</div>
+                                <div class="interactions-delete">
+                                    <button class="cancel" id="formDeleteAccountCancel">Cancelar</button>
+                                    <button class="delete" id="btnDeleteAccountConfirmed">Excluir</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </section>
 
         <section class="main-controls">
@@ -254,7 +271,7 @@
         <section class="main-playlist-mobile">
 
             <div class="box-wrapper-info-mobile">
-                <div class="title-playlist-mobile">Recentes</div>
+                <div class="title-playlist-mobile">Carregando...</div>
                 <div class="more-playlist-mobile">Mais</div>
             </div>
 

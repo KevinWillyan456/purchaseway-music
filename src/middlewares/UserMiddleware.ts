@@ -6,6 +6,8 @@ async function getUser(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params
 
     if (!isUuid(id)) {
+        res.clearCookie('user')
+        res.clearCookie('token')
         return res.status(400).json({ error: 'Invalid ID' })
     }
 
@@ -13,6 +15,8 @@ async function getUser(req: Request, res: Response, next: NextFunction) {
         const user = await User.findById(id)
 
         if (!user) {
+            res.clearCookie('user')
+            res.clearCookie('token')
             return res.status(404).json({ error: 'User not found' })
         }
     } catch (err) {

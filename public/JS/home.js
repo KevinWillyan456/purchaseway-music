@@ -119,6 +119,13 @@ const containerItemsSearchMobile = document.querySelector('.container-search-mob
 
 const searchBarInputMobile = document.querySelector('#search-bar-input-mobile');
 
+const btnDeleteAccount = document.querySelector('#btnDeleteAccount');
+const formDeleteAccount = document.querySelector('#formDeleteAccount');
+const formDeleteAccountCancel = document.querySelector('#formDeleteAccountCancel');
+const btnDeleteAccountConfirmed = document.querySelector('#btnDeleteAccountConfirmed');
+const deleteAccountInputToConfirm = document.querySelector('#deleteAccountInputToConfirm');
+const warning = document.querySelector('#warning');
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -197,6 +204,23 @@ controlsMobile.addEventListener("click", () => {
     toggleDisplayMobile()
     $(".menu-options-mobile").hide(200)
 })
+btnDeleteAccount.addEventListener("click", () => {
+    formDeleteAccount.classList.remove("hidden")
+})
+formDeleteAccountCancel.addEventListener("click", () => {
+    formDeleteAccount.classList.add("hidden")
+    deleteAccountInputToConfirm.value = ""
+})
+formDeleteAccount.addEventListener('click', (e) => {
+    if (e.target.classList[0] == 'form-delete-account-overflow') {
+        formDeleteAccount.classList.add("hidden")
+        deleteAccountInputToConfirm.value = ""
+    }
+})
+deleteAccountInputToConfirm.addEventListener("paste", (e) => {
+    e.preventDefault()
+})
+btnDeleteAccountConfirmed.addEventListener("click", manageUserAccountDeletion)
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1887,6 +1911,28 @@ function setManagementSystem(){
     selectManagementSystemMobile.addEventListener("click", () => {
         window.location = '/config'
     })
+}
+
+async function manageUserAccountDeletion() {
+    if (deleteAccountInputToConfirm.value !== "Quero deletar minha conta e aceito as condições") {
+        warning.classList.remove('hidden')
+        warning.textContent = 'Por favor, escreva a frase corretamente.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
+    }
+
+    btnDeleteAccountConfirmed.disabled = true
+
+    const userToDelete = await fetch(`/users/${userData._id}`, {
+        method: "DELETE"
+    })
+    const response = await userToDelete.json()
+
+    if (response.message === "User removed succesfully!") {
+        logoutService();
+    }
 }
 
 async function selectNewPlaylist(playlistSelect, playlistName) {

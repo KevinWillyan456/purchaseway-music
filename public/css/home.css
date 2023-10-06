@@ -803,6 +803,170 @@ iframe {
     color: var(--color-white-1);
     cursor: pointer;
 }
+.container-delete-account {
+    margin-top: 40px;
+    width: calc(100% - 5px);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-delete-account .btn-delete-account {
+    width: 220px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background-color: var(--color-red-2);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.form-delete-account-overflow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000000cc;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+.form-delete-account-overflow .form-delete-account {
+    animation: animate-scale-opacity-entrace 500ms;
+    width: 720px;
+    height: 396px;
+    border-radius: 10px;
+    border: 3px solid var(--color-white-1);
+    background: var(--color-blue-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-delete-account-overflow .form-delete-account .title {
+    color: var(--color-white-1);
+    font-size: 24px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+.form-delete-account-overflow .form-delete-account .delete-account-name {
+    color: var(--color-white-1);
+    font-size: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 640px;
+}
+.form-delete-account-overflow .form-delete-account .field {
+    transition: 200ms;
+    max-width: 400px;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: var(--color-white-1);
+    color: var(--color-blue-3);
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 20px;
+}
+.form-delete-account-overflow .form-delete-account .field:focus {
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+.form-delete-account-overflow .form-delete-account .field::placeholder {
+    color: var(--color-blue-3);
+    font-size: 15px;
+}
+.form-delete-account-overflow .form-delete-account .delete-account-warning {
+    color: var(--color-red-2);
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.form-delete-account-overflow .form-delete-account .interactions-delete {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+}
+.form-delete-account-overflow .form-delete-account .interactions-delete .cancel {
+    width: 250px;
+    height: 60px;
+    padding-top: 2px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+.form-delete-account-overflow .form-delete-account .interactions-delete .delete {
+    width: 250px;
+    height: 60px;
+    padding-top: 2px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-red-2);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+@keyframes animate-scale-opacity-entrace {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.warning {
+    animation: warning-anime-color 1s infinite alternate, warning-anime-entrace 500ms linear;
+    position: absolute;
+
+    top: 20px;
+    left: 0;
+    color: var(--color-red-2);
+    background-color: var(--color-red-1);
+    font-size: 22px;
+    width: calc(100% - 40px);
+    transform: translateX(20px);
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-red-2);
+    z-index: 100;
+}
+@keyframes warning-anime-color {
+    0% {
+        color: var(--color-red-2);
+    }
+    100% {
+        color: var(--color-white-1);
+    }
+}
+@keyframes warning-anime-entrace {
+    0% {
+        top: 0px;
+        opacity: 0;
+    }
+    100% {
+        top: 20px;
+        opacity: 1;
+    }
+}
 
 /* Main Controls */
 
