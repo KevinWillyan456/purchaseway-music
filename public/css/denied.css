@@ -46,6 +46,19 @@ body {
     border: none;
     cursor: pointer;
 }
+.button-login button:hover {
+    animation: color-button 500ms infinite alternate;
+}
+@keyframes color-button {
+    0% {
+        box-shadow: 0 0 5px var(--color-blue-2), 0 0 10px var(--color-blue-2);
+        color: var(--color-blue-2);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--color-white-1), 0 0 10px var(--color-white-1);
+        color: var(--color-white-1);
+    }
+}
 @media (max-width: 1359px)
 {
     .container {
