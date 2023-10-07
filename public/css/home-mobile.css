@@ -253,9 +253,8 @@
     color: var(--color-blue-5);
 }
 .item-playlist-mobile .info-item .title-info {
-    max-width: 1120px;
+    max-width: calc(100vw - 176px);
     font-size: 14px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -329,9 +328,8 @@
     transform: translateY(-5px);
 }
 .main-controls-mobile .box-wrapper .info-item .title-info {
-    max-width: 1120px;
+    max-width: calc(100vw - 172px);
     font-size: 14px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -943,9 +941,8 @@
     text-overflow: ellipsis;
 }
 .item-favorite-mobile .info-item-favorite .title-info {
-    max-width: 1120px;
+    max-width: calc(100vw - 176px);
     font-size: 14px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1030,9 +1027,8 @@
     text-overflow: ellipsis;
 }
 .item-historic-mobile .info-item-historic .title-info {
-    max-width: 1120px;
+    max-width: calc(100vw - 176px);
     font-size: 14px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1057,7 +1053,7 @@
 }
 .container-delete-account-mobile {
     margin-top: 40px;
-    width: calc(100% - 5px);
+    width: 100%;
     padding: 20px;
     display: flex;
     align-items: center;
@@ -1075,6 +1071,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-left: 30px;
 }
 .form-delete-account-overflow-mobile {
     position: fixed;
@@ -1360,9 +1357,8 @@
     text-overflow: ellipsis;
 }
 .item-search-mobile .info-item-search .title-info {
-    max-width: 1120px;
+    max-width: calc(100vw - 176px);
     font-size: 14px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1402,42 +1398,5 @@
     }
     100% {
         opacity: 1;
-    }
-}
-
-@media (max-width: 1300px)
-{
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
-        max-width: 900px;
-    }
-}
-@media (max-width: 1100px)
-{
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
-        max-width: 680px;
-    }
-}
-@media (max-width: 870px)
-{
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
-        max-width: 550px;
-    }
-}
-@media (max-width: 750px)
-{
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
-        max-width: 400px;
-    }
-}
-@media (max-width: 580px)
-{
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
-        max-width: 300px;
-    }
-}
-@media (max-width: 490px)
-{
-    .item-playlist-mobile .info-item .title-info, .main-controls-mobile .box-wrapper .info-item .title-info, .item-favorite-mobile .info-item-favorite .title-info, .item-historic-mobile .info-item-historic .title-info, .item-search-mobile .info-item-search .title-info, .item-historic-mobile .info-item-historic .title-info {
-        max-width: 180px;
     }
 }

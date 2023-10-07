@@ -485,9 +485,8 @@ iframe {
     text-overflow: ellipsis;
 }
 .info-item-search .title-info-search {
-    max-width: 1100px;
+    max-width: calc(100vw - 790px);
     font-size: 16px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -710,9 +709,8 @@ iframe {
     text-overflow: ellipsis;
 }
 .info-item-favorite .title-info-favorite {
-    max-width: 1100px;
+    max-width: calc(100vw - 790px);
     font-size: 16px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -778,7 +776,7 @@ iframe {
     text-overflow: ellipsis;
 }
 .info-item-historic .title-info-historic {
-    max-width: 1100px;
+    max-width: calc(100vw - 790px);
     font-size: 16px;
 
     white-space: nowrap;
@@ -1396,9 +1394,6 @@ iframe {
     .service-logo {
         display: none !important;
     }
-    .title-info-search, .title-info-favorite, .title-info-historic {
-        max-width: 850px !important;
-    }
     .box-user-information .user-name {
         max-width: 920px;
     }
@@ -1407,9 +1402,6 @@ iframe {
 {
     .slider-music-duration {
         width: 350px;
-    }
-    .title-info-search, .title-info-favorite, .title-info-historic {
-        max-width: 650px !important;
     }
     .box-user-information .user-name {
         max-width: 800px;
@@ -1428,9 +1420,6 @@ iframe {
     }
     .container-funcions {
         margin-left: 20px;
-    }
-    .title-info-search, .title-info-favorite, .title-info-historic {
-        max-width: 550px !important;
     }
     .box-user-information .user-name {
         max-width: 600px;
