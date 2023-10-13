@@ -2,10 +2,13 @@ import { Request, Response } from 'express'
 import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
+import { User } from '../models/User'
 
 async function indexMusic(req: Request, res: Response) {
     try {
-        const songs = await Music.find().sort({title: 1}).collation({locale: "pt", strength: 2})
+        const songs = await Music.find()
+            .sort({ title: 1 })
+            .collation({ locale: 'pt', strength: 2 })
         return res.status(200).json({ songs })
     } catch (err) {
         res.status(500).json({ error: err })
@@ -79,6 +82,16 @@ async function deleteMusic(
     const filter = { _id: id }
 
     try {
+        await User.updateMany(
+            {},
+            {
+                $pullAll: {
+                    favoriteSongs: [{ musicId: id }],
+                    musicHistory: [{ musicId: id }],
+                },
+            }
+        )
+
         await Music.deleteOne(filter)
         return res.status(200).json({ message: 'Music removed succesfully!' })
     } catch (err) {
