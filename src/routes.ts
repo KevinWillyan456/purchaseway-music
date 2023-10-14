@@ -18,6 +18,7 @@ import {
     updateUserFavoriteSongs,
     updateUserMusicHistoric,
     updateUserPlaylistSelected,
+    updateUserProfilePicture,
 } from './controllers/UserController'
 
 import {
@@ -70,3 +71,5 @@ routes.delete(
 )
 
 routes.get('/songs-playlists', allSongAndPlaylistData)
+
+routes.put('/users-profile-picture/:id', updateUserProfilePicture)

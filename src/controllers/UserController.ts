@@ -479,6 +479,33 @@ async function allSongAndPlaylistData(req: Request, res: Response) {
     }
 }
 
+async function updateUserProfilePicture(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { profilePicture } = req.body
+    const { id } = req.params
+
+    let updateDoc = {
+        $set: { profilePicture },
+    }
+
+    if (!profilePicture) {
+        updateDoc = {
+            $set: { profilePicture: '' },
+        }
+    }
+
+    const filter = { _id: id }
+
+    try {
+        await User.updateOne(filter, updateDoc)
+        return res.status(200).json({ message: 'User updated succesfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
 export {
     indexUser,
     indexUserById,
@@ -490,4 +517,5 @@ export {
     updateUserMusicHistoric,
     updateUserPlaylistSelected,
     allSongAndPlaylistData,
+    updateUserProfilePicture,
 }
