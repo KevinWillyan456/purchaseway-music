@@ -80,7 +80,10 @@
                     <ion-icon name="time"></ion-icon>
                 </div>
                 <div class="user-settings">
-                    <ion-icon name="person"></ion-icon>
+                    <ion-icon name="person" id="userPersonIcon"></ion-icon>
+                    <div class="user-settings-person-container hidden" id="userPersonContainer">
+                        <img src="" class="user-settings-person-img" id="userPersonImg">
+                    </div>
                 </div>
             </div>
 
@@ -104,11 +107,25 @@
                         <div class="logout"><ion-icon name="exit"></ion-icon></div>
                         <div class="box-profile">
                             <div class="user-settings">
-                                <ion-icon name="person"></ion-icon>
+                                <ion-icon name="person" id="userSettingsPersonIcon"></ion-icon>
+                                <div class="user-settings-person-container hidden" id="userSettingsPersonContainer">
+                                    <img src="" class="user-settings-person-img" id="userSettingsPersonImg">
+                                </div>
+                                <div class="edit-profile-picture" id="profilePictureEdit">
+                                    <ion-icon name="pencil"></ion-icon>
+                                </div>
                             </div>
                             <div class="box-user-information">
                                 <div class="user-name">Carregando...</div>
                                 <div class="registration-date">Registrou-se em: 15 fevereiro 2023</div>
+                            </div>
+                        </div>
+
+                        <div class="layer-profile-picture hidden" id="layerProfilePicture">
+                            <div class="container-profile-picture">
+                                <div class="title">Adicione uma URL</div>
+                                <input class="field" type="text" placeholder="URL" id="profilePictureInput">
+                                <button class="save" id="profilePictureSave">Salvar</button>
                             </div>
                         </div>
                         

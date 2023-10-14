@@ -619,6 +619,7 @@ iframe {
 }
 
 .box-profile .user-settings {
+    position: relative;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -636,11 +637,108 @@ iframe {
     height: 68px;
     color: var(--color-white-1);
 }
-
+.box-profile .user-settings .edit-profile-picture {
+    transition: 200ms;
+    position: absolute;
+    bottom: -10px;
+    right: -5px;
+    background-color: var(--color-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+}
+.box-profile .user-settings .edit-profile-picture:hover {
+    box-shadow: 0 0 10px var(--color-white-1);
+}
+.box-profile .user-settings .edit-profile-picture ion-icon {
+    width: 25px;
+    height: 25px;
+}
 .box-profile {
     margin-top: 40px;
     display: flex;
     align-items: center;
+}
+.user-settings-person-container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+}
+.user-settings .user-settings-person-img {
+    width: 100%;
+}
+.layer-profile-picture {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000cc;
+    display: grid;
+    place-items: center;
+}
+.layer-profile-picture .container-profile-picture {
+    animation: animate-scale-opacity-entrace 500ms;
+    width: 480px;
+    height: 289px;
+    border-radius: 10px;
+    border: 3px solid var(--color-white-1);
+    background: var(--color-blue-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.layer-profile-picture .container-profile-picture .title {
+    color: var(--color-white-1);
+    font-size: 24px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+.layer-profile-picture .container-profile-picture .field {
+    transition: 200ms;
+    max-width: 400px;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: var(--color-white-1);
+    color: var(--color-blue-3);
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 20px;
+}
+.layer-profile-picture .container-profile-picture .field:focus {
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+.layer-profile-picture .container-profile-picture .field::placeholder {
+    color: var(--color-blue-3);
+    font-size: 15px;
+}
+.layer-profile-picture .container-profile-picture .save {
+    width: 200px;
+    height: 60px;
+    padding-top: 2px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .box-user-information {
