@@ -136,6 +136,10 @@ const profilePictureEdit = document.querySelector('#profilePictureEdit');
 const layerProfilePicture = document.querySelector('#layerProfilePicture');
 const profilePictureInput = document.querySelector('#profilePictureInput');
 const profilePictureSave = document.querySelector('#profilePictureSave');
+const profilePictureEditMobile = document.querySelector('#profilePictureEditMobile');
+const layerProfilePictureMobile = document.querySelector('#layerProfilePictureMobile');
+const profilePictureInputMobile = document.querySelector('#profilePictureInputMobile');
+const profilePictureSaveMobile = document.querySelector('#profilePictureSaveMobile');
 
 let musicData = [];
 let musicDataShuffled = [];
@@ -260,6 +264,17 @@ layerProfilePicture.addEventListener('click', (e) => {
     }
 })
 profilePictureSave.addEventListener("click", manageUserProfilePicture)
+
+profilePictureEditMobile.addEventListener("click", () => {
+    layerProfilePictureMobile.classList.remove("hidden")
+})
+layerProfilePictureMobile.addEventListener('click', (e) => {
+    if (e.target.classList[0] == 'layer-profile-picture-mobile') {
+        layerProfilePictureMobile.classList.add("hidden")
+        profilePictureInputMobile.value = userData.profilePicture
+    }
+})
+profilePictureSaveMobile.addEventListener("click", manageUserProfilePicture)
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1938,6 +1953,7 @@ function changeMobileOrDesktop() {
     manageHistoric();
     audioControllerPlayAudioAndVideo();
     setUserSettings()
+    setUserProfilePicture()
 }
 
 function setManagementSystem(){
@@ -1998,45 +2014,88 @@ async function manageUserAccountDeletion() {
 }
 
 async function manageUserProfilePicture() {
-    if (userData.profilePicture === "" && profilePictureInput.value.trim() === ""){
-        layerProfilePicture.classList.add("hidden")
-        return
-    } 
-    
-    const resposta = await fetch(`/users-profile-picture/${userData._id}`, {
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({profilePicture: profilePictureInput.value.trim()})
-    })
-    
-    if(resposta.status != 200){
-        return alert("Internal Error!")
-    }
+    if (screenWidth >= 1360) {
+        if (userData.profilePicture === "" && profilePictureInput.value.trim() === ""){
+            layerProfilePicture.classList.add("hidden")
+            return
+        } 
+        
+        const resposta = await fetch(`/users-profile-picture/${userData._id}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({profilePicture: profilePictureInput.value.trim()})
+        })
+        
+        if(resposta.status != 200){
+            return alert("Internal Error!")
+        }
 
-    layerProfilePicture.classList.add("hidden")
-    await refreshFavorite()
-    await refreshUser()
-    profilePictureInput.value = userData.profilePicture
-    setUserProfilePicture()
+        layerProfilePicture.classList.add("hidden")
+        await refreshFavorite()
+        await refreshUser()
+        profilePictureInput.value = userData.profilePicture
+        setUserProfilePicture()
+    } else {
+        if (userData.profilePicture === "" && profilePictureInputMobile.value.trim() === ""){
+            layerProfilePictureMobile.classList.add("hidden")
+            return
+        } 
+        
+        const resposta = await fetch(`/users-profile-picture/${userData._id}`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({profilePicture: profilePictureInputMobile.value.trim()})
+        })
+        
+        if(resposta.status != 200){
+            return alert("Internal Error!")
+        }
+
+        layerProfilePictureMobile.classList.add("hidden")
+        await refreshFavorite()
+        await refreshUser()
+        profilePictureInputMobile.value = userData.profilePicture
+        setUserProfilePicture()
+    }
 }
 
 function setUserProfilePicture() {
-    if (userData.profilePicture == "") {
-        document.querySelector('#userSettingsPersonIcon').classList.remove("hidden")
-        document.querySelector('#userSettingsPersonContainer').classList.add("hidden")
-        document.querySelector('#userPersonIcon').classList.remove("hidden")
-        document.querySelector('#userPersonContainer').classList.add("hidden")
+    if (screenWidth >= 1360) {
+        if (userData.profilePicture == "") {
+            document.querySelector('#userSettingsPersonIcon').classList.remove("hidden")
+            document.querySelector('#userSettingsPersonContainer').classList.add("hidden")
+            document.querySelector('#userPersonIcon').classList.remove("hidden")
+            document.querySelector('#userPersonContainer').classList.add("hidden")
+        } else {
+            document.querySelector('#userSettingsPersonIcon').classList.add("hidden")
+            document.querySelector('#userSettingsPersonContainer').classList.remove("hidden")
+            document.querySelector('#userSettingsPersonImg').src = userData.profilePicture
+            document.querySelector('#userPersonIcon').classList.add("hidden")
+            document.querySelector('#userPersonContainer').classList.remove("hidden")
+            document.querySelector('#userPersonImg').src = userData.profilePicture
+            profilePictureInput.value = userData.profilePicture
+        }
     } else {
-        document.querySelector('#userSettingsPersonIcon').classList.add("hidden")
-        document.querySelector('#userSettingsPersonContainer').classList.remove("hidden")
-        document.querySelector('#userSettingsPersonImg').src = userData.profilePicture
-        document.querySelector('#userPersonIcon').classList.add("hidden")
-        document.querySelector('#userPersonContainer').classList.remove("hidden")
-        document.querySelector('#userPersonImg').src = userData.profilePicture
-        profilePictureInput.value = userData.profilePicture
+        if (userData.profilePicture == "") {
+            document.querySelector('#userSettingsPersonIconMobile').classList.remove("hidden")
+            document.querySelector('#userSettingsPersonContainerMobile').classList.add("hidden")
+            document.querySelector('#userPersonIconMobile').classList.remove("hidden")
+            document.querySelector('#userPersonContainerMobile').classList.add("hidden")
+        } else {
+            document.querySelector('#userSettingsPersonIconMobile').classList.add("hidden")
+            document.querySelector('#userSettingsPersonContainerMobile').classList.remove("hidden")
+            document.querySelector('#userSettingsPersonImgMobile').src = userData.profilePicture
+            document.querySelector('#userPersonIconMobile').classList.add("hidden")
+            document.querySelector('#userPersonContainerMobile').classList.remove("hidden")
+            document.querySelector('#userPersonImgMobile').src = userData.profilePicture
+            profilePictureInputMobile.value = userData.profilePicture
+        }
     }
 }
 

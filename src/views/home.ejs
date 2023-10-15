@@ -278,12 +278,14 @@
                     <ion-icon name="search"></ion-icon>
                 </div>
                 <div class="user-settings">
-                    <ion-icon name="person"></ion-icon>
+                    <ion-icon name="person" id="userPersonIconMobile"></ion-icon>
+                    <div class="user-settings-person-container-mobile hidden" id="userPersonContainerMobile">
+                        <img src="" class="user-settings-person-img-mobile" id="userPersonImgMobile">
+                    </div>
                 </div>
             </div>
 
         </section>
-
 
         <section class="main-playlist-mobile">
 
@@ -415,7 +417,13 @@
 
             <div class="box-profile-mobile">
                 <div class="user-settings-mobile">
-                    <ion-icon name="person"></ion-icon>
+                    <ion-icon name="person" id="userSettingsPersonIconMobile"></ion-icon>
+                    <div class="user-settings-person-container-mobile hidden" id="userSettingsPersonContainerMobile">
+                        <img src="" class="user-settings-person-img-mobile" id="userSettingsPersonImgMobile">
+                    </div>
+                    <div class="edit-profile-picture-mobile" id="profilePictureEditMobile">
+                        <ion-icon name="pencil"></ion-icon>
+                    </div>
                 </div>
                 <div class="box-user-information-mobile">
                     <div class="user-name-mobile">Carregando...</div>
@@ -423,6 +431,13 @@
                 </div>
             </div>
 
+            <div class="layer-profile-picture-mobile hidden" id="layerProfilePictureMobile">
+                <div class="container-profile-picture-mobile">
+                    <div class="title">Adicione uma URL</div>
+                    <input class="field" type="text" placeholder="URL" id="profilePictureInputMobile">
+                    <button class="save" id="profilePictureSaveMobile">Salvar</button>
+                </div>
+            </div>
             
             <div class="content-profile-mobile">
                 <div class="title-2-profile-mobile" style="padding-left: 5px;">Músicas Favoritas</div>
