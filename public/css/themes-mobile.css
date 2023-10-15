@@ -27,7 +27,6 @@
 .main-controls-mobile .display-music-duration-mobile.rock-version {
     background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
 }
-/*  */
 .main-display-mobile .info-current-music-mobile .title-info-current-music-mobile.rock-version {
     text-shadow: 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1), 0 0 2px var(--color-red-1);
 }
@@ -116,6 +115,21 @@
     background: var(--color-red-1);
 }
 .form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete .cancel.rock-version {
+    background: var(--color-red-3);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile.rock-version {
+    background: var(--color-red-1);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.rock-version {
+    color: var(--color-red-3);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.rock-version:focus {
+    box-shadow: 0 0 0 5px var(--color-red-2), 0 0 25px var(--color-red-2);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.rock-version::placeholder {
+    color: var(--color-red-3);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .save.rock-version {
     background: var(--color-red-3);
 }
 
@@ -238,6 +252,21 @@
 .form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete .cancel.hatsune-miku-version {
     background: var(--color-miku-3);
 }
+.layer-profile-picture-mobile .container-profile-picture-mobile.hatsune-miku-version {
+    background: var(--color-miku-1);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.hatsune-miku-version {
+    color: var(--color-miku-3);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.hatsune-miku-version:focus {
+    box-shadow: 0 0 0 5px var(--color-miku-2), 0 0 25px var(--color-miku-2);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.hatsune-miku-version::placeholder {
+    color: var(--color-miku-3);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .save.hatsune-miku-version {
+    background: var(--color-miku-3);
+}
 
 /* AMV Brasileiro Version Theme */
 
@@ -357,5 +386,20 @@
     background: var(--color-amv-br-1);
 }
 .form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete .cancel.amv-brasileiro-version {
+    background: var(--color-amv-br-3);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile.amv-brasileiro-version {
+    background: var(--color-amv-br-1);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.amv-brasileiro-version {
+    color: var(--color-amv-br-3);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.amv-brasileiro-version:focus {
+    box-shadow: 0 0 0 5px var(--color-amv-br-2), 0 0 25px var(--color-amv-br-2);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .field.amv-brasileiro-version::placeholder {
+    color: var(--color-amv-br-3);
+}
+.layer-profile-picture-mobile .container-profile-picture-mobile .save.amv-brasileiro-version {
     background: var(--color-amv-br-3);
 }
