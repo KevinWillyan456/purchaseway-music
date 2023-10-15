@@ -108,6 +108,21 @@
 .info-item-select-playlist .description-item-select-playlist.rock-version::-webkit-scrollbar-thumb {
     background-color: var(--color-red-2);
 }
+.form-delete-account-overflow .form-delete-account.rock-version {
+    background-color: var(--color-red-1);
+}
+.form-delete-account-overflow .form-delete-account .interactions-delete .cancel.rock-version {
+    background-color: var(--color-red-3);
+}
+.form-delete-account-overflow .form-delete-account .field.rock-version:focus {
+    box-shadow: 0 0 0 5px var(--color-red-2), 0 0 25px var(--color-red-2);
+}
+.form-delete-account-overflow .form-delete-account .field.rock-version::placeholder {
+    color: var(--color-red-3);
+}
+.form-delete-account-overflow .form-delete-account .field.rock-version {
+    color: var(--color-red-3);
+}
 
 /* Hatsune Miku Version Theme */
 
@@ -219,6 +234,21 @@
 .info-item-select-playlist .description-item-select-playlist.hatsune-miku-version::-webkit-scrollbar-thumb {
     background-color: var(--color-miku-2);
 }
+.form-delete-account-overflow .form-delete-account.hatsune-miku-version {
+    background-color: var(--color-miku-1);
+}
+.form-delete-account-overflow .form-delete-account .interactions-delete .cancel.hatsune-miku-version {
+    background-color: var(--color-miku-3);
+}
+.form-delete-account-overflow .form-delete-account .field.hatsune-miku-version:focus {
+    box-shadow: 0 0 0 5px var(--color-miku-2), 0 0 25px var(--color-miku-2);
+}
+.form-delete-account-overflow .form-delete-account .field.hatsune-miku-version::placeholder {
+    color: var(--color-miku-3);
+}
+.form-delete-account-overflow .form-delete-account .field.hatsune-miku-version {
+    color: var(--color-miku-3);
+}
 
 /* AMV Brasileiro Version Theme */
 
@@ -329,4 +359,19 @@
 }
 .info-item-select-playlist .description-item-select-playlist.amv-brasileiro-version::-webkit-scrollbar-thumb {
     background-color: var(--color-amv-br-2);
+}
+.form-delete-account-overflow .form-delete-account.amv-brasileiro-version {
+    background-color: var(--color-amv-br-1);
+}
+.form-delete-account-overflow .form-delete-account .interactions-delete .cancel.amv-brasileiro-version {
+    background-color: var(--color-amv-br-3);
+}
+.form-delete-account-overflow .form-delete-account .field.amv-brasileiro-version:focus {
+    box-shadow: 0 0 0 5px var(--color-amv-br-2), 0 0 25px var(--color-amv-br-2);
+}
+.form-delete-account-overflow .form-delete-account .field.amv-brasileiro-version::placeholder {
+    color: var(--color-amv-br-3);
+}
+.form-delete-account-overflow .form-delete-account .field.amv-brasileiro-version {
+    color: var(--color-amv-br-3);
 }
