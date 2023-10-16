@@ -930,6 +930,35 @@ async function setUserInfo() {
     document.querySelector('#userNameMobile').textContent = userData.name
 }
 
+function setUserProfilePicture() {
+    if (userData.profilePicture == '') {
+        document.querySelector('#userPersonIcon').classList.remove('hidden')
+        document
+            .querySelector('#userPersonIconMobile')
+            .classList.remove('hidden')
+        document.querySelector('#userPersonIcon').classList.remove('hidden')
+        document
+            .querySelector('#userPersonIconMobile')
+            .classList.remove('hidden')
+        document.querySelector('#userPersonContainer').classList.add('hidden')
+        document
+            .querySelector('#userPersonContainerMobile')
+            .classList.add('hidden')
+    } else {
+        document.querySelector('#userPersonIcon').classList.add('hidden')
+        document.querySelector('#userPersonIconMobile').classList.add('hidden')
+        document
+            .querySelector('#userPersonContainer')
+            .classList.remove('hidden')
+        document
+            .querySelector('#userPersonContainerMobile')
+            .classList.remove('hidden')
+        document.querySelector('#userPersonImg').src = userData.profilePicture
+        document.querySelector('#userPersonImgMobile').src =
+            userData.profilePicture
+    }
+}
+
 async function inicia() {
     await dataFetch()
     defineTotalNumbers()
@@ -1017,6 +1046,7 @@ async function inicia() {
             focusSong.classList.add('hidden')
         }
     })
+    setUserProfilePicture()
 }
 
 inicia()
