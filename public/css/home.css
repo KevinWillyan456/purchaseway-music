@@ -1416,7 +1416,111 @@ iframe {
 .main-select-playlists .container-select-playlists::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
+.main-minhas-playlists {
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
 
+    background-color: var(--color-blue-1);
+    z-index: 1000;
+}
+.main-minhas-playlists .minhas-playlists-back {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+
+    width: 80px;
+    height: 40px;
+    background-color: var(--color-blue-3);
+    color: var(--color-white-1);
+
+    border: 2px solid var(--color-white-1);
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+.main-minhas-playlists .title-minhas-playlists {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    
+    font-size: 64px;
+    color: var(--color-white-1);
+}
+
+.main-minhas-playlists .container-minhas-playlists {
+    width: 100%;
+    height: 80vh;
+    overflow-y: auto;
+    padding-bottom: 40px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.main-minhas-playlists .container-minhas-playlists::-webkit-scrollbar {
+    width: 10px;
+}
+.main-minhas-playlists .container-minhas-playlists::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+.main-minhas-playlists .container-minhas-playlists::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+}
+.container-minhas-playlists .item-minhas-playlists {
+    max-width: 1320px;
+    width: 100%;
+    min-height: 80px;
+    height: 80px;
+    background: var(--color-blue-3);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 108px 1fr 148px 20px;
+    padding-left: 10px;
+    padding-right: 30px;
+    align-items: center;
+    cursor: pointer;
+}
+.item-minhas-playlists .cover-item-minhas-playlists {
+    width: 108px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+.item-minhas-playlists .cover-item-minhas-playlists img {
+    width: 100%;
+}
+.item-minhas-playlists .title-item-minhas-playlists {
+    color: var(--color-white-1);
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-minhas-playlists .total-de-musicas {
+    color: var(--color-white-1);
+    font-size: 16px;
+    padding-right: 20px;
+}
+.item-minhas-playlists .total-de-musicas-quantidade {
+    color: var(--color-blue-2);
+    font-size: 16px;
+}
 .container-select-playlists .item-select-playlist {
     width: 460px;
     background-color: var(--color-blue-3);

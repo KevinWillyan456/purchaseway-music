@@ -141,6 +141,9 @@ const layerProfilePictureMobile = document.querySelector('#layerProfilePictureMo
 const profilePictureInputMobile = document.querySelector('#profilePictureInputMobile');
 const profilePictureSaveMobile = document.querySelector('#profilePictureSaveMobile');
 
+const backMyPlaylist = document.querySelector('.minhas-playlists-back');
+const selectMyPlaylist = document.querySelector('#selectMyPlaylist');
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -207,6 +210,10 @@ selectFavoritesMobile.addEventListener('click' , () => {
     toggleMenu()
     selectNewPlaylist("Favorite", "Músicas Favoritas")
 })
+selectMyPlaylist.addEventListener("click", () => {
+    toggleMenu()
+    toggleMyPlaylists()
+});
 
 morePlaylist.addEventListener("click", toggleMenu);
 backMenu.addEventListener("click", toggleMenu);
@@ -215,6 +222,7 @@ backPlaylist.addEventListener("click", toggleMorePlaylists);
 backDisplayMobile.addEventListener("click", toggleDisplayMobile)
 morePlaylistMobile.addEventListener("click", toggleMenu);
 backPlaylistMobile.addEventListener("click", toggleMorePlaylists);
+backMyPlaylist.addEventListener("click", toggleMyPlaylists);
 controlsMobile.addEventListener("click", () => {
     toggleDisplayMobile()
     $(".menu-options-mobile").hide(200)
@@ -1832,6 +1840,13 @@ function toggleMorePlaylists() {
         $(".main-select-playlists").toggle(200);
     } else {
         $(".main-select-playlists-mobile").toggle(200);
+    }
+}
+function toggleMyPlaylists() {
+    if (screenWidth >= 1360) {
+        $(".main-minhas-playlists").toggle(200);
+    } else {
+        $(".main-minhas-playlists-mobile").toggle(200);
     }
 }
 function toggleDisplayMobile() {
