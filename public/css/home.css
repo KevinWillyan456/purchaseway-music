@@ -1418,13 +1418,23 @@ iframe {
 }
 .main-minhas-playlists {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
+    overflow: auto;
 
     background-color: var(--color-blue-1);
     z-index: 1000;
+}
+.main-minhas-playlists::-webkit-scrollbar {
+    width: 10px;
+}
+.main-minhas-playlists::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+.main-minhas-playlists::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
 }
 .main-minhas-playlists .minhas-playlists-back {
     position: absolute;
@@ -1458,9 +1468,10 @@ iframe {
 }
 
 .main-minhas-playlists .container-minhas-playlists {
+    max-width: 1320px;
     width: 100%;
-    height: 80vh;
     overflow-y: auto;
+    margin: 0 auto;
     padding-bottom: 40px;
     gap: 10px;
     display: flex;
@@ -1476,12 +1487,10 @@ iframe {
     background-color: var(--color-blue-2);
 }
 .container-minhas-playlists .item-minhas-playlists {
-    max-width: 1320px;
     width: 100%;
     min-height: 80px;
     height: 80px;
     background: var(--color-blue-3);
-    margin: 0 auto;
 
     display: grid;
     grid-template-columns: 108px 1fr 148px 20px;
@@ -1521,7 +1530,235 @@ iframe {
     color: var(--color-blue-2);
     font-size: 16px;
 }
-.container-select-playlists .item-select-playlist {
+.container-minha-playlist {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    background-color: var(--color-blue-1);
+    top: 0;
+    left: 0;
+}
+.container-minha-playlist::-webkit-scrollbar {
+    width: 10px;
+}
+.container-minha-playlist::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+.container-minha-playlist::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+}
+.container-minha-playlist .container-minha-playlist-back {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+
+    width: 80px;
+    height: 40px;
+    background-color: var(--color-blue-3);
+    color: var(--color-white-1);
+
+    border: 2px solid var(--color-white-1);
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+.main-minhas-playlists .main-playlist {
+    width: 100%;
+    max-width: 1320px;
+    margin: 115px auto 0 auto;
+    height: 265px;
+    max-height: 265px;
+    background: var(--color-blue-3);
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+.main-minhas-playlists .main-playlist .cover {
+    width: 400px;
+    height: 225px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+.main-minhas-playlists .main-playlist .cover img {
+    width: 100%;
+}
+.main-minhas-playlists .main-playlist .content {
+    max-width: 1320px;
+    width: 100%;
+    height: 225px;
+    overflow: hidden;
+}
+.main-minhas-playlists .main-playlist .content .title {
+    color: var(--color-white-1);
+    font-size: 24px;
+    margin-bottom: 20px;
+    height: 180px;
+    padding-right: 10px;
+    overflow: auto;
+}
+.main-minhas-playlists .main-playlist .content .title::-webkit-scrollbar {
+    width: 10px;
+    padding: 60px;
+    position: absolute;
+}
+.main-minhas-playlists .main-playlist .content .title::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+.main-minhas-playlists .main-playlist .content .title::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
+}
+.main-minhas-playlists .main-playlist .content .details {
+    color: var(--color-white-1);
+    font-size: 14px;
+    display: flex;
+    gap: 50px;
+    position: absolute;
+    bottom: 30px;
+}
+.main-minhas-playlists .interactions {
+    width: 100%;
+    max-width: 1320px;
+    display: flex;
+    margin: 20px auto 40px auto;
+    gap: 20px;
+    justify-content: flex-end;
+}
+.main-minhas-playlists .interactions .btn-adicionar {
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.main-minhas-playlists .interactions .btn-adicionar ion-icon {
+    font-size: 30px;
+}
+.main-minhas-playlists .interactions .btn-adicionar-m {
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-blue-3);
+    color: var(--color-white-1);
+    font-size: 14px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+    cursor: pointer;
+}
+.main-minhas-playlists .interactions .btn-adicionar-m ion-icon {
+    font-size: 20px;
+}
+.main-minhas-playlists .interactions .btn-editar {
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background-color: var(--color-blue-4);
+    color: var(--color-white-1);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.main-minhas-playlists .interactions .btn-editar ion-icon {
+    font-size: 30px;
+}
+.main-minhas-playlists .interactions .btn-excluir {
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background-color: var(--color-red-2);
+    color: var(--color-white-1);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.main-minhas-playlists .interactions .btn-excluir ion-icon {
+    font-size: 30px;
+}
+.main-minhas-playlists .title-todas-as-musicas {
+    color: var(--color-white-1);
+    font-size: 32px;
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto 20px auto;
+}
+.container-minha-playlist .container-minhas-musicas {
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.container-minhas-musicas .item-minhas-musicas {
+    width: 100%;
+    min-height: 80px;
+    height: 80px;
+    background: var(--color-blue-3);
+
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    padding-left: 10px;
+    padding-right: 30px;
+    align-items: center;
+    cursor: pointer;
+}
+.item-minhas-musicas .cover-item-minhas-musicas {
+    width: 108px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+.item-minhas-musicas .cover-item-minhas-musicas img {
+    width: 100%;
+}
+.item-minhas-musicas .title-item-minhas-musicas {
+    color: var(--color-white-1);
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.container-select-musicas .item-select-playlist {
     width: 460px;
     background-color: var(--color-blue-3);
 }

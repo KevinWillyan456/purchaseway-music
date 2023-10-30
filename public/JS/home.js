@@ -142,6 +142,7 @@ const profilePictureInputMobile = document.querySelector('#profilePictureInputMo
 const profilePictureSaveMobile = document.querySelector('#profilePictureSaveMobile');
 
 const backMyPlaylist = document.querySelector('.minhas-playlists-back');
+const backContainerMinhaPlaylist = document.querySelector('.container-minha-playlist-back');
 const selectMyPlaylist = document.querySelector('#selectMyPlaylist');
 
 let musicData = [];
@@ -223,6 +224,7 @@ backDisplayMobile.addEventListener("click", toggleDisplayMobile)
 morePlaylistMobile.addEventListener("click", toggleMenu);
 backPlaylistMobile.addEventListener("click", toggleMorePlaylists);
 backMyPlaylist.addEventListener("click", toggleMyPlaylists);
+backContainerMinhaPlaylist.addEventListener("click", toggleContainerMinhaPlaylist);
 controlsMobile.addEventListener("click", () => {
     toggleDisplayMobile()
     $(".menu-options-mobile").hide(200)
@@ -1847,6 +1849,13 @@ function toggleMyPlaylists() {
         $(".main-minhas-playlists").toggle(200);
     } else {
         $(".main-minhas-playlists-mobile").toggle(200);
+    }
+}
+function toggleContainerMinhaPlaylist() {
+    if (screenWidth >= 1360) {
+        $(".container-minha-playlist").toggle(200);
+    } else {
+        $(".container-minha-playlist-mobile").toggle(200);
     }
 }
 function toggleDisplayMobile() {
