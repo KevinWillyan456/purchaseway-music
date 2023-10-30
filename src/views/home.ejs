@@ -260,8 +260,62 @@
             </div>
 
         </section>
+
+        <section class="add-my-new-playlist-overflow hidden">
+            <div class="add-my-new-playlist-container">
+                <div class="add-my-new-playlist-title">Adicionar uma nova Playlist</div>
+                <input type="text" class="add-my-new-playlist-name" placeholder="Nome">
+                <button class="add-my-new-playlist-adicionar">Adicionar</button>
+            </div>
+        </section>
+
+        <section class="edit-my-new-playlist-overflow hidden">
+            <div class="edit-my-new-playlist-container">
+                <div class="edit-my-new-playlist-title">Editar Playlist</div>
+                <input type="text" class="edit-my-new-playlist-name" placeholder="Nome">
+                <button class="edit-my-new-playlist-adicionar">Salvar</button>
+            </div>
+        </section>
         
-        <section class="main-minhas-playlists">
+        <section class="delete-my-new-playlist-overflow hidden">
+            <div class="delete-my-new-playlist-container">
+                <div class="delete-my-new-playlist-title">Tem certeza que deseja excluir esta Playlist?</div>
+                <div class="delete-my-new-playlist-current">Minha Playlist</div>
+                <input type="text" class="delete-my-new-playlist-name" placeholder="Digite o nome da playlist para confirmar...">
+                <div class="delete-my-new-playlist-warning">Esta ação é irreversível</div>
+                <div class="delete-my-new-playlist-interactions">
+                    <button class="delete-my-new-playlist-btn-cancel">Cancelar</button>
+                    <button class="delete-my-new-playlist-btn-delete">Excluir</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="music-my-new-playlist-overflow hidden">
+            <div class="music-my-new-playlist-container">
+                <div class="music-my-new-playlist-cover">
+                    <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
+                </div>
+                <div class="music-my-new-playlist-title">Título</div>
+            </div>
+            <button class="music-my-new-playlist-delete-btn">
+                <ion-icon name="close"></ion-icon>
+                Excluir
+            </button>
+        </section>
+        
+        <section class="music-delete-my-new-playlist-overflow hidden">
+            <div class="music-delete-my-new-playlist-container">
+                <div class="music-delete-my-new-playlist-title">Tem certeza que deseja remover esta Música?</div>
+                <div class="music-delete-my-new-playlist-current">Minha Música</div>
+                <div class="music-delete-my-new-playlist-warning">Esta ação é irreversível</div>
+                <div class="music-delete-my-new-playlist-interactions">
+                    <button class="music-delete-my-new-playlist-btn-cancel">Cancelar</button>
+                    <button class="music-delete-my-new-playlist-btn-delete">Excluir</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-minhas-playlists" style="display: none;">
             <div class="minhas-playlists-back">Voltar</div>
             <div class="title-minhas-playlists">Minhas Playlists</div>
 
@@ -276,7 +330,7 @@
                 </div>
             </div>
 
-            <div class="container-minha-playlist">
+            <div class="container-minha-playlist" style="display: none;">
                 <div class="container-minha-playlist-back">Voltar</div>
                 <div class="main-playlist">
                     <div class="cover">
