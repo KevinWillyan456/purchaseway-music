@@ -320,7 +320,7 @@
             <div class="title-minhas-playlists">Minhas Playlists</div>
 
             <div class="container-minhas-playlists">
-                <div class="item-minhas-playlists">
+                <div class="item-minhas-playlists" id="temporaryItemMinhasPlaylists">
                     <div class="cover-item-minhas-playlists">
                         <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
                     </div>
@@ -330,7 +330,7 @@
                 </div>
             </div>
 
-            <div class="container-minha-playlist" style="display: none;">
+            <div class="container-minha-playlist" id="containerMinhaPlaylist" style="display: none;">
                 <div class="container-minha-playlist-back">Voltar</div>
                 <div class="main-playlist">
                     <div class="cover">
@@ -345,18 +345,14 @@
                     </div>
                 </div>
                 <div class="interactions">
-                    <div class="btn-adicionar" id="btnAddSong">
+                    <div class="btn-adicionar" id="btnSelectMyPlaylist">
                         Selecionar
                     </div>
-                    <div class="btn-adicionar-m" id="btnAddSongMobile">
-                        <ion-icon name="add" role="img" class="md hydrated" aria-label="add"></ion-icon>
-                        Música
-                    </div>
-                    <div class="btn-editar" id="btnEditPlaylist">
+                    <div class="btn-editar" id="btnEditSelectMyPlaylist">
                         <ion-icon name="pencil" role="img" class="md hydrated" aria-label="pencil"></ion-icon>
                         Editar
                     </div>
-                    <div class="btn-excluir" id="btnDeletePlaylist">
+                    <div class="btn-excluir" id="btnDeleteSelectMyPlaylist">
                         <ion-icon name="close" role="img" class="md hydrated" aria-label="close"></ion-icon>
                         Excluir
                     </div>

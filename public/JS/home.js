@@ -145,6 +145,12 @@ const backMyPlaylist = document.querySelector('.minhas-playlists-back');
 const backContainerMinhaPlaylist = document.querySelector('.container-minha-playlist-back');
 const selectMyPlaylist = document.querySelector('#selectMyPlaylist');
 
+const temporaryItemMinhasPlaylists = document.querySelector('#temporaryItemMinhasPlaylists');
+const containerMinhaPlaylist = document.querySelector('#containerMinhaPlaylist');
+const btnSelectMyPlaylist = document.querySelector('#btnSelectMyPlaylist');
+const btnEditSelectMyPlaylist = document.querySelector('#btnEditSelectMyPlaylist');
+const btnDeleteSelectMyPlaylist = document.querySelector('#btnDeleteSelectMyPlaylist');
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -285,6 +291,41 @@ layerProfilePictureMobile.addEventListener('click', (e) => {
     }
 })
 profilePictureSaveMobile.addEventListener("click", manageUserProfilePicture)
+temporaryItemMinhasPlaylists.addEventListener("click", () => {
+    toggleContainerMinhaPlaylist()
+})
+btnSelectMyPlaylist.addEventListener("click", () => {
+    toggleContainerMinhaPlaylist()
+    toggleMyPlaylists()
+    // ...
+})
+btnEditSelectMyPlaylist.addEventListener("click", () => {
+    toggleEditMinhaPlaylist()
+})
+btnDeleteSelectMyPlaylist.addEventListener("click", () => {
+    toggleDeleteMinhaPlaylist()
+})
+
+document.querySelector('.add-my-new-playlist-overflow').addEventListener('click', (event) => {
+    if (event.target.classList.contains('add-my-new-playlist-overflow')) {
+        event.target.classList.add('hidden');
+    }
+});
+document.querySelector('.edit-my-new-playlist-overflow').addEventListener('click', (event) => {
+    if (event.target.classList.contains('edit-my-new-playlist-overflow')) {
+        event.target.classList.add('hidden');
+    }
+});
+document.querySelector('.delete-my-new-playlist-overflow').addEventListener('click', (event) => {
+    if (event.target.classList.contains('delete-my-new-playlist-overflow')) {
+        event.target.classList.add('hidden');
+    }
+});
+document.querySelector('.delete-my-new-playlist-btn-cancel').addEventListener('click', (event) => {
+    if (event.target.classList.contains('delete-my-new-playlist-btn-cancel')) {
+        event.target.parentElement.parentElement.parentElement.classList.add('hidden');
+    }
+});
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1858,6 +1899,62 @@ function toggleContainerMinhaPlaylist() {
         $(".container-minha-playlist-mobile").toggle(200);
     }
 }
+function toggleAddMinhaPlaylist() {
+    if (screenWidth >= 1360) {
+        $(".add-my-new-playlist-overflow").toggle(200);
+    } else {
+        $(".add-my-new-playlist-overflow-mobile").toggle(200);
+    }
+}
+function toggleEditMinhaPlaylist() {
+    if (screenWidth >= 1360) {
+        const editOverflow = document.querySelector(".edit-my-new-playlist-overflow");
+        if (editOverflow.classList.contains("hidden")) {
+            editOverflow.classList.remove("hidden");
+        } else {
+            editOverflow.classList.add("hidden");
+        }
+    } else {
+        const editOverflow = document.querySelector(".edit-my-new-playlist-overflow-mobile");
+        if (editOverflow.classList.contains("hidden")) {
+            editOverflow.classList.remove("hidden");
+        } else {
+            editOverflow.classList.add("hidden");
+        }
+    }
+}
+function toggleDeleteMinhaPlaylist() {
+    if (screenWidth >= 1360) {
+        const deleteOverflow = document.querySelector(".delete-my-new-playlist-overflow");
+        if (deleteOverflow.classList.contains("hidden")) {
+            deleteOverflow.classList.remove("hidden");
+        } else {
+            deleteOverflow.classList.add("hidden");
+        }
+    } else {
+        const deleteOverflow = document.querySelector(".delete-my-new-playlist-overflow-mobile");
+        if (deleteOverflow.classList.contains("hidden")) {
+            deleteOverflow.classList.remove("hidden");
+        } else {
+            deleteOverflow.classList.add("hidden");
+        }
+    }
+}
+function toggleMusicMinhaPlaylist() {
+    if (screenWidth >= 1360) {
+        $(".music-my-new-playlist-overflow").toggle(200);
+    } else {
+        $(".music-my-new-playlist-overflow-mobile").toggle(200);
+    }
+}
+function toggleDeleteMusicMinhaPlaylist() {
+    if (screenWidth >= 1360) {
+        $(".music-delete-my-new-playlist-overflow").toggle(200);
+    } else {
+        $(".music-delete-my-new-playlist-overflow-mobile").toggle(200);
+    }
+}
+
 function toggleDisplayMobile() {
     if (!displayMobile.classList.contains("show")){
         displayMobile.classList.remove("exit");

@@ -1429,6 +1429,7 @@ iframe {
     z-index: 200;
 }
 .add-my-new-playlist-overflow .add-my-new-playlist-container {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 540px;
     height: 319px;
     border-radius: 10px;
@@ -1490,6 +1491,7 @@ iframe {
     z-index: 1050;
 }
 .edit-my-new-playlist-overflow .edit-my-new-playlist-container {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 540px;
     height: 319px;
     border-radius: 10px;
@@ -1551,6 +1553,7 @@ iframe {
     z-index: 1050;
 }
 .delete-my-new-playlist-overflow .delete-my-new-playlist-container {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 392px;
     border-radius: 10px;
@@ -1640,6 +1643,7 @@ iframe {
     z-index: 1050;
 }
 .music-my-new-playlist-overflow .music-my-new-playlist-container {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 1000px;
     height: 265px;
     background: var(--color-blue-3);
@@ -1713,6 +1717,7 @@ iframe {
     z-index: 1050;
 }
 .music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 342px;
     border-radius: 10px;
@@ -2111,7 +2116,7 @@ iframe {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.container-select-musicas .item-select-playlist {
+.container-select-playlists .item-select-playlist {
     width: 460px;
     background-color: var(--color-blue-3);
 }
