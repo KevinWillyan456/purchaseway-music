@@ -1685,6 +1685,7 @@ iframe {
     border-radius: 10px;
 }
 .music-my-new-playlist-overflow .music-my-new-playlist-delete-btn {
+    animation: animate-scale-opacity-entrace 500ms;
     width: 200px;
     height: 60px;
     border-radius: 10px;

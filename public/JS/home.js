@@ -151,6 +151,8 @@ const btnSelectMyPlaylist = document.querySelector('#btnSelectMyPlaylist');
 const btnEditSelectMyPlaylist = document.querySelector('#btnEditSelectMyPlaylist');
 const btnDeleteSelectMyPlaylist = document.querySelector('#btnDeleteSelectMyPlaylist');
 
+const temporaryItemMinhasMusicas = document.querySelector('#temporaryItemMinhasMusicas');
+
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -323,6 +325,27 @@ document.querySelector('.delete-my-new-playlist-overflow').addEventListener('cli
 });
 document.querySelector('.delete-my-new-playlist-btn-cancel').addEventListener('click', (event) => {
     if (event.target.classList.contains('delete-my-new-playlist-btn-cancel')) {
+        event.target.parentElement.parentElement.parentElement.classList.add('hidden');
+    }
+});
+temporaryItemMinhasMusicas.addEventListener("click", () => {
+    toggleMusicMinhaPlaylist()
+});
+document.querySelector('.music-my-new-playlist-overflow').addEventListener('click', (event) => {
+    if (event.target.classList.contains('music-my-new-playlist-overflow')) {
+        event.target.classList.add('hidden');
+    }
+});
+document.querySelector('.music-my-new-playlist-delete-btn').addEventListener('click', () => {
+    document.querySelector('.music-delete-my-new-playlist-overflow').classList.remove('hidden');
+});
+document.querySelector('.music-delete-my-new-playlist-overflow').addEventListener('click', (event) => {
+    if (event.target.classList.contains('music-delete-my-new-playlist-overflow')) {
+        event.target.classList.add('hidden');
+    }
+});
+document.querySelector('.music-delete-my-new-playlist-btn-cancel').addEventListener('click', (event) => {
+    if (event.target.classList.contains('music-delete-my-new-playlist-btn-cancel')) {
         event.target.parentElement.parentElement.parentElement.classList.add('hidden');
     }
 });
@@ -1942,9 +1965,19 @@ function toggleDeleteMinhaPlaylist() {
 }
 function toggleMusicMinhaPlaylist() {
     if (screenWidth >= 1360) {
-        $(".music-my-new-playlist-overflow").toggle(200);
+        const musicOverflow = document.querySelector(".music-my-new-playlist-overflow");
+        if (musicOverflow.classList.contains("hidden")) {
+            musicOverflow.classList.remove("hidden");
+        } else {
+            musicOverflow.classList.add("hidden");
+        }
     } else {
-        $(".music-my-new-playlist-overflow-mobile").toggle(200);
+        const musicOverflow = document.querySelector(".music-my-new-playlist-overflow-mobile");
+        if (musicOverflow.classList.contains("hidden")) {
+            musicOverflow.classList.remove("hidden");
+        } else {
+            musicOverflow.classList.add("hidden");
+        }
     }
 }
 function toggleDeleteMusicMinhaPlaylist() {
