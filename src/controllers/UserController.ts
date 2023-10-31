@@ -506,6 +506,126 @@ async function updateUserProfilePicture(
     }
 }
 
+async function indexUserPlaylist(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { id } = req.params
+
+    try {
+        const user: IUser | null = await User.findById(id)
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        return res.status(200).json({ myPlaylists: user.myPlaylists })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+async function storeUserPlaylist(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { title, currentCoverUrl } = req.body
+    const { id } = req.params
+
+    if (!title || !currentCoverUrl) {
+        return res.status(400).json({ error: 'You must enter a new data' })
+    }
+
+    const filter = { _id: id }
+    const updateDoc = {
+        $push: {
+            myPlaylists: {
+                _id: uuid(),
+                title,
+                currentCoverUrl,
+                totalSongs: 0,
+                additionDate: new Date(),
+            },
+        },
+    }
+
+    try {
+        await User.updateOne(filter, updateDoc)
+        return res
+            .status(200)
+            .json({ message: 'User playlist added succesfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+async function updateUserPlaylist(
+    req: Request<{
+        id?: UpdateWithAggregationPipeline
+        pid?: UpdateWithAggregationPipeline
+    }>,
+    res: Response
+) {
+    const { title, currentCoverUrl } = req.body
+    const { id, pid } = req.params
+
+    if (!title && !currentCoverUrl) {
+        return res.status(400).json({ error: 'You must enter a new data' })
+    }
+
+    const filter = { _id: id, 'myPlaylists._id': pid }
+    const updateDoc = {
+        $set: {
+            'myPlaylists.$.title': title,
+            'myPlaylists.$.currentCoverUrl': currentCoverUrl,
+        },
+    }
+
+    try {
+        const result = await User.updateOne(filter, updateDoc)
+
+        if (result.matchedCount < 1) {
+            return res.status(404).json({ error: 'User playlist not found' })
+        }
+
+        return res
+            .status(200)
+            .json({ message: 'User playlist updated successfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+async function deleteUserPlaylist(
+    req: Request<{
+        id?: UpdateWithAggregationPipeline
+        pid?: UpdateWithAggregationPipeline
+    }>,
+    res: Response
+) {
+    const { id, pid } = req.params
+
+    const filter = { _id: id }
+    const updateDoc = {
+        $pull: {
+            myPlaylists: { _id: pid },
+        },
+    }
+
+    try {
+        const result = await User.updateOne(filter, updateDoc)
+        if (result.modifiedCount < 1) {
+            return res.status(404).json({ error: 'User playlist not found' })
+        }
+
+        return res
+            .status(200)
+            .json({ message: 'User playlist removed successfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
 export {
     indexUser,
     indexUserById,
@@ -518,4 +638,8 @@ export {
     updateUserPlaylistSelected,
     allSongAndPlaylistData,
     updateUserProfilePicture,
+    indexUserPlaylist,
+    storeUserPlaylist,
+    updateUserPlaylist,
+    deleteUserPlaylist,
 }

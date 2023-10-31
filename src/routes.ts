@@ -10,13 +10,17 @@ import {
 import {
     allSongAndPlaylistData,
     deleteUser,
+    deleteUserPlaylist,
     indexUser,
     indexUserById,
+    indexUserPlaylist,
     loginUser,
     storeUser,
+    storeUserPlaylist,
     updateUser,
     updateUserFavoriteSongs,
     updateUserMusicHistoric,
+    updateUserPlaylist,
     updateUserPlaylistSelected,
     updateUserProfilePicture,
 } from './controllers/UserController'
@@ -52,6 +56,11 @@ routes.delete('/users/:id', getUser, deleteUser)
 routes.put('/songs-favorite/:id', getUser, updateUserFavoriteSongs)
 routes.put('/songs-historic/:id', getUser, updateUserMusicHistoric)
 routes.put('/playlists-historic/:id', getUser, updateUserPlaylistSelected)
+
+routes.get('/users-playlist/:id', getUser, indexUserPlaylist)
+routes.post('/users-playlist/:id', getUser, storeUserPlaylist)
+routes.put('/users-playlist/:id/:pid', getUser, updateUserPlaylist)
+routes.delete('/users-playlist/:id/:pid', getUser, deleteUserPlaylist)
 
 routes.get('/playlists/:id', getUser, indexPlaylist)
 routes.get('/playlists-select/:id', getUser, selectPlaylist)
