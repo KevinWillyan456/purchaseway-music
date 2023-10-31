@@ -8,9 +8,6 @@ async function eAdminManager(req: Request, res: Response, next: NextFunction) {
     interface CustomRequest extends Request {
         token: string | JwtPayload
     }
-    interface idUser {
-        id: string
-    }
 
     try {
         const authToken = req.cookies.token
