@@ -17,6 +17,13 @@ export interface IUser {
     lastAccessedPlaylist: string
     lastAccessedPlaylistName: string
     profilePicture: string
+    myPlaylists: {
+        _id: string
+        title: string
+        currentCoverUrl: string
+        totalSongs: number
+        additionDate: Date
+    }[]
 }
 
 const userSchema = new Schema<IUser>({
@@ -40,6 +47,15 @@ const userSchema = new Schema<IUser>({
     lastAccessedPlaylist: { type: String, default: 'Nightcore' },
     lastAccessedPlaylistName: { type: String, default: 'Nightcores' },
     profilePicture: { type: String, default: '' },
+    myPlaylists: [
+        {
+            _id: { type: String },
+            title: { type: String },
+            currentCoverUrl: { type: String },
+            totalSongs: { type: Number },
+            additionDate: { type: Date },
+        },
+    ],
 })
 
 export const User = model<IUser>('User', userSchema)
