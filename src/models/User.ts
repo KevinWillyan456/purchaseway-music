@@ -23,6 +23,10 @@ export interface IUser {
         currentCoverUrl: string
         totalSongs: number
         additionDate: Date
+        songs: {
+            _id: string
+            musicId: string
+        }[]
     }[]
 }
 
@@ -54,6 +58,12 @@ const userSchema = new Schema<IUser>({
             currentCoverUrl: { type: String },
             totalSongs: { type: Number },
             additionDate: { type: Date },
+            songs: [
+                {
+                    _id: { type: String },
+                    musicId: { type: String },
+                },
+            ],
         },
     ],
 })

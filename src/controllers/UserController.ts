@@ -516,7 +516,7 @@ async function indexUserPlaylist(
         const user: IUser | null = await User.findById(id)
 
         if (!user) {
-            return res.status(404).json({ error: 'User not found' })
+            return res.status(404).json({ error: 'User playlist not found' })
         }
 
         return res.status(200).json({ myPlaylists: user.myPlaylists })
@@ -533,7 +533,7 @@ async function storeUserPlaylist(
     const { id } = req.params
 
     if (!title || !currentCoverUrl) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+        return res.status(400).json({ error: 'data is missing' })
     }
 
     const filter = { _id: id }
@@ -626,6 +626,90 @@ async function deleteUserPlaylist(
     }
 }
 
+async function storeUserPlaylistSongs(
+    req: Request<{
+        id?: UpdateWithAggregationPipeline
+        pid?: UpdateWithAggregationPipeline
+    }>,
+    res: Response
+) {
+    const { musicIds } = req.body
+    const { id, pid } = req.params
+
+    if (!musicIds || !Array.isArray(musicIds)) {
+        return res.status(400).json({ error: 'data is missing' })
+    }
+
+    const filter = { _id: id, 'myPlaylists._id': pid }
+    const updateDoc = {
+        $push: {
+            'myPlaylists.$[playlist].songs': {
+                $each: musicIds.map((musicId: string) => ({
+                    _id: uuid(),
+                    musicId,
+                })),
+            },
+        },
+        $inc: {
+            'myPlaylists.$[playlist].totalSongs': musicIds.length,
+        },
+    }
+    const options = {
+        arrayFilters: [{ 'playlist._id': pid }],
+    }
+
+    try {
+        await User.updateOne(filter, updateDoc, options)
+        return res
+            .status(200)
+            .json({ message: 'User playlist songs added successfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+async function deleteUserPlaylistSongs(
+    req: Request<{
+        id?: UpdateWithAggregationPipeline
+        pid?: UpdateWithAggregationPipeline
+        sid?: UpdateWithAggregationPipeline
+    }>,
+    res: Response
+) {
+    const { id, pid, sid } = req.params
+
+    const filter = { _id: id, 'myPlaylists._id': pid }
+    const updateDoc = {
+        $pull: {
+            'myPlaylists.$[playlist].songs': { _id: sid },
+        },
+    }
+    const updateDoc2 = {
+        $inc: {
+            'myPlaylists.$[playlist].totalSongs': -1,
+        },
+    }
+    const options = {
+        arrayFilters: [{ 'playlist._id': pid }],
+    }
+
+    try {
+        const result = await User.updateOne(filter, updateDoc, options)
+        if (result.modifiedCount < 1) {
+            return res
+                .status(404)
+                .json({ error: 'User playlist song not found' })
+        }
+        await User.updateOne(filter, updateDoc2, options)
+
+        return res
+            .status(200)
+            .json({ message: 'User playlist song deleted successfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
 export {
     indexUser,
     indexUserById,
@@ -642,4 +726,6 @@ export {
     storeUserPlaylist,
     updateUserPlaylist,
     deleteUserPlaylist,
+    storeUserPlaylistSongs,
+    deleteUserPlaylistSongs,
 }
