@@ -36,7 +36,7 @@ async function storeMusic(req: Request, res: Response) {
     try {
         await music.save()
 
-        return res.status(201).json({ message: 'Music added succesfully!' })
+        return res.status(201).json({ message: 'Music added successfully!' })
     } catch (err) {
         res.status(400).json({ error: err })
     }
@@ -68,7 +68,7 @@ async function updateMusic(
     try {
         await Music.updateOne(filter, updateDoc)
 
-        return res.status(200).json({ message: 'Music updated succesfully!' })
+        return res.status(200).json({ message: 'Music updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -93,7 +93,7 @@ async function deleteMusic(
         )
 
         await Music.deleteOne(filter)
-        return res.status(200).json({ message: 'Music removed succesfully!' })
+        return res.status(200).json({ message: 'Music removed successfully!' })
     } catch (err) {
         return res.status(500).json({ error: err })
     }

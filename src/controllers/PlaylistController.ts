@@ -65,7 +65,7 @@ async function storePlaylist(req: Request, res: Response) {
     try {
         await playlist.save()
 
-        return res.status(201).json({ message: 'Playlist added succesfully!' })
+        return res.status(201).json({ message: 'Playlist added successfully!' })
     } catch (err) {
         res.status(400).json({ error: err })
     }
@@ -109,7 +109,7 @@ async function updatePlaylist(
 
         return res
             .status(200)
-            .json({ message: 'Playlist updated succesfully!' })
+            .json({ message: 'Playlist updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -126,7 +126,7 @@ async function deletePlaylist(
         await Playlist.deleteOne(filter)
         return res
             .status(200)
-            .json({ message: 'Playlist removed succesfully!' })
+            .json({ message: 'Playlist removed successfully!' })
     } catch (err) {
         return res.status(500).json({ error: err })
     }
@@ -146,7 +146,7 @@ async function deletePlaylistAndSongs(
         await Playlist.deleteOne(filter)
         return res
             .status(200)
-            .json({ message: 'Playlist and songs removed succesfully!' })
+            .json({ message: 'Playlist and songs removed successfully!' })
     } catch (err) {
         return res.status(500).json({ error: err })
     }

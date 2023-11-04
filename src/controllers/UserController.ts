@@ -49,7 +49,7 @@ async function storeUser(req: Request, res: Response) {
     try {
         await user.save()
 
-        return res.status(201).json({ message: 'User added succesfully!' })
+        return res.status(201).json({ message: 'User added successfully!' })
     } catch (err) {
         res.status(400).json({ error: err })
     }
@@ -124,7 +124,7 @@ async function updateUser(
     try {
         await User.updateOne(filter, updateDoc)
 
-        return res.status(200).json({ message: 'User updated succesfully!' })
+        return res.status(200).json({ message: 'User updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -139,7 +139,7 @@ async function deleteUser(
 
     try {
         await User.deleteOne(filter)
-        return res.status(200).json({ message: 'User removed succesfully!' })
+        return res.status(200).json({ message: 'User removed successfully!' })
     } catch (err) {
         return res.status(500).json({ error: err })
     }
@@ -233,7 +233,7 @@ async function updateUserFavoriteSongs(
             await User.updateOne(filter, updateDoc2)
             return res
                 .status(200)
-                .json({ message: 'User updated succesfully!' })
+                .json({ message: 'User updated successfully!' })
         }
         if (favoriteSize >= maxSizeFavorite) {
             return res.status(200).json({ message: 'limit reached' })
@@ -242,10 +242,10 @@ async function updateUserFavoriteSongs(
             await User.updateOne(filter, updateDoc1)
             return res
                 .status(200)
-                .json({ message: 'User updated succesfully!' })
+                .json({ message: 'User updated successfully!' })
         }
 
-        return res.status(200).json({ message: 'User updated succesfully!' })
+        return res.status(200).json({ message: 'User updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -392,7 +392,7 @@ async function updateUserMusicHistoric(
             await User.updateOne(filter, updateDoc4)
             return res
                 .status(200)
-                .json({ message: 'User updated succesfully!' })
+                .json({ message: 'User updated successfully!' })
         }
 
         const [...musicHistory] = user?.musicHistory || []
@@ -403,7 +403,7 @@ async function updateUserMusicHistoric(
         if (musicExists && historySize <= 1) {
             return res
                 .status(200)
-                .json({ message: 'User updated succesfully!' })
+                .json({ message: 'User updated successfully!' })
         }
         if (musicExists) {
             await User.updateOne(filter, updateDoc3)
@@ -414,14 +414,14 @@ async function updateUserMusicHistoric(
             }
             return res
                 .status(200)
-                .json({ message: 'User updated succesfully!' })
+                .json({ message: 'User updated successfully!' })
         }
         if (historySize < maxSizeHistoric) {
             await User.updateOne(filter, updateDoc1)
 
             return res
                 .status(200)
-                .json({ message: 'User updated succesfully!' })
+                .json({ message: 'User updated successfully!' })
         }
         if (historySize >= maxSizeHistoric) {
             await User.updateOne(filter, updateDoc2a)
@@ -429,10 +429,10 @@ async function updateUserMusicHistoric(
 
             return res
                 .status(200)
-                .json({ message: 'User updated succesfully!' })
+                .json({ message: 'User updated successfully!' })
         }
 
-        return res.status(200).json({ message: 'User updated succesfully!' })
+        return res.status(200).json({ message: 'User updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -457,7 +457,7 @@ async function updateUserPlaylistSelected(
 
     try {
         await User.updateOne(filter, updateDoc1)
-        return res.status(200).json({ message: 'User updated succesfully!' })
+        return res.status(200).json({ message: 'User updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -500,7 +500,7 @@ async function updateUserProfilePicture(
 
     try {
         await User.updateOne(filter, updateDoc)
-        return res.status(200).json({ message: 'User updated succesfully!' })
+        return res.status(200).json({ message: 'User updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -553,7 +553,7 @@ async function storeUserPlaylist(
         await User.updateOne(filter, updateDoc)
         return res
             .status(200)
-            .json({ message: 'User playlist added succesfully!' })
+            .json({ message: 'User playlist added successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }

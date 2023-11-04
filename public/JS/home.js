@@ -2141,7 +2141,7 @@ async function manageUserAccountDeletion() {
         })
         const response = await userToDelete.json()
 
-        if (response.message === "User removed succesfully!") {
+        if (response.message === "User removed successfully!") {
             logoutService();
         }
     } else {
@@ -2161,7 +2161,7 @@ async function manageUserAccountDeletion() {
         })
         const response = await userToDelete.json()
 
-        if (response.message === "User removed succesfully!") {
+        if (response.message === "User removed successfully!") {
             logoutService();
         }
     }

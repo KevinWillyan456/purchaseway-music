@@ -431,7 +431,7 @@ formPlaylist.addEventListener('submit', async function (event) {
 
     const result = await response.json()
 
-    if (result.message != 'Playlist added succesfully!') {
+    if (result.message != 'Playlist added successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
@@ -441,7 +441,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         return
     }
 
-    if (result.message == 'Playlist added succesfully!') {
+    if (result.message == 'Playlist added successfully!') {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Playlist adicionada com sucesso!'
@@ -570,7 +570,7 @@ formSong.addEventListener('submit', async function (event) {
 
     const result = await response.json()
 
-    if (result.message != 'Music added succesfully!') {
+    if (result.message != 'Music added successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
@@ -580,7 +580,7 @@ formSong.addEventListener('submit', async function (event) {
         return
     }
 
-    if (result.message == 'Music added succesfully!') {
+    if (result.message == 'Music added successfully!') {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Música adicionada com sucesso!'
@@ -677,7 +677,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
 
     const result = await response.json()
 
-    if (result.message != 'Music updated succesfully!') {
+    if (result.message != 'Music updated successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
@@ -687,7 +687,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
         return
     }
 
-    if (result.message == 'Music updated succesfully!') {
+    if (result.message == 'Music updated successfully!') {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Música atualizada com sucesso!'
@@ -722,7 +722,7 @@ formSongDeleteBtn.addEventListener('click', async () => {
 
     const result = await response.json()
 
-    if (result.message != 'Music removed succesfully!') {
+    if (result.message != 'Music removed successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
@@ -732,7 +732,7 @@ formSongDeleteBtn.addEventListener('click', async () => {
         return
     }
 
-    if (result.message == 'Music removed succesfully!') {
+    if (result.message == 'Music removed successfully!') {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Música deletada com sucesso!'
@@ -777,7 +777,7 @@ formPlaylistDeleteBtn.addEventListener('click', async () => {
 
     const result = await response.json()
 
-    if (result.message != 'Playlist and songs removed succesfully!') {
+    if (result.message != 'Playlist and songs removed successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
@@ -787,7 +787,7 @@ formPlaylistDeleteBtn.addEventListener('click', async () => {
         return
     }
 
-    if (result.message == 'Playlist and songs removed succesfully!') {
+    if (result.message == 'Playlist and songs removed successfully!') {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Playlist deletada com sucesso!'
@@ -872,7 +872,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
 
     const result = await response.json()
 
-    if (result.message != 'Playlist updated succesfully!') {
+    if (result.message != 'Playlist updated successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
@@ -882,7 +882,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         return
     }
 
-    if (result.message == 'Playlist updated succesfully!') {
+    if (result.message == 'Playlist updated successfully!') {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Playlist atualizada com sucesso!'
