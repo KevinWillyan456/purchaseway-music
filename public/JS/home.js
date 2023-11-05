@@ -448,7 +448,20 @@ function audioControllerPlayFunctionNoPause(){
 
 function allSongValueSetters(){
     if(musicData.length <= 0){
-        alert("A PlayList atual não tem conteúdo");
+        if(screenWidth >= 1360){
+            warning.classList.remove('hidden')
+            warning.textContent = 'A PlayList atual não tem conteúdo'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'A PlayList atual não tem conteúdo'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        }
+
         return
     }
     if (screenWidth >= 1360) {
@@ -1768,7 +1781,19 @@ async function manageHistoric() {
         refreshUser();
     }
     if(resposta.status != 200){
-        alert("Internal Error!")
+        if(screenWidth >= 1360){
+            warning.classList.remove('hidden')
+            warning.textContent = 'Internal Error!'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Internal Error!'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        }
     }
 }
 
@@ -1791,7 +1816,19 @@ async function manageHistoricClear() {
         refreshUser();
     }
     if(resposta.status != 200){
-        alert("Internal Error!")
+        if(screenWidth >= 1360){
+            warning.classList.remove('hidden')
+            warning.textContent = 'Internal Error!'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Internal Error!'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        }
     }
 }
 
@@ -1820,7 +1857,19 @@ async function manageFavorite() {
     const respostaJson = await resposta.json()
 
     if(respostaJson.message == "limit reached"){
-        alert("Limite de músicas favoritas atingido!")
+        if(screenWidth >= 1360){
+            warning.classList.remove('hidden')
+            warning.textContent = 'Limite de músicas favoritas atingido!'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Limite de músicas favoritas atingido!'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        }
     }
     if(resposta.status == 200){
         await refreshUser()
@@ -1834,10 +1883,18 @@ async function manageFavorite() {
     if(resposta.status != 200){
         if (screenWidth >= 1360) {
             musicFavoriteIcon.style.pointerEvents = "auto"
-            alert("Internal Error!")
+            warning.classList.remove('hidden')
+            warning.textContent = 'Internal Error!'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
         } else {
             musicFavoriteIconMobile.style.pointerEvents = "auto"
-            alert("Internal Error!")
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Internal Error!'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
         }
     }
 }
@@ -2184,7 +2241,20 @@ async function manageUserProfilePicture() {
         })
         
         if(resposta.status != 200){
-            return alert("Internal Error!")
+            if(screenWidth >= 1360){
+                warning.classList.remove('hidden')
+                warning.textContent = 'Internal Error!'
+                setTimeout(() => {
+                    warning.classList.add('hidden')
+                }, 3000)
+            } else {
+                warningMobile.classList.remove('hidden')
+                warningMobile.textContent = 'Internal Error!'
+                setTimeout(() => {
+                    warningMobile.classList.add('hidden')
+                }, 3000)
+            }
+            return
         }
 
         layerProfilePicture.classList.add("hidden")
@@ -2208,7 +2278,20 @@ async function manageUserProfilePicture() {
         })
         
         if(resposta.status != 200){
-            return alert("Internal Error!")
+            if(screenWidth >= 1360){
+                warning.classList.remove('hidden')
+                warning.textContent = 'Internal Error!'
+                setTimeout(() => {
+                    warning.classList.add('hidden')
+                }, 3000)
+            } else {
+                warningMobile.classList.remove('hidden')
+                warningMobile.textContent = 'Internal Error!'
+                setTimeout(() => {
+                    warningMobile.classList.add('hidden')
+                }, 3000)
+            }
+            return
         }
 
         layerProfilePictureMobile.classList.add("hidden")
@@ -2275,7 +2358,19 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         body: JSON.stringify(playlistSelectForSend)
     });
     if(resposta.status != 200){
-        alert("Internal Error!")
+        if(screenWidth >= 1360){
+            warning.classList.remove('hidden')
+            warning.textContent = 'Internal Error!'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Internal Error!'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        }
     }
 
     const responsePlaylist = await fetch(`/playlists-select/${idUserConnected}/?playlist=${playlistSelect}`);
