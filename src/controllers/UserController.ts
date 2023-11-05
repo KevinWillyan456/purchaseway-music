@@ -529,10 +529,10 @@ async function storeUserPlaylist(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
 ) {
-    const { title, currentCoverUrl } = req.body
+    const { title } = req.body
     const { id } = req.params
 
-    if (!title || !currentCoverUrl) {
+    if (!title) {
         return res.status(400).json({ error: 'data is missing' })
     }
 
@@ -542,7 +542,8 @@ async function storeUserPlaylist(
             myPlaylists: {
                 _id: uuid(),
                 title,
-                currentCoverUrl,
+                currentCoverUrl:
+                    'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg',
                 totalSongs: 0,
                 additionDate: new Date(),
             },
@@ -640,6 +641,16 @@ async function storeUserPlaylistSongs(
         return res.status(400).json({ error: 'data is missing' })
     }
 
+    const lastMusicId = musicIds[musicIds.length - 1]
+    const music = await Music.findOne({ _id: lastMusicId })
+    if (!music) {
+        return res.status(404).json({ error: 'Music not found' })
+    }
+    const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
+    if (!user) {
+        return res.status(404).json({ error: 'User playlist not found' })
+    }
+
     const filter = { _id: id, 'myPlaylists._id': pid }
     const updateDoc = {
         $push: {
@@ -652,6 +663,9 @@ async function storeUserPlaylistSongs(
         },
         $inc: {
             'myPlaylists.$[playlist].totalSongs': musicIds.length,
+        },
+        $set: {
+            'myPlaylists.$[playlist].currentCoverUrl': music.coverUrl,
         },
     }
     const options = {
@@ -700,7 +714,61 @@ async function deleteUserPlaylistSongs(
                 .status(404)
                 .json({ error: 'User playlist song not found' })
         }
+
         await User.updateOne(filter, updateDoc2, options)
+
+        const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
+
+        const userLastPlaylistSongCover = user?.myPlaylists.find(
+            (playlist) => playlist._id === (pid as unknown as string)
+        )?.songs
+
+        if (!user) {
+            return res.status(404).json({ error: 'User playlist not found' })
+        }
+        if (
+            !userLastPlaylistSongCover ||
+            userLastPlaylistSongCover.length < 1
+        ) {
+            await User.updateOne(
+                filter,
+                {
+                    $set: {
+                        'myPlaylists.$[playlist].currentCoverUrl':
+                            'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg',
+                    },
+                },
+                {
+                    arrayFilters: [{ 'playlist._id': pid }],
+                }
+            )
+
+            return res
+                .status(200)
+                .json({ message: 'User playlist song deleted successfully!' })
+        }
+
+        const music = await Music.findOne({
+            _id: user?.myPlaylists.find(
+                (playlist) => playlist._id === (pid as unknown as string)
+            )?.songs[userLastPlaylistSongCover?.length - 1].musicId,
+        })
+
+        if (!music) {
+            return res.status(404).json({ error: 'Music not found' })
+        }
+
+        await User.updateOne(
+            filter,
+            {
+                $set: {
+                    'myPlaylists.$[playlist].currentCoverUrl': music.coverUrl,
+                },
+            },
+            {
+                arrayFilters: [{ 'playlist._id': pid }],
+            }
+        )
 
         return res
             .status(200)
