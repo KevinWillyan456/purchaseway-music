@@ -21,15 +21,18 @@ async function validationForm(){
 
     if(nameValue == ""){
         warning.classList.remove("hidden")
-        return warning.innerHTML = "Nome está vazio!"
+        warning.innerHTML = "Nome está vazio!"
+        return setTimeout(() => warning.classList.add('hidden'), 3000)
     }
     if(passwordValue == ""){
         warning.classList.remove("hidden")
-        return warning.innerHTML = "Senha está vazio!"
+        warning.innerHTML = "Senha está vazio!"
+        return setTimeout(() => warning.classList.add('hidden'), 3000)
     }
     if(passwordValue.length < 6){
         warning.classList.remove("hidden")
-        return warning.innerHTML = "Senha muito curta!"
+        warning.innerHTML = "Senha muito curta!"
+        return setTimeout(() => warning.classList.add('hidden'), 3000)
     }
 
     const user = {
@@ -66,7 +69,7 @@ async function validationForm(){
     if(resposta.status != 201){
         warning.innerHTML = "Usuário já existe"
         warning.classList.remove("hidden")
-        return
+        return setTimeout(() => warning.classList.add('hidden'), 3000)
     }
 
     const resposta2 = await fetch("/login", {

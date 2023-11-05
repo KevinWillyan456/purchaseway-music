@@ -21,15 +21,18 @@ async function validationForm(){
 
     if(nameValue == ""){
         warning.classList.remove("hidden")
-        return warning.innerHTML = "Nome ou Senha incorretos!"
+        warning.innerHTML = "Nome ou Senha incorretos!"
+        return setTimeout(() => warning.classList.add('hidden'), 3000)
     }
     if(passwordValue == ""){
         warning.classList.remove("hidden")
-        return warning.innerHTML = "Nome ou Senha incorretos!"
+        warning.innerHTML = "Nome ou Senha incorretos!"
+        return setTimeout(() => warning.classList.add('hidden'), 3000)
     }
     if(passwordValue.length < 6){
         warning.classList.remove("hidden")
-        return warning.innerHTML = "Senha muito curta!"
+        warning.innerHTML = "Senha muito curta!"
+        return setTimeout(() => warning.classList.add('hidden'), 3000)
     }
 
     const user = {
@@ -67,5 +70,6 @@ async function validationForm(){
     if(resposta.status != 200){
         warning.innerHTML = "Nome ou Senha incorretos!"
         warning.classList.remove("hidden")
+        return setTimeout(() => warning.classList.add('hidden'), 3000)
     }
 }
