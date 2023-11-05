@@ -1168,7 +1168,7 @@ iframe {
     color: var(--color-blue-2);
 }
 
-.container-side-1 .current-music-favorite {
+.container-side-1 .current-music-add {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1178,9 +1178,9 @@ iframe {
     right: 20px;
 
 }
-.container-side-1 .current-music-favorite ion-icon {
-    width: 40px;
-    height: 40px;
+.container-side-1 .current-music-add ion-icon {
+    width: 50px;
+    height: 50px;
     color: var(--color-blue-2);
     cursor: pointer;
 }
@@ -1773,6 +1773,119 @@ iframe {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+.current-music-add-overflow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background: #000000cc;
+    z-index: 1050;
+}
+.current-music-add-overflow .current-music-add-container {
+    animation: animate-scale-opacity-entrace 500ms;
+    min-width: 300px;
+    max-width: 600px;
+    max-height: 600px;
+    border-radius: 10px;
+    border: 3px solid var(--color-white-1);
+    background: var(--color-blue-1);
+    padding: 20px 20px 30px 20px;
+}
+.current-music-add-favorite-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.current-music-add-favorite-container .current-music-add-favorite-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-blue-2);
+    cursor: pointer;
+}
+.current-music-add-favorite-container .current-music-add-favorite-icon ion-icon {
+    width: 40px;
+    height: 40px;
+}
+.current-music-add-favorite-container .current-music-add-favorite-title {
+    color: var(--color-white-1);
+    font-size: 20px;
+}
+.current-music-add-playlist-container {
+    padding-left: 8px;
+    display: flex;
+    min-height: 150px;
+    max-height: 335px;
+    flex-direction: column;
+    gap: 5px;
+    overflow: auto;
+}
+.current-music-add-playlist-container::-webkit-scrollbar {
+    width: 10px;
+}
+.current-music-add-playlist-container::-webkit-scrollbar-track {
+    background: var(--color-black);
+    border-radius: 10px;
+}
+.current-music-add-playlist-container::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-2);
+    border-radius: 10px;
+}
+.current-music-add-playlist-container .current-music-add-playlist-item {
+    display: flex;
+    gap: 17px;
+    padding-right: 10px;
+}
+.current-music-add-playlist-container .current-music-add-playlist-item .current-music-add-playlist-status {
+    width: 25px;
+    height: 25px;
+    color: var(--color-blue-2);
+    cursor: pointer;
+}
+.current-music-add-playlist-container .current-music-add-playlist-item .current-music-add-playlist-status ion-icon {
+    width: 25px;
+    height: 25px;
+}
+.current-music-add-playlist-container .current-music-add-playlist-item .current-music-add-playlist-title {
+    color: var(--color-white-1);
+    font-size: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.current-music-add-create-new-playlist {
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    background: var(--color-blue-4);
+    color: var(--color-white-1);
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto 10px auto;
+}
+.current-music-add-confirm {
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    background: var(--color-blue-4);
+    color: var(--color-white-1);
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .main-minhas-playlists {

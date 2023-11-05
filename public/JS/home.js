@@ -51,7 +51,8 @@ const containerFrameVideo = document.querySelector(".container-frame");
 
 const logout = document.querySelector(".logout");
 
-const musicFavoriteIcon = document.querySelector(".current-music-favorite ion-icon")
+const musicFavoriteIcon = document.querySelector(".current-music-add-favorite-icon ion-icon")
+const musicAddIcon = document.querySelector(".current-music-add ion-icon")
 
 const clearHistoricIcon = document.querySelector(".trash-icon")
 
@@ -293,20 +294,14 @@ layerProfilePictureMobile.addEventListener('click', (e) => {
     }
 })
 profilePictureSaveMobile.addEventListener("click", manageUserProfilePicture)
-temporaryItemMinhasPlaylists.addEventListener("click", () => {
-    toggleContainerMinhaPlaylist()
-})
+temporaryItemMinhasPlaylists.addEventListener("click", toggleContainerMinhaPlaylist)
 btnSelectMyPlaylist.addEventListener("click", () => {
     toggleContainerMinhaPlaylist()
     toggleMyPlaylists()
     // ...
 })
-btnEditSelectMyPlaylist.addEventListener("click", () => {
-    toggleEditMinhaPlaylist()
-})
-btnDeleteSelectMyPlaylist.addEventListener("click", () => {
-    toggleDeleteMinhaPlaylist()
-})
+btnEditSelectMyPlaylist.addEventListener("click", toggleEditMinhaPlaylist)
+btnDeleteSelectMyPlaylist.addEventListener("click", toggleDeleteMinhaPlaylist)
 
 document.querySelector('.add-my-new-playlist-overflow').addEventListener('click', (event) => {
     if (event.target.classList.contains('add-my-new-playlist-overflow')) {
@@ -328,9 +323,7 @@ document.querySelector('.delete-my-new-playlist-btn-cancel').addEventListener('c
         event.target.parentElement.parentElement.parentElement.classList.add('hidden');
     }
 });
-temporaryItemMinhasMusicas.addEventListener("click", () => {
-    toggleMusicMinhaPlaylist()
-});
+temporaryItemMinhasMusicas.addEventListener("click", toggleMusicMinhaPlaylist)
 document.querySelector('.music-my-new-playlist-overflow').addEventListener('click', (event) => {
     if (event.target.classList.contains('music-my-new-playlist-overflow')) {
         event.target.classList.add('hidden');
@@ -347,6 +340,12 @@ document.querySelector('.music-delete-my-new-playlist-overflow').addEventListene
 document.querySelector('.music-delete-my-new-playlist-btn-cancel').addEventListener('click', (event) => {
     if (event.target.classList.contains('music-delete-my-new-playlist-btn-cancel')) {
         event.target.parentElement.parentElement.parentElement.classList.add('hidden');
+    }
+});
+musicAddIcon.addEventListener("click", toggleAddOptions)
+document.querySelector('.current-music-add-overflow').addEventListener('click', (event) => {
+    if (event.target.classList.contains('current-music-add-overflow')) {
+        event.target.classList.add('hidden');
     }
 });
 
@@ -2065,6 +2064,16 @@ function toggleDisplayMobile() {
         });
     }
 }
+
+function toggleAddOptions() {
+    const addOptionsOverflow = document.querySelector(".current-music-add-overflow");
+    if (addOptionsOverflow.classList.contains("hidden")) {
+        addOptionsOverflow.classList.remove("hidden");
+    } else {
+        addOptionsOverflow.classList.add("hidden");
+    }
+}
+
 function audioControllerPlayAudioAndVideo() {
     if (screenWidth >= 1360) {
         if(musicDataShuffled[indexAudio].isVideo){
