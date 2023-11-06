@@ -553,7 +553,7 @@ async function storeUserPlaylist(
     try {
         await User.updateOne(filter, updateDoc)
         return res
-            .status(200)
+            .status(201)
             .json({ message: 'User playlist added successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
@@ -675,7 +675,7 @@ async function storeUserPlaylistSongs(
     try {
         await User.updateOne(filter, updateDoc, options)
         return res
-            .status(200)
+            .status(201)
             .json({ message: 'User playlist songs added successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })

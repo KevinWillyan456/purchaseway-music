@@ -54,7 +54,7 @@ const userSchema = new Schema<IUser>({
     myPlaylists: [
         {
             _id: { type: String },
-            title: { type: String },
+            title: { type: String, unique: true },
             currentCoverUrl: { type: String },
             totalSongs: { type: Number },
             additionDate: { type: Date },
