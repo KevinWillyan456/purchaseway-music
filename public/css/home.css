@@ -1043,11 +1043,25 @@ iframe {
     align-items: center;
     justify-content: center;
     border: 2px solid var(--color-red-2);
-    z-index: 100;
+    z-index: 2000;
+}
+.warning.success {
+    animation: warning-anime-color-2 1s infinite alternate;
+    color: var(--color-blue-2);
+    background-color: var(--color-blue-1);
+    border: 2px solid var(--color-blue-2);
 }
 @keyframes warning-anime-color {
     0% {
         color: var(--color-red-2);
+    }
+    100% {
+        color: var(--color-white-1);
+    }
+}
+@keyframes warning-anime-color-2 {
+    0% {
+        color: var(--color-blue-2);
     }
     100% {
         color: var(--color-white-1);
@@ -1426,7 +1440,7 @@ iframe {
     align-items: center;
     justify-content: center;
     background: #000000cc;
-    z-index: 200;
+    z-index: 1060;
 }
 .add-my-new-playlist-overflow .add-my-new-playlist-container {
     animation: animate-scale-opacity-entrace 500ms;

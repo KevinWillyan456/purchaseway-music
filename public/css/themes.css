@@ -18,7 +18,7 @@
 .container-side-1 .current-music-rating.rock-version ion-icon {
     color: var(--color-red-2);
 }
-.container-side-1 .current-music-favorite.rock-version ion-icon {
+.container-side-1 .current-music-add.rock-version ion-icon {
     color: var(--color-red-2);
 }
 .slider-music-duration.rock-version input[type=range] {
@@ -159,7 +159,7 @@
 .container-side-1 .current-music-rating.hatsune-miku-version ion-icon {
     color: var(--color-miku-2);
 }
-.container-side-1 .current-music-favorite.hatsune-miku-version ion-icon {
+.container-side-1 .current-music-add.hatsune-miku-version ion-icon {
     color: var(--color-miku-2);
 }
 .slider-music-duration.hatsune-miku-version input[type=range] {
@@ -300,7 +300,7 @@
 .container-side-1 .current-music-rating.amv-brasileiro-version ion-icon {
     color: var(--color-amv-br-2);
 }
-.container-side-1 .current-music-favorite.amv-brasileiro-version ion-icon {
+.container-side-1 .current-music-add.amv-brasileiro-version ion-icon {
     color: var(--color-amv-br-2);
 }
 .slider-music-duration.amv-brasileiro-version input[type=range] {
