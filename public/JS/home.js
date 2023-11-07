@@ -603,6 +603,7 @@ function audioControllerNextFunction(){
     setMusicPlayTag();
     manageHistoric();
     refreshFavorite();
+    generatorContainerCurrentMusicAddPlaylist()
     themeChanger(selectedTheme);
 }
 function audioControllerPrevFunction(){
@@ -620,6 +621,7 @@ function audioControllerPrevFunction(){
     setMusicPlayTag();
     manageHistoric();
     refreshFavorite();
+    generatorContainerCurrentMusicAddPlaylist()
     themeChanger(selectedTheme);
 }
 
@@ -699,6 +701,7 @@ function generatorContainerPlaylistDataPlay(){
                     setMusicPlayTag();
                     manageHistoric();
                     refreshFavorite();
+                    generatorContainerCurrentMusicAddPlaylist()
                     themeChanger(selectedTheme);
                 }
             });
@@ -726,6 +729,7 @@ function generatorContainerPlaylistDataPlay(){
                     setMusicPlayTag();
                     manageHistoric();
                     refreshFavorite();
+                    generatorContainerCurrentMusicAddPlaylist()
                     themeChanger(selectedTheme);
                 }
             });
@@ -900,6 +904,7 @@ function generatorContainerSearchDataPlay(){
                     setMusicPlayTag();
                     manageHistoric();
                     refreshFavorite();
+                    generatorContainerCurrentMusicAddPlaylist()
                     themeChanger(selectedTheme);
                 
                     $('.focus-shadow').hide(200);
@@ -934,6 +939,7 @@ function generatorContainerSearchDataPlay(){
                     setMusicPlayTag();
                     manageHistoric();
                     refreshFavorite();
+                    generatorContainerCurrentMusicAddPlaylist()
                     themeChanger(selectedTheme);
                 
                     profileWasClicked = true;
@@ -1032,6 +1038,7 @@ function generatorContainerFavoriteDataPlay(){
                     setMusicPlayTag();
                     manageHistoric();
                     refreshFavorite();
+                    generatorContainerCurrentMusicAddPlaylist()
                     themeChanger(selectedTheme);
                     
                     $('.focus-shadow').hide(200);
@@ -1066,6 +1073,7 @@ function generatorContainerFavoriteDataPlay(){
                     setMusicPlayTag();
                     manageHistoric();
                     refreshFavorite();
+                    generatorContainerCurrentMusicAddPlaylist()
                     themeChanger(selectedTheme);
                     
                     profileWasClicked = true;
@@ -1166,6 +1174,7 @@ function generatorContainerHistoricDataPlay(){
                     setMusicPlayTag();
                     manageHistoric();
                     refreshFavorite();
+                    generatorContainerCurrentMusicAddPlaylist()
                     themeChanger(selectedTheme);
                     
                     $('.focus-shadow').hide(200);
@@ -1200,6 +1209,7 @@ function generatorContainerHistoricDataPlay(){
                     setMusicPlayTag();
                     manageHistoric();
                     refreshFavorite();
+                    generatorContainerCurrentMusicAddPlaylist()
                     themeChanger(selectedTheme);
                     
                     profileWasClicked = true;
@@ -1217,14 +1227,103 @@ function generatorContainerCurrentMusicAddPlaylist() {
     currentMusicAddPlaylistContainer.innerHTML = "";
 
     userData.myPlaylists.forEach((element) => {
-        currentMusicAddPlaylistContainer.innerHTML += `
-            <div class="current-music-add-playlist-item">
-                <div class="current-music-add-playlist-status">
-                    <ion-icon name="square-outline"></ion-icon>
-                </div>
-                <div class="current-music-add-playlist-title">${element.title}</div>
-            </div>
-        `
+        const song = element.songs.find(song => song.musicId === indexAudioId);
+
+        const divItem = document.createElement('div');
+        divItem.classList.add('current-music-add-playlist-item');
+
+        const divStatus = document.createElement('div');
+        divStatus.classList.add('current-music-add-playlist-status');
+
+        divStatus.addEventListener('click', () => {
+            divStatus.style.pointerEvents = 'none';
+            if (song) {
+                fetch(`/users-playlist-song/${userData._id}/${element._id}/${song._id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => {
+                    if (response.status === 200) return
+                    else {
+                        if(screenWidth >= 1360){
+                            warning.classList.remove('hidden')
+                            warning.textContent = 'Internal Error!'
+                            setTimeout(() => {
+                                warning.classList.add('hidden')
+                            }, 3000)
+                        } else {
+                            warningMobile.classList.remove('hidden')
+                            warningMobile.textContent = 'Internal Error!'
+                            setTimeout(() => {
+                                warningMobile.classList.add('hidden')
+                            }, 3000)
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+                .finally(() => {
+                    refreshUserWithNewPlaylist()
+                    divStatus.style.pointerEvents = 'auto';
+                });
+            } else {
+                fetch(`/users-playlist-song/${userData._id}/${element._id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        musicIds: [indexAudioId]
+                    })
+                })
+                .then(response => {
+                    if (response.status === 201) return
+                    else {
+                        if(screenWidth >= 1360){
+                            warning.classList.remove('hidden')
+                            warning.textContent = 'Internal Error!'
+                            setTimeout(() => {
+                                warning.classList.add('hidden')
+                            }, 3000)
+                        } else {
+                            warningMobile.classList.remove('hidden')
+                            warningMobile.textContent = 'Internal Error!'
+                            setTimeout(() => {
+                                warningMobile.classList.add('hidden')
+                            }, 3000)
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+                .finally(() => {
+                    refreshUserWithNewPlaylist()
+                    divStatus.style.pointerEvents = 'auto';
+                });
+            }
+        });
+
+        const ionIcon = document.createElement('ion-icon');
+        if (song) {
+            ionIcon.setAttribute('name', 'checkbox');
+        } else {
+            ionIcon.setAttribute('name', 'square-outline');
+        }
+
+        divStatus.appendChild(ionIcon);
+
+        const divTitle = document.createElement('div');
+        divTitle.classList.add('current-music-add-playlist-title');
+        divTitle.textContent = element.title;
+
+        divItem.appendChild(divStatus);
+        divItem.appendChild(divTitle);
+
+        currentMusicAddPlaylistContainer.appendChild(divItem);
     })
 }
 
