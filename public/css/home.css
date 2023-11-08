@@ -1855,12 +1855,12 @@ iframe {
     display: flex;
     gap: 17px;
     padding-right: 10px;
+    cursor: pointer;
 }
 .current-music-add-playlist-container .current-music-add-playlist-item .current-music-add-playlist-status {
     width: 25px;
     height: 25px;
     color: var(--color-blue-2);
-    cursor: pointer;
 }
 .current-music-add-playlist-container .current-music-add-playlist-item .current-music-add-playlist-status ion-icon {
     width: 25px;

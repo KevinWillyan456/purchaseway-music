@@ -1231,12 +1231,8 @@ function generatorContainerCurrentMusicAddPlaylist() {
 
         const divItem = document.createElement('div');
         divItem.classList.add('current-music-add-playlist-item');
-
-        const divStatus = document.createElement('div');
-        divStatus.classList.add('current-music-add-playlist-status');
-
-        divStatus.addEventListener('click', () => {
-            divStatus.style.pointerEvents = 'none';
+        divItem.addEventListener('click', () => {
+            divItem.style.pointerEvents = 'none';
             if (song) {
                 fetch(`/users-playlist-song/${userData._id}/${element._id}/${song._id}`, {
                     method: 'DELETE',
@@ -1302,10 +1298,13 @@ function generatorContainerCurrentMusicAddPlaylist() {
                 })
                 .finally(() => {
                     refreshUserWithNewPlaylist()
-                    divStatus.style.pointerEvents = 'auto';
+                    divItem.style.pointerEvents = 'auto';
                 });
             }
         });
+
+        const divStatus = document.createElement('div');
+        divStatus.classList.add('current-music-add-playlist-status');
 
         const ionIcon = document.createElement('ion-icon');
         if (song) {
