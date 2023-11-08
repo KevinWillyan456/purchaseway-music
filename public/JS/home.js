@@ -154,6 +154,7 @@ const btnDeleteSelectMyPlaylist = document.querySelector('#btnDeleteSelectMyPlay
 
 const temporaryItemMinhasMusicas = document.querySelector('#temporaryItemMinhasMusicas');
 
+let allMusicData = []
 let musicData = [];
 let musicDataShuffled = [];
 let musicDataFiltered = [];
@@ -389,6 +390,7 @@ function inicia(){
     setManagementSystem()
     setUserProfilePicture()
     generatorContainerCurrentMusicAddPlaylist()
+    generatorContainerMusicAddPlaylist()
 }
 
 function audioControllerPlayFunction(){
@@ -1220,7 +1222,89 @@ function generatorContainerHistoricDataPlay(){
         })
     }
 }
+function generatorContainerMusicAddPlaylist() {
+    const container = document.querySelector('.container-minhas-playlists');
+    const containerMusic = document.querySelector('.container-minhas-musicas')
 
+    container.innerHTML = "";
+
+    function converterData(dataString) {
+        const meses = [
+            "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+            "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+        ];
+    
+        const data = new Date(dataString);
+        const dia = data.getDate();
+        const mes = meses[data.getMonth()];
+        const ano = data.getFullYear();
+    
+        return `Criada em: ${dia} de ${mes} de ${ano}`;
+    }
+    
+    userData.myPlaylists.forEach((element) => {
+        let divItemMinhasPlaylists = document.createElement("div");
+        divItemMinhasPlaylists.classList.add("item-minhas-playlists");
+        divItemMinhasPlaylists.addEventListener('click', () => {
+            document.querySelector('.main-minhas-playlists .main-playlist .content .title').textContent = element.title;
+            document.querySelector('.main-minhas-playlists .main-playlist .content .details .created').textContent = converterData(element.additionDate);
+            document.querySelector('.main-minhas-playlists .main-playlist .content .details .total-song').textContent = `Total de ${element.totalSongs} ${element.totalSongs <= 1 ? 'música' : 'músicas'}`;
+            document.querySelector('.main-minhas-playlists .main-playlist .cover img').src = element.currentCoverUrl
+            toggleContainerMinhaPlaylist()
+
+            containerMusic.innerHTML = ""
+
+            element.songs.reverse().forEach((ele) => {
+                let musicaEncontrada = allMusicData.find(element => element._id === ele.musicId)
+
+                let divItemMinhasMusicas = document.createElement("div");
+                divItemMinhasMusicas.classList.add("item-minhas-musicas");
+
+                let divCoverItemMinhasMusicas = document.createElement("div");
+                divCoverItemMinhasMusicas.classList.add("cover-item-minhas-musicas");
+
+                let imgCover = document.createElement("img");
+                imgCover.src = musicaEncontrada.coverUrl;
+
+                let divTitleItemMinhasMusicas = document.createElement("div");
+                divTitleItemMinhasMusicas.classList.add("title-item-minhas-musicas");
+                divTitleItemMinhasMusicas.textContent = musicaEncontrada.title;
+
+                divCoverItemMinhasMusicas.appendChild(imgCover);
+                divItemMinhasMusicas.appendChild(divCoverItemMinhasMusicas);
+                divItemMinhasMusicas.appendChild(divTitleItemMinhasMusicas);
+
+                containerMusic.appendChild(divItemMinhasMusicas)
+            })
+        })
+
+        let divCoverItemMinhasPlaylists = document.createElement("div");
+        divCoverItemMinhasPlaylists.classList.add("cover-item-minhas-playlists");
+
+        let imgCover = document.createElement("img");
+        imgCover.src = element.currentCoverUrl;
+
+        let divTitleItemMinhasPlaylists = document.createElement("div");
+        divTitleItemMinhasPlaylists.classList.add("title-item-minhas-playlists");
+        divTitleItemMinhasPlaylists.textContent = element.title;
+
+        let divTotalDeMusicas = document.createElement("div");
+        divTotalDeMusicas.classList.add("total-de-musicas");
+        divTotalDeMusicas.textContent = "Total de Músicas";
+
+        let divTotalDeMusicasQuantidade = document.createElement("div");
+        divTotalDeMusicasQuantidade.classList.add("total-de-musicas-quantidade");
+        divTotalDeMusicasQuantidade.textContent = element.totalSongs;
+
+        divCoverItemMinhasPlaylists.appendChild(imgCover);
+        divItemMinhasPlaylists.appendChild(divCoverItemMinhasPlaylists);
+        divItemMinhasPlaylists.appendChild(divTitleItemMinhasPlaylists);
+        divItemMinhasPlaylists.appendChild(divTotalDeMusicas);
+        divItemMinhasPlaylists.appendChild(divTotalDeMusicasQuantidade);
+
+        container.appendChild(divItemMinhasPlaylists);
+    })
+}
 function generatorContainerCurrentMusicAddPlaylist() {
     const currentMusicAddPlaylistContainer = document.querySelector('.current-music-add-playlist-container');
 
@@ -2026,6 +2110,7 @@ async function refreshUserWithNewPlaylist() {
     
     if (screenWidth >= 1360) {
         generatorContainerCurrentMusicAddPlaylist()
+        generatorContainerMusicAddPlaylist()
     } else {
         // ...
     }
@@ -2684,6 +2769,10 @@ async function musicListingService() {
     const responseSongs = await fetch(`/playlists-select/${idUserConnected}/?playlist=${userData.lastAccessedPlaylist}`);
     const songs = await responseSongs.json();
 
+    const responseAllSongs = await fetch("/songs");
+    const allSongs = await responseAllSongs.json();
+
+    allMusicData = allSongs.songs
     musicData = songs.songs;
     playlistData = playlists.playlists;
 
