@@ -1750,8 +1750,12 @@ iframe {
 }
 .music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container .music-delete-my-new-playlist-current {
     color: var(--color-white-1);
+    max-width: 680px;
     font-size: 20px;
     margin-bottom: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container .music-delete-my-new-playlist-warning {
     color: var(--color-red-2);

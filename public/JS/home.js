@@ -2,6 +2,8 @@ const audioGlobal = document.querySelector('#audio-global');
 let indexAudio = 0;
 let indexAudioId = "";
 let indexAudioGender = "";
+let indexMyPlaylistId = "";
+let indexMyPlaylistAudioId = "";
 
 let screenWidth = 0;
 let screenHeight = 0;
@@ -352,6 +354,7 @@ document.querySelector('.current-music-add-overflow').addEventListener('click', 
 document.querySelector('.current-music-add-create-new-playlist').addEventListener('click', toggleAddMinhaPlaylist)
 document.querySelector('.current-music-add-confirm').addEventListener('click', toggleAddOptions)
 document.querySelector('.add-my-new-playlist-adicionar').addEventListener("click", manageUserCreatePlaylist)
+document.querySelector('.music-delete-my-new-playlist-btn-delete').addEventListener("click", manageMyPlaylistMusicDeletion)
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1250,6 +1253,7 @@ function generatorContainerMusicAddPlaylist() {
             document.querySelector('.main-minhas-playlists .main-playlist .content .details .created').textContent = converterData(element.additionDate);
             document.querySelector('.main-minhas-playlists .main-playlist .content .details .total-song').textContent = `Total de ${element.totalSongs} ${element.totalSongs <= 1 ? 'música' : 'músicas'}`;
             document.querySelector('.main-minhas-playlists .main-playlist .cover img').src = element.currentCoverUrl
+            indexMyPlaylistId = element._id;
             toggleContainerMinhaPlaylist()
 
             containerMusic.innerHTML = ""
@@ -1259,6 +1263,13 @@ function generatorContainerMusicAddPlaylist() {
 
                 let divItemMinhasMusicas = document.createElement("div");
                 divItemMinhasMusicas.classList.add("item-minhas-musicas");
+                divItemMinhasMusicas.addEventListener('click', () => {
+                    document.querySelector('.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-title').textContent = musicaEncontrada.title;
+                    document.querySelector('.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img').src = musicaEncontrada.coverUrl;
+                    document.querySelector('.music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container .music-delete-my-new-playlist-current').textContent = musicaEncontrada.title;
+                    indexMyPlaylistAudioId = ele._id;
+                    toggleMusicMinhaPlaylist()
+                })
 
                 let divCoverItemMinhasMusicas = document.createElement("div");
                 divCoverItemMinhasMusicas.classList.add("cover-item-minhas-musicas");
@@ -2107,13 +2118,9 @@ async function refreshUserWithNewPlaylist() {
     const user = await responseUser.json();
 
     userData = user.user;
-    
-    if (screenWidth >= 1360) {
-        generatorContainerCurrentMusicAddPlaylist()
-        generatorContainerMusicAddPlaylist()
-    } else {
-        // ...
-    }
+
+    generatorContainerCurrentMusicAddPlaylist()
+    generatorContainerMusicAddPlaylist()
 }
 
 async function refreshUser() {
@@ -2459,6 +2466,40 @@ async function manageUserAccountDeletion() {
             logoutService();
         }
     }
+}
+
+function manageMyPlaylistMusicDeletion() {
+    fetch(`/users-playlist-song/${userData._id}/${indexMyPlaylistId}/${indexMyPlaylistAudioId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => {
+        if (response.status === 200) {
+            toggleContainerMinhaPlaylist()
+            toggleMusicMinhaPlaylist()
+            if (document.querySelector('.music-delete-my-new-playlist-overflow').classList.contains('music-delete-my-new-playlist-overflow')) {
+                document.querySelector('.music-delete-my-new-playlist-overflow').classList.add('hidden');
+            }
+            
+            refreshUserWithNewPlaylist()
+        } else {
+            if(screenWidth >= 1360){
+                warning.classList.remove('hidden')
+                warning.textContent = 'Internal Error!'
+                setTimeout(() => {
+                    warning.classList.add('hidden')
+                }, 3000)
+            } else {
+                warningMobile.classList.remove('hidden')
+                warningMobile.textContent = 'Internal Error!'
+                setTimeout(() => {
+                    warningMobile.classList.add('hidden')
+                }, 3000)
+            }
+        }
+    })
 }
 
 async function manageUserProfilePicture() {
