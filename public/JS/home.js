@@ -355,6 +355,11 @@ document.querySelector('.current-music-add-create-new-playlist').addEventListene
 document.querySelector('.current-music-add-confirm').addEventListener('click', toggleAddOptions)
 document.querySelector('.add-my-new-playlist-adicionar').addEventListener("click", manageUserCreatePlaylist)
 document.querySelector('.music-delete-my-new-playlist-btn-delete').addEventListener("click", manageMyPlaylistMusicDeletion)
+document.querySelector('.delete-my-new-playlist-interactions .delete-my-new-playlist-btn-delete').addEventListener("click", manageMyPlaylistDeletion)
+document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name').addEventListener("paste", (e) => {
+    e.preventDefault()
+})
+document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-adicionar').addEventListener("click", manageMyPlaylistEdition)
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1254,6 +1259,8 @@ function generatorContainerMusicAddPlaylist() {
             document.querySelector('.main-minhas-playlists .main-playlist .content .details .total-song').textContent = `Total de ${element.totalSongs} ${element.totalSongs <= 1 ? 'música' : 'músicas'}`;
             document.querySelector('.main-minhas-playlists .main-playlist .cover img').src = element.currentCoverUrl
             indexMyPlaylistId = element._id;
+            document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value = element.title;
+            document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current').textContent = element.title;
             toggleContainerMinhaPlaylist()
 
             containerMusic.innerHTML = ""
@@ -2466,6 +2473,106 @@ async function manageUserAccountDeletion() {
             logoutService();
         }
     }
+}
+
+function manageMyPlaylistEdition() {
+    if (document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value === "") {
+        if(screenWidth >= 1360){
+            warning.classList.remove('hidden')
+            warning.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        }
+        return
+    }
+
+    fetch(`/users-playlist/${userData._id}/${indexMyPlaylistId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({title: document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim()})
+    })
+    .then(response => {
+        if (response.status === 200) {
+            toggleContainerMinhaPlaylist()
+            toggleEditMinhaPlaylist()
+            refreshUserWithNewPlaylist()
+        } else {
+            if(screenWidth >= 1360){
+                warning.classList.remove('hidden')
+                warning.textContent = 'Internal Error!'
+
+                setTimeout(() => {
+                    warning.classList.add('hidden')
+                }, 3000)
+            } else {
+                warningMobile.classList.remove('hidden')
+                warningMobile.textContent = 'Internal Error!'
+
+                setTimeout(() => {
+                    warningMobile.classList.add('hidden')
+                }, 3000)
+            }
+        }
+    })
+}
+
+function manageMyPlaylistDeletion() {
+    if (document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name').value !== document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current').textContent) {
+        if(screenWidth >= 1360){
+            warning.classList.remove('hidden')
+            warning.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        }
+        return
+    }
+
+    fetch(`/users-playlist/${userData._id}/${indexMyPlaylistId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => {
+        if (response.status === 200) {
+            document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name').value = ""
+            toggleContainerMinhaPlaylist()
+            toggleDeleteMinhaPlaylist()
+            refreshUserWithNewPlaylist()
+        } else {
+            if(screenWidth >= 1360){
+                warning.classList.remove('hidden')
+                warning.textContent = 'Internal Error!'
+
+                setTimeout(() => {
+                    warning.classList.add('hidden')
+                }, 3000)
+            } else {
+                warningMobile.classList.remove('hidden')
+                warningMobile.textContent = 'Internal Error!'
+
+                setTimeout(() => {
+                    warningMobile.classList.add('hidden')
+                }, 3000)
+            }
+        }
+    })
 }
 
 function manageMyPlaylistMusicDeletion() {
