@@ -360,6 +360,7 @@ document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist
     e.preventDefault()
 })
 document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-adicionar').addEventListener("click", manageMyPlaylistEdition)
+document.querySelector('.main-minhas-playlists .interactions .btn-adicionar').addEventListener("click", selectUserMyPlaylist)
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -2812,6 +2813,68 @@ async function manageUserCreatePlaylist() {
     }
 }
 
+function selectUserMyPlaylist() {
+    const playlist = userData.myPlaylists.find(item => item._id === indexMyPlaylistId);
+    const matchingSongs = allMusicData.filter(song => playlist.songs.map(item => item.musicId).includes(song._id)).sort((a, b) => a.title.localeCompare(b.title));
+
+    if (screenWidth >= 1360) {
+        $(".title-playlist").html(playlist.title);
+    } else {
+        $(".title-playlist-mobile").html(playlist.title);
+    }
+
+    musicData = matchingSongs;
+    musicDataShuffled = [...musicData];
+
+    if (screenWidth >= 1360) {
+        containerPlaylist.innerHTML = "";
+        containerItemsSearch.innerHTML = "";
+        containerItemsFavorite.innerHTML = "";
+        containerItemsHistoric.innerHTML = "";
+    } else {
+        containerPlaylistMobile.innerHTML = "";
+        containerItemsSearchMobile.innerHTML = "";
+        containerItemsFavoriteMobile.innerHTML = "";
+        containerItemsHistoricMobile.innerHTML = "";
+    }
+
+    indexAudio = 0;
+    audioGlobal.pause()
+    if (screenWidth >= 1360) {
+        audioControllerPlay.name = 'play-circle';
+        musicAnimationStatus.classList.remove('run');
+    } else {
+        audioControllerPlayMobile.name = 'play-circle';
+    }
+    audioControllerPlayToggle = true;
+
+    if (screenWidth >= 1360) {
+        shuffleIcon.classList.remove('active');
+    } else {
+        shuffleIconMobile.classList.remove('active');
+    }
+    shuffleToggleControl = true;
+
+    allSongValueSetters()
+    generatorContainerPlaylistData();
+    generatorContainerPlaylistDataPlay();
+    generatorContainerSearchData()
+    generatorContainerSearchDataPlay()
+    generatorContainerFavoriteData()
+    generatorContainerFavoriteDataPlay()
+    generatorContainerHistoricData()
+    generatorContainerHistoricDataPlay()
+
+    themeChanger(musicDataShuffled[indexAudio].theme);
+    indexAudioId = musicDataShuffled[indexAudio]._id;
+    indexAudioGender = musicDataShuffled[indexAudio].gender;
+    setMusicPlayTag();
+    refreshFavorite();
+    manageHistoric();
+    audioControllerPlayAudioAndVideo();
+    refreshUserWithNewPlaylist()
+}
+
 async function selectNewPlaylist(playlistSelect, playlistName) {
     const idUserConnected = getCookie("user")
     let playlistSelectForSend = { 
@@ -2901,6 +2964,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     refreshFavorite();
     manageHistoric();
     audioControllerPlayAudioAndVideo();
+    refreshUserWithNewPlaylist()
 }
 
 async function musicListingService() {
