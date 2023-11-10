@@ -32,7 +32,7 @@ async function eAdmin(req: Request, res: Response, next: NextFunction) {
         ;(req as CustomRequest).token = decoded
 
         res.cookie('user', (<idUser>decoded).id, {
-            maxAge: 172800000,
+            maxAge: 604800000,
         })
 
         next()

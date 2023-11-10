@@ -76,8 +76,8 @@ async function loginUser(req: Request, res: Response) {
         }
 
         if (hasConnect) {
-            dateTokenExpires = '2d'
-            dateCookieExpires = 172800000
+            dateTokenExpires = '7d'
+            dateCookieExpires = 604800000
         } else {
             dateTokenExpires = 600
             dateCookieExpires = 600000
