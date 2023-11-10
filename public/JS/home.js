@@ -128,7 +128,6 @@ const formDeleteAccount = document.querySelector('#formDeleteAccount');
 const formDeleteAccountMobile = document.querySelector('#formDeleteAccountMobile');
 const formDeleteAccountCancel = document.querySelector('#formDeleteAccountCancel');
 const formDeleteAccountCancelMobile = document.querySelector('#formDeleteAccountCancelMobile');
-const btnDeleteAccountConfirmed = document.querySelector('#btnDeleteAccountConfirmed');
 const btnDeleteAccountConfirmedMobile = document.querySelector('#btnDeleteAccountConfirmedMobile');
 const deleteAccountInputToConfirm = document.querySelector('#deleteAccountInputToConfirm');
 const deleteAccountInputToConfirmMobile = document.querySelector('#deleteAccountInputToConfirmMobile');
@@ -138,7 +137,6 @@ const warningMobile = document.querySelector('#warningMobile');
 const profilePictureEdit = document.querySelector('#profilePictureEdit');
 const layerProfilePicture = document.querySelector('#layerProfilePicture');
 const profilePictureInput = document.querySelector('#profilePictureInput');
-const profilePictureSave = document.querySelector('#profilePictureSave');
 const profilePictureEditMobile = document.querySelector('#profilePictureEditMobile');
 const layerProfilePictureMobile = document.querySelector('#layerProfilePictureMobile');
 const profilePictureInputMobile = document.querySelector('#profilePictureInputMobile');
@@ -273,7 +271,10 @@ deleteAccountInputToConfirm.addEventListener("paste", (e) => {
 deleteAccountInputToConfirmMobile.addEventListener("paste", (e) => {
     e.preventDefault()
 })
-btnDeleteAccountConfirmed.addEventListener("click", manageUserAccountDeletion)
+document.querySelector('.form-delete-account').addEventListener("submit", (e) => {
+    e.preventDefault()
+    manageUserAccountDeletion()
+})
 btnDeleteAccountConfirmedMobile.addEventListener("click", manageUserAccountDeletion)
 
 profilePictureEdit.addEventListener("click", () => {
@@ -285,8 +286,6 @@ layerProfilePicture.addEventListener('click', (e) => {
         profilePictureInput.value = userData.profilePicture
     }
 })
-profilePictureSave.addEventListener("click", manageUserProfilePicture)
-
 profilePictureEditMobile.addEventListener("click", () => {
     layerProfilePictureMobile.classList.remove("hidden")
 })
@@ -296,12 +295,15 @@ layerProfilePictureMobile.addEventListener('click', (e) => {
         profilePictureInputMobile.value = userData.profilePicture
     }
 })
-profilePictureSaveMobile.addEventListener("click", manageUserProfilePicture)
+document.querySelector('.container-profile-picture').addEventListener("submit", (e) => {
+    e.preventDefault()
+    manageUserProfilePicture()
+})
 temporaryItemMinhasPlaylists.addEventListener("click", toggleContainerMinhaPlaylist)
 btnSelectMyPlaylist.addEventListener("click", () => {
     toggleContainerMinhaPlaylist()
     toggleMyPlaylists()
-    // ...
+    selectUserMyPlaylist()
 })
 btnEditSelectMyPlaylist.addEventListener("click", toggleEditMinhaPlaylist)
 btnDeleteSelectMyPlaylist.addEventListener("click", toggleDeleteMinhaPlaylist)
@@ -353,14 +355,22 @@ document.querySelector('.current-music-add-overflow').addEventListener('click', 
 });
 document.querySelector('.current-music-add-create-new-playlist').addEventListener('click', toggleAddMinhaPlaylist)
 document.querySelector('.current-music-add-confirm').addEventListener('click', toggleAddOptions)
-document.querySelector('.add-my-new-playlist-adicionar').addEventListener("click", manageUserCreatePlaylist)
+document.querySelector('.add-my-new-playlist-container').addEventListener("submit", (e) => {
+    e.preventDefault()
+    manageUserCreatePlaylist()
+})
 document.querySelector('.music-delete-my-new-playlist-btn-delete').addEventListener("click", manageMyPlaylistMusicDeletion)
-document.querySelector('.delete-my-new-playlist-interactions .delete-my-new-playlist-btn-delete').addEventListener("click", manageMyPlaylistDeletion)
+document.querySelector('.delete-my-new-playlist-container').addEventListener("submit", (e) => {
+    e.preventDefault()
+    manageMyPlaylistDeletion()
+})
 document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name').addEventListener("paste", (e) => {
     e.preventDefault()
 })
-document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-adicionar').addEventListener("click", manageMyPlaylistEdition)
-document.querySelector('.main-minhas-playlists .interactions .btn-adicionar').addEventListener("click", selectUserMyPlaylist)
+document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container').addEventListener("submit", (e) => {
+    e.preventDefault()
+    manageMyPlaylistEdition()
+})
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -2442,8 +2452,6 @@ async function manageUserAccountDeletion() {
             }, 3000)
             return
         }
-
-        btnDeleteAccountConfirmed.disabled = true
 
         const userToDelete = await fetch(`/users/${userData._id}`, {
             method: "DELETE"

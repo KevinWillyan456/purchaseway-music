@@ -122,11 +122,11 @@
                         </div>
 
                         <div class="layer-profile-picture hidden" id="layerProfilePicture">
-                            <div class="container-profile-picture">
+                            <form class="container-profile-picture">
                                 <div class="title">Adicione uma URL</div>
                                 <input class="field" type="text" placeholder="URL" id="profilePictureInput">
-                                <button class="save" id="profilePictureSave">Salvar</button>
-                            </div>
+                                <button class="save" type="submit">Salvar</button>
+                            </form>
                         </div>
                         
                         <div class="title-profile">Músicas Favoritas</div>
@@ -149,16 +149,16 @@
                         </div>
 
                         <div class="form-delete-account-overflow hidden" id="formDeleteAccount">
-                            <div class="form-delete-account">
+                            <form class="form-delete-account">
                                 <div class="title">Tem certeza que deseja deletar sua conta?</div>
                                 <div class="delete-account-name" id="playlistDeleteName">Quero deletar minha conta e aceito as condições</div>
                                 <input class="field" type="text" placeholder="Digite a frase para confirmar..." id="deleteAccountInputToConfirm">
                                 <div class="delete-account-warning">Todos os seus dados serão excluídos e não será possível recuperá-los</div>
                                 <div class="interactions-delete">
-                                    <button class="cancel" id="formDeleteAccountCancel">Cancelar</button>
-                                    <button class="delete" id="btnDeleteAccountConfirmed">Excluir</button>
+                                    <button class="cancel" id="formDeleteAccountCancel" type="reset">Cancelar</button>
+                                    <button class="delete" type="submit">Excluir</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -262,32 +262,32 @@
         </section>
 
         <section class="add-my-new-playlist-overflow hidden">
-            <div class="add-my-new-playlist-container">
+            <form class="add-my-new-playlist-container">
                 <div class="add-my-new-playlist-title">Adicionar uma nova Playlist</div>
                 <input type="text" class="add-my-new-playlist-name" placeholder="Nome">
-                <button class="add-my-new-playlist-adicionar">Adicionar</button>
-            </div>
+                <button class="add-my-new-playlist-adicionar" type="submit">Adicionar</button>
+            </form>
         </section>
 
         <section class="edit-my-new-playlist-overflow hidden">
-            <div class="edit-my-new-playlist-container">
+            <form class="edit-my-new-playlist-container">
                 <div class="edit-my-new-playlist-title">Editar Playlist</div>
                 <input type="text" class="edit-my-new-playlist-name" placeholder="Nome">
-                <button class="edit-my-new-playlist-adicionar">Salvar</button>
-            </div>
+                <button class="edit-my-new-playlist-adicionar" type="submit">Salvar</button>
+            </form>
         </section>
-        
+
         <section class="delete-my-new-playlist-overflow hidden">
-            <div class="delete-my-new-playlist-container">
+            <form class="delete-my-new-playlist-container">
                 <div class="delete-my-new-playlist-title">Tem certeza que deseja excluir esta Playlist?</div>
                 <div class="delete-my-new-playlist-current">Minha Playlist</div>
                 <input type="text" class="delete-my-new-playlist-name" placeholder="Digite o nome da playlist para confirmar...">
                 <div class="delete-my-new-playlist-warning">Esta ação é irreversível</div>
                 <div class="delete-my-new-playlist-interactions">
-                    <button class="delete-my-new-playlist-btn-cancel">Cancelar</button>
-                    <button class="delete-my-new-playlist-btn-delete">Excluir</button>
+                    <button class="delete-my-new-playlist-btn-cancel" type="reset">Cancelar</button>
+                    <button class="delete-my-new-playlist-btn-delete" type="submit">Excluir</button>
                 </div>
-            </div>
+            </form>
         </section>
 
         <section class="music-my-new-playlist-overflow hidden">
