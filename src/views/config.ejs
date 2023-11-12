@@ -53,10 +53,10 @@
         <div class="container-playlist">
             <div class="header-playlist">
                 <div class="title">Todas as Playlists</div>
-                <div class="btn-adicionar" id="btnAddPlaylist">
+                <button class="btn-adicionar" id="btnAddPlaylist">
                     <ion-icon name="add"></ion-icon>
                     Adicionar
-                </div>
+                </button>
             </div>
             <div class="content-playlist" id="contentPlaylist">
             </div>
@@ -90,50 +90,50 @@
             </div>
             <div class="wrap-text">
                 <div class="access">Administrador</div>
-                <div class="name" id="userNameMobile">Joe Dawn</div>
+                <div class="name" id="userNameMobile">Carregando...</div>
             </div>
         </div>
-        <div class="playlist-to-manage-back" id="playlistToManageBack">Voltar</div>
+        <button class="playlist-to-manage-back" id="playlistToManageBack">Voltar</button>
         <div class="container-playlist-to-manage">
             <div class="main-playlist">
                 <div class="cover">
                     <img src="" id="containerPlaylistToManageCover">
                 </div>
                 <div class="content">
-                    <div class="title" id="containerPlaylistToManageTitle">Título</div>
-                    <div class="description" id="containerPlaylistToManageDescription">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui accusamus animi excepturi ut aliquam iure iste nostrum corrupti libero sequi ea, aut laboriosam hic ex dolorum eveniet repellat et praesentium.</div>
+                    <div class="title" id="containerPlaylistToManageTitle"></div>
+                    <div class="description" id="containerPlaylistToManageDescription"></div>
                     <div class="details">
-                        <div class="created" id="containerPlaylistToManageCreated">Criada em: 20 de agosto de 2023</div>
-                        <div class="total-song" id="containerPlaylistToManageTotalMusics">Total de 94 músicas</div>
-                        <div class="gender" id="containerPlaylistToManageGender">Gênero: Nightcore</div>
+                        <div class="created" id="containerPlaylistToManageCreated"></div>
+                        <div class="total-song" id="containerPlaylistToManageTotalMusics"></div>
+                        <div class="gender" id="containerPlaylistToManageGender"></div>
                     </div>
                 </div>
             </div>
             <div class="interactions">
-                <div class="btn-adicionar" id="btnAddSong">
+                <button class="btn-adicionar" id="btnAddSong">
                     <ion-icon name="add"></ion-icon>
                     Adicionar Música
-                </div>
+                </button>
                 <div class="btn-adicionar-m" id="btnAddSongMobile">
                     <ion-icon name="add"></ion-icon>
                     Música
                 </div>
-                <div class="btn-editar" id="btnEditPlaylist">
+                <button class="btn-editar" id="btnEditPlaylist">
                     <ion-icon name="pencil"></ion-icon>
                     Editar
-                </div>
-                <div class="btn-excluir" id="btnDeletePlaylist">
+                </button>
+                <button class="btn-excluir" id="btnDeletePlaylist">
                     <ion-icon name="close"></ion-icon>
                     Excluir
-                </div>
+                </button>
             </div>
             <div class="title-all-songs">Todas as Músicas</div>
             <div class="content-songs" id="contentSongs">
                 <div class="songs-item">
                     <div class="item-cover">
-                        <img src="https://pw-music-database.kevinsouza456.repl.co/Nightcore%20-%20Without%20Me%20(Rock%20Version)%20(Lyrics).jpg">
+                        <img src="">
                     </div>
-                    <div class="item-title">Título</div>
+                    <div class="item-title"></div>
                 </div>
             </div>
             <div class="blank"></div>
@@ -144,11 +144,11 @@
                             <img src="" id="focusSongCover">
                         </div>
                         <div class="content">
-                            <div class="title" id="focusSongTitle">Título</div>
+                            <div class="title" id="focusSongTitle"></div>
                             <div class="details">
-                                <div class="created" id="focusSongCreated">Criada em: 20 de agosto de 2023</div>
-                                <div target="_blank" class="url">URL: <a href="https://youtu.be/B9fuMmbwhbI" target="_blank" id="focusSongURL">https://youtu.be/B9fuMmbwhbI</a></div>
-                                <div class="gender" id="focusSongGender">Gênero: Nightcore</div>
+                                <div class="created" id="focusSongCreated"></div>
+                                <div target="_blank" class="url">URL: <a href="#" target="_blank" id="focusSongURL"></a></div>
+                                <div class="gender" id="focusSongGender"></div>
                             </div>
                         </div>
                     </div>
@@ -222,17 +222,17 @@
                 </form>
             </div>
             <div class="form-playlist-delete-overflow hidden" id="formDeletePlaylist">
-                <div class="form-playlist-delete">
+                <form class="form-playlist-delete" id="formDeletePlaylistContent">
                     <div class="title">Tem certeza que deseja excluir esta Playlist?</div>
                     <div class="playlist-delete-name" id="playlistDeleteName">Minha Playlist</div>
                     <input class="field" type="text" placeholder="Digite o nome da playlist para confirmar..." id="playlistDeleteNameInputToConfirm">
                     <div class="playlist-delete-warning">Esta ação é irreversível</div>
                     <div class="playlist-delete-warning">Esta ação apagará todas as músicas nessa playlist</div>
                     <div class="interactions-delete">
-                        <div class="cancel" id="formPlaylistCancel">Cancelar</div>
-                        <div class="delete" id="formPlaylistDeleteBtn">Excluir</div>
+                        <button class="cancel" id="formPlaylistCancel" type="reset">Cancelar</button>
+                        <button class="delete" type="submit">Excluir</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

@@ -1045,6 +1045,7 @@ body::-webkit-scrollbar-thumb {
     width: 250px;
     height: 60px;
     border-radius: 10px;
+    padding-top: 2px;
     border: 2px solid var(--color-white-1);
     background: var(--color-blue-3);
     color: var(--color-white-1);
@@ -1057,6 +1058,7 @@ body::-webkit-scrollbar-thumb {
     width: 250px;
     height: 60px;
     border-radius: 10px;
+    padding-top: 2px;
     border: 2px solid var(--color-white-1);
     background: var(--color-red-2);
     color: var(--color-white-1);

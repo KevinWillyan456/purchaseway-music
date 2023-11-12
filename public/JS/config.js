@@ -40,7 +40,7 @@ const formSongCancel = document.querySelector('#formSongCancel')
 const formPlaylistCancel = document.querySelector('#formPlaylistCancel')
 
 const formSongDeleteBtn = document.querySelector('#formSongDeleteBtn')
-const formPlaylistDeleteBtn = document.querySelector('#formPlaylistDeleteBtn')
+const formDeletePlaylistContent = document.querySelector('#formDeletePlaylistContent')
 
 const totalPlaylists = document.querySelector('#totalPlaylists')
 const totalMusics = document.querySelector('#totalMusics')
@@ -769,7 +769,9 @@ formSongDeleteBtn.addEventListener('click', async () => {
     }
 })
 
-formPlaylistDeleteBtn.addEventListener('click', async () => {
+formDeletePlaylistContent.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    
     if (
         playlistDeleteNameInputToConfirm.value !=
         document.querySelector('#playlistDeleteName').textContent
