@@ -1339,7 +1339,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
 
     currentMusicAddPlaylistContainer.innerHTML = "";
 
-    userData.myPlaylists.forEach((element) => {
+    userData.myPlaylists.reverse().forEach((element) => {
         const song = element.songs.find(song => song.musicId === indexAudioId);
 
         const divItem = document.createElement('div');
