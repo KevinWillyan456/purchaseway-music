@@ -53,7 +53,7 @@ const containerFrameVideo = document.querySelector(".container-frame");
 
 const logout = document.querySelector(".logout");
 
-const musicFavoriteIcon = document.querySelector(".current-music-add-favorite-icon ion-icon")
+const musicFavoriteIcon = document.querySelector(".current-music-add-favorite-container")
 const musicAddIcon = document.querySelector(".current-music-add ion-icon")
 
 const clearHistoricIcon = document.querySelector(".trash-icon")
@@ -2165,12 +2165,12 @@ async function refreshFavorite() {
 
     if (screenWidth >= 1360) {
         if(songFavorite){
-            musicFavoriteIcon.name = "heart"
+            document.querySelector(".current-music-add-favorite-icon ion-icon").name = "heart"
             isFound = true;
         }
         
         if (!isFound) {
-            musicFavoriteIcon.name = "heart-outline"
+            document.querySelector(".current-music-add-favorite-icon ion-icon").name = "heart-outline"
         }
 
         containerItemsFavorite.innerHTML = ""

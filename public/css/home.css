@@ -1820,12 +1820,12 @@ iframe {
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 .current-music-add-favorite-container .current-music-add-favorite-icon {
     width: 40px;
     height: 40px;
     color: var(--color-blue-2);
-    cursor: pointer;
 }
 .current-music-add-favorite-container .current-music-add-favorite-icon ion-icon {
     width: 40px;
