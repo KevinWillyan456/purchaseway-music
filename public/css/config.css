@@ -844,6 +844,7 @@ body::-webkit-scrollbar-thumb {
     display: grid;
     place-items: center;
     cursor: pointer;
+    padding-top: 2px;
 }
 .form-song-delete-overflow .form-song-delete .interactions-delete .delete {
     width: 250px;
@@ -856,6 +857,7 @@ body::-webkit-scrollbar-thumb {
     display: grid;
     place-items: center;
     cursor: pointer;
+    padding-top: 2px;
 }
 .form-playlist-overflow {
     position: fixed;

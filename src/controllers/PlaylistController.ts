@@ -49,14 +49,18 @@ async function indexPlaylist(req: Request, res: Response) {
 async function storePlaylist(req: Request, res: Response) {
     const { title, coverUrl, description, gender } = req.body
 
-    if (!title || !coverUrl || !description || !gender) {
+    if (!title || !description || !gender) {
         return res.status(400).json({ error: 'data is missing' })
     }
+
+    const currentCoverUrl = coverUrl
+        ? coverUrl
+        : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
 
     const playlist = new Playlist({
         _id: uuid(),
         title,
-        coverUrl,
+        coverUrl: currentCoverUrl,
         description,
         gender,
         additionDate: new Date(),
@@ -78,7 +82,11 @@ async function updatePlaylist(
     const { title, coverUrl, description, gender } = req.body
     const { id } = req.params
 
-    if (!title && !coverUrl && !description && !gender) {
+    const currentCoverUrl = coverUrl
+        ? coverUrl
+        : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
+
+    if (!title && !currentCoverUrl && !description && !gender) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
@@ -86,7 +94,7 @@ async function updatePlaylist(
     const updateDoc = {
         $set: {
             title,
-            coverUrl,
+            coverUrl: currentCoverUrl,
             description,
             gender,
         },

@@ -18,14 +18,18 @@ async function indexMusic(req: Request, res: Response) {
 async function storeMusic(req: Request, res: Response) {
     const { audioUrl, coverUrl, title, gender, isVideo, theme } = req.body
 
-    if (!audioUrl || !coverUrl || !title || !gender || !theme) {
+    if (!audioUrl || !title || !gender || !theme) {
         return res.status(400).json({ error: 'data is missing' })
     }
+
+    const currentCoverUrl = coverUrl
+        ? coverUrl
+        : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
 
     const music = new Music({
         _id: uuid(),
         audioUrl,
-        coverUrl,
+        coverUrl: currentCoverUrl,
         title,
         gender,
         theme,
@@ -58,7 +62,18 @@ async function updateMusic(
     const { audioUrl, coverUrl, title, gender, isVideo, theme } = req.body
     const { id } = req.params
 
-    if (!audioUrl && !coverUrl && !title && !gender && !isVideo && !theme) {
+    const currentCoverUrl = coverUrl
+        ? coverUrl
+        : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
+
+    if (
+        !audioUrl &&
+        !currentCoverUrl &&
+        !title &&
+        !gender &&
+        !isVideo &&
+        !theme
+    ) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
@@ -66,7 +81,7 @@ async function updateMusic(
     const updateDoc = {
         $set: {
             audioUrl,
-            coverUrl,
+            coverUrl: currentCoverUrl,
             title,
             gender,
             isVideo,

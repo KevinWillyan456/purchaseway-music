@@ -3,6 +3,7 @@ let changedData = {
     playlistName: null,
     songId: null,
     playlistId: null,
+    previousThumbnail: null,
 }
 let userData
 
@@ -40,7 +41,9 @@ const formSongCancel = document.querySelector('#formSongCancel')
 const formPlaylistCancel = document.querySelector('#formPlaylistCancel')
 
 const formSongDeleteBtn = document.querySelector('#formSongDeleteBtn')
-const formDeletePlaylistContent = document.querySelector('#formDeletePlaylistContent')
+const formDeletePlaylistContent = document.querySelector(
+    '#formDeletePlaylistContent'
+)
 
 const totalPlaylists = document.querySelector('#totalPlaylists')
 const totalMusics = document.querySelector('#totalMusics')
@@ -111,6 +114,7 @@ function listPlaylists() {
             listMusic(musicsByPlaylist, playlist)
             changedData.playlistName = playlist.gender
             changedData.playlistId = playlist._id
+            changedData.previousThumbnail = playlist.coverUrl
 
             formPlaylistEditInputNome.value = playlist.title
             formPlaylistEditInputGender.value = playlist.gender
@@ -300,6 +304,7 @@ function listFocusMusic(music) {
     ).textContent = `Gênero: ${music.gender}`
 
     changedData.songId = music._id
+    changedData.previousThumbnail = music.coverUrl
 
     function gerarLinkDoVideo(id) {
         if (id.endsWith('.mp3')) {
@@ -355,8 +360,8 @@ formPlaylist.addEventListener('submit', async function (event) {
         return
     }
     const NomeExiste = data[0].some(
-        (musica) =>
-            musica.title.toLowerCase() ===
+        (playlist) =>
+            playlist.title.toLowerCase() ===
             formAddPlaylistInputNome.value.trim().toLowerCase()
     )
     if (NomeExiste) {
@@ -380,24 +385,14 @@ formPlaylist.addEventListener('submit', async function (event) {
     }
 
     const generoExiste = data[0].some(
-        (musica) =>
-            musica.gender.toLowerCase() ===
+        (playlist) =>
+            playlist.gender.toLowerCase() ===
             formAddPlaylistInputGenero.value.trim().toLowerCase()
     )
     if (generoExiste) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'O gênero já existe, escolha outro.'
-        setTimeout(() => {
-            warning.classList.add('hidden')
-        }, 3000)
-        return
-    }
-
-    if (formAddPlaylistInputThumbnail.value.trim() === '') {
-        warning.classList.remove('hidden')
-        warning.classList.remove('success')
-        warning.textContent = 'Por favor, preencha o campo Thumbnail.'
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -455,6 +450,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         formAddPlaylistInputGenero.value = ''
         formAddPlaylistPreviewThumbnail.src = ''
         formAddPlaylist.classList.add('hidden')
+        document.body.style.overflow = 'auto'
 
         await dataFetch()
         defineTotalNumbers()
@@ -517,16 +513,6 @@ formSong.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo URL.'
-        setTimeout(() => {
-            warning.classList.add('hidden')
-        }, 3000)
-        return
-    }
-
-    if (formSongAddSongInputThumbnail.value.trim() === '') {
-        warning.classList.remove('hidden')
-        warning.classList.remove('success')
-        warning.textContent = 'Por favor, preencha o campo Thumbnail.'
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -605,6 +591,66 @@ formSong.addEventListener('submit', async function (event) {
 
 formEditSongIn.addEventListener('submit', async function (event) {
     event.preventDefault()
+
+    if (
+        changedData.previousThumbnail !==
+        formSongEditInputThumbnail.value.trim()
+    ) {
+        const dataResponse = {
+            coverUrl: formSongEditInputThumbnail.value.trim(),
+        }
+
+        const response = await fetch(
+            `/songs/${changedData.songId}?userId=${userData._id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataResponse),
+            }
+        )
+
+        const result = await response.json()
+
+        if (result.message != 'Music updated successfully!') {
+            warning.classList.remove('hidden')
+            warning.classList.remove('success')
+            warning.textContent = 'Internal Error'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+            return
+        }
+
+        if (result.message == 'Music updated successfully!') {
+            warning.classList.remove('hidden')
+            warning.classList.add('success')
+            warning.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <p>Música atualizada com sucesso!</p>
+                    <p>Obs: Apenas a thumbnail foi atualizada.</p>
+                    <p>Para atualizar o nome e a URL, faça isso novamente sem alterar a thumbnail.</p>
+                </div>
+            `
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 12000)
+
+            formSongEditInputNome.value = ''
+            formSongEditInputURL.value = ''
+            formSongEditInputThumbnail.value = ''
+            formSongEditPreviewThumbnail.src = ''
+            formEditSong.classList.add('hidden')
+            focusSong.classList.add('hidden')
+            containerPlaylistToManage.classList.add('hidden')
+            document.body.style.overflow = 'auto'
+            await dataFetch()
+            defineTotalNumbers()
+            listPlaylists()
+        }
+        return
+    }
 
     if (formSongEditInputNome.value.trim() === '') {
         warning.classList.remove('hidden')
@@ -771,7 +817,7 @@ formSongDeleteBtn.addEventListener('click', async () => {
 
 formDeletePlaylistContent.addEventListener('submit', async (e) => {
     e.preventDefault()
-    
+
     if (
         playlistDeleteNameInputToConfirm.value !=
         document.querySelector('#playlistDeleteName').textContent
@@ -844,17 +890,6 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Gênero.'
-        setTimeout(() => {
-            warning.classList.add('hidden')
-        }, 3000)
-
-        return
-    }
-
-    if (formPlaylistEditInputThumbnail.value.trim() === '') {
-        warning.classList.remove('hidden')
-        warning.classList.remove('success')
-        warning.textContent = 'Por favor, preencha o campo Thumbnail.'
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
