@@ -34,6 +34,15 @@ async function storeMusic(req: Request, res: Response) {
     })
 
     try {
+        const songs = await Music.find({ title })
+        const songAlreadyExists = songs.find(
+            (song) => song.title === title && song.gender === gender
+        )
+
+        if (songAlreadyExists) {
+            return res.status(400).json({ error: 'Music already exists' })
+        }
+
         await music.save()
 
         return res.status(201).json({ message: 'Music added successfully!' })
@@ -66,6 +75,14 @@ async function updateMusic(
     }
 
     try {
+        const songs = await Music.find({ title })
+        const songAlreadyExists = songs.find(
+            (song) => song.title === title && song.gender === gender
+        )
+
+        if (songAlreadyExists) {
+            return res.status(400).json({ error: 'Music cannot be updated' })
+        }
         await Music.updateOne(filter, updateDoc)
 
         return res.status(200).json({ message: 'Music updated successfully!' })

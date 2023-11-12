@@ -15,7 +15,7 @@ const musicSchema = new Schema<IMusic>({
     _id: { type: String, required: true },
     audioUrl: { type: String, required: true },
     coverUrl: { type: String, required: true },
-    title: { type: String, required: true, unique: true },
+    title: { type: String, required: true },
     gender: { type: String, required: true },
     theme: { type: String, required: true },
     isVideo: { type: Boolean, default: false },

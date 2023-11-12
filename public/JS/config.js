@@ -496,10 +496,12 @@ formSong.addEventListener('submit', async function (event) {
         }, 3000)
         return
     }
+
     const NomeExiste = data[1].some(
         (musica) =>
             musica.title.toLowerCase() ===
-            formSongAddSongInputNome.value.trim().toLowerCase()
+                formSongAddSongInputNome.value.trim().toLowerCase() &&
+            musica.gender === changedData.playlistName
     )
     if (NomeExiste) {
         warning.classList.remove('hidden')
@@ -615,6 +617,22 @@ formEditSongIn.addEventListener('submit', async function (event) {
         return
     }
 
+    const NomeExiste = data[1].some(
+        (musica) =>
+            musica.title.toLowerCase() ===
+                formSongEditInputNome.value.trim().toLowerCase() &&
+            musica.gender === changedData.playlistName
+    )
+    if (NomeExiste) {
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'O Nome já existe, escolha outro.'
+        setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
+    }
+
     if (formSongEditInputURL.value.trim() === '') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
@@ -661,6 +679,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
         title: formSongEditInputNome.value.trim(),
         audioUrl: extrairIdDoVideo(formSongEditInputURL.value.trim()),
         coverUrl: formSongEditInputThumbnail.value.trim(),
+        gender: changedData.playlistName,
         isVideo,
     }
 
