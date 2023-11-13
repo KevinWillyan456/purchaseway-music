@@ -396,6 +396,7 @@ function inicia(){
     generatorContainerPlaylistSelectData();
     generatorContainerPlaylistSelectDataPlay();
     manageEmptyPlaylist();
+    setManagementSystem()
     if (emptyPlaylist) return
     musicStateControllers();
     durationSliderEventGenerator();
@@ -419,7 +420,6 @@ function inicia(){
     manageHistoric();
     audioControllerPlayAudioAndVideo();
     initialDeviceDefinition();
-    setManagementSystem()
     setUserProfilePicture()
     generatorContainerCurrentMusicAddPlaylist()
     generatorContainerMusicAddPlaylist()
@@ -2943,6 +2943,7 @@ function selectUserMyPlaylist() {
     manageHistoric();
     audioControllerPlayAudioAndVideo();
     refreshUserWithNewPlaylist()
+    setManagementSystem()
 }
 
 async function selectNewPlaylist(playlistSelect, playlistName) {
@@ -3037,6 +3038,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     manageHistoric();
     audioControllerPlayAudioAndVideo();
     refreshUserWithNewPlaylist()
+    setManagementSystem()
 }
 
 async function musicListingService() {
