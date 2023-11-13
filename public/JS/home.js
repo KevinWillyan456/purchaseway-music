@@ -222,6 +222,7 @@ selectFavoritesMobile.addEventListener('click' , () => {
     selectNewPlaylist("Favorite", "Músicas Favoritas")
 })
 selectMyPlaylist.addEventListener("click", () => {
+    canKeyboardEventsProfile = false;
     toggleMenu()
     toggleMyPlaylists()
 });
@@ -233,7 +234,10 @@ backPlaylist.addEventListener("click", toggleMorePlaylists);
 backDisplayMobile.addEventListener("click", toggleDisplayMobile)
 morePlaylistMobile.addEventListener("click", toggleMenu);
 backPlaylistMobile.addEventListener("click", toggleMorePlaylists);
-backMyPlaylist.addEventListener("click", toggleMyPlaylists);
+backMyPlaylist.addEventListener("click", () => {
+    canKeyboardEventsProfile = true;
+    toggleMyPlaylists()
+});
 backContainerMinhaPlaylist.addEventListener("click", toggleContainerMinhaPlaylist);
 controlsMobile.addEventListener("click", () => {
     toggleDisplayMobile()
@@ -241,6 +245,8 @@ controlsMobile.addEventListener("click", () => {
 })
 btnDeleteAccount.addEventListener("click", () => {
     formDeleteAccount.classList.remove("hidden")
+    canKeyboardEvents = false;
+    canKeyboardEventsProfile = false;
 })
 btnDeleteAccountMobile.addEventListener("click", () => {
     formDeleteAccountMobile.classList.remove("hidden")
@@ -248,6 +254,7 @@ btnDeleteAccountMobile.addEventListener("click", () => {
 formDeleteAccountCancel.addEventListener("click", () => {
     formDeleteAccount.classList.add("hidden")
     deleteAccountInputToConfirm.value = ""
+    canKeyboardEventsProfile = true;
 })
 formDeleteAccountCancelMobile.addEventListener("click", () => {
     formDeleteAccountMobile.classList.add("hidden")
@@ -257,6 +264,7 @@ formDeleteAccount.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'form-delete-account-overflow') {
         formDeleteAccount.classList.add("hidden")
         deleteAccountInputToConfirm.value = ""
+        canKeyboardEventsProfile = true;
     }
 })
 formDeleteAccountMobile.addEventListener('click', (e) => {
@@ -279,11 +287,14 @@ btnDeleteAccountConfirmedMobile.addEventListener("click", manageUserAccountDelet
 
 profilePictureEdit.addEventListener("click", () => {
   layerProfilePicture.classList.remove("hidden")
+  canKeyboardEvents = false;
+  canKeyboardEventsProfile = false;
 })
 layerProfilePicture.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'layer-profile-picture') {
         layerProfilePicture.classList.add("hidden")
         profilePictureInput.value = userData.profilePicture
+        canKeyboardEventsProfile = true;
     }
 })
 profilePictureEditMobile.addEventListener("click", () => {
@@ -301,6 +312,7 @@ document.querySelector('.container-profile-picture').addEventListener("submit", 
 })
 temporaryItemMinhasPlaylists.addEventListener("click", toggleContainerMinhaPlaylist)
 btnSelectMyPlaylist.addEventListener("click", () => {
+    canKeyboardEventsProfile = true;
     toggleContainerMinhaPlaylist()
     toggleMyPlaylists()
     selectUserMyPlaylist()
@@ -311,22 +323,24 @@ btnDeleteSelectMyPlaylist.addEventListener("click", toggleDeleteMinhaPlaylist)
 document.querySelector('.add-my-new-playlist-overflow').addEventListener('click', (event) => {
     if (event.target.classList.contains('add-my-new-playlist-overflow')) {
         event.target.classList.add('hidden');
+        canKeyboardEvents = true;
     }
 });
 document.querySelector('.edit-my-new-playlist-overflow').addEventListener('click', (event) => {
     if (event.target.classList.contains('edit-my-new-playlist-overflow')) {
         event.target.classList.add('hidden');
+        canKeyboardEvents = true;
     }
 });
 document.querySelector('.delete-my-new-playlist-overflow').addEventListener('click', (event) => {
     if (event.target.classList.contains('delete-my-new-playlist-overflow')) {
         event.target.classList.add('hidden');
+        canKeyboardEvents = true;
     }
 });
 document.querySelector('.delete-my-new-playlist-btn-cancel').addEventListener('click', (event) => {
-    if (event.target.classList.contains('delete-my-new-playlist-btn-cancel')) {
-        event.target.parentElement.parentElement.parentElement.classList.add('hidden');
-    }
+    canKeyboardEvents = true;
+    event.target.parentElement.parentElement.parentElement.classList.add('hidden');
 });
 temporaryItemMinhasMusicas.addEventListener("click", toggleMusicMinhaPlaylist)
 document.querySelector('.music-my-new-playlist-overflow').addEventListener('click', (event) => {
@@ -351,6 +365,7 @@ musicAddIcon.addEventListener("click", toggleAddOptions)
 document.querySelector('.current-music-add-overflow').addEventListener('click', (event) => {
     if (event.target.classList.contains('current-music-add-overflow')) {
         event.target.classList.add('hidden');
+        canKeyboardEventsProfile = true;
     }
 });
 document.querySelector('.current-music-add-create-new-playlist').addEventListener('click', toggleAddMinhaPlaylist)
@@ -2226,8 +2241,10 @@ function toggleAddMinhaPlaylist() {
         const addMyNewPlaylistOverflow = document.querySelector(".add-my-new-playlist-overflow");
         if (addMyNewPlaylistOverflow.classList.contains("hidden")) {
             addMyNewPlaylistOverflow.classList.remove("hidden");
+            canKeyboardEvents = false;
         } else {
             addMyNewPlaylistOverflow.classList.add("hidden");
+            canKeyboardEvents = true;
         }
     } else {
         const addMyNewPlaylistOverflow = document.querySelector(".add-my-new-playlist-overflow-mobile");
@@ -2243,8 +2260,10 @@ function toggleEditMinhaPlaylist() {
         const editOverflow = document.querySelector(".edit-my-new-playlist-overflow");
         if (editOverflow.classList.contains("hidden")) {
             editOverflow.classList.remove("hidden");
+            canKeyboardEvents = false;
         } else {
             editOverflow.classList.add("hidden");
+            canKeyboardEvents = true;
         }
     } else {
         const editOverflow = document.querySelector(".edit-my-new-playlist-overflow-mobile");
@@ -2260,8 +2279,10 @@ function toggleDeleteMinhaPlaylist() {
         const deleteOverflow = document.querySelector(".delete-my-new-playlist-overflow");
         if (deleteOverflow.classList.contains("hidden")) {
             deleteOverflow.classList.remove("hidden");
+            canKeyboardEvents = false;
         } else {
             deleteOverflow.classList.add("hidden");
+            canKeyboardEvents = true;
         }
     } else {
         const deleteOverflow = document.querySelector(".delete-my-new-playlist-overflow-mobile");
@@ -2322,8 +2343,10 @@ function toggleAddOptions() {
     const addOptionsOverflow = document.querySelector(".current-music-add-overflow");
     if (addOptionsOverflow.classList.contains("hidden")) {
         addOptionsOverflow.classList.remove("hidden");
+        canKeyboardEventsProfile = false;
     } else {
         addOptionsOverflow.classList.add("hidden");
+        canKeyboardEventsProfile = true;
     }
 }
 
@@ -2481,6 +2504,8 @@ async function manageUserAccountDeletion() {
         if (response.message === "User removed successfully!") {
             logoutService();
         }
+        
+        canKeyboardEventsProfile = true;
     }
 }
 
@@ -2622,6 +2647,7 @@ async function manageUserProfilePicture() {
     if (screenWidth >= 1360) {
         if (userData.profilePicture === "" && profilePictureInput.value.trim() === ""){
             layerProfilePicture.classList.add("hidden")
+            canKeyboardEventsProfile = true;
             return
         } 
         
@@ -2655,6 +2681,7 @@ async function manageUserProfilePicture() {
         await refreshFavorite()
         await refreshUser()
         profilePictureInput.value = userData.profilePicture
+        canKeyboardEventsProfile = true;
         setUserProfilePicture()
     } else {
         if (userData.profilePicture === "" && profilePictureInputMobile.value.trim() === ""){
@@ -2780,6 +2807,7 @@ async function manageUserCreatePlaylist() {
         });
 
         if (response.status === 201) {
+            canKeyboardEvents = true;
             if(screenWidth >= 1360){
                 warning.classList.remove('hidden')
                 warning.classList.add('success')

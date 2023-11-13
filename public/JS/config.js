@@ -114,7 +114,6 @@ function listPlaylists() {
             listMusic(musicsByPlaylist, playlist)
             changedData.playlistName = playlist.gender
             changedData.playlistId = playlist._id
-            changedData.previousThumbnail = playlist.coverUrl
 
             formPlaylistEditInputNome.value = playlist.title
             formPlaylistEditInputGender.value = playlist.gender
