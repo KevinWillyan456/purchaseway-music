@@ -2510,7 +2510,8 @@ async function manageUserAccountDeletion() {
 }
 
 function manageMyPlaylistEdition() {
-    if (document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value === "") {
+    const playlistTitle = document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim();
+    if (playlistTitle === "") {
         if(screenWidth >= 1360){
             warning.classList.remove('hidden')
             warning.textContent = 'Por favor, escreva o nome da playlist corretamente.'
@@ -2520,6 +2521,25 @@ function manageMyPlaylistEdition() {
         } else {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        }
+        return
+    }
+
+    const playlistExists = userData.myPlaylists.filter(playlist => playlist.title === playlistTitle);
+
+    if (playlistExists.length >= 1) {
+        if(screenWidth >= 1360){
+            warning.classList.remove('hidden')
+            warning.textContent = 'Já existe uma playlist com esse nome.'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Já existe uma playlist com esse nome.'
             setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
