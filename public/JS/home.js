@@ -9,6 +9,7 @@ let screenWidth = 0;
 let screenHeight = 0;
 
 let initialDevice = "";
+let emptyPlaylist = false;
 
 const audioControllerPrev = document.querySelector('#audio-prev');
 const audioControllerPlay = document.querySelector('#audio-play');
@@ -146,13 +147,10 @@ const backMyPlaylist = document.querySelector('.minhas-playlists-back');
 const backContainerMinhaPlaylist = document.querySelector('.container-minha-playlist-back');
 const selectMyPlaylist = document.querySelector('#selectMyPlaylist');
 
-const temporaryItemMinhasPlaylists = document.querySelector('#temporaryItemMinhasPlaylists');
 const containerMinhaPlaylist = document.querySelector('#containerMinhaPlaylist');
 const btnSelectMyPlaylist = document.querySelector('#btnSelectMyPlaylist');
 const btnEditSelectMyPlaylist = document.querySelector('#btnEditSelectMyPlaylist');
 const btnDeleteSelectMyPlaylist = document.querySelector('#btnDeleteSelectMyPlaylist');
-
-const temporaryItemMinhasMusicas = document.querySelector('#temporaryItemMinhasMusicas');
 
 let allMusicData = []
 let musicData = [];
@@ -310,7 +308,6 @@ document.querySelector('.container-profile-picture').addEventListener("submit", 
     e.preventDefault()
     manageUserProfilePicture()
 })
-temporaryItemMinhasPlaylists.addEventListener("click", toggleContainerMinhaPlaylist)
 btnSelectMyPlaylist.addEventListener("click", () => {
     canKeyboardEventsProfile = true;
     toggleContainerMinhaPlaylist()
@@ -342,7 +339,6 @@ document.querySelector('.delete-my-new-playlist-btn-cancel').addEventListener('c
     canKeyboardEvents = true;
     event.target.parentElement.parentElement.parentElement.classList.add('hidden');
 });
-temporaryItemMinhasMusicas.addEventListener("click", toggleMusicMinhaPlaylist)
 document.querySelector('.music-my-new-playlist-overflow').addEventListener('click', (event) => {
     if (event.target.classList.contains('music-my-new-playlist-overflow')) {
         event.target.classList.add('hidden');
@@ -399,6 +395,8 @@ function inicia(){
     generatorContainerPlaylistDataPlay();
     generatorContainerPlaylistSelectData();
     generatorContainerPlaylistSelectDataPlay();
+    manageEmptyPlaylist();
+    if (emptyPlaylist) return
     musicStateControllers();
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
@@ -486,7 +484,9 @@ function audioControllerPlayFunctionNoPause(){
 }
 
 function allSongValueSetters(){
+    emptyPlaylist = false;
     if(musicData.length <= 0){
+        emptyPlaylist = true;
         if(screenWidth >= 1360){
             warning.classList.remove('hidden')
             warning.textContent = 'A PlayList atual não tem conteúdo'
@@ -2629,6 +2629,18 @@ function manageMyPlaylistDeletion() {
     })
 }
 
+function manageEmptyPlaylist() {
+    if (!emptyPlaylist) return
+
+    containerPlaylist.innerHTML = `
+        <div class="empty-playlist">
+            <h1>Ops, isso não deveria acontecer</h1>
+            <p>Por algum motivo, não foi possível carregar esta playlist</p>
+            <p>Por favor, selecione outra playlist clicando no botão "Mais" e depois em "Selecionar Playlist"</p>
+        </div>
+    `
+}
+
 function manageMyPlaylistMusicDeletion() {
     fetch(`/users-playlist-song/${userData._id}/${indexMyPlaylistId}/${indexMyPlaylistAudioId}`, {
         method: 'DELETE',
@@ -2914,6 +2926,8 @@ function selectUserMyPlaylist() {
     allSongValueSetters()
     generatorContainerPlaylistData();
     generatorContainerPlaylistDataPlay();
+    manageEmptyPlaylist();
+    if (emptyPlaylist) return
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
@@ -3006,6 +3020,8 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     allSongValueSetters()
     generatorContainerPlaylistData();
     generatorContainerPlaylistDataPlay();
+    manageEmptyPlaylist()
+    if (emptyPlaylist) return
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
