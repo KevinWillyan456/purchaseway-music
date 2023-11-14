@@ -2530,6 +2530,12 @@ function manageMyPlaylistEdition() {
 
     const playlistExists = userData.myPlaylists.filter(playlist => playlist.title === playlistTitle);
 
+    if (userData.myPlaylists.find(playlist => playlist.title === playlistTitle && playlist._id === indexMyPlaylistId)) {
+        toggleContainerMinhaPlaylist()
+        toggleEditMinhaPlaylist()
+        return
+    }
+
     if (playlistExists.length >= 1) {
         if(screenWidth >= 1360){
             warning.classList.remove('hidden')
