@@ -1358,6 +1358,15 @@ function generatorContainerMusicAddPlaylist() {
 
         container.appendChild(divItemMinhasPlaylists);
     })
+    if (container.innerHTML === "") {
+        container.innerHTML = `
+            <div class="no-playlist">
+                <div class="no-playlist-text">
+                    Você não possui nenhuma playlist
+                </div>
+            </div>
+        `
+    }
 }
 function generatorContainerCurrentMusicAddPlaylist() {
     const currentMusicAddPlaylistContainer = document.querySelector('.current-music-add-playlist-container');

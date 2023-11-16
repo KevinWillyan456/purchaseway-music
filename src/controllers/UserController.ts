@@ -781,15 +781,15 @@ async function deleteUserPlaylistSongs(
     }
 
     try {
-        const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
-        if (!user) {
-            return res.status(404).json({ error: 'User playlist not found' })
-        }
         const result = await User.updateOne(filter, updateDoc, options)
         if (result.modifiedCount < 1) {
             return res
                 .status(404)
                 .json({ error: 'User playlist song not found' })
+        }
+        const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
+        if (!user) {
+            return res.status(404).json({ error: 'User playlist not found' })
         }
         user.myPlaylists.forEach(async (playlist) => {
             await updatePlaylistTotalSongs(user._id, playlist._id)

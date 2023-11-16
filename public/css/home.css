@@ -1990,6 +1990,17 @@ iframe {
 .main-minhas-playlists .container-minhas-playlists::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
+.container-minhas-playlists .no-playlist {
+    background-color: var(--color-blue-4);
+    color: var(--color-white-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.container-minhas-playlists .no-playlist .no-playlist-text {
+    font-size: 20px;
+}
 .container-minhas-playlists .item-minhas-playlists {
     width: 100%;
     min-height: 80px;
