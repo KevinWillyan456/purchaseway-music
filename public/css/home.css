@@ -1431,9 +1431,9 @@ iframe {
     justify-items: center;
     align-content: flex-start;
 
-    height: 80vh;
+    height: 70vh;
     overflow-y: auto;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
 }
 .main-select-playlists .container-select-playlists::-webkit-scrollbar {
     width: 10px;
