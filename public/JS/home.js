@@ -197,7 +197,7 @@ document.addEventListener("keyup", function(event){
     }
 })
 
-logout.addEventListener("click", logoutService);
+logout.addEventListener("click", toggleLogout);
 logoutMobile.addEventListener("click", logoutService);
 clearHistoricIcon.addEventListener("click", manageHistoricClear);
 clearHistoricIconMobile.addEventListener("click", manageHistoricClear);
@@ -381,6 +381,16 @@ document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist
 document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container').addEventListener("submit", (e) => {
     e.preventDefault()
     manageMyPlaylistEdition()
+})
+document.querySelector('.confirm-logout-overflow').addEventListener('click', (event) => {
+    if (event.target.classList.contains('confirm-logout-overflow')) {
+        event.target.classList.add('hidden');
+        canKeyboardEventsProfile = true;
+    }
+});
+document.querySelector('.confirm-logout-container').addEventListener("submit", (e) => {
+    e.preventDefault()
+    logoutService()
 })
 
 document.querySelector('.service-logo').addEventListener("click", () => {
@@ -2346,6 +2356,17 @@ function toggleAddOptions() {
         canKeyboardEventsProfile = false;
     } else {
         addOptionsOverflow.classList.add("hidden");
+        canKeyboardEventsProfile = true;
+    }
+}
+
+function toggleLogout() {
+    const logoutOverflow = document.querySelector(".confirm-logout-overflow");
+    if (logoutOverflow.classList.contains("hidden")) {
+        logoutOverflow.classList.remove("hidden");
+        canKeyboardEventsProfile = false;
+    } else {
+        logoutOverflow.classList.add("hidden");
         canKeyboardEventsProfile = true;
     }
 }
