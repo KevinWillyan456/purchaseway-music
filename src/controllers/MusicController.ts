@@ -113,16 +113,69 @@ async function deleteMusic(
     const { id } = req.params
     const filter = { _id: id }
 
+    async function updatePlaylistTotalSongs(
+        userId: string,
+        playlistId: string
+    ) {
+        try {
+            const user = await User.findOne({
+                _id: userId,
+                myPlaylists: { $exists: true },
+            })
+
+            if (!user) return
+
+            const playlistIndex = user.myPlaylists.findIndex(
+                (playlist) => playlist._id == playlistId
+            )
+
+            if (playlistIndex == -1) return
+
+            const playlist = user.myPlaylists[playlistIndex]
+            const songs = playlist.songs || []
+
+            const totalSongs = songs.length
+
+            await User.updateOne(
+                {
+                    _id: userId,
+                    'myPlaylists._id': playlistId,
+                },
+                {
+                    $set: {
+                        'myPlaylists.$.totalSongs': totalSongs,
+                    },
+                }
+            )
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     try {
         await User.updateMany(
             {},
             {
-                $pullAll: {
-                    favoriteSongs: [{ musicId: id }],
-                    musicHistory: [{ musicId: id }],
+                $pull: {
+                    favoriteSongs: { musicId: id },
+                    musicHistory: { musicId: id },
                 },
             }
         )
+        await User.updateMany(
+            { myPlaylists: { $exists: true } },
+            {
+                $pull: {
+                    'myPlaylists.$[].songs': { musicId: id },
+                },
+            }
+        )
+        const users = await User.find({ myPlaylists: { $exists: true } })
+        users.forEach((user) => {
+            user.myPlaylists.forEach(async (playlist) => {
+                await updatePlaylistTotalSongs(user._id, playlist._id)
+            })
+        })
 
         await Music.deleteOne(filter)
         return res.status(200).json({ message: 'Music removed successfully!' })
