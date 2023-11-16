@@ -1601,6 +1601,10 @@ iframe {
     color: var(--color-white-1);
     font-size: 20px;
     margin-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 640px;
 }
 .delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name {
     transition: 200ms;
@@ -1970,7 +1974,40 @@ iframe {
     font-size: 64px;
     color: var(--color-white-1);
 }
-
+.main-minhas-playlists .minhas-playlists-search-bar {
+    position: relative;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+    display: flex;
+}
+.main-minhas-playlists .minhas-playlists-search-bar-input {
+    transition: 200ms;
+    outline: none;
+    padding-left: 16px;
+    padding-right: 40px;
+    width: 600px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid var(--color-black);
+    background: var(--color-white-1);
+    color: var(--color-black);
+    font-size: 14px;
+}
+.main-minhas-playlists .minhas-playlists-search-bar-input:focus {
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+.main-minhas-playlists .minhas-playlists-search-bar-input::placeholder {
+    color: var(--color-black);
+    font-size: 14px;
+}
+.main-minhas-playlists .minhas-playlists-search-bar-close {
+    position: absolute;
+    top: calc(50% - 8px);
+    right: 20px;
+    cursor: pointer;
+}
 .main-minhas-playlists .container-minhas-playlists {
     max-width: 1320px;
     width: 100%;
@@ -1991,6 +2028,7 @@ iframe {
     background-color: var(--color-blue-2);
 }
 .container-minhas-playlists .no-playlist {
+    animation: animate-scale-opacity-entrace 500ms;
     background-color: var(--color-blue-4);
     color: var(--color-white-1);
     display: flex;

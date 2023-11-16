@@ -392,6 +392,13 @@ document.querySelector('.confirm-logout-container').addEventListener("submit", (
     e.preventDefault()
     logoutService()
 })
+document.querySelector('.minhas-playlists-search-bar-close').addEventListener('click', () => {
+    document.querySelector('.minhas-playlists-search-bar-input').value = '';
+    generatorContainerMusicAddPlaylist()
+})
+document.querySelector('.minhas-playlists-search-bar-input').addEventListener('input', () => {
+    generatorContainerMusicAddPlaylist()
+})
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -1285,8 +1292,13 @@ function generatorContainerMusicAddPlaylist() {
     
         return `Criada em: ${dia} de ${mes} de ${ano}`;
     }
+
+    const myPlaylistsFiltered = userData.myPlaylists.filter(
+        (playlist) =>
+        playlist.title.toLowerCase().includes(document.querySelector('.minhas-playlists-search-bar-input').value.trim().toLowerCase())
+    )
     
-    userData.myPlaylists.forEach((element) => {
+    myPlaylistsFiltered.forEach((element) => {
         let divItemMinhasPlaylists = document.createElement("div");
         divItemMinhasPlaylists.classList.add("item-minhas-playlists");
         divItemMinhasPlaylists.addEventListener('click', () => {
@@ -1359,13 +1371,23 @@ function generatorContainerMusicAddPlaylist() {
         container.appendChild(divItemMinhasPlaylists);
     })
     if (container.innerHTML === "") {
-        container.innerHTML = `
+        if(document.querySelector('.minhas-playlists-search-bar-input').value.trim() !== ""){
+            container.innerHTML = `
             <div class="no-playlist">
                 <div class="no-playlist-text">
-                    Você não possui nenhuma playlist
+                Sua pesquisa não encontrou nenhuma playlist
                 </div>
             </div>
-        `
+            `
+        } else {
+            container.innerHTML = `
+            <div class="no-playlist">
+                <div class="no-playlist-text">
+                Você não possui nenhuma playlist
+                </div>
+            </div>
+            `
+        }
     }
 }
 function generatorContainerCurrentMusicAddPlaylist() {
