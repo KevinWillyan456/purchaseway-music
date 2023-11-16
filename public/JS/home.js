@@ -399,6 +399,17 @@ document.querySelector('.minhas-playlists-search-bar-close').addEventListener('c
 document.querySelector('.minhas-playlists-search-bar-input').addEventListener('input', () => {
     generatorContainerMusicAddPlaylist()
 })
+document.querySelector('.playlists-search-bar-close').addEventListener('click', () => {
+    document.querySelector('.playlists-search-bar-input').value = '';
+    generatorContainerPlaylistSelectData()
+    generatorContainerPlaylistSelectDataPlay()
+})
+document.querySelector('.playlists-search-bar-input').addEventListener('input', () => {
+    generatorContainerPlaylistSelectData()
+    generatorContainerPlaylistSelectDataPlay()
+})
+
+
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -791,8 +802,12 @@ function generatorContainerPlaylistDataPlay(){
 }
 
 function generatorContainerPlaylistSelectData(){
+    const playlistDataFiltered = playlistData.filter((playlist) => playlist.title.toLowerCase().includes(document.querySelector('.playlists-search-bar-input').value.trim().toLowerCase()))
+
+    containerPlaylistSelect.innerHTML = "";
+
     if (screenWidth >= 1360) {
-        playlistData.forEach((element) => {
+        playlistDataFiltered.forEach((element) => {
 
             containerPlaylistSelect.innerHTML += `
                 <div class="item-select-playlist">
@@ -813,8 +828,24 @@ function generatorContainerPlaylistSelectData(){
                 </div>
             `
         })
+
+        if (containerPlaylistSelect.innerHTML === "") {
+            if(document.querySelector('.playlists-search-bar-input').value.trim() !== ""){
+                containerPlaylistSelect.innerHTML = `
+                    <div class="no-playlist-found">
+                        Sua pesquisa não encontrou nenhuma playlist
+                    </div>
+                `
+            } else {
+                containerPlaylistSelect.innerHTML = `
+                    <div class="no-playlist-found">
+                        Nenhuma playlist encontrada
+                    </div>
+                `
+            }
+        }
     } else {
-        playlistData.forEach((element) => {
+        playlistDataFiltered.forEach((element) => {
 
             containerPlaylistSelectMobile.innerHTML += `
                 <div class="item-select-playlist-mobile">
@@ -1374,17 +1405,13 @@ function generatorContainerMusicAddPlaylist() {
         if(document.querySelector('.minhas-playlists-search-bar-input').value.trim() !== ""){
             container.innerHTML = `
             <div class="no-playlist">
-                <div class="no-playlist-text">
                 Sua pesquisa não encontrou nenhuma playlist
-                </div>
             </div>
             `
         } else {
             container.innerHTML = `
             <div class="no-playlist">
-                <div class="no-playlist-text">
                 Você não possui nenhuma playlist
-                </div>
             </div>
             `
         }

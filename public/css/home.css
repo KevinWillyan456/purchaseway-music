@@ -1444,6 +1444,53 @@ iframe {
 .main-select-playlists .container-select-playlists::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
+.main-select-playlists .playlists-search-bar {
+    position: relative;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+    display: flex;
+}
+.main-select-playlists .playlists-search-bar-input {
+    transition: 200ms;
+    outline: none;
+    padding-left: 16px;
+    padding-right: 40px;
+    width: 600px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid var(--color-black);
+    background: var(--color-white-1);
+    color: var(--color-black);
+    font-size: 14px;
+}
+.main-select-playlists .playlists-search-bar-input:focus {
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
+.main-select-playlists .playlists-search-bar-input::placeholder {
+    color: var(--color-black);
+    font-size: 14px;
+}
+.main-select-playlists .playlists-search-bar-close {
+    position: absolute;
+    top: calc(50% - 8px);
+    right: 20px;
+    cursor: pointer;
+}
+.container-select-playlists .no-playlist-found {
+    animation: animate-scale-opacity-entrace 500ms;
+    background-color: var(--color-blue-4);
+    color: var(--color-white-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 1320px;
+}
 .add-my-new-playlist-overflow {
     position: fixed;
     top: 0;
@@ -2035,9 +2082,9 @@ iframe {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-}
-.container-minhas-playlists .no-playlist .no-playlist-text {
     font-size: 20px;
+    max-width: 1320px;
+    width: 100%;
 }
 .container-minhas-playlists .item-minhas-playlists {
     width: 100%;
