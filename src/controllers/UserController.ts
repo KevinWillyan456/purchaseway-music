@@ -661,9 +661,6 @@ async function storeUserPlaylistSongs(
                 })),
             },
         },
-        $inc: {
-            'myPlaylists.$[playlist].totalSongs': musicIds.length,
-        },
         $set: {
             'myPlaylists.$[playlist].currentCoverUrl': music.coverUrl,
         },
@@ -672,8 +669,50 @@ async function storeUserPlaylistSongs(
         arrayFilters: [{ 'playlist._id': pid }],
     }
 
+    async function updatePlaylistTotalSongs(
+        userId: string,
+        playlistId: string
+    ) {
+        try {
+            const user = await User.findOne({
+                _id: userId,
+                myPlaylists: { $exists: true },
+            })
+
+            if (!user) return
+
+            const playlistIndex = user.myPlaylists.findIndex(
+                (playlist) => playlist._id == playlistId
+            )
+
+            if (playlistIndex == -1) return
+
+            const playlist = user.myPlaylists[playlistIndex]
+            const songs = playlist.songs || []
+
+            const totalSongs = songs.length
+
+            await User.updateOne(
+                {
+                    _id: userId,
+                    'myPlaylists._id': playlistId,
+                },
+                {
+                    $set: {
+                        'myPlaylists.$.totalSongs': totalSongs,
+                    },
+                }
+            )
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     try {
         await User.updateOne(filter, updateDoc, options)
+        user.myPlaylists.forEach(async (playlist) => {
+            await updatePlaylistTotalSongs(user._id, playlist._id)
+        })
         return res
             .status(201)
             .json({ message: 'User playlist songs added successfully!' })
@@ -698,34 +737,68 @@ async function deleteUserPlaylistSongs(
             'myPlaylists.$[playlist].songs': { _id: sid },
         },
     }
-    const updateDoc2 = {
-        $inc: {
-            'myPlaylists.$[playlist].totalSongs': -1,
-        },
-    }
     const options = {
         arrayFilters: [{ 'playlist._id': pid }],
     }
 
+    async function updatePlaylistTotalSongs(
+        userId: string,
+        playlistId: string
+    ) {
+        try {
+            const user = await User.findOne({
+                _id: userId,
+                myPlaylists: { $exists: true },
+            })
+
+            if (!user) return
+
+            const playlistIndex = user.myPlaylists.findIndex(
+                (playlist) => playlist._id == playlistId
+            )
+
+            if (playlistIndex == -1) return
+
+            const playlist = user.myPlaylists[playlistIndex]
+            const songs = playlist.songs || []
+
+            const totalSongs = songs.length
+
+            await User.updateOne(
+                {
+                    _id: userId,
+                    'myPlaylists._id': playlistId,
+                },
+                {
+                    $set: {
+                        'myPlaylists.$.totalSongs': totalSongs,
+                    },
+                }
+            )
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     try {
+        const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
+        if (!user) {
+            return res.status(404).json({ error: 'User playlist not found' })
+        }
         const result = await User.updateOne(filter, updateDoc, options)
         if (result.modifiedCount < 1) {
             return res
                 .status(404)
                 .json({ error: 'User playlist song not found' })
         }
-
-        await User.updateOne(filter, updateDoc2, options)
-
-        const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
+        user.myPlaylists.forEach(async (playlist) => {
+            await updatePlaylistTotalSongs(user._id, playlist._id)
+        })
 
         const userLastPlaylistSongCover = user?.myPlaylists.find(
             (playlist) => playlist._id === (pid as unknown as string)
         )?.songs
 
-        if (!user) {
-            return res.status(404).json({ error: 'User playlist not found' })
-        }
         if (
             !userLastPlaylistSongCover ||
             userLastPlaylistSongCover.length < 1

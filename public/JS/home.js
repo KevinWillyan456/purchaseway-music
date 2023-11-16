@@ -2562,6 +2562,11 @@ function manageMyPlaylistEdition() {
     })
     .then(response => {
         if (response.status === 200) {
+            if (screenWidth >= 1360) {
+                document.querySelector(".title-playlist").textContent = document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim();
+            } else {
+                document.querySelector(".title-playlist-mobile").textContent = document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim();
+            }
             toggleContainerMinhaPlaylist()
             toggleEditMinhaPlaylist()
             refreshUserWithNewPlaylist()
