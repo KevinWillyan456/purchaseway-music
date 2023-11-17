@@ -1422,7 +1422,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
 
     currentMusicAddPlaylistContainer.innerHTML = "";
 
-    userData.myPlaylists.reverse().forEach((element) => {
+    userData.myPlaylists.forEach((element) => {
         const song = element.songs.find(song => song.musicId === indexAudioId);
 
         const divItem = document.createElement('div');
@@ -2219,6 +2219,7 @@ async function refreshUserWithNewPlaylist() {
     const user = await responseUser.json();
 
     userData = user.user;
+    userData.myPlaylists.reverse()
 
     generatorContainerCurrentMusicAddPlaylist()
     generatorContainerMusicAddPlaylist()
@@ -2230,6 +2231,7 @@ async function refreshUser() {
     const user = await responseUser.json();
 
     userData = user.user;
+    userData.myPlaylists.reverse()
     
     if (screenWidth >= 1360) {
         containerItemsHistoric.innerHTML = ""
@@ -3138,6 +3140,7 @@ async function musicListingService() {
     const user = await responseUser.json();
 
     userData = user.user;
+    userData.myPlaylists.reverse()
 
     const responsePlaylists = await fetch(`/playlists/${idUserConnected}`);
     const playlists = await responsePlaylists.json();
