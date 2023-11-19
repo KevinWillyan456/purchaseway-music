@@ -3191,13 +3191,24 @@ function manageMyPlaylistDeletion() {
 function manageEmptyPlaylist() {
     if (!emptyPlaylist) return
 
-    containerPlaylist.innerHTML = `
+    if (screenWidth >= 1360) {
+        containerPlaylist.innerHTML = `
         <div class="empty-playlist">
             <h1>Ops, isso não deveria acontecer</h1>
             <p>Por algum motivo, não foi possível carregar esta playlist</p>
             <p>Por favor, selecione outra playlist clicando no botão "Mais" e depois em "Selecionar Playlist"</p>
         </div>
     `
+    } else {
+        containerPlaylistMobile.innerHTML = `
+        <div class="empty-playlist-mobile">
+            <h1>Ops, isso não deveria acontecer</h1>
+            <p>Por algum motivo, não foi possível carregar esta playlist</p>
+            <p>Por favor, selecione outra playlist clicando no botão "Mais" e depois em "Selecionar Playlist"</p>
+        </div>
+    `
+    }
+    
 }
 
 function manageMyPlaylistMusicDeletion() {
