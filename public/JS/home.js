@@ -142,7 +142,6 @@ const profilePictureInput = document.querySelector('#profilePictureInput');
 const profilePictureEditMobile = document.querySelector('#profilePictureEditMobile');
 const layerProfilePictureMobile = document.querySelector('#layerProfilePictureMobile');
 const profilePictureInputMobile = document.querySelector('#profilePictureInputMobile');
-const profilePictureSaveMobile = document.querySelector('#profilePictureSaveMobile');
 
 const backMyPlaylist = document.querySelector('.minhas-playlists-back');
 const backMyPlaylistMobile = document.querySelector('.minhas-playlists-back-mobile');
@@ -319,6 +318,10 @@ layerProfilePictureMobile.addEventListener('click', (e) => {
     }
 })
 document.querySelector('.container-profile-picture').addEventListener("submit", (e) => {
+    e.preventDefault()
+    manageUserProfilePicture()
+})
+document.querySelector('.container-profile-picture-mobile').addEventListener("submit", (e) => {
     e.preventDefault()
     manageUserProfilePicture()
 })
@@ -3281,7 +3284,7 @@ async function manageUserProfilePicture() {
         if (userData.profilePicture === "" && profilePictureInputMobile.value.trim() === ""){
             layerProfilePictureMobile.classList.add("hidden")
             return
-        } 
+        }
         
         const resposta = await fetch(`/users-profile-picture/${userData._id}`, {
             method: "PUT",
