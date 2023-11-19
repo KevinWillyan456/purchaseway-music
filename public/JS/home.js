@@ -130,7 +130,6 @@ const formDeleteAccount = document.querySelector('#formDeleteAccount');
 const formDeleteAccountMobile = document.querySelector('#formDeleteAccountMobile');
 const formDeleteAccountCancel = document.querySelector('#formDeleteAccountCancel');
 const formDeleteAccountCancelMobile = document.querySelector('#formDeleteAccountCancelMobile');
-const btnDeleteAccountConfirmedMobile = document.querySelector('#btnDeleteAccountConfirmedMobile');
 const deleteAccountInputToConfirm = document.querySelector('#deleteAccountInputToConfirm');
 const deleteAccountInputToConfirmMobile = document.querySelector('#deleteAccountInputToConfirmMobile');
 const warning = document.querySelector('#warning');
@@ -294,7 +293,10 @@ document.querySelector('.form-delete-account').addEventListener("submit", (e) =>
     e.preventDefault()
     manageUserAccountDeletion()
 })
-btnDeleteAccountConfirmedMobile.addEventListener("click", manageUserAccountDeletion)
+document.querySelector('.form-delete-account-mobile').addEventListener("submit", (e) => {
+    e.preventDefault()
+    manageUserAccountDeletion()
+})
 
 profilePictureEdit.addEventListener("click", () => {
   layerProfilePicture.classList.remove("hidden")
@@ -2929,8 +2931,6 @@ async function manageUserAccountDeletion() {
             return
         }
 
-        btnDeleteAccountConfirmedMobile.disabled = true
-
         const userToDelete = await fetch(`/users/${userData._id}`, {
             method: "DELETE"
         })
@@ -2939,8 +2939,6 @@ async function manageUserAccountDeletion() {
         if (response.message === "User removed successfully!") {
             logoutService();
         }
-        
-        canKeyboardEventsProfile = true;
     }
 }
 
