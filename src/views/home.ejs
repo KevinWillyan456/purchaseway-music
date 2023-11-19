@@ -301,7 +301,7 @@
                 <div class="music-my-new-playlist-cover">
                     <img src="">
                 </div>
-                <div class="music-my-new-playlist-title">Título</div>
+                <div class="music-my-new-playlist-title"></div>
             </div>
             <button class="music-my-new-playlist-delete-btn">
                 <ion-icon name="close"></ion-icon>
@@ -366,10 +366,10 @@
                         <img src="" id="containerPlaylistToManageCover">
                     </div>
                     <div class="content">
-                        <div class="title" id="containerPlaylistToManageTitle"></div>
+                        <div class="title"></div>
                         <div class="details">
-                            <div class="created" id="containerPlaylistToManageCreated"></div>
-                            <div class="total-song" id="containerPlaylistToManageTotalMusics"></div>
+                            <div class="created"></div>
+                            <div class="total-song"></div>
                         </div>
                     </div>
                 </div>
@@ -435,7 +435,7 @@
                 <div class="container-option-mobile">
                     <div class="option-mobile" id="selectPlaylistMobile">Selecionar Playlist</div>
                     <div class="option-mobile" id="selectFavoritesMobile">Favoritos</div>
-                    <div class="option-mobile">Minhas Playlists</div>
+                    <div class="option-mobile" id="selectMyPlaylistMobile">Minhas Playlists</div>
                     <div class="option-mobile hidden" id="selectManagementSystemMobile">Gerenciar Sistema</div>
                 </div>
             </div>
@@ -493,10 +493,9 @@
                 </div>
             </div>
 
-            <div class="current-music-favorite-mobile">
-                <ion-icon name="heart-outline"></ion-icon>
+            <div class="current-music-add-mobile">
+                <ion-icon name="add"></ion-icon>
             </div>
-
 
             <div class="container-controls-mobile">
                 <ion-icon name="play-skip-back-circle" style="margin-right: 5px;" id="audio-prev-mobile"></ion-icon>
@@ -611,6 +610,31 @@
             
         </section>
 
+        <section class="current-music-add-overflow-mobile hidden">
+            <div class="current-music-add-container-mobile">
+
+                <div class="current-music-add-favorite-container-mobile">
+                    <div class="current-music-add-favorite-icon-mobile">
+                        <ion-icon name="heart-outline"></ion-icon>
+                    </div>
+                    <div class="current-music-add-favorite-title-mobile">Favoritos</div>
+                </div>
+
+                <div class="current-music-add-playlist-container-mobile"></div>
+
+                <button class="current-music-add-create-new-playlist-mobile">Criar nova playlist</button>
+                <button class="current-music-add-confirm-mobile">Confirmar</button>
+            </div>
+        </section>
+
+        <section class="add-my-new-playlist-overflow-mobile hidden">
+            <form class="add-my-new-playlist-container-mobile">
+                <div class="add-my-new-playlist-title-mobile">Adicionar uma nova Playlist</div>
+                <input type="text" class="add-my-new-playlist-name-mobile" placeholder="Nome">
+                <button class="add-my-new-playlist-adicionar-mobile" type="submit">Adicionar</button>
+            </form>
+        </section>
+
         <section class="main-search-mobile" style="display: none;">
 
             <div class="display-back">
@@ -635,6 +659,94 @@
 
         </section>
 
+        <section class="main-minhas-playlists-mobile">
+            <div class="minhas-playlists-back-mobile">Voltar</div>
+            <div class="title-minhas-playlists-mobile">Minhas Playlists</div>
+
+            <div class="minhas-playlists-search-bar-mobile">
+                <input class="minhas-playlists-search-bar-input-mobile" type="text" placeholder="Digite o nome da playlist...">
+                <div class="minhas-playlists-search-bar-close-mobile">
+                    <ion-icon name="close"></ion-icon>
+                </div>
+            </div>
+
+            <div class="container-minhas-playlists-mobile"></div>
+
+            <div class="container-minha-playlist-mobile" id="containerMinhaPlaylistMobile" style="display: none;">
+                <div class="container-minha-playlist-back-mobile">Voltar</div>
+                <div class="main-playlist-mobile">
+                    <div class="cover-mobile">
+                        <img src="" id="containerPlaylistToManageCoverMobile">
+                    </div>
+                    <div class="content-mobile">
+                        <div class="title-mobile" id="containerPlaylistToManageTitleMobile"></div>
+                        <div class="details-mobile">
+                            <div class="created-mobile" id="containerPlaylistToManageCreatedMobile"></div>
+                            <div class="total-song-mobile" id="containerPlaylistToManageTotalMusicsMobile"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-adicionar-mobile" id="btnSelectMyPlaylistMobile">
+                    Selecionar
+                </div>
+                <div class="btn-editar-mobile" id="btnEditSelectMyPlaylistMobile">
+                    <ion-icon name="pencil" role="img" class="md hydrated" aria-label="pencil"></ion-icon>
+                    Editar
+                </div>
+                <div class="btn-excluir-mobile" id="btnDeleteSelectMyPlaylistMobile">
+                    <ion-icon name="close" role="img" class="md hydrated" aria-label="close"></ion-icon>
+                    Excluir
+                </div>
+                <div class="title-todas-as-musicas-mobile">Todas as Músicas</div>
+                <div class="container-minhas-musicas-mobile"></div>
+            </div>
+        </section>
+
+        <section class="music-my-new-playlist-overflow-mobile hidden">
+            <div class="music-my-new-playlist-container-mobile">
+                <div class="music-my-new-playlist-cover-mobile">
+                    <img src="">
+                </div>
+                <div class="music-my-new-playlist-title-mobile"></div>
+            </div>
+            <button class="music-my-new-playlist-delete-btn-mobile">
+                <ion-icon name="close"></ion-icon>
+                Excluir
+            </button>
+        </section>
+
+        <section class="music-delete-my-new-playlist-overflow-mobile hidden">
+            <div class="music-delete-my-new-playlist-container-mobile">
+                <div class="music-delete-my-new-playlist-title-mobile">Tem certeza que deseja remover esta Música?</div>
+                <div class="music-delete-my-new-playlist-current-mobile">Minha Música</div>
+                <div class="music-delete-my-new-playlist-warning-mobile">Esta ação é irreversível</div>
+                <div class="music-delete-my-new-playlist-interactions-mobile">
+                    <button class="music-delete-my-new-playlist-btn-cancel-mobile">Cancelar</button>
+                    <button class="music-delete-my-new-playlist-btn-delete-mobile">Excluir</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="edit-my-new-playlist-overflow-mobile hidden">
+            <form class="edit-my-new-playlist-container-mobile">
+                <div class="edit-my-new-playlist-title-mobile">Editar Playlist</div>
+                <input type="text" class="edit-my-new-playlist-name-mobile" placeholder="Nome">
+                <button class="edit-my-new-playlist-adicionar-mobile" type="submit">Salvar</button>
+            </form>
+        </section>
+
+        <section class="delete-my-new-playlist-overflow-mobile hidden">
+            <form class="delete-my-new-playlist-container-mobile">
+                <div class="delete-my-new-playlist-title-mobile">Tem certeza que deseja excluir esta Playlist?</div>
+                <div class="delete-my-new-playlist-current-mobile">Minha Playlist</div>
+                <input type="text" class="delete-my-new-playlist-name-mobile" placeholder="Digite o nome da playlist para confirmar...">
+                <div class="delete-my-new-playlist-warning-mobile">Esta ação é irreversível</div>
+                <div class="delete-my-new-playlist-interactions-mobile">
+                    <button class="delete-my-new-playlist-btn-cancel-mobile" type="reset">Cancelar</button>
+                    <button class="delete-my-new-playlist-btn-delete-mobile" type="submit">Excluir</button>
+                </div>
+            </form>
+        </section>
     </main>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
