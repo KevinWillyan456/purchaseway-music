@@ -408,8 +408,15 @@ document.querySelector('.playlists-search-bar-input').addEventListener('input', 
     generatorContainerPlaylistSelectData()
     generatorContainerPlaylistSelectDataPlay()
 })
-
-
+document.querySelector('.playlists-search-bar-close-mobile').addEventListener('click', () => {
+    document.querySelector('.playlists-search-bar-input-mobile').value = '';
+    generatorContainerPlaylistSelectData()
+    generatorContainerPlaylistSelectDataPlay()
+})
+document.querySelector('.playlists-search-bar-input-mobile').addEventListener('input', () => {
+    generatorContainerPlaylistSelectData()
+    generatorContainerPlaylistSelectDataPlay()
+})
 
 document.querySelector('.service-logo').addEventListener("click", () => {
     window.location = '/'
@@ -803,10 +810,11 @@ function generatorContainerPlaylistDataPlay(){
 
 function generatorContainerPlaylistSelectData(){
     const playlistDataFiltered = playlistData.filter((playlist) => playlist.title.toLowerCase().includes(document.querySelector('.playlists-search-bar-input').value.trim().toLowerCase()))
-
-    containerPlaylistSelect.innerHTML = "";
+    const playlistDataFilteredMobile = playlistData.filter((playlist) => playlist.title.toLowerCase().includes(document.querySelector('.playlists-search-bar-input-mobile').value.trim().toLowerCase()))
 
     if (screenWidth >= 1360) {
+        containerPlaylistSelect.innerHTML = "";
+
         playlistDataFiltered.forEach((element) => {
 
             containerPlaylistSelect.innerHTML += `
@@ -844,8 +852,11 @@ function generatorContainerPlaylistSelectData(){
                 `
             }
         }
+        themeChanger(musicDataShuffled[indexAudio].theme);
     } else {
-        playlistDataFiltered.forEach((element) => {
+        containerPlaylistSelectMobile.innerHTML = "";
+
+        playlistDataFilteredMobile.forEach((element) => {
 
             containerPlaylistSelectMobile.innerHTML += `
                 <div class="item-select-playlist-mobile">
@@ -866,6 +877,23 @@ function generatorContainerPlaylistSelectData(){
                 </div>
             `
         })
+
+        if (containerPlaylistSelectMobile.innerHTML === "") {
+            if(document.querySelector('.playlists-search-bar-input-mobile').value.trim() !== ""){
+                containerPlaylistSelectMobile.innerHTML = `
+                    <div class="no-playlist-found-mobile">
+                        Sua pesquisa não encontrou nenhuma playlist
+                    </div>
+                `
+            } else {
+                containerPlaylistSelectMobile.innerHTML = `
+                    <div class="no-playlist-found-mobile">
+                        Nenhuma playlist encontrada
+                    </div>
+                `
+            }
+        }
+        themeChanger(musicDataShuffled[indexAudio].theme);
     }
 }
 
