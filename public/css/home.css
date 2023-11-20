@@ -384,27 +384,6 @@ iframe {
     color: var(--color-white-1);
 }
 
-.main-display .clock-settings {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: var(--color-blue-2);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    border: 2px solid var(--color-black);
-    cursor: pointer;
-
-    margin-right: 20px;
-}
-.main-display .clock-settings ion-icon {
-    width: 40px;
-    height: 40px;
-    color: var(--color-white-1);
-}
-
 /* Search */
 
 .container-search-result {

@@ -12,9 +12,6 @@
 .container-settings .user-settings.rock-version {
     background-color: var(--color-red-2);
 }
-.main-display .clock-settings.rock-version {
-    background-color: var(--color-red-2);
-}
 .container-side-1 .current-music-rating.rock-version ion-icon {
     color: var(--color-red-2);
 }
@@ -153,9 +150,6 @@
 .container-settings .user-settings.hatsune-miku-version {
     background-color: var(--color-miku-2);
 }
-.main-display .clock-settings.hatsune-miku-version {
-    background-color: var(--color-miku-2);
-}
 .container-side-1 .current-music-rating.hatsune-miku-version ion-icon {
     color: var(--color-miku-2);
 }
@@ -292,9 +286,6 @@
     box-shadow: 0 0 0 5px var(--color-amv-br-2), 0 0 25px var(--color-amv-br-2);
 }
 .container-settings .user-settings.amv-brasileiro-version {
-    background-color: var(--color-amv-br-2);
-}
-.main-display .clock-settings.amv-brasileiro-version {
     background-color: var(--color-amv-br-2);
 }
 .container-side-1 .current-music-rating.amv-brasileiro-version ion-icon {
