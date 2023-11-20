@@ -10,6 +10,7 @@ let screenHeight = 0;
 
 let initialDevice = "";
 let emptyPlaylist = false;
+let titlePlaylist = "";
 
 const audioControllerPrev = document.querySelector('#audio-prev');
 const audioControllerPlay = document.querySelector('#audio-play');
@@ -537,6 +538,8 @@ function inicia(){
     setUserProfilePicture()
     manageHistoric();
     searchEvents();
+    generatorContainerCurrentMusicAddPlaylist()
+    generatorContainerMusicAddPlaylist()
     if (emptyPlaylist) return
     musicStateControllers();
     durationSliderEventGenerator();
@@ -557,8 +560,6 @@ function inicia(){
     refreshFavorite();
     audioControllerPlayAudioAndVideo();
     initialDeviceDefinition();
-    generatorContainerCurrentMusicAddPlaylist()
-    generatorContainerMusicAddPlaylist()
 }
 
 function audioControllerPlayFunction(){
@@ -2245,7 +2246,9 @@ function musicFilteringFunction(){
         
         generatorContainerSearchData()
         generatorContainerSearchDataPlay()
-        themeChanger(musicDataShuffled[indexAudio].theme);
+        if (!emptyPlaylist) {
+            themeChanger(musicDataShuffled[indexAudio].theme);
+        }
         
         if (containerItemsSearch.innerHTML == ''){
             $('.song-not-found').show();
@@ -2257,7 +2260,9 @@ function musicFilteringFunction(){
         
         generatorContainerSearchData()
         generatorContainerSearchDataPlay()
-        themeChanger(musicDataShuffled[indexAudio].theme);
+        if (!emptyPlaylist) {
+            themeChanger(musicDataShuffled[indexAudio].theme);
+        }
         
         if (containerItemsSearchMobile.innerHTML == ''){
             $('.song-not-found-mobile').show();
@@ -2839,7 +2844,7 @@ function changeMobileOrDesktop() {
         containerItemsHistoric.innerHTML = "";
         containerFrameVideoMobile.innerHTML = "";
         containerPlaylistSelect.innerHTML = "";
-        $(".title-playlist").html(userData.lastAccessedPlaylistName);
+        $(".title-playlist").html(titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName);
         $('.search-bar input').val("");
         musicFilteringFunction();
         audioGlobal.volume = 0.6
@@ -2851,7 +2856,7 @@ function changeMobileOrDesktop() {
         containerItemsHistoricMobile.innerHTML = "";
         containerFrameVideo.innerHTML = "";
         containerPlaylistSelectMobile.innerHTML = "";
-        $(".title-playlist-mobile").html(userData.lastAccessedPlaylistName);
+        $(".title-playlist-mobile").html(titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName);
         $('.main-search-mobile .search-bar-mobile input').val("");
         musicFilteringFunction();
     }
@@ -2878,18 +2883,19 @@ function changeMobileOrDesktop() {
     generatorContainerFavoriteDataPlay()
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
-
+    manageEmptyPlaylist()
+    manageHistoric();
+    setUserProfilePicture()
+    setUserSettings()
+    generatorContainerCurrentMusicAddPlaylist()
+    generatorContainerMusicAddPlaylist()
+    if (emptyPlaylist) return
     themeChanger(musicDataShuffled[indexAudio].theme);
     indexAudioId = musicDataShuffled[indexAudio]._id;
     indexAudioGender = musicDataShuffled[indexAudio].gender;
-    setMusicPlayTag();
     refreshFavorite();
-    manageHistoric();
+    setMusicPlayTag();
     audioControllerPlayAudioAndVideo();
-    setUserSettings()
-    setUserProfilePicture()
-    generatorContainerCurrentMusicAddPlaylist()
-    generatorContainerMusicAddPlaylist()
 }
 
 function setManagementSystem(){
@@ -3572,6 +3578,8 @@ function selectUserMyPlaylist() {
     const playlist = userData.myPlaylists.find(item => item._id === indexMyPlaylistId);
     const matchingSongs = allMusicData.filter(song => playlist.songs.map(item => item.musicId).includes(song._id)).sort((a, b) => a.title.localeCompare(b.title));
 
+    titlePlaylist = playlist.title;
+
     if (screenWidth >= 1360) {
         $(".title-playlist").html(playlist.title);
     } else {
@@ -3704,6 +3712,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         shuffleIconMobile.classList.remove('active');
     }
     shuffleToggleControl = true;
+    titlePlaylist = "";
 
     allSongValueSetters()
     generatorContainerPlaylistData();
