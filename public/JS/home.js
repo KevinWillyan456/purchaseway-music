@@ -534,12 +534,13 @@ function inicia(){
     generatorContainerPlaylistSelectDataPlay();
     manageEmptyPlaylist();
     setManagementSystem()
+    setUserProfilePicture()
+    manageHistoric();
+    searchEvents();
     if (emptyPlaylist) return
     musicStateControllers();
     durationSliderEventGenerator();
     volumeSliderEventGenerator();
-    searchEvents();
-
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
@@ -554,10 +555,8 @@ function inicia(){
     $(".title-playlist-mobile").html(userData.lastAccessedPlaylistName);
     setMusicPlayTag();
     refreshFavorite();
-    manageHistoric();
     audioControllerPlayAudioAndVideo();
     initialDeviceDefinition();
-    setUserProfilePicture()
     generatorContainerCurrentMusicAddPlaylist()
     generatorContainerMusicAddPlaylist()
 }
@@ -954,6 +953,7 @@ function generatorContainerPlaylistSelectData(){
                 `
             }
         }
+        if (emptyPlaylist) return
         themeChanger(musicDataShuffled[indexAudio].theme);
     } else {
         containerPlaylistSelectMobile.innerHTML = "";
@@ -995,6 +995,7 @@ function generatorContainerPlaylistSelectData(){
                 `
             }
         }
+        if (emptyPlaylist) return
         themeChanger(musicDataShuffled[indexAudio].theme);
     }
 }
