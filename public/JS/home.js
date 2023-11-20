@@ -2888,6 +2888,8 @@ function changeMobileOrDesktop() {
     audioControllerPlayAudioAndVideo();
     setUserSettings()
     setUserProfilePicture()
+    generatorContainerCurrentMusicAddPlaylist()
+    generatorContainerMusicAddPlaylist()
 }
 
 function setManagementSystem(){
