@@ -1869,7 +1869,7 @@ function themeChanger(selectedTheme){
         
         if(selectedTheme == "Original"){
             allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version", "hatsune-miku-version", "amv-brasileiro-version"));
-            serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo.png";
+            serviceLogo.src = "https://i.ibb.co/fdBXmh2/logo.png";
             return;
         }
         if(selectedTheme == "Rock Version"){
@@ -1877,7 +1877,7 @@ function themeChanger(selectedTheme){
                 element.classList.remove("hatsune-miku-version", "amv-brasileiro-version")
                 element.classList.add("rock-version")
             });
-            serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-rock-version.png";
+            serviceLogo.src = "https://i.ibb.co/Mh46LMN/logo-rock-version.png";
             return;
         }
         if(selectedTheme == "Hatsune Miku Version"){
@@ -1885,7 +1885,7 @@ function themeChanger(selectedTheme){
                 element.classList.remove("rock-version", "amv-brasileiro-version")
                 element.classList.add("hatsune-miku-version")
             });
-            serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-hatsune-miku-version.png";
+            serviceLogo.src = "https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png";
             return;
         }
         if(selectedTheme == "AMV Brasileiro Version"){
@@ -1893,7 +1893,7 @@ function themeChanger(selectedTheme){
                 element.classList.remove("rock-version", "hatsune-miku-version")
                 element.classList.add("amv-brasileiro-version")
             });
-            serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-amv-brasileiro-version.png";
+            serviceLogo.src = "https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png";
             return;
         }
     } else {
@@ -1904,7 +1904,7 @@ function themeChanger(selectedTheme){
 
         if(selectedTheme == "Original"){
             allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version", "hatsune-miku-version", "amv-brasileiro-version"));
-            serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo.png";
+            serviceLogo.src = "https://i.ibb.co/fdBXmh2/logo.png";
             return;
         }
         if(selectedTheme == "Rock Version"){
@@ -1912,7 +1912,7 @@ function themeChanger(selectedTheme){
                 element.classList.remove("hatsune-miku-version", "amv-brasileiro-version")
                 element.classList.add("rock-version")
             });
-            serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-rock-version.png";
+            serviceLogo.src = "https://i.ibb.co/Mh46LMN/logo-rock-version.png";
             return;
         }
         if(selectedTheme == "Hatsune Miku Version"){
@@ -1920,7 +1920,7 @@ function themeChanger(selectedTheme){
                 element.classList.remove("rock-version", "amv-brasileiro-version")
                 element.classList.add("hatsune-miku-version")
             });
-            serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-hatsune-miku-version.png";
+            serviceLogo.src = "https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png";
             return;
         }
         if(selectedTheme == "AMV Brasileiro Version"){
@@ -1928,7 +1928,7 @@ function themeChanger(selectedTheme){
                 element.classList.remove("rock-version", "hatsune-miku-version")
                 element.classList.add("amv-brasileiro-version")
             });
-            serviceLogo.src = "https://pw-music-database.kevinsouza456.repl.co/pw-music-logo-amv-brasileiro-version.png";
+            serviceLogo.src = "https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png";
             return;
         }
     }
