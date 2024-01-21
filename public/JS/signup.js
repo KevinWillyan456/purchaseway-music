@@ -15,24 +15,36 @@ document.querySelector('.service-logo').addEventListener("click", () => {
 
 btnSubmit.addEventListener("click", validationForm)
 
+let timer = null
+
 async function validationForm(){
-    let nameValue = inputNameUser.value
+    let nameValue = inputNameUser.value.trim()
     let passwordValue = inputPasswordUser.value
+
+    if(timer != null){
+        clearTimeout(timer)
+        timer = null
+    }
 
     if(nameValue == ""){
         warning.classList.remove("hidden")
         warning.innerHTML = "Nome está vazio!"
-        return setTimeout(() => warning.classList.add('hidden'), 3000)
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
     }
     if(passwordValue == ""){
         warning.classList.remove("hidden")
         warning.innerHTML = "Senha está vazio!"
-        return setTimeout(() => warning.classList.add('hidden'), 3000)
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
+    }
+    if(passwordValue.includes(" ")){
+        warning.classList.remove("hidden")
+        warning.innerHTML = "Senha não pode ter espaços!"
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
     }
     if(passwordValue.length < 6){
         warning.classList.remove("hidden")
         warning.innerHTML = "Senha muito curta!"
-        return setTimeout(() => warning.classList.add('hidden'), 3000)
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
     }
 
     const user = {
@@ -69,7 +81,7 @@ async function validationForm(){
     if(resposta.status != 201){
         warning.innerHTML = "Usuário já existe"
         warning.classList.remove("hidden")
-        return setTimeout(() => warning.classList.add('hidden'), 3000)
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
     }
 
     const resposta2 = await fetch("/login", {
@@ -81,6 +93,6 @@ async function validationForm(){
         body: JSON.stringify(user)
     });
     if(resposta2.status == 200){
-        return setTimeout(() => window.location = '/home', 2000);
+        return timer = setTimeout(() => window.location = '/home', 2000);
     }
 }

@@ -15,24 +15,31 @@ document.querySelector('.service-logo').addEventListener("click", () => {
 
 btnSubmit.addEventListener("click", validationForm)
 
+let timer = null
+
 async function validationForm(){
-    let nameValue = inputNameUser.value
+    let nameValue = inputNameUser.value.trim()
     let passwordValue = inputPasswordUser.value
+
+    if(timer != null){
+        clearTimeout(timer)
+        timer = null
+    }
 
     if(nameValue == ""){
         warning.classList.remove("hidden")
         warning.innerHTML = "Nome ou Senha incorretos!"
-        return setTimeout(() => warning.classList.add('hidden'), 3000)
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
     }
     if(passwordValue == ""){
         warning.classList.remove("hidden")
         warning.innerHTML = "Nome ou Senha incorretos!"
-        return setTimeout(() => warning.classList.add('hidden'), 3000)
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
     }
     if(passwordValue.length < 6){
         warning.classList.remove("hidden")
         warning.innerHTML = "Senha muito curta!"
-        return setTimeout(() => warning.classList.add('hidden'), 3000)
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
     }
 
     const user = {
@@ -65,11 +72,11 @@ async function validationForm(){
         warning.innerHTML = "Login realizado com sucesso!"
         warning.classList.add("success")
         warning.classList.remove("hidden")
-        return setTimeout(() => window.location = '/home', 2000); 
+        return timer = setTimeout(() => window.location = '/home', 2000); 
     }
     if(resposta.status != 200){
         warning.innerHTML = "Nome ou Senha incorretos!"
         warning.classList.remove("hidden")
-        return setTimeout(() => warning.classList.add('hidden'), 3000)
+        return timer = setTimeout(() => warning.classList.add('hidden'), 3000)
     }
 }
