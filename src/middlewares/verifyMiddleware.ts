@@ -6,7 +6,7 @@ async function verifyTokenExists(
     res: Response,
     next: NextFunction
 ) {
-    const SECRET_KEY: Secret = `${process.env.SECRET}`
+    const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
 
     try {
         const authHeader = req.cookies.token

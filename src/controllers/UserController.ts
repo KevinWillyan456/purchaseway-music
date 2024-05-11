@@ -83,7 +83,7 @@ async function loginUser(req: Request, res: Response) {
             dateCookieExpires = 600000
         }
 
-        const token = jwt.sign({ id: user?._id }, `${process.env.SECRET}`, {
+        const token = jwt.sign({ id: user?._id }, `${process.env.JWT_SECRET}`, {
             expiresIn: dateTokenExpires,
         })
 

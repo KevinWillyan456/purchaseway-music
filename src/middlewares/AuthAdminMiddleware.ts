@@ -3,7 +3,7 @@ import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 import { User } from '../models/User'
 
 async function eAdminManager(req: Request, res: Response, next: NextFunction) {
-    const SECRET_KEY: Secret = `${process.env.SECRET}`
+    const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
 
     interface CustomRequest extends Request {
         token: string | JwtPayload

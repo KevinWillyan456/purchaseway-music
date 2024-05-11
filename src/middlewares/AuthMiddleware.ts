@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 
 async function eAdmin(req: Request, res: Response, next: NextFunction) {
-    const SECRET_KEY: Secret = `${process.env.SECRET}`
+    const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
 
     interface CustomRequest extends Request {
         token: string | JwtPayload
