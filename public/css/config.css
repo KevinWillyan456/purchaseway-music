@@ -248,6 +248,7 @@ body::-webkit-scrollbar-thumb {
     padding-right: 30px;
     justify-content: space-between;
     cursor: pointer;
+    border-radius: 10px;
 }
 .content-playlist .playlist-item .item-cover {
     width: 108px;
@@ -257,6 +258,7 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     overflow: hidden;
     pointer-events: none;
+    border-radius: 10px;
 }
 .content-playlist .playlist-item .item-cover img {
     width: 100%;
@@ -346,6 +348,7 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
     gap: 20px;
     padding: 20px;
+    border-radius: 10px;
 }
 .container-playlist-to-manage .main-playlist .cover {
     width: 400px;
@@ -355,6 +358,7 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    border-radius: 10px;
 }
 .container-playlist-to-manage .main-playlist .cover img {
     width: 100%;
@@ -504,6 +508,7 @@ body::-webkit-scrollbar-thumb {
     padding-right: 30px;
     justify-content: space-between;
     cursor: pointer;
+    border-radius: 10px;
 }
 .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-cover {
     width: 108px;
@@ -513,6 +518,7 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     overflow: hidden;
     pointer-events: none;
+    border-radius: 10px;
 }
 .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-cover img {
     width: 100%;
@@ -555,6 +561,7 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
     gap: 20px;
     padding: 20px;
+    border-radius: 10px;
 }
 .focus .song .main-song .cover {
     width: 400px;
@@ -564,6 +571,7 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    border-radius: 10px;
 }
 .focus .song .main-song .cover img {
     width: 100%;
@@ -746,6 +754,7 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 .form-song-overflow .form-song .preview-thumbnail .preview-text {
     position: absolute;
@@ -940,6 +949,7 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 .form-playlist-overflow .form-playlist .preview-thumbnail .preview-text {
     position: absolute;
@@ -1215,6 +1225,10 @@ body::-webkit-scrollbar-thumb {
     .container-playlist-to-manage .main-playlist .cover {
         width: 100%;
         height: 180px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
     .container-playlist-to-manage .main-playlist .content {
         width: 100%;
@@ -1274,6 +1288,10 @@ body::-webkit-scrollbar-thumb {
     .focus .song .main-song .cover {
         width: 100%;
         height: 180px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
     .focus .song .main-song .content {
         width: 100%;
