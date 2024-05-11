@@ -777,22 +777,20 @@ iframe {
     width: calc(100% - 5px);
     background-color: var(--color-blue-3);
     margin-bottom: 10px;
-    
     display: flex;
-    padding: 10px 20px;
+    padding: 10px 12px;
     justify-content: space-between;
-
     cursor: pointer;
+    border-radius: 10px;
 }
 .item-playlist-favorite .cover-item-favorite {
     width: 108px;
     height: 60px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 .item-playlist-favorite .cover-item-favorite img {
     width: 100%;
@@ -844,22 +842,20 @@ iframe {
     width: calc(100% - 5px);
     background-color: var(--color-blue-3);
     margin-bottom: 10px;
-    
     display: flex;
-    padding: 10px 20px;
+    padding: 10px 12px;
     justify-content: space-between;
-
     cursor: pointer;
+    border-radius: 10px;
 }
 .item-playlist-historic .cover-item-historic {
     width: 108px;
     height: 60px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 .item-playlist-historic .cover-item-historic img {
     width: 100%;
