@@ -806,7 +806,7 @@ function generatorContainerPlaylistData(){
                 <div class="item-playlist" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper">
                         <div class="cover-item">
-                            <img src="${element.coverUrl}">
+                            <img src="${element.coverUrl}" alt="${element.title}">
                         </div>
                         <div class="info-item">
                             <div class="title-info">

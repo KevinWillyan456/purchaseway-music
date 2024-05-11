@@ -157,10 +157,11 @@ body {
     background-color: var(--color-blue-3);
     
     display: flex;
-    padding: 10px 20px;
+    padding: 10px 12px;
     justify-content: space-between;
 
     cursor: pointer;
+    border-radius: 10px;
 }
 .container-playlist .empty-playlist {
     color: var(--color-white-1);
@@ -185,6 +186,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+    border-radius: 10px;
 }
 .item-playlist .cover-item img {
     width: 100%;
@@ -273,6 +276,8 @@ body {
 .container-frame {
     width: 100%;
     max-width: 1000px;
+    border-radius: 20px;
+    overflow: hidden;
 }
 .ghost-frame {
     position: absolute;
@@ -450,6 +455,7 @@ iframe {
     justify-content: space-between;
 
     cursor: pointer;
+    border-radius: 10px;
 }
 .item-playlist-search .cover-item-search {
     width: 108px;
@@ -460,6 +466,7 @@ iframe {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 .item-playlist-search .cover-item-search img {
     width: 100%;
@@ -656,6 +663,7 @@ iframe {
     align-items: center;
 }
 .user-settings-person-container {
+    transition: 200ms;
     display: flex;
     overflow: hidden;
     width: 100%;
@@ -663,7 +671,9 @@ iframe {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-
+}
+.user-settings-person-container:hover {
+    box-shadow: 0 0 10px var(--color-white-1);
 }
 .user-settings .user-settings-person-img {
     width: 100%;
@@ -1140,6 +1150,7 @@ iframe {
     justify-content: center;
 
     pointer-events: none;
+    border-radius: 10px;
 }
 .cover-current-music img {
     width: 100%;
@@ -1708,6 +1719,7 @@ iframe {
     display: flex;
     gap: 20px;
     padding: 20px;
+    border-radius: 10px;
 }
 .music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover {
     width: 400px;
@@ -1718,6 +1730,7 @@ iframe {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: 10px;
 }
 .music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img {
     width: 100%;
@@ -2066,6 +2079,7 @@ iframe {
     width: 100%;
 }
 .container-minhas-playlists .item-minhas-playlists {
+    transition: 200ms;
     width: 100%;
     min-height: 80px;
     height: 80px;
@@ -2077,6 +2091,7 @@ iframe {
     padding-right: 30px;
     align-items: center;
     cursor: pointer;
+    border-radius: 10px;
 }
 .item-minhas-playlists .cover-item-minhas-playlists {
     width: 108px;
@@ -2086,6 +2101,7 @@ iframe {
     justify-content: center;
     overflow: hidden;
     pointer-events: none;
+    border-radius: 10px;
 }
 .item-minhas-playlists .cover-item-minhas-playlists img {
     width: 100%;
@@ -2162,6 +2178,7 @@ iframe {
     align-items: center;
     gap: 20px;
     padding: 20px;
+    border-radius: 10px;
 }
 .main-minhas-playlists .main-playlist .cover {
     width: 400px;
@@ -2171,6 +2188,8 @@ iframe {
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    border-radius: 10px;
+    overflow: hidden;
 }
 .main-minhas-playlists .main-playlist .cover img {
     width: 100%;
@@ -2314,6 +2333,7 @@ iframe {
     padding-right: 30px;
     align-items: center;
     cursor: pointer;
+    border-radius: 10px;
 }
 .item-minhas-musicas .cover-item-minhas-musicas {
     width: 108px;
@@ -2323,6 +2343,7 @@ iframe {
     justify-content: center;
     overflow: hidden;
     pointer-events: none;
+    border-radius: 10px;
 }
 .item-minhas-musicas .cover-item-minhas-musicas img {
     width: 100%;
@@ -2340,6 +2361,7 @@ iframe {
 .container-select-playlists .item-select-playlist {
     width: 460px;
     background-color: var(--color-blue-3);
+    border-radius: 10px;
 }
 .item-select-playlist .cover-item-select-playlist {
     display: flex;
@@ -2357,6 +2379,8 @@ iframe {
     justify-content: center;
 
     cursor: pointer;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .item-select-playlist .cover-item-select-playlist:hover img {

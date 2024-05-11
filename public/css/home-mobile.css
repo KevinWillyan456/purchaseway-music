@@ -216,12 +216,11 @@
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
     background-color: var(--color-blue-3);
-    
     display: flex;
     padding: 10px 10px;
     justify-content: space-between;
-
     cursor: pointer;
+    border-radius: 10px;
 }
 .container-playlist-mobile .empty-playlist-mobile {
     color: var(--color-white-1);
@@ -324,12 +323,11 @@
     width: 80px;
     height: 44.44px;
     margin-right: 5px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 .main-controls-mobile .box-wrapper .cover-item img {
     width: 100%;
@@ -467,6 +465,8 @@
 .main-display-mobile .current-cover-mobile .container-frame-mobile {
     width: 100%;
     height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
 .main-display-mobile .current-cover-mobile .container-frame-mobile iframe {
     width: 100%;
@@ -781,23 +781,22 @@
 .container-select-playlists-mobile .item-select-playlist-mobile {
     width: 320px;
     background-color: var(--color-blue-3);
+    border-radius: 10px;
 }
 .item-select-playlist-mobile .cover-item-select-playlist-mobile {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--color-white-1);
-
     width: 100%;
     height: 180px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .item-select-playlist-mobile .cover-item-select-playlist-mobile:hover img {
@@ -958,6 +957,7 @@
     height: 25px;
 }
 .user-settings-person-container-mobile {
+    transition: 200ms;
     display: flex;
     overflow: hidden;
     width: 100%;
@@ -965,7 +965,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-
+}
+.user-settings-person-container-mobile:hover {
+    box-shadow: 0 0 20px var(--color-white-1);
 }
 .user-settings-person-img-mobile {
     width: 100%;
@@ -1496,6 +1498,7 @@
     justify-content: space-between;
 
     cursor: pointer;
+    border-radius: 10px;
 }
 .item-search-mobile .box-wrapper-search {
     display: flex;
@@ -1503,12 +1506,11 @@
 .item-search-mobile .box-wrapper-search .cover-item-search {
     width: 70px;
     height: 38.89px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 .item-search-mobile .box-wrapper-search .cover-item-search img {
     width: 100%;
@@ -1856,13 +1858,13 @@
     min-height: 60px;
     height: 60px;
     background: var(--color-blue-3);
-
     display: grid;
     grid-template-columns: 70px 1fr 22px 20px;
     padding-left: 10px;
     padding-right: 30px;
     align-items: center;
     cursor: pointer;
+    border-radius: 10px;
 }
 .item-minhas-playlists-mobile .cover-item-minhas-playlists-mobile {
     width: 70px;
@@ -1872,6 +1874,7 @@
     justify-content: center;
     overflow: hidden;
     pointer-events: none;
+    border-radius: 10px;
 }
 .item-minhas-playlists-mobile .cover-item-minhas-playlists-mobile img {
     width: 100%;
@@ -1953,6 +1956,7 @@
     padding: 0;
     gap: 10px;
     margin-top: 80px;
+    border-radius: 10px;
 }
 .main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile {
     width: 100%;
@@ -1962,6 +1966,8 @@
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img {
     width: 100%;
@@ -2089,6 +2095,7 @@
     padding-right: 30px;
     align-items: center;
     cursor: pointer;
+    border-radius: 10px;
 }
 .item-minhas-musicas-mobile .cover-item-minhas-musicas-mobile {
     width: 70px;
@@ -2098,6 +2105,7 @@
     justify-content: center;
     overflow: hidden;
     pointer-events: none;
+    border-radius: 10px;
 }
 .item-minhas-musicas-mobile .cover-item-minhas-musicas-mobile img {
     width: 100%;
@@ -2137,6 +2145,7 @@
     gap: 10px;
     background: var(--color-blue-3);
     align-items: center;
+    border-radius: 10px;
 }
 .music-my-new-playlist-cover-mobile {
     width: 100%;
@@ -2147,6 +2156,8 @@
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .music-my-new-playlist-cover-mobile img {
     width: 100%;
