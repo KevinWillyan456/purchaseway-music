@@ -243,12 +243,11 @@
 .item-playlist-mobile .box-wrapper .cover-item {
     width: 70px;
     height: 38.89px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 .item-playlist-mobile .box-wrapper .cover-item img {
     width: 100%;
