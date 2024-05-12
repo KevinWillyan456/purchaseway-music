@@ -653,8 +653,6 @@ function allSongValueSetters(){
 
             containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 
-            videoResizingFunction();
-
             return;
         }
 
@@ -684,8 +682,6 @@ function allSongValueSetters(){
             $(displayMusicDurationMobile).hide()
 
             containerFrameVideoMobile.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
-
-            videoResizingFunction();
 
             return;
         }
@@ -2362,34 +2358,8 @@ function setMusicPlayTag() {
 }
 
 function allFunctionResizing() {
-    if (screenWidth >= 1360) {
-        videoResizingFunction();
-    }
-
     setScreenWidthAndHeight();
     deviceDefinition();
-}
-
-function videoResizingFunction() {
-    if(document.querySelector(".container-frame iframe")){
-        document.querySelector(".container-frame iframe").style.width = 0 + "px";
-        document.querySelector(".container-frame iframe").style.height = 0 + "px";
-
-        var widthOfVideo = parseInt(getComputedStyle(document.querySelector('.ghost-frame')).width);
-        var heightOfVideo;
-
-        heightOfVideo = parseFloat(widthOfVideo) * (563 / 1000) + "px";
-        widthOfVideo = widthOfVideo + "px";
-        if (parseFloat(widthOfVideo) > 1000) {
-            widthOfVideo = 1000 + "px";
-        }
-        if (parseFloat(heightOfVideo) > 566.5) {
-            heightOfVideo = 566.5 + "px";
-        }
-        
-        document.querySelector(".container-frame iframe").style.width = widthOfVideo;
-        document.querySelector(".container-frame iframe").style.height = heightOfVideo;
-    }
 }
 
 function setScreenWidthAndHeight() {
