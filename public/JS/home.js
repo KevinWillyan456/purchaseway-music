@@ -2274,8 +2274,16 @@ let profileWasClicked = true;
 
 function searchEvents(){
     searchButton.addEventListener("click", () => {
-        $('.search-bar').toggle(400)
-        $('.search-bar input').val("")
+        $('.search-bar').show(400)
+        $(searchBarInput).focus()
+        $('.container-search-result').show(200)
+        $('.focus-shadow').show(200)
+        $('.container-user-settings').hide(200)
+        $(".menu-options").hide(200)
+        profileWasClicked = true;
+        canKeyboardEvents = false;
+        canKeyboardEventsProfile = false;
+        musicFilteringFunction();
     })
     $('.search-bar-close').click(() => {
         $('.search-bar input').val("");
@@ -2285,15 +2293,6 @@ function searchEvents(){
         $('.main-search-mobile .search-bar-mobile input').val("");
         musicFilteringFunction();
     })
-    $('.search-bar input').click(function() {
-        $('.container-search-result').show(200)
-        $('.focus-shadow').show(200)
-        $('.container-user-settings').hide(200)
-        $(".menu-options").hide(200)
-        profileWasClicked = true;
-        canKeyboardEvents = false;
-        canKeyboardEventsProfile = false;
-    });
     $('.container-settings .user-settings').click(function() {
         toggleTemplateUser();
     });
@@ -2305,6 +2304,7 @@ function searchEvents(){
         $('.focus-shadow').hide(200)
         $('.container-search-result').hide(200)
         $('.container-user-settings').hide(200)
+        $(".search-bar").hide(200)
         profileWasClicked = true;
         canKeyboardEvents = true;
         canKeyboardEventsProfile = true;
@@ -2328,6 +2328,7 @@ function searchEvents(){
         $('.main-search-mobile').toggle(200)
         $(".menu-options-mobile").hide(200)
         $('.main-controls-mobile').addClass("fixed")
+        $('.main-search-mobile .search-bar-mobile input').focus()
     })
     $('.main-search-mobile .display-back').click(()=>{
         $('.main-search-mobile').toggle(200)
