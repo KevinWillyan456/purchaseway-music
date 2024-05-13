@@ -268,22 +268,9 @@ body {
     height: 100px;
     background-image: linear-gradient(black, rgba(0, 0, 0, 0.4));
 }
-
-.main-display .current-cover {
-    width: 100%;
-    max-width: 1200px;
-    min-width: 200px;
-    height: 100%;
-    max-height: calc(1200px * 563 / 1000);
-    min-height: calc(200px * 563 / 1000);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
 .container-frame {
-    width: 100%;
-    height: 100%;
+    aspect-ratio: 16 / 9;
+    min-width: calc(100vh);
 }
 iframe {
     width: 100%;
