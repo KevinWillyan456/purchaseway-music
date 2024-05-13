@@ -251,46 +251,27 @@ async function selectPlaylist(req: Request, res: Response) {
             .catch((err) => console.error(err))
     }
 
-    function getVideoCover(videoId: string): Promise<string> {
-        return fetch(`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`)
-            .then((response) => {
-                if (response.status === 404) {
-                    return fetch(
-                        `https://img.youtube.com/vi/${videoId}/sddefault.jpg`
-                    ).then((response) => {
-                        if (response.status === 404) {
-                            return fetch(
-                                `https://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`
-                            ).then((response) => {
-                                if (response.status === 404) {
-                                    return fetch(
-                                        `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
-                                    ).then((response) => {
-                                        if (response.status === 404) {
-                                            return fetch(
-                                                `https://img.youtube.com/vi/${videoId}/default.jpg`
-                                            ).then((response) => {
-                                                if (response.status === 404) {
-                                                    return `https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg`
-                                                }
-                                                return `https://img.youtube.com/vi/${videoId}/default.jpg`
-                                            })
-                                        }
-                                        return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
-                                    })
-                                }
-                                return `https://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`
-                            })
-                        }
-                        return `https://img.youtube.com/vi/${videoId}/sddefault.jpg`
-                    })
+    async function getVideoCover(videoId: string): Promise<string> {
+        const urls = [
+            `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+            `https://img.youtube.com/vi/${videoId}/sddefault.jpg`,
+            `https://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+            `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+            `https://img.youtube.com/vi/${videoId}/default.jpg`,
+        ]
+
+        for (const url of urls) {
+            try {
+                const response = await fetch(url)
+                if (response.ok) {
+                    return url
                 }
-                return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
-            })
-            .catch((err) => {
+            } catch (err) {
                 console.error(err)
-                return `https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg`
-            })
+            }
+        }
+
+        return `https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg`
     }
 
     try {
