@@ -186,7 +186,7 @@ document.addEventListener("keyup", function(event){
     if(canKeyboardEvents){
         switch(event.key){
             case " ":
-                if(!musicDataShuffled[indexAudio].isVideo){
+                if(musicDataShuffled[indexAudio].isVideo){
                     audioControllerPlayFunction();
                 }
                 break;
@@ -591,7 +591,7 @@ function audioControllerPlayFunction(){
 }
 function audioControllerPlayFunctionNoPause(){
     if (screenWidth >= 1360) {
-        if(musicDataShuffled[indexAudio].isVideo){
+        if(!musicDataShuffled[indexAudio].isVideo){
             audioGlobal.pause()
             document.querySelector(".container-side-2").style.display = "none"
             musicAnimationStatus.classList.remove('run');
@@ -606,7 +606,7 @@ function audioControllerPlayFunctionNoPause(){
 
         document.querySelector(".container-side-2").style.display = "flex"
     } else {
-        if(musicDataShuffled[indexAudio].isVideo){
+        if(!musicDataShuffled[indexAudio].isVideo){
             audioGlobal.pause()
             document.querySelector(".main-display-mobile").classList.add("video-mode")
 
@@ -641,7 +641,7 @@ function allSongValueSetters(){
         return
     }
     if (screenWidth >= 1360) {
-        if(musicDataShuffled[indexAudio].isVideo){
+        if(!musicDataShuffled[indexAudio].isVideo){
             indexAudioId = musicDataShuffled[indexAudio]._id;
             indexAudioGender = musicDataShuffled[indexAudio].gender;
             coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
@@ -668,7 +668,7 @@ function allSongValueSetters(){
         genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
         containerFrameVideo.innerHTML = "";
     } else {
-        if(musicDataShuffled[indexAudio].isVideo){
+        if(!musicDataShuffled[indexAudio].isVideo){
             indexAudioId = musicDataShuffled[indexAudio]._id;
             indexAudioGender = musicDataShuffled[indexAudio].gender;
             coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
@@ -2708,7 +2708,7 @@ function toggleDisplayMobile() {
         displayMobile.classList.remove("exit");
         displayMobile.classList.add("show");
 
-        if (!musicDataShuffled[indexAudio].isVideo) {
+        if (musicDataShuffled[indexAudio].isVideo) {
             audioControllerPlayFunctionNoPause()
         }
         $('.main-search-mobile').hide(200)
@@ -2766,14 +2766,14 @@ function toggleLogout() {
 
 function audioControllerPlayAudioAndVideo() {
     if (screenWidth >= 1360) {
-        if(musicDataShuffled[indexAudio].isVideo){
+        if(!musicDataShuffled[indexAudio].isVideo){
             document.querySelector(".container-side-2").style.display = "none"
             musicAnimationStatus.classList.remove('run');
         } else {
             document.querySelector(".container-side-2").style.display = "flex"
         }
     } else {
-        if(musicDataShuffled[indexAudio].isVideo){
+        if(!musicDataShuffled[indexAudio].isVideo){
             document.querySelector(".main-display-mobile").classList.add("video-mode")
         } else {
             document.querySelector(".main-display-mobile").classList.remove("video-mode")

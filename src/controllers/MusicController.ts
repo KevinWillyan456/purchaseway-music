@@ -16,31 +16,24 @@ async function indexMusic(req: Request, res: Response) {
 }
 
 async function storeMusic(req: Request, res: Response) {
-    const { audioUrl, coverUrl, title, gender, isVideo, theme } = req.body
+    const { videoId, gender, theme } = req.body
 
-    if (!audioUrl || !title || !gender || !theme) {
+    if (!videoId || !gender || !theme) {
         return res.status(400).json({ error: 'data is missing' })
     }
 
-    const currentCoverUrl = coverUrl
-        ? coverUrl
-        : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
-
     const music = new Music({
         _id: uuid(),
-        audioUrl,
-        coverUrl: currentCoverUrl,
-        title,
+        videoId,
         gender,
         theme,
-        isVideo,
         additionDate: new Date(),
     })
 
     try {
-        const songs = await Music.find({ title })
+        const songs = await Music.find({ videoId })
         const songAlreadyExists = songs.find(
-            (song) => song.title === title && song.gender === gender
+            (song) => song.videoId === videoId && song.gender === gender
         )
 
         if (songAlreadyExists) {
@@ -92,7 +85,7 @@ async function updateMusic(
     try {
         const songs = await Music.find({ title })
         const songAlreadyExists = songs.find(
-            (song) => song.title === title && song.gender === gender
+            (song) => song.videoId === title && song.gender === gender
         )
 
         if (songAlreadyExists) {

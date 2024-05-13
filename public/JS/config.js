@@ -493,8 +493,6 @@ formSong.addEventListener('submit', async function (event) {
         return
     }
 
-    let isVideo = true
-
     function extrairIdDoVideo(url) {
         return url.length === 11
             ? url
@@ -513,7 +511,6 @@ formSong.addEventListener('submit', async function (event) {
         videoId: extrairIdDoVideo(formSongAddInputID.value.trim()),
         gender: changedData.playlistName,
         theme: 'Original',
-        isVideo,
     }
 
     const response = await fetch(`/songs?userId=${userData._id}`, {
@@ -529,7 +526,7 @@ formSong.addEventListener('submit', async function (event) {
     if (result.message != 'Music added successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
-        warning.textContent = 'Internal Error'
+        warning.textContent = 'Música já adicionada.'
         timerFormsong = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)

@@ -627,229 +627,229 @@ async function deleteUserPlaylist(
     }
 }
 
-async function storeUserPlaylistSongs(
-    req: Request<{
-        id?: UpdateWithAggregationPipeline
-        pid?: UpdateWithAggregationPipeline
-    }>,
-    res: Response
-) {
-    const { musicIds } = req.body
-    const { id, pid } = req.params
+// async function storeUserPlaylistSongs(
+//     req: Request<{
+//         id?: UpdateWithAggregationPipeline
+//         pid?: UpdateWithAggregationPipeline
+//     }>,
+//     res: Response
+// ) {
+//     const { musicIds } = req.body
+//     const { id, pid } = req.params
 
-    if (!musicIds || !Array.isArray(musicIds)) {
-        return res.status(400).json({ error: 'data is missing' })
-    }
+//     if (!musicIds || !Array.isArray(musicIds)) {
+//         return res.status(400).json({ error: 'data is missing' })
+//     }
 
-    const lastMusicId = musicIds[musicIds.length - 1]
-    const music = await Music.findOne({ _id: lastMusicId })
-    if (!music) {
-        return res.status(404).json({ error: 'Music not found' })
-    }
-    const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
-    if (!user) {
-        return res.status(404).json({ error: 'User playlist not found' })
-    }
+//     const lastMusicId = musicIds[musicIds.length - 1]
+//     const music = await Music.findOne({ _id: lastMusicId })
+//     if (!music) {
+//         return res.status(404).json({ error: 'Music not found' })
+//     }
+//     const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
+//     if (!user) {
+//         return res.status(404).json({ error: 'User playlist not found' })
+//     }
 
-    const filter = { _id: id, 'myPlaylists._id': pid }
-    const updateDoc = {
-        $push: {
-            'myPlaylists.$[playlist].songs': {
-                $each: musicIds.map((musicId: string) => ({
-                    _id: uuid(),
-                    musicId,
-                })),
-            },
-        },
-        $set: {
-            'myPlaylists.$[playlist].currentCoverUrl': music.coverUrl,
-        },
-    }
-    const options = {
-        arrayFilters: [{ 'playlist._id': pid }],
-    }
+//     const filter = { _id: id, 'myPlaylists._id': pid }
+//     const updateDoc = {
+//         $push: {
+//             'myPlaylists.$[playlist].songs': {
+//                 $each: musicIds.map((musicId: string) => ({
+//                     _id: uuid(),
+//                     musicId,
+//                 })),
+//             },
+//         },
+//         $set: {
+//             'myPlaylists.$[playlist].currentCoverUrl': music.coverUrl,
+//         },
+//     }
+//     const options = {
+//         arrayFilters: [{ 'playlist._id': pid }],
+//     }
 
-    async function updatePlaylistTotalSongs(
-        userId: string,
-        playlistId: string
-    ) {
-        try {
-            const user = await User.findOne({
-                _id: userId,
-                myPlaylists: { $exists: true },
-            })
+//     async function updatePlaylistTotalSongs(
+//         userId: string,
+//         playlistId: string
+//     ) {
+//         try {
+//             const user = await User.findOne({
+//                 _id: userId,
+//                 myPlaylists: { $exists: true },
+//             })
 
-            if (!user) return
+//             if (!user) return
 
-            const playlistIndex = user.myPlaylists.findIndex(
-                (playlist) => playlist._id == playlistId
-            )
+//             const playlistIndex = user.myPlaylists.findIndex(
+//                 (playlist) => playlist._id == playlistId
+//             )
 
-            if (playlistIndex == -1) return
+//             if (playlistIndex == -1) return
 
-            const playlist = user.myPlaylists[playlistIndex]
-            const songs = playlist.songs || []
+//             const playlist = user.myPlaylists[playlistIndex]
+//             const songs = playlist.songs || []
 
-            const totalSongs = songs.length
+//             const totalSongs = songs.length
 
-            await User.updateOne(
-                {
-                    _id: userId,
-                    'myPlaylists._id': playlistId,
-                },
-                {
-                    $set: {
-                        'myPlaylists.$.totalSongs': totalSongs,
-                    },
-                }
-            )
-        } catch (err) {
-            console.error(err)
-        }
-    }
+//             await User.updateOne(
+//                 {
+//                     _id: userId,
+//                     'myPlaylists._id': playlistId,
+//                 },
+//                 {
+//                     $set: {
+//                         'myPlaylists.$.totalSongs': totalSongs,
+//                     },
+//                 }
+//             )
+//         } catch (err) {
+//             console.error(err)
+//         }
+//     }
 
-    try {
-        await User.updateOne(filter, updateDoc, options)
-        user.myPlaylists.forEach(async (playlist) => {
-            await updatePlaylistTotalSongs(user._id, playlist._id)
-        })
-        return res
-            .status(201)
-            .json({ message: 'User playlist songs added successfully!' })
-    } catch (err) {
-        res.status(500).json({ error: err })
-    }
-}
+//     try {
+//         await User.updateOne(filter, updateDoc, options)
+//         user.myPlaylists.forEach(async (playlist) => {
+//             await updatePlaylistTotalSongs(user._id, playlist._id)
+//         })
+//         return res
+//             .status(201)
+//             .json({ message: 'User playlist songs added successfully!' })
+//     } catch (err) {
+//         res.status(500).json({ error: err })
+//     }
+// }
 
-async function deleteUserPlaylistSongs(
-    req: Request<{
-        id?: UpdateWithAggregationPipeline
-        pid?: UpdateWithAggregationPipeline
-        sid?: UpdateWithAggregationPipeline
-    }>,
-    res: Response
-) {
-    const { id, pid, sid } = req.params
+// async function deleteUserPlaylistSongs(
+//     req: Request<{
+//         id?: UpdateWithAggregationPipeline
+//         pid?: UpdateWithAggregationPipeline
+//         sid?: UpdateWithAggregationPipeline
+//     }>,
+//     res: Response
+// ) {
+//     const { id, pid, sid } = req.params
 
-    const filter = { _id: id, 'myPlaylists._id': pid }
-    const updateDoc = {
-        $pull: {
-            'myPlaylists.$[playlist].songs': { _id: sid },
-        },
-    }
-    const options = {
-        arrayFilters: [{ 'playlist._id': pid }],
-    }
+//     const filter = { _id: id, 'myPlaylists._id': pid }
+//     const updateDoc = {
+//         $pull: {
+//             'myPlaylists.$[playlist].songs': { _id: sid },
+//         },
+//     }
+//     const options = {
+//         arrayFilters: [{ 'playlist._id': pid }],
+//     }
 
-    async function updatePlaylistTotalSongs(
-        userId: string,
-        playlistId: string
-    ) {
-        try {
-            const user = await User.findOne({
-                _id: userId,
-                myPlaylists: { $exists: true },
-            })
+//     async function updatePlaylistTotalSongs(
+//         userId: string,
+//         playlistId: string
+//     ) {
+//         try {
+//             const user = await User.findOne({
+//                 _id: userId,
+//                 myPlaylists: { $exists: true },
+//             })
 
-            if (!user) return
+//             if (!user) return
 
-            const playlistIndex = user.myPlaylists.findIndex(
-                (playlist) => playlist._id == playlistId
-            )
+//             const playlistIndex = user.myPlaylists.findIndex(
+//                 (playlist) => playlist._id == playlistId
+//             )
 
-            if (playlistIndex == -1) return
+//             if (playlistIndex == -1) return
 
-            const playlist = user.myPlaylists[playlistIndex]
-            const songs = playlist.songs || []
+//             const playlist = user.myPlaylists[playlistIndex]
+//             const songs = playlist.songs || []
 
-            const totalSongs = songs.length
+//             const totalSongs = songs.length
 
-            await User.updateOne(
-                {
-                    _id: userId,
-                    'myPlaylists._id': playlistId,
-                },
-                {
-                    $set: {
-                        'myPlaylists.$.totalSongs': totalSongs,
-                    },
-                }
-            )
-        } catch (err) {
-            console.error(err)
-        }
-    }
+//             await User.updateOne(
+//                 {
+//                     _id: userId,
+//                     'myPlaylists._id': playlistId,
+//                 },
+//                 {
+//                     $set: {
+//                         'myPlaylists.$.totalSongs': totalSongs,
+//                     },
+//                 }
+//             )
+//         } catch (err) {
+//             console.error(err)
+//         }
+//     }
 
-    try {
-        const result = await User.updateOne(filter, updateDoc, options)
-        if (result.modifiedCount < 1) {
-            return res
-                .status(404)
-                .json({ error: 'User playlist song not found' })
-        }
-        const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
-        if (!user) {
-            return res.status(404).json({ error: 'User playlist not found' })
-        }
-        user.myPlaylists.forEach(async (playlist) => {
-            await updatePlaylistTotalSongs(user._id, playlist._id)
-        })
+//     try {
+//         const result = await User.updateOne(filter, updateDoc, options)
+//         if (result.modifiedCount < 1) {
+//             return res
+//                 .status(404)
+//                 .json({ error: 'User playlist song not found' })
+//         }
+//         const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
+//         if (!user) {
+//             return res.status(404).json({ error: 'User playlist not found' })
+//         }
+//         user.myPlaylists.forEach(async (playlist) => {
+//             await updatePlaylistTotalSongs(user._id, playlist._id)
+//         })
 
-        const userLastPlaylistSongCover = user?.myPlaylists.find(
-            (playlist) => playlist._id === (pid as unknown as string)
-        )?.songs
+//         const userLastPlaylistSongCover = user?.myPlaylists.find(
+//             (playlist) => playlist._id === (pid as unknown as string)
+//         )?.songs
 
-        if (
-            !userLastPlaylistSongCover ||
-            userLastPlaylistSongCover.length < 1
-        ) {
-            await User.updateOne(
-                filter,
-                {
-                    $set: {
-                        'myPlaylists.$[playlist].currentCoverUrl':
-                            'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg',
-                    },
-                },
-                {
-                    arrayFilters: [{ 'playlist._id': pid }],
-                }
-            )
+//         if (
+//             !userLastPlaylistSongCover ||
+//             userLastPlaylistSongCover.length < 1
+//         ) {
+//             await User.updateOne(
+//                 filter,
+//                 {
+//                     $set: {
+//                         'myPlaylists.$[playlist].currentCoverUrl':
+//                             'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg',
+//                     },
+//                 },
+//                 {
+//                     arrayFilters: [{ 'playlist._id': pid }],
+//                 }
+//             )
 
-            return res
-                .status(200)
-                .json({ message: 'User playlist song deleted successfully!' })
-        }
+//             return res
+//                 .status(200)
+//                 .json({ message: 'User playlist song deleted successfully!' })
+//         }
 
-        const music = await Music.findOne({
-            _id: user?.myPlaylists.find(
-                (playlist) => playlist._id === (pid as unknown as string)
-            )?.songs[userLastPlaylistSongCover?.length - 1].musicId,
-        })
+//         const music = await Music.findOne({
+//             _id: user?.myPlaylists.find(
+//                 (playlist) => playlist._id === (pid as unknown as string)
+//             )?.songs[userLastPlaylistSongCover?.length - 1].musicId,
+//         })
 
-        if (!music) {
-            return res.status(404).json({ error: 'Music not found' })
-        }
+//         if (!music) {
+//             return res.status(404).json({ error: 'Music not found' })
+//         }
 
-        await User.updateOne(
-            filter,
-            {
-                $set: {
-                    'myPlaylists.$[playlist].currentCoverUrl': music.coverUrl,
-                },
-            },
-            {
-                arrayFilters: [{ 'playlist._id': pid }],
-            }
-        )
+//         await User.updateOne(
+//             filter,
+//             {
+//                 $set: {
+//                     'myPlaylists.$[playlist].currentCoverUrl': music.coverUrl,
+//                 },
+//             },
+//             {
+//                 arrayFilters: [{ 'playlist._id': pid }],
+//             }
+//         )
 
-        return res
-            .status(200)
-            .json({ message: 'User playlist song deleted successfully!' })
-    } catch (err) {
-        res.status(500).json({ error: err })
-    }
-}
+//         return res
+//             .status(200)
+//             .json({ message: 'User playlist song deleted successfully!' })
+//     } catch (err) {
+//         res.status(500).json({ error: err })
+//     }
+// }
 
 export {
     indexUser,
@@ -867,6 +867,6 @@ export {
     storeUserPlaylist,
     updateUserPlaylist,
     deleteUserPlaylist,
-    storeUserPlaylistSongs,
-    deleteUserPlaylistSongs,
+    // storeUserPlaylistSongs,
+    // deleteUserPlaylistSongs,
 }
