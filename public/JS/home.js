@@ -187,7 +187,7 @@ document.addEventListener("keyup", function(event){
         switch(event.key){
             case " ":
                 if(musicDataShuffled[indexAudio].isVideo){
-                    audioControllerPlayFunction();
+                audioControllerPlayFunction();
                 }
                 break;
             case "ArrowRight":
@@ -651,12 +651,12 @@ function allSongValueSetters(){
             titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
             genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
 
-            containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+            containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 
             return;
         }
 
-        audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
+        audioGlobal.src = musicDataShuffled[indexAudio].videoId;
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
@@ -681,12 +681,12 @@ function allSongValueSetters(){
             genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
             $(displayMusicDurationMobile).hide()
 
-            containerFrameVideoMobile.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].audioUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+            containerFrameVideoMobile.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 
             return;
         }
 
-        audioGlobal.src = musicDataShuffled[indexAudio].audioUrl;
+        audioGlobal.src = musicDataShuffled[indexAudio].videoId;
         audioGlobal.volume = 1
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;

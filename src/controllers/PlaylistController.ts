@@ -236,44 +236,6 @@ async function selectPlaylist(req: Request, res: Response) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    const API_KEY = process.env.API_YOUTUBE_KEY
-
-    if (!API_KEY) {
-        return res.status(500).json({ error: 'API KEY not found' })
-    }
-
-    function getVideoTitle(videoId: string): Promise<string> {
-        return fetch(
-            `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`
-        )
-            .then((response) => response.json())
-            .then((data) => data.items[0].snippet.title)
-            .catch((err) => console.error(err))
-    }
-
-    async function getVideoCover(videoId: string): Promise<string> {
-        const urls = [
-            `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-            `https://img.youtube.com/vi/${videoId}/sddefault.jpg`,
-            `https://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-            `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
-            `https://img.youtube.com/vi/${videoId}/default.jpg`,
-        ]
-
-        for (const url of urls) {
-            try {
-                const response = await fetch(url)
-                if (response.ok) {
-                    return url
-                }
-            } catch (err) {
-                console.error(err)
-            }
-        }
-
-        return `https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg`
-    }
-
     try {
         if (playlist == 'Favorite') {
             const user: IUser | null = await User.findById(id, '-password')
@@ -295,15 +257,6 @@ async function selectPlaylist(req: Request, res: Response) {
         const songs = await Music.find({ gender: playlist })
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
-            .lean()
-            .then(async (songs) => {
-                for (const song of songs) {
-                    song.title = await getVideoTitle(song.videoId)
-                    song.audioUrl = song.videoId
-                    song.coverUrl = await getVideoCover(song.videoId)
-                }
-                return songs
-            })
 
         return res.status(200).json({ songs })
     } catch (err) {

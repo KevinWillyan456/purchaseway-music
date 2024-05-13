@@ -3,6 +3,7 @@ import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
 import { User } from '../models/User'
+import MusicHandlers from '../utils/Musichandlers'
 
 async function indexMusic(req: Request, res: Response) {
     try {
@@ -27,8 +28,17 @@ async function storeMusic(req: Request, res: Response) {
         videoId,
         gender,
         theme,
+        coverUrl: await MusicHandlers.getVideoCover(videoId),
+        title: await MusicHandlers.getVideoTitle(
+            videoId,
+            process.env.API_YOUTUBE_KEY || ''
+        ),
         additionDate: new Date(),
     })
+
+    if (!music.title) {
+        return res.status(400).json({ error: 'Invalid videoId' })
+    }
 
     try {
         const songs = await Music.find({ videoId })
