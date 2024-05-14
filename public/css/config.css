@@ -758,6 +758,22 @@ body::-webkit-scrollbar-thumb {
     animation: animation-btn 1s infinite linear;
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
+.form-song-overflow .form-song .btn-update {
+    transition: 200ms;
+    padding: 16px 50px;
+    border-radius: 10px;
+    background: var(--color-blue-4);
+    display: grid;
+    place-items: center;
+    color: var(--color-white-1);
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+.form-song-overflow .form-song .btn-update:hover {
+    animation: animation-btn 1s infinite linear;
+    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+}
 @keyframes animation-btn {
     0% {
         filter: hue-rotate(0deg);

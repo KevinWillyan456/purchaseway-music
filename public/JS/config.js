@@ -165,14 +165,7 @@ function listPlaylists() {
 
 const formEditSongIn = document.querySelector('#formEditSongIn')
 
-const formSongEditInputNome = document.querySelector('#formSongEditInputNome')
-const formSongEditInputURL = document.querySelector('#formSongEditInputURL')
-const formSongEditInputThumbnail = document.querySelector(
-    '#formSongEditInputThumbnail'
-)
-const formSongEditPreviewThumbnail = document.querySelector(
-    '#formSongEditPreviewThumbnail'
-)
+const formSongEditInputID = document.querySelector('#formSongEditInputID')
 
 function listMusic(musics, playlistInfo) {
     document.querySelector('#containerPlaylistToManageCover').src =
@@ -286,17 +279,12 @@ function listFocusMusic(music) {
 
     document.querySelector('#focusSongCreated').textContent = novaData
 
-    if (music.audioUrl.endsWith('.mp3')) {
-        document.querySelector('#focusSongURL').href = music.audioUrl
-        document.querySelector('#focusSongURL').textContent = music.audioUrl
-    } else {
-        document.querySelector(
-            '#focusSongURL'
-        ).href = `https://youtu.be/${music.audioUrl}`
-        document.querySelector(
-            '#focusSongURL'
-        ).textContent = `https://youtu.be/${music.audioUrl}`
-    }
+    document.querySelector(
+        '#focusSongURL'
+    ).href = `https://youtu.be/${music.videoId}`
+    document.querySelector(
+        '#focusSongURL'
+    ).textContent = `https://youtu.be/${music.videoId}`
 
     document.querySelector(
         '#focusSongGender'
@@ -313,10 +301,7 @@ function listFocusMusic(music) {
         }
     }
 
-    formSongEditInputNome.value = music.title
-    formSongEditInputURL.value = gerarLinkDoVideo(music.audioUrl)
-    formSongEditInputThumbnail.value = music.coverUrl
-    formSongEditPreviewThumbnail.src = music.coverUrl
+    formSongEditInputID.value = gerarLinkDoVideo(music.videoId)
 
     document.querySelector('#songDeleteName').textContent = music.title
 }
@@ -459,11 +444,23 @@ formPlaylist.addEventListener('submit', async function (event) {
 
 const formSong = document.querySelector('#formAddSongIn')
 
-const formSongAddInputID = document.querySelector(
-    '#formSongAddInputID'
-)
+const formSongAddInputID = document.querySelector('#formSongAddInputID')
 
 let timerFormsong = null
+
+function extrairIdDoVideo(url) {
+    return url.length === 11
+        ? url
+        : url.split('https://youtu.be/')[1]
+        ? url.split('https://youtu.be/')[1].slice(0, 11)
+        : url.split('https://youtube.com/watch?v=')[1]
+        ? url.split('https://youtube.com/watch?v=')[1].slice(0, 11)
+        : url.split('https://www.youtube.com/watch?v=')[1]
+        ? url.split('https://www.youtube.com/watch?v=')[1].slice(0, 11)
+        : url.split('https://m.youtube.com/watch?v=')[1]
+        ? url.split('https://m.youtube.com/watch?v=')[1].slice(0, 11)
+        : null
+}
 
 formSong.addEventListener('submit', async function (event) {
     event.preventDefault()
@@ -475,7 +472,7 @@ formSong.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo ID do YouTube.'
         formSongAddInputID.focus()
-        
+
         timerFormsong = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -491,20 +488,6 @@ formSong.addEventListener('submit', async function (event) {
             warning.classList.add('hidden')
         }, 3000)
         return
-    }
-
-    function extrairIdDoVideo(url) {
-        return url.length === 11
-            ? url
-            : url.split('https://youtu.be/')[1]
-            ? url.split('https://youtu.be/')[1].slice(0, 11)
-            : url.split('https://youtube.com/watch?v=')[1]
-            ? url.split('https://youtube.com/watch?v=')[1].slice(0, 11)
-            : url.split('https://www.youtube.com/watch?v=')[1]
-            ? url.split('https://www.youtube.com/watch?v=')[1].slice(0, 11)
-            : url.split('https://m.youtube.com/watch?v=')[1]
-            ? url.split('https://m.youtube.com/watch?v=')[1].slice(0, 11)
-            : null
     }
 
     const dataResponse = {
@@ -551,144 +534,26 @@ formSong.addEventListener('submit', async function (event) {
     }
 })
 
+let timerFormEditSong = null
+
 formEditSongIn.addEventListener('submit', async function (event) {
     event.preventDefault()
 
-    if (
-        changedData.previousThumbnail !==
-        formSongEditInputThumbnail.value.trim()
-    ) {
-        const dataResponse = {
-            coverUrl: formSongEditInputThumbnail.value.trim(),
-        }
+    if (timerFormEditSong) clearTimeout(timerFormEditSong)
 
-        const response = await fetch(
-            `/songs/${changedData.songId}?userId=${userData._id}`,
-            {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataResponse),
-            }
-        )
-
-        const result = await response.json()
-
-        if (result.message != 'Music updated successfully!') {
-            warning.classList.remove('hidden')
-            warning.classList.remove('success')
-            warning.textContent = 'Internal Error'
-            setTimeout(() => {
-                warning.classList.add('hidden')
-            }, 3000)
-            return
-        }
-
-        if (result.message == 'Music updated successfully!') {
-            warning.classList.remove('hidden')
-            warning.classList.add('success')
-            warning.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <p>Música atualizada com sucesso!</p>
-                    <p>Obs: Apenas a thumbnail foi atualizada.</p>
-                    <p>Para atualizar o nome e a URL, faça isso novamente sem alterar a thumbnail.</p>
-                </div>
-            `
-            setTimeout(() => {
-                warning.classList.add('hidden')
-            }, 12000)
-
-            formSongEditInputNome.value = ''
-            formSongEditInputURL.value = ''
-            formSongEditInputThumbnail.value = ''
-            formSongEditPreviewThumbnail.src = ''
-            formEditSong.classList.add('hidden')
-            focusSong.classList.add('hidden')
-            containerPlaylistToManage.classList.add('hidden')
-            document.body.style.overflow = 'auto'
-            await dataFetch()
-            defineTotalNumbers()
-            listPlaylists()
-        }
-        return
-    }
-
-    if (formSongEditInputNome.value.trim() === '') {
+    if (formSongEditInputID.value.trim() === '') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
-        warning.textContent = 'Por favor, preencha o campo Nome.'
-        setTimeout(() => {
+        warning.textContent = 'Por favor, preencha o campo ID do YouTube.'
+        timerFormEditSong = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
         return
-    }
-
-    const NomeExiste = data[1].some(
-        (musica) =>
-            musica.title.toLowerCase() ===
-                formSongEditInputNome.value.trim().toLowerCase() &&
-            musica.gender === changedData.playlistName
-    )
-    if (NomeExiste) {
-        warning.classList.remove('hidden')
-        warning.classList.remove('success')
-        warning.textContent = 'O Nome já existe, escolha outro.'
-        setTimeout(() => {
-            warning.classList.add('hidden')
-        }, 3000)
-        return
-    }
-
-    if (formSongEditInputURL.value.trim() === '') {
-        warning.classList.remove('hidden')
-        warning.classList.remove('success')
-        warning.textContent = 'Por favor, preencha o campo URL.'
-        setTimeout(() => {
-            warning.classList.add('hidden')
-        }, 3000)
-
-        return
-    }
-
-    if (formSongEditInputThumbnail.value.trim() === '') {
-        warning.classList.remove('hidden')
-        warning.classList.remove('success')
-        warning.textContent = 'Por favor, preencha o campo Thumbnail.'
-        setTimeout(() => {
-            warning.classList.add('hidden')
-        }, 3000)
-
-        return
-    }
-
-    let isVideo = true
-
-    function extrairIdDoVideo(url) {
-        if (url.endsWith('.mp3')) {
-            isVideo = false
-            return url
-        } else {
-            const regex =
-                /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S*?(\?si=\S+))?/
-
-            const match = url.match(regex)
-
-            if (match && match[1]) {
-                return match[1]
-            } else {
-                return url
-            }
-        }
     }
 
     const dataResponse = {
-        title: formSongEditInputNome.value.trim(),
-        audioUrl: extrairIdDoVideo(formSongEditInputURL.value.trim()),
-        coverUrl: formSongEditInputThumbnail.value.trim(),
-        gender: changedData.playlistName,
-        isVideo,
+        videoId: extrairIdDoVideo(formSongEditInputID.value.trim()),
     }
 
     const response = await fetch(
@@ -708,7 +573,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
-        setTimeout(() => {
+        timerFormEditSong = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -718,14 +583,11 @@ formEditSongIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Música atualizada com sucesso!'
-        setTimeout(() => {
+        timerFormEditSong = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
-        formSongEditInputNome.value = ''
-        formSongEditInputURL.value = ''
-        formSongEditInputThumbnail.value = ''
-        formSongEditPreviewThumbnail.src = ''
+        formSongEditInputID.value = ''
         formEditSong.classList.add('hidden')
         focusSong.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
@@ -1015,6 +877,7 @@ async function inicia() {
     })
     btnEditSong.addEventListener('click', () => {
         formEditSong.classList.remove('hidden')
+        formSongEditInputID.focus()
     })
     btnDeletePlaylist.addEventListener('click', () => {
         formDeletePlaylist.classList.remove('hidden')

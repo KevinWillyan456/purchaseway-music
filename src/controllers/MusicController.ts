@@ -3,7 +3,7 @@ import { UpdateWithAggregationPipeline } from 'mongoose'
 import { v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
 import { User } from '../models/User'
-import MusicHandlers from '../utils/Musichandlers'
+import MusicHandlers from '../utils/MusicHandlers'
 
 async function indexMusic(req: Request, res: Response) {
     try {
@@ -58,44 +58,30 @@ async function storeMusic(req: Request, res: Response) {
     }
 }
 
-async function updateMusic(
-    req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
-) {
-    const { audioUrl, coverUrl, title, gender, isVideo, theme } = req.body
+async function updateMusic(req: Request<{ id: string }>, res: Response) {
+    const { videoId } = req.body
     const { id } = req.params
 
-    const currentCoverUrl = coverUrl
-        ? coverUrl
-        : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
-
-    if (
-        !audioUrl &&
-        !currentCoverUrl &&
-        !title &&
-        !gender &&
-        !isVideo &&
-        !theme
-    ) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+    if (!videoId) {
+        return res.status(400).json({ error: 'VideoId is missing' })
     }
 
     const filter = { _id: id }
     const updateDoc = {
         $set: {
-            audioUrl,
-            coverUrl: currentCoverUrl,
-            title,
-            gender,
-            isVideo,
-            theme,
+            videoId,
+            coverUrl: await MusicHandlers.getVideoCover(videoId),
+            title: await MusicHandlers.getVideoTitle(
+                videoId,
+                process.env.API_YOUTUBE_KEY || ''
+            ),
         },
     }
 
     try {
-        const songs = await Music.find({ title })
+        const songs = await Music.find({ videoId })
         const songAlreadyExists = songs.find(
-            (song) => song.videoId === title && song.gender === gender
+            (song) => song.videoId === videoId && song._id != id
         )
 
         if (songAlreadyExists) {
