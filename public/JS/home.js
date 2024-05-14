@@ -301,6 +301,7 @@ document.querySelector('.form-delete-account-mobile').addEventListener("submit",
 
 profilePictureEdit.addEventListener("click", () => {
   layerProfilePicture.classList.remove("hidden")
+  profilePictureInput.focus()
   canKeyboardEvents = false;
   canKeyboardEventsProfile = false;
 })
@@ -313,6 +314,7 @@ layerProfilePicture.addEventListener('click', (e) => {
 })
 profilePictureEditMobile.addEventListener("click", () => {
     layerProfilePictureMobile.classList.remove("hidden")
+    profilePictureInputMobile.focus()
 })
 layerProfilePictureMobile.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'layer-profile-picture-mobile') {

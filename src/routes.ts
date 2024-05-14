@@ -11,14 +11,14 @@ import {
     allSongAndPlaylistData,
     deleteUser,
     deleteUserPlaylist,
-    // deleteUserPlaylistSongs,
+    deleteUserPlaylistSongs,
     indexUser,
     indexUserById,
     indexUserPlaylist,
     loginUser,
     storeUser,
     storeUserPlaylist,
-    // storeUserPlaylistSongs,
+    storeUserPlaylistSongs,
     updateUser,
     updateUserFavoriteSongs,
     updateUserMusicHistoric,
@@ -63,12 +63,12 @@ routes.get('/users-playlist/:id', getUser, indexUserPlaylist)
 routes.post('/users-playlist/:id', getUser, storeUserPlaylist)
 routes.put('/users-playlist/:id/:pid', getUser, updateUserPlaylist)
 routes.delete('/users-playlist/:id/:pid', getUser, deleteUserPlaylist)
-// routes.post('/users-playlist-song/:id/:pid', getUser, storeUserPlaylistSongs)
-// routes.delete(
-//     '/users-playlist-song/:id/:pid/:sid',
-//     getUser,
-//     deleteUserPlaylistSongs
-// )
+routes.post('/users-playlist-song/:id/:pid', getUser, storeUserPlaylistSongs)
+routes.delete(
+    '/users-playlist-song/:id/:pid/:sid',
+    getUser,
+    deleteUserPlaylistSongs
+)
 
 routes.get('/playlists/:id', getUser, indexPlaylist)
 routes.get('/playlists-select/:id', getUser, selectPlaylist)
