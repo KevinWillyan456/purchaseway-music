@@ -1,4 +1,3 @@
-const audioGlobal = document.querySelector('#audio-global');
 let indexAudio = 0;
 let indexAudioId = "";
 let indexAudioGender = "";
@@ -12,6 +11,12 @@ let initialDevice = "";
 let emptyPlaylist = false;
 let titlePlaylist = "";
 
+let player;
+let playerReady = false;
+
+let playerMobile;
+let playerReadyMobile = false;
+
 const audioControllerPrev = document.querySelector('#audio-prev');
 const audioControllerPlay = document.querySelector('#audio-play');
 const audioControllerNext = document.querySelector('#audio-next');
@@ -19,7 +24,6 @@ const audioControllerNext = document.querySelector('#audio-next');
 const coverCurrentMusic = document.querySelector('.cover-current-music img');
 const titleCurrentMusic = document.querySelector('.title-info-current-music');
 const genderCurrentMusic = document.querySelector('.gender-info-current-music');
-const currentCover = document.querySelector('.current-cover img');
 const backgroundCover = document.querySelector('.main-display .background-cover');
 
 const musicAnimationStatus = document.querySelector('.music-animation-status');
@@ -86,8 +90,6 @@ const controlsMobile = document.querySelector('.main-controls-mobile');
 const displayMobile = document.querySelector('.main-display-mobile');
 const backgroundCoverMobile = document.querySelector('.main-display-mobile .background-cover-mobile');
 const backDisplayMobile = document.querySelector(".main-display-mobile .display-back")
-const currentCoverMobile = document.querySelector('.main-display-mobile .current-cover-mobile img');
-const containerFrameVideoMobile = document.querySelector(".container-frame-mobile");
 
 const audioControllerPrevMobile = document.querySelector('#audio-prev-mobile');
 const audioControllerPlayMobile = document.querySelector('#audio-play-mobile');
@@ -186,9 +188,7 @@ document.addEventListener("keyup", function(event){
     if(canKeyboardEvents){
         switch(event.key){
             case " ":
-                if(musicDataShuffled[indexAudio].isVideo){
                 audioControllerPlayFunction();
-                }
                 break;
             case "ArrowRight":
                 audioControllerNextFunction();
@@ -560,32 +560,31 @@ function inicia(){
     $(".title-playlist-mobile").html(userData.lastAccessedPlaylistName);
     setMusicPlayTag();
     refreshFavorite();
-    audioControllerPlayAudioAndVideo();
     initialDeviceDefinition();
 }
 
 function audioControllerPlayFunction(){
     if (screenWidth >= 1360) {
         if(audioControllerPlayToggle){
-            audioGlobal.play();
+            playVideo()
             audioControllerPlayToggle = false;
             audioControllerPlay.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
         }
         else {
-            audioGlobal.pause();
+            pauseVideo()
             audioControllerPlayToggle = true;
             audioControllerPlay.name = 'play-circle';
             musicAnimationStatus.classList.remove('run');
         }
     } else {
         if(audioControllerPlayToggle){
-            audioGlobal.play();
+            playVideo()
             audioControllerPlayToggle = false;
             audioControllerPlayMobile.name = 'pause-circle';
         }
         else {
-            audioGlobal.pause();
+            pauseVideo()
             audioControllerPlayToggle = true;
             audioControllerPlayMobile.name = 'play-circle';
         }
@@ -593,32 +592,14 @@ function audioControllerPlayFunction(){
 }
 function audioControllerPlayFunctionNoPause(){
     if (screenWidth >= 1360) {
-        if(!musicDataShuffled[indexAudio].isVideo){
-            audioGlobal.pause()
-            document.querySelector(".container-side-2").style.display = "none"
-            musicAnimationStatus.classList.remove('run');
-
-            return;
-        }
-
-        audioGlobal.play();
+        playVideo()
         audioControllerPlayToggle = false;
         audioControllerPlay.name = 'pause-circle';
         musicAnimationStatus.classList.add('run');
-
-        document.querySelector(".container-side-2").style.display = "flex"
     } else {
-        if(!musicDataShuffled[indexAudio].isVideo){
-            audioGlobal.pause()
-            document.querySelector(".main-display-mobile").classList.add("video-mode")
-
-            return;
-        }
-
-        audioGlobal.play();
+        playVideo()
         audioControllerPlayToggle = false;
         audioControllerPlayMobile.name = 'pause-circle';
-        document.querySelector(".main-display-mobile").classList.remove("video-mode")
     }
 }
 
@@ -643,65 +624,25 @@ function allSongValueSetters(){
         return
     }
     if (screenWidth >= 1360) {
-        if(!musicDataShuffled[indexAudio].isVideo){
-            indexAudioId = musicDataShuffled[indexAudio]._id;
-            indexAudioGender = musicDataShuffled[indexAudio].gender;
-            coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
-            containerFrameVideo.style.display = "block"
-            currentCover.style.display = "none"
-            backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
-            titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
-            genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
-
-            containerFrameVideo.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
-
-            return;
-        }
-
-        audioGlobal.src = musicDataShuffled[indexAudio].videoId;
+        playerReady = false;
+        onYouTubeIframeAPIReady(musicDataShuffled[indexAudio].videoId)
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
-        containerFrameVideo.style.display = "none"
-        currentCover.style.display = "block"
-        currentCover.src = musicDataShuffled[indexAudio].coverUrl;
         backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
         titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
-        containerFrameVideo.innerHTML = "";
     } else {
-        if(!musicDataShuffled[indexAudio].isVideo){
-            indexAudioId = musicDataShuffled[indexAudio]._id;
-            indexAudioGender = musicDataShuffled[indexAudio].gender;
-            coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
-            containerFrameVideoMobile.style.display = "block"
-            currentCoverMobile.style.display = "none"
-            backgroundCoverMobile.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
-            titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title;
-            genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
-            titleCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].title;
-            genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
-            $(displayMusicDurationMobile).hide()
-
-            containerFrameVideoMobile.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${musicDataShuffled[indexAudio].videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
-
-            return;
-        }
-
-        audioGlobal.src = musicDataShuffled[indexAudio].videoId;
-        audioGlobal.volume = 1
+        playerReadyMobile = false;
+        onYouTubeIframeAPIReady(musicDataShuffled[indexAudio].videoId)
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
-        containerFrameVideoMobile.style.display = "none"
-        currentCoverMobile.style.display = "block"
-        currentCoverMobile.src = musicDataShuffled[indexAudio].coverUrl;
         backgroundCoverMobile.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
         titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
         titleCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
-        containerFrameVideoMobile.innerHTML = "";
         $(displayMusicDurationMobile).show()
     }
 }
@@ -1935,70 +1876,68 @@ function themeChanger(selectedTheme){
 let canMoveTheSliderDuration = true;
 
 function musicStateControllers(){
-    audioGlobal.addEventListener('timeupdate', () => {
+    // audioGlobal.addEventListener('timeupdate', () => {
 
-        if (screenWidth >= 1360) {
-            if(canMoveTheSliderDuration){
-                sliderMusicDuration.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
-                if(musicDataShuffled[indexAudio].theme == 'Original'){
-                    sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
-                    sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-                }
-                if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-                    sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
-                    sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-                }
+    //     if (screenWidth >= 1360) {
+    //         if(canMoveTheSliderDuration){
+    //             sliderMusicDuration.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
+    //             if(musicDataShuffled[indexAudio].theme == 'Original'){
+    //                 sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
+    //                 sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+    //             }
+    //             if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
+    //                 sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
+    //                 sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+    //             }
 
-                let minCurrent = Math.floor(audioGlobal.currentTime / 60);
-                let segCurrent = Math.floor(audioGlobal.currentTime % 60);
+    //             let minCurrent = Math.floor(audioGlobal.currentTime / 60);
+    //             let segCurrent = Math.floor(audioGlobal.currentTime % 60);
 
-                if(segCurrent < 10){
-                    segCurrent = `0${segCurrent}`
-                }
+    //             if(segCurrent < 10){
+    //                 segCurrent = `0${segCurrent}`
+    //             }
 
-                currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
-            }
-        } else {
-            if(canMoveTheSliderDuration){
-                sliderMusicDurationMobile.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
-                if(musicDataShuffled[indexAudio].theme == 'Original'){
-                    sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-                    displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-                    sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-                }
-                if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-                    sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
-                    displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
-                    sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-                }
+    //             currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
+    //         }
+    //     } else {
+    //         if(canMoveTheSliderDuration){
+    //             sliderMusicDurationMobile.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
+    //             if(musicDataShuffled[indexAudio].theme == 'Original'){
+    //                 sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
+    //                 displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
+    //                 sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
+    //             }
+    //             if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
+    //                 sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
+    //                 displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
+    //                 sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
+    //             }
 
-                let minCurrent = Math.floor(audioGlobal.currentTime / 60);
-                let segCurrent = Math.floor(audioGlobal.currentTime % 60);
+    //             let minCurrent = Math.floor(audioGlobal.currentTime / 60);
+    //             let segCurrent = Math.floor(audioGlobal.currentTime % 60);
 
-                if(segCurrent < 10){
-                    segCurrent = `0${segCurrent}`
-                }
+    //             if(segCurrent < 10){
+    //                 segCurrent = `0${segCurrent}`
+    //             }
 
-                currentDurationMobile.innerHTML = `${minCurrent}:${segCurrent}`
-            }
-        }
-    })
-    audioGlobal.oncanplaythrough = () => {
-        let minTotal = Math.floor(audioGlobal.duration / 60);
-        let segTotal = Math.floor(audioGlobal.duration % 60);
+    //             currentDurationMobile.innerHTML = `${minCurrent}:${segCurrent}`
+    //         }
+    //     }
+    // })
+    // audioGlobal.oncanplaythrough = () => {
+    //     let minTotal = Math.floor(audioGlobal.duration / 60);
+    //     let segTotal = Math.floor(audioGlobal.duration % 60);
         
-        if(segTotal < 10){
-            segTotal = `0${segTotal}`
-        }
+    //     if(segTotal < 10){
+    //         segTotal = `0${segTotal}`
+    //     }
 
-        if (screenWidth >= 1360) {
-            totalDuration.innerHTML = `${minTotal}:${segTotal}`
-        } else {
-            totalDurationMobile.innerHTML = `${minTotal}:${segTotal}`
-        }
-    };
-
-    audioGlobal.addEventListener("ended", audioControllerNextFunction);
+    //     if (screenWidth >= 1360) {
+    //         totalDuration.innerHTML = `${minTotal}:${segTotal}`
+    //     } else {
+    //         totalDurationMobile.innerHTML = `${minTotal}:${segTotal}`
+    //     }
+    // };
 
     repeatIcon.addEventListener("click", repeatToggle);
     shuffleIcon.addEventListener("click", shuffleToggle);
@@ -2017,16 +1956,14 @@ function durationSliderEventGenerator(){
             canMoveTheSliderDuration = false
         })
         sliderMusicDuration.addEventListener("mouseup", () => {
-            audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
-            audioGlobal.play();
+            // audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
             audioControllerPlayToggle = false;
             audioControllerPlay.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
             canMoveTheSliderDuration = true
         })
         sliderMusicDuration.addEventListener("touchend", () => {
-            audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
-            audioGlobal.play();
+            // audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
             audioControllerPlayToggle = false;
             audioControllerPlay.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
@@ -2045,7 +1982,7 @@ function durationSliderEventGenerator(){
             }
             sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
 
-            let interactionWithTheSlider = ((sliderMusicDuration.value) / 100) * (audioGlobal.duration)
+            // let interactionWithTheSlider = ((sliderMusicDuration.value) / 100) * (audioGlobal.duration)
 
             let minCurrent = Math.floor(interactionWithTheSlider / 60);
             let segCurrent = Math.floor(interactionWithTheSlider % 60);
@@ -2063,16 +2000,14 @@ function durationSliderEventGenerator(){
             canMoveTheSliderDuration = false
         })
         sliderMusicDurationMobile.addEventListener("mouseup", () => {
-            audioGlobal.currentTime = ((sliderMusicDurationMobile.value) / 100) * audioGlobal.duration;
-            audioGlobal.play();
+            // audioGlobal.currentTime = ((sliderMusicDurationMobile.value) / 100) * audioGlobal.duration;
             audioControllerPlayToggle = false;
             audioControllerPlayMobile.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
             canMoveTheSliderDuration = true
         })
         sliderMusicDurationMobile.addEventListener("touchend", () => {
-            audioGlobal.currentTime = ((sliderMusicDurationMobile.value) / 100) * audioGlobal.duration;
-            audioGlobal.play();
+            // audioGlobal.currentTime = ((sliderMusicDurationMobile.value) / 100) * audioGlobal.duration;
             audioControllerPlayToggle = false;
             audioControllerPlayMobile.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
@@ -2091,7 +2026,7 @@ function durationSliderEventGenerator(){
             }
             sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
     
-            let interactionWithTheSlider = ((sliderMusicDurationMobile.value) / 100) * (audioGlobal.duration)
+            // let interactionWithTheSlider = ((sliderMusicDurationMobile.value) / 100) * (audioGlobal.duration)
     
             let minCurrent = Math.floor(interactionWithTheSlider / 60);
             let segCurrent = Math.floor(interactionWithTheSlider % 60);
@@ -2130,10 +2065,10 @@ function volumeSliderEventGenerator(){
         }
         sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
 
-        audioGlobal.volume = sliderMusicVolume.value / 100;
+        // audioGlobal.volume = sliderMusicVolume.value / 100;
     }
 
-    audioGlobal.volume = sliderMusicVolume.value / 100;
+    // audioGlobal.volume = sliderMusicVolume.value / 100;
 }
 
 function initDurationSlider(){
@@ -2177,9 +2112,7 @@ function initVolumeSlider(){
 let repeatToggleControl = true;
 function repeatToggle(){
     if(repeatToggleControl){
-        audioGlobal.loop = true;
         repeatToggleControl = false
-
         repeatIcon.classList.add('active');
         repeatIconMobile.classList.add('active');
 
@@ -2188,9 +2121,7 @@ function repeatToggle(){
         }
     }
     else {
-        audioGlobal.loop = false;
         repeatToggleControl = true
-
         repeatIcon.classList.remove('active');
         repeatIconMobile.classList.remove('active');
     }
@@ -2710,9 +2641,9 @@ function toggleDisplayMobile() {
         displayMobile.classList.remove("exit");
         displayMobile.classList.add("show");
 
-        if (musicDataShuffled[indexAudio].isVideo) {
+        // if (musicDataShuffled[indexAudio].isVideo) {
             audioControllerPlayFunctionNoPause()
-        }
+        // }
         $('.main-search-mobile').hide(200)
         $('.main-controls-mobile').removeClass("fixed")
     } else {
@@ -2766,23 +2697,6 @@ function toggleLogout() {
     }
 }
 
-function audioControllerPlayAudioAndVideo() {
-    if (screenWidth >= 1360) {
-        if(!musicDataShuffled[indexAudio].isVideo){
-            document.querySelector(".container-side-2").style.display = "none"
-            musicAnimationStatus.classList.remove('run');
-        } else {
-            document.querySelector(".container-side-2").style.display = "flex"
-        }
-    } else {
-        if(!musicDataShuffled[indexAudio].isVideo){
-            document.querySelector(".main-display-mobile").classList.add("video-mode")
-        } else {
-            document.querySelector(".main-display-mobile").classList.remove("video-mode")
-        }
-    }
-}
-
 function initialDeviceDefinition() {
     if (screenWidth >= 1360) {
         initialDevice = "Desktop"
@@ -2815,13 +2729,15 @@ function changeMobileOrDesktop() {
         containerItemsSearch.innerHTML = "";
         containerItemsFavorite.innerHTML = "";
         containerItemsHistoric.innerHTML = "";
-        containerFrameVideoMobile.innerHTML = "";
         containerPlaylistSelect.innerHTML = "";
         $(".title-playlist").html(titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName);
         $('.search-bar input').val("");
         musicFilteringFunction();
-        audioGlobal.volume = 0.6
         sliderMusicVolume.value = 60;
+
+        if (playerMobile) {
+            playerMobile.destroy();
+        }
     } else {
         containerPlaylistMobile.innerHTML = "";
         containerItemsSearchMobile.innerHTML = "";
@@ -2832,9 +2748,11 @@ function changeMobileOrDesktop() {
         $(".title-playlist-mobile").html(titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName);
         $('.main-search-mobile .search-bar-mobile input').val("");
         musicFilteringFunction();
+    
+        if (player) {
+            player.destroy();
+        }
     }
-
-    audioGlobal.pause()
 
     if (screenWidth >= 1360) {
         audioControllerPlay.name = 'play-circle';
@@ -2868,7 +2786,6 @@ function changeMobileOrDesktop() {
     indexAudioGender = musicDataShuffled[indexAudio].gender;
     refreshFavorite();
     setMusicPlayTag();
-    audioControllerPlayAudioAndVideo();
 }
 
 function setManagementSystem(){
@@ -3575,7 +3492,7 @@ function selectUserMyPlaylist() {
     }
 
     indexAudio = 0;
-    audioGlobal.pause()
+
     if (screenWidth >= 1360) {
         audioControllerPlay.name = 'play-circle';
         musicAnimationStatus.classList.remove('run');
@@ -3609,7 +3526,6 @@ function selectUserMyPlaylist() {
     setMusicPlayTag();
     refreshFavorite();
     manageHistoric();
-    audioControllerPlayAudioAndVideo();
     refreshUserWithNewPlaylist()
     setManagementSystem()
 }
@@ -3670,7 +3586,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     }
 
     indexAudio = 0;
-    audioGlobal.pause()
+
     if (screenWidth >= 1360) {
         audioControllerPlay.name = 'play-circle';
         musicAnimationStatus.classList.remove('run');
@@ -3705,9 +3621,119 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     setMusicPlayTag();
     refreshFavorite();
     manageHistoric();
-    audioControllerPlayAudioAndVideo();
     refreshUserWithNewPlaylist()
     setManagementSystem()
+}
+
+function onYouTubeIframeAPIReady(videoId) {
+    if (screenWidth >= 1360) {
+        if (player) {
+            player.destroy();
+        }
+
+        player = new YT.Player('containerFrame', {
+            height: '360',
+            width: '640',
+            videoId: videoId,
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        })
+    } else {
+        if (playerMobile) {
+            playerMobile.destroy();
+        }
+
+        playerMobile = new YT.Player('containerFrameMobile', {
+            height: '360',
+            width: '640',
+            videoId: videoId,
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        })
+    }
+}
+
+function onPlayerReady(event) {
+    if (screenWidth >= 1360) {
+        playerReady = true;
+    } else {
+        playerReadyMobile = true;
+    }
+}
+
+function playVideo() {
+    if (screenWidth >= 1360) {
+        if (playerReady) {
+            setTimeout(() => {
+                if (playerReady && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                    player.playVideo();
+                }
+            }, 200);
+        } 
+        else {
+            var checkPlayerInterval = setInterval(function() {
+                if (playerReady) {
+                    clearInterval(checkPlayerInterval);
+                    playVideo();
+                }
+            }, 100);
+        }
+    } else {
+        if (playerReadyMobile) {
+            setTimeout(() => {
+                if (playerReadyMobile && playerMobile.getPlayerState() !== YT.PlayerState.PLAYING) {
+                    playerMobile.playVideo();
+                }
+            }, 200);
+        } 
+        else {
+            var checkPlayerInterval = setInterval(function() {
+                if (playerReadyMobile) {
+                    clearInterval(checkPlayerInterval);
+                    playVideo();
+                }
+            }, 100);
+        }
+    }
+}
+
+function pauseVideo() {
+    if (screenWidth >= 1360) {
+        setTimeout(() => {
+            if (playerReady && player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+            }
+        }, 200);
+    } else {
+        setTimeout(() => {
+            if (playerReadyMobile && playerMobile.getPlayerState() === YT.PlayerState.PLAYING) {
+                playerMobile.pauseVideo();
+            }
+        }, 200);
+    }
+}
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+        if (screenWidth >= 1360) {
+            if (!repeatToggleControl) {
+                musicAnimationStatus.classList.remove('run');
+                audioControllerPlayFunctionNoPause()
+            } else {
+                audioControllerNextFunction()
+            }
+        } else {
+            if (!repeatToggleControl) {
+                audioControllerPlayFunctionNoPause()
+            } else {
+                audioControllerNextFunction()
+            }
+        }
+    }
 }
 
 async function musicListingService() {

@@ -17,8 +17,6 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
-    
-    <audio id="audio-global"></audio>
 
     <main class="super-main">
 
@@ -67,10 +65,7 @@
 
             
             <div class="current-cover">
-                <img src="">
-
-                <div class="container-frame">
-                </div>
+                <div class="container-frame" id="containerFrame"></div>
             </div>
 
             <div class="container-settings">
@@ -473,12 +468,8 @@
             </div>
 
             <div class="current-cover-mobile">
-                <img src="">
-
-                <div class="container-frame-mobile">
-                </div>
+                <div class="container-frame-mobile" id="containerFrameMobile"></div>
             </div>
-
 
             <div class="info-current-music-mobile">
                 <div class="title-info-current-music-mobile">
@@ -754,6 +745,7 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="/JS/home.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="/JS/home.js" defer></script>
 </body>
 </html>

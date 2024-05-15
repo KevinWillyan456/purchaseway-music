@@ -528,9 +528,6 @@
 
     display: flex;
 }
-.main-display-mobile.video-mode .container-controls-mobile {
-    display: none;
-}
 .main-display-mobile .container-controls-mobile ion-icon {
     width: 50px;
     height: 50px;
@@ -546,10 +543,6 @@
     
     display: flex;
 }
-.main-display-mobile.video-mode .repeat-icon-mobile {
-    display: none;
-}
-
 .main-display-mobile .repeat-icon-mobile ion-icon {
     transition: 200ms;
     width: 40px;
@@ -569,9 +562,6 @@
 
     display: flex;
 }
-.main-display-mobile.video-mode .shuffle-icon-mobile {
-    display: none;
-}
 .main-display-mobile .shuffle-icon-mobile ion-icon {
     transition: 200ms;
     width: 40px;
@@ -590,9 +580,6 @@
     color: var(--color-white-1);
     font-size: 12px;
 }
-.main-display-mobile.video-mode .current-duration-mobile {
-    display: none;
-}
 .main-display-mobile .total-duration-mobile {
     position: absolute;
     bottom: 126px;
@@ -600,18 +587,12 @@
     color: var(--color-white-1);
     font-size: 12px;
 }
-.main-display-mobile.video-mode .total-duration-mobile {
-    display: none;
-}
 .main-display-mobile .slider-music-duration-mobile {
     position: absolute;
     bottom: 144px;
     left: calc(50% - 160px);
     width: 320px;
     padding-right: 7px;
-}
-.main-display-mobile.video-mode .slider-music-duration-mobile {
-    display: none;
 }
 
 .main-display-mobile .slider-music-duration-mobile .slider-music-duration-wrapper-mobile {
