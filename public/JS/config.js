@@ -552,6 +552,17 @@ formEditSongIn.addEventListener('submit', async function (event) {
         return
     }
 
+    if (extrairIdDoVideo(formSongEditInputID.value.trim()) === null) {
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = 'ID do YouTube inválido.'
+        formSongEditInputID.focus()
+        timerFormsong = setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
+    }
+
     const dataResponse = {
         videoId: extrairIdDoVideo(formSongEditInputID.value.trim()),
     }
@@ -572,7 +583,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
     if (result.message != 'Music updated successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
-        warning.textContent = 'Internal Error'
+        warning.textContent = 'ID do YouTube inválido.'
         timerFormEditSong = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)

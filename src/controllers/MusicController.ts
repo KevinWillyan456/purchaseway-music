@@ -78,6 +78,10 @@ async function updateMusic(req: Request<{ id: string }>, res: Response) {
         },
     }
 
+    if (!updateDoc.$set.title) {
+        return res.status(400).json({ error: 'Invalid videoId' })
+    }
+
     try {
         const songs = await Music.find({ videoId })
         const songAlreadyExists = songs.find(
