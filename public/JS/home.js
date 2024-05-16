@@ -643,7 +643,6 @@ function allSongValueSetters(){
         genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
         titleCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
-        $(displayMusicDurationMobile).show()
     }
 }
 
@@ -1876,69 +1875,6 @@ function themeChanger(selectedTheme){
 let canMoveTheSliderDuration = true;
 
 function musicStateControllers(){
-    // audioGlobal.addEventListener('timeupdate', () => {
-
-    //     if (screenWidth >= 1360) {
-    //         if(canMoveTheSliderDuration){
-    //             sliderMusicDuration.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
-    //             if(musicDataShuffled[indexAudio].theme == 'Original'){
-    //                 sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
-    //                 sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-    //             }
-    //             if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-    //                 sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
-    //                 sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-    //             }
-
-    //             let minCurrent = Math.floor(audioGlobal.currentTime / 60);
-    //             let segCurrent = Math.floor(audioGlobal.currentTime % 60);
-
-    //             if(segCurrent < 10){
-    //                 segCurrent = `0${segCurrent}`
-    //             }
-
-    //             currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
-    //         }
-    //     } else {
-    //         if(canMoveTheSliderDuration){
-    //             sliderMusicDurationMobile.value = parseInt(audioGlobal.currentTime / audioGlobal.duration * 100);
-    //             if(musicDataShuffled[indexAudio].theme == 'Original'){
-    //                 sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-    //                 displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-    //                 sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-    //             }
-    //             if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-    //                 sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
-    //                 displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
-    //                 sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-    //             }
-
-    //             let minCurrent = Math.floor(audioGlobal.currentTime / 60);
-    //             let segCurrent = Math.floor(audioGlobal.currentTime % 60);
-
-    //             if(segCurrent < 10){
-    //                 segCurrent = `0${segCurrent}`
-    //             }
-
-    //             currentDurationMobile.innerHTML = `${minCurrent}:${segCurrent}`
-    //         }
-    //     }
-    // })
-    // audioGlobal.oncanplaythrough = () => {
-    //     let minTotal = Math.floor(audioGlobal.duration / 60);
-    //     let segTotal = Math.floor(audioGlobal.duration % 60);
-        
-    //     if(segTotal < 10){
-    //         segTotal = `0${segTotal}`
-    //     }
-
-    //     if (screenWidth >= 1360) {
-    //         totalDuration.innerHTML = `${minTotal}:${segTotal}`
-    //     } else {
-    //         totalDurationMobile.innerHTML = `${minTotal}:${segTotal}`
-    //     }
-    // };
-
     repeatIcon.addEventListener("click", repeatToggle);
     shuffleIcon.addEventListener("click", shuffleToggle);
 
@@ -1956,14 +1892,18 @@ function durationSliderEventGenerator(){
             canMoveTheSliderDuration = false
         })
         sliderMusicDuration.addEventListener("mouseup", () => {
-            // audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
+            changeVideoCurrentTime(
+                (sliderMusicDuration.value / 100) * getVideoDuration()
+            )
             audioControllerPlayToggle = false;
             audioControllerPlay.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
             canMoveTheSliderDuration = true
         })
         sliderMusicDuration.addEventListener("touchend", () => {
-            // audioGlobal.currentTime = ((sliderMusicDuration.value) / 100) * audioGlobal.duration;
+            changeVideoCurrentTime(
+                (sliderMusicDuration.value / 100) * getVideoDuration()
+            )
             audioControllerPlayToggle = false;
             audioControllerPlay.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
@@ -1972,17 +1912,10 @@ function durationSliderEventGenerator(){
 
 
         sliderMusicDuration.oninput = () => {
-            if(musicDataShuffled[indexAudio].theme == 'Original'){
-                sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
-                sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-            }
-            if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-                sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
-                sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-            }
+            sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
             sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
 
-            // let interactionWithTheSlider = ((sliderMusicDuration.value) / 100) * (audioGlobal.duration)
+            let interactionWithTheSlider = (sliderMusicDuration.value / 100) * getVideoDuration()
 
             let minCurrent = Math.floor(interactionWithTheSlider / 60);
             let segCurrent = Math.floor(interactionWithTheSlider % 60);
@@ -1990,6 +1923,12 @@ function durationSliderEventGenerator(){
             if(segCurrent < 10){
                 segCurrent = `0${segCurrent}`
             }
+
+            if (isNaN(minCurrent) || isNaN(segCurrent)) {
+                minCurrent = 0;
+                segCurrent = '00';
+            }
+
             currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
         }
     } else {
@@ -2000,14 +1939,18 @@ function durationSliderEventGenerator(){
             canMoveTheSliderDuration = false
         })
         sliderMusicDurationMobile.addEventListener("mouseup", () => {
-            // audioGlobal.currentTime = ((sliderMusicDurationMobile.value) / 100) * audioGlobal.duration;
+            changeVideoCurrentTime(
+                (sliderMusicDurationMobile.value / 100) * getVideoDuration()
+            )
             audioControllerPlayToggle = false;
             audioControllerPlayMobile.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
             canMoveTheSliderDuration = true
         })
         sliderMusicDurationMobile.addEventListener("touchend", () => {
-            // audioGlobal.currentTime = ((sliderMusicDurationMobile.value) / 100) * audioGlobal.duration;
+            changeVideoCurrentTime(
+                (sliderMusicDurationMobile.value / 100) * getVideoDuration()
+            )
             audioControllerPlayToggle = false;
             audioControllerPlayMobile.name = 'pause-circle';
             musicAnimationStatus.classList.add('run');
@@ -2016,24 +1959,23 @@ function durationSliderEventGenerator(){
     
     
         sliderMusicDurationMobile.oninput = () => {
-            if(musicDataShuffled[indexAudio].theme == 'Original'){
-                sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-                sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-            }
-            if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-                sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
-                sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-            }
-            sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-    
-            // let interactionWithTheSlider = ((sliderMusicDurationMobile.value) / 100) * (audioGlobal.duration)
-    
+            sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
+            sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
+
+            let interactionWithTheSlider = (sliderMusicDurationMobile.value / 100) * getVideoDuration()
+
             let minCurrent = Math.floor(interactionWithTheSlider / 60);
             let segCurrent = Math.floor(interactionWithTheSlider % 60);
-    
+
             if(segCurrent < 10){
                 segCurrent = `0${segCurrent}`
             }
+
+            if (isNaN(minCurrent) || isNaN(segCurrent)) {
+                minCurrent = 0;
+                segCurrent = '00';
+            }
+
             currentDurationMobile.innerHTML = `${minCurrent}:${segCurrent}`
         }
     }
@@ -2055,57 +1997,25 @@ function volumeSliderEventGenerator(){
 
 
     sliderMusicVolume.oninput = () => {
-        if(musicDataShuffled[indexAudio].theme == 'Original'){
-            sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
-            sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
-        }
-        if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-            sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%)`);
-            sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
-        }
+        sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
         sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
-
         setVideoVolume(sliderMusicVolume.value)
     }
-
-    setVideoVolume(sliderMusicVolume.value)
 }
 
 function initDurationSlider(){
     if (screenWidth >= 1360) {
-        if(musicDataShuffled[indexAudio].theme == 'Original'){
-            sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
-            sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-        }
-        if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-            sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%)`);
-            sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
-        }
+        sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
         sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
     } else {
-        if(musicDataShuffled[indexAudio].theme == 'Original'){
-            sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-            displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-            sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-        }
-        if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-            sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
-            displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%)`);
-            sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
-        }
+        sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
+        displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
         sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
     }
 }
 
 function initVolumeSlider(){
-    if(musicDataShuffled[indexAudio].theme == 'Original'){
-        sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
-        sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
-    }
-    if(musicDataShuffled[indexAudio].theme == 'Rock Version'){
-        sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%)`);
-        sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
-    }
+    sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
     sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
 }
 
@@ -3668,7 +3578,7 @@ function playVideo() {
             setTimeout(() => {
                 if (playerReady && player.getPlayerState() !== YT.PlayerState.PLAYING) {
                     player.playVideo();
-                    setVideoVolume(sliderMusicVolume.value)
+                    totalDurationSetter()
                 }
             }, 200);
         } 
@@ -3685,6 +3595,7 @@ function playVideo() {
             setTimeout(() => {
                 if (playerReadyMobile && playerMobile.getPlayerState() !== YT.PlayerState.PLAYING) {
                     playerMobile.playVideo();
+                    totalDurationSetter()
                 }
             }, 200);
         } 
@@ -3715,6 +3626,8 @@ function pauseVideo() {
     }
 }
 
+let timerCurretDurationSetter = null
+
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.ENDED) {
         if (screenWidth >= 1360) {
@@ -3732,12 +3645,31 @@ function onPlayerStateChange(event) {
             }
         }
     }
+
+    if (event.data === YT.PlayerState.PLAYING) {
+        setVideoVolume(sliderMusicVolume.value)
+        checkAndUnmute()
+        clearInterval(timerCurretDurationSetter)
+        timerCurretDurationSetter = null
+        timerCurretDurationSetter = setInterval(curretDurationSetter, 1000)
+    }
+
+    if (event.data === YT.PlayerState.PAUSED) {
+        clearInterval(timerCurretDurationSetter)
+        timerCurretDurationSetter = null
+    }
 }
 
 function setVideoVolume(volume) {
-    if (playerReady) {
-        if (volume >= 0 && volume <= 100) {
-            player.setVolume(volume);
+    if (screenWidth >= 1360) {
+        if (playerReady) {
+            if (volume >= 0 && volume <= 100) {
+                player.setVolume(volume)
+            }
+        }
+    } else {
+        if (playerReadyMobile) {
+            playerMobile.setVolume(100)
         }
     }
 }
@@ -3745,6 +3677,119 @@ function setVideoVolume(volume) {
 function getVideoVolume() {
     if (playerReady) {
         return player.getVolume();
+    }
+}
+
+function getVideoDuration() {
+    if (screenWidth >= 1360) {
+        if (playerReady) {
+            return player.getDuration();
+        }
+    } else {
+        if (playerReadyMobile) {
+            return playerMobile.getDuration();
+        }
+    }
+}
+
+function totalDurationSetter() {
+    let minTotal = Math.floor(getVideoDuration() / 60);
+    let segTotal = Math.floor(getVideoDuration() % 60);
+    
+    if(segTotal < 10){
+        segTotal = `0${segTotal}`
+    }
+
+    if (screenWidth >= 1360) {
+        totalDuration.innerHTML = `${minTotal}:${segTotal}`
+    } else {
+        totalDurationMobile.innerHTML = `${minTotal}:${segTotal}`
+    }
+}
+
+function getVideoCurrentTime() {
+    if (screenWidth >= 1360) {
+        if (playerReady) {
+            return player.getCurrentTime();
+        } else {
+            return 0
+        }
+    } else {
+        if (playerReadyMobile) {
+            return playerMobile.getCurrentTime();
+        } else {
+            return 0
+        }
+    }
+}
+
+function curretDurationSetter() {
+    if (screenWidth >= 1360) {
+        if(canMoveTheSliderDuration){
+            sliderMusicDuration.value = parseInt(getVideoCurrentTime() / getVideoDuration() * 100)
+            sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
+            sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+
+            let minCurrent = Math.floor(getVideoCurrentTime() / 60);
+            let segCurrent = Math.floor(getVideoCurrentTime() % 60);
+
+            if(segCurrent < 10){
+                segCurrent = `0${segCurrent}`
+            }
+
+            if (isNaN(minCurrent) || isNaN(segCurrent)) {
+                minCurrent = 0;
+                segCurrent = '00';
+            }
+
+            currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
+
+        }
+    } else {
+        if(canMoveTheSliderDuration){
+            sliderMusicDurationMobile.value = parseInt(getVideoCurrentTime() / getVideoDuration() * 100);
+            sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
+            displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
+            sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
+
+            let minCurrent = Math.floor(getVideoCurrentTime() / 60);
+            let segCurrent = Math.floor(getVideoCurrentTime() % 60);
+
+            if(segCurrent < 10){
+                segCurrent = `0${segCurrent}`
+            }
+
+            if (isNaN(minCurrent) || isNaN(segCurrent)) {
+                minCurrent = 0;
+                segCurrent = '00';
+            }
+
+            currentDurationMobile.innerHTML = `${minCurrent}:${segCurrent}`
+        }
+    }
+}
+
+function checkAndUnmute() {
+    if (screenWidth >= 1360) {
+        if (playerReady && player.isMuted()) {
+            player.unMute();
+        }
+    } else {
+        if (playerReadyMobile && playerMobile.isMuted()) {
+            playerMobile.unMute();
+        }
+    }
+}
+
+function changeVideoCurrentTime(time) {
+    if (screenWidth >= 1360) {
+        if (playerReady) {
+            player.seekTo(time, true)
+        }
+    } else {
+        if (playerReadyMobile) {
+            playerMobile.seekTo(time, true)
+        }
     }
 }
 
