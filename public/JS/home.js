@@ -2065,10 +2065,10 @@ function volumeSliderEventGenerator(){
         }
         sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
 
-        // audioGlobal.volume = sliderMusicVolume.value / 100;
+        setVideoVolume(sliderMusicVolume.value)
     }
 
-    // audioGlobal.volume = sliderMusicVolume.value / 100;
+    setVideoVolume(sliderMusicVolume.value)
 }
 
 function initDurationSlider(){
@@ -2640,10 +2640,7 @@ function toggleDisplayMobile() {
     if (!displayMobile.classList.contains("show")){
         displayMobile.classList.remove("exit");
         displayMobile.classList.add("show");
-
-        // if (musicDataShuffled[indexAudio].isVideo) {
-            audioControllerPlayFunctionNoPause()
-        // }
+        audioControllerPlayFunctionNoPause()
         $('.main-search-mobile').hide(200)
         $('.main-controls-mobile').removeClass("fixed")
     } else {
@@ -2733,7 +2730,7 @@ function changeMobileOrDesktop() {
         $(".title-playlist").html(titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName);
         $('.search-bar input').val("");
         musicFilteringFunction();
-        sliderMusicVolume.value = 60;
+        sliderMusicVolume.value = getVideoVolume();
 
         if (playerMobile) {
             playerMobile.destroy();
@@ -3671,6 +3668,7 @@ function playVideo() {
             setTimeout(() => {
                 if (playerReady && player.getPlayerState() !== YT.PlayerState.PLAYING) {
                     player.playVideo();
+                    setVideoVolume(sliderMusicVolume.value)
                 }
             }, 200);
         } 
@@ -3733,6 +3731,20 @@ function onPlayerStateChange(event) {
                 audioControllerNextFunction()
             }
         }
+    }
+}
+
+function setVideoVolume(volume) {
+    if (playerReady) {
+        if (volume >= 0 && volume <= 100) {
+            player.setVolume(volume);
+        }
+    }
+}
+
+function getVideoVolume() {
+    if (playerReady) {
+        return player.getVolume();
     }
 }
 
