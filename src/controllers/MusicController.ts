@@ -83,14 +83,6 @@ async function updateMusic(req: Request<{ id: string }>, res: Response) {
     }
 
     try {
-        const songs = await Music.find({ videoId })
-        const songAlreadyExists = songs.find(
-            (song) => song.videoId === videoId && song._id != id
-        )
-
-        if (songAlreadyExists) {
-            return res.status(400).json({ error: 'Music cannot be updated' })
-        }
         await Music.updateOne(filter, updateDoc)
 
         return res.status(200).json({ message: 'Music updated successfully!' })
