@@ -214,6 +214,7 @@
 }
 
 .container-playlist-mobile .item-playlist-mobile {
+    animation: animate-item-playlist-mobile 200ms backwards;
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
     background-color: var(--color-blue-3);
@@ -1466,16 +1467,25 @@
     border-radius: 10px;
 }
 .container-search-mobile .item-search-mobile {
+    animation: animate-item-playlist-mobile 200ms backwards;
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
     background-color: var(--color-blue-3);
-    
     display: flex;
     padding: 10px 10px;
     justify-content: space-between;
-
     cursor: pointer;
     border-radius: 10px;
+}
+@keyframes animate-item-playlist-mobile {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .item-search-mobile .box-wrapper-search {
     display: flex;

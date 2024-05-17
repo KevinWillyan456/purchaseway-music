@@ -9,10 +9,6 @@ form.addEventListener("submit", (e) => {
     e.preventDefault()
 })
 
-document.querySelector('.service-logo').addEventListener("click", () => {
-    window.location = '/'
-})
-
 btnSubmit.addEventListener("click", validationForm)
 
 let timer = null

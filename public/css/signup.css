@@ -11,15 +11,6 @@ body {
     background-size: cover;
 }
 
-.service-logo {
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    cursor: pointer;
-}
-
 .container {
     background-color: var(--color-blue-1);
     width: 320px;
@@ -183,12 +174,6 @@ form .info a {
     display: none;
 }
 
-@media (max-width: 1500px)
-{
-    .service-logo {
-        display: none;
-    }
-}
 @media (max-width: 1359px)
 {
     .warning {

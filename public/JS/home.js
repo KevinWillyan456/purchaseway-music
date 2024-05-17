@@ -736,10 +736,10 @@ function audioControllerPrevFunction(){
 
 function generatorContainerPlaylistData(){
     if (screenWidth >= 1360) {
-        musicDataShuffled.forEach((element) => {
+        musicDataShuffled.forEach((element, index) => {
 
             containerPlaylist.innerHTML += `
-                <div class="item-playlist" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="item-playlist" data-id="${element._id}" data-theme="${element.theme}" style="animation-delay: ${index * 0.05}s">
                     <div class="box-wrapper">
                         <div class="cover-item">
                             <img src="${element.coverUrl}" alt="${element.title}">
@@ -761,10 +761,10 @@ function generatorContainerPlaylistData(){
             `
         })
     } else {
-        musicDataShuffled.forEach((element) => {
+        musicDataShuffled.forEach((element, index) => {
 
             containerPlaylistMobile.innerHTML += `
-                <div class="item-playlist-mobile" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="item-playlist-mobile" data-id="${element._id}" data-theme="${element.theme}" style="animation-delay: ${index * 0.05}s">
                     <div class="box-wrapper">
                         <div class="cover-item">
                             <img src="${element.coverUrl}" alt="${element.title}">
@@ -975,10 +975,10 @@ function generatorContainerSearchData(){
             musicDataFiltered.pop();
         }
 
-        musicDataFiltered.forEach((element) => {
+        musicDataFiltered.forEach((element, index) => {
 
             containerItemsSearch.innerHTML += `
-                <div class="item-playlist-search" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="item-playlist-search" data-id="${element._id}" data-theme="${element.theme}" style="animation-delay: ${index * 0.05}s">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
                             <img src="${element.coverUrl}" alt="${element.title}">
@@ -1008,10 +1008,9 @@ function generatorContainerSearchData(){
             musicDataFiltered.pop();
         }
         
-        musicDataFiltered.forEach((element) => {
-
+        musicDataFiltered.forEach((element, index) => {
             containerItemsSearchMobile.innerHTML += `
-                <div class="item-search-mobile" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="item-search-mobile" data-id="${element._id}" data-theme="${element.theme}" style="animation-delay: ${index * 0.05}s">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
                             <img src="${element.coverUrl}" alt="${element.title}">
