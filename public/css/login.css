@@ -32,7 +32,8 @@ form .title {
     margin-bottom: 60px;
 }
 
-form .input-nome, form .input-senha {
+form .input-nome,
+form .input-senha {
     transition: 200ms;
     background-color: var(--color-white-1);
     width: 280px;
@@ -45,19 +46,22 @@ form .input-nome, form .input-senha {
     outline: none;
     border: 2px solid black;
 }
-form .input-nome, form .input-senha {
+form .input-nome,
+form .input-senha {
     margin-bottom: 20px;
 }
-form .input-nome::placeholder, form .input-senha::placeholder {
+form .input-nome::placeholder,
+form .input-senha::placeholder {
     color: var(--color-blue-3);
-    
 }
-form .input-nome:focus, form .input-senha:focus {
+form .input-nome:focus,
+form .input-senha:focus {
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
 
 .warning {
-    animation: warning-anime-color 1s infinite alternate, warning-anime-entrace 500ms linear;
+    animation: warning-anime-color 1s infinite alternate,
+        warning-anime-entrace 500ms linear;
     position: absolute;
 
     top: 20px;
@@ -121,7 +125,7 @@ form .input-checkbox input {
     cursor: pointer;
     outline: none;
 }
- 
+
 form .input-checkbox label {
     font-size: 15px;
     cursor: pointer;
@@ -174,8 +178,7 @@ form .info a {
     display: none;
 }
 
-@media (max-width: 1359px)
-{
+@media (max-width: 1359px) {
     .warning {
         font-size: 20px;
     }

@@ -20,7 +20,16 @@ body {
 .container .title-1 {
     color: var(--color-white-1);
 
-    text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+    text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
 
     font-size: 70px;
     margin-bottom: 12px;
@@ -29,7 +38,16 @@ body {
 .container .title-2 {
     color: var(--color-white-1);
 
-    text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+    text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+        0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
 
     font-size: 32px;
     margin-bottom: 20px;
@@ -60,8 +78,7 @@ body {
         color: var(--color-white-1);
     }
 }
-@media (max-width: 1359px)
-{
+@media (max-width: 1359px) {
     .container {
         padding-left: 20px;
     }

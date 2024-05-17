@@ -1,232 +1,403 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gerenciar Sistema</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="https://i.ibb.co/L0T3ZXL/pw-music-icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/css/globalStyles.css">
-    <link rel="stylesheet" href="/css/config.css">
-</head>
-<body>
-    <div class="user-info">
-        <div class="icon-user">
-            <ion-icon name="person" id="userPersonIcon"></ion-icon>
-            <div class="icon-person-container" id="userPersonContainer">
-                <img class="icon-person-img" id="userPersonImg">
-            </div>
-        </div>
-        <div class="wrap-text">
-            <div class="access">Administrador</div>
-            <div class="name" id="userName">Carregando...</div>
-        </div>
-    </div>
-
-    <a href="/home" class="voltar-para-o-site">Voltar para o PwMusic</a>
-
-    <div class="warning hidden" id="warning"></div>
-
-    <div class="container-total-overflow">
-        <div class="container-total">
-            <div class="content-total">
-                <div class="title">Total de Playlists</div>
-                <div class="icon">
-                    <ion-icon name="musical-notes"></ion-icon>
-                </div>
-                <div class="total" id="totalPlaylists">0</div>
-            </div>
-            <div class="content-total">
-                <div class="title">Total de Músicas</div>
-                <div class="icon">
-                    <ion-icon name="musical-notes"></ion-icon>
-                </div>
-                <div class="total" id="totalMusics">0</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-playlist-overflow">
-        <div class="container-playlist">
-            <div class="header-playlist">
-                <div class="title">Todas as Playlists</div>
-                <button class="btn-adicionar" id="btnAddPlaylist">
-                    <ion-icon name="add"></ion-icon>
-                    Adicionar
-                </button>
-            </div>
-            <div class="content-playlist" id="contentPlaylist">
-            </div>
-        </div>
-    </div>
-
-    <div class="form-playlist-overflow hidden" id="formAddPlaylist">
-        <form class="form-playlist" id="formAddPlaylistIn">
-            <div class="title">Adicionar uma nova Playlist</div>
-            <div class="fields">
-                <input class="field" type="text" placeholder="Nome" id="formAddPlaylistInName">
-                <input class="field" type="text" placeholder="Gênero" id="formAddPlaylistInGender">
-                <input class="field" type="text" placeholder="Thumbnail" id="formAddPlaylistInThumbnail">
-            </div>
-            <div class="preview-thumbnail">
-                <div class="preview-text">Preview</div>
-                <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Thumbnail da playlist" id="formAddPlaylistInPreviewThumbnail">
-            </div>
-            <textarea class="field-area" placeholder="Descrição" maxlength="1500" id="formAddPlaylistInDescription"></textarea>
-            <button class="btn-add" type="submit">Adicionar</button>
-        </form>
-    </div>
-
-    <div class="container-playlist-to-manage-overflow hidden" id="containerPlaylistToManage">
-        <div class="user-info-m">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>Gerenciar Sistema</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="shortcut icon"
+            href="https://i.ibb.co/L0T3ZXL/pw-music-icon.png"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet" href="/css/globalStyles.css" />
+        <link rel="stylesheet" href="/css/config.css" />
+    </head>
+    <body>
+        <div class="user-info">
             <div class="icon-user">
-                <ion-icon name="person" id="userPersonIconMobile"></ion-icon>
-                <div class="icon-person-container" id="userPersonContainerMobile">
-                    <img class="icon-person-img" id="userPersonImgMobile">
+                <ion-icon name="person" id="userPersonIcon"></ion-icon>
+                <div class="icon-person-container" id="userPersonContainer">
+                    <img class="icon-person-img" id="userPersonImg" />
                 </div>
             </div>
             <div class="wrap-text">
                 <div class="access">Administrador</div>
-                <div class="name" id="userNameMobile">Carregando...</div>
+                <div class="name" id="userName">Carregando...</div>
             </div>
         </div>
-        <button class="playlist-to-manage-back" id="playlistToManageBack">Voltar</button>
-        <div class="container-playlist-to-manage">
-            <div class="main-playlist">
-                <div class="cover">
-                    <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da playlist" id="containerPlaylistToManageCover">
+
+        <a href="/home" class="voltar-para-o-site">Voltar para o PwMusic</a>
+
+        <div class="warning hidden" id="warning"></div>
+
+        <div class="container-total-overflow">
+            <div class="container-total">
+                <div class="content-total">
+                    <div class="title">Total de Playlists</div>
+                    <div class="icon">
+                        <ion-icon name="musical-notes"></ion-icon>
+                    </div>
+                    <div class="total" id="totalPlaylists">0</div>
                 </div>
-                <div class="content">
-                    <div class="title" id="containerPlaylistToManageTitle"></div>
-                    <div class="description" id="containerPlaylistToManageDescription"></div>
-                    <div class="details">
-                        <div class="created" id="containerPlaylistToManageCreated"></div>
-                        <div class="total-song" id="containerPlaylistToManageTotalMusics"></div>
-                        <div class="gender" id="containerPlaylistToManageGender"></div>
+                <div class="content-total">
+                    <div class="title">Total de Músicas</div>
+                    <div class="icon">
+                        <ion-icon name="musical-notes"></ion-icon>
+                    </div>
+                    <div class="total" id="totalMusics">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-playlist-overflow">
+            <div class="container-playlist">
+                <div class="header-playlist">
+                    <div class="title">Todas as Playlists</div>
+                    <button class="btn-adicionar" id="btnAddPlaylist">
+                        <ion-icon name="add"></ion-icon>
+                        Adicionar
+                    </button>
+                </div>
+                <div class="content-playlist" id="contentPlaylist"></div>
+            </div>
+        </div>
+
+        <div class="form-playlist-overflow hidden" id="formAddPlaylist">
+            <form class="form-playlist" id="formAddPlaylistIn">
+                <div class="title">Adicionar uma nova Playlist</div>
+                <div class="fields">
+                    <input
+                        class="field"
+                        type="text"
+                        placeholder="Nome"
+                        id="formAddPlaylistInName"
+                    />
+                    <input
+                        class="field"
+                        type="text"
+                        placeholder="Gênero"
+                        id="formAddPlaylistInGender"
+                    />
+                    <input
+                        class="field"
+                        type="text"
+                        placeholder="Thumbnail"
+                        id="formAddPlaylistInThumbnail"
+                    />
+                </div>
+                <div class="preview-thumbnail">
+                    <div class="preview-text">Preview</div>
+                    <img
+                        src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                        alt="Thumbnail da playlist"
+                        id="formAddPlaylistInPreviewThumbnail"
+                    />
+                </div>
+                <textarea
+                    class="field-area"
+                    placeholder="Descrição"
+                    maxlength="1500"
+                    id="formAddPlaylistInDescription"
+                ></textarea>
+                <button class="btn-add" type="submit">Adicionar</button>
+            </form>
+        </div>
+
+        <div
+            class="container-playlist-to-manage-overflow hidden"
+            id="containerPlaylistToManage"
+        >
+            <div class="user-info-m">
+                <div class="icon-user">
+                    <ion-icon
+                        name="person"
+                        id="userPersonIconMobile"
+                    ></ion-icon>
+                    <div
+                        class="icon-person-container"
+                        id="userPersonContainerMobile"
+                    >
+                        <img class="icon-person-img" id="userPersonImgMobile" />
                     </div>
                 </div>
-            </div>
-            <div class="interactions">
-                <button class="btn-adicionar" id="btnAddSong">
-                    <ion-icon name="add"></ion-icon>
-                    Adicionar Música
-                </button>
-                <div class="btn-adicionar-m" id="btnAddSongMobile">
-                    <ion-icon name="add"></ion-icon>
-                    Música
+                <div class="wrap-text">
+                    <div class="access">Administrador</div>
+                    <div class="name" id="userNameMobile">Carregando...</div>
                 </div>
-                <button class="btn-editar" id="btnEditPlaylist">
-                    <ion-icon name="pencil"></ion-icon>
-                    Editar
-                </button>
-                <button class="btn-excluir" id="btnDeletePlaylist">
-                    <ion-icon name="close"></ion-icon>
-                    Excluir
-                </button>
             </div>
-            <div class="title-all-songs">Todas as Músicas</div>
-            <div class="content-songs" id="contentSongs">
-                <div class="songs-item">
-                    <div class="item-cover">
-                        <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da música">
+            <button class="playlist-to-manage-back" id="playlistToManageBack">
+                Voltar
+            </button>
+            <div class="container-playlist-to-manage">
+                <div class="main-playlist">
+                    <div class="cover">
+                        <img
+                            src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                            alt="Capa da playlist"
+                            id="containerPlaylistToManageCover"
+                        />
                     </div>
-                    <div class="item-title"></div>
-                </div>
-            </div>
-            <div class="blank"></div>
-            <div class="focus hidden" id="focusSong">
-                <div class="song">
-                    <div class="main-song">
-                        <div class="cover">
-                            <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da música" id="focusSongCover">
+                    <div class="content">
+                        <div
+                            class="title"
+                            id="containerPlaylistToManageTitle"
+                        ></div>
+                        <div
+                            class="description"
+                            id="containerPlaylistToManageDescription"
+                        ></div>
+                        <div class="details">
+                            <div
+                                class="created"
+                                id="containerPlaylistToManageCreated"
+                            ></div>
+                            <div
+                                class="total-song"
+                                id="containerPlaylistToManageTotalMusics"
+                            ></div>
+                            <div
+                                class="gender"
+                                id="containerPlaylistToManageGender"
+                            ></div>
                         </div>
-                        <div class="content">
-                            <div class="title" id="focusSongTitle"></div>
-                            <div class="details">
-                                <div class="created" id="focusSongCreated"></div>
-                                <div target="_blank" class="url">URL: <a href="#" target="_blank" id="focusSongURL"></a></div>
-                                <div class="gender" id="focusSongGender"></div>
+                    </div>
+                </div>
+                <div class="interactions">
+                    <button class="btn-adicionar" id="btnAddSong">
+                        <ion-icon name="add"></ion-icon>
+                        Adicionar Música
+                    </button>
+                    <div class="btn-adicionar-m" id="btnAddSongMobile">
+                        <ion-icon name="add"></ion-icon>
+                        Música
+                    </div>
+                    <button class="btn-editar" id="btnEditPlaylist">
+                        <ion-icon name="pencil"></ion-icon>
+                        Editar
+                    </button>
+                    <button class="btn-excluir" id="btnDeletePlaylist">
+                        <ion-icon name="close"></ion-icon>
+                        Excluir
+                    </button>
+                </div>
+                <div class="title-all-songs">Todas as Músicas</div>
+                <div class="content-songs" id="contentSongs">
+                    <div class="songs-item">
+                        <div class="item-cover">
+                            <img
+                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                alt="Capa da música"
+                            />
+                        </div>
+                        <div class="item-title"></div>
+                    </div>
+                </div>
+                <div class="blank"></div>
+                <div class="focus hidden" id="focusSong">
+                    <div class="song">
+                        <div class="main-song">
+                            <div class="cover">
+                                <img
+                                    src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                    alt="Capa da música"
+                                    id="focusSongCover"
+                                />
+                            </div>
+                            <div class="content">
+                                <div class="title" id="focusSongTitle"></div>
+                                <div class="details">
+                                    <div
+                                        class="created"
+                                        id="focusSongCreated"
+                                    ></div>
+                                    <div target="_blank" class="url">
+                                        URL:
+                                        <a
+                                            href="#"
+                                            target="_blank"
+                                            id="focusSongURL"
+                                        ></a>
+                                    </div>
+                                    <div
+                                        class="gender"
+                                        id="focusSongGender"
+                                    ></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="interactions">
-                        <button class="btn-editar" id="btnEditSong">
-                            <ion-icon name="pencil"></ion-icon>
-                            Editar
-                        </button>
-                        <button class="btn-excluir" id="btnDeleteSong">
-                            <ion-icon name="close"></ion-icon>
-                            Excluir
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="form-song-overflow hidden" id="formAddSong">
-                <form class="form-song" id="formAddSongIn">
-                    <div class="title">Adicionar uma nova Música</div>
-                    <div class="fields">
-                        <input class="field" type="text" placeholder="ID do Youtube" id="formSongAddInputID">
-                    </div>
-                    <button class="btn-add" type="submit">Adicionar</button>
-                </form>
-            </div>
-            <div class="form-song-overflow hidden" id="formEditSong">
-                <form class="form-song" id="formEditSongIn">
-                    <div class="title">Editar Música</div>
-                    <div class="fields"> 
-                        <input class="field" type="text" placeholder="ID do Youtube" id="formSongEditInputID">
-                    </div>
-                    <button class="btn-update" type="submit">Atualizar</button>
-                </form>
-            </div>
-            <div class="form-song-delete-overflow hidden" id="formDeleteSong">
-                <div class="form-song-delete">
-                    <div class="title">Tem certeza que deseja excluir esta Música?</div>
-                    <div class="song-delete-name" id="songDeleteName">Minha Música</div>
-                    <div class="song-delete-warning">Esta ação é irreversível</div>
-                    <div class="interactions-delete">
-                        <button class="cancel" id="formSongCancel">Cancelar</button>
-                        <button class="delete" id="formSongDeleteBtn">Excluir</button>
+                        <div class="interactions">
+                            <button class="btn-editar" id="btnEditSong">
+                                <ion-icon name="pencil"></ion-icon>
+                                Editar
+                            </button>
+                            <button class="btn-excluir" id="btnDeleteSong">
+                                <ion-icon name="close"></ion-icon>
+                                Excluir
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-playlist-overflow hidden" id="formEditPlaylist">
-                <form class="form-playlist" id="formEditPlaylistIn">
-                    <div class="title">Editar Playlist</div>
-                    <div class="fields">
-                        <input class="field" type="text" placeholder="Nome" id="formPlaylistEditInputNome">
-                        <input class="field" type="text" placeholder="Gênero" id="formPlaylistEditInputGender">
-                        <input class="field" type="text" placeholder="Thumbnail" id="formPlaylistEditInputThumbnail">
+                <div class="form-song-overflow hidden" id="formAddSong">
+                    <form class="form-song" id="formAddSongIn">
+                        <div class="title">Adicionar uma nova Música</div>
+                        <div class="fields">
+                            <input
+                                class="field"
+                                type="text"
+                                placeholder="ID do Youtube"
+                                id="formSongAddInputID"
+                            />
+                        </div>
+                        <button class="btn-add" type="submit">Adicionar</button>
+                    </form>
+                </div>
+                <div class="form-song-overflow hidden" id="formEditSong">
+                    <form class="form-song" id="formEditSongIn">
+                        <div class="title">Editar Música</div>
+                        <div class="fields">
+                            <input
+                                class="field"
+                                type="text"
+                                placeholder="ID do Youtube"
+                                id="formSongEditInputID"
+                            />
+                        </div>
+                        <button class="btn-update" type="submit">
+                            Atualizar
+                        </button>
+                    </form>
+                </div>
+                <div
+                    class="form-song-delete-overflow hidden"
+                    id="formDeleteSong"
+                >
+                    <div class="form-song-delete">
+                        <div class="title">
+                            Tem certeza que deseja excluir esta Música?
+                        </div>
+                        <div class="song-delete-name" id="songDeleteName">
+                            Minha Música
+                        </div>
+                        <div class="song-delete-warning">
+                            Esta ação é irreversível
+                        </div>
+                        <div class="interactions-delete">
+                            <button class="cancel" id="formSongCancel">
+                                Cancelar
+                            </button>
+                            <button class="delete" id="formSongDeleteBtn">
+                                Excluir
+                            </button>
+                        </div>
                     </div>
-                    <div class="preview-thumbnail">
-                        <div class="preview-text">Preview</div>
-                        <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Thumbnail da playlist" id="formPlaylistEditPreviewThumbnail">
-                    </div>
-                    <textarea class="field-area" placeholder="Descrição" maxlength="1500" id="formPlaylistEditDescription"></textarea>
-                    <button class="btn-add" type="submit">Salvar</button>
-                </form>
-            </div>
-            <div class="form-playlist-delete-overflow hidden" id="formDeletePlaylist">
-                <form class="form-playlist-delete" id="formDeletePlaylistContent">
-                    <div class="title">Tem certeza que deseja excluir esta Playlist?</div>
-                    <div class="playlist-delete-name" id="playlistDeleteName">Minha Playlist</div>
-                    <input class="field" type="text" placeholder="Digite o nome da playlist para confirmar..." id="playlistDeleteNameInputToConfirm">
-                    <div class="playlist-delete-warning">Esta ação é irreversível</div>
-                    <div class="playlist-delete-warning">Esta ação apagará todas as músicas nessa playlist</div>
-                    <div class="interactions-delete">
-                        <button class="cancel" id="formPlaylistCancel" type="reset">Cancelar</button>
-                        <button class="delete" type="submit">Excluir</button>
-                    </div>
-                </form>
+                </div>
+                <div
+                    class="form-playlist-overflow hidden"
+                    id="formEditPlaylist"
+                >
+                    <form class="form-playlist" id="formEditPlaylistIn">
+                        <div class="title">Editar Playlist</div>
+                        <div class="fields">
+                            <input
+                                class="field"
+                                type="text"
+                                placeholder="Nome"
+                                id="formPlaylistEditInputNome"
+                            />
+                            <input
+                                class="field"
+                                type="text"
+                                placeholder="Gênero"
+                                id="formPlaylistEditInputGender"
+                            />
+                            <input
+                                class="field"
+                                type="text"
+                                placeholder="Thumbnail"
+                                id="formPlaylistEditInputThumbnail"
+                            />
+                        </div>
+                        <div class="preview-thumbnail">
+                            <div class="preview-text">Preview</div>
+                            <img
+                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                alt="Thumbnail da playlist"
+                                id="formPlaylistEditPreviewThumbnail"
+                            />
+                        </div>
+                        <textarea
+                            class="field-area"
+                            placeholder="Descrição"
+                            maxlength="1500"
+                            id="formPlaylistEditDescription"
+                        ></textarea>
+                        <button class="btn-add" type="submit">Salvar</button>
+                    </form>
+                </div>
+                <div
+                    class="form-playlist-delete-overflow hidden"
+                    id="formDeletePlaylist"
+                >
+                    <form
+                        class="form-playlist-delete"
+                        id="formDeletePlaylistContent"
+                    >
+                        <div class="title">
+                            Tem certeza que deseja excluir esta Playlist?
+                        </div>
+                        <div
+                            class="playlist-delete-name"
+                            id="playlistDeleteName"
+                        >
+                            Minha Playlist
+                        </div>
+                        <input
+                            class="field"
+                            type="text"
+                            placeholder="Digite o nome da playlist para confirmar..."
+                            id="playlistDeleteNameInputToConfirm"
+                        />
+                        <div class="playlist-delete-warning">
+                            Esta ação é irreversível
+                        </div>
+                        <div class="playlist-delete-warning">
+                            Esta ação apagará todas as músicas nessa playlist
+                        </div>
+                        <div class="interactions-delete">
+                            <button
+                                class="cancel"
+                                id="formPlaylistCancel"
+                                type="reset"
+                            >
+                                Cancelar
+                            </button>
+                            <button class="delete" type="submit">
+                                Excluir
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="/JS/config.js"></script>
-</body>
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+        ></script>
+        <script src="/JS/config.js"></script>
+    </body>
 </html>

@@ -1,5 +1,5 @@
-const login = document.querySelector(".button-login button");
+const login = document.querySelector('.button-login button')
 
-login.addEventListener("click", () => {
+login.addEventListener('click', () => {
     window.location = '/login'
 })

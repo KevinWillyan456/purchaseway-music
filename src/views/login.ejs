@@ -1,38 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Crie uma conta PwMusic</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="https://i.ibb.co/L0T3ZXL/pw-music-icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/css/globalStyles.css">
-    <link rel="stylesheet" href="/css/login.css">
-</head>
-<body>
-    
-    <section class="container">
-        <form action="">
-            <div class="warning hidden">Nome ou Senha incorretos!</div>
-            <div class="title">Faça login na sua conta</div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>Crie uma conta PwMusic</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="shortcut icon"
+            href="https://i.ibb.co/L0T3ZXL/pw-music-icon.png"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet" href="/css/globalStyles.css" />
+        <link rel="stylesheet" href="/css/login.css" />
+    </head>
+    <body>
+        <section class="container">
+            <form action="">
+                <div class="warning hidden">Nome ou Senha incorretos!</div>
+                <div class="title">Faça login na sua conta</div>
 
-            <input class="input-nome" type="text" placeholder="Nome">
-            <input class="input-senha" type="password" placeholder="Senha">
-            <div class="input-checkbox">
-                <input type="checkbox" id="checkbox-conect">
-                <label for="checkbox-conect">Manter Conectado</label>
-            </div>
+                <input class="input-nome" type="text" placeholder="Nome" />
+                <input
+                    class="input-senha"
+                    type="password"
+                    placeholder="Senha"
+                />
+                <div class="input-checkbox">
+                    <input type="checkbox" id="checkbox-conect" />
+                    <label for="checkbox-conect">Manter Conectado</label>
+                </div>
 
-            <button class="btn-submit" type="submit">Entrar</button>
-            <div class="info">Novo no PwMusic?
-                <a href="/signup">Inscreva-se</a>
-            </div>
-        </form>
-    </section>
+                <button class="btn-submit" type="submit">Entrar</button>
+                <div class="info">
+                    Novo no PwMusic?
+                    <a href="/signup">Inscreva-se</a>
+                </div>
+            </form>
+        </section>
 
-    <script src="/JS/login.js"></script>
-</body>
+        <script src="/JS/login.js"></script>
+    </body>
 </html>

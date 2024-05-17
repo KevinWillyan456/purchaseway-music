@@ -224,7 +224,16 @@ html {
     text-align: center;
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 @keyframes entrance-animate {
     0% {
@@ -246,7 +255,16 @@ html {
     text-align: center;
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 
 .section-banner .title-3 {
@@ -259,7 +277,16 @@ html {
     text-align: center;
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 
 .section-listen {
@@ -286,14 +313,32 @@ html {
 
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 .section-listen .box-wrapper .title-2 {
     font-size: 40px;
 
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 
 .section-very-high-quality {
@@ -320,7 +365,16 @@ html {
 
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 .section-very-high-quality .box-wrapper .title-2 {
     display: flex;
@@ -330,7 +384,16 @@ html {
 
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 .section-very-high-quality .box-wrapper .title-2 ion-icon {
     width: 150px;
@@ -366,7 +429,16 @@ html {
 
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 .section-reactive .box-wrapper .title-2 {
     display: flex;
@@ -378,7 +450,16 @@ html {
 
     color: var(--color-white-1);
 
-    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
+    text-shadow: 0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1),
+        0 0 6px var(--color-blue-1), 0 0 6px var(--color-blue-1);
 }
 
 .rodape {
@@ -404,8 +485,7 @@ html {
     font-size: 16px;
     color: var(--color-white-1);
 }
-@media (max-width: 1800px)
-{
+@media (max-width: 1800px) {
     .section-reactive .box-wrapper .title-1 {
         font-size: 60px;
     }
@@ -414,33 +494,78 @@ html {
         width: 450px;
     }
 }
-@media (max-width: 1500px)
-{
+@media (max-width: 1500px) {
     .section-banner .title-1 {
         font-size: 50px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-banner .title-2 {
         font-size: 40px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-banner .title-3 {
         font-size: 20px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
-    
-    .section-listen .box-wrapper .title-1, .section-very-high-quality .box-wrapper .title-1 {
+
+    .section-listen .box-wrapper .title-1,
+    .section-very-high-quality .box-wrapper .title-1 {
         font-size: 50px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-very-high-quality .box-wrapper .title-2 {
         font-size: 60px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-very-high-quality .box-wrapper .title-2 ion-icon {
         width: 110px;
@@ -449,23 +574,49 @@ html {
     .section-listen .box-wrapper .title-2 {
         font-size: 30px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-reactive .box-wrapper .title-1 {
         font-size: 60px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-reactive .box-wrapper .title-2 {
         font-size: 24px;
         width: 300px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
 }
 
-@media (max-width: 1359px)
-{
+@media (max-width: 1359px) {
     .cabecalho .list-options {
         display: none;
     }
@@ -493,7 +644,16 @@ html {
         width: 320px;
         left: calc(50% - 320px / 2);
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-banner .title-3 {
         display: none;
@@ -510,7 +670,16 @@ html {
         font-size: 24px;
         text-align: center;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-listen .box-wrapper .title-2 {
         position: absolute;
@@ -521,7 +690,16 @@ html {
         font-size: 16px;
         text-align: center;
 
-        text-shadow: 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1);
+        text-shadow: 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1);
     }
     .section-listen {
         background-image: url('https://i.ibb.co/c1SNcQd/background-2-mobile.jpg');
@@ -538,17 +716,35 @@ html {
         font-size: 24px;
         text-align: center;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-very-high-quality .box-wrapper .title-2 {
         position: absolute;
         bottom: 40px;
         width: 320px;
-        left: calc(50% - 320px /2);
+        left: calc(50% - 320px / 2);
         font-size: 32px;
         justify-content: center;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-very-high-quality .box-wrapper .title-2 ion-icon {
         width: 50px;
@@ -558,14 +754,32 @@ html {
     .section-reactive .box-wrapper .title-1 {
         font-size: 32px;
 
-        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
+        text-shadow: 0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1),
+            0 0 4px var(--color-blue-1), 0 0 4px var(--color-blue-1);
     }
     .section-reactive .box-wrapper .title-2 {
         width: 320px;
         font-size: 16px;
         justify-content: center;
 
-        text-shadow: 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1);
+        text-shadow: 0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1),
+            0 0 3px var(--color-blue-1), 0 0 3px var(--color-blue-1);
     }
     .rodape {
         height: 100px;

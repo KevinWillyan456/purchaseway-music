@@ -4,8 +4,7 @@
     min-height: 100vh;
     padding-top: 20px;
 }
-@media (max-width: 1359px)
-{
+@media (max-width: 1359px) {
     .super-main-mobile {
         display: block !important;
     }
@@ -48,7 +47,7 @@
 .header-mobile .search-icon-mobile:hover {
     box-shadow: 0 0 10px var(--color-white-1);
 }
-.header-mobile .search-icon-mobile ion-icon{
+.header-mobile .search-icon-mobile ion-icon {
     width: 33.333px;
     height: 33.333px;
     color: var(--color-white-1);
@@ -63,7 +62,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     border: 2px solid var(--color-black);
     cursor: pointer;
 }
@@ -106,7 +105,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
     cursor: pointer;
@@ -148,7 +147,10 @@
     gap: 20px;
     flex-direction: column;
 }
-.main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .title-menu-options-mobile {
+.main-playlist-mobile
+    .menu-options-mobile
+    .box-wrapper-info-mobile
+    .title-menu-options-mobile {
     font-size: 24px;
     width: calc(100% - 65px);
     color: var(--color-white-1);
@@ -157,7 +159,10 @@
     text-overflow: ellipsis;
     margin-left: 20px;
 }
-.main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile {
+.main-playlist-mobile
+    .menu-options-mobile
+    .box-wrapper-info-mobile
+    .back-menu-options-mobile {
     color: var(--color-white-1);
     font-size: 16px;
     background-color: var(--color-blue-3);
@@ -265,7 +270,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.container-playlist-mobile .item-playlist-mobile .box-wrapper .info-item.music-playing {
+.container-playlist-mobile
+    .item-playlist-mobile
+    .box-wrapper
+    .info-item.music-playing {
     color: var(--color-blue-5);
 }
 .item-playlist-mobile .info-item .title-info {
@@ -315,7 +323,13 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%);
+    background-image: linear-gradient(
+        to right,
+        var(--color-blue-2) 0%,
+        var(--color-blue-2) 0%,
+        var(--color-white-1) 0%,
+        var(--color-white-1) 100%
+    );
 }
 .main-controls-mobile .box-wrapper {
     display: flex;
@@ -408,7 +422,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    
+
     z-index: -500;
     background-position: center center;
     background-repeat: no-repeat;
@@ -422,7 +436,7 @@
     min-height: 50vh;
     width: 100%;
     z-index: -400;
-    background-image: linear-gradient(180deg,#000000,#00000000);
+    background-image: linear-gradient(180deg, #000000, #00000000);
 }
 .main-display-mobile .background-layer-2-mobile {
     position: absolute;
@@ -430,7 +444,7 @@
     min-height: 50vh;
     width: 100%;
     z-index: -400;
-    background-image: linear-gradient(0deg,#000000,#00000000);
+    background-image: linear-gradient(0deg, #000000, #00000000);
 }
 
 .main-display-mobile .display-back {
@@ -451,7 +465,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -479,7 +493,9 @@
     color: var(--color-white-1);
 }
 
-.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile {
+.main-display-mobile
+    .info-current-music-mobile
+    .title-info-current-music-mobile {
     font-size: 20px;
 
     white-space: nowrap;
@@ -488,9 +504,20 @@
 
     padding-left: 2px;
 
-    text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
+    text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
 }
-.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile {
+.main-display-mobile
+    .info-current-music-mobile
+    .gender-info-current-music-mobile {
     font-size: 16px;
 
     white-space: nowrap;
@@ -499,7 +526,16 @@
 
     padding-left: 2px;
 
-    text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
+    text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
+        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
 }
 
 .main-display-mobile .current-music-add-mobile {
@@ -539,7 +575,7 @@
     bottom: 60px;
     left: 50%;
     transform: translateX(calc(-50% - 130px));
-    
+
     display: flex;
 }
 .main-display-mobile .repeat-icon-mobile ion-icon {
@@ -594,32 +630,46 @@
     padding-right: 7px;
 }
 
-.main-display-mobile .slider-music-duration-mobile .slider-music-duration-wrapper-mobile {
+.main-display-mobile
+    .slider-music-duration-mobile
+    .slider-music-duration-wrapper-mobile {
     position: relative;
 }
-.slider-music-duration-mobile .slider-music-duration-wrapper-mobile input[type=range] {
+.slider-music-duration-mobile
+    .slider-music-duration-wrapper-mobile
+    input[type='range'] {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
     height: 6px;
     border-radius: 10px;
-    
+
     outline: none;
     cursor: pointer;
     z-index: 100;
 
     /* Será controlado por JavaScript */
-    background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+    background-image: linear-gradient(
+        to right,
+        var(--color-blue-2) 0%,
+        var(--color-blue-2) 50%,
+        var(--color-white-1) 50%,
+        var(--color-white-1) 100%
+    );
 }
-.slider-music-duration-mobile .slider-music-duration-wrapper-mobile input[type=range]::-webkit-slider-thumb {
+.slider-music-duration-mobile
+    .slider-music-duration-wrapper-mobile
+    input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 0;
     height: 0;
     background-color: transparent;
 }
 
-.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile {
-    transform: translate(-10px,-4px);
+.slider-music-duration-mobile
+    .slider-music-duration-wrapper-mobile
+    .slider-music-duration-dot-mobile {
+    transform: translate(-10px, -4px);
     position: absolute;
     top: 50%;
     left: 0%;
@@ -669,7 +719,7 @@
     margin-top: 60px;
     margin-bottom: 40px;
     text-align: center;
-    
+
     font-size: 24px;
     color: var(--color-white-1);
 }
@@ -728,7 +778,9 @@
     width: 100%;
     padding-right: 5px;
 }
-.main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile {
+.main-select-playlists-mobile
+    .container-select-playlists-wrapper
+    .container-select-playlists-mobile {
     display: grid;
     width: 100%;
 
@@ -746,14 +798,20 @@
     padding-left: 10px;
     padding-bottom: 20px;
 }
-.main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile::-webkit-scrollbar {
+.main-select-playlists-mobile
+    .container-select-playlists-wrapper
+    .container-select-playlists-mobile::-webkit-scrollbar {
     width: 10px;
 }
-.main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile::-webkit-scrollbar-track {
+.main-select-playlists-mobile
+    .container-select-playlists-wrapper
+    .container-select-playlists-mobile::-webkit-scrollbar-track {
     background: var(--color-black);
     border-radius: 10px;
 }
-.main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile::-webkit-scrollbar-thumb {
+.main-select-playlists-mobile
+    .container-select-playlists-wrapper
+    .container-select-playlists-mobile::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
     border-radius: 10px;
 }
@@ -807,14 +865,17 @@
     padding-right: 5px;
     overflow: auto;
 }
-.info-item-select-playlist-mobile .description-item-select-playlist-mobile::-webkit-scrollbar {
+.info-item-select-playlist-mobile
+    .description-item-select-playlist-mobile::-webkit-scrollbar {
     width: 10px;
 }
-.info-item-select-playlist-mobile .description-item-select-playlist-mobile::-webkit-scrollbar-track {
+.info-item-select-playlist-mobile
+    .description-item-select-playlist-mobile::-webkit-scrollbar-track {
     background: var(--color-black);
     border-radius: 10px;
 }
-.info-item-select-playlist-mobile .description-item-select-playlist-mobile::-webkit-scrollbar-thumb {
+.info-item-select-playlist-mobile
+    .description-item-select-playlist-mobile::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
     border-radius: 10px;
 }
@@ -888,7 +949,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     border: 2px solid var(--color-black);
     cursor: pointer;
 }
@@ -898,19 +959,25 @@
 }
 .main-user-settings-mobile .box-profile-mobile .box-user-information-mobile {
     color: var(--color-white-1);
-    margin-top: 10px;   
+    margin-top: 10px;
 }
-.main-user-settings-mobile .box-profile-mobile .box-user-information-mobile .user-name-mobile {
+.main-user-settings-mobile
+    .box-profile-mobile
+    .box-user-information-mobile
+    .user-name-mobile {
     font-size: 24px;
     max-width: 320px;
 
     white-space: nowrap;
-    overflow: hidden;   
+    overflow: hidden;
     text-overflow: ellipsis;
 
     text-align: center;
 }
-.main-user-settings-mobile .box-profile-mobile .box-user-information-mobile .registration-date-mobile {
+.main-user-settings-mobile
+    .box-profile-mobile
+    .box-user-information-mobile
+    .registration-date-mobile {
     font-size: 12px;
     text-align: center;
     margin-top: 10px;
@@ -931,7 +998,11 @@
 .edit-profile-picture-mobile:hover {
     box-shadow: 0 0 10px var(--color-white-1);
 }
-.main-user-settings-mobile .box-profile-mobile .user-settings-mobile .edit-profile-picture-mobile ion-icon {
+.main-user-settings-mobile
+    .box-profile-mobile
+    .user-settings-mobile
+    .edit-profile-picture-mobile
+    ion-icon {
     width: 25px;
     height: 25px;
 }
@@ -1000,7 +1071,9 @@
 .layer-profile-picture-mobile .container-profile-picture-mobile .field:focus {
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
-.layer-profile-picture-mobile .container-profile-picture-mobile .field::placeholder {
+.layer-profile-picture-mobile
+    .container-profile-picture-mobile
+    .field::placeholder {
     color: var(--color-blue-3);
     font-size: 15px;
 }
@@ -1249,7 +1322,9 @@
     padding: 0 20px;
     text-align: center;
 }
-.form-delete-account-overflow-mobile .form-delete-account-mobile .delete-account-name {
+.form-delete-account-overflow-mobile
+    .form-delete-account-mobile
+    .delete-account-name {
     color: var(--color-white-1);
     font-size: 12px;
     margin-bottom: 10px;
@@ -1277,23 +1352,32 @@
 .form-delete-account-overflow-mobile .form-delete-account-mobile .field:focus {
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
-.form-delete-account-overflow-mobile .form-delete-account-mobile .field::placeholder {
+.form-delete-account-overflow-mobile
+    .form-delete-account-mobile
+    .field::placeholder {
     color: var(--color-blue-3);
     font-size: 15px;
 }
-.form-delete-account-overflow-mobile .form-delete-account-mobile .delete-account-warning {
+.form-delete-account-overflow-mobile
+    .form-delete-account-mobile
+    .delete-account-warning {
     color: var(--color-red-2);
     font-size: 16px;
     margin-bottom: 5px;
     padding: 0 10px;
     text-align: center;
 }
-.form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete {
+.form-delete-account-overflow-mobile
+    .form-delete-account-mobile
+    .interactions-delete {
     margin-top: 15px;
     display: flex;
     gap: 20px;
 }
-.form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete .cancel {
+.form-delete-account-overflow-mobile
+    .form-delete-account-mobile
+    .interactions-delete
+    .cancel {
     width: 120px;
     height: 40px;
     font-size: 16px;
@@ -1306,7 +1390,10 @@
     place-items: center;
     cursor: pointer;
 }
-.form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete .delete {
+.form-delete-account-overflow-mobile
+    .form-delete-account-mobile
+    .interactions-delete
+    .delete {
     width: 120px;
     height: 40px;
     font-size: 16px;
@@ -1331,7 +1418,8 @@
     }
 }
 .warning {
-    animation: warning-anime-color 1s infinite alternate, warning-anime-entrace 500ms linear;
+    animation: warning-anime-color 1s infinite alternate,
+        warning-anime-entrace 500ms linear;
     position: absolute;
 
     top: 20px;
@@ -1611,22 +1699,30 @@
     background-color: var(--color-blue-2);
     border-radius: 10px;
 }
-.current-music-add-playlist-container-mobile .current-music-add-playlist-item-mobile {
+.current-music-add-playlist-container-mobile
+    .current-music-add-playlist-item-mobile {
     display: flex;
     gap: 17px;
     padding-right: 10px;
     cursor: pointer;
 }
-.current-music-add-playlist-container-mobile .current-music-add-playlist-item-mobile .current-music-add-playlist-status-mobile {
+.current-music-add-playlist-container-mobile
+    .current-music-add-playlist-item-mobile
+    .current-music-add-playlist-status-mobile {
     width: 25px;
     height: 25px;
     color: var(--color-blue-2);
 }
-.current-music-add-playlist-container-mobile .current-music-add-playlist-item-mobile .current-music-add-playlist-status-mobile ion-icon {
+.current-music-add-playlist-container-mobile
+    .current-music-add-playlist-item-mobile
+    .current-music-add-playlist-status-mobile
+    ion-icon {
     width: 25px;
     height: 25px;
 }
-.current-music-add-playlist-container-mobile .current-music-add-playlist-item-mobile .current-music-add-playlist-title-mobile {
+.current-music-add-playlist-container-mobile
+    .current-music-add-playlist-item-mobile
+    .current-music-add-playlist-title-mobile {
     color: var(--color-white-1);
     font-size: 20px;
     overflow: hidden;
@@ -1795,7 +1891,8 @@
 .main-minhas-playlists-mobile .minhas-playlists-search-bar-input-mobile:focus {
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
-.main-minhas-playlists-mobile .minhas-playlists-search-bar-input-mobile::placeholder {
+.main-minhas-playlists-mobile
+    .minhas-playlists-search-bar-input-mobile::placeholder {
     color: var(--color-black);
     font-size: 14px;
 }
@@ -1807,7 +1904,9 @@
     right: 10px;
     cursor: pointer;
 }
-.main-minhas-playlists-mobile .minhas-playlists-search-bar-close-mobile ion-icon {
+.main-minhas-playlists-mobile
+    .minhas-playlists-search-bar-close-mobile
+    ion-icon {
     width: 100%;
     height: 100%;
 }
@@ -1821,13 +1920,16 @@
     display: flex;
     flex-direction: column;
 }
-.main-minhas-playlists-mobile .container-minhas-playlists-mobile::-webkit-scrollbar {
+.main-minhas-playlists-mobile
+    .container-minhas-playlists-mobile::-webkit-scrollbar {
     width: 10px;
 }
-.main-minhas-playlists-mobile .container-minhas-playlists-mobile::-webkit-scrollbar-track {
+.main-minhas-playlists-mobile
+    .container-minhas-playlists-mobile::-webkit-scrollbar-track {
     background: var(--color-black);
 }
-.main-minhas-playlists-mobile .container-minhas-playlists-mobile::-webkit-scrollbar-thumb {
+.main-minhas-playlists-mobile
+    .container-minhas-playlists-mobile::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
 .container-minhas-playlists-mobile .no-playlist-mobile {
@@ -1966,29 +2068,44 @@
     height: 225px;
     overflow: hidden;
 }
-.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile {
+.main-minhas-playlists-mobile
+    .main-playlist-mobile
+    .content-mobile
+    .title-mobile {
     color: var(--color-white-1);
     height: 150px;
-    overflow: auto; 
+    overflow: auto;
     font-size: 20px;
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 10px;
 }
-.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile::-webkit-scrollbar {
+.main-minhas-playlists-mobile
+    .main-playlist-mobile
+    .content-mobile
+    .title-mobile::-webkit-scrollbar {
     width: 10px;
     padding: 60px;
     position: absolute;
 }
-.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile::-webkit-scrollbar-track {
+.main-minhas-playlists-mobile
+    .main-playlist-mobile
+    .content-mobile
+    .title-mobile::-webkit-scrollbar-track {
     background: var(--color-black);
     border-radius: 10px;
 }
-.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile::-webkit-scrollbar-thumb {
+.main-minhas-playlists-mobile
+    .main-playlist-mobile
+    .content-mobile
+    .title-mobile::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
     border-radius: 10px;
 }
-.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile {
+.main-minhas-playlists-mobile
+    .main-playlist-mobile
+    .content-mobile
+    .details-mobile {
     color: var(--color-white-1);
     font-size: 14px;
     display: flex;
@@ -2174,7 +2291,7 @@
 .music-my-new-playlist-delete-btn-mobile {
     animation: animate-scale-opacity-entrace 500ms;
     margin-top: 10px;
-    margin-left: 530px; 
+    margin-left: 530px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
     background-color: var(--color-red-2);
@@ -2483,7 +2600,6 @@
     border: none;
     cursor: pointer;
 }
-
 
 @keyframes song-not-found-mobile-animation {
     0% {

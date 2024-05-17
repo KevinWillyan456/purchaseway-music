@@ -1,751 +1,1175 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Purchaseway Music</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="https://i.ibb.co/L0T3ZXL/pw-music-icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/css/globalStyles.css">
-    <link rel="stylesheet" href="/css/home.css">
-    <link rel="stylesheet" href="/css/themes.css">
-    <link rel="stylesheet" href="/css/themes-mobile.css">
-    <link rel="stylesheet" media="(max-width: 1359px)" href="/css/home-mobile.css">
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>Purchaseway Music</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="shortcut icon"
+            href="https://i.ibb.co/L0T3ZXL/pw-music-icon.png"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet" href="/css/globalStyles.css" />
+        <link rel="stylesheet" href="/css/home.css" />
+        <link rel="stylesheet" href="/css/themes.css" />
+        <link rel="stylesheet" href="/css/themes-mobile.css" />
+        <link
+            rel="stylesheet"
+            media="(max-width: 1359px)"
+            href="/css/home-mobile.css"
+        />
+        <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <main class="super-main">
+            <div class="warning hidden" id="warning"></div>
 
-    <main class="super-main">
-
-        <div class="warning hidden" id="warning"></div>
-
-        <section class="main-playlist">
-
-            <div class="box-wrapper-info">
-                <div class="title-playlist">Carregando...</div>
-                <div class="more-playlist">Mais</div>
-            </div>
-
-            <div class="container-playlist"></div>
-
-            <div class="menu-options">
+            <section class="main-playlist">
                 <div class="box-wrapper-info">
-                    <div class="title-menu-options">Menu</div>
-                    <div class="back-menu-options" id="backMenu">Voltar</div>
+                    <div class="title-playlist">Carregando...</div>
+                    <div class="more-playlist">Mais</div>
                 </div>
-                <div class="container-option">
-                    <div class="option" id="selectPlaylist">Selecionar Playlist</div>
-                    <div class="option" id="selectFavorites">Favoritos</div>
-                    <div class="option" id="selectMyPlaylist">Minhas Playlists</div>
-                    <div class="option hidden" id="selectManagementSystem">Gerenciar Sistema</div>
+
+                <div class="container-playlist"></div>
+
+                <div class="menu-options">
+                    <div class="box-wrapper-info">
+                        <div class="title-menu-options">Menu</div>
+                        <div class="back-menu-options" id="backMenu">
+                            Voltar
+                        </div>
+                    </div>
+                    <div class="container-option">
+                        <div class="option" id="selectPlaylist">
+                            Selecionar Playlist
+                        </div>
+                        <div class="option" id="selectFavorites">Favoritos</div>
+                        <div class="option" id="selectMyPlaylist">
+                            Minhas Playlists
+                        </div>
+                        <div class="option hidden" id="selectManagementSystem">
+                            Gerenciar Sistema
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-        </section>
+            <section class="main-display">
+                <div class="background-cover"></div>
 
-        <section class="main-display">
-
-            <div class="background-cover"></div>
-
-            <div class="container-search">
-
-                <div class="search-icon">
-                    <ion-icon name="search"></ion-icon>
+                <div class="container-search">
+                    <div class="search-icon">
+                        <ion-icon name="search"></ion-icon>
+                    </div>
+                    <div class="search-bar" style="display: none">
+                        <input
+                            id="search-bar-input"
+                            type="text"
+                            placeholder="Digite o nome da música..."
+                        />
+                        <div class="search-bar-close">
+                            <ion-icon name="close"></ion-icon>
+                        </div>
+                    </div>
                 </div>
-                <div class="search-bar" style="display: none;">
-                    <input id="search-bar-input" type="text" placeholder="Digite o nome da música...">
-                    <div class="search-bar-close">
+
+                <div class="current-cover">
+                    <div class="container-frame" id="containerFrame"></div>
+                </div>
+
+                <div class="container-settings">
+                    <div class="user-settings">
+                        <ion-icon name="person" id="userPersonIcon"></ion-icon>
+                        <div
+                            class="user-settings-person-container hidden"
+                            id="userPersonContainer"
+                        >
+                            <img
+                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                alt="Foto de perfil"
+                                class="user-settings-person-img"
+                                id="userPersonImg"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-search-result" style="display: none">
+                    <div class="layer-search-result">
+                        <div class="box-search-result">
+                            <div class="title-search-result">
+                                Resultados da Pesquisa
+                            </div>
+                            <div class="container-items"></div>
+                        </div>
+                    </div>
+
+                    <div class="song-not-found" style="display: none">
+                        Nenhuma música foi encontrada
+                    </div>
+                </div>
+
+                <div class="container-user-settings" style="display: none">
+                    <div class="layer-user-settings">
+                        <div class="box-user-settings">
+                            <div class="title-profile">Perfil</div>
+                            <div class="logout">
+                                <ion-icon name="exit"></ion-icon>
+                            </div>
+                            <div class="box-profile">
+                                <div class="user-settings">
+                                    <ion-icon
+                                        name="person"
+                                        id="userSettingsPersonIcon"
+                                    ></ion-icon>
+                                    <div
+                                        class="user-settings-person-container hidden"
+                                        id="userSettingsPersonContainer"
+                                    >
+                                        <img
+                                            src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                            alt="Foto de perfil"
+                                            class="user-settings-person-img"
+                                            id="userSettingsPersonImg"
+                                        />
+                                    </div>
+                                    <div
+                                        class="edit-profile-picture"
+                                        id="profilePictureEdit"
+                                    >
+                                        <ion-icon name="pencil"></ion-icon>
+                                    </div>
+                                </div>
+                                <div class="box-user-information">
+                                    <div class="user-name">Carregando...</div>
+                                    <div class="registration-date">
+                                        Registrou-se em: 15 fevereiro 2023
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="layer-profile-picture hidden"
+                                id="layerProfilePicture"
+                            >
+                                <form class="container-profile-picture">
+                                    <div class="title">Adicione uma URL</div>
+                                    <input
+                                        class="field"
+                                        type="text"
+                                        placeholder="URL"
+                                        id="profilePictureInput"
+                                    />
+                                    <button class="save" type="submit">
+                                        Salvar
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="title-profile">Músicas Favoritas</div>
+
+                            <div class="container-favorite"></div>
+
+                            <div class="title-wrapper">
+                                <div class="title-profile">Histórico</div>
+                                <div class="trash-icon">
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </div>
+                            </div>
+
+                            <div class="container-historic"></div>
+
+                            <div class="container-delete-account">
+                                <button
+                                    class="btn-delete-account"
+                                    id="btnDeleteAccount"
+                                >
+                                    Deletar sua conta
+                                </button>
+                            </div>
+
+                            <div
+                                class="form-delete-account-overflow hidden"
+                                id="formDeleteAccount"
+                            >
+                                <form class="form-delete-account">
+                                    <div class="title">
+                                        Tem certeza que deseja deletar sua
+                                        conta?
+                                    </div>
+                                    <div
+                                        class="delete-account-name"
+                                        id="playlistDeleteName"
+                                    >
+                                        Quero deletar minha conta e aceito as
+                                        condições
+                                    </div>
+                                    <input
+                                        class="field"
+                                        type="text"
+                                        placeholder="Digite a frase para confirmar..."
+                                        id="deleteAccountInputToConfirm"
+                                    />
+                                    <div class="delete-account-warning">
+                                        Todos os seus dados serão excluídos e
+                                        não será possível recuperá-los
+                                    </div>
+                                    <div class="interactions-delete">
+                                        <button
+                                            class="cancel"
+                                            id="formDeleteAccountCancel"
+                                            type="reset"
+                                        >
+                                            Cancelar
+                                        </button>
+                                        <button class="delete" type="submit">
+                                            Excluir
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-controls">
+                <div class="container-side-1">
+                    <div class="music-animation-status">
+                        <div style="margin-right: 5px; --i: 0s"></div>
+                        <div style="margin-right: 5px; --i: 100ms"></div>
+                        <div style="--i: 200ms"></div>
+                    </div>
+                    <div class="cover-current-music">
+                        <img
+                            src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                            alt="Capa da música"
+                        />
+                    </div>
+                    <div class="info-current-music">
+                        <div class="title-info-current-music">
+                            Carregando...
+                        </div>
+                        <div class="gender-info-current-music">
+                            Carregando...
+                        </div>
+
+                        <div class="current-music-rating">
+                            <ion-icon
+                                name="star"
+                                style="margin-right: 2px"
+                            ></ion-icon>
+                            <ion-icon
+                                name="star"
+                                style="margin-right: 2px"
+                            ></ion-icon>
+                            <ion-icon
+                                name="star"
+                                style="margin-right: 2px"
+                            ></ion-icon>
+                            <ion-icon
+                                name="star"
+                                style="margin-right: 2px"
+                            ></ion-icon>
+                            <ion-icon name="star-outline"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="current-music-add">
+                        <ion-icon name="add"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="container-side-2">
+                    <div class="container-controls">
+                        <ion-icon
+                            name="play-skip-back-circle"
+                            style="margin-right: 10px"
+                            id="audio-prev"
+                        ></ion-icon>
+                        <ion-icon
+                            name="play-circle"
+                            style="margin-right: 10px"
+                            id="audio-play"
+                        ></ion-icon>
+                        <ion-icon
+                            name="play-skip-forward-circle"
+                            id="audio-next"
+                        ></ion-icon>
+                    </div>
+
+                    <div class="container-duration-status">
+                        <div class="current-duration">0:00</div>
+                        <div class="slider-music-duration">
+                            <div class="slider-music-duration-wrapper">
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                />
+                                <div class="slider-music-duration-dot"></div>
+                            </div>
+                        </div>
+                        <div class="total-duration">0:00</div>
+                    </div>
+
+                    <div class="container-volume">
+                        <div class="volume-icon">
+                            <ion-icon name="volume-high"></ion-icon>
+                        </div>
+                        <div class="slider-music-volume">
+                            <div class="slider-music-volume-wrapper">
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="60"
+                                />
+                                <div class="slider-music-volume-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-funcions">
+                        <div class="repeat-icon">
+                            <ion-icon name="repeat"></ion-icon>
+                        </div>
+                        <div class="shuffle-icon">
+                            <ion-icon name="shuffle"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="service-logo">
+                        <img
+                            src="https://i.ibb.co/fdBXmh2/logo.png"
+                            alt="Logo do serviço"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            <div class="focus-shadow" style="display: none"></div>
+
+            <section class="main-select-playlists" style="display: none">
+                <div class="select-playlist-back">Voltar</div>
+                <div class="title-select-playlist">PlayLists</div>
+
+                <div class="playlists-search-bar">
+                    <input
+                        class="playlists-search-bar-input"
+                        type="text"
+                        placeholder="Digite o nome da playlist..."
+                    />
+                    <div class="playlists-search-bar-close">
                         <ion-icon name="close"></ion-icon>
                     </div>
                 </div>
-            </div>
 
-            
-            <div class="current-cover">
-                <div class="container-frame" id="containerFrame"></div>
-            </div>
+                <div class="container-select-playlists"></div>
+            </section>
 
-            <div class="container-settings">
-                <div class="user-settings">
-                    <ion-icon name="person" id="userPersonIcon"></ion-icon>
-                    <div class="user-settings-person-container hidden" id="userPersonContainer">
-                        <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Foto de perfil" class="user-settings-person-img" id="userPersonImg">
+            <section class="add-my-new-playlist-overflow hidden">
+                <form class="add-my-new-playlist-container">
+                    <div class="add-my-new-playlist-title">
+                        Adicionar uma nova Playlist
+                    </div>
+                    <input
+                        type="text"
+                        class="add-my-new-playlist-name"
+                        placeholder="Nome"
+                    />
+                    <button class="add-my-new-playlist-adicionar" type="submit">
+                        Adicionar
+                    </button>
+                </form>
+            </section>
+
+            <section class="edit-my-new-playlist-overflow hidden">
+                <form class="edit-my-new-playlist-container">
+                    <div class="edit-my-new-playlist-title">
+                        Editar Playlist
+                    </div>
+                    <input
+                        type="text"
+                        class="edit-my-new-playlist-name"
+                        placeholder="Nome"
+                    />
+                    <button
+                        class="edit-my-new-playlist-adicionar"
+                        type="submit"
+                    >
+                        Salvar
+                    </button>
+                </form>
+            </section>
+
+            <section class="delete-my-new-playlist-overflow hidden">
+                <form class="delete-my-new-playlist-container">
+                    <div class="delete-my-new-playlist-title">
+                        Tem certeza que deseja excluir esta Playlist?
+                    </div>
+                    <div class="delete-my-new-playlist-current">
+                        Minha Playlist
+                    </div>
+                    <input
+                        type="text"
+                        class="delete-my-new-playlist-name"
+                        placeholder="Digite o nome da playlist para confirmar..."
+                    />
+                    <div class="delete-my-new-playlist-warning">
+                        Esta ação é irreversível
+                    </div>
+                    <div class="delete-my-new-playlist-interactions">
+                        <button
+                            class="delete-my-new-playlist-btn-cancel"
+                            type="reset"
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            class="delete-my-new-playlist-btn-delete"
+                            type="submit"
+                        >
+                            Excluir
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="music-my-new-playlist-overflow hidden">
+                <div class="music-my-new-playlist-container">
+                    <div class="music-my-new-playlist-cover">
+                        <img
+                            src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                            alt="Capa da música"
+                        />
+                    </div>
+                    <div class="music-my-new-playlist-title"></div>
+                </div>
+                <button class="music-my-new-playlist-delete-btn">
+                    <ion-icon name="close"></ion-icon>
+                    Excluir
+                </button>
+            </section>
+
+            <section class="music-delete-my-new-playlist-overflow hidden">
+                <div class="music-delete-my-new-playlist-container">
+                    <div class="music-delete-my-new-playlist-title">
+                        Tem certeza que deseja remover esta Música?
+                    </div>
+                    <div class="music-delete-my-new-playlist-current">
+                        Minha Música
+                    </div>
+                    <div class="music-delete-my-new-playlist-warning">
+                        Esta ação é irreversível
+                    </div>
+                    <div class="music-delete-my-new-playlist-interactions">
+                        <button class="music-delete-my-new-playlist-btn-cancel">
+                            Cancelar
+                        </button>
+                        <button class="music-delete-my-new-playlist-btn-delete">
+                            Excluir
+                        </button>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="container-search-result" style="display: none;">
-                <div class="layer-search-result">
-                    <div class="box-search-result">
-                        <div class="title-search-result">Resultados da Pesquisa</div>
-                        <div class="container-items">
+            <section class="current-music-add-overflow hidden">
+                <div class="current-music-add-container">
+                    <div class="current-music-add-favorite-container">
+                        <div class="current-music-add-favorite-icon">
+                            <ion-icon name="heart-outline"></ion-icon>
+                        </div>
+                        <div class="current-music-add-favorite-title">
+                            Favoritos
+                        </div>
+                    </div>
+
+                    <div class="current-music-add-playlist-container"></div>
+
+                    <button class="current-music-add-create-new-playlist">
+                        Criar nova playlist
+                    </button>
+                    <button class="current-music-add-confirm">Confirmar</button>
+                </div>
+            </section>
+
+            <section class="confirm-logout-overflow hidden">
+                <form class="confirm-logout-container">
+                    <div class="confirm-logout-title">Deseja mesmo sair?</div>
+                    <button class="confirm-logout-btn" type="submit">
+                        Sair
+                    </button>
+                </form>
+            </section>
+
+            <section class="main-minhas-playlists" style="display: none">
+                <div class="minhas-playlists-back">Voltar</div>
+                <div class="title-minhas-playlists">Minhas Playlists</div>
+
+                <div class="minhas-playlists-search-bar">
+                    <input
+                        class="minhas-playlists-search-bar-input"
+                        type="text"
+                        placeholder="Digite o nome da playlist..."
+                    />
+                    <div class="minhas-playlists-search-bar-close">
+                        <ion-icon name="close"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="container-minhas-playlists"></div>
+
+                <div
+                    class="container-minha-playlist"
+                    id="containerMinhaPlaylist"
+                    style="display: none"
+                >
+                    <div class="container-minha-playlist-back">Voltar</div>
+                    <div class="main-playlist">
+                        <div class="cover">
+                            <img
+                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                alt="Capa da playlist"
+                                id="containerPlaylistToManageCover"
+                            />
+                        </div>
+                        <div class="content">
+                            <div class="title"></div>
+                            <div class="details">
+                                <div class="created"></div>
+                                <div class="total-song"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interactions">
+                        <div class="btn-adicionar" id="btnSelectMyPlaylist">
+                            Selecionar
+                        </div>
+                        <div class="btn-editar" id="btnEditSelectMyPlaylist">
+                            <ion-icon
+                                name="pencil"
+                                role="img"
+                                class="md hydrated"
+                                aria-label="pencil"
+                            ></ion-icon>
+                            Editar
+                        </div>
+                        <div class="btn-excluir" id="btnDeleteSelectMyPlaylist">
+                            <ion-icon
+                                name="close"
+                                role="img"
+                                class="md hydrated"
+                                aria-label="close"
+                            ></ion-icon>
+                            Excluir
+                        </div>
+                    </div>
+                    <div class="title-todas-as-musicas">Todas as Músicas</div>
+                    <div class="container-minhas-musicas"></div>
+                </div>
+            </section>
+        </main>
+
+        <main class="super-main-mobile" style="display: none">
+            <div class="warning hidden" id="warningMobile"></div>
+
+            <section class="header-mobile">
+                <div class="service-logo-mobile">
+                    <img
+                        src="https://i.ibb.co/fdBXmh2/logo.png"
+                        alt="Logo do serviço"
+                    />
+                </div>
+
+                <div class="box-wrapper-header-mobile">
+                    <div class="search-icon-mobile">
+                        <ion-icon name="search"></ion-icon>
+                    </div>
+                    <div class="user-settings">
+                        <ion-icon
+                            name="person"
+                            id="userPersonIconMobile"
+                        ></ion-icon>
+                        <div
+                            class="user-settings-person-container-mobile hidden"
+                            id="userPersonContainerMobile"
+                        >
+                            <img
+                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                alt="Foto de perfil"
+                                class="user-settings-person-img-mobile"
+                                id="userPersonImgMobile"
+                            />
                         </div>
                     </div>
                 </div>
-                
-                <div class="song-not-found" style="display: none;">Nenhuma música foi encontrada</div>
+            </section>
 
-            </div>
+            <section class="main-playlist-mobile">
+                <div class="box-wrapper-info-mobile">
+                    <div class="title-playlist-mobile">Carregando...</div>
+                    <div class="more-playlist-mobile">Mais</div>
+                </div>
 
-            <div class="container-user-settings" style="display: none;">
-                <div class="layer-user-settings">
-                    <div class="box-user-settings">
-                        <div class="title-profile">Perfil</div>
-                        <div class="logout"><ion-icon name="exit"></ion-icon></div>
-                        <div class="box-profile">
-                            <div class="user-settings">
-                                <ion-icon name="person" id="userSettingsPersonIcon"></ion-icon>
-                                <div class="user-settings-person-container hidden" id="userSettingsPersonContainer">
-                                    <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Foto de perfil" class="user-settings-person-img" id="userSettingsPersonImg">
-                                </div>
-                                <div class="edit-profile-picture" id="profilePictureEdit">
-                                    <ion-icon name="pencil"></ion-icon>
-                                </div>
-                            </div>
-                            <div class="box-user-information">
-                                <div class="user-name">Carregando...</div>
-                                <div class="registration-date">Registrou-se em: 15 fevereiro 2023</div>
-                            </div>
-                        </div>
+                <div class="container-playlist-mobile"></div>
 
-                        <div class="layer-profile-picture hidden" id="layerProfilePicture">
-                            <form class="container-profile-picture">
-                                <div class="title">Adicione uma URL</div>
-                                <input class="field" type="text" placeholder="URL" id="profilePictureInput">
-                                <button class="save" type="submit">Salvar</button>
-                            </form>
+                <div class="menu-options-mobile">
+                    <div class="box-wrapper-info-mobile">
+                        <div class="title-menu-options-mobile">Menu</div>
+                        <div
+                            class="back-menu-options-mobile"
+                            id="backMenuMobile"
+                        >
+                            Voltar
                         </div>
-                        
-                        <div class="title-profile">Músicas Favoritas</div>
-
-                        <div class="container-favorite">
+                    </div>
+                    <div class="container-option-mobile">
+                        <div class="option-mobile" id="selectPlaylistMobile">
+                            Selecionar Playlist
                         </div>
-                        
-                        <div class="title-wrapper">
-                            <div class="title-profile">Histórico</div>
-                            <div class="trash-icon">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </div>
+                        <div class="option-mobile" id="selectFavoritesMobile">
+                            Favoritos
                         </div>
-                        
-                        <div class="container-historic">
+                        <div class="option-mobile" id="selectMyPlaylistMobile">
+                            Minhas Playlists
                         </div>
-
-                        <div class="container-delete-account">
-                            <button class="btn-delete-account" id="btnDeleteAccount">Deletar sua conta</button>
-                        </div>
-
-                        <div class="form-delete-account-overflow hidden" id="formDeleteAccount">
-                            <form class="form-delete-account">
-                                <div class="title">Tem certeza que deseja deletar sua conta?</div>
-                                <div class="delete-account-name" id="playlistDeleteName">Quero deletar minha conta e aceito as condições</div>
-                                <input class="field" type="text" placeholder="Digite a frase para confirmar..." id="deleteAccountInputToConfirm">
-                                <div class="delete-account-warning">Todos os seus dados serão excluídos e não será possível recuperá-los</div>
-                                <div class="interactions-delete">
-                                    <button class="cancel" id="formDeleteAccountCancel" type="reset">Cancelar</button>
-                                    <button class="delete" type="submit">Excluir</button>
-                                </div>
-                            </form>
+                        <div
+                            class="option-mobile hidden"
+                            id="selectManagementSystemMobile"
+                        >
+                            Gerenciar Sistema
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="main-controls">
-            
-            <div class="container-side-1">
+            <section class="main-controls-mobile">
+                <div class="display-music-duration-mobile"></div>
 
-                <div class="music-animation-status">
-                    <div style="margin-right: 5px; --i:0s;"></div>
-                    <div style="margin-right: 5px; --i:100ms;"></div>
-                    <div style="--i:200ms;"></div>
+                <div class="box-wrapper">
+                    <div class="cover-item">
+                        <img
+                            src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                            alt="Capa da música"
+                        />
+                    </div>
+                    <div class="info-item">
+                        <div class="title-info">Carregando...</div>
+                        <div class="gender-info">Carregando...</div>
+                    </div>
                 </div>
-                <div class="cover-current-music">
-                    <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da música">
+
+                <div class="play-button-item">
+                    <ion-icon name="play-circle"></ion-icon>
                 </div>
-                <div class="info-current-music">
-                    <div class="title-info-current-music">
+            </section>
+
+            <section class="main-display-mobile" style="display: none">
+                <div class="background-cover-mobile"></div>
+                <div class="background-layer-1-mobile"></div>
+                <div class="background-layer-2-mobile"></div>
+
+                <div class="display-back">
+                    <ion-icon name="chevron-down"></ion-icon>
+                </div>
+
+                <div class="current-cover-mobile">
+                    <div
+                        class="container-frame-mobile"
+                        id="containerFrameMobile"
+                    ></div>
+                </div>
+
+                <div class="info-current-music-mobile">
+                    <div class="title-info-current-music-mobile">
                         Carregando...
                     </div>
-                    <div class="gender-info-current-music">
+                    <div class="gender-info-current-music-mobile">
                         Carregando...
                     </div>
-
-                    <div class="current-music-rating">
-                        <ion-icon name="star" style="margin-right: 2px;"></ion-icon>
-                        <ion-icon name="star" style="margin-right: 2px;"></ion-icon>
-                        <ion-icon name="star" style="margin-right: 2px;"></ion-icon>
-                        <ion-icon name="star" style="margin-right: 2px;"></ion-icon>
-                        <ion-icon name="star-outline"></ion-icon>
-                    </div>
-
                 </div>
 
-                <div class="current-music-add">
+                <div class="current-music-add-mobile">
                     <ion-icon name="add"></ion-icon>
                 </div>
 
-            </div>
-
-            <div class="container-side-2">
-
-                <div class="container-controls">
-                    <ion-icon name="play-skip-back-circle" style="margin-right: 10px;" id="audio-prev"></ion-icon>
-                    <ion-icon name="play-circle" style="margin-right: 10px;" id="audio-play"></ion-icon>
-                    <ion-icon name="play-skip-forward-circle" id="audio-next"></ion-icon>
+                <div class="container-controls-mobile">
+                    <ion-icon
+                        name="play-skip-back-circle"
+                        style="margin-right: 5px"
+                        id="audio-prev-mobile"
+                    ></ion-icon>
+                    <ion-icon
+                        name="play-circle"
+                        style="margin-right: 5px"
+                        id="audio-play-mobile"
+                    ></ion-icon>
+                    <ion-icon
+                        name="play-skip-forward-circle"
+                        id="audio-next-mobile"
+                    ></ion-icon>
                 </div>
 
-                <div class="container-duration-status">
-                    <div class="current-duration">0:00</div>
-                    <div class="slider-music-duration">
-                        <div class="slider-music-duration-wrapper">
-                            <input type="range" min="0" max="100" value="0">
-                            <div class="slider-music-duration-dot"></div>
+                <div class="current-duration-mobile">0:00</div>
+                <div class="slider-music-duration-mobile">
+                    <div class="slider-music-duration-wrapper-mobile">
+                        <input type="range" min="0" max="100" value="0" />
+                        <div class="slider-music-duration-dot-mobile"></div>
+                    </div>
+                </div>
+                <div class="total-duration-mobile">0:00</div>
+
+                <div class="repeat-icon-mobile">
+                    <ion-icon name="repeat"></ion-icon>
+                </div>
+                <div class="shuffle-icon-mobile">
+                    <ion-icon name="shuffle"></ion-icon>
+                </div>
+            </section>
+
+            <section class="main-select-playlists-mobile" style="display: none">
+                <div class="select-playlist-back-mobile">Voltar</div>
+                <div class="title-select-playlist-mobile">PlayLists</div>
+
+                <div class="playlists-search-bar-mobile">
+                    <input
+                        class="playlists-search-bar-input-mobile"
+                        type="text"
+                        placeholder="Digite o nome da playlist..."
+                    />
+                    <div class="playlists-search-bar-close-mobile">
+                        <ion-icon name="close"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="container-select-playlists-wrapper">
+                    <div class="container-select-playlists-mobile"></div>
+                </div>
+            </section>
+
+            <section class="main-user-settings-mobile" style="display: none">
+                <div class="display-back">
+                    <ion-icon name="chevron-down"></ion-icon>
+                </div>
+
+                <div class="logout-mobile">
+                    <ion-icon name="exit"></ion-icon>
+                </div>
+
+                <div class="title-profile-mobile">Perfil</div>
+
+                <div class="box-profile-mobile">
+                    <div class="user-settings-mobile">
+                        <ion-icon
+                            name="person"
+                            id="userSettingsPersonIconMobile"
+                        ></ion-icon>
+                        <div
+                            class="user-settings-person-container-mobile hidden"
+                            id="userSettingsPersonContainerMobile"
+                        >
+                            <img
+                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                alt="Foto de perfil"
+                                class="user-settings-person-img-mobile"
+                                id="userSettingsPersonImgMobile"
+                            />
+                        </div>
+                        <div
+                            class="edit-profile-picture-mobile"
+                            id="profilePictureEditMobile"
+                        >
+                            <ion-icon name="pencil"></ion-icon>
                         </div>
                     </div>
-                    <div class="total-duration">0:00</div>
-                </div>
-                
-                <div class="container-volume">
-                    <div class="volume-icon">
-                        <ion-icon name="volume-high"></ion-icon>
-                    </div>
-                    <div class="slider-music-volume">
-                        <div class="slider-music-volume-wrapper">
-                            <input type="range" min="0" max="100" value="60">
-                            <div class="slider-music-volume-dot"></div>
-                        </div>
-                    </div>
-
-                </div>
-                
-                <div class="container-funcions">
-                    <div class="repeat-icon">
-                        <ion-icon name="repeat"></ion-icon>
-                    </div>
-                    <div class="shuffle-icon">
-                        <ion-icon name="shuffle"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="service-logo">
-                    <img src="https://i.ibb.co/fdBXmh2/logo.png" alt="Logo do serviço">
-                </div>
-
-            </div>
-
-        </section>
-
-        <div class="focus-shadow" style="display: none;"></div>
-
-        <section class="main-select-playlists" style="display: none;">
-            <div class="select-playlist-back">Voltar</div>
-            <div class="title-select-playlist">PlayLists</div>
-
-            <div class="playlists-search-bar">
-                <input class="playlists-search-bar-input" type="text" placeholder="Digite o nome da playlist...">
-                <div class="playlists-search-bar-close">
-                    <ion-icon name="close"></ion-icon>
-                </div>
-            </div>
-
-            <div class="container-select-playlists">
-            </div>
-
-        </section>
-
-        <section class="add-my-new-playlist-overflow hidden">
-            <form class="add-my-new-playlist-container">
-                <div class="add-my-new-playlist-title">Adicionar uma nova Playlist</div>
-                <input type="text" class="add-my-new-playlist-name" placeholder="Nome">
-                <button class="add-my-new-playlist-adicionar" type="submit">Adicionar</button>
-            </form>
-        </section>
-
-        <section class="edit-my-new-playlist-overflow hidden">
-            <form class="edit-my-new-playlist-container">
-                <div class="edit-my-new-playlist-title">Editar Playlist</div>
-                <input type="text" class="edit-my-new-playlist-name" placeholder="Nome">
-                <button class="edit-my-new-playlist-adicionar" type="submit">Salvar</button>
-            </form>
-        </section>
-
-        <section class="delete-my-new-playlist-overflow hidden">
-            <form class="delete-my-new-playlist-container">
-                <div class="delete-my-new-playlist-title">Tem certeza que deseja excluir esta Playlist?</div>
-                <div class="delete-my-new-playlist-current">Minha Playlist</div>
-                <input type="text" class="delete-my-new-playlist-name" placeholder="Digite o nome da playlist para confirmar...">
-                <div class="delete-my-new-playlist-warning">Esta ação é irreversível</div>
-                <div class="delete-my-new-playlist-interactions">
-                    <button class="delete-my-new-playlist-btn-cancel" type="reset">Cancelar</button>
-                    <button class="delete-my-new-playlist-btn-delete" type="submit">Excluir</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="music-my-new-playlist-overflow hidden">
-            <div class="music-my-new-playlist-container">
-                <div class="music-my-new-playlist-cover">
-                    <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da música">
-                </div>
-                <div class="music-my-new-playlist-title"></div>
-            </div>
-            <button class="music-my-new-playlist-delete-btn">
-                <ion-icon name="close"></ion-icon>
-                Excluir
-            </button>
-        </section>
-        
-        <section class="music-delete-my-new-playlist-overflow hidden">
-            <div class="music-delete-my-new-playlist-container">
-                <div class="music-delete-my-new-playlist-title">Tem certeza que deseja remover esta Música?</div>
-                <div class="music-delete-my-new-playlist-current">Minha Música</div>
-                <div class="music-delete-my-new-playlist-warning">Esta ação é irreversível</div>
-                <div class="music-delete-my-new-playlist-interactions">
-                    <button class="music-delete-my-new-playlist-btn-cancel">Cancelar</button>
-                    <button class="music-delete-my-new-playlist-btn-delete">Excluir</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="current-music-add-overflow hidden">
-            <div class="current-music-add-container">
-
-                <div class="current-music-add-favorite-container">
-                    <div class="current-music-add-favorite-icon">
-                        <ion-icon name="heart-outline"></ion-icon>
-                    </div>
-                    <div class="current-music-add-favorite-title">Favoritos</div>
-                </div>
-
-                <div class="current-music-add-playlist-container"></div>
-
-                <button class="current-music-add-create-new-playlist">Criar nova playlist</button>
-                <button class="current-music-add-confirm">Confirmar</button>
-
-            </div>
-        </section>
-
-        <section class="confirm-logout-overflow hidden">
-            <form class="confirm-logout-container">
-                <div class="confirm-logout-title">Deseja mesmo sair?</div>
-                <button class="confirm-logout-btn" type="submit">Sair</button>
-            </form>
-        </section>
-
-        <section class="main-minhas-playlists" style="display: none;">
-            <div class="minhas-playlists-back">Voltar</div>
-            <div class="title-minhas-playlists">Minhas Playlists</div>
-
-            <div class="minhas-playlists-search-bar">
-                <input class="minhas-playlists-search-bar-input" type="text" placeholder="Digite o nome da playlist...">
-                <div class="minhas-playlists-search-bar-close">
-                    <ion-icon name="close"></ion-icon>
-                </div>
-            </div>
-
-            <div class="container-minhas-playlists"></div>
-
-            <div class="container-minha-playlist" id="containerMinhaPlaylist" style="display: none;">
-                <div class="container-minha-playlist-back">Voltar</div>
-                <div class="main-playlist">
-                    <div class="cover">
-                        <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da playlist" id="containerPlaylistToManageCover">
-                    </div>
-                    <div class="content">
-                        <div class="title"></div>
-                        <div class="details">
-                            <div class="created"></div>
-                            <div class="total-song"></div>
+                    <div class="box-user-information-mobile">
+                        <div class="user-name-mobile">Carregando...</div>
+                        <div class="registration-date-mobile">
+                            Registrou-se em: 15 fevereiro 2023
                         </div>
                     </div>
                 </div>
-                <div class="interactions">
-                    <div class="btn-adicionar" id="btnSelectMyPlaylist">
-                        Selecionar
-                    </div>
-                    <div class="btn-editar" id="btnEditSelectMyPlaylist">
-                        <ion-icon name="pencil" role="img" class="md hydrated" aria-label="pencil"></ion-icon>
-                        Editar
-                    </div>
-                    <div class="btn-excluir" id="btnDeleteSelectMyPlaylist">
-                        <ion-icon name="close" role="img" class="md hydrated" aria-label="close"></ion-icon>
-                        Excluir
-                    </div>
-                </div>
-                <div class="title-todas-as-musicas">Todas as Músicas</div>
-                <div class="container-minhas-musicas"></div>
-            </div>
-        </section>
 
-    </main>
-
-    <main class="super-main-mobile" style="display: none;">
-
-        <div class="warning hidden" id="warningMobile"></div>
-
-        <section class="header-mobile">
-
-            <div class="service-logo-mobile">
-                <img src="https://i.ibb.co/fdBXmh2/logo.png" alt="Logo do serviço">
-            </div>
-
-            <div class="box-wrapper-header-mobile">
-                <div class="search-icon-mobile">
-                    <ion-icon name="search"></ion-icon>
-                </div>
-                <div class="user-settings">
-                    <ion-icon name="person" id="userPersonIconMobile"></ion-icon>
-                    <div class="user-settings-person-container-mobile hidden" id="userPersonContainerMobile">
-                        <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Foto de perfil" class="user-settings-person-img-mobile" id="userPersonImgMobile">
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <section class="main-playlist-mobile">
-
-            <div class="box-wrapper-info-mobile">
-                <div class="title-playlist-mobile">Carregando...</div>
-                <div class="more-playlist-mobile">Mais</div>
-            </div>
-
-            <div class="container-playlist-mobile">
-            </div>
-
-            <div class="menu-options-mobile">
-                <div class="box-wrapper-info-mobile">
-                    <div class="title-menu-options-mobile">Menu</div>
-                    <div class="back-menu-options-mobile" id="backMenuMobile">Voltar</div>
-                </div>
-                <div class="container-option-mobile">
-                    <div class="option-mobile" id="selectPlaylistMobile">Selecionar Playlist</div>
-                    <div class="option-mobile" id="selectFavoritesMobile">Favoritos</div>
-                    <div class="option-mobile" id="selectMyPlaylistMobile">Minhas Playlists</div>
-                    <div class="option-mobile hidden" id="selectManagementSystemMobile">Gerenciar Sistema</div>
-                </div>
-            </div>
-
-        </section>
-
-        <section class="main-controls-mobile">
-            <div class="display-music-duration-mobile"></div>
-
-            <div class="box-wrapper">
-
-                <div class="cover-item">
-                    <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da música">
-                </div>
-                <div class="info-item">
-                    <div class="title-info">
-                        Carregando...
-                    </div>
-                    <div class="gender-info">
-                        Carregando...
-                    </div>
-                </div>
-                
-            </div>
-
-            <div class="play-button-item">
-                <ion-icon name="play-circle"></ion-icon>
-            </div>
-
-        </section>
-
-        <section class="main-display-mobile" style="display: none;">
-            <div class="background-cover-mobile"></div>
-            <div class="background-layer-1-mobile"></div>
-            <div class="background-layer-2-mobile"></div>
-
-            <div class="display-back">
-                <ion-icon name="chevron-down"></ion-icon>
-            </div>
-
-            <div class="current-cover-mobile">
-                <div class="container-frame-mobile" id="containerFrameMobile"></div>
-            </div>
-
-            <div class="info-current-music-mobile">
-                <div class="title-info-current-music-mobile">
-                    Carregando...
-                </div>
-                <div class="gender-info-current-music-mobile">
-                    Carregando...
-                </div>
-            </div>
-
-            <div class="current-music-add-mobile">
-                <ion-icon name="add"></ion-icon>
-            </div>
-
-            <div class="container-controls-mobile">
-                <ion-icon name="play-skip-back-circle" style="margin-right: 5px;" id="audio-prev-mobile"></ion-icon>
-                <ion-icon name="play-circle" style="margin-right: 5px;" id="audio-play-mobile"></ion-icon>
-                <ion-icon name="play-skip-forward-circle" id="audio-next-mobile"></ion-icon>
-            </div>
-
-            <div class="current-duration-mobile">0:00</div>
-            <div class="slider-music-duration-mobile">
-                <div class="slider-music-duration-wrapper-mobile">
-                    <input type="range" min="0" max="100" value="0">
-                    <div class="slider-music-duration-dot-mobile"></div>
-                </div>
-            </div>
-            <div class="total-duration-mobile">0:00</div>
-
-            <div class="repeat-icon-mobile">
-                <ion-icon name="repeat"></ion-icon>
-            </div>
-            <div class="shuffle-icon-mobile">
-                <ion-icon name="shuffle"></ion-icon>
-            </div>
-
-        </section>
-
-        <section class="main-select-playlists-mobile" style="display: none;">
-            <div class="select-playlist-back-mobile">Voltar</div>
-            <div class="title-select-playlist-mobile">PlayLists</div>
-
-            <div class="playlists-search-bar-mobile">
-                <input class="playlists-search-bar-input-mobile" type="text" placeholder="Digite o nome da playlist...">
-                <div class="playlists-search-bar-close-mobile">
-                    <ion-icon name="close"></ion-icon>
-                </div>
-            </div>
-
-            <div class="container-select-playlists-wrapper">
-                <div class="container-select-playlists-mobile">
-                </div>
-            </div>
-
-        </section>
-
-        <section class="main-user-settings-mobile" style="display: none;">
-
-            <div class="display-back">
-                <ion-icon name="chevron-down"></ion-icon>
-            </div>
-
-            <div class="logout-mobile">
-                <ion-icon name="exit"></ion-icon>
-            </div>
-
-            <div class="title-profile-mobile">Perfil</div>
-
-            <div class="box-profile-mobile">
-                <div class="user-settings-mobile">
-                    <ion-icon name="person" id="userSettingsPersonIconMobile"></ion-icon>
-                    <div class="user-settings-person-container-mobile hidden" id="userSettingsPersonContainerMobile">
-                        <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Foto de perfil" class="user-settings-person-img-mobile" id="userSettingsPersonImgMobile">
-                    </div>
-                    <div class="edit-profile-picture-mobile" id="profilePictureEditMobile">
-                        <ion-icon name="pencil"></ion-icon>
-                    </div>
-                </div>
-                <div class="box-user-information-mobile">
-                    <div class="user-name-mobile">Carregando...</div>
-                    <div class="registration-date-mobile">Registrou-se em: 15 fevereiro 2023</div>
-                </div>
-            </div>
-
-            <div class="layer-profile-picture-mobile hidden" id="layerProfilePictureMobile">
-                <form class="container-profile-picture-mobile">
-                    <div class="title">Adicione uma URL</div>
-                    <input class="field" type="text" placeholder="URL" id="profilePictureInputMobile">
-                    <button class="save">Salvar</button>
-                </form>
-            </div>
-            
-            <div class="content-profile-mobile">
-                <div class="title-2-profile-mobile" style="padding-left: 5px;">Músicas Favoritas</div>
-                <div class="container-favorite-mobile">
-                </div>
-                
-                <div class="title-2-wrapper-mobile">
-                    <div class="title-2-profile-mobile">Histórico</div>
-                    <div class="trash-icon-mobile">
-                        <ion-icon name="trash-outline"></ion-icon>
-                    </div>
-                </div>
-                
-                <div class="container-historic-mobile">
-                </div>
-
-                <div class="container-delete-account-mobile">
-                    <button class="btn-delete-account-mobile" id="btnDeleteAccountMobile">Deletar sua conta</button>
-                </div>
-
-                <div class="form-delete-account-overflow-mobile hidden" id="formDeleteAccountMobile">
-                    <form class="form-delete-account-mobile">
-                        <div class="title">Tem certeza que deseja deletar sua conta?</div>
-                        <div class="delete-account-name" id="playlistDeleteNameMobile">Quero deletar minha conta e aceito as condições</div>
-                        <input class="field" type="text" placeholder="Digite a frase para confirmar..." id="deleteAccountInputToConfirmMobile">
-                        <div class="delete-account-warning">Todos os seus dados serão excluídos e não será possível recuperá-los</div>
-                        <div class="interactions-delete">
-                            <button class="cancel" id="formDeleteAccountCancelMobile" type="reset">Cancelar</button>
-                            <button class="delete" type="submit">Excluir</button>
-                        </div>
+                <div
+                    class="layer-profile-picture-mobile hidden"
+                    id="layerProfilePictureMobile"
+                >
+                    <form class="container-profile-picture-mobile">
+                        <div class="title">Adicione uma URL</div>
+                        <input
+                            class="field"
+                            type="text"
+                            placeholder="URL"
+                            id="profilePictureInputMobile"
+                        />
+                        <button class="save">Salvar</button>
                     </form>
                 </div>
-            </div>
-            
-        </section>
 
-        <section class="current-music-add-overflow-mobile hidden">
-            <div class="current-music-add-container-mobile">
-
-                <div class="current-music-add-favorite-container-mobile">
-                    <div class="current-music-add-favorite-icon-mobile">
-                        <ion-icon name="heart-outline"></ion-icon>
+                <div class="content-profile-mobile">
+                    <div
+                        class="title-2-profile-mobile"
+                        style="padding-left: 5px"
+                    >
+                        Músicas Favoritas
                     </div>
-                    <div class="current-music-add-favorite-title-mobile">Favoritos</div>
-                </div>
+                    <div class="container-favorite-mobile"></div>
 
-                <div class="current-music-add-playlist-container-mobile"></div>
-
-                <button class="current-music-add-create-new-playlist-mobile">Criar nova playlist</button>
-                <button class="current-music-add-confirm-mobile">Confirmar</button>
-            </div>
-        </section>
-
-        <section class="add-my-new-playlist-overflow-mobile hidden">
-            <form class="add-my-new-playlist-container-mobile">
-                <div class="add-my-new-playlist-title-mobile">Adicionar uma nova Playlist</div>
-                <input type="text" class="add-my-new-playlist-name-mobile" placeholder="Nome">
-                <button class="add-my-new-playlist-adicionar-mobile" type="submit">Adicionar</button>
-            </form>
-        </section>
-
-        <section class="main-search-mobile" style="display: none;">
-
-            <div class="display-back">
-                <ion-icon name="chevron-down"></ion-icon>
-            </div>
-
-            <div class="title">Resultados da Pesquisa</div>
-
-            <div class="search-bar-mobile">
-                <input id="search-bar-input-mobile" type="text" placeholder="Digite o nome da música...">
-                <div class="search-bar-close-mobile">
-                    <ion-icon name="close"></ion-icon>
-                </div>
-            </div>
-
-            <div class="content-search-mobile">
-                <div class="container-search-mobile">
-                </div>
-
-                <div class="song-not-found-mobile" style="display: none;">Nenhuma música foi encontrada</div>
-            </div>
-
-        </section>
-
-        <section class="main-minhas-playlists-mobile" style="display: none;">
-            <div class="minhas-playlists-back-mobile">Voltar</div>
-            <div class="title-minhas-playlists-mobile">Minhas Playlists</div>
-
-            <div class="minhas-playlists-search-bar-mobile">
-                <input class="minhas-playlists-search-bar-input-mobile" type="text" placeholder="Digite o nome da playlist...">
-                <div class="minhas-playlists-search-bar-close-mobile">
-                    <ion-icon name="close"></ion-icon>
-                </div>
-            </div>
-
-            <div class="container-minhas-playlists-mobile"></div>
-
-            <div class="container-minha-playlist-mobile" id="containerMinhaPlaylistMobile" style="display: none;">
-                <div class="container-minha-playlist-back-mobile">Voltar</div>
-                <div class="main-playlist-mobile">
-                    <div class="cover-mobile">
-                        <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da playlist" id="containerPlaylistToManageCoverMobile">
-                    </div>
-                    <div class="content-mobile">
-                        <div class="title-mobile" id="containerPlaylistToManageTitleMobile"></div>
-                        <div class="details-mobile">
-                            <div class="created-mobile" id="containerPlaylistToManageCreatedMobile"></div>
-                            <div class="total-song-mobile" id="containerPlaylistToManageTotalMusicsMobile"></div>
+                    <div class="title-2-wrapper-mobile">
+                        <div class="title-2-profile-mobile">Histórico</div>
+                        <div class="trash-icon-mobile">
+                            <ion-icon name="trash-outline"></ion-icon>
                         </div>
                     </div>
+
+                    <div class="container-historic-mobile"></div>
+
+                    <div class="container-delete-account-mobile">
+                        <button
+                            class="btn-delete-account-mobile"
+                            id="btnDeleteAccountMobile"
+                        >
+                            Deletar sua conta
+                        </button>
+                    </div>
+
+                    <div
+                        class="form-delete-account-overflow-mobile hidden"
+                        id="formDeleteAccountMobile"
+                    >
+                        <form class="form-delete-account-mobile">
+                            <div class="title">
+                                Tem certeza que deseja deletar sua conta?
+                            </div>
+                            <div
+                                class="delete-account-name"
+                                id="playlistDeleteNameMobile"
+                            >
+                                Quero deletar minha conta e aceito as condições
+                            </div>
+                            <input
+                                class="field"
+                                type="text"
+                                placeholder="Digite a frase para confirmar..."
+                                id="deleteAccountInputToConfirmMobile"
+                            />
+                            <div class="delete-account-warning">
+                                Todos os seus dados serão excluídos e não será
+                                possível recuperá-los
+                            </div>
+                            <div class="interactions-delete">
+                                <button
+                                    class="cancel"
+                                    id="formDeleteAccountCancelMobile"
+                                    type="reset"
+                                >
+                                    Cancelar
+                                </button>
+                                <button class="delete" type="submit">
+                                    Excluir
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="btn-adicionar-mobile" id="btnSelectMyPlaylistMobile">
-                    Selecionar
+            </section>
+
+            <section class="current-music-add-overflow-mobile hidden">
+                <div class="current-music-add-container-mobile">
+                    <div class="current-music-add-favorite-container-mobile">
+                        <div class="current-music-add-favorite-icon-mobile">
+                            <ion-icon name="heart-outline"></ion-icon>
+                        </div>
+                        <div class="current-music-add-favorite-title-mobile">
+                            Favoritos
+                        </div>
+                    </div>
+
+                    <div
+                        class="current-music-add-playlist-container-mobile"
+                    ></div>
+
+                    <button
+                        class="current-music-add-create-new-playlist-mobile"
+                    >
+                        Criar nova playlist
+                    </button>
+                    <button class="current-music-add-confirm-mobile">
+                        Confirmar
+                    </button>
                 </div>
-                <div class="btn-editar-mobile" id="btnEditSelectMyPlaylistMobile">
-                    <ion-icon name="pencil" role="img" class="md hydrated" aria-label="pencil"></ion-icon>
-                    Editar
+            </section>
+
+            <section class="add-my-new-playlist-overflow-mobile hidden">
+                <form class="add-my-new-playlist-container-mobile">
+                    <div class="add-my-new-playlist-title-mobile">
+                        Adicionar uma nova Playlist
+                    </div>
+                    <input
+                        type="text"
+                        class="add-my-new-playlist-name-mobile"
+                        placeholder="Nome"
+                    />
+                    <button
+                        class="add-my-new-playlist-adicionar-mobile"
+                        type="submit"
+                    >
+                        Adicionar
+                    </button>
+                </form>
+            </section>
+
+            <section class="main-search-mobile" style="display: none">
+                <div class="display-back">
+                    <ion-icon name="chevron-down"></ion-icon>
                 </div>
-                <div class="btn-excluir-mobile" id="btnDeleteSelectMyPlaylistMobile">
-                    <ion-icon name="close" role="img" class="md hydrated" aria-label="close"></ion-icon>
+
+                <div class="title">Resultados da Pesquisa</div>
+
+                <div class="search-bar-mobile">
+                    <input
+                        id="search-bar-input-mobile"
+                        type="text"
+                        placeholder="Digite o nome da música..."
+                    />
+                    <div class="search-bar-close-mobile">
+                        <ion-icon name="close"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="content-search-mobile">
+                    <div class="container-search-mobile"></div>
+
+                    <div class="song-not-found-mobile" style="display: none">
+                        Nenhuma música foi encontrada
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-minhas-playlists-mobile" style="display: none">
+                <div class="minhas-playlists-back-mobile">Voltar</div>
+                <div class="title-minhas-playlists-mobile">
+                    Minhas Playlists
+                </div>
+
+                <div class="minhas-playlists-search-bar-mobile">
+                    <input
+                        class="minhas-playlists-search-bar-input-mobile"
+                        type="text"
+                        placeholder="Digite o nome da playlist..."
+                    />
+                    <div class="minhas-playlists-search-bar-close-mobile">
+                        <ion-icon name="close"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="container-minhas-playlists-mobile"></div>
+
+                <div
+                    class="container-minha-playlist-mobile"
+                    id="containerMinhaPlaylistMobile"
+                    style="display: none"
+                >
+                    <div class="container-minha-playlist-back-mobile">
+                        Voltar
+                    </div>
+                    <div class="main-playlist-mobile">
+                        <div class="cover-mobile">
+                            <img
+                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                alt="Capa da playlist"
+                                id="containerPlaylistToManageCoverMobile"
+                            />
+                        </div>
+                        <div class="content-mobile">
+                            <div
+                                class="title-mobile"
+                                id="containerPlaylistToManageTitleMobile"
+                            ></div>
+                            <div class="details-mobile">
+                                <div
+                                    class="created-mobile"
+                                    id="containerPlaylistToManageCreatedMobile"
+                                ></div>
+                                <div
+                                    class="total-song-mobile"
+                                    id="containerPlaylistToManageTotalMusicsMobile"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="btn-adicionar-mobile"
+                        id="btnSelectMyPlaylistMobile"
+                    >
+                        Selecionar
+                    </div>
+                    <div
+                        class="btn-editar-mobile"
+                        id="btnEditSelectMyPlaylistMobile"
+                    >
+                        <ion-icon
+                            name="pencil"
+                            role="img"
+                            class="md hydrated"
+                            aria-label="pencil"
+                        ></ion-icon>
+                        Editar
+                    </div>
+                    <div
+                        class="btn-excluir-mobile"
+                        id="btnDeleteSelectMyPlaylistMobile"
+                    >
+                        <ion-icon
+                            name="close"
+                            role="img"
+                            class="md hydrated"
+                            aria-label="close"
+                        ></ion-icon>
+                        Excluir
+                    </div>
+                    <div class="title-todas-as-musicas-mobile">
+                        Todas as Músicas
+                    </div>
+                    <div class="container-minhas-musicas-mobile"></div>
+                </div>
+            </section>
+
+            <section class="music-my-new-playlist-overflow-mobile hidden">
+                <div class="music-my-new-playlist-container-mobile">
+                    <div class="music-my-new-playlist-cover-mobile">
+                        <img
+                            src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                            alt="Capa da música"
+                        />
+                    </div>
+                    <div class="music-my-new-playlist-title-mobile"></div>
+                </div>
+                <button class="music-my-new-playlist-delete-btn-mobile">
+                    <ion-icon name="close"></ion-icon>
                     Excluir
+                </button>
+            </section>
+
+            <section
+                class="music-delete-my-new-playlist-overflow-mobile hidden"
+            >
+                <div class="music-delete-my-new-playlist-container-mobile">
+                    <div class="music-delete-my-new-playlist-title-mobile">
+                        Tem certeza que deseja remover esta Música?
+                    </div>
+                    <div class="music-delete-my-new-playlist-current-mobile">
+                        Minha Música
+                    </div>
+                    <div class="music-delete-my-new-playlist-warning-mobile">
+                        Esta ação é irreversível
+                    </div>
+                    <div
+                        class="music-delete-my-new-playlist-interactions-mobile"
+                    >
+                        <button
+                            class="music-delete-my-new-playlist-btn-cancel-mobile"
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            class="music-delete-my-new-playlist-btn-delete-mobile"
+                        >
+                            Excluir
+                        </button>
+                    </div>
                 </div>
-                <div class="title-todas-as-musicas-mobile">Todas as Músicas</div>
-                <div class="container-minhas-musicas-mobile"></div>
-            </div>
-        </section>
+            </section>
 
-        <section class="music-my-new-playlist-overflow-mobile hidden">
-            <div class="music-my-new-playlist-container-mobile">
-                <div class="music-my-new-playlist-cover-mobile">
-                    <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="Capa da música">
-                </div>
-                <div class="music-my-new-playlist-title-mobile"></div>
-            </div>
-            <button class="music-my-new-playlist-delete-btn-mobile">
-                <ion-icon name="close"></ion-icon>
-                Excluir
-            </button>
-        </section>
+            <section class="edit-my-new-playlist-overflow-mobile hidden">
+                <form class="edit-my-new-playlist-container-mobile">
+                    <div class="edit-my-new-playlist-title-mobile">
+                        Editar Playlist
+                    </div>
+                    <input
+                        type="text"
+                        class="edit-my-new-playlist-name-mobile"
+                        placeholder="Nome"
+                    />
+                    <button
+                        class="edit-my-new-playlist-adicionar-mobile"
+                        type="submit"
+                    >
+                        Salvar
+                    </button>
+                </form>
+            </section>
 
-        <section class="music-delete-my-new-playlist-overflow-mobile hidden">
-            <div class="music-delete-my-new-playlist-container-mobile">
-                <div class="music-delete-my-new-playlist-title-mobile">Tem certeza que deseja remover esta Música?</div>
-                <div class="music-delete-my-new-playlist-current-mobile">Minha Música</div>
-                <div class="music-delete-my-new-playlist-warning-mobile">Esta ação é irreversível</div>
-                <div class="music-delete-my-new-playlist-interactions-mobile">
-                    <button class="music-delete-my-new-playlist-btn-cancel-mobile">Cancelar</button>
-                    <button class="music-delete-my-new-playlist-btn-delete-mobile">Excluir</button>
-                </div>
-            </div>
-        </section>
+            <section class="delete-my-new-playlist-overflow-mobile hidden">
+                <form class="delete-my-new-playlist-container-mobile">
+                    <div class="delete-my-new-playlist-title-mobile">
+                        Tem certeza que deseja excluir esta Playlist?
+                    </div>
+                    <div class="delete-my-new-playlist-current-mobile">
+                        Minha Playlist
+                    </div>
+                    <input
+                        type="text"
+                        class="delete-my-new-playlist-name-mobile"
+                        placeholder="Digite o nome da playlist para confirmar..."
+                    />
+                    <div class="delete-my-new-playlist-warning-mobile">
+                        Esta ação é irreversível
+                    </div>
+                    <div class="delete-my-new-playlist-interactions-mobile">
+                        <button
+                            class="delete-my-new-playlist-btn-cancel-mobile"
+                            type="reset"
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            class="delete-my-new-playlist-btn-delete-mobile"
+                            type="submit"
+                        >
+                            Excluir
+                        </button>
+                    </div>
+                </form>
+            </section>
 
-        <section class="edit-my-new-playlist-overflow-mobile hidden">
-            <form class="edit-my-new-playlist-container-mobile">
-                <div class="edit-my-new-playlist-title-mobile">Editar Playlist</div>
-                <input type="text" class="edit-my-new-playlist-name-mobile" placeholder="Nome">
-                <button class="edit-my-new-playlist-adicionar-mobile" type="submit">Salvar</button>
-            </form>
-        </section>
+            <section class="confirm-logout-overflow-mobile hidden">
+                <form class="confirm-logout-container-mobile">
+                    <div class="confirm-logout-title-mobile">
+                        Deseja mesmo sair?
+                    </div>
+                    <button class="confirm-logout-btn-mobile" type="submit">
+                        Sair
+                    </button>
+                </form>
+            </section>
+        </main>
 
-        <section class="delete-my-new-playlist-overflow-mobile hidden">
-            <form class="delete-my-new-playlist-container-mobile">
-                <div class="delete-my-new-playlist-title-mobile">Tem certeza que deseja excluir esta Playlist?</div>
-                <div class="delete-my-new-playlist-current-mobile">Minha Playlist</div>
-                <input type="text" class="delete-my-new-playlist-name-mobile" placeholder="Digite o nome da playlist para confirmar...">
-                <div class="delete-my-new-playlist-warning-mobile">Esta ação é irreversível</div>
-                <div class="delete-my-new-playlist-interactions-mobile">
-                    <button class="delete-my-new-playlist-btn-cancel-mobile" type="reset">Cancelar</button>
-                    <button class="delete-my-new-playlist-btn-delete-mobile" type="submit">Excluir</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="confirm-logout-overflow-mobile hidden">
-            <form class="confirm-logout-container-mobile">
-                <div class="confirm-logout-title-mobile">Deseja mesmo sair?</div>
-                <button class="confirm-logout-btn-mobile" type="submit">Sair</button>
-            </form>
-        </section>
-    </main>
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="/JS/home.js" defer></script>
-</body>
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+        ></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script src="/JS/home.js" defer></script>
+    </body>
 </html>

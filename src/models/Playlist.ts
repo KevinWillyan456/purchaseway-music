@@ -17,7 +17,7 @@ const playlistSchema = new Schema<IPlaylist>({
     description: { type: String, required: true },
     gender: { type: String, required: true, unique: true },
     totalSongs: { type: Number, default: 0 },
-    additionDate: { type: Date, required: true }
+    additionDate: { type: Date, required: true },
 })
 
 export const Playlist = model<IPlaylist>('Playlist', playlistSchema)

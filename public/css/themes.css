@@ -18,19 +18,33 @@
 .container-side-1 .current-music-add.rock-version ion-icon {
     color: var(--color-red-2);
 }
-.slider-music-duration.rock-version input[type=range] {
-    background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+.slider-music-duration.rock-version input[type='range'] {
+    background-image: linear-gradient(
+        to right,
+        var(--color-red-2) 0%,
+        var(--color-red-2) 50%,
+        var(--color-white-1) 50%,
+        var(--color-white-1) 100%
+    );
 }
-.slider-music-duration.rock-version input[type=range]::-webkit-slider-thumb {
+.slider-music-duration.rock-version input[type='range']::-webkit-slider-thumb {
     background-color: var(--color-red-2);
 }
 .slider-music-duration-wrapper .slider-music-duration-dot.rock-version {
     background-color: var(--color-red-2);
 }
-.container-volume .slider-music-volume.rock-version input[type=range] {
-    background-image: linear-gradient(to right, var(--color-red-2) 0%, var(--color-red-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+.container-volume .slider-music-volume.rock-version input[type='range'] {
+    background-image: linear-gradient(
+        to right,
+        var(--color-red-2) 0%,
+        var(--color-red-2) 50%,
+        var(--color-white-1) 50%,
+        var(--color-white-1) 100%
+    );
 }
-.container-volume .slider-music-volume.rock-version input[type=range]::-webkit-slider-thumb {
+.container-volume
+    .slider-music-volume.rock-version
+    input[type='range']::-webkit-slider-thumb {
     background-color: var(--color-red-2);
 }
 .slider-music-volume-wrapper .slider-music-volume-dot.rock-version {
@@ -39,7 +53,10 @@
 .container-playlist .item-playlist.rock-version {
     background-color: var(--color-red-3);
 }
-.container-playlist .item-playlist.rock-version .box-wrapper .info-item.music-playing {
+.container-playlist
+    .item-playlist.rock-version
+    .box-wrapper
+    .info-item.music-playing {
     color: var(--color-red-5);
 }
 .main-controls.rock-version {
@@ -81,7 +98,8 @@
 .main-select-playlists.rock-version {
     background-color: var(--color-red-1);
 }
-.main-select-playlists.rock-version .container-select-playlists::-webkit-scrollbar-thumb {
+.main-select-playlists.rock-version
+    .container-select-playlists::-webkit-scrollbar-thumb {
     background-color: var(--color-red-2);
 }
 .main-select-playlists .select-playlist-back.rock-version {
@@ -98,23 +116,29 @@
 }
 .main-playlist .menu-options .box-wrapper-info .back-menu-options.rock-version {
     background-color: var(--color-red-3);
-} 
+}
 .main-playlist .menu-options .option.rock-version {
     background-color: var(--color-red-3);
 }
-.info-item-select-playlist .description-item-select-playlist.rock-version::-webkit-scrollbar-thumb {
+.info-item-select-playlist
+    .description-item-select-playlist.rock-version::-webkit-scrollbar-thumb {
     background-color: var(--color-red-2);
 }
 .form-delete-account-overflow .form-delete-account.rock-version {
     background-color: var(--color-red-1);
 }
-.form-delete-account-overflow .form-delete-account .interactions-delete .cancel.rock-version {
+.form-delete-account-overflow
+    .form-delete-account
+    .interactions-delete
+    .cancel.rock-version {
     background-color: var(--color-red-3);
 }
 .form-delete-account-overflow .form-delete-account .field.rock-version:focus {
     box-shadow: 0 0 0 5px var(--color-red-2), 0 0 25px var(--color-red-2);
 }
-.form-delete-account-overflow .form-delete-account .field.rock-version::placeholder {
+.form-delete-account-overflow
+    .form-delete-account
+    .field.rock-version::placeholder {
     color: var(--color-red-3);
 }
 .form-delete-account-overflow .form-delete-account .field.rock-version {
@@ -129,7 +153,9 @@
 .layer-profile-picture .container-profile-picture .field.rock-version:focus {
     box-shadow: 0 0 0 5px var(--color-red-2), 0 0 25px var(--color-red-2);
 }
-.layer-profile-picture .container-profile-picture .field.rock-version::placeholder {
+.layer-profile-picture
+    .container-profile-picture
+    .field.rock-version::placeholder {
     color: var(--color-red-3);
 }
 .layer-profile-picture .container-profile-picture .save.rock-version {
@@ -156,19 +182,36 @@
 .container-side-1 .current-music-add.hatsune-miku-version ion-icon {
     color: var(--color-miku-2);
 }
-.slider-music-duration.hatsune-miku-version input[type=range] {
-    background-image: linear-gradient(to right, var(--color-miku-2) 0%, var(--color-miku-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+.slider-music-duration.hatsune-miku-version input[type='range'] {
+    background-image: linear-gradient(
+        to right,
+        var(--color-miku-2) 0%,
+        var(--color-miku-2) 50%,
+        var(--color-white-1) 50%,
+        var(--color-white-1) 100%
+    );
 }
-.slider-music-duration.hatsune-miku-version input[type=range]::-webkit-slider-thumb {
+.slider-music-duration.hatsune-miku-version
+    input[type='range']::-webkit-slider-thumb {
     background-color: var(--color-miku-2);
 }
 .slider-music-duration-wrapper .slider-music-duration-dot.hatsune-miku-version {
     background-color: var(--color-miku-2);
 }
-.container-volume .slider-music-volume.hatsune-miku-version input[type=range] {
-    background-image: linear-gradient(to right, var(--color-miku-2) 0%, var(--color-miku-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+.container-volume
+    .slider-music-volume.hatsune-miku-version
+    input[type='range'] {
+    background-image: linear-gradient(
+        to right,
+        var(--color-miku-2) 0%,
+        var(--color-miku-2) 50%,
+        var(--color-white-1) 50%,
+        var(--color-white-1) 100%
+    );
 }
-.container-volume .slider-music-volume.hatsune-miku-version input[type=range]::-webkit-slider-thumb {
+.container-volume
+    .slider-music-volume.hatsune-miku-version
+    input[type='range']::-webkit-slider-thumb {
     background-color: var(--color-miku-2);
 }
 .slider-music-volume-wrapper .slider-music-volume-dot.hatsune-miku-version {
@@ -177,7 +220,10 @@
 .container-playlist .item-playlist.hatsune-miku-version {
     background-color: var(--color-miku-3);
 }
-.container-playlist .item-playlist.hatsune-miku-version .box-wrapper .info-item.music-playing {
+.container-playlist
+    .item-playlist.hatsune-miku-version
+    .box-wrapper
+    .info-item.music-playing {
     color: var(--color-miku-5);
 }
 .main-controls.hatsune-miku-version {
@@ -219,7 +265,8 @@
 .main-select-playlists.hatsune-miku-version {
     background-color: var(--color-miku-1);
 }
-.main-select-playlists.hatsune-miku-version .container-select-playlists::-webkit-scrollbar-thumb {
+.main-select-playlists.hatsune-miku-version
+    .container-select-playlists::-webkit-scrollbar-thumb {
     background-color: var(--color-miku-2);
 }
 .main-select-playlists .select-playlist-back.hatsune-miku-version {
@@ -234,25 +281,36 @@
 .main-playlist .menu-options.hatsune-miku-version::-webkit-scrollbar-thumb {
     background-color: var(--color-miku-2);
 }
-.main-playlist .menu-options .box-wrapper-info .back-menu-options.hatsune-miku-version {
+.main-playlist
+    .menu-options
+    .box-wrapper-info
+    .back-menu-options.hatsune-miku-version {
     background-color: var(--color-miku-3);
-} 
+}
 .main-playlist .menu-options .option.hatsune-miku-version {
     background-color: var(--color-miku-3);
 }
-.info-item-select-playlist .description-item-select-playlist.hatsune-miku-version::-webkit-scrollbar-thumb {
+.info-item-select-playlist
+    .description-item-select-playlist.hatsune-miku-version::-webkit-scrollbar-thumb {
     background-color: var(--color-miku-2);
 }
 .form-delete-account-overflow .form-delete-account.hatsune-miku-version {
     background-color: var(--color-miku-1);
 }
-.form-delete-account-overflow .form-delete-account .interactions-delete .cancel.hatsune-miku-version {
+.form-delete-account-overflow
+    .form-delete-account
+    .interactions-delete
+    .cancel.hatsune-miku-version {
     background-color: var(--color-miku-3);
 }
-.form-delete-account-overflow .form-delete-account .field.hatsune-miku-version:focus {
+.form-delete-account-overflow
+    .form-delete-account
+    .field.hatsune-miku-version:focus {
     box-shadow: 0 0 0 5px var(--color-miku-2), 0 0 25px var(--color-miku-2);
 }
-.form-delete-account-overflow .form-delete-account .field.hatsune-miku-version::placeholder {
+.form-delete-account-overflow
+    .form-delete-account
+    .field.hatsune-miku-version::placeholder {
     color: var(--color-miku-3);
 }
 .form-delete-account-overflow .form-delete-account .field.hatsune-miku-version {
@@ -264,10 +322,14 @@
 .layer-profile-picture .container-profile-picture .field.hatsune-miku-version {
     color: var(--color-miku-3);
 }
-.layer-profile-picture .container-profile-picture .field.hatsune-miku-version:focus {
+.layer-profile-picture
+    .container-profile-picture
+    .field.hatsune-miku-version:focus {
     box-shadow: 0 0 0 5px var(--color-miku-2), 0 0 25px var(--color-miku-2);
 }
-.layer-profile-picture .container-profile-picture .field.hatsune-miku-version::placeholder {
+.layer-profile-picture
+    .container-profile-picture
+    .field.hatsune-miku-version::placeholder {
     color: var(--color-miku-3);
 }
 .layer-profile-picture .container-profile-picture .save.hatsune-miku-version {
@@ -294,19 +356,37 @@
 .container-side-1 .current-music-add.amv-brasileiro-version ion-icon {
     color: var(--color-amv-br-2);
 }
-.slider-music-duration.amv-brasileiro-version input[type=range] {
-    background-image: linear-gradient(to right, var(--color-amv-br-2) 0%, var(--color-amv-br-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+.slider-music-duration.amv-brasileiro-version input[type='range'] {
+    background-image: linear-gradient(
+        to right,
+        var(--color-amv-br-2) 0%,
+        var(--color-amv-br-2) 50%,
+        var(--color-white-1) 50%,
+        var(--color-white-1) 100%
+    );
 }
-.slider-music-duration.amv-brasileiro-version input[type=range]::-webkit-slider-thumb {
+.slider-music-duration.amv-brasileiro-version
+    input[type='range']::-webkit-slider-thumb {
     background-color: var(--color-amv-br-2);
 }
-.slider-music-duration-wrapper .slider-music-duration-dot.amv-brasileiro-version {
+.slider-music-duration-wrapper
+    .slider-music-duration-dot.amv-brasileiro-version {
     background-color: var(--color-amv-br-2);
 }
-.container-volume .slider-music-volume.amv-brasileiro-version input[type=range] {
-    background-image: linear-gradient(to right, var(--color-amv-br-2) 0%, var(--color-amv-br-2) 50%, var(--color-white-1) 50%, var(--color-white-1) 100%);
+.container-volume
+    .slider-music-volume.amv-brasileiro-version
+    input[type='range'] {
+    background-image: linear-gradient(
+        to right,
+        var(--color-amv-br-2) 0%,
+        var(--color-amv-br-2) 50%,
+        var(--color-white-1) 50%,
+        var(--color-white-1) 100%
+    );
 }
-.container-volume .slider-music-volume.amv-brasileiro-version input[type=range]::-webkit-slider-thumb {
+.container-volume
+    .slider-music-volume.amv-brasileiro-version
+    input[type='range']::-webkit-slider-thumb {
     background-color: var(--color-amv-br-2);
 }
 .slider-music-volume-wrapper .slider-music-volume-dot.amv-brasileiro-version {
@@ -315,7 +395,10 @@
 .container-playlist .item-playlist.amv-brasileiro-version {
     background-color: var(--color-amv-br-3);
 }
-.container-playlist .item-playlist.amv-brasileiro-version .box-wrapper .info-item.music-playing {
+.container-playlist
+    .item-playlist.amv-brasileiro-version
+    .box-wrapper
+    .info-item.music-playing {
     color: var(--color-amv-br-5);
 }
 .main-controls.amv-brasileiro-version {
@@ -357,7 +440,8 @@
 .main-select-playlists.amv-brasileiro-version {
     background-color: var(--color-amv-br-1);
 }
-.main-select-playlists.amv-brasileiro-version .container-select-playlists::-webkit-scrollbar-thumb {
+.main-select-playlists.amv-brasileiro-version
+    .container-select-playlists::-webkit-scrollbar-thumb {
     background-color: var(--color-amv-br-2);
 }
 .main-select-playlists .select-playlist-back.amv-brasileiro-version {
@@ -372,40 +456,59 @@
 .main-playlist .menu-options.amv-brasileiro-version::-webkit-scrollbar-thumb {
     background-color: var(--color-amv-br-2);
 }
-.main-playlist .menu-options .box-wrapper-info .back-menu-options.amv-brasileiro-version {
+.main-playlist
+    .menu-options
+    .box-wrapper-info
+    .back-menu-options.amv-brasileiro-version {
     background-color: var(--color-amv-br-3);
-} 
+}
 .main-playlist .menu-options .option.amv-brasileiro-version {
     background-color: var(--color-amv-br-3);
 }
-.info-item-select-playlist .description-item-select-playlist.amv-brasileiro-version::-webkit-scrollbar-thumb {
+.info-item-select-playlist
+    .description-item-select-playlist.amv-brasileiro-version::-webkit-scrollbar-thumb {
     background-color: var(--color-amv-br-2);
 }
 .form-delete-account-overflow .form-delete-account.amv-brasileiro-version {
     background-color: var(--color-amv-br-1);
 }
-.form-delete-account-overflow .form-delete-account .interactions-delete .cancel.amv-brasileiro-version {
+.form-delete-account-overflow
+    .form-delete-account
+    .interactions-delete
+    .cancel.amv-brasileiro-version {
     background-color: var(--color-amv-br-3);
 }
-.form-delete-account-overflow .form-delete-account .field.amv-brasileiro-version:focus {
+.form-delete-account-overflow
+    .form-delete-account
+    .field.amv-brasileiro-version:focus {
     box-shadow: 0 0 0 5px var(--color-amv-br-2), 0 0 25px var(--color-amv-br-2);
 }
-.form-delete-account-overflow .form-delete-account .field.amv-brasileiro-version::placeholder {
+.form-delete-account-overflow
+    .form-delete-account
+    .field.amv-brasileiro-version::placeholder {
     color: var(--color-amv-br-3);
 }
-.form-delete-account-overflow .form-delete-account .field.amv-brasileiro-version {
+.form-delete-account-overflow
+    .form-delete-account
+    .field.amv-brasileiro-version {
     color: var(--color-amv-br-3);
 }
 .layer-profile-picture .container-profile-picture.amv-brasileiro-version {
     background: var(--color-amv-br-1);
 }
-.layer-profile-picture .container-profile-picture .field.amv-brasileiro-version {
+.layer-profile-picture
+    .container-profile-picture
+    .field.amv-brasileiro-version {
     color: var(--color-amv-br-3);
 }
-.layer-profile-picture .container-profile-picture .field.amv-brasileiro-version:focus {
+.layer-profile-picture
+    .container-profile-picture
+    .field.amv-brasileiro-version:focus {
     box-shadow: 0 0 0 5px var(--color-amv-br-2), 0 0 25px var(--color-amv-br-2);
 }
-.layer-profile-picture .container-profile-picture .field.amv-brasileiro-version::placeholder {
+.layer-profile-picture
+    .container-profile-picture
+    .field.amv-brasileiro-version::placeholder {
     color: var(--color-amv-br-3);
 }
 .layer-profile-picture .container-profile-picture .save.amv-brasileiro-version {

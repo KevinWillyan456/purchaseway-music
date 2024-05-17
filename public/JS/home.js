@@ -1,547 +1,812 @@
-let indexAudio = 0;
-let indexAudioId = "";
-let indexAudioGender = "";
-let indexMyPlaylistId = "";
-let indexMyPlaylistAudioId = "";
+let indexAudio = 0
+let indexAudioId = ''
+let indexAudioGender = ''
+let indexMyPlaylistId = ''
+let indexMyPlaylistAudioId = ''
 
-let screenWidth = 0;
-let screenHeight = 0;
+let screenWidth = 0
+let screenHeight = 0
 
-let initialDevice = "";
-let emptyPlaylist = false;
-let titlePlaylist = "";
+let initialDevice = ''
+let emptyPlaylist = false
+let titlePlaylist = ''
 
-let player;
-let playerReady = false;
+let player
+let playerReady = false
 
-let playerMobile;
-let playerReadyMobile = false;
+let playerMobile
+let playerReadyMobile = false
 
-const audioControllerPrev = document.querySelector('#audio-prev');
-const audioControllerPlay = document.querySelector('#audio-play');
-const audioControllerNext = document.querySelector('#audio-next');
+const audioControllerPrev = document.querySelector('#audio-prev')
+const audioControllerPlay = document.querySelector('#audio-play')
+const audioControllerNext = document.querySelector('#audio-next')
 
-const coverCurrentMusic = document.querySelector('.cover-current-music img');
-const titleCurrentMusic = document.querySelector('.title-info-current-music');
-const genderCurrentMusic = document.querySelector('.gender-info-current-music');
-const backgroundCover = document.querySelector('.main-display .background-cover');
+const coverCurrentMusic = document.querySelector('.cover-current-music img')
+const titleCurrentMusic = document.querySelector('.title-info-current-music')
+const genderCurrentMusic = document.querySelector('.gender-info-current-music')
+const backgroundCover = document.querySelector(
+    '.main-display .background-cover'
+)
 
-const musicAnimationStatus = document.querySelector('.music-animation-status');
+const musicAnimationStatus = document.querySelector('.music-animation-status')
 
-const containerPlaylist = document.querySelector('.container-playlist');
-const body = document.body;
+const containerPlaylist = document.querySelector('.container-playlist')
+const body = document.body
 
-const currentDuration = document.querySelector('.container-duration-status .current-duration');
-const sliderMusicDuration = document.querySelector('.slider-music-duration .slider-music-duration-wrapper input');
-const sliderMusicDurationDot = document.querySelector('.slider-music-duration-wrapper .slider-music-duration-dot');
-const totalDuration = document.querySelector('.container-duration-status .total-duration');
+const currentDuration = document.querySelector(
+    '.container-duration-status .current-duration'
+)
+const sliderMusicDuration = document.querySelector(
+    '.slider-music-duration .slider-music-duration-wrapper input'
+)
+const sliderMusicDurationDot = document.querySelector(
+    '.slider-music-duration-wrapper .slider-music-duration-dot'
+)
+const totalDuration = document.querySelector(
+    '.container-duration-status .total-duration'
+)
 
-const sliderMusicVolume = document.querySelector('.slider-music-volume .slider-music-volume-wrapper input');
-const sliderMusicVolumeDot = document.querySelector('.slider-music-volume-wrapper .slider-music-volume-dot');
+const sliderMusicVolume = document.querySelector(
+    '.slider-music-volume .slider-music-volume-wrapper input'
+)
+const sliderMusicVolumeDot = document.querySelector(
+    '.slider-music-volume-wrapper .slider-music-volume-dot'
+)
 
-const repeatIcon = document.querySelector('.container-funcions .repeat-icon ion-icon')
-const shuffleIcon = document.querySelector('.container-funcions .shuffle-icon ion-icon')
+const repeatIcon = document.querySelector(
+    '.container-funcions .repeat-icon ion-icon'
+)
+const shuffleIcon = document.querySelector(
+    '.container-funcions .shuffle-icon ion-icon'
+)
 
-const searchButton = document.querySelector('.container-search .search-icon');
+const searchButton = document.querySelector('.container-search .search-icon')
 
 const containerItemsSearch = document.querySelector('.container-items')
-const searchBarInput = document.querySelector('#search-bar-input');
+const searchBarInput = document.querySelector('#search-bar-input')
 
-const userSettings = document.querySelector('.user-settings');
+const userSettings = document.querySelector('.user-settings')
 
-const containerItemsFavorite = document.querySelector('.container-favorite');
-const containerItemsHistoric = document.querySelector('.container-historic');
+const containerItemsFavorite = document.querySelector('.container-favorite')
+const containerItemsHistoric = document.querySelector('.container-historic')
 
-const userName = document.querySelector('.user-name');
-const registrationDate = document.querySelector('.registration-date');
+const userName = document.querySelector('.user-name')
+const registrationDate = document.querySelector('.registration-date')
 
-const containerFrameVideo = document.querySelector(".container-frame");
+const containerFrameVideo = document.querySelector('.container-frame')
 
-const logout = document.querySelector(".logout");
+const logout = document.querySelector('.logout')
 
-const musicFavoriteIcon = document.querySelector(".current-music-add-favorite-container")
-const musicAddIcon = document.querySelector(".current-music-add ion-icon")
-const musicAddIconMobile = document.querySelector(".current-music-add-mobile ion-icon")
+const musicFavoriteIcon = document.querySelector(
+    '.current-music-add-favorite-container'
+)
+const musicAddIcon = document.querySelector('.current-music-add ion-icon')
+const musicAddIconMobile = document.querySelector(
+    '.current-music-add-mobile ion-icon'
+)
 
-const clearHistoricIcon = document.querySelector(".trash-icon")
+const clearHistoricIcon = document.querySelector('.trash-icon')
 
-const morePlaylist = document.querySelector(".more-playlist");
-const selectPlaylist = document.querySelector('#selectPlaylist');
-const selectPlaylistMobile = document.querySelector('#selectPlaylistMobile');
-const selectManagementSystem = document.querySelector('#selectManagementSystem');
-const selectManagementSystemMobile = document.querySelector('#selectManagementSystemMobile');
-const selectFavorites = document.querySelector('#selectFavorites');
-const selectFavoritesMobile = document.querySelector('#selectFavoritesMobile');
-const backMenu = document.querySelector('#backMenu');
-const backMenuMobile = document.querySelector('#backMenuMobile');
-const backPlaylist = document.querySelector(".select-playlist-back");
+const morePlaylist = document.querySelector('.more-playlist')
+const selectPlaylist = document.querySelector('#selectPlaylist')
+const selectPlaylistMobile = document.querySelector('#selectPlaylistMobile')
+const selectManagementSystem = document.querySelector('#selectManagementSystem')
+const selectManagementSystemMobile = document.querySelector(
+    '#selectManagementSystemMobile'
+)
+const selectFavorites = document.querySelector('#selectFavorites')
+const selectFavoritesMobile = document.querySelector('#selectFavoritesMobile')
+const backMenu = document.querySelector('#backMenu')
+const backMenuMobile = document.querySelector('#backMenuMobile')
+const backPlaylist = document.querySelector('.select-playlist-back')
 
-const containerPlaylistSelect = document.querySelector('.container-select-playlists');
+const containerPlaylistSelect = document.querySelector(
+    '.container-select-playlists'
+)
 
-const containerPlaylistMobile = document.querySelector('.container-playlist-mobile')
+const containerPlaylistMobile = document.querySelector(
+    '.container-playlist-mobile'
+)
 
-const coverCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .cover-item img');
-const titleCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .info-item .title-info');
-const genderCurrentMusicMobile = document.querySelector('.main-controls-mobile .box-wrapper .info-item .gender-info');
-const titleCurrentMusicDisplayMobile = document.querySelector('.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile');
-const genderCurrentMusicDisplayMobile = document.querySelector('.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile');
+const coverCurrentMusicMobile = document.querySelector(
+    '.main-controls-mobile .box-wrapper .cover-item img'
+)
+const titleCurrentMusicMobile = document.querySelector(
+    '.main-controls-mobile .box-wrapper .info-item .title-info'
+)
+const genderCurrentMusicMobile = document.querySelector(
+    '.main-controls-mobile .box-wrapper .info-item .gender-info'
+)
+const titleCurrentMusicDisplayMobile = document.querySelector(
+    '.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile'
+)
+const genderCurrentMusicDisplayMobile = document.querySelector(
+    '.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile'
+)
 
-const controlsMobile = document.querySelector('.main-controls-mobile');
-const displayMobile = document.querySelector('.main-display-mobile');
-const backgroundCoverMobile = document.querySelector('.main-display-mobile .background-cover-mobile');
-const backDisplayMobile = document.querySelector(".main-display-mobile .display-back")
+const controlsMobile = document.querySelector('.main-controls-mobile')
+const displayMobile = document.querySelector('.main-display-mobile')
+const backgroundCoverMobile = document.querySelector(
+    '.main-display-mobile .background-cover-mobile'
+)
+const backDisplayMobile = document.querySelector(
+    '.main-display-mobile .display-back'
+)
 
-const audioControllerPrevMobile = document.querySelector('#audio-prev-mobile');
-const audioControllerPlayMobile = document.querySelector('#audio-play-mobile');
-const audioControllerNextMobile = document.querySelector('#audio-next-mobile');
+const audioControllerPrevMobile = document.querySelector('#audio-prev-mobile')
+const audioControllerPlayMobile = document.querySelector('#audio-play-mobile')
+const audioControllerNextMobile = document.querySelector('#audio-next-mobile')
 
-const repeatIconMobile = document.querySelector('.main-display-mobile .repeat-icon-mobile ion-icon')
-const shuffleIconMobile = document.querySelector('.main-display-mobile .shuffle-icon-mobile ion-icon')
+const repeatIconMobile = document.querySelector(
+    '.main-display-mobile .repeat-icon-mobile ion-icon'
+)
+const shuffleIconMobile = document.querySelector(
+    '.main-display-mobile .shuffle-icon-mobile ion-icon'
+)
 
-const sliderMusicDurationMobile = document.querySelector('.slider-music-duration-mobile .slider-music-duration-wrapper-mobile input');
-const sliderMusicDurationDotMobile = document.querySelector('.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile');
+const sliderMusicDurationMobile = document.querySelector(
+    '.slider-music-duration-mobile .slider-music-duration-wrapper-mobile input'
+)
+const sliderMusicDurationDotMobile = document.querySelector(
+    '.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile'
+)
 
-const currentDurationMobile = document.querySelector('.main-display-mobile .current-duration-mobile');
-const totalDurationMobile = document.querySelector('.main-display-mobile .total-duration-mobile');
+const currentDurationMobile = document.querySelector(
+    '.main-display-mobile .current-duration-mobile'
+)
+const totalDurationMobile = document.querySelector(
+    '.main-display-mobile .total-duration-mobile'
+)
 
-const morePlaylistMobile = document.querySelector(".more-playlist-mobile");
-const backPlaylistMobile = document.querySelector(".select-playlist-back-mobile");
+const morePlaylistMobile = document.querySelector('.more-playlist-mobile')
+const backPlaylistMobile = document.querySelector(
+    '.select-playlist-back-mobile'
+)
 
-const containerPlaylistSelectMobile = document.querySelector('.container-select-playlists-mobile');
+const containerPlaylistSelectMobile = document.querySelector(
+    '.container-select-playlists-mobile'
+)
 
-const displayMusicDurationMobile = document.querySelector(".main-controls-mobile .display-music-duration-mobile")
+const displayMusicDurationMobile = document.querySelector(
+    '.main-controls-mobile .display-music-duration-mobile'
+)
 
-const userNameMobile = document.querySelector('.user-name-mobile');
-const registrationDateMobile = document.querySelector('.registration-date-mobile');
+const userNameMobile = document.querySelector('.user-name-mobile')
+const registrationDateMobile = document.querySelector(
+    '.registration-date-mobile'
+)
 
-const containerItemsFavoriteMobile = document.querySelector('.container-favorite-mobile');
-const containerItemsHistoricMobile = document.querySelector('.container-historic-mobile');
+const containerItemsFavoriteMobile = document.querySelector(
+    '.container-favorite-mobile'
+)
+const containerItemsHistoricMobile = document.querySelector(
+    '.container-historic-mobile'
+)
 
-const musicFavoriteIconMobile = document.querySelector(".current-music-add-favorite-container-mobile")
+const musicFavoriteIconMobile = document.querySelector(
+    '.current-music-add-favorite-container-mobile'
+)
 
-const logoutMobile = document.querySelector(".logout-mobile");
+const logoutMobile = document.querySelector('.logout-mobile')
 
-const clearHistoricIconMobile = document.querySelector(".content-profile-mobile .title-2-wrapper-mobile .trash-icon-mobile")
+const clearHistoricIconMobile = document.querySelector(
+    '.content-profile-mobile .title-2-wrapper-mobile .trash-icon-mobile'
+)
 
-const containerItemsSearchMobile = document.querySelector('.container-search-mobile')
+const containerItemsSearchMobile = document.querySelector(
+    '.container-search-mobile'
+)
 
-const searchBarInputMobile = document.querySelector('#search-bar-input-mobile');
+const searchBarInputMobile = document.querySelector('#search-bar-input-mobile')
 
-const btnDeleteAccount = document.querySelector('#btnDeleteAccount');
-const btnDeleteAccountMobile = document.querySelector('#btnDeleteAccountMobile');
-const formDeleteAccount = document.querySelector('#formDeleteAccount');
-const formDeleteAccountMobile = document.querySelector('#formDeleteAccountMobile');
-const formDeleteAccountCancel = document.querySelector('#formDeleteAccountCancel');
-const formDeleteAccountCancelMobile = document.querySelector('#formDeleteAccountCancelMobile');
-const deleteAccountInputToConfirm = document.querySelector('#deleteAccountInputToConfirm');
-const deleteAccountInputToConfirmMobile = document.querySelector('#deleteAccountInputToConfirmMobile');
-const warning = document.querySelector('#warning');
-const warningMobile = document.querySelector('#warningMobile');
+const btnDeleteAccount = document.querySelector('#btnDeleteAccount')
+const btnDeleteAccountMobile = document.querySelector('#btnDeleteAccountMobile')
+const formDeleteAccount = document.querySelector('#formDeleteAccount')
+const formDeleteAccountMobile = document.querySelector(
+    '#formDeleteAccountMobile'
+)
+const formDeleteAccountCancel = document.querySelector(
+    '#formDeleteAccountCancel'
+)
+const formDeleteAccountCancelMobile = document.querySelector(
+    '#formDeleteAccountCancelMobile'
+)
+const deleteAccountInputToConfirm = document.querySelector(
+    '#deleteAccountInputToConfirm'
+)
+const deleteAccountInputToConfirmMobile = document.querySelector(
+    '#deleteAccountInputToConfirmMobile'
+)
+const warning = document.querySelector('#warning')
+const warningMobile = document.querySelector('#warningMobile')
 
-const profilePictureEdit = document.querySelector('#profilePictureEdit');
-const layerProfilePicture = document.querySelector('#layerProfilePicture');
-const profilePictureInput = document.querySelector('#profilePictureInput');
-const profilePictureEditMobile = document.querySelector('#profilePictureEditMobile');
-const layerProfilePictureMobile = document.querySelector('#layerProfilePictureMobile');
-const profilePictureInputMobile = document.querySelector('#profilePictureInputMobile');
+const profilePictureEdit = document.querySelector('#profilePictureEdit')
+const layerProfilePicture = document.querySelector('#layerProfilePicture')
+const profilePictureInput = document.querySelector('#profilePictureInput')
+const profilePictureEditMobile = document.querySelector(
+    '#profilePictureEditMobile'
+)
+const layerProfilePictureMobile = document.querySelector(
+    '#layerProfilePictureMobile'
+)
+const profilePictureInputMobile = document.querySelector(
+    '#profilePictureInputMobile'
+)
 
-const backMyPlaylist = document.querySelector('.minhas-playlists-back');
-const backMyPlaylistMobile = document.querySelector('.minhas-playlists-back-mobile');
-const backContainerMinhaPlaylist = document.querySelector('.container-minha-playlist-back');
-const backContainerMinhaPlaylistMobile = document.querySelector('.container-minha-playlist-back-mobile');
-const selectMyPlaylist = document.querySelector('#selectMyPlaylist');
-const selectMyPlaylistMobile = document.querySelector('#selectMyPlaylistMobile');
+const backMyPlaylist = document.querySelector('.minhas-playlists-back')
+const backMyPlaylistMobile = document.querySelector(
+    '.minhas-playlists-back-mobile'
+)
+const backContainerMinhaPlaylist = document.querySelector(
+    '.container-minha-playlist-back'
+)
+const backContainerMinhaPlaylistMobile = document.querySelector(
+    '.container-minha-playlist-back-mobile'
+)
+const selectMyPlaylist = document.querySelector('#selectMyPlaylist')
+const selectMyPlaylistMobile = document.querySelector('#selectMyPlaylistMobile')
 
-const containerMinhaPlaylist = document.querySelector('#containerMinhaPlaylist');
-const btnSelectMyPlaylist = document.querySelector('#btnSelectMyPlaylist');
-const btnSelectMyPlaylistMobile = document.querySelector('#btnSelectMyPlaylistMobile');
-const btnEditSelectMyPlaylist = document.querySelector('#btnEditSelectMyPlaylist');
-const btnEditSelectMyPlaylistMobile = document.querySelector('#btnEditSelectMyPlaylistMobile');
-const btnDeleteSelectMyPlaylist = document.querySelector('#btnDeleteSelectMyPlaylist');
-const btnDeleteSelectMyPlaylistMobile = document.querySelector('#btnDeleteSelectMyPlaylistMobile');
+const containerMinhaPlaylist = document.querySelector('#containerMinhaPlaylist')
+const btnSelectMyPlaylist = document.querySelector('#btnSelectMyPlaylist')
+const btnSelectMyPlaylistMobile = document.querySelector(
+    '#btnSelectMyPlaylistMobile'
+)
+const btnEditSelectMyPlaylist = document.querySelector(
+    '#btnEditSelectMyPlaylist'
+)
+const btnEditSelectMyPlaylistMobile = document.querySelector(
+    '#btnEditSelectMyPlaylistMobile'
+)
+const btnDeleteSelectMyPlaylist = document.querySelector(
+    '#btnDeleteSelectMyPlaylist'
+)
+const btnDeleteSelectMyPlaylistMobile = document.querySelector(
+    '#btnDeleteSelectMyPlaylistMobile'
+)
 
 let allMusicData = []
-let musicData = [];
-let musicDataShuffled = [];
-let musicDataFiltered = [];
+let musicData = []
+let musicDataShuffled = []
+let musicDataFiltered = []
 
-let userData;
+let userData
 
-let playlistData = [];
+let playlistData = []
 
+let audioControllerPlayToggle = true
 
-let audioControllerPlayToggle = true;
+audioControllerPlay.addEventListener('click', audioControllerPlayFunction)
+audioControllerNext.addEventListener('click', audioControllerNextFunction)
+audioControllerPrev.addEventListener('click', audioControllerPrevFunction)
 
-audioControllerPlay.addEventListener("click", audioControllerPlayFunction)
-audioControllerNext.addEventListener("click", audioControllerNextFunction)
-audioControllerPrev.addEventListener("click", audioControllerPrevFunction)
+audioControllerPlayMobile.addEventListener('click', audioControllerPlayFunction)
+audioControllerNextMobile.addEventListener('click', audioControllerNextFunction)
+audioControllerPrevMobile.addEventListener('click', audioControllerPrevFunction)
 
-audioControllerPlayMobile.addEventListener("click", audioControllerPlayFunction)
-audioControllerNextMobile.addEventListener("click", audioControllerNextFunction)
-audioControllerPrevMobile.addEventListener("click", audioControllerPrevFunction)
+window.addEventListener('resize', allFunctionResizing)
 
-window.addEventListener("resize", allFunctionResizing);
-
-let canKeyboardEvents = true;
-let canKeyboardEventsProfile = true;
-document.addEventListener("keyup", function(event){
-    if(canKeyboardEvents){
-        switch(event.key){
-            case " ":
-                audioControllerPlayFunction();
-                break;
-            case "ArrowRight":
-                audioControllerNextFunction();
-                break;
-            case "ArrowLeft":
+let canKeyboardEvents = true
+let canKeyboardEventsProfile = true
+document.addEventListener('keyup', function (event) {
+    if (canKeyboardEvents) {
+        switch (event.key) {
+            case ' ':
+                audioControllerPlayFunction()
+                break
+            case 'ArrowRight':
+                audioControllerNextFunction()
+                break
+            case 'ArrowLeft':
                 audioControllerPrevFunction()
-                break;
-            }
+                break
         }
-    if(canKeyboardEventsProfile && event.key == "p"){
-        toggleTemplateUser();
+    }
+    if (canKeyboardEventsProfile && event.key == 'p') {
+        toggleTemplateUser()
     }
 })
 
-logout.addEventListener("click", toggleLogout);
-logoutMobile.addEventListener("click", toggleLogout);
-clearHistoricIcon.addEventListener("click", manageHistoricClear);
-clearHistoricIconMobile.addEventListener("click", manageHistoricClear);
-musicFavoriteIcon.addEventListener("click", manageFavorite);
-musicFavoriteIconMobile.addEventListener("click", manageFavorite);
-selectPlaylist.addEventListener("click", () => {
+logout.addEventListener('click', toggleLogout)
+logoutMobile.addEventListener('click', toggleLogout)
+clearHistoricIcon.addEventListener('click', manageHistoricClear)
+clearHistoricIconMobile.addEventListener('click', manageHistoricClear)
+musicFavoriteIcon.addEventListener('click', manageFavorite)
+musicFavoriteIconMobile.addEventListener('click', manageFavorite)
+selectPlaylist.addEventListener('click', () => {
     toggleMenu()
     toggleMorePlaylists()
-});
-selectPlaylistMobile.addEventListener("click", () => {
+})
+selectPlaylistMobile.addEventListener('click', () => {
     toggleMenu()
     toggleMorePlaylists()
-});
-selectFavorites.addEventListener('click' , () => {
-    toggleMenu()
-    selectNewPlaylist("Favorite", "Músicas Favoritas")
 })
-selectFavoritesMobile.addEventListener('click' , () => {
+selectFavorites.addEventListener('click', () => {
     toggleMenu()
-    selectNewPlaylist("Favorite", "Músicas Favoritas")
+    selectNewPlaylist('Favorite', 'Músicas Favoritas')
 })
-selectMyPlaylist.addEventListener("click", () => {
-    canKeyboardEventsProfile = false;
+selectFavoritesMobile.addEventListener('click', () => {
+    toggleMenu()
+    selectNewPlaylist('Favorite', 'Músicas Favoritas')
+})
+selectMyPlaylist.addEventListener('click', () => {
+    canKeyboardEventsProfile = false
     toggleMenu()
     toggleMyPlaylists()
-});
-selectMyPlaylistMobile.addEventListener("click", () => {
+})
+selectMyPlaylistMobile.addEventListener('click', () => {
     toggleMenu()
     toggleMyPlaylists()
-});
+})
 
-
-morePlaylist.addEventListener("click", toggleMenu);
-backMenu.addEventListener("click", toggleMenu);
-backMenuMobile.addEventListener("click", toggleMenu);
-backPlaylist.addEventListener("click", toggleMorePlaylists);
-backDisplayMobile.addEventListener("click", toggleDisplayMobile)
-morePlaylistMobile.addEventListener("click", toggleMenu);
-backPlaylistMobile.addEventListener("click", toggleMorePlaylists);
-backMyPlaylist.addEventListener("click", () => {
-    canKeyboardEventsProfile = true;
+morePlaylist.addEventListener('click', toggleMenu)
+backMenu.addEventListener('click', toggleMenu)
+backMenuMobile.addEventListener('click', toggleMenu)
+backPlaylist.addEventListener('click', toggleMorePlaylists)
+backDisplayMobile.addEventListener('click', toggleDisplayMobile)
+morePlaylistMobile.addEventListener('click', toggleMenu)
+backPlaylistMobile.addEventListener('click', toggleMorePlaylists)
+backMyPlaylist.addEventListener('click', () => {
+    canKeyboardEventsProfile = true
     toggleMyPlaylists()
-});
-backMyPlaylistMobile.addEventListener("click", toggleMyPlaylists)
-backContainerMinhaPlaylist.addEventListener("click", toggleContainerMinhaPlaylist);
-backContainerMinhaPlaylistMobile.addEventListener("click", toggleContainerMinhaPlaylist);
-controlsMobile.addEventListener("click", () => {
+})
+backMyPlaylistMobile.addEventListener('click', toggleMyPlaylists)
+backContainerMinhaPlaylist.addEventListener(
+    'click',
+    toggleContainerMinhaPlaylist
+)
+backContainerMinhaPlaylistMobile.addEventListener(
+    'click',
+    toggleContainerMinhaPlaylist
+)
+controlsMobile.addEventListener('click', () => {
     toggleDisplayMobile()
-    $(".menu-options-mobile").hide(200)
+    $('.menu-options-mobile').hide(200)
 })
-btnDeleteAccount.addEventListener("click", () => {
-    formDeleteAccount.classList.remove("hidden")
-    canKeyboardEvents = false;
-    canKeyboardEventsProfile = false;
+btnDeleteAccount.addEventListener('click', () => {
+    formDeleteAccount.classList.remove('hidden')
+    canKeyboardEvents = false
+    canKeyboardEventsProfile = false
 })
-btnDeleteAccountMobile.addEventListener("click", () => {
-    formDeleteAccountMobile.classList.remove("hidden")
+btnDeleteAccountMobile.addEventListener('click', () => {
+    formDeleteAccountMobile.classList.remove('hidden')
 })
-formDeleteAccountCancel.addEventListener("click", () => {
-    formDeleteAccount.classList.add("hidden")
-    deleteAccountInputToConfirm.value = ""
-    canKeyboardEventsProfile = true;
+formDeleteAccountCancel.addEventListener('click', () => {
+    formDeleteAccount.classList.add('hidden')
+    deleteAccountInputToConfirm.value = ''
+    canKeyboardEventsProfile = true
 })
-formDeleteAccountCancelMobile.addEventListener("click", () => {
-    formDeleteAccountMobile.classList.add("hidden")
-    deleteAccountInputToConfirmMobile.value = ""
+formDeleteAccountCancelMobile.addEventListener('click', () => {
+    formDeleteAccountMobile.classList.add('hidden')
+    deleteAccountInputToConfirmMobile.value = ''
 })
 formDeleteAccount.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'form-delete-account-overflow') {
-        formDeleteAccount.classList.add("hidden")
-        deleteAccountInputToConfirm.value = ""
-        canKeyboardEventsProfile = true;
+        formDeleteAccount.classList.add('hidden')
+        deleteAccountInputToConfirm.value = ''
+        canKeyboardEventsProfile = true
     }
 })
 formDeleteAccountMobile.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'form-delete-account-overflow-mobile') {
-        formDeleteAccountMobile.classList.add("hidden")
-        deleteAccountInputToConfirmMobile.value = ""
+        formDeleteAccountMobile.classList.add('hidden')
+        deleteAccountInputToConfirmMobile.value = ''
     }
 })
-deleteAccountInputToConfirm.addEventListener("paste", (e) => {
+deleteAccountInputToConfirm.addEventListener('paste', (e) => {
     e.preventDefault()
 })
-deleteAccountInputToConfirmMobile.addEventListener("paste", (e) => {
+deleteAccountInputToConfirmMobile.addEventListener('paste', (e) => {
     e.preventDefault()
 })
-document.querySelector('.form-delete-account').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageUserAccountDeletion()
-})
-document.querySelector('.form-delete-account-mobile').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageUserAccountDeletion()
-})
+document
+    .querySelector('.form-delete-account')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageUserAccountDeletion()
+    })
+document
+    .querySelector('.form-delete-account-mobile')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageUserAccountDeletion()
+    })
 
-profilePictureEdit.addEventListener("click", () => {
-  layerProfilePicture.classList.remove("hidden")
-  profilePictureInput.focus()
-  canKeyboardEvents = false;
-  canKeyboardEventsProfile = false;
+profilePictureEdit.addEventListener('click', () => {
+    layerProfilePicture.classList.remove('hidden')
+    profilePictureInput.focus()
+    canKeyboardEvents = false
+    canKeyboardEventsProfile = false
 })
 layerProfilePicture.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'layer-profile-picture') {
-        layerProfilePicture.classList.add("hidden")
+        layerProfilePicture.classList.add('hidden')
         profilePictureInput.value = userData.profilePicture
-        canKeyboardEventsProfile = true;
+        canKeyboardEventsProfile = true
     }
 })
-profilePictureEditMobile.addEventListener("click", () => {
-    layerProfilePictureMobile.classList.remove("hidden")
+profilePictureEditMobile.addEventListener('click', () => {
+    layerProfilePictureMobile.classList.remove('hidden')
     profilePictureInputMobile.focus()
 })
 layerProfilePictureMobile.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'layer-profile-picture-mobile') {
-        layerProfilePictureMobile.classList.add("hidden")
+        layerProfilePictureMobile.classList.add('hidden')
         profilePictureInputMobile.value = userData.profilePicture
     }
 })
-document.querySelector('.container-profile-picture').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageUserProfilePicture()
-})
-document.querySelector('.container-profile-picture-mobile').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageUserProfilePicture()
-})
-btnSelectMyPlaylist.addEventListener("click", () => {
-    canKeyboardEventsProfile = true;
+document
+    .querySelector('.container-profile-picture')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageUserProfilePicture()
+    })
+document
+    .querySelector('.container-profile-picture-mobile')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageUserProfilePicture()
+    })
+btnSelectMyPlaylist.addEventListener('click', () => {
+    canKeyboardEventsProfile = true
     toggleContainerMinhaPlaylist()
     toggleMyPlaylists()
     selectUserMyPlaylist()
 })
-btnSelectMyPlaylistMobile.addEventListener("click", () => {
+btnSelectMyPlaylistMobile.addEventListener('click', () => {
     toggleContainerMinhaPlaylist()
     toggleMyPlaylists()
     selectUserMyPlaylist()
 })
-btnEditSelectMyPlaylist.addEventListener("click", toggleEditMinhaPlaylist)
-btnEditSelectMyPlaylistMobile.addEventListener("click", toggleEditMinhaPlaylist)
-btnDeleteSelectMyPlaylist.addEventListener("click", toggleDeleteMinhaPlaylist)
-btnDeleteSelectMyPlaylistMobile.addEventListener("click", toggleDeleteMinhaPlaylist)
+btnEditSelectMyPlaylist.addEventListener('click', toggleEditMinhaPlaylist)
+btnEditSelectMyPlaylistMobile.addEventListener('click', toggleEditMinhaPlaylist)
+btnDeleteSelectMyPlaylist.addEventListener('click', toggleDeleteMinhaPlaylist)
+btnDeleteSelectMyPlaylistMobile.addEventListener(
+    'click',
+    toggleDeleteMinhaPlaylist
+)
 
-document.querySelector('.add-my-new-playlist-overflow').addEventListener('click', (event) => {
-    if (event.target.classList.contains('add-my-new-playlist-overflow')) {
-        event.target.classList.add('hidden');
-        canKeyboardEvents = true;
-    }
-});
-document.querySelector('.add-my-new-playlist-overflow-mobile').addEventListener('click', (event) => {
-    if (event.target.classList.contains('add-my-new-playlist-overflow-mobile')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.edit-my-new-playlist-overflow').addEventListener('click', (event) => {
-    if (event.target.classList.contains('edit-my-new-playlist-overflow')) {
-        event.target.classList.add('hidden');
-        canKeyboardEvents = true;
-    }
-});
-document.querySelector('.edit-my-new-playlist-overflow-mobile').addEventListener('click', (event) => {
-    if (event.target.classList.contains('edit-my-new-playlist-overflow-mobile')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.delete-my-new-playlist-overflow').addEventListener('click', (event) => {
-    if (event.target.classList.contains('delete-my-new-playlist-overflow')) {
-        event.target.classList.add('hidden');
-        canKeyboardEvents = true;
-    }
-});
-document.querySelector('.delete-my-new-playlist-overflow-mobile').addEventListener('click', (event) => {
-    if (event.target.classList.contains('delete-my-new-playlist-overflow-mobile')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.delete-my-new-playlist-btn-cancel').addEventListener('click', (event) => {
-    canKeyboardEvents = true;
-    event.target.parentElement.parentElement.parentElement.classList.add('hidden');
-});
-document.querySelector('.delete-my-new-playlist-btn-cancel-mobile').addEventListener('click', (event) => {
-    event.target.parentElement.parentElement.parentElement.classList.add('hidden');
-});
-document.querySelector('.music-my-new-playlist-overflow').addEventListener('click', (event) => {
-    if (event.target.classList.contains('music-my-new-playlist-overflow')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.music-my-new-playlist-overflow-mobile').addEventListener('click', (event) => {
-    if (event.target.classList.contains('music-my-new-playlist-overflow-mobile')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.music-my-new-playlist-delete-btn').addEventListener('click', () => {
-    document.querySelector('.music-delete-my-new-playlist-overflow').classList.remove('hidden');
-});
-document.querySelector('.music-my-new-playlist-delete-btn-mobile').addEventListener('click', () => {
-    document.querySelector('.music-delete-my-new-playlist-overflow-mobile').classList.remove('hidden');
-});
-document.querySelector('.music-delete-my-new-playlist-overflow').addEventListener('click', (event) => {
-    if (event.target.classList.contains('music-delete-my-new-playlist-overflow')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.music-delete-my-new-playlist-overflow-mobile').addEventListener('click', (event) => {
-    if (event.target.classList.contains('music-delete-my-new-playlist-overflow-mobile')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.music-delete-my-new-playlist-btn-cancel').addEventListener('click', (event) => {
-    if (event.target.classList.contains('music-delete-my-new-playlist-btn-cancel')) {
-        event.target.parentElement.parentElement.parentElement.classList.add('hidden');
-    }
-});
-document.querySelector('.music-delete-my-new-playlist-btn-cancel-mobile').addEventListener('click', (event) => {
-    if (event.target.classList.contains('music-delete-my-new-playlist-btn-cancel-mobile')) {
-        event.target.parentElement.parentElement.parentElement.classList.add('hidden');
-    }
-});
-musicAddIcon.addEventListener("click", toggleAddOptions)
-musicAddIconMobile.addEventListener("click", toggleAddOptions)
-document.querySelector('.current-music-add-overflow').addEventListener('click', (event) => {
-    if (event.target.classList.contains('current-music-add-overflow')) {
-        event.target.classList.add('hidden');
-        canKeyboardEventsProfile = true;
-    }
-});
-document.querySelector('.current-music-add-overflow-mobile').addEventListener('click', (event) => {
-    if (event.target.classList.contains('current-music-add-overflow-mobile')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.current-music-add-create-new-playlist').addEventListener('click', toggleAddMinhaPlaylist)
-document.querySelector('.current-music-add-create-new-playlist-mobile').addEventListener('click', toggleAddMinhaPlaylist)
-document.querySelector('.current-music-add-confirm').addEventListener('click', toggleAddOptions)
-document.querySelector('.current-music-add-confirm-mobile').addEventListener('click', toggleAddOptions)
-document.querySelector('.add-my-new-playlist-container').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageUserCreatePlaylist()
-})
-document.querySelector('.add-my-new-playlist-container-mobile').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageUserCreatePlaylist()
-})
-document.querySelector('.music-delete-my-new-playlist-btn-delete').addEventListener("click", manageMyPlaylistMusicDeletion)
-document.querySelector('.music-delete-my-new-playlist-btn-delete-mobile').addEventListener("click", manageMyPlaylistMusicDeletion)
-document.querySelector('.delete-my-new-playlist-container').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageMyPlaylistDeletion()
-})
-document.querySelector('.delete-my-new-playlist-container-mobile').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageMyPlaylistDeletion()
-})
-document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name').addEventListener("paste", (e) => {
-    e.preventDefault()
-})
-document.querySelector('.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile').addEventListener("paste", (e) => {
-    e.preventDefault()
-})
-document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageMyPlaylistEdition()
-})
-document.querySelector('.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile').addEventListener("submit", (e) => {
-    e.preventDefault()
-    manageMyPlaylistEdition()
-})
-document.querySelector('.confirm-logout-overflow').addEventListener('click', (event) => {
-    if (event.target.classList.contains('confirm-logout-overflow')) {
-        event.target.classList.add('hidden');
-        canKeyboardEventsProfile = true;
-    }
-});
-document.querySelector('.confirm-logout-overflow-mobile').addEventListener('click', (event) => {
-    if (event.target.classList.contains('confirm-logout-overflow-mobile')) {
-        event.target.classList.add('hidden');
-    }
-});
-document.querySelector('.confirm-logout-container').addEventListener("submit", (e) => {
-    e.preventDefault()
-    logoutService()
-})
-document.querySelector('.confirm-logout-container-mobile').addEventListener("submit", (e) => {
-    e.preventDefault()
-    logoutService()
-})
-document.querySelector('.minhas-playlists-search-bar-close').addEventListener('click', () => {
-    document.querySelector('.minhas-playlists-search-bar-input').value = '';
-    generatorContainerMusicAddPlaylist()
-})
-document.querySelector('.minhas-playlists-search-bar-input').addEventListener('input', () => {
-    generatorContainerMusicAddPlaylist()
-})
-document.querySelector('.playlists-search-bar-close').addEventListener('click', () => {
-    document.querySelector('.playlists-search-bar-input').value = '';
-    generatorContainerPlaylistSelectData()
-    generatorContainerPlaylistSelectDataPlay()
-})
-document.querySelector('.playlists-search-bar-input').addEventListener('input', () => {
-    generatorContainerPlaylistSelectData()
-    generatorContainerPlaylistSelectDataPlay()
-})
-document.querySelector('.playlists-search-bar-close-mobile').addEventListener('click', () => {
-    document.querySelector('.playlists-search-bar-input-mobile').value = '';
-    generatorContainerPlaylistSelectData()
-    generatorContainerPlaylistSelectDataPlay()
-})
-document.querySelector('.playlists-search-bar-input-mobile').addEventListener('input', () => {
-    generatorContainerPlaylistSelectData()
-    generatorContainerPlaylistSelectDataPlay()
-})
-document.querySelector('.minhas-playlists-search-bar-close-mobile').addEventListener('click', () => {
-    document.querySelector('.minhas-playlists-search-bar-input-mobile').value = '';
-    generatorContainerMusicAddPlaylist()
-})
-document.querySelector('.minhas-playlists-search-bar-input-mobile').addEventListener('input', () => {
-    generatorContainerMusicAddPlaylist()
-})
+document
+    .querySelector('.add-my-new-playlist-overflow')
+    .addEventListener('click', (event) => {
+        if (event.target.classList.contains('add-my-new-playlist-overflow')) {
+            event.target.classList.add('hidden')
+            canKeyboardEvents = true
+        }
+    })
+document
+    .querySelector('.add-my-new-playlist-overflow-mobile')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains(
+                'add-my-new-playlist-overflow-mobile'
+            )
+        ) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.edit-my-new-playlist-overflow')
+    .addEventListener('click', (event) => {
+        if (event.target.classList.contains('edit-my-new-playlist-overflow')) {
+            event.target.classList.add('hidden')
+            canKeyboardEvents = true
+        }
+    })
+document
+    .querySelector('.edit-my-new-playlist-overflow-mobile')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains(
+                'edit-my-new-playlist-overflow-mobile'
+            )
+        ) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.delete-my-new-playlist-overflow')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains('delete-my-new-playlist-overflow')
+        ) {
+            event.target.classList.add('hidden')
+            canKeyboardEvents = true
+        }
+    })
+document
+    .querySelector('.delete-my-new-playlist-overflow-mobile')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains(
+                'delete-my-new-playlist-overflow-mobile'
+            )
+        ) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.delete-my-new-playlist-btn-cancel')
+    .addEventListener('click', (event) => {
+        canKeyboardEvents = true
+        event.target.parentElement.parentElement.parentElement.classList.add(
+            'hidden'
+        )
+    })
+document
+    .querySelector('.delete-my-new-playlist-btn-cancel-mobile')
+    .addEventListener('click', (event) => {
+        event.target.parentElement.parentElement.parentElement.classList.add(
+            'hidden'
+        )
+    })
+document
+    .querySelector('.music-my-new-playlist-overflow')
+    .addEventListener('click', (event) => {
+        if (event.target.classList.contains('music-my-new-playlist-overflow')) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.music-my-new-playlist-overflow-mobile')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains(
+                'music-my-new-playlist-overflow-mobile'
+            )
+        ) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.music-my-new-playlist-delete-btn')
+    .addEventListener('click', () => {
+        document
+            .querySelector('.music-delete-my-new-playlist-overflow')
+            .classList.remove('hidden')
+    })
+document
+    .querySelector('.music-my-new-playlist-delete-btn-mobile')
+    .addEventListener('click', () => {
+        document
+            .querySelector('.music-delete-my-new-playlist-overflow-mobile')
+            .classList.remove('hidden')
+    })
+document
+    .querySelector('.music-delete-my-new-playlist-overflow')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains(
+                'music-delete-my-new-playlist-overflow'
+            )
+        ) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.music-delete-my-new-playlist-overflow-mobile')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains(
+                'music-delete-my-new-playlist-overflow-mobile'
+            )
+        ) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.music-delete-my-new-playlist-btn-cancel')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains(
+                'music-delete-my-new-playlist-btn-cancel'
+            )
+        ) {
+            event.target.parentElement.parentElement.parentElement.classList.add(
+                'hidden'
+            )
+        }
+    })
+document
+    .querySelector('.music-delete-my-new-playlist-btn-cancel-mobile')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains(
+                'music-delete-my-new-playlist-btn-cancel-mobile'
+            )
+        ) {
+            event.target.parentElement.parentElement.parentElement.classList.add(
+                'hidden'
+            )
+        }
+    })
+musicAddIcon.addEventListener('click', toggleAddOptions)
+musicAddIconMobile.addEventListener('click', toggleAddOptions)
+document
+    .querySelector('.current-music-add-overflow')
+    .addEventListener('click', (event) => {
+        if (event.target.classList.contains('current-music-add-overflow')) {
+            event.target.classList.add('hidden')
+            canKeyboardEventsProfile = true
+        }
+    })
+document
+    .querySelector('.current-music-add-overflow-mobile')
+    .addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains('current-music-add-overflow-mobile')
+        ) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.current-music-add-create-new-playlist')
+    .addEventListener('click', toggleAddMinhaPlaylist)
+document
+    .querySelector('.current-music-add-create-new-playlist-mobile')
+    .addEventListener('click', toggleAddMinhaPlaylist)
+document
+    .querySelector('.current-music-add-confirm')
+    .addEventListener('click', toggleAddOptions)
+document
+    .querySelector('.current-music-add-confirm-mobile')
+    .addEventListener('click', toggleAddOptions)
+document
+    .querySelector('.add-my-new-playlist-container')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageUserCreatePlaylist()
+    })
+document
+    .querySelector('.add-my-new-playlist-container-mobile')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageUserCreatePlaylist()
+    })
+document
+    .querySelector('.music-delete-my-new-playlist-btn-delete')
+    .addEventListener('click', manageMyPlaylistMusicDeletion)
+document
+    .querySelector('.music-delete-my-new-playlist-btn-delete-mobile')
+    .addEventListener('click', manageMyPlaylistMusicDeletion)
+document
+    .querySelector('.delete-my-new-playlist-container')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageMyPlaylistDeletion()
+    })
+document
+    .querySelector('.delete-my-new-playlist-container-mobile')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageMyPlaylistDeletion()
+    })
+document
+    .querySelector(
+        '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name'
+    )
+    .addEventListener('paste', (e) => {
+        e.preventDefault()
+    })
+document
+    .querySelector(
+        '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile'
+    )
+    .addEventListener('paste', (e) => {
+        e.preventDefault()
+    })
+document
+    .querySelector(
+        '.edit-my-new-playlist-overflow .edit-my-new-playlist-container'
+    )
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageMyPlaylistEdition()
+    })
+document
+    .querySelector(
+        '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile'
+    )
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageMyPlaylistEdition()
+    })
+document
+    .querySelector('.confirm-logout-overflow')
+    .addEventListener('click', (event) => {
+        if (event.target.classList.contains('confirm-logout-overflow')) {
+            event.target.classList.add('hidden')
+            canKeyboardEventsProfile = true
+        }
+    })
+document
+    .querySelector('.confirm-logout-overflow-mobile')
+    .addEventListener('click', (event) => {
+        if (event.target.classList.contains('confirm-logout-overflow-mobile')) {
+            event.target.classList.add('hidden')
+        }
+    })
+document
+    .querySelector('.confirm-logout-container')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        logoutService()
+    })
+document
+    .querySelector('.confirm-logout-container-mobile')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        logoutService()
+    })
+document
+    .querySelector('.minhas-playlists-search-bar-close')
+    .addEventListener('click', () => {
+        document.querySelector('.minhas-playlists-search-bar-input').value = ''
+        generatorContainerMusicAddPlaylist()
+    })
+document
+    .querySelector('.minhas-playlists-search-bar-input')
+    .addEventListener('input', () => {
+        generatorContainerMusicAddPlaylist()
+    })
+document
+    .querySelector('.playlists-search-bar-close')
+    .addEventListener('click', () => {
+        document.querySelector('.playlists-search-bar-input').value = ''
+        generatorContainerPlaylistSelectData()
+        generatorContainerPlaylistSelectDataPlay()
+    })
+document
+    .querySelector('.playlists-search-bar-input')
+    .addEventListener('input', () => {
+        generatorContainerPlaylistSelectData()
+        generatorContainerPlaylistSelectDataPlay()
+    })
+document
+    .querySelector('.playlists-search-bar-close-mobile')
+    .addEventListener('click', () => {
+        document.querySelector('.playlists-search-bar-input-mobile').value = ''
+        generatorContainerPlaylistSelectData()
+        generatorContainerPlaylistSelectDataPlay()
+    })
+document
+    .querySelector('.playlists-search-bar-input-mobile')
+    .addEventListener('input', () => {
+        generatorContainerPlaylistSelectData()
+        generatorContainerPlaylistSelectDataPlay()
+    })
+document
+    .querySelector('.minhas-playlists-search-bar-close-mobile')
+    .addEventListener('click', () => {
+        document.querySelector(
+            '.minhas-playlists-search-bar-input-mobile'
+        ).value = ''
+        generatorContainerMusicAddPlaylist()
+    })
+document
+    .querySelector('.minhas-playlists-search-bar-input-mobile')
+    .addEventListener('input', () => {
+        generatorContainerMusicAddPlaylist()
+    })
 
-function inicia(){
-    setScreenWidthAndHeight();
-    allSongValueSetters();
-    setUserSettings();
-    generatorContainerPlaylistData();
-    generatorContainerPlaylistDataPlay();
-    generatorContainerPlaylistSelectData();
-    generatorContainerPlaylistSelectDataPlay();
-    manageEmptyPlaylist();
+function inicia() {
+    setScreenWidthAndHeight()
+    allSongValueSetters()
+    setUserSettings()
+    generatorContainerPlaylistData()
+    generatorContainerPlaylistDataPlay()
+    generatorContainerPlaylistSelectData()
+    generatorContainerPlaylistSelectDataPlay()
+    manageEmptyPlaylist()
     setManagementSystem()
     setUserProfilePicture()
-    manageHistoric();
-    searchEvents();
+    manageHistoric()
+    searchEvents()
     generatorContainerCurrentMusicAddPlaylist()
     generatorContainerMusicAddPlaylist()
     if (emptyPlaylist) return
-    musicStateControllers();
-    durationSliderEventGenerator();
-    volumeSliderEventGenerator();
+    musicStateControllers()
+    durationSliderEventGenerator()
+    volumeSliderEventGenerator()
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
@@ -549,61 +814,59 @@ function inicia(){
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    themeChanger(musicDataShuffled[indexAudio].theme);
-    indexAudioId = musicDataShuffled[indexAudio]._id;
-    indexAudioGender = musicDataShuffled[indexAudio].gender;
-    $(".title-playlist").html(userData.lastAccessedPlaylistName);
-    $(".title-playlist-mobile").html(userData.lastAccessedPlaylistName);
-    setMusicPlayTag();
-    refreshFavorite();
-    initialDeviceDefinition();
+    themeChanger(musicDataShuffled[indexAudio].theme)
+    indexAudioId = musicDataShuffled[indexAudio]._id
+    indexAudioGender = musicDataShuffled[indexAudio].gender
+    $('.title-playlist').html(userData.lastAccessedPlaylistName)
+    $('.title-playlist-mobile').html(userData.lastAccessedPlaylistName)
+    setMusicPlayTag()
+    refreshFavorite()
+    initialDeviceDefinition()
 }
 
-function audioControllerPlayFunction(){
+function audioControllerPlayFunction() {
     if (screenWidth >= 1360) {
-        if(audioControllerPlayToggle){
+        if (audioControllerPlayToggle) {
             playVideo()
-            audioControllerPlayToggle = false;
-            audioControllerPlay.name = 'pause-circle';
-            musicAnimationStatus.classList.add('run');
-        }
-        else {
+            audioControllerPlayToggle = false
+            audioControllerPlay.name = 'pause-circle'
+            musicAnimationStatus.classList.add('run')
+        } else {
             pauseVideo()
-            audioControllerPlayToggle = true;
-            audioControllerPlay.name = 'play-circle';
-            musicAnimationStatus.classList.remove('run');
+            audioControllerPlayToggle = true
+            audioControllerPlay.name = 'play-circle'
+            musicAnimationStatus.classList.remove('run')
         }
     } else {
-        if(audioControllerPlayToggle){
+        if (audioControllerPlayToggle) {
             playVideo()
-            audioControllerPlayToggle = false;
-            audioControllerPlayMobile.name = 'pause-circle';
-        }
-        else {
+            audioControllerPlayToggle = false
+            audioControllerPlayMobile.name = 'pause-circle'
+        } else {
             pauseVideo()
-            audioControllerPlayToggle = true;
-            audioControllerPlayMobile.name = 'play-circle';
+            audioControllerPlayToggle = true
+            audioControllerPlayMobile.name = 'play-circle'
         }
     }
 }
-function audioControllerPlayFunctionNoPause(){
+function audioControllerPlayFunctionNoPause() {
     if (screenWidth >= 1360) {
         playVideo()
-        audioControllerPlayToggle = false;
-        audioControllerPlay.name = 'pause-circle';
-        musicAnimationStatus.classList.add('run');
+        audioControllerPlayToggle = false
+        audioControllerPlay.name = 'pause-circle'
+        musicAnimationStatus.classList.add('run')
     } else {
         playVideo()
-        audioControllerPlayToggle = false;
-        audioControllerPlayMobile.name = 'pause-circle';
+        audioControllerPlayToggle = false
+        audioControllerPlayMobile.name = 'pause-circle'
     }
 }
 
-function allSongValueSetters(){
-    emptyPlaylist = false;
-    if(musicData.length <= 0){
-        emptyPlaylist = true;
-        if(screenWidth >= 1360){
+function allSongValueSetters() {
+    emptyPlaylist = false
+    if (musicData.length <= 0) {
+        emptyPlaylist = true
+        if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'A PlayList atual não tem conteúdo'
             setTimeout(() => {
@@ -620,129 +883,143 @@ function allSongValueSetters(){
         return
     }
     if (screenWidth >= 1360) {
-        playerReady = false;
+        playerReady = false
         onYouTubeIframeAPIReady(musicDataShuffled[indexAudio].videoId)
-        indexAudioId = musicDataShuffled[indexAudio]._id;
-        indexAudioGender = musicDataShuffled[indexAudio].gender;
-        coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
-        coverCurrentMusic.alt = musicDataShuffled[indexAudio].title;
-        backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
-        titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
-        genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
+        indexAudioId = musicDataShuffled[indexAudio]._id
+        indexAudioGender = musicDataShuffled[indexAudio].gender
+        coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl
+        coverCurrentMusic.alt = musicDataShuffled[indexAudio].title
+        backgroundCover.style.setProperty(
+            'background-image',
+            `url("${musicDataShuffled[indexAudio].coverUrl}")`
+        )
+        titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title
+        genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender
     } else {
-        playerReadyMobile = false;
+        playerReadyMobile = false
         onYouTubeIframeAPIReady(musicDataShuffled[indexAudio].videoId)
-        indexAudioId = musicDataShuffled[indexAudio]._id;
-        indexAudioGender = musicDataShuffled[indexAudio].gender;
-        coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
-        coverCurrentMusicMobile.alt = musicDataShuffled[indexAudio].title;
-        backgroundCoverMobile.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
-        titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title;
-        genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
-        titleCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].title;
-        genderCurrentMusicDisplayMobile.innerHTML = musicDataShuffled[indexAudio].gender;
+        indexAudioId = musicDataShuffled[indexAudio]._id
+        indexAudioGender = musicDataShuffled[indexAudio].gender
+        coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl
+        coverCurrentMusicMobile.alt = musicDataShuffled[indexAudio].title
+        backgroundCoverMobile.style.setProperty(
+            'background-image',
+            `url("${musicDataShuffled[indexAudio].coverUrl}")`
+        )
+        titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title
+        genderCurrentMusicMobile.innerHTML =
+            musicDataShuffled[indexAudio].gender
+        titleCurrentMusicDisplayMobile.innerHTML =
+            musicDataShuffled[indexAudio].title
+        genderCurrentMusicDisplayMobile.innerHTML =
+            musicDataShuffled[indexAudio].gender
     }
 }
 
-function setUserSettings(){
-    let day = parseInt(userData.additionDate.substring(8,10))
-    let month = parseInt(userData.additionDate.substring(5,7))
-    let year = parseInt(userData.additionDate.substring(0,4))
+function setUserSettings() {
+    let day = parseInt(userData.additionDate.substring(8, 10))
+    let month = parseInt(userData.additionDate.substring(5, 7))
+    let year = parseInt(userData.additionDate.substring(0, 4))
 
     switch (month) {
         case 1:
-            month = "janeiro";
-            break;
+            month = 'janeiro'
+            break
         case 2:
-            month = "fevereiro";
-            break;
+            month = 'fevereiro'
+            break
         case 3:
-            month = "março";
-            break;
+            month = 'março'
+            break
         case 4:
-            month = "abril";
-            break;
+            month = 'abril'
+            break
         case 5:
-            month = "maio";
-            break;
+            month = 'maio'
+            break
         case 6:
-            month = "junho";
-            break;
+            month = 'junho'
+            break
         case 7:
-            month = "julho";
-            break;
+            month = 'julho'
+            break
         case 8:
-            month = "agosto";
-            break;
+            month = 'agosto'
+            break
         case 9:
-            month = "setembro";
-            break;
+            month = 'setembro'
+            break
         case 10:
-            month = "outubro";
-            break;
+            month = 'outubro'
+            break
         case 11:
-            month = "novembro";
-            break;
+            month = 'novembro'
+            break
         case 12:
-            month = "dezembro";
-            break;
-      }
+            month = 'dezembro'
+            break
+    }
 
     if (screenWidth >= 1360) {
-        registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
-        userName.innerHTML = userData.name;
+        registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`
+        userName.innerHTML = userData.name
     } else {
-        registrationDateMobile.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`;
-        userNameMobile.innerHTML = userData.name;
+        registrationDateMobile.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`
+        userNameMobile.innerHTML = userData.name
     }
 }
 
-function audioControllerNextFunction(){
-    indexAudio++;
-    if(indexAudio >= musicDataShuffled.length){
-        indexAudio = 0;
-    }
-    
-    let selectedTheme = musicDataShuffled[indexAudio].theme
-    indexAudioId = musicDataShuffled[indexAudio]._id;
-    indexAudioGender = musicDataShuffled[indexAudio].gender;
-    
-    allSongValueSetters();
-    audioControllerPlayFunctionNoPause()
-    setMusicPlayTag();
-    manageHistoric();
-    refreshFavorite();
-    generatorContainerCurrentMusicAddPlaylist()
-    themeChanger(selectedTheme);
-}
-function audioControllerPrevFunction(){
-    indexAudio--;
-    if(indexAudio < 0){
-        indexAudio = musicDataShuffled.length - 1;
+function audioControllerNextFunction() {
+    indexAudio++
+    if (indexAudio >= musicDataShuffled.length) {
+        indexAudio = 0
     }
 
     let selectedTheme = musicDataShuffled[indexAudio].theme
-    indexAudioId = musicDataShuffled[indexAudio]._id;
-    indexAudioGender = musicDataShuffled[indexAudio].gender;
+    indexAudioId = musicDataShuffled[indexAudio]._id
+    indexAudioGender = musicDataShuffled[indexAudio].gender
 
-    allSongValueSetters();
+    allSongValueSetters()
     audioControllerPlayFunctionNoPause()
-    setMusicPlayTag();
-    manageHistoric();
-    refreshFavorite();
+    setMusicPlayTag()
+    manageHistoric()
+    refreshFavorite()
     generatorContainerCurrentMusicAddPlaylist()
-    themeChanger(selectedTheme);
+    themeChanger(selectedTheme)
+}
+function audioControllerPrevFunction() {
+    indexAudio--
+    if (indexAudio < 0) {
+        indexAudio = musicDataShuffled.length - 1
+    }
+
+    let selectedTheme = musicDataShuffled[indexAudio].theme
+    indexAudioId = musicDataShuffled[indexAudio]._id
+    indexAudioGender = musicDataShuffled[indexAudio].gender
+
+    allSongValueSetters()
+    audioControllerPlayFunctionNoPause()
+    setMusicPlayTag()
+    manageHistoric()
+    refreshFavorite()
+    generatorContainerCurrentMusicAddPlaylist()
+    themeChanger(selectedTheme)
 }
 
-function generatorContainerPlaylistData(){
+function generatorContainerPlaylistData() {
     if (screenWidth >= 1360) {
         musicDataShuffled.forEach((element, index) => {
-
             containerPlaylist.innerHTML += `
-                <div class="item-playlist" data-id="${element._id}" data-theme="${element.theme}" style="animation-delay: ${index * 0.05}s">
+                <div class="item-playlist" data-id="${
+                    element._id
+                }" data-theme="${element.theme}" style="animation-delay: ${
+                index * 0.05
+            }s">
                     <div class="box-wrapper">
                         <div class="cover-item">
-                            <img src="${element.coverUrl}" alt="${element.title}">
+                            <img src="${element.coverUrl}" alt="${
+                element.title
+            }">
                         </div>
                         <div class="info-item">
                             <div class="title-info">
@@ -762,12 +1039,17 @@ function generatorContainerPlaylistData(){
         })
     } else {
         musicDataShuffled.forEach((element, index) => {
-
             containerPlaylistMobile.innerHTML += `
-                <div class="item-playlist-mobile" data-id="${element._id}" data-theme="${element.theme}" style="animation-delay: ${index * 0.05}s">
+                <div class="item-playlist-mobile" data-id="${
+                    element._id
+                }" data-theme="${element.theme}" style="animation-delay: ${
+                index * 0.05
+            }s">
                     <div class="box-wrapper">
                         <div class="cover-item">
-                            <img src="${element.coverUrl}" alt="${element.title}">
+                            <img src="${element.coverUrl}" alt="${
+                element.title
+            }">
                         </div>
                         <div class="info-item">
                             <div class="title-info">
@@ -788,73 +1070,116 @@ function generatorContainerPlaylistData(){
     }
 }
 
-function generatorContainerPlaylistDataPlay(){
+function generatorContainerPlaylistDataPlay() {
     if (screenWidth >= 1360) {
-        const itemsPlaylist = document.querySelectorAll('.container-playlist .item-playlist');
+        const itemsPlaylist = document.querySelectorAll(
+            '.container-playlist .item-playlist'
+        )
 
-        itemsPlaylist.forEach((element)=> {
-            element.addEventListener('click', function(){
-                let cannotPlayTheMusic = false;
-                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                    cannotPlayTheMusic = true;
+        itemsPlaylist.forEach((element) => {
+            element.addEventListener('click', function () {
+                let cannotPlayTheMusic = false
+                if (
+                    indexAudio ==
+                    musicDataShuffled.indexOf(
+                        musicDataShuffled.find(
+                            (element) => element._id == $(this).data('id')
+                        )
+                    )
+                ) {
+                    cannotPlayTheMusic = true
                 }
 
-                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                indexAudio = musicDataShuffled.indexOf(
+                    musicDataShuffled.find(
+                        (element) => element._id == $(this).data('id')
+                    )
+                )
                 let selectedTheme = $(this).data('theme')
-                indexAudioId = musicDataShuffled[indexAudio]._id;
-                indexAudioGender = musicDataShuffled[indexAudio].gender;
-                
+                indexAudioId = musicDataShuffled[indexAudio]._id
+                indexAudioGender = musicDataShuffled[indexAudio].gender
+
                 if (!cannotPlayTheMusic) {
-                    allSongValueSetters();
-                    audioControllerPlayFunctionNoPause();
-                    setMusicPlayTag();
-                    manageHistoric();
-                    refreshFavorite();
+                    allSongValueSetters()
+                    audioControllerPlayFunctionNoPause()
+                    setMusicPlayTag()
+                    manageHistoric()
+                    refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme);
+                    themeChanger(selectedTheme)
                 }
-            });
+            })
         })
     } else {
-        const itemsPlaylistMobile = document.querySelectorAll('.container-playlist-mobile .item-playlist-mobile');
+        const itemsPlaylistMobile = document.querySelectorAll(
+            '.container-playlist-mobile .item-playlist-mobile'
+        )
 
-        itemsPlaylistMobile.forEach((element)=> {
-            element.addEventListener('click', function(){
-                let cannotPlayTheMusic = false;
-                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                    cannotPlayTheMusic = true;
+        itemsPlaylistMobile.forEach((element) => {
+            element.addEventListener('click', function () {
+                let cannotPlayTheMusic = false
+                if (
+                    indexAudio ==
+                    musicDataShuffled.indexOf(
+                        musicDataShuffled.find(
+                            (element) => element._id == $(this).data('id')
+                        )
+                    )
+                ) {
+                    cannotPlayTheMusic = true
                 }
 
-                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                indexAudio = musicDataShuffled.indexOf(
+                    musicDataShuffled.find(
+                        (element) => element._id == $(this).data('id')
+                    )
+                )
                 let selectedTheme = $(this).data('theme')
-                indexAudioId = musicDataShuffled[indexAudio]._id;
-                indexAudioGender = musicDataShuffled[indexAudio].gender;
-                
-                toggleDisplayMobile();
+                indexAudioId = musicDataShuffled[indexAudio]._id
+                indexAudioGender = musicDataShuffled[indexAudio].gender
+
+                toggleDisplayMobile()
 
                 if (!cannotPlayTheMusic) {
-                    allSongValueSetters();
-                    audioControllerPlayFunctionNoPause();
-                    setMusicPlayTag();
-                    manageHistoric();
-                    refreshFavorite();
+                    allSongValueSetters()
+                    audioControllerPlayFunctionNoPause()
+                    setMusicPlayTag()
+                    manageHistoric()
+                    refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme);
+                    themeChanger(selectedTheme)
                 }
-            });
+            })
         })
     }
 }
 
-function generatorContainerPlaylistSelectData(){
-    const playlistDataFiltered = playlistData.filter((playlist) => playlist.title.toLowerCase().includes(document.querySelector('.playlists-search-bar-input').value.trim().toLowerCase()))
-    const playlistDataFilteredMobile = playlistData.filter((playlist) => playlist.title.toLowerCase().includes(document.querySelector('.playlists-search-bar-input-mobile').value.trim().toLowerCase()))
+function generatorContainerPlaylistSelectData() {
+    const playlistDataFiltered = playlistData.filter((playlist) =>
+        playlist.title
+            .toLowerCase()
+            .includes(
+                document
+                    .querySelector('.playlists-search-bar-input')
+                    .value.trim()
+                    .toLowerCase()
+            )
+    )
+    const playlistDataFilteredMobile = playlistData.filter((playlist) =>
+        playlist.title
+            .toLowerCase()
+            .includes(
+                document
+                    .querySelector('.playlists-search-bar-input-mobile')
+                    .value.trim()
+                    .toLowerCase()
+            )
+    )
 
     if (screenWidth >= 1360) {
-        containerPlaylistSelect.innerHTML = "";
+        containerPlaylistSelect.innerHTML = ''
 
         playlistDataFiltered.forEach((element) => {
-
             containerPlaylistSelect.innerHTML += `
                 <div class="item-select-playlist">
                     <div class="cover-item-select-playlist" data-gender="${element.gender}" data-title="${element.title}">
@@ -875,8 +1200,12 @@ function generatorContainerPlaylistSelectData(){
             `
         })
 
-        if (containerPlaylistSelect.innerHTML === "") {
-            if(document.querySelector('.playlists-search-bar-input').value.trim() !== ""){
+        if (containerPlaylistSelect.innerHTML === '') {
+            if (
+                document
+                    .querySelector('.playlists-search-bar-input')
+                    .value.trim() !== ''
+            ) {
                 containerPlaylistSelect.innerHTML = `
                     <div class="no-playlist-found">
                         Sua pesquisa não encontrou nenhuma playlist
@@ -891,12 +1220,11 @@ function generatorContainerPlaylistSelectData(){
             }
         }
         if (emptyPlaylist) return
-        themeChanger(musicDataShuffled[indexAudio].theme);
+        themeChanger(musicDataShuffled[indexAudio].theme)
     } else {
-        containerPlaylistSelectMobile.innerHTML = "";
+        containerPlaylistSelectMobile.innerHTML = ''
 
         playlistDataFilteredMobile.forEach((element) => {
-
             containerPlaylistSelectMobile.innerHTML += `
                 <div class="item-select-playlist-mobile">
                     <div class="cover-item-select-playlist-mobile" data-gender="${element.gender}" data-title="${element.title}">
@@ -917,8 +1245,12 @@ function generatorContainerPlaylistSelectData(){
             `
         })
 
-        if (containerPlaylistSelectMobile.innerHTML === "") {
-            if(document.querySelector('.playlists-search-bar-input-mobile').value.trim() !== ""){
+        if (containerPlaylistSelectMobile.innerHTML === '') {
+            if (
+                document
+                    .querySelector('.playlists-search-bar-input-mobile')
+                    .value.trim() !== ''
+            ) {
                 containerPlaylistSelectMobile.innerHTML = `
                     <div class="no-playlist-found-mobile">
                         Sua pesquisa não encontrou nenhuma playlist
@@ -933,55 +1265,64 @@ function generatorContainerPlaylistSelectData(){
             }
         }
         if (emptyPlaylist) return
-        themeChanger(musicDataShuffled[indexAudio].theme);
+        themeChanger(musicDataShuffled[indexAudio].theme)
     }
 }
 
-function generatorContainerPlaylistSelectDataPlay(){
+function generatorContainerPlaylistSelectDataPlay() {
     if (screenWidth >= 1360) {
-        const itemsSelectPlaylist = document.querySelectorAll('.container-select-playlists .item-select-playlist .cover-item-select-playlist');
+        const itemsSelectPlaylist = document.querySelectorAll(
+            '.container-select-playlists .item-select-playlist .cover-item-select-playlist'
+        )
 
-        itemsSelectPlaylist.forEach((element)=> {
-            element.addEventListener('click', function(){
+        itemsSelectPlaylist.forEach((element) => {
+            element.addEventListener('click', function () {
                 const playlistValue = $(this).data('gender')
                 const playlistName = $(this).data('title')
-                toggleMorePlaylists();
-                selectNewPlaylist(playlistValue, playlistName);
-
-            });
+                toggleMorePlaylists()
+                selectNewPlaylist(playlistValue, playlistName)
+            })
         })
     } else {
-        const itemsSelectPlaylistMobile = document.querySelectorAll('.item-select-playlist-mobile .cover-item-select-playlist-mobile');
+        const itemsSelectPlaylistMobile = document.querySelectorAll(
+            '.item-select-playlist-mobile .cover-item-select-playlist-mobile'
+        )
 
-        itemsSelectPlaylistMobile.forEach((element)=> {
-            element.addEventListener('click', function(){
+        itemsSelectPlaylistMobile.forEach((element) => {
+            element.addEventListener('click', function () {
                 const playlistValue = $(this).data('gender')
                 const playlistName = $(this).data('title')
-                toggleMorePlaylists();
-                selectNewPlaylist(playlistValue, playlistName);
-            });
+                toggleMorePlaylists()
+                selectNewPlaylist(playlistValue, playlistName)
+            })
         })
     }
 }
 
-function generatorContainerSearchData(){
+function generatorContainerSearchData() {
     if (screenWidth >= 1360) {
-        musicDataFiltered = musicData.filter(
-            (music) =>
-            music.title.toLowerCase().includes(searchBarInput.value.toLowerCase())
+        musicDataFiltered = musicData.filter((music) =>
+            music.title
+                .toLowerCase()
+                .includes(searchBarInput.value.toLowerCase())
         )
-        
+
         while (musicDataFiltered.length > 10) {
-            musicDataFiltered.pop();
+            musicDataFiltered.pop()
         }
 
         musicDataFiltered.forEach((element, index) => {
-
             containerItemsSearch.innerHTML += `
-                <div class="item-playlist-search" data-id="${element._id}" data-theme="${element.theme}" style="animation-delay: ${index * 0.05}s">
+                <div class="item-playlist-search" data-id="${
+                    element._id
+                }" data-theme="${element.theme}" style="animation-delay: ${
+                index * 0.05
+            }s">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
-                            <img src="${element.coverUrl}" alt="${element.title}">
+                            <img src="${element.coverUrl}" alt="${
+                element.title
+            }">
                         </div>
                         <div class="info-item-search">
                             <div class="title-info-search">
@@ -999,21 +1340,28 @@ function generatorContainerSearchData(){
             `
         })
     } else {
-        musicDataFiltered = musicData.filter(
-            (music) =>
-            music.title.toLowerCase().includes(searchBarInputMobile.value.toLowerCase())
+        musicDataFiltered = musicData.filter((music) =>
+            music.title
+                .toLowerCase()
+                .includes(searchBarInputMobile.value.toLowerCase())
         )
-        
+
         while (musicDataFiltered.length > 10) {
-            musicDataFiltered.pop();
+            musicDataFiltered.pop()
         }
-        
+
         musicDataFiltered.forEach((element, index) => {
             containerItemsSearchMobile.innerHTML += `
-                <div class="item-search-mobile" data-id="${element._id}" data-theme="${element.theme}" style="animation-delay: ${index * 0.05}s">
+                <div class="item-search-mobile" data-id="${
+                    element._id
+                }" data-theme="${element.theme}" style="animation-delay: ${
+                index * 0.05
+            }s">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
-                            <img src="${element.coverUrl}" alt="${element.title}">
+                            <img src="${element.coverUrl}" alt="${
+                element.title
+            }">
                         </div>
                         <div class="info-item-search">
                             <div class="title-info">
@@ -1033,92 +1381,124 @@ function generatorContainerSearchData(){
     }
 }
 
-function generatorContainerSearchDataPlay(){
+function generatorContainerSearchDataPlay() {
     if (screenWidth >= 1360) {
-        const itemsPlaylistSearch = document.querySelectorAll('.container-items .item-playlist-search');
+        const itemsPlaylistSearch = document.querySelectorAll(
+            '.container-items .item-playlist-search'
+        )
 
-        itemsPlaylistSearch.forEach((element)=> {
-            element.addEventListener('click', function(){
-                let cannotPlayTheMusic = false;
-                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                    cannotPlayTheMusic = true;
+        itemsPlaylistSearch.forEach((element) => {
+            element.addEventListener('click', function () {
+                let cannotPlayTheMusic = false
+                if (
+                    indexAudio ==
+                    musicDataShuffled.indexOf(
+                        musicDataShuffled.find(
+                            (element) => element._id == $(this).data('id')
+                        )
+                    )
+                ) {
+                    cannotPlayTheMusic = true
                 }
 
-                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                indexAudio = musicDataShuffled.indexOf(
+                    musicDataShuffled.find(
+                        (element) => element._id == $(this).data('id')
+                    )
+                )
                 let selectedTheme = $(this).data('theme')
-                indexAudioId = musicDataShuffled[indexAudio]._id;
-                indexAudioGender = musicDataShuffled[indexAudio].gender;
+                indexAudioId = musicDataShuffled[indexAudio]._id
+                indexAudioGender = musicDataShuffled[indexAudio].gender
 
                 if (!cannotPlayTheMusic) {
-                    allSongValueSetters();
-                    audioControllerPlayFunctionNoPause();
-                    setMusicPlayTag();
-                    manageHistoric();
-                    refreshFavorite();
+                    allSongValueSetters()
+                    audioControllerPlayFunctionNoPause()
+                    setMusicPlayTag()
+                    manageHistoric()
+                    refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme);
-                
-                    $('.focus-shadow').hide(200);
-                    $('.container-search-result').hide(200);
-                    profileWasClicked = true;
-                    canKeyboardEvents = true;
-                    canKeyboardEventsProfile = true;
+                    themeChanger(selectedTheme)
+
+                    $('.focus-shadow').hide(200)
+                    $('.container-search-result').hide(200)
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
-            });
+            })
         })
     } else {
-        const itemsPlaylistSearchMobile = document.querySelectorAll('.container-search-mobile .item-search-mobile');
+        const itemsPlaylistSearchMobile = document.querySelectorAll(
+            '.container-search-mobile .item-search-mobile'
+        )
 
-        itemsPlaylistSearchMobile.forEach((element)=> {
-            element.addEventListener('click', function(){
-                let cannotPlayTheMusic = false;
-                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                    cannotPlayTheMusic = true;
+        itemsPlaylistSearchMobile.forEach((element) => {
+            element.addEventListener('click', function () {
+                let cannotPlayTheMusic = false
+                if (
+                    indexAudio ==
+                    musicDataShuffled.indexOf(
+                        musicDataShuffled.find(
+                            (element) => element._id == $(this).data('id')
+                        )
+                    )
+                ) {
+                    cannotPlayTheMusic = true
                 }
 
-                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                indexAudio = musicDataShuffled.indexOf(
+                    musicDataShuffled.find(
+                        (element) => element._id == $(this).data('id')
+                    )
+                )
                 let selectedTheme = $(this).data('theme')
-                indexAudioId = musicDataShuffled[indexAudio]._id;
-                indexAudioGender = musicDataShuffled[indexAudio].gender;
+                indexAudioId = musicDataShuffled[indexAudio]._id
+                indexAudioGender = musicDataShuffled[indexAudio].gender
 
                 $('.main-search-mobile').hide(200)
                 toggleDisplayMobile()
 
                 if (!cannotPlayTheMusic) {
-                    allSongValueSetters();
-                    audioControllerPlayFunctionNoPause();
-                    setMusicPlayTag();
-                    manageHistoric();
-                    refreshFavorite();
+                    allSongValueSetters()
+                    audioControllerPlayFunctionNoPause()
+                    setMusicPlayTag()
+                    manageHistoric()
+                    refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme);
-                
-                    profileWasClicked = true;
-                    canKeyboardEvents = true;
-                    canKeyboardEventsProfile = true;
+                    themeChanger(selectedTheme)
+
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
-            });
+            })
         })
     }
 }
 
-function generatorContainerFavoriteData(){
-    let favoriteSongs = [];
+function generatorContainerFavoriteData() {
+    let favoriteSongs = []
 
     for (let i = 0; i < userData.favoriteSongs.length; i++) {
-        let song = musicDataShuffled.find(element => element._id == userData.favoriteSongs[i].musicId)
-        if(song){
-            if(!favoriteSongs.find(element => element._id == userData.favoriteSongs[i].musicId)){
-                favoriteSongs.push(song);
+        let song = musicDataShuffled.find(
+            (element) => element._id == userData.favoriteSongs[i].musicId
+        )
+        if (song) {
+            if (
+                !favoriteSongs.find(
+                    (element) =>
+                        element._id == userData.favoriteSongs[i].musicId
+                )
+            ) {
+                favoriteSongs.push(song)
             }
         }
     }
 
-    favoriteSongs.reverse();
+    favoriteSongs.reverse()
 
     if (screenWidth >= 1360) {
         favoriteSongs.forEach((element) => {
-
             containerItemsFavorite.innerHTML += `
                 <div class="item-playlist-favorite" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-favorite">
@@ -1142,7 +1522,6 @@ function generatorContainerFavoriteData(){
         })
     } else {
         favoriteSongs.forEach((element) => {
-
             containerItemsFavoriteMobile.innerHTML += `
                 <div class="item-favorite-mobile" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-favorite">
@@ -1167,94 +1546,124 @@ function generatorContainerFavoriteData(){
     }
 }
 
-function generatorContainerFavoriteDataPlay(){
+function generatorContainerFavoriteDataPlay() {
     if (screenWidth >= 1360) {
-        const itemsPlaylistFavorite = document.querySelectorAll('.container-favorite .item-playlist-favorite');
+        const itemsPlaylistFavorite = document.querySelectorAll(
+            '.container-favorite .item-playlist-favorite'
+        )
 
-        itemsPlaylistFavorite.forEach((element)=> {
-            element.addEventListener('click', function(){
-                let cannotPlayTheMusic = false;
-                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                    cannotPlayTheMusic = true;
+        itemsPlaylistFavorite.forEach((element) => {
+            element.addEventListener('click', function () {
+                let cannotPlayTheMusic = false
+                if (
+                    indexAudio ==
+                    musicDataShuffled.indexOf(
+                        musicDataShuffled.find(
+                            (element) => element._id == $(this).data('id')
+                        )
+                    )
+                ) {
+                    cannotPlayTheMusic = true
                 }
 
-                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                indexAudio = musicDataShuffled.indexOf(
+                    musicDataShuffled.find(
+                        (element) => element._id == $(this).data('id')
+                    )
+                )
                 let selectedTheme = $(this).data('theme')
-                indexAudioId = musicDataShuffled[indexAudio]._id;
-                indexAudioGender = musicDataShuffled[indexAudio].gender;
+                indexAudioId = musicDataShuffled[indexAudio]._id
+                indexAudioGender = musicDataShuffled[indexAudio].gender
 
                 if (!cannotPlayTheMusic) {
-                    allSongValueSetters();
-                    audioControllerPlayFunctionNoPause();
-                    setMusicPlayTag();
-                    manageHistoric();
-                    refreshFavorite();
+                    allSongValueSetters()
+                    audioControllerPlayFunctionNoPause()
+                    setMusicPlayTag()
+                    manageHistoric()
+                    refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme);
-                    
-                    $('.focus-shadow').hide(200);
-                    $('.container-user-settings').hide(200);
-                    profileWasClicked = true;
-                    canKeyboardEvents = true;
-                    canKeyboardEventsProfile = true;
+                    themeChanger(selectedTheme)
+
+                    $('.focus-shadow').hide(200)
+                    $('.container-user-settings').hide(200)
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
-            });
+            })
         })
     } else {
-        const itemsPlaylistFavoriteMobile = document.querySelectorAll('.container-favorite-mobile .item-favorite-mobile');
+        const itemsPlaylistFavoriteMobile = document.querySelectorAll(
+            '.container-favorite-mobile .item-favorite-mobile'
+        )
 
-        itemsPlaylistFavoriteMobile.forEach((element)=> {
-            element.addEventListener('click', function(){
-                let cannotPlayTheMusic = false;
-                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                    cannotPlayTheMusic = true;
+        itemsPlaylistFavoriteMobile.forEach((element) => {
+            element.addEventListener('click', function () {
+                let cannotPlayTheMusic = false
+                if (
+                    indexAudio ==
+                    musicDataShuffled.indexOf(
+                        musicDataShuffled.find(
+                            (element) => element._id == $(this).data('id')
+                        )
+                    )
+                ) {
+                    cannotPlayTheMusic = true
                 }
 
-                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                indexAudio = musicDataShuffled.indexOf(
+                    musicDataShuffled.find(
+                        (element) => element._id == $(this).data('id')
+                    )
+                )
                 let selectedTheme = $(this).data('theme')
-                indexAudioId = musicDataShuffled[indexAudio]._id;
-                indexAudioGender = musicDataShuffled[indexAudio].gender;
-                
-                $('.main-user-settings-mobile').hide(200);
+                indexAudioId = musicDataShuffled[indexAudio]._id
+                indexAudioGender = musicDataShuffled[indexAudio].gender
+
+                $('.main-user-settings-mobile').hide(200)
                 toggleDisplayMobile()
 
                 if (!cannotPlayTheMusic) {
-                    allSongValueSetters();
-                    audioControllerPlayFunctionNoPause();
-                    setMusicPlayTag();
-                    manageHistoric();
-                    refreshFavorite();
+                    allSongValueSetters()
+                    audioControllerPlayFunctionNoPause()
+                    setMusicPlayTag()
+                    manageHistoric()
+                    refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme);
-                    
-                    profileWasClicked = true;
-                    canKeyboardEvents = true;
-                    canKeyboardEventsProfile = true;
+                    themeChanger(selectedTheme)
+
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
-            });
+            })
         })
     }
 }
 
-
-function generatorContainerHistoricData(){
-    let historicSongs = [];
+function generatorContainerHistoricData() {
+    let historicSongs = []
 
     for (let i = 0; i < userData.musicHistory.length; i++) {
-        let song = musicDataShuffled.find(element => element._id == userData.musicHistory[i].musicId)
+        let song = musicDataShuffled.find(
+            (element) => element._id == userData.musicHistory[i].musicId
+        )
 
-        if(song){
-            if(!historicSongs.find(element => element._id == userData.musicHistory[i].musicId)){
-                historicSongs.push(song);
+        if (song) {
+            if (
+                !historicSongs.find(
+                    (element) => element._id == userData.musicHistory[i].musicId
+                )
+            ) {
+                historicSongs.push(song)
             }
         }
     }
 
     historicSongs.reverse()
-    
+
     if (screenWidth >= 1360) {
         historicSongs.forEach((element) => {
-
             containerItemsHistoric.innerHTML += `
                 <div class="item-playlist-historic" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-historic">
@@ -1278,7 +1687,6 @@ function generatorContainerHistoricData(){
         })
     } else {
         historicSongs.forEach((element) => {
-
             containerItemsHistoricMobile.innerHTML += `
                 <div class="item-historic-mobile" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-historic">
@@ -1303,178 +1711,265 @@ function generatorContainerHistoricData(){
     }
 }
 
-function generatorContainerHistoricDataPlay(){
+function generatorContainerHistoricDataPlay() {
     if (screenWidth >= 1360) {
-        const itemsPlaylistHistoric = document.querySelectorAll('.container-historic .item-playlist-historic');
+        const itemsPlaylistHistoric = document.querySelectorAll(
+            '.container-historic .item-playlist-historic'
+        )
 
-        itemsPlaylistHistoric.forEach((element)=> {
-            element.addEventListener('click', function(){
-                let cannotPlayTheMusic = false;
-                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                    cannotPlayTheMusic = true;
+        itemsPlaylistHistoric.forEach((element) => {
+            element.addEventListener('click', function () {
+                let cannotPlayTheMusic = false
+                if (
+                    indexAudio ==
+                    musicDataShuffled.indexOf(
+                        musicDataShuffled.find(
+                            (element) => element._id == $(this).data('id')
+                        )
+                    )
+                ) {
+                    cannotPlayTheMusic = true
                 }
 
-                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                indexAudio = musicDataShuffled.indexOf(
+                    musicDataShuffled.find(
+                        (element) => element._id == $(this).data('id')
+                    )
+                )
                 let selectedTheme = $(this).data('theme')
-                indexAudioId = musicDataShuffled[indexAudio]._id;
-                indexAudioGender = musicDataShuffled[indexAudio].gender;
+                indexAudioId = musicDataShuffled[indexAudio]._id
+                indexAudioGender = musicDataShuffled[indexAudio].gender
 
                 if (!cannotPlayTheMusic) {
-                    allSongValueSetters();
-                    audioControllerPlayFunctionNoPause();
-                    setMusicPlayTag();
-                    manageHistoric();
-                    refreshFavorite();
+                    allSongValueSetters()
+                    audioControllerPlayFunctionNoPause()
+                    setMusicPlayTag()
+                    manageHistoric()
+                    refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme);
-                    
-                    $('.focus-shadow').hide(200);
-                    $('.container-user-settings').hide(200);
-                    profileWasClicked = true;
-                    canKeyboardEvents = true;
-                    canKeyboardEventsProfile = true;
+                    themeChanger(selectedTheme)
+
+                    $('.focus-shadow').hide(200)
+                    $('.container-user-settings').hide(200)
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
-            });
+            })
         })
     } else {
-        const itemsPlaylistHistoricMobile = document.querySelectorAll('.container-historic-mobile .item-historic-mobile');
+        const itemsPlaylistHistoricMobile = document.querySelectorAll(
+            '.container-historic-mobile .item-historic-mobile'
+        )
 
-        itemsPlaylistHistoricMobile.forEach((element)=> {
-            element.addEventListener('click', function(){
-                let cannotPlayTheMusic = false;
-                if (indexAudio == musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))) {
-                    cannotPlayTheMusic = true;
+        itemsPlaylistHistoricMobile.forEach((element) => {
+            element.addEventListener('click', function () {
+                let cannotPlayTheMusic = false
+                if (
+                    indexAudio ==
+                    musicDataShuffled.indexOf(
+                        musicDataShuffled.find(
+                            (element) => element._id == $(this).data('id')
+                        )
+                    )
+                ) {
+                    cannotPlayTheMusic = true
                 }
 
-                indexAudio = musicDataShuffled.indexOf(musicDataShuffled.find(element => element._id == $(this).data('id')))
+                indexAudio = musicDataShuffled.indexOf(
+                    musicDataShuffled.find(
+                        (element) => element._id == $(this).data('id')
+                    )
+                )
                 let selectedTheme = $(this).data('theme')
-                indexAudioId = musicDataShuffled[indexAudio]._id;
-                indexAudioGender = musicDataShuffled[indexAudio].gender;
+                indexAudioId = musicDataShuffled[indexAudio]._id
+                indexAudioGender = musicDataShuffled[indexAudio].gender
 
-                $('.main-user-settings-mobile').hide(200);
+                $('.main-user-settings-mobile').hide(200)
                 toggleDisplayMobile()
 
                 if (!cannotPlayTheMusic) {
-                    allSongValueSetters();
-                    audioControllerPlayFunctionNoPause();
-                    setMusicPlayTag();
-                    manageHistoric();
-                    refreshFavorite();
+                    allSongValueSetters()
+                    audioControllerPlayFunctionNoPause()
+                    setMusicPlayTag()
+                    manageHistoric()
+                    refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme);
-                    
-                    profileWasClicked = true;
-                    canKeyboardEvents = true;
-                    canKeyboardEventsProfile = true;
+                    themeChanger(selectedTheme)
+
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
-            });
+            })
         })
     }
 }
 function generatorContainerMusicAddPlaylist() {
     function converterData(dataString) {
         const meses = [
-            "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-            "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
-        ];
-    
-        const data = new Date(dataString);
-        const dia = data.getDate();
-        const mes = meses[data.getMonth()];
-        const ano = data.getFullYear();
-    
-        return `Criada em: ${dia} de ${mes} de ${ano}`;
+            'janeiro',
+            'fevereiro',
+            'março',
+            'abril',
+            'maio',
+            'junho',
+            'julho',
+            'agosto',
+            'setembro',
+            'outubro',
+            'novembro',
+            'dezembro',
+        ]
+
+        const data = new Date(dataString)
+        const dia = data.getDate()
+        const mes = meses[data.getMonth()]
+        const ano = data.getFullYear()
+
+        return `Criada em: ${dia} de ${mes} de ${ano}`
     }
 
     if (screenWidth >= 1360) {
-        const container = document.querySelector('.container-minhas-playlists');
-        const containerMusic = document.querySelector('.container-minhas-musicas')
-
-        container.innerHTML = "";
-
-        const myPlaylistsFiltered = userData.myPlaylists.filter(
-            (playlist) =>
-            playlist.title.toLowerCase().includes(document.querySelector('.minhas-playlists-search-bar-input').value.trim().toLowerCase())
+        const container = document.querySelector('.container-minhas-playlists')
+        const containerMusic = document.querySelector(
+            '.container-minhas-musicas'
         )
-        
+
+        container.innerHTML = ''
+
+        const myPlaylistsFiltered = userData.myPlaylists.filter((playlist) =>
+            playlist.title
+                .toLowerCase()
+                .includes(
+                    document
+                        .querySelector('.minhas-playlists-search-bar-input')
+                        .value.trim()
+                        .toLowerCase()
+                )
+        )
+
         myPlaylistsFiltered.forEach((element) => {
-            let divItemMinhasPlaylists = document.createElement("div");
-            divItemMinhasPlaylists.classList.add("item-minhas-playlists");
+            let divItemMinhasPlaylists = document.createElement('div')
+            divItemMinhasPlaylists.classList.add('item-minhas-playlists')
             divItemMinhasPlaylists.addEventListener('click', () => {
-                document.querySelector('.main-minhas-playlists .main-playlist .content .title').textContent = element.title;
-                document.querySelector('.main-minhas-playlists .main-playlist .content .details .created').textContent = converterData(element.additionDate);
-                document.querySelector('.main-minhas-playlists .main-playlist .content .details .total-song').textContent = `Total de ${element.totalSongs} ${element.totalSongs <= 1 ? 'música' : 'músicas'}`;
-                document.querySelector('.main-minhas-playlists .main-playlist .cover img').src = element.currentCoverUrl
-                document.querySelector('.main-minhas-playlists .main-playlist .cover img').alt = element.title;
-                indexMyPlaylistId = element._id;
-                document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value = element.title;
-                document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current').textContent = element.title;
+                document.querySelector(
+                    '.main-minhas-playlists .main-playlist .content .title'
+                ).textContent = element.title
+                document.querySelector(
+                    '.main-minhas-playlists .main-playlist .content .details .created'
+                ).textContent = converterData(element.additionDate)
+                document.querySelector(
+                    '.main-minhas-playlists .main-playlist .content .details .total-song'
+                ).textContent = `Total de ${element.totalSongs} ${
+                    element.totalSongs <= 1 ? 'música' : 'músicas'
+                }`
+                document.querySelector(
+                    '.main-minhas-playlists .main-playlist .cover img'
+                ).src = element.currentCoverUrl
+                document.querySelector(
+                    '.main-minhas-playlists .main-playlist .cover img'
+                ).alt = element.title
+                indexMyPlaylistId = element._id
+                document.querySelector(
+                    '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                ).value = element.title
+                document.querySelector(
+                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current'
+                ).textContent = element.title
                 toggleContainerMinhaPlaylist()
 
-                containerMusic.innerHTML = ""
+                containerMusic.innerHTML = ''
 
                 element.songs.reverse().forEach((ele) => {
-                    let musicaEncontrada = allMusicData.find(element => element._id === ele.musicId)
+                    let musicaEncontrada = allMusicData.find(
+                        (element) => element._id === ele.musicId
+                    )
 
-                    let divItemMinhasMusicas = document.createElement("div");
-                    divItemMinhasMusicas.classList.add("item-minhas-musicas");
+                    let divItemMinhasMusicas = document.createElement('div')
+                    divItemMinhasMusicas.classList.add('item-minhas-musicas')
                     divItemMinhasMusicas.addEventListener('click', () => {
-                        document.querySelector('.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-title').textContent = musicaEncontrada.title;
-                        document.querySelector('.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img').src = musicaEncontrada.coverUrl;
-                        document.querySelector('.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img').alt = musicaEncontrada.title;
-                        document.querySelector('.music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container .music-delete-my-new-playlist-current').textContent = musicaEncontrada.title;
-                        indexMyPlaylistAudioId = ele._id;
+                        document.querySelector(
+                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-title'
+                        ).textContent = musicaEncontrada.title
+                        document.querySelector(
+                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img'
+                        ).src = musicaEncontrada.coverUrl
+                        document.querySelector(
+                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img'
+                        ).alt = musicaEncontrada.title
+                        document.querySelector(
+                            '.music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container .music-delete-my-new-playlist-current'
+                        ).textContent = musicaEncontrada.title
+                        indexMyPlaylistAudioId = ele._id
                         toggleMusicMinhaPlaylist()
                     })
 
-                    let divCoverItemMinhasMusicas = document.createElement("div");
-                    divCoverItemMinhasMusicas.classList.add("cover-item-minhas-musicas");
+                    let divCoverItemMinhasMusicas =
+                        document.createElement('div')
+                    divCoverItemMinhasMusicas.classList.add(
+                        'cover-item-minhas-musicas'
+                    )
 
-                    let imgCover = document.createElement("img");
-                    imgCover.src = musicaEncontrada.coverUrl;
-                    imgCover.alt = musicaEncontrada.title;
+                    let imgCover = document.createElement('img')
+                    imgCover.src = musicaEncontrada.coverUrl
+                    imgCover.alt = musicaEncontrada.title
 
-                    let divTitleItemMinhasMusicas = document.createElement("div");
-                    divTitleItemMinhasMusicas.classList.add("title-item-minhas-musicas");
-                    divTitleItemMinhasMusicas.textContent = musicaEncontrada.title;
+                    let divTitleItemMinhasMusicas =
+                        document.createElement('div')
+                    divTitleItemMinhasMusicas.classList.add(
+                        'title-item-minhas-musicas'
+                    )
+                    divTitleItemMinhasMusicas.textContent =
+                        musicaEncontrada.title
 
-                    divCoverItemMinhasMusicas.appendChild(imgCover);
-                    divItemMinhasMusicas.appendChild(divCoverItemMinhasMusicas);
-                    divItemMinhasMusicas.appendChild(divTitleItemMinhasMusicas);
+                    divCoverItemMinhasMusicas.appendChild(imgCover)
+                    divItemMinhasMusicas.appendChild(divCoverItemMinhasMusicas)
+                    divItemMinhasMusicas.appendChild(divTitleItemMinhasMusicas)
 
                     containerMusic.appendChild(divItemMinhasMusicas)
                 })
             })
 
-            let divCoverItemMinhasPlaylists = document.createElement("div");
-            divCoverItemMinhasPlaylists.classList.add("cover-item-minhas-playlists");
+            let divCoverItemMinhasPlaylists = document.createElement('div')
+            divCoverItemMinhasPlaylists.classList.add(
+                'cover-item-minhas-playlists'
+            )
 
-            let imgCover = document.createElement("img");
-            imgCover.src = element.currentCoverUrl;
-            imgCover.alt = element.title;
+            let imgCover = document.createElement('img')
+            imgCover.src = element.currentCoverUrl
+            imgCover.alt = element.title
 
-            let divTitleItemMinhasPlaylists = document.createElement("div");
-            divTitleItemMinhasPlaylists.classList.add("title-item-minhas-playlists");
-            divTitleItemMinhasPlaylists.textContent = element.title;
+            let divTitleItemMinhasPlaylists = document.createElement('div')
+            divTitleItemMinhasPlaylists.classList.add(
+                'title-item-minhas-playlists'
+            )
+            divTitleItemMinhasPlaylists.textContent = element.title
 
-            let divTotalDeMusicas = document.createElement("div");
-            divTotalDeMusicas.classList.add("total-de-musicas");
-            divTotalDeMusicas.textContent = "Total de Músicas";
+            let divTotalDeMusicas = document.createElement('div')
+            divTotalDeMusicas.classList.add('total-de-musicas')
+            divTotalDeMusicas.textContent = 'Total de Músicas'
 
-            let divTotalDeMusicasQuantidade = document.createElement("div");
-            divTotalDeMusicasQuantidade.classList.add("total-de-musicas-quantidade");
-            divTotalDeMusicasQuantidade.textContent = element.totalSongs;
+            let divTotalDeMusicasQuantidade = document.createElement('div')
+            divTotalDeMusicasQuantidade.classList.add(
+                'total-de-musicas-quantidade'
+            )
+            divTotalDeMusicasQuantidade.textContent = element.totalSongs
 
-            divCoverItemMinhasPlaylists.appendChild(imgCover);
-            divItemMinhasPlaylists.appendChild(divCoverItemMinhasPlaylists);
-            divItemMinhasPlaylists.appendChild(divTitleItemMinhasPlaylists);
-            divItemMinhasPlaylists.appendChild(divTotalDeMusicas);
-            divItemMinhasPlaylists.appendChild(divTotalDeMusicasQuantidade);
+            divCoverItemMinhasPlaylists.appendChild(imgCover)
+            divItemMinhasPlaylists.appendChild(divCoverItemMinhasPlaylists)
+            divItemMinhasPlaylists.appendChild(divTitleItemMinhasPlaylists)
+            divItemMinhasPlaylists.appendChild(divTotalDeMusicas)
+            divItemMinhasPlaylists.appendChild(divTotalDeMusicasQuantidade)
 
-            container.appendChild(divItemMinhasPlaylists);
+            container.appendChild(divItemMinhasPlaylists)
         })
-        if (container.innerHTML === "") {
-            if(document.querySelector('.minhas-playlists-search-bar-input').value.trim() !== ""){
+        if (container.innerHTML === '') {
+            if (
+                document
+                    .querySelector('.minhas-playlists-search-bar-input')
+                    .value.trim() !== ''
+            ) {
                 container.innerHTML = `
                 <div class="no-playlist">
                     Sua pesquisa não encontrou nenhuma playlist
@@ -1489,94 +1984,151 @@ function generatorContainerMusicAddPlaylist() {
             }
         }
     } else {
-        const container = document.querySelector('.container-minhas-playlists-mobile');
-        const containerMusic = document.querySelector('.container-minhas-musicas-mobile')
+        const container = document.querySelector(
+            '.container-minhas-playlists-mobile'
+        )
+        const containerMusic = document.querySelector(
+            '.container-minhas-musicas-mobile'
+        )
 
-        container.innerHTML = "";
+        container.innerHTML = ''
 
-        const myPlaylistsFiltered = userData.myPlaylists.filter(
-            (playlist) =>
-            playlist.title.toLowerCase().includes(document.querySelector('.minhas-playlists-search-bar-input-mobile').value.trim().toLowerCase())
+        const myPlaylistsFiltered = userData.myPlaylists.filter((playlist) =>
+            playlist.title
+                .toLowerCase()
+                .includes(
+                    document
+                        .querySelector(
+                            '.minhas-playlists-search-bar-input-mobile'
+                        )
+                        .value.trim()
+                        .toLowerCase()
+                )
         )
 
         myPlaylistsFiltered.forEach((element) => {
-            let divItemMinhasPlaylists = document.createElement("div");
-            divItemMinhasPlaylists.classList.add("item-minhas-playlists-mobile");
+            let divItemMinhasPlaylists = document.createElement('div')
+            divItemMinhasPlaylists.classList.add('item-minhas-playlists-mobile')
             divItemMinhasPlaylists.addEventListener('click', () => {
-                document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile').textContent = element.title;
-                document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .created-mobile').textContent = converterData(element.additionDate);
-                document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .total-song-mobile').textContent = `Total de ${element.totalSongs} ${element.totalSongs <= 1 ? 'música' : 'músicas'}`;
-                document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img').src = element.currentCoverUrl
-                document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img').alt = element.title;
-                indexMyPlaylistId = element._id;
-                document.querySelector('.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile').value = element.title;
-                document.querySelector('.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile').textContent = element.title;
+                document.querySelector(
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile'
+                ).textContent = element.title
+                document.querySelector(
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .created-mobile'
+                ).textContent = converterData(element.additionDate)
+                document.querySelector(
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .total-song-mobile'
+                ).textContent = `Total de ${element.totalSongs} ${
+                    element.totalSongs <= 1 ? 'música' : 'músicas'
+                }`
+                document.querySelector(
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img'
+                ).src = element.currentCoverUrl
+                document.querySelector(
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img'
+                ).alt = element.title
+                indexMyPlaylistId = element._id
+                document.querySelector(
+                    '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+                ).value = element.title
+                document.querySelector(
+                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile'
+                ).textContent = element.title
                 toggleContainerMinhaPlaylist()
 
-                containerMusic.innerHTML = ""
+                containerMusic.innerHTML = ''
 
                 element.songs.reverse().forEach((ele) => {
-                    let musicaEncontrada = allMusicData.find(element => element._id === ele.musicId)
+                    let musicaEncontrada = allMusicData.find(
+                        (element) => element._id === ele.musicId
+                    )
 
-                    let divItemMinhasMusicas = document.createElement("div");
-                    divItemMinhasMusicas.classList.add("item-minhas-musicas-mobile");
+                    let divItemMinhasMusicas = document.createElement('div')
+                    divItemMinhasMusicas.classList.add(
+                        'item-minhas-musicas-mobile'
+                    )
                     divItemMinhasMusicas.addEventListener('click', () => {
-                        document.querySelector('.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-title-mobile').textContent = musicaEncontrada.title;
-                        document.querySelector('.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img').src = musicaEncontrada.coverUrl;
-                        document.querySelector('.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img').alt = musicaEncontrada.title;
-                        document.querySelector('.music-delete-my-new-playlist-overflow-mobile .music-delete-my-new-playlist-container-mobile .music-delete-my-new-playlist-current-mobile').textContent = musicaEncontrada.title;
-                        indexMyPlaylistAudioId = ele._id;
+                        document.querySelector(
+                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-title-mobile'
+                        ).textContent = musicaEncontrada.title
+                        document.querySelector(
+                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img'
+                        ).src = musicaEncontrada.coverUrl
+                        document.querySelector(
+                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img'
+                        ).alt = musicaEncontrada.title
+                        document.querySelector(
+                            '.music-delete-my-new-playlist-overflow-mobile .music-delete-my-new-playlist-container-mobile .music-delete-my-new-playlist-current-mobile'
+                        ).textContent = musicaEncontrada.title
+                        indexMyPlaylistAudioId = ele._id
                         toggleMusicMinhaPlaylist()
                     })
 
-                    let divCoverItemMinhasMusicas = document.createElement("div");
-                    divCoverItemMinhasMusicas.classList.add("cover-item-minhas-musicas-mobile");
+                    let divCoverItemMinhasMusicas =
+                        document.createElement('div')
+                    divCoverItemMinhasMusicas.classList.add(
+                        'cover-item-minhas-musicas-mobile'
+                    )
 
-                    let imgCover = document.createElement("img");
-                    imgCover.src = musicaEncontrada.coverUrl;
-                    imgCover.alt = musicaEncontrada.title;
+                    let imgCover = document.createElement('img')
+                    imgCover.src = musicaEncontrada.coverUrl
+                    imgCover.alt = musicaEncontrada.title
 
-                    let divTitleItemMinhasMusicas = document.createElement("div");
-                    divTitleItemMinhasMusicas.classList.add("title-item-minhas-musicas-mobile");
-                    divTitleItemMinhasMusicas.textContent = musicaEncontrada.title;
+                    let divTitleItemMinhasMusicas =
+                        document.createElement('div')
+                    divTitleItemMinhasMusicas.classList.add(
+                        'title-item-minhas-musicas-mobile'
+                    )
+                    divTitleItemMinhasMusicas.textContent =
+                        musicaEncontrada.title
 
-                    divCoverItemMinhasMusicas.appendChild(imgCover);
-                    divItemMinhasMusicas.appendChild(divCoverItemMinhasMusicas);
-                    divItemMinhasMusicas.appendChild(divTitleItemMinhasMusicas);
+                    divCoverItemMinhasMusicas.appendChild(imgCover)
+                    divItemMinhasMusicas.appendChild(divCoverItemMinhasMusicas)
+                    divItemMinhasMusicas.appendChild(divTitleItemMinhasMusicas)
 
                     containerMusic.appendChild(divItemMinhasMusicas)
                 })
             })
 
-            let divCoverItemMinhasPlaylists = document.createElement("div");
-            divCoverItemMinhasPlaylists.classList.add("cover-item-minhas-playlists-mobile");
+            let divCoverItemMinhasPlaylists = document.createElement('div')
+            divCoverItemMinhasPlaylists.classList.add(
+                'cover-item-minhas-playlists-mobile'
+            )
 
-            let imgCover = document.createElement("img");
-            imgCover.src = element.currentCoverUrl;
-            imgCover.alt = element.title;
+            let imgCover = document.createElement('img')
+            imgCover.src = element.currentCoverUrl
+            imgCover.alt = element.title
 
-            let divTitleItemMinhasPlaylists = document.createElement("div");
-            divTitleItemMinhasPlaylists.classList.add("title-item-minhas-playlists-mobile");
-            divTitleItemMinhasPlaylists.textContent = element.title;
+            let divTitleItemMinhasPlaylists = document.createElement('div')
+            divTitleItemMinhasPlaylists.classList.add(
+                'title-item-minhas-playlists-mobile'
+            )
+            divTitleItemMinhasPlaylists.textContent = element.title
 
-            let divTotalDeMusicas = document.createElement("div");
-            divTotalDeMusicas.classList.add("total-de-musicas-mobile");
-            divTotalDeMusicas.textContent = "TM";
+            let divTotalDeMusicas = document.createElement('div')
+            divTotalDeMusicas.classList.add('total-de-musicas-mobile')
+            divTotalDeMusicas.textContent = 'TM'
 
-            let divTotalDeMusicasQuantidade = document.createElement("div");
-            divTotalDeMusicasQuantidade.classList.add("total-de-musicas-quantidade-mobile");
-            divTotalDeMusicasQuantidade.textContent = element.totalSongs;
+            let divTotalDeMusicasQuantidade = document.createElement('div')
+            divTotalDeMusicasQuantidade.classList.add(
+                'total-de-musicas-quantidade-mobile'
+            )
+            divTotalDeMusicasQuantidade.textContent = element.totalSongs
 
-            divCoverItemMinhasPlaylists.appendChild(imgCover);
-            divItemMinhasPlaylists.appendChild(divCoverItemMinhasPlaylists);
-            divItemMinhasPlaylists.appendChild(divTitleItemMinhasPlaylists);
-            divItemMinhasPlaylists.appendChild(divTotalDeMusicas);
-            divItemMinhasPlaylists.appendChild(divTotalDeMusicasQuantidade);
+            divCoverItemMinhasPlaylists.appendChild(imgCover)
+            divItemMinhasPlaylists.appendChild(divCoverItemMinhasPlaylists)
+            divItemMinhasPlaylists.appendChild(divTitleItemMinhasPlaylists)
+            divItemMinhasPlaylists.appendChild(divTotalDeMusicas)
+            divItemMinhasPlaylists.appendChild(divTotalDeMusicasQuantidade)
 
-            container.appendChild(divItemMinhasPlaylists);
+            container.appendChild(divItemMinhasPlaylists)
         })
-        if (container.innerHTML === "") {
-            if(document.querySelector('.minhas-playlists-search-bar-input-mobile').value.trim() !== ""){
+        if (container.innerHTML === '') {
+            if (
+                document
+                    .querySelector('.minhas-playlists-search-bar-input-mobile')
+                    .value.trim() !== ''
+            ) {
                 container.innerHTML = `
                 <div class="no-playlist-mobile">
                     Sua pesquisa não encontrou nenhuma playlist
@@ -1594,399 +2146,468 @@ function generatorContainerMusicAddPlaylist() {
 }
 function generatorContainerCurrentMusicAddPlaylist() {
     if (screenWidth >= 1360) {
-        const currentMusicAddPlaylistContainer = document.querySelector('.current-music-add-playlist-container');
+        const currentMusicAddPlaylistContainer = document.querySelector(
+            '.current-music-add-playlist-container'
+        )
 
-        currentMusicAddPlaylistContainer.innerHTML = "";
-    
+        currentMusicAddPlaylistContainer.innerHTML = ''
+
         userData.myPlaylists.forEach((element) => {
-            const song = element.songs.find(song => song.musicId === indexAudioId);
-    
-            const divItem = document.createElement('div');
-            divItem.classList.add('current-music-add-playlist-item');
+            const song = element.songs.find(
+                (song) => song.musicId === indexAudioId
+            )
+
+            const divItem = document.createElement('div')
+            divItem.classList.add('current-music-add-playlist-item')
             divItem.addEventListener('click', () => {
-                divItem.style.pointerEvents = 'none';
+                divItem.style.pointerEvents = 'none'
                 if (song) {
-                    fetch(`/users-playlist-song/${userData._id}/${element._id}/${song._id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                    })
-                    .then(response => {
-                        if (response.status === 200) return
-                        else {
-                            if(screenWidth >= 1360){
-                                warning.classList.remove('hidden')
-                                warning.textContent = 'Internal Error!'
-                                setTimeout(() => {
-                                    warning.classList.add('hidden')
-                                }, 3000)
-                            } else {
-                                warningMobile.classList.remove('hidden')
-                                warningMobile.textContent = 'Internal Error!'
-                                setTimeout(() => {
-                                    warningMobile.classList.add('hidden')
-                                }, 3000)
-                            }
+                    fetch(
+                        `/users-playlist-song/${userData._id}/${element._id}/${song._id}`,
+                        {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
                         }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    })
-                    .finally(() => {
-                        refreshUserWithNewPlaylist()
-                        divStatus.style.pointerEvents = 'auto';
-                    });
-                } else {
-                    fetch(`/users-playlist-song/${userData._id}/${element._id}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            musicIds: [indexAudioId]
+                    )
+                        .then((response) => {
+                            if (response.status === 200) return
+                            else {
+                                if (screenWidth >= 1360) {
+                                    warning.classList.remove('hidden')
+                                    warning.textContent = 'Internal Error!'
+                                    setTimeout(() => {
+                                        warning.classList.add('hidden')
+                                    }, 3000)
+                                } else {
+                                    warningMobile.classList.remove('hidden')
+                                    warningMobile.textContent =
+                                        'Internal Error!'
+                                    setTimeout(() => {
+                                        warningMobile.classList.add('hidden')
+                                    }, 3000)
+                                }
+                            }
                         })
-                    })
-                    .then(response => {
-                        if (response.status === 201) return
-                        else {
-                            if(screenWidth >= 1360){
-                                warning.classList.remove('hidden')
-                                warning.textContent = 'Internal Error!'
-                                setTimeout(() => {
-                                    warning.classList.add('hidden')
-                                }, 3000)
-                            } else {
-                                warningMobile.classList.remove('hidden')
-                                warningMobile.textContent = 'Internal Error!'
-                                setTimeout(() => {
-                                    warningMobile.classList.add('hidden')
-                                }, 3000)
-                            }
+                        .catch((error) => {
+                            console.error(error)
+                        })
+                        .finally(() => {
+                            refreshUserWithNewPlaylist()
+                            divStatus.style.pointerEvents = 'auto'
+                        })
+                } else {
+                    fetch(
+                        `/users-playlist-song/${userData._id}/${element._id}`,
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                musicIds: [indexAudioId],
+                            }),
                         }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    })
-                    .finally(() => {
-                        refreshUserWithNewPlaylist()
-                        divItem.style.pointerEvents = 'auto';
-                    });
+                    )
+                        .then((response) => {
+                            if (response.status === 201) return
+                            else {
+                                if (screenWidth >= 1360) {
+                                    warning.classList.remove('hidden')
+                                    warning.textContent = 'Internal Error!'
+                                    setTimeout(() => {
+                                        warning.classList.add('hidden')
+                                    }, 3000)
+                                } else {
+                                    warningMobile.classList.remove('hidden')
+                                    warningMobile.textContent =
+                                        'Internal Error!'
+                                    setTimeout(() => {
+                                        warningMobile.classList.add('hidden')
+                                    }, 3000)
+                                }
+                            }
+                        })
+                        .catch((error) => {
+                            console.error(error)
+                        })
+                        .finally(() => {
+                            refreshUserWithNewPlaylist()
+                            divItem.style.pointerEvents = 'auto'
+                        })
                 }
-            });
-    
-            const divStatus = document.createElement('div');
-            divStatus.classList.add('current-music-add-playlist-status');
-    
-            const ionIcon = document.createElement('ion-icon');
+            })
+
+            const divStatus = document.createElement('div')
+            divStatus.classList.add('current-music-add-playlist-status')
+
+            const ionIcon = document.createElement('ion-icon')
             if (song) {
-                ionIcon.setAttribute('name', 'checkbox');
+                ionIcon.setAttribute('name', 'checkbox')
             } else {
-                ionIcon.setAttribute('name', 'square-outline');
+                ionIcon.setAttribute('name', 'square-outline')
             }
-    
-            divStatus.appendChild(ionIcon);
-    
-            const divTitle = document.createElement('div');
-            divTitle.classList.add('current-music-add-playlist-title');
-            divTitle.textContent = element.title;
-    
-            divItem.appendChild(divStatus);
-            divItem.appendChild(divTitle);
-    
-            currentMusicAddPlaylistContainer.appendChild(divItem);
+
+            divStatus.appendChild(ionIcon)
+
+            const divTitle = document.createElement('div')
+            divTitle.classList.add('current-music-add-playlist-title')
+            divTitle.textContent = element.title
+
+            divItem.appendChild(divStatus)
+            divItem.appendChild(divTitle)
+
+            currentMusicAddPlaylistContainer.appendChild(divItem)
         })
     } else {
-        const currentMusicAddPlaylistContainerMobile = document.querySelector('.current-music-add-playlist-container-mobile');
+        const currentMusicAddPlaylistContainerMobile = document.querySelector(
+            '.current-music-add-playlist-container-mobile'
+        )
 
-        currentMusicAddPlaylistContainerMobile.innerHTML = "";
-    
+        currentMusicAddPlaylistContainerMobile.innerHTML = ''
+
         userData.myPlaylists.forEach((element) => {
-            const song = element.songs.find(song => song.musicId === indexAudioId);
-    
-            const divItem = document.createElement('div');
-            divItem.classList.add('current-music-add-playlist-item-mobile');
+            const song = element.songs.find(
+                (song) => song.musicId === indexAudioId
+            )
+
+            const divItem = document.createElement('div')
+            divItem.classList.add('current-music-add-playlist-item-mobile')
             divItem.addEventListener('click', () => {
-                divItem.style.pointerEvents = 'none';
+                divItem.style.pointerEvents = 'none'
                 if (song) {
-                    fetch(`/users-playlist-song/${userData._id}/${element._id}/${song._id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                    })
-                    .then(response => {
-                        if (response.status === 200) return
-                        else {
-                            if(screenWidth >= 1360){
-                                warning.classList.remove('hidden')
-                                warning.textContent = 'Internal Error!'
-                                setTimeout(() => {
-                                    warning.classList.add('hidden')
-                                }, 3000)
-                            } else {
-                                warningMobile.classList.remove('hidden')
-                                warningMobile.textContent = 'Internal Error!'
-                                setTimeout(() => {
-                                    warningMobile.classList.add('hidden')
-                                }, 3000)
-                            }
+                    fetch(
+                        `/users-playlist-song/${userData._id}/${element._id}/${song._id}`,
+                        {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
                         }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    })
-                    .finally(() => {
-                        refreshUserWithNewPlaylist()
-                        divStatus.style.pointerEvents = 'auto';
-                    });
-                } else {
-                    fetch(`/users-playlist-song/${userData._id}/${element._id}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            musicIds: [indexAudioId]
+                    )
+                        .then((response) => {
+                            if (response.status === 200) return
+                            else {
+                                if (screenWidth >= 1360) {
+                                    warning.classList.remove('hidden')
+                                    warning.textContent = 'Internal Error!'
+                                    setTimeout(() => {
+                                        warning.classList.add('hidden')
+                                    }, 3000)
+                                } else {
+                                    warningMobile.classList.remove('hidden')
+                                    warningMobile.textContent =
+                                        'Internal Error!'
+                                    setTimeout(() => {
+                                        warningMobile.classList.add('hidden')
+                                    }, 3000)
+                                }
+                            }
                         })
-                    })
-                    .then(response => {
-                        if (response.status === 201) return
-                        else {
-                            if(screenWidth >= 1360){
-                                warning.classList.remove('hidden')
-                                warning.textContent = 'Internal Error!'
-                                setTimeout(() => {
-                                    warning.classList.add('hidden')
-                                }, 3000)
-                            } else {
-                                warningMobile.classList.remove('hidden')
-                                warningMobile.textContent = 'Internal Error!'
-                                setTimeout(() => {
-                                    warningMobile.classList.add('hidden')
-                                }, 3000)
-                            }
+                        .catch((error) => {
+                            console.error(error)
+                        })
+                        .finally(() => {
+                            refreshUserWithNewPlaylist()
+                            divStatus.style.pointerEvents = 'auto'
+                        })
+                } else {
+                    fetch(
+                        `/users-playlist-song/${userData._id}/${element._id}`,
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                musicIds: [indexAudioId],
+                            }),
                         }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    })
-                    .finally(() => {
-                        refreshUserWithNewPlaylist()
-                        divItem.style.pointerEvents = 'auto';
-                    });
+                    )
+                        .then((response) => {
+                            if (response.status === 201) return
+                            else {
+                                if (screenWidth >= 1360) {
+                                    warning.classList.remove('hidden')
+                                    warning.textContent = 'Internal Error!'
+                                    setTimeout(() => {
+                                        warning.classList.add('hidden')
+                                    }, 3000)
+                                } else {
+                                    warningMobile.classList.remove('hidden')
+                                    warningMobile.textContent =
+                                        'Internal Error!'
+                                    setTimeout(() => {
+                                        warningMobile.classList.add('hidden')
+                                    }, 3000)
+                                }
+                            }
+                        })
+                        .catch((error) => {
+                            console.error(error)
+                        })
+                        .finally(() => {
+                            refreshUserWithNewPlaylist()
+                            divItem.style.pointerEvents = 'auto'
+                        })
                 }
-            });
-    
-            const divStatus = document.createElement('div');
-            divStatus.classList.add('current-music-add-playlist-status-mobile');
-    
-            const ionIcon = document.createElement('ion-icon');
+            })
+
+            const divStatus = document.createElement('div')
+            divStatus.classList.add('current-music-add-playlist-status-mobile')
+
+            const ionIcon = document.createElement('ion-icon')
             if (song) {
-                ionIcon.setAttribute('name', 'checkbox');
+                ionIcon.setAttribute('name', 'checkbox')
             } else {
-                ionIcon.setAttribute('name', 'square-outline');
+                ionIcon.setAttribute('name', 'square-outline')
             }
-    
-            divStatus.appendChild(ionIcon);
-    
-            const divTitle = document.createElement('div');
-            divTitle.classList.add('current-music-add-playlist-title-mobile');
-            divTitle.textContent = element.title;
-    
-            divItem.appendChild(divStatus);
-            divItem.appendChild(divTitle);
-    
-            currentMusicAddPlaylistContainerMobile.appendChild(divItem);
+
+            divStatus.appendChild(ionIcon)
+
+            const divTitle = document.createElement('div')
+            divTitle.classList.add('current-music-add-playlist-title-mobile')
+            divTitle.textContent = element.title
+
+            divItem.appendChild(divStatus)
+            divItem.appendChild(divTitle)
+
+            currentMusicAddPlaylistContainerMobile.appendChild(divItem)
         })
     }
 }
 
-function themeChanger(selectedTheme){
+function themeChanger(selectedTheme) {
     if (screenWidth >= 1360) {
-        let allElementsChangeableByTheme = document.querySelectorAll(".main-playlist, .container-playlist, .search-bar, .container-settings .user-settings, .main-display, .container-side-1 .current-music-rating, .container-side-1 .current-music-add, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .container-volume .slider-music-volume, .container-volume .slider-music-volume, .container-playlist .item-playlist, .main-controls, .container-funcions .repeat-icon, .container-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic, .main-playlist .box-wrapper-info .more-playlist, .main-select-playlists, .main-select-playlists .select-playlist-back, .container-select-playlists .item-select-playlist, .main-playlist .menu-options, .main-playlist .menu-options .box-wrapper-info .back-menu-options, .main-playlist .menu-options .option, .info-item-select-playlist .description-item-select-playlist, .form-delete-account-overflow .form-delete-account .field, .form-delete-account-overflow .form-delete-account, .form-delete-account-overflow .form-delete-account .interactions-delete .cancel, .layer-profile-picture .container-profile-picture, .layer-profile-picture .container-profile-picture .field, .layer-profile-picture .container-profile-picture .save");
-        let serviceLogo = document.querySelector('.service-logo img');
+        let allElementsChangeableByTheme = document.querySelectorAll(
+            '.main-playlist, .container-playlist, .search-bar, .container-settings .user-settings, .main-display, .container-side-1 .current-music-rating, .container-side-1 .current-music-add, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .container-volume .slider-music-volume, .container-volume .slider-music-volume, .container-playlist .item-playlist, .main-controls, .container-funcions .repeat-icon, .container-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic, .main-playlist .box-wrapper-info .more-playlist, .main-select-playlists, .main-select-playlists .select-playlist-back, .container-select-playlists .item-select-playlist, .main-playlist .menu-options, .main-playlist .menu-options .box-wrapper-info .back-menu-options, .main-playlist .menu-options .option, .info-item-select-playlist .description-item-select-playlist, .form-delete-account-overflow .form-delete-account .field, .form-delete-account-overflow .form-delete-account, .form-delete-account-overflow .form-delete-account .interactions-delete .cancel, .layer-profile-picture .container-profile-picture, .layer-profile-picture .container-profile-picture .field, .layer-profile-picture .container-profile-picture .save'
+        )
+        let serviceLogo = document.querySelector('.service-logo img')
 
-        initDurationSlider();
-        initVolumeSlider();
-        
-        if(selectedTheme == "Original"){
-            allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version", "hatsune-miku-version", "amv-brasileiro-version"));
-            serviceLogo.src = "https://i.ibb.co/fdBXmh2/logo.png";
-            serviceLogo.alt = "Logo do serviço";
-            return;
+        initDurationSlider()
+        initVolumeSlider()
+
+        if (selectedTheme == 'Original') {
+            allElementsChangeableByTheme.forEach((element) =>
+                element.classList.remove(
+                    'rock-version',
+                    'hatsune-miku-version',
+                    'amv-brasileiro-version'
+                )
+            )
+            serviceLogo.src = 'https://i.ibb.co/fdBXmh2/logo.png'
+            serviceLogo.alt = 'Logo do serviço'
+            return
         }
-        if(selectedTheme == "Rock Version"){
-            allElementsChangeableByTheme.forEach(element => {
-                element.classList.remove("hatsune-miku-version", "amv-brasileiro-version")
-                element.classList.add("rock-version")
-            });
-            serviceLogo.src = "https://i.ibb.co/Mh46LMN/logo-rock-version.png";
-            serviceLogo.alt = "Logo do serviço";
-            return;
+        if (selectedTheme == 'Rock Version') {
+            allElementsChangeableByTheme.forEach((element) => {
+                element.classList.remove(
+                    'hatsune-miku-version',
+                    'amv-brasileiro-version'
+                )
+                element.classList.add('rock-version')
+            })
+            serviceLogo.src = 'https://i.ibb.co/Mh46LMN/logo-rock-version.png'
+            serviceLogo.alt = 'Logo do serviço'
+            return
         }
-        if(selectedTheme == "Hatsune Miku Version"){
-            allElementsChangeableByTheme.forEach(element => {
-                element.classList.remove("rock-version", "amv-brasileiro-version")
-                element.classList.add("hatsune-miku-version")
-            });
-            serviceLogo.src = "https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png";
-            serviceLogo.alt = "Logo do serviço";
-            return;
+        if (selectedTheme == 'Hatsune Miku Version') {
+            allElementsChangeableByTheme.forEach((element) => {
+                element.classList.remove(
+                    'rock-version',
+                    'amv-brasileiro-version'
+                )
+                element.classList.add('hatsune-miku-version')
+            })
+            serviceLogo.src =
+                'https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png'
+            serviceLogo.alt = 'Logo do serviço'
+            return
         }
-        if(selectedTheme == "AMV Brasileiro Version"){
-            allElementsChangeableByTheme.forEach(element => {
-                element.classList.remove("rock-version", "hatsune-miku-version")
-                element.classList.add("amv-brasileiro-version")
-            });
-            serviceLogo.src = "https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png";
-            serviceLogo.alt = "Logo do serviço";
-            return;
+        if (selectedTheme == 'AMV Brasileiro Version') {
+            allElementsChangeableByTheme.forEach((element) => {
+                element.classList.remove('rock-version', 'hatsune-miku-version')
+                element.classList.add('amv-brasileiro-version')
+            })
+            serviceLogo.src =
+                'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png'
+            serviceLogo.alt = 'Logo do serviço'
+            return
         }
     } else {
-        let allElementsChangeableByTheme = document.querySelectorAll(".super-main-mobile, .header-mobile .user-settings, .main-playlist-mobile, .box-wrapper-info-mobile .more-playlist-mobile, .container-playlist-mobile, .container-playlist-mobile .item-playlist-mobile, .main-controls-mobile, .main-controls-mobile .display-music-duration-mobile, .main-display-mobile .info-current-music-mobile .title-info-current-music-mobile, .main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile, .main-display-mobile, .main-display-mobile .repeat-icon-mobile, .main-display-mobile .shuffle-icon-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile, .main-select-playlists-mobile, .main-select-playlists-mobile .select-playlist-back-mobile, .main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile, .container-select-playlists-mobile .item-select-playlist-mobile, .main-user-settings-mobile, .main-user-settings-mobile .box-profile-mobile .user-settings-mobile, .main-user-settings-mobile .content-profile-mobile, .container-favorite-mobile .item-favorite-mobile, .container-historic-mobile .item-historic-mobile, .main-search-mobile, .main-search-mobile .search-bar-mobile, .main-search-mobile .content-search-mobile, .container-search-mobile .item-search-mobile, .main-playlist-mobile .menu-options-mobile, .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile, .main-playlist-mobile .menu-options-mobile .option-mobile, .info-item-select-playlist-mobile .description-item-select-playlist-mobile, .form-delete-account-overflow-mobile .form-delete-account-mobile .field, .form-delete-account-overflow-mobile .form-delete-account-mobile, .form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete .cancel, .layer-profile-picture-mobile .container-profile-picture-mobile, .layer-profile-picture-mobile .container-profile-picture-mobile .field, .layer-profile-picture-mobile .container-profile-picture-mobile .save");
-        let serviceLogo = document.querySelector('.header-mobile .service-logo-mobile img');
+        let allElementsChangeableByTheme = document.querySelectorAll(
+            '.super-main-mobile, .header-mobile .user-settings, .main-playlist-mobile, .box-wrapper-info-mobile .more-playlist-mobile, .container-playlist-mobile, .container-playlist-mobile .item-playlist-mobile, .main-controls-mobile, .main-controls-mobile .display-music-duration-mobile, .main-display-mobile .info-current-music-mobile .title-info-current-music-mobile, .main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile, .main-display-mobile, .main-display-mobile .repeat-icon-mobile, .main-display-mobile .shuffle-icon-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile, .main-select-playlists-mobile, .main-select-playlists-mobile .select-playlist-back-mobile, .main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile, .container-select-playlists-mobile .item-select-playlist-mobile, .main-user-settings-mobile, .main-user-settings-mobile .box-profile-mobile .user-settings-mobile, .main-user-settings-mobile .content-profile-mobile, .container-favorite-mobile .item-favorite-mobile, .container-historic-mobile .item-historic-mobile, .main-search-mobile, .main-search-mobile .search-bar-mobile, .main-search-mobile .content-search-mobile, .container-search-mobile .item-search-mobile, .main-playlist-mobile .menu-options-mobile, .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile, .main-playlist-mobile .menu-options-mobile .option-mobile, .info-item-select-playlist-mobile .description-item-select-playlist-mobile, .form-delete-account-overflow-mobile .form-delete-account-mobile .field, .form-delete-account-overflow-mobile .form-delete-account-mobile, .form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete .cancel, .layer-profile-picture-mobile .container-profile-picture-mobile, .layer-profile-picture-mobile .container-profile-picture-mobile .field, .layer-profile-picture-mobile .container-profile-picture-mobile .save'
+        )
+        let serviceLogo = document.querySelector(
+            '.header-mobile .service-logo-mobile img'
+        )
 
-        initDurationSlider();
+        initDurationSlider()
 
-        if(selectedTheme == "Original"){
-            allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version", "hatsune-miku-version", "amv-brasileiro-version"));
-            serviceLogo.src = "https://i.ibb.co/fdBXmh2/logo.png";
-            serviceLogo.alt = "Logo do serviço";
-            return;
+        if (selectedTheme == 'Original') {
+            allElementsChangeableByTheme.forEach((element) =>
+                element.classList.remove(
+                    'rock-version',
+                    'hatsune-miku-version',
+                    'amv-brasileiro-version'
+                )
+            )
+            serviceLogo.src = 'https://i.ibb.co/fdBXmh2/logo.png'
+            serviceLogo.alt = 'Logo do serviço'
+            return
         }
-        if(selectedTheme == "Rock Version"){
-            allElementsChangeableByTheme.forEach(element => {
-                element.classList.remove("hatsune-miku-version", "amv-brasileiro-version")
-                element.classList.add("rock-version")
-            });
-            serviceLogo.src = "https://i.ibb.co/Mh46LMN/logo-rock-version.png";
-            serviceLogo.alt = "Logo do serviço";
-            return;
+        if (selectedTheme == 'Rock Version') {
+            allElementsChangeableByTheme.forEach((element) => {
+                element.classList.remove(
+                    'hatsune-miku-version',
+                    'amv-brasileiro-version'
+                )
+                element.classList.add('rock-version')
+            })
+            serviceLogo.src = 'https://i.ibb.co/Mh46LMN/logo-rock-version.png'
+            serviceLogo.alt = 'Logo do serviço'
+            return
         }
-        if(selectedTheme == "Hatsune Miku Version"){
-            allElementsChangeableByTheme.forEach(element => {
-                element.classList.remove("rock-version", "amv-brasileiro-version")
-                element.classList.add("hatsune-miku-version")
-            });
-            serviceLogo.src = "https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png";
-            serviceLogo.alt = "Logo do serviço";
-            return;
+        if (selectedTheme == 'Hatsune Miku Version') {
+            allElementsChangeableByTheme.forEach((element) => {
+                element.classList.remove(
+                    'rock-version',
+                    'amv-brasileiro-version'
+                )
+                element.classList.add('hatsune-miku-version')
+            })
+            serviceLogo.src =
+                'https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png'
+            serviceLogo.alt = 'Logo do serviço'
+            return
         }
-        if(selectedTheme == "AMV Brasileiro Version"){
-            allElementsChangeableByTheme.forEach(element => {
-                element.classList.remove("rock-version", "hatsune-miku-version")
-                element.classList.add("amv-brasileiro-version")
-            });
-            serviceLogo.src = "https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png";
-            serviceLogo.alt = "Logo do serviço";
-            return;
+        if (selectedTheme == 'AMV Brasileiro Version') {
+            allElementsChangeableByTheme.forEach((element) => {
+                element.classList.remove('rock-version', 'hatsune-miku-version')
+                element.classList.add('amv-brasileiro-version')
+            })
+            serviceLogo.src =
+                'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png'
+            serviceLogo.alt = 'Logo do serviço'
+            return
         }
     }
 }
 
-let canMoveTheSliderDuration = true;
+let canMoveTheSliderDuration = true
 
-function musicStateControllers(){
-    repeatIcon.addEventListener("click", repeatToggle);
-    shuffleIcon.addEventListener("click", shuffleToggle);
+function musicStateControllers() {
+    repeatIcon.addEventListener('click', repeatToggle)
+    shuffleIcon.addEventListener('click', shuffleToggle)
 
-    repeatIconMobile.addEventListener("click", repeatToggle);
-    shuffleIconMobile.addEventListener("click", shuffleToggle);
+    repeatIconMobile.addEventListener('click', repeatToggle)
+    shuffleIconMobile.addEventListener('click', shuffleToggle)
 }
 
-
-function durationSliderEventGenerator(){
+function durationSliderEventGenerator() {
     if (screenWidth >= 1360) {
-        sliderMusicDuration.addEventListener("mousedown", () => {
+        sliderMusicDuration.addEventListener('mousedown', () => {
             canMoveTheSliderDuration = false
         })
-        sliderMusicDuration.addEventListener("touchstart", () => {
+        sliderMusicDuration.addEventListener('touchstart', () => {
             canMoveTheSliderDuration = false
         })
-        sliderMusicDuration.addEventListener("mouseup", () => {
+        sliderMusicDuration.addEventListener('mouseup', () => {
             changeVideoCurrentTime(
                 (sliderMusicDuration.value / 100) * getVideoDuration()
             )
-            audioControllerPlayToggle = false;
-            audioControllerPlay.name = 'pause-circle';
-            musicAnimationStatus.classList.add('run');
+            audioControllerPlayToggle = false
+            audioControllerPlay.name = 'pause-circle'
+            musicAnimationStatus.classList.add('run')
             canMoveTheSliderDuration = true
         })
-        sliderMusicDuration.addEventListener("touchend", () => {
+        sliderMusicDuration.addEventListener('touchend', () => {
             changeVideoCurrentTime(
                 (sliderMusicDuration.value / 100) * getVideoDuration()
             )
-            audioControllerPlayToggle = false;
-            audioControllerPlay.name = 'pause-circle';
-            musicAnimationStatus.classList.add('run');
+            audioControllerPlayToggle = false
+            audioControllerPlay.name = 'pause-circle'
+            musicAnimationStatus.classList.add('run')
             canMoveTheSliderDuration = true
         })
-
 
         sliderMusicDuration.oninput = () => {
-            sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
-            sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+            sliderMusicDuration.style.setProperty(
+                'background-image',
+                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+            )
+            sliderMusicDurationDot.style.setProperty(
+                'left',
+                `${sliderMusicDuration.value}%`
+            )
 
-            let interactionWithTheSlider = (sliderMusicDuration.value / 100) * getVideoDuration()
+            let interactionWithTheSlider =
+                (sliderMusicDuration.value / 100) * getVideoDuration()
 
-            let minCurrent = Math.floor(interactionWithTheSlider / 60);
-            let segCurrent = Math.floor(interactionWithTheSlider % 60);
+            let minCurrent = Math.floor(interactionWithTheSlider / 60)
+            let segCurrent = Math.floor(interactionWithTheSlider % 60)
 
-            if(segCurrent < 10){
+            if (segCurrent < 10) {
                 segCurrent = `0${segCurrent}`
             }
 
             if (isNaN(minCurrent) || isNaN(segCurrent)) {
-                minCurrent = 0;
-                segCurrent = '00';
+                minCurrent = 0
+                segCurrent = '00'
             }
 
             currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
         }
     } else {
-        sliderMusicDurationMobile.addEventListener("mousedown", () => {
+        sliderMusicDurationMobile.addEventListener('mousedown', () => {
             canMoveTheSliderDuration = false
         })
-        sliderMusicDurationMobile.addEventListener("touchstart", () => {
+        sliderMusicDurationMobile.addEventListener('touchstart', () => {
             canMoveTheSliderDuration = false
         })
-        sliderMusicDurationMobile.addEventListener("mouseup", () => {
+        sliderMusicDurationMobile.addEventListener('mouseup', () => {
             changeVideoCurrentTime(
                 (sliderMusicDurationMobile.value / 100) * getVideoDuration()
             )
-            audioControllerPlayToggle = false;
-            audioControllerPlayMobile.name = 'pause-circle';
-            musicAnimationStatus.classList.add('run');
+            audioControllerPlayToggle = false
+            audioControllerPlayMobile.name = 'pause-circle'
+            musicAnimationStatus.classList.add('run')
             canMoveTheSliderDuration = true
         })
-        sliderMusicDurationMobile.addEventListener("touchend", () => {
+        sliderMusicDurationMobile.addEventListener('touchend', () => {
             changeVideoCurrentTime(
                 (sliderMusicDurationMobile.value / 100) * getVideoDuration()
             )
-            audioControllerPlayToggle = false;
-            audioControllerPlayMobile.name = 'pause-circle';
-            musicAnimationStatus.classList.add('run');
+            audioControllerPlayToggle = false
+            audioControllerPlayMobile.name = 'pause-circle'
+            musicAnimationStatus.classList.add('run')
             canMoveTheSliderDuration = true
         })
-    
-    
+
         sliderMusicDurationMobile.oninput = () => {
-            sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-            sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
+            sliderMusicDurationMobile.style.setProperty(
+                'background-image',
+                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+            )
+            sliderMusicDurationDotMobile.style.setProperty(
+                'left',
+                `${sliderMusicDurationMobile.value}%`
+            )
 
-            let interactionWithTheSlider = (sliderMusicDurationMobile.value / 100) * getVideoDuration()
+            let interactionWithTheSlider =
+                (sliderMusicDurationMobile.value / 100) * getVideoDuration()
 
-            let minCurrent = Math.floor(interactionWithTheSlider / 60);
-            let segCurrent = Math.floor(interactionWithTheSlider % 60);
+            let minCurrent = Math.floor(interactionWithTheSlider / 60)
+            let segCurrent = Math.floor(interactionWithTheSlider % 60)
 
-            if(segCurrent < 10){
+            if (segCurrent < 10) {
                 segCurrent = `0${segCurrent}`
             }
 
             if (isNaN(minCurrent) || isNaN(segCurrent)) {
-                minCurrent = 0;
-                segCurrent = '00';
+                minCurrent = 0
+                segCurrent = '00'
             }
 
             currentDurationMobile.innerHTML = `${minCurrent}:${segCurrent}`
@@ -1994,276 +2615,309 @@ function durationSliderEventGenerator(){
     }
 }
 
-function volumeSliderEventGenerator(){
-    sliderMusicVolume.addEventListener("mousedown", () => {
+function volumeSliderEventGenerator() {
+    sliderMusicVolume.addEventListener('mousedown', () => {
         canMoveTheSliderVolume = false
     })
-    sliderMusicVolume.addEventListener("touchstart", () => {
+    sliderMusicVolume.addEventListener('touchstart', () => {
         canMoveTheSliderVolume = false
     })
-    sliderMusicVolume.addEventListener("mouseup", () => {
+    sliderMusicVolume.addEventListener('mouseup', () => {
         canMoveTheSliderVolume = true
     })
-    sliderMusicVolume.addEventListener("touchend", () => {
+    sliderMusicVolume.addEventListener('touchend', () => {
         canMoveTheSliderVolume = true
     })
-
 
     sliderMusicVolume.oninput = () => {
-        sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
-        sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
+        sliderMusicVolume.style.setProperty(
+            'background-image',
+            `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
+        )
+        sliderMusicVolumeDot.style.setProperty(
+            'left',
+            `${sliderMusicVolume.value}%`
+        )
         setVideoVolume(sliderMusicVolume.value)
     }
 }
 
-function initDurationSlider(){
+function initDurationSlider() {
     if (screenWidth >= 1360) {
-        sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
-        sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+        sliderMusicDuration.style.setProperty(
+            'background-image',
+            `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+        )
+        sliderMusicDurationDot.style.setProperty(
+            'left',
+            `${sliderMusicDuration.value}%`
+        )
     } else {
-        sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-        displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-        sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
+        sliderMusicDurationMobile.style.setProperty(
+            'background-image',
+            `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+        )
+        displayMusicDurationMobile.style.setProperty(
+            'background-image',
+            `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+        )
+        sliderMusicDurationDotMobile.style.setProperty(
+            'left',
+            `${sliderMusicDurationMobile.value}%`
+        )
     }
 }
 
-function initVolumeSlider(){
-    sliderMusicVolume.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`);
-    sliderMusicVolumeDot.style.setProperty("left", `${(sliderMusicVolume.value)}%`)
+function initVolumeSlider() {
+    sliderMusicVolume.style.setProperty(
+        'background-image',
+        `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
+    )
+    sliderMusicVolumeDot.style.setProperty(
+        'left',
+        `${sliderMusicVolume.value}%`
+    )
 }
 
-let repeatToggleControl = true;
-function repeatToggle(){
-    if(repeatToggleControl){
+let repeatToggleControl = true
+function repeatToggle() {
+    if (repeatToggleControl) {
         repeatToggleControl = false
-        repeatIcon.classList.add('active');
-        repeatIconMobile.classList.add('active');
+        repeatIcon.classList.add('active')
+        repeatIconMobile.classList.add('active')
 
-        if(!shuffleToggleControl){
-            shuffleToggle();
+        if (!shuffleToggleControl) {
+            shuffleToggle()
         }
-    }
-    else {
+    } else {
         repeatToggleControl = true
-        repeatIcon.classList.remove('active');
-        repeatIconMobile.classList.remove('active');
+        repeatIcon.classList.remove('active')
+        repeatIconMobile.classList.remove('active')
     }
 }
 
 function shuffleArray(preShuffleArray) {
-    const size = preShuffleArray.length;
-    let currentIndex = size - 1;
+    const size = preShuffleArray.length
+    let currentIndex = size - 1
 
     while (currentIndex > 0) {
-        let ramdomIndex = Math.floor(Math.random() * size);
-        let aux = preShuffleArray[currentIndex];
-        preShuffleArray[currentIndex] = preShuffleArray[ramdomIndex];
+        let ramdomIndex = Math.floor(Math.random() * size)
+        let aux = preShuffleArray[currentIndex]
+        preShuffleArray[currentIndex] = preShuffleArray[ramdomIndex]
         preShuffleArray[ramdomIndex] = aux
-        currentIndex -= 1;
+        currentIndex -= 1
     }
     audioControllerPrevFunction()
 }
 
-let shuffleToggleControl = true;
+let shuffleToggleControl = true
 
-function shuffleToggle(){
-    if(shuffleToggleControl){
-        shuffleIcon.classList.add('active');
-        shuffleIconMobile.classList.add('active');
-        
+function shuffleToggle() {
+    if (shuffleToggleControl) {
+        shuffleIcon.classList.add('active')
+        shuffleIconMobile.classList.add('active')
+
         shuffleToggleControl = false
 
         shuffleArray(musicDataShuffled)
-        
-        if(!repeatToggleControl){
-            repeatToggle();
+
+        if (!repeatToggleControl) {
+            repeatToggle()
         }
-    }
-    else {
-        shuffleIcon.classList.remove('active');
-        shuffleIconMobile.classList.remove('active');
+    } else {
+        shuffleIcon.classList.remove('active')
+        shuffleIconMobile.classList.remove('active')
 
         shuffleToggleControl = true
-        musicDataShuffled = [...musicData];
+        musicDataShuffled = [...musicData]
         indexAudio = 1
         audioControllerPrevFunction()
     }
 }
 
-function musicFilteringFunction(){
+function musicFilteringFunction() {
     if (screenWidth >= 1360) {
-        containerItemsSearch.innerHTML = "";
+        containerItemsSearch.innerHTML = ''
 
-        $('.song-not-found').hide();
-        
+        $('.song-not-found').hide()
+
         generatorContainerSearchData()
         generatorContainerSearchDataPlay()
         if (!emptyPlaylist) {
-            themeChanger(musicDataShuffled[indexAudio].theme);
+            themeChanger(musicDataShuffled[indexAudio].theme)
         }
-        
-        if (containerItemsSearch.innerHTML == ''){
-            $('.song-not-found').show();
+
+        if (containerItemsSearch.innerHTML == '') {
+            $('.song-not-found').show()
         }
     } else {
-        containerItemsSearchMobile.innerHTML = "";
+        containerItemsSearchMobile.innerHTML = ''
 
-        $('.song-not-found-mobile').hide();
-        
+        $('.song-not-found-mobile').hide()
+
         generatorContainerSearchData()
         generatorContainerSearchDataPlay()
         if (!emptyPlaylist) {
-            themeChanger(musicDataShuffled[indexAudio].theme);
+            themeChanger(musicDataShuffled[indexAudio].theme)
         }
-        
-        if (containerItemsSearchMobile.innerHTML == ''){
-            $('.song-not-found-mobile').show();
+
+        if (containerItemsSearchMobile.innerHTML == '') {
+            $('.song-not-found-mobile').show()
         }
     }
 }
 
-let profileWasClicked = true;
+let profileWasClicked = true
 
-function searchEvents(){
-    searchButton.addEventListener("click", () => {
+function searchEvents() {
+    searchButton.addEventListener('click', () => {
         $('.search-bar').show(400)
         $(searchBarInput).focus()
         $('.container-search-result').show(200)
         $('.focus-shadow').show(200)
         $('.container-user-settings').hide(200)
-        $(".menu-options").hide(200)
-        profileWasClicked = true;
-        canKeyboardEvents = false;
-        canKeyboardEventsProfile = false;
-        musicFilteringFunction();
+        $('.menu-options').hide(200)
+        profileWasClicked = true
+        canKeyboardEvents = false
+        canKeyboardEventsProfile = false
+        musicFilteringFunction()
     })
     $('.search-bar-close').click(() => {
-        $('.search-bar input').val("");
-        musicFilteringFunction();
+        $('.search-bar input').val('')
+        musicFilteringFunction()
     })
-    $('.main-search-mobile .search-bar-mobile .search-bar-close-mobile').click(() => {
-        $('.main-search-mobile .search-bar-mobile input').val("");
-        musicFilteringFunction();
+    $('.main-search-mobile .search-bar-mobile .search-bar-close-mobile').click(
+        () => {
+            $('.main-search-mobile .search-bar-mobile input').val('')
+            musicFilteringFunction()
+        }
+    )
+    $('.container-settings .user-settings').click(function () {
+        toggleTemplateUser()
     })
-    $('.container-settings .user-settings').click(function() {
-        toggleTemplateUser();
-    });
-    $('.header-mobile .box-wrapper-header-mobile .user-settings').click(function() {
-        toggleTemplateUser();
-    });
-    
-    $('.focus-shadow').click(()=>{
+    $('.header-mobile .box-wrapper-header-mobile .user-settings').click(
+        function () {
+            toggleTemplateUser()
+        }
+    )
+
+    $('.focus-shadow').click(() => {
         $('.focus-shadow').hide(200)
         $('.container-search-result').hide(200)
         $('.container-user-settings').hide(200)
-        $(".search-bar").hide(200)
-        profileWasClicked = true;
-        canKeyboardEvents = true;
-        canKeyboardEventsProfile = true;
+        $('.search-bar').hide(200)
+        profileWasClicked = true
+        canKeyboardEvents = true
+        canKeyboardEventsProfile = true
     })
 
     searchBarInput.oninput = () => {
-        musicFilteringFunction();
-    };
+        musicFilteringFunction()
+    }
     searchBarInputMobile.oninput = () => {
-        musicFilteringFunction();
-    };
+        musicFilteringFunction()
+    }
 
-    $('.header-mobile .user-settings').click(()=>{
+    $('.header-mobile .user-settings').click(() => {
         $('.main-user-settings-mobile').toggle(200)
-        $(".menu-options-mobile").hide(200)
+        $('.menu-options-mobile').hide(200)
     })
-    $('.main-user-settings-mobile .display-back').click(()=>{
+    $('.main-user-settings-mobile .display-back').click(() => {
         $('.main-user-settings-mobile').toggle(200)
     })
-    $('.header-mobile .search-icon-mobile').click(()=>{
+    $('.header-mobile .search-icon-mobile').click(() => {
         $('.main-search-mobile').toggle(200)
-        $(".menu-options-mobile").hide(200)
-        $('.main-controls-mobile').addClass("fixed")
+        $('.menu-options-mobile').hide(200)
+        $('.main-controls-mobile').addClass('fixed')
         $('.main-search-mobile .search-bar-mobile input').focus()
     })
-    $('.main-search-mobile .display-back').click(()=>{
+    $('.main-search-mobile .display-back').click(() => {
         $('.main-search-mobile').toggle(200)
-        $('.main-controls-mobile').removeClass("fixed")
+        $('.main-controls-mobile').removeClass('fixed')
     })
 }
 
 function toggleTemplateUser() {
-    if(profileWasClicked){
+    if (profileWasClicked) {
         $('.container-user-settings').show(200)
         $('.focus-shadow').show(200)
         $('.container-search-result').hide(200)
-        $(".menu-options").hide(200)
-        profileWasClicked = false;
-        canKeyboardEvents = false;
-        canKeyboardEventsProfile = true;
-    }
-    else {
+        $('.menu-options').hide(200)
+        profileWasClicked = false
+        canKeyboardEvents = false
+        canKeyboardEventsProfile = true
+    } else {
         $('.focus-shadow').hide(200)
         $('.container-search-result').hide(200)
         $('.container-user-settings').hide(200)
-        profileWasClicked = true;
-        canKeyboardEvents = true;
-        canKeyboardEventsProfile = true;
+        profileWasClicked = true
+        canKeyboardEvents = true
+        canKeyboardEventsProfile = true
     }
 }
 
 function setMusicPlayTag() {
-    $(".music-playing").removeClass("music-playing");
-    $(`div[data-id="${indexAudioId}"] .box-wrapper .info-item`).addClass("music-playing");
+    $('.music-playing').removeClass('music-playing')
+    $(`div[data-id="${indexAudioId}"] .box-wrapper .info-item`).addClass(
+        'music-playing'
+    )
 }
 
 function allFunctionResizing() {
-    setScreenWidthAndHeight();
-    deviceDefinition();
+    setScreenWidthAndHeight()
+    deviceDefinition()
 }
 
 function setScreenWidthAndHeight() {
-    screenWidth = window.innerWidth;
-    screenHeight = window.innerHeight;
+    screenWidth = window.innerWidth
+    screenHeight = window.innerHeight
 }
 
 function logoutService() {
-    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    document.cookie.split(';').forEach(function (c) {
+        document.cookie = c
+            .replace(/^ +/, '')
+            .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/')
+    })
 
     window.location = '/'
 }
 
 function getCookie(k) {
-    var cookies = " " + document.cookie;
-    var key = " " + k + "=";
-    var start = cookies.indexOf(key);
+    var cookies = ' ' + document.cookie
+    var key = ' ' + k + '='
+    var start = cookies.indexOf(key)
 
-    if (start === -1) return null;
+    if (start === -1) return null
 
-    var pos = start + key.length;
-    var last = cookies.indexOf(";", pos);
+    var pos = start + key.length
+    var last = cookies.indexOf(';', pos)
 
-    if (last !== -1) return cookies.substring(pos, last);
+    if (last !== -1) return cookies.substring(pos, last)
 
-    return cookies.substring(pos);
+    return cookies.substring(pos)
 }
 
 async function manageHistoric() {
-    const idUserConnected = getCookie("user")
+    const idUserConnected = getCookie('user')
     let music = {
         musicId: indexAudioId,
-        musicGender: indexAudioGender
+        musicGender: indexAudioGender,
     }
 
     const resposta = await fetch(`/songs-historic/${idUserConnected}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(music)
-    });
-    if(resposta.status == 200){
-        refreshUser();
+        body: JSON.stringify(music),
+    })
+    if (resposta.status == 200) {
+        refreshUser()
     }
-    if(resposta.status != 200){
-        if(screenWidth >= 1360){
+    if (resposta.status != 200) {
+        if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'Internal Error!'
             setTimeout(() => {
@@ -2280,25 +2934,25 @@ async function manageHistoric() {
 }
 
 async function manageHistoricClear() {
-    const idUserConnected = getCookie("user")
+    const idUserConnected = getCookie('user')
     let music = {
-        musicId: "clear",
-        musicGender: indexAudioGender
+        musicId: 'clear',
+        musicGender: indexAudioGender,
     }
 
     const resposta = await fetch(`/songs-historic/${idUserConnected}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(music)
-    });
-    if(resposta.status == 200){
-        refreshUser();
+        body: JSON.stringify(music),
+    })
+    if (resposta.status == 200) {
+        refreshUser()
     }
-    if(resposta.status != 200){
-        if(screenWidth >= 1360){
+    if (resposta.status != 200) {
+        if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'Internal Error!'
             setTimeout(() => {
@@ -2315,31 +2969,31 @@ async function manageHistoricClear() {
 }
 
 async function manageFavorite() {
-    const idUserConnected = getCookie("user")
+    const idUserConnected = getCookie('user')
     let music = {
         musicId: indexAudioId,
-        musicGender: indexAudioGender
+        musicGender: indexAudioGender,
     }
 
     if (screenWidth >= 1360) {
-        musicFavoriteIcon.style.pointerEvents = "none"
+        musicFavoriteIcon.style.pointerEvents = 'none'
     } else {
-        musicFavoriteIconMobile.style.pointerEvents = "none"
+        musicFavoriteIconMobile.style.pointerEvents = 'none'
     }
-    
+
     const resposta = await fetch(`/songs-favorite/${idUserConnected}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(music)
-    });
+        body: JSON.stringify(music),
+    })
 
     const respostaJson = await resposta.json()
 
-    if(respostaJson.message == "limit reached"){
-        if(screenWidth >= 1360){
+    if (respostaJson.message == 'limit reached') {
+        if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'Limite de músicas favoritas atingido!'
             setTimeout(() => {
@@ -2353,25 +3007,25 @@ async function manageFavorite() {
             }, 3000)
         }
     }
-    if(resposta.status == 200){
+    if (resposta.status == 200) {
         await refreshUser()
-        refreshFavorite();
+        refreshFavorite()
         if (screenWidth >= 1360) {
-            musicFavoriteIcon.style.pointerEvents = "auto"
+            musicFavoriteIcon.style.pointerEvents = 'auto'
         } else {
-            musicFavoriteIconMobile.style.pointerEvents = "auto"
+            musicFavoriteIconMobile.style.pointerEvents = 'auto'
         }
     }
-    if(resposta.status != 200){
+    if (resposta.status != 200) {
         if (screenWidth >= 1360) {
-            musicFavoriteIcon.style.pointerEvents = "auto"
+            musicFavoriteIcon.style.pointerEvents = 'auto'
             warning.classList.remove('hidden')
             warning.textContent = 'Internal Error!'
             setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
         } else {
-            musicFavoriteIconMobile.style.pointerEvents = "auto"
+            musicFavoriteIconMobile.style.pointerEvents = 'auto'
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Internal Error!'
             setTimeout(() => {
@@ -2382,11 +3036,11 @@ async function manageFavorite() {
 }
 
 async function refreshUserWithNewPlaylist() {
-    const idUserConnected = getCookie("user")
-    const responseUser = await fetch(`/users/${idUserConnected}`);
-    const user = await responseUser.json();
+    const idUserConnected = getCookie('user')
+    const responseUser = await fetch(`/users/${idUserConnected}`)
+    const user = await responseUser.json()
 
-    userData = user.user;
+    userData = user.user
     userData.myPlaylists.reverse()
 
     generatorContainerCurrentMusicAddPlaylist()
@@ -2394,300 +3048,338 @@ async function refreshUserWithNewPlaylist() {
 }
 
 async function refreshUser() {
-    const idUserConnected = getCookie("user")
-    const responseUser = await fetch(`/users/${idUserConnected}`);
-    const user = await responseUser.json();
+    const idUserConnected = getCookie('user')
+    const responseUser = await fetch(`/users/${idUserConnected}`)
+    const user = await responseUser.json()
 
-    userData = user.user;
+    userData = user.user
     userData.myPlaylists.reverse()
-    
+
     if (screenWidth >= 1360) {
-        containerItemsHistoric.innerHTML = ""
+        containerItemsHistoric.innerHTML = ''
     } else {
-        containerItemsHistoricMobile.innerHTML = ""
+        containerItemsHistoricMobile.innerHTML = ''
     }
-    generatorContainerHistoricData();
-    generatorContainerHistoricDataPlay();
-    themeChanger(musicDataShuffled[indexAudio].theme);
+    generatorContainerHistoricData()
+    generatorContainerHistoricDataPlay()
+    themeChanger(musicDataShuffled[indexAudio].theme)
 }
 
 async function refreshFavorite() {
-    let isFound = false;
-    
-    let songFavorite = userData.favoriteSongs.find(element => element.musicId == musicDataShuffled[indexAudio]._id)
+    let isFound = false
+
+    let songFavorite = userData.favoriteSongs.find(
+        (element) => element.musicId == musicDataShuffled[indexAudio]._id
+    )
 
     if (screenWidth >= 1360) {
-        if(songFavorite){
-            document.querySelector(".current-music-add-favorite-icon ion-icon").name = "heart"
-            isFound = true;
-        }
-        
-        if (!isFound) {
-            document.querySelector(".current-music-add-favorite-icon ion-icon").name = "heart-outline"
+        if (songFavorite) {
+            document.querySelector(
+                '.current-music-add-favorite-icon ion-icon'
+            ).name = 'heart'
+            isFound = true
         }
 
-        containerItemsFavorite.innerHTML = ""
+        if (!isFound) {
+            document.querySelector(
+                '.current-music-add-favorite-icon ion-icon'
+            ).name = 'heart-outline'
+        }
+
+        containerItemsFavorite.innerHTML = ''
     } else {
-        if(songFavorite){
-            musicFavoriteIconMobile.name = "heart"
-            document.querySelector(".current-music-add-favorite-icon-mobile ion-icon").name = "heart"
+        if (songFavorite) {
+            musicFavoriteIconMobile.name = 'heart'
+            document.querySelector(
+                '.current-music-add-favorite-icon-mobile ion-icon'
+            ).name = 'heart'
 
-            isFound = true;
+            isFound = true
         }
-        
+
         if (!isFound) {
-            musicFavoriteIconMobile.name = "heart-outline"
-            document.querySelector(".current-music-add-favorite-icon-mobile ion-icon").name = "heart-outline"
+            musicFavoriteIconMobile.name = 'heart-outline'
+            document.querySelector(
+                '.current-music-add-favorite-icon-mobile ion-icon'
+            ).name = 'heart-outline'
         }
 
-        containerItemsFavoriteMobile.innerHTML = ""
+        containerItemsFavoriteMobile.innerHTML = ''
     }
 
     generatorContainerFavoriteData()
     generatorContainerFavoriteDataPlay()
-    themeChanger(musicDataShuffled[indexAudio].theme);
+    themeChanger(musicDataShuffled[indexAudio].theme)
 }
 
 function toggleMenu() {
     if (screenWidth >= 1360) {
-        $(".menu-options").toggle(200)
+        $('.menu-options').toggle(200)
     } else {
-        $(".menu-options-mobile").toggle(200)
+        $('.menu-options-mobile').toggle(200)
     }
 }
 
 function toggleMorePlaylists() {
     if (screenWidth >= 1360) {
-        $(".main-select-playlists").toggle(200);
+        $('.main-select-playlists').toggle(200)
     } else {
-        $(".main-select-playlists-mobile").toggle(200);
+        $('.main-select-playlists-mobile').toggle(200)
     }
 }
 function toggleMyPlaylists() {
     if (screenWidth >= 1360) {
-        $(".main-minhas-playlists").toggle(200);
+        $('.main-minhas-playlists').toggle(200)
     } else {
-        $(".main-minhas-playlists-mobile").toggle(200);
+        $('.main-minhas-playlists-mobile').toggle(200)
     }
 }
 function toggleContainerMinhaPlaylist() {
     if (screenWidth >= 1360) {
-        $(".container-minha-playlist").toggle(200);
+        $('.container-minha-playlist').toggle(200)
     } else {
-        $(".container-minha-playlist-mobile").toggle(200);
+        $('.container-minha-playlist-mobile').toggle(200)
     }
 }
 function toggleAddMinhaPlaylist() {
     if (screenWidth >= 1360) {
-        const addMyNewPlaylistOverflow = document.querySelector(".add-my-new-playlist-overflow");
-        if (addMyNewPlaylistOverflow.classList.contains("hidden")) {
-            addMyNewPlaylistOverflow.classList.remove("hidden");
-            canKeyboardEvents = false;
+        const addMyNewPlaylistOverflow = document.querySelector(
+            '.add-my-new-playlist-overflow'
+        )
+        if (addMyNewPlaylistOverflow.classList.contains('hidden')) {
+            addMyNewPlaylistOverflow.classList.remove('hidden')
+            canKeyboardEvents = false
         } else {
-            addMyNewPlaylistOverflow.classList.add("hidden");
-            canKeyboardEvents = true;
+            addMyNewPlaylistOverflow.classList.add('hidden')
+            canKeyboardEvents = true
         }
     } else {
-        const addMyNewPlaylistOverflow = document.querySelector(".add-my-new-playlist-overflow-mobile");
-        if (addMyNewPlaylistOverflow.classList.contains("hidden")) {
-            addMyNewPlaylistOverflow.classList.remove("hidden");
+        const addMyNewPlaylistOverflow = document.querySelector(
+            '.add-my-new-playlist-overflow-mobile'
+        )
+        if (addMyNewPlaylistOverflow.classList.contains('hidden')) {
+            addMyNewPlaylistOverflow.classList.remove('hidden')
         } else {
-            addMyNewPlaylistOverflow.classList.add("hidden");
+            addMyNewPlaylistOverflow.classList.add('hidden')
         }
     }
 }
 function toggleEditMinhaPlaylist() {
     if (screenWidth >= 1360) {
-        const editOverflow = document.querySelector(".edit-my-new-playlist-overflow");
-        if (editOverflow.classList.contains("hidden")) {
-            editOverflow.classList.remove("hidden");
-            canKeyboardEvents = false;
+        const editOverflow = document.querySelector(
+            '.edit-my-new-playlist-overflow'
+        )
+        if (editOverflow.classList.contains('hidden')) {
+            editOverflow.classList.remove('hidden')
+            canKeyboardEvents = false
         } else {
-            editOverflow.classList.add("hidden");
-            canKeyboardEvents = true;
+            editOverflow.classList.add('hidden')
+            canKeyboardEvents = true
         }
     } else {
-        const editOverflow = document.querySelector(".edit-my-new-playlist-overflow-mobile");
-        if (editOverflow.classList.contains("hidden")) {
-            editOverflow.classList.remove("hidden");
+        const editOverflow = document.querySelector(
+            '.edit-my-new-playlist-overflow-mobile'
+        )
+        if (editOverflow.classList.contains('hidden')) {
+            editOverflow.classList.remove('hidden')
         } else {
-            editOverflow.classList.add("hidden");
+            editOverflow.classList.add('hidden')
         }
     }
 }
 function toggleDeleteMinhaPlaylist() {
     if (screenWidth >= 1360) {
-        const deleteOverflow = document.querySelector(".delete-my-new-playlist-overflow");
-        if (deleteOverflow.classList.contains("hidden")) {
-            deleteOverflow.classList.remove("hidden");
-            canKeyboardEvents = false;
+        const deleteOverflow = document.querySelector(
+            '.delete-my-new-playlist-overflow'
+        )
+        if (deleteOverflow.classList.contains('hidden')) {
+            deleteOverflow.classList.remove('hidden')
+            canKeyboardEvents = false
         } else {
-            deleteOverflow.classList.add("hidden");
-            canKeyboardEvents = true;
+            deleteOverflow.classList.add('hidden')
+            canKeyboardEvents = true
         }
     } else {
-        const deleteOverflow = document.querySelector(".delete-my-new-playlist-overflow-mobile");
-        if (deleteOverflow.classList.contains("hidden")) {
-            deleteOverflow.classList.remove("hidden");
+        const deleteOverflow = document.querySelector(
+            '.delete-my-new-playlist-overflow-mobile'
+        )
+        if (deleteOverflow.classList.contains('hidden')) {
+            deleteOverflow.classList.remove('hidden')
         } else {
-            deleteOverflow.classList.add("hidden");
+            deleteOverflow.classList.add('hidden')
         }
     }
 }
 function toggleMusicMinhaPlaylist() {
     if (screenWidth >= 1360) {
-        const musicOverflow = document.querySelector(".music-my-new-playlist-overflow");
-        if (musicOverflow.classList.contains("hidden")) {
-            musicOverflow.classList.remove("hidden");
+        const musicOverflow = document.querySelector(
+            '.music-my-new-playlist-overflow'
+        )
+        if (musicOverflow.classList.contains('hidden')) {
+            musicOverflow.classList.remove('hidden')
         } else {
-            musicOverflow.classList.add("hidden");
+            musicOverflow.classList.add('hidden')
         }
     } else {
-        const musicOverflow = document.querySelector(".music-my-new-playlist-overflow-mobile");
-        if (musicOverflow.classList.contains("hidden")) {
-            musicOverflow.classList.remove("hidden");
+        const musicOverflow = document.querySelector(
+            '.music-my-new-playlist-overflow-mobile'
+        )
+        if (musicOverflow.classList.contains('hidden')) {
+            musicOverflow.classList.remove('hidden')
         } else {
-            musicOverflow.classList.add("hidden");
+            musicOverflow.classList.add('hidden')
         }
     }
 }
 function toggleDeleteMusicMinhaPlaylist() {
     if (screenWidth >= 1360) {
-        $(".music-delete-my-new-playlist-overflow").toggle(200);
+        $('.music-delete-my-new-playlist-overflow').toggle(200)
     } else {
-        $(".music-delete-my-new-playlist-overflow-mobile").toggle(200);
+        $('.music-delete-my-new-playlist-overflow-mobile').toggle(200)
     }
 }
 
 function toggleDisplayMobile() {
-    if (!displayMobile.classList.contains("show")){
-        displayMobile.classList.remove("exit");
-        displayMobile.classList.add("show");
+    if (!displayMobile.classList.contains('show')) {
+        displayMobile.classList.remove('exit')
+        displayMobile.classList.add('show')
         audioControllerPlayFunctionNoPause()
         $('.main-search-mobile').hide(200)
-        $('.main-controls-mobile').removeClass("fixed")
+        $('.main-controls-mobile').removeClass('fixed')
     } else {
-        displayMobile.classList.remove("show");
-        displayMobile.classList.add("exit");
-        displayMobile.addEventListener("animationend", (event) => {
-            if (event.animationName == "down-display") {
-                displayMobile.classList.remove("exit");
+        displayMobile.classList.remove('show')
+        displayMobile.classList.add('exit')
+        displayMobile.addEventListener('animationend', (event) => {
+            if (event.animationName == 'down-display') {
+                displayMobile.classList.remove('exit')
             }
-        });
+        })
     }
 }
 
 function toggleAddOptions() {
     if (screenWidth >= 1360) {
-        const addOptionsOverflow = document.querySelector(".current-music-add-overflow");
-        if (addOptionsOverflow.classList.contains("hidden")) {
-            addOptionsOverflow.classList.remove("hidden");
-            canKeyboardEventsProfile = false;
+        const addOptionsOverflow = document.querySelector(
+            '.current-music-add-overflow'
+        )
+        if (addOptionsOverflow.classList.contains('hidden')) {
+            addOptionsOverflow.classList.remove('hidden')
+            canKeyboardEventsProfile = false
         } else {
-            addOptionsOverflow.classList.add("hidden");
-            canKeyboardEventsProfile = true;
+            addOptionsOverflow.classList.add('hidden')
+            canKeyboardEventsProfile = true
         }
     } else {
-        const addOptionsOverflow = document.querySelector(".current-music-add-overflow-mobile");
-        if (addOptionsOverflow.classList.contains("hidden")) {
-            addOptionsOverflow.classList.remove("hidden");
+        const addOptionsOverflow = document.querySelector(
+            '.current-music-add-overflow-mobile'
+        )
+        if (addOptionsOverflow.classList.contains('hidden')) {
+            addOptionsOverflow.classList.remove('hidden')
         } else {
-            addOptionsOverflow.classList.add("hidden");
+            addOptionsOverflow.classList.add('hidden')
         }
     }
 }
 
 function toggleLogout() {
     if (screenWidth >= 1360) {
-        const logoutOverflow = document.querySelector(".confirm-logout-overflow");
-        if (logoutOverflow.classList.contains("hidden")) {
-            logoutOverflow.classList.remove("hidden");
-            canKeyboardEventsProfile = false;
+        const logoutOverflow = document.querySelector(
+            '.confirm-logout-overflow'
+        )
+        if (logoutOverflow.classList.contains('hidden')) {
+            logoutOverflow.classList.remove('hidden')
+            canKeyboardEventsProfile = false
         } else {
-            logoutOverflow.classList.add("hidden");
-            canKeyboardEventsProfile = true;
+            logoutOverflow.classList.add('hidden')
+            canKeyboardEventsProfile = true
         }
     } else {
-        const logoutOverflow = document.querySelector(".confirm-logout-overflow-mobile");
-        if (logoutOverflow.classList.contains("hidden")) {
-            logoutOverflow.classList.remove("hidden");
+        const logoutOverflow = document.querySelector(
+            '.confirm-logout-overflow-mobile'
+        )
+        if (logoutOverflow.classList.contains('hidden')) {
+            logoutOverflow.classList.remove('hidden')
         } else {
-            logoutOverflow.classList.add("hidden");
+            logoutOverflow.classList.add('hidden')
         }
     }
 }
 
 function initialDeviceDefinition() {
     if (screenWidth >= 1360) {
-        initialDevice = "Desktop"
+        initialDevice = 'Desktop'
     } else {
-        initialDevice = "Mobile"
+        initialDevice = 'Mobile'
     }
 }
 
 function deviceDefinition() {
-    let previousDevice, nextDevice;
+    let previousDevice, nextDevice
 
-    previousDevice = initialDevice;
-    
+    previousDevice = initialDevice
+
     if (screenWidth >= 1360) {
-        initialDevice = "Desktop"
+        initialDevice = 'Desktop'
     } else {
-        initialDevice = "Mobile"
+        initialDevice = 'Mobile'
     }
 
-    nextDevice = initialDevice;
+    nextDevice = initialDevice
 
     if (previousDevice != nextDevice) {
-        changeMobileOrDesktop();
+        changeMobileOrDesktop()
     }
 }
 
 function changeMobileOrDesktop() {
     if (screenWidth >= 1360) {
-        containerPlaylist.innerHTML = "";
-        containerItemsSearch.innerHTML = "";
-        containerItemsFavorite.innerHTML = "";
-        containerItemsHistoric.innerHTML = "";
-        containerPlaylistSelect.innerHTML = "";
-        $(".title-playlist").html(titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName);
-        $('.search-bar input').val("");
-        musicFilteringFunction();
-        sliderMusicVolume.value = getVideoVolume();
+        containerPlaylist.innerHTML = ''
+        containerItemsSearch.innerHTML = ''
+        containerItemsFavorite.innerHTML = ''
+        containerItemsHistoric.innerHTML = ''
+        containerPlaylistSelect.innerHTML = ''
+        $('.title-playlist').html(
+            titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName
+        )
+        $('.search-bar input').val('')
+        musicFilteringFunction()
+        sliderMusicVolume.value = getVideoVolume()
 
         if (playerMobile) {
-            playerMobile.destroy();
+            playerMobile.destroy()
         }
     } else {
-        containerPlaylistMobile.innerHTML = "";
-        containerItemsSearchMobile.innerHTML = "";
-        containerItemsFavoriteMobile.innerHTML = "";
-        containerItemsHistoricMobile.innerHTML = "";
-        containerFrameVideo.innerHTML = "";
-        containerPlaylistSelectMobile.innerHTML = "";
-        $(".title-playlist-mobile").html(titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName);
-        $('.main-search-mobile .search-bar-mobile input').val("");
-        musicFilteringFunction();
-    
+        containerPlaylistMobile.innerHTML = ''
+        containerItemsSearchMobile.innerHTML = ''
+        containerItemsFavoriteMobile.innerHTML = ''
+        containerItemsHistoricMobile.innerHTML = ''
+        containerFrameVideo.innerHTML = ''
+        containerPlaylistSelectMobile.innerHTML = ''
+        $('.title-playlist-mobile').html(
+            titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName
+        )
+        $('.main-search-mobile .search-bar-mobile input').val('')
+        musicFilteringFunction()
+
         if (player) {
-            player.destroy();
+            player.destroy()
         }
     }
 
     if (screenWidth >= 1360) {
-        audioControllerPlay.name = 'play-circle';
-        musicAnimationStatus.classList.remove('run');
+        audioControllerPlay.name = 'play-circle'
+        musicAnimationStatus.classList.remove('run')
     } else {
-        audioControllerPlayMobile.name = 'play-circle';
+        audioControllerPlayMobile.name = 'play-circle'
     }
 
-    audioControllerPlayToggle = true;
+    audioControllerPlayToggle = true
 
     allSongValueSetters()
-    generatorContainerPlaylistSelectData();
-    generatorContainerPlaylistSelectDataPlay();
-    generatorContainerPlaylistData();
-    generatorContainerPlaylistDataPlay();
+    generatorContainerPlaylistSelectData()
+    generatorContainerPlaylistSelectDataPlay()
+    generatorContainerPlaylistData()
+    generatorContainerPlaylistDataPlay()
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
@@ -2695,35 +3387,38 @@ function changeMobileOrDesktop() {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
     manageEmptyPlaylist()
-    manageHistoric();
+    manageHistoric()
     setUserProfilePicture()
     setUserSettings()
     generatorContainerCurrentMusicAddPlaylist()
     generatorContainerMusicAddPlaylist()
     if (emptyPlaylist) return
-    themeChanger(musicDataShuffled[indexAudio].theme);
-    indexAudioId = musicDataShuffled[indexAudio]._id;
-    indexAudioGender = musicDataShuffled[indexAudio].gender;
-    refreshFavorite();
-    setMusicPlayTag();
+    themeChanger(musicDataShuffled[indexAudio].theme)
+    indexAudioId = musicDataShuffled[indexAudio]._id
+    indexAudioGender = musicDataShuffled[indexAudio].gender
+    refreshFavorite()
+    setMusicPlayTag()
 }
 
-function setManagementSystem(){
-    if (userData.type == "admin") {
-        selectManagementSystem.classList.remove("hidden");
-        selectManagementSystemMobile.classList.remove("hidden")
+function setManagementSystem() {
+    if (userData.type == 'admin') {
+        selectManagementSystem.classList.remove('hidden')
+        selectManagementSystemMobile.classList.remove('hidden')
     }
-    selectManagementSystem.addEventListener("click", () => {
+    selectManagementSystem.addEventListener('click', () => {
         window.location = '/config'
     })
-    selectManagementSystemMobile.addEventListener("click", () => {
+    selectManagementSystemMobile.addEventListener('click', () => {
         window.location = '/config'
     })
 }
 
 async function manageUserAccountDeletion() {
     if (screenWidth >= 1360) {
-        if (deleteAccountInputToConfirm.value !== "Quero deletar minha conta e aceito as condições") {
+        if (
+            deleteAccountInputToConfirm.value !==
+            'Quero deletar minha conta e aceito as condições'
+        ) {
             warning.classList.remove('hidden')
             warning.textContent = 'Por favor, escreva a frase corretamente.'
             setTimeout(() => {
@@ -2733,17 +3428,21 @@ async function manageUserAccountDeletion() {
         }
 
         const userToDelete = await fetch(`/users/${userData._id}`, {
-            method: "DELETE"
+            method: 'DELETE',
         })
         const response = await userToDelete.json()
 
-        if (response.message === "User removed successfully!") {
-            logoutService();
+        if (response.message === 'User removed successfully!') {
+            logoutService()
         }
     } else {
-        if (deleteAccountInputToConfirmMobile.value !== "Quero deletar minha conta e aceito as condições") {
+        if (
+            deleteAccountInputToConfirmMobile.value !==
+            'Quero deletar minha conta e aceito as condições'
+        ) {
             warningMobile.classList.remove('hidden')
-            warningMobile.textContent = 'Por favor, escreva a frase corretamente.'
+            warningMobile.textContent =
+                'Por favor, escreva a frase corretamente.'
             setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
@@ -2751,46 +3450,60 @@ async function manageUserAccountDeletion() {
         }
 
         const userToDelete = await fetch(`/users/${userData._id}`, {
-            method: "DELETE"
+            method: 'DELETE',
         })
         const response = await userToDelete.json()
 
-        if (response.message === "User removed successfully!") {
-            logoutService();
+        if (response.message === 'User removed successfully!') {
+            logoutService()
         }
     }
 }
 
 function manageMyPlaylistEdition() {
     if (screenWidth >= 1360) {
-        const playlistTitle = document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim();
-        if (playlistTitle === "") {
-            if(screenWidth >= 1360){
+        const playlistTitle = document
+            .querySelector(
+                '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+            )
+            .value.trim()
+        if (playlistTitle === '') {
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+                warning.textContent =
+                    'Por favor, escreva o nome da playlist corretamente.'
                 setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+                warningMobile.textContent =
+                    'Por favor, escreva o nome da playlist corretamente.'
                 setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
             return
         }
-    
-        const playlistExists = userData.myPlaylists.filter(playlist => playlist.title === playlistTitle);
-    
-        if (userData.myPlaylists.find(playlist => playlist.title === playlistTitle && playlist._id === indexMyPlaylistId)) {
+
+        const playlistExists = userData.myPlaylists.filter(
+            (playlist) => playlist.title === playlistTitle
+        )
+
+        if (
+            userData.myPlaylists.find(
+                (playlist) =>
+                    playlist.title === playlistTitle &&
+                    playlist._id === indexMyPlaylistId
+            )
+        ) {
             toggleContainerMinhaPlaylist()
             toggleEditMinhaPlaylist()
             return
         }
-    
+
         if (playlistExists.length >= 1) {
-            if(screenWidth >= 1360){
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Já existe uma playlist com esse nome.'
                 setTimeout(() => {
@@ -2798,43 +3511,60 @@ function manageMyPlaylistEdition() {
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Já existe uma playlist com esse nome.'
+                warningMobile.textContent =
+                    'Já existe uma playlist com esse nome.'
                 setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
             return
         }
-    
+
         fetch(`/users-playlist/${userData._id}/${indexMyPlaylistId}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({title: document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim()})
-        })
-        .then(response => {
+            body: JSON.stringify({
+                title: document
+                    .querySelector(
+                        '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                    )
+                    .value.trim(),
+            }),
+        }).then((response) => {
             if (response.status === 200) {
                 if (screenWidth >= 1360) {
-                    document.querySelector(".title-playlist").textContent = document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim();
+                    document.querySelector('.title-playlist').textContent =
+                        document
+                            .querySelector(
+                                '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                            )
+                            .value.trim()
                 } else {
-                    document.querySelector(".title-playlist-mobile").textContent = document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim();
+                    document.querySelector(
+                        '.title-playlist-mobile'
+                    ).textContent = document
+                        .querySelector(
+                            '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                        )
+                        .value.trim()
                 }
                 toggleContainerMinhaPlaylist()
                 toggleEditMinhaPlaylist()
                 refreshUserWithNewPlaylist()
             } else {
-                if(screenWidth >= 1360){
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
-    
+
                     setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
-    
+
                     setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
@@ -2842,34 +3572,48 @@ function manageMyPlaylistEdition() {
             }
         })
     } else {
-        const playlistTitle = document.querySelector('.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile').value.trim();
-        if (playlistTitle === "") {
-            if(screenWidth >= 1360){
+        const playlistTitle = document
+            .querySelector(
+                '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+            )
+            .value.trim()
+        if (playlistTitle === '') {
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+                warning.textContent =
+                    'Por favor, escreva o nome da playlist corretamente.'
                 setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+                warningMobile.textContent =
+                    'Por favor, escreva o nome da playlist corretamente.'
                 setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
             return
         }
-    
-        const playlistExists = userData.myPlaylists.filter(playlist => playlist.title === playlistTitle);
-    
-        if (userData.myPlaylists.find(playlist => playlist.title === playlistTitle && playlist._id === indexMyPlaylistId)) {
+
+        const playlistExists = userData.myPlaylists.filter(
+            (playlist) => playlist.title === playlistTitle
+        )
+
+        if (
+            userData.myPlaylists.find(
+                (playlist) =>
+                    playlist.title === playlistTitle &&
+                    playlist._id === indexMyPlaylistId
+            )
+        ) {
             toggleContainerMinhaPlaylist()
             toggleEditMinhaPlaylist()
             return
         }
-    
+
         if (playlistExists.length >= 1) {
-            if(screenWidth >= 1360){
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Já existe uma playlist com esse nome.'
                 setTimeout(() => {
@@ -2877,43 +3621,60 @@ function manageMyPlaylistEdition() {
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Já existe uma playlist com esse nome.'
+                warningMobile.textContent =
+                    'Já existe uma playlist com esse nome.'
                 setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
             return
         }
-    
+
         fetch(`/users-playlist/${userData._id}/${indexMyPlaylistId}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({title: document.querySelector('.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile').value.trim()})
-        })
-        .then(response => {
+            body: JSON.stringify({
+                title: document
+                    .querySelector(
+                        '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+                    )
+                    .value.trim(),
+            }),
+        }).then((response) => {
             if (response.status === 200) {
                 if (screenWidth >= 1360) {
-                    document.querySelector(".title-playlist").textContent = document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim();
+                    document.querySelector('.title-playlist').textContent =
+                        document
+                            .querySelector(
+                                '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                            )
+                            .value.trim()
                 } else {
-                    document.querySelector(".title-playlist-mobile").textContent = document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value.trim();
+                    document.querySelector(
+                        '.title-playlist-mobile'
+                    ).textContent = document
+                        .querySelector(
+                            '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                        )
+                        .value.trim()
                 }
                 toggleContainerMinhaPlaylist()
                 toggleEditMinhaPlaylist()
                 refreshUserWithNewPlaylist()
             } else {
-                if(screenWidth >= 1360){
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
-    
+
                     setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
-    
+
                     setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
@@ -2925,47 +3686,57 @@ function manageMyPlaylistEdition() {
 
 function manageMyPlaylistDeletion() {
     if (screenWidth >= 1360) {
-        if (document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name').value !== document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current').textContent) {
-            if(screenWidth >= 1360){
+        if (
+            document.querySelector(
+                '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name'
+            ).value !==
+            document.querySelector(
+                '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current'
+            ).textContent
+        ) {
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+                warning.textContent =
+                    'Por favor, escreva o nome da playlist corretamente.'
                 setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+                warningMobile.textContent =
+                    'Por favor, escreva o nome da playlist corretamente.'
                 setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
             return
         }
-    
+
         fetch(`/users-playlist/${userData._id}/${indexMyPlaylistId}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-        })
-        .then(response => {
+        }).then((response) => {
             if (response.status === 200) {
-                document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name').value = ""
+                document.querySelector(
+                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name'
+                ).value = ''
                 toggleContainerMinhaPlaylist()
                 toggleDeleteMinhaPlaylist()
                 refreshUserWithNewPlaylist()
             } else {
-                if(screenWidth >= 1360){
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
-    
+
                     setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
-    
+
                     setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
@@ -2973,47 +3744,57 @@ function manageMyPlaylistDeletion() {
             }
         })
     } else {
-        if (document.querySelector('.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile').value !== document.querySelector('.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile').textContent) {
-            if(screenWidth >= 1360){
+        if (
+            document.querySelector(
+                '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile'
+            ).value !==
+            document.querySelector(
+                '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile'
+            ).textContent
+        ) {
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+                warning.textContent =
+                    'Por favor, escreva o nome da playlist corretamente.'
                 setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Por favor, escreva o nome da playlist corretamente.'
+                warningMobile.textContent =
+                    'Por favor, escreva o nome da playlist corretamente.'
                 setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
             return
         }
-    
+
         fetch(`/users-playlist/${userData._id}/${indexMyPlaylistId}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-        })
-        .then(response => {
+        }).then((response) => {
             if (response.status === 200) {
-                document.querySelector('.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile').value = ""
+                document.querySelector(
+                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile'
+                ).value = ''
                 toggleContainerMinhaPlaylist()
                 toggleDeleteMinhaPlaylist()
                 refreshUserWithNewPlaylist()
             } else {
-                if(screenWidth >= 1360){
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
-    
+
                     setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
-    
+
                     setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
@@ -3043,33 +3824,54 @@ function manageEmptyPlaylist() {
         </div>
     `
     }
-    
 }
 
 function manageMyPlaylistMusicDeletion() {
-    fetch(`/users-playlist-song/${userData._id}/${indexMyPlaylistId}/${indexMyPlaylistAudioId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-    .then(response => {
+    fetch(
+        `/users-playlist-song/${userData._id}/${indexMyPlaylistId}/${indexMyPlaylistAudioId}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+    ).then((response) => {
         if (response.status === 200) {
             toggleContainerMinhaPlaylist()
             toggleMusicMinhaPlaylist()
             if (screenWidth >= 1360) {
-                if (document.querySelector('.music-delete-my-new-playlist-overflow').classList.contains('music-delete-my-new-playlist-overflow')) {
-                    document.querySelector('.music-delete-my-new-playlist-overflow').classList.add('hidden');
+                if (
+                    document
+                        .querySelector('.music-delete-my-new-playlist-overflow')
+                        .classList.contains(
+                            'music-delete-my-new-playlist-overflow'
+                        )
+                ) {
+                    document
+                        .querySelector('.music-delete-my-new-playlist-overflow')
+                        .classList.add('hidden')
                 }
             } else {
-                if (document.querySelector('.music-delete-my-new-playlist-overflow-mobile').classList.contains('music-delete-my-new-playlist-overflow-mobile')) {
-                    document.querySelector('.music-delete-my-new-playlist-overflow-mobile').classList.add('hidden');
+                if (
+                    document
+                        .querySelector(
+                            '.music-delete-my-new-playlist-overflow-mobile'
+                        )
+                        .classList.contains(
+                            'music-delete-my-new-playlist-overflow-mobile'
+                        )
+                ) {
+                    document
+                        .querySelector(
+                            '.music-delete-my-new-playlist-overflow-mobile'
+                        )
+                        .classList.add('hidden')
                 }
             }
-            
+
             refreshUserWithNewPlaylist()
         } else {
-            if(screenWidth >= 1360){
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Internal Error!'
                 setTimeout(() => {
@@ -3088,23 +3890,28 @@ function manageMyPlaylistMusicDeletion() {
 
 async function manageUserProfilePicture() {
     if (screenWidth >= 1360) {
-        if (userData.profilePicture === "" && profilePictureInput.value.trim() === ""){
-            layerProfilePicture.classList.add("hidden")
-            canKeyboardEventsProfile = true;
+        if (
+            userData.profilePicture === '' &&
+            profilePictureInput.value.trim() === ''
+        ) {
+            layerProfilePicture.classList.add('hidden')
+            canKeyboardEventsProfile = true
             return
-        } 
-        
+        }
+
         const resposta = await fetch(`/users-profile-picture/${userData._id}`, {
-            method: "PUT",
+            method: 'PUT',
             headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({profilePicture: profilePictureInput.value.trim()})
+            body: JSON.stringify({
+                profilePicture: profilePictureInput.value.trim(),
+            }),
         })
-        
-        if(resposta.status != 200){
-            if(screenWidth >= 1360){
+
+        if (resposta.status != 200) {
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Internal Error!'
                 setTimeout(() => {
@@ -3120,29 +3927,34 @@ async function manageUserProfilePicture() {
             return
         }
 
-        layerProfilePicture.classList.add("hidden")
+        layerProfilePicture.classList.add('hidden')
         await refreshFavorite()
         await refreshUser()
         profilePictureInput.value = userData.profilePicture
-        canKeyboardEventsProfile = true;
+        canKeyboardEventsProfile = true
         setUserProfilePicture()
     } else {
-        if (userData.profilePicture === "" && profilePictureInputMobile.value.trim() === ""){
-            layerProfilePictureMobile.classList.add("hidden")
+        if (
+            userData.profilePicture === '' &&
+            profilePictureInputMobile.value.trim() === ''
+        ) {
+            layerProfilePictureMobile.classList.add('hidden')
             return
         }
-        
+
         const resposta = await fetch(`/users-profile-picture/${userData._id}`, {
-            method: "PUT",
+            method: 'PUT',
             headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({profilePicture: profilePictureInputMobile.value.trim()})
+            body: JSON.stringify({
+                profilePicture: profilePictureInputMobile.value.trim(),
+            }),
         })
-        
-        if(resposta.status != 200){
-            if(screenWidth >= 1360){
+
+        if (resposta.status != 200) {
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Internal Error!'
                 setTimeout(() => {
@@ -3158,7 +3970,7 @@ async function manageUserProfilePicture() {
             return
         }
 
-        layerProfilePictureMobile.classList.add("hidden")
+        layerProfilePictureMobile.classList.add('hidden')
         await refreshFavorite()
         await refreshUser()
         profilePictureInputMobile.value = userData.profilePicture
@@ -3168,37 +3980,73 @@ async function manageUserProfilePicture() {
 
 function setUserProfilePicture() {
     if (screenWidth >= 1360) {
-        if (userData.profilePicture == "") {
-            document.querySelector('#userSettingsPersonIcon').classList.remove("hidden")
-            document.querySelector('#userSettingsPersonContainer').classList.add("hidden")
-            document.querySelector('#userPersonIcon').classList.remove("hidden")
-            document.querySelector('#userPersonContainer').classList.add("hidden")
+        if (userData.profilePicture == '') {
+            document
+                .querySelector('#userSettingsPersonIcon')
+                .classList.remove('hidden')
+            document
+                .querySelector('#userSettingsPersonContainer')
+                .classList.add('hidden')
+            document.querySelector('#userPersonIcon').classList.remove('hidden')
+            document
+                .querySelector('#userPersonContainer')
+                .classList.add('hidden')
         } else {
-            document.querySelector('#userSettingsPersonIcon').classList.add("hidden")
-            document.querySelector('#userSettingsPersonContainer').classList.remove("hidden")
-            document.querySelector('#userSettingsPersonImg').src = userData.profilePicture
-            document.querySelector('#userSettingsPersonImg').alt = "Foto de perfil do usuário"
-            document.querySelector('#userPersonIcon').classList.add("hidden")
-            document.querySelector('#userPersonContainer').classList.remove("hidden")
-            document.querySelector('#userPersonImg').src = userData.profilePicture
-            document.querySelector('#userPersonImg').alt = "Foto de perfil do usuário"
+            document
+                .querySelector('#userSettingsPersonIcon')
+                .classList.add('hidden')
+            document
+                .querySelector('#userSettingsPersonContainer')
+                .classList.remove('hidden')
+            document.querySelector('#userSettingsPersonImg').src =
+                userData.profilePicture
+            document.querySelector('#userSettingsPersonImg').alt =
+                'Foto de perfil do usuário'
+            document.querySelector('#userPersonIcon').classList.add('hidden')
+            document
+                .querySelector('#userPersonContainer')
+                .classList.remove('hidden')
+            document.querySelector('#userPersonImg').src =
+                userData.profilePicture
+            document.querySelector('#userPersonImg').alt =
+                'Foto de perfil do usuário'
             profilePictureInput.value = userData.profilePicture
         }
     } else {
-        if (userData.profilePicture == "") {
-            document.querySelector('#userSettingsPersonIconMobile').classList.remove("hidden")
-            document.querySelector('#userSettingsPersonContainerMobile').classList.add("hidden")
-            document.querySelector('#userPersonIconMobile').classList.remove("hidden")
-            document.querySelector('#userPersonContainerMobile').classList.add("hidden")
+        if (userData.profilePicture == '') {
+            document
+                .querySelector('#userSettingsPersonIconMobile')
+                .classList.remove('hidden')
+            document
+                .querySelector('#userSettingsPersonContainerMobile')
+                .classList.add('hidden')
+            document
+                .querySelector('#userPersonIconMobile')
+                .classList.remove('hidden')
+            document
+                .querySelector('#userPersonContainerMobile')
+                .classList.add('hidden')
         } else {
-            document.querySelector('#userSettingsPersonIconMobile').classList.add("hidden")
-            document.querySelector('#userSettingsPersonContainerMobile').classList.remove("hidden")
-            document.querySelector('#userSettingsPersonImgMobile').src = userData.profilePicture
-            document.querySelector('#userSettingsPersonImgMobile').alt = "Foto de perfil do usuário"
-            document.querySelector('#userPersonIconMobile').classList.add("hidden")
-            document.querySelector('#userPersonContainerMobile').classList.remove("hidden")
-            document.querySelector('#userPersonImgMobile').src = userData.profilePicture
-            document.querySelector('#userPersonImgMobile').alt = "Foto de perfil do usuário"
+            document
+                .querySelector('#userSettingsPersonIconMobile')
+                .classList.add('hidden')
+            document
+                .querySelector('#userSettingsPersonContainerMobile')
+                .classList.remove('hidden')
+            document.querySelector('#userSettingsPersonImgMobile').src =
+                userData.profilePicture
+            document.querySelector('#userSettingsPersonImgMobile').alt =
+                'Foto de perfil do usuário'
+            document
+                .querySelector('#userPersonIconMobile')
+                .classList.add('hidden')
+            document
+                .querySelector('#userPersonContainerMobile')
+                .classList.remove('hidden')
+            document.querySelector('#userPersonImgMobile').src =
+                userData.profilePicture
+            document.querySelector('#userPersonImgMobile').alt =
+                'Foto de perfil do usuário'
             profilePictureInputMobile.value = userData.profilePicture
         }
     }
@@ -3206,36 +4054,42 @@ function setUserProfilePicture() {
 
 async function manageUserCreatePlaylist() {
     if (screenWidth >= 1360) {
-        const newPlaylistName = document.querySelector('.add-my-new-playlist-name').value.trim()
+        const newPlaylistName = document
+            .querySelector('.add-my-new-playlist-name')
+            .value.trim()
 
-        if (newPlaylistName === "") {
-            if(screenWidth >= 1360){
+        if (newPlaylistName === '') {
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Por favor, digite um nome para a playlist.'
+                warning.textContent =
+                    'Por favor, digite um nome para a playlist.'
                 setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Por favor, digite um nome para a playlist.'
+                warningMobile.textContent =
+                    'Por favor, digite um nome para a playlist.'
                 setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
             return
         }
-        
+
         for (let i = 0; i < userData.myPlaylists.length; i++) {
             if (userData.myPlaylists[i].title === newPlaylistName) {
-                if(screenWidth >= 1360){
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
-                    warning.textContent = 'Já existe uma playlist com esse nome.'
+                    warning.textContent =
+                        'Já existe uma playlist com esse nome.'
                     setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
-                    warningMobile.textContent = 'Já existe uma playlist com esse nome.'
+                    warningMobile.textContent =
+                        'Já existe uma playlist com esse nome.'
                     setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
@@ -3243,20 +4097,20 @@ async function manageUserCreatePlaylist() {
                 return
             }
         }
-    
+
         try {
             const response = await fetch(`/users-playlist/${userData._id}`, {
-                method: "POST",
+                method: 'POST',
                 headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title: newPlaylistName })
-            });
-    
+                body: JSON.stringify({ title: newPlaylistName }),
+            })
+
             if (response.status === 201) {
-                canKeyboardEvents = true;
-                if(screenWidth >= 1360){
+                canKeyboardEvents = true
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.classList.add('success')
                     warning.textContent = 'Playlist criada com sucesso!'
@@ -3273,12 +4127,12 @@ async function manageUserCreatePlaylist() {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
-    
+
                 await refreshUserWithNewPlaylist()
-                document.querySelector('.add-my-new-playlist-name').value = ""
+                document.querySelector('.add-my-new-playlist-name').value = ''
                 toggleAddMinhaPlaylist()
             } else {
-                if(screenWidth >= 1360){
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Erro ao criar a playlist.'
                     setTimeout(() => {
@@ -3293,39 +4147,45 @@ async function manageUserCreatePlaylist() {
                 }
             }
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     } else {
-        const newPlaylistName = document.querySelector('.add-my-new-playlist-name-mobile').value.trim()
+        const newPlaylistName = document
+            .querySelector('.add-my-new-playlist-name-mobile')
+            .value.trim()
 
-        if (newPlaylistName === "") {
-            if(screenWidth >= 1360){
+        if (newPlaylistName === '') {
+            if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Por favor, digite um nome para a playlist.'
+                warning.textContent =
+                    'Por favor, digite um nome para a playlist.'
                 setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Por favor, digite um nome para a playlist.'
+                warningMobile.textContent =
+                    'Por favor, digite um nome para a playlist.'
                 setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
             return
         }
-        
+
         for (let i = 0; i < userData.myPlaylists.length; i++) {
             if (userData.myPlaylists[i].title === newPlaylistName) {
-                if(screenWidth >= 1360){
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
-                    warning.textContent = 'Já existe uma playlist com esse nome.'
+                    warning.textContent =
+                        'Já existe uma playlist com esse nome.'
                     setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
-                    warningMobile.textContent = 'Já existe uma playlist com esse nome.'
+                    warningMobile.textContent =
+                        'Já existe uma playlist com esse nome.'
                     setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
@@ -3333,20 +4193,20 @@ async function manageUserCreatePlaylist() {
                 return
             }
         }
-    
+
         try {
             const response = await fetch(`/users-playlist/${userData._id}`, {
-                method: "POST",
+                method: 'POST',
                 headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title: newPlaylistName })
-            });
-    
+                body: JSON.stringify({ title: newPlaylistName }),
+            })
+
             if (response.status === 201) {
-                canKeyboardEvents = true;
-                if(screenWidth >= 1360){
+                canKeyboardEvents = true
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.classList.add('success')
                     warning.textContent = 'Playlist criada com sucesso!'
@@ -3363,12 +4223,14 @@ async function manageUserCreatePlaylist() {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
-    
+
                 await refreshUserWithNewPlaylist()
-                document.querySelector('.add-my-new-playlist-name-mobile').value = ""
+                document.querySelector(
+                    '.add-my-new-playlist-name-mobile'
+                ).value = ''
                 toggleAddMinhaPlaylist()
             } else {
-                if(screenWidth >= 1360){
+                if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Erro ao criar a playlist.'
                     setTimeout(() => {
@@ -3383,59 +4245,65 @@ async function manageUserCreatePlaylist() {
                 }
             }
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 }
 
 function selectUserMyPlaylist() {
-    const playlist = userData.myPlaylists.find(item => item._id === indexMyPlaylistId);
-    const matchingSongs = allMusicData.filter(song => playlist.songs.map(item => item.musicId).includes(song._id)).sort((a, b) => a.title.localeCompare(b.title));
+    const playlist = userData.myPlaylists.find(
+        (item) => item._id === indexMyPlaylistId
+    )
+    const matchingSongs = allMusicData
+        .filter((song) =>
+            playlist.songs.map((item) => item.musicId).includes(song._id)
+        )
+        .sort((a, b) => a.title.localeCompare(b.title))
 
-    titlePlaylist = playlist.title;
-
-    if (screenWidth >= 1360) {
-        $(".title-playlist").html(playlist.title);
-    } else {
-        $(".title-playlist-mobile").html(playlist.title);
-    }
-
-    musicData = matchingSongs;
-    musicDataShuffled = [...musicData];
+    titlePlaylist = playlist.title
 
     if (screenWidth >= 1360) {
-        containerPlaylist.innerHTML = "";
-        containerItemsSearch.innerHTML = "";
-        containerItemsFavorite.innerHTML = "";
-        containerItemsHistoric.innerHTML = "";
+        $('.title-playlist').html(playlist.title)
     } else {
-        containerPlaylistMobile.innerHTML = "";
-        containerItemsSearchMobile.innerHTML = "";
-        containerItemsFavoriteMobile.innerHTML = "";
-        containerItemsHistoricMobile.innerHTML = "";
+        $('.title-playlist-mobile').html(playlist.title)
     }
 
-    indexAudio = 0;
+    musicData = matchingSongs
+    musicDataShuffled = [...musicData]
 
     if (screenWidth >= 1360) {
-        audioControllerPlay.name = 'play-circle';
-        musicAnimationStatus.classList.remove('run');
+        containerPlaylist.innerHTML = ''
+        containerItemsSearch.innerHTML = ''
+        containerItemsFavorite.innerHTML = ''
+        containerItemsHistoric.innerHTML = ''
     } else {
-        audioControllerPlayMobile.name = 'play-circle';
+        containerPlaylistMobile.innerHTML = ''
+        containerItemsSearchMobile.innerHTML = ''
+        containerItemsFavoriteMobile.innerHTML = ''
+        containerItemsHistoricMobile.innerHTML = ''
     }
-    audioControllerPlayToggle = true;
+
+    indexAudio = 0
 
     if (screenWidth >= 1360) {
-        shuffleIcon.classList.remove('active');
+        audioControllerPlay.name = 'play-circle'
+        musicAnimationStatus.classList.remove('run')
     } else {
-        shuffleIconMobile.classList.remove('active');
+        audioControllerPlayMobile.name = 'play-circle'
     }
-    shuffleToggleControl = true;
+    audioControllerPlayToggle = true
+
+    if (screenWidth >= 1360) {
+        shuffleIcon.classList.remove('active')
+    } else {
+        shuffleIconMobile.classList.remove('active')
+    }
+    shuffleToggleControl = true
 
     allSongValueSetters()
-    generatorContainerPlaylistData();
-    generatorContainerPlaylistDataPlay();
-    manageEmptyPlaylist();
+    generatorContainerPlaylistData()
+    generatorContainerPlaylistDataPlay()
+    manageEmptyPlaylist()
     if (emptyPlaylist) return
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
@@ -3444,39 +4312,39 @@ function selectUserMyPlaylist() {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    themeChanger(musicDataShuffled[indexAudio].theme);
-    indexAudioId = musicDataShuffled[indexAudio]._id;
-    indexAudioGender = musicDataShuffled[indexAudio].gender;
-    setMusicPlayTag();
-    refreshFavorite();
-    manageHistoric();
+    themeChanger(musicDataShuffled[indexAudio].theme)
+    indexAudioId = musicDataShuffled[indexAudio]._id
+    indexAudioGender = musicDataShuffled[indexAudio].gender
+    setMusicPlayTag()
+    refreshFavorite()
+    manageHistoric()
     refreshUserWithNewPlaylist()
     setManagementSystem()
 }
 
 async function selectNewPlaylist(playlistSelect, playlistName) {
-    const idUserConnected = getCookie("user")
-    let playlistSelectForSend = { 
+    const idUserConnected = getCookie('user')
+    let playlistSelectForSend = {
         lastAccessedPlaylist: playlistSelect,
-        lastAccessedPlaylistName: playlistName
+        lastAccessedPlaylistName: playlistName,
     }
 
     if (screenWidth >= 1360) {
-        $(".title-playlist").html(playlistName);
+        $('.title-playlist').html(playlistName)
     } else {
-        $(".title-playlist-mobile").html(playlistName);
+        $('.title-playlist-mobile').html(playlistName)
     }
 
     const resposta = await fetch(`/playlists-historic/${idUserConnected}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(playlistSelectForSend)
-    });
-    if(resposta.status != 200){
-        if(screenWidth >= 1360){
+        body: JSON.stringify(playlistSelectForSend),
+    })
+    if (resposta.status != 200) {
+        if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'Internal Error!'
             setTimeout(() => {
@@ -3491,45 +4359,47 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         }
     }
 
-    const responsePlaylist = await fetch(`/playlists-select/${idUserConnected}/?playlist=${playlistSelect}`);
-    const playlist = await responsePlaylist.json();
+    const responsePlaylist = await fetch(
+        `/playlists-select/${idUserConnected}/?playlist=${playlistSelect}`
+    )
+    const playlist = await responsePlaylist.json()
 
-    musicData = playlist.songs;
-    musicDataShuffled = [...musicData];
-
-    if (screenWidth >= 1360) {
-        containerPlaylist.innerHTML = "";
-        containerItemsSearch.innerHTML = "";
-        containerItemsFavorite.innerHTML = "";
-        containerItemsHistoric.innerHTML = "";
-    } else {
-        containerPlaylistMobile.innerHTML = "";
-        containerItemsSearchMobile.innerHTML = "";
-        containerItemsFavoriteMobile.innerHTML = "";
-        containerItemsHistoricMobile.innerHTML = "";
-    }
-
-    indexAudio = 0;
+    musicData = playlist.songs
+    musicDataShuffled = [...musicData]
 
     if (screenWidth >= 1360) {
-        audioControllerPlay.name = 'play-circle';
-        musicAnimationStatus.classList.remove('run');
+        containerPlaylist.innerHTML = ''
+        containerItemsSearch.innerHTML = ''
+        containerItemsFavorite.innerHTML = ''
+        containerItemsHistoric.innerHTML = ''
     } else {
-        audioControllerPlayMobile.name = 'play-circle';
+        containerPlaylistMobile.innerHTML = ''
+        containerItemsSearchMobile.innerHTML = ''
+        containerItemsFavoriteMobile.innerHTML = ''
+        containerItemsHistoricMobile.innerHTML = ''
     }
-    audioControllerPlayToggle = true;
+
+    indexAudio = 0
 
     if (screenWidth >= 1360) {
-        shuffleIcon.classList.remove('active');
+        audioControllerPlay.name = 'play-circle'
+        musicAnimationStatus.classList.remove('run')
     } else {
-        shuffleIconMobile.classList.remove('active');
+        audioControllerPlayMobile.name = 'play-circle'
     }
-    shuffleToggleControl = true;
-    titlePlaylist = "";
+    audioControllerPlayToggle = true
+
+    if (screenWidth >= 1360) {
+        shuffleIcon.classList.remove('active')
+    } else {
+        shuffleIconMobile.classList.remove('active')
+    }
+    shuffleToggleControl = true
+    titlePlaylist = ''
 
     allSongValueSetters()
-    generatorContainerPlaylistData();
-    generatorContainerPlaylistDataPlay();
+    generatorContainerPlaylistData()
+    generatorContainerPlaylistDataPlay()
     manageEmptyPlaylist()
     if (emptyPlaylist) return
     generatorContainerSearchData()
@@ -3539,12 +4409,12 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    themeChanger(musicDataShuffled[indexAudio].theme);
-    indexAudioId = musicDataShuffled[indexAudio]._id;
-    indexAudioGender = musicDataShuffled[indexAudio].gender;
-    setMusicPlayTag();
-    refreshFavorite();
-    manageHistoric();
+    themeChanger(musicDataShuffled[indexAudio].theme)
+    indexAudioId = musicDataShuffled[indexAudio]._id
+    indexAudioGender = musicDataShuffled[indexAudio].gender
+    setMusicPlayTag()
+    refreshFavorite()
+    manageHistoric()
     refreshUserWithNewPlaylist()
     setManagementSystem()
 }
@@ -3552,7 +4422,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
 function onYouTubeIframeAPIReady(videoId) {
     if (screenWidth >= 1360) {
         if (player) {
-            player.destroy();
+            player.destroy()
         }
 
         player = new YT.Player('containerFrame', {
@@ -3560,13 +4430,13 @@ function onYouTubeIframeAPIReady(videoId) {
             width: '640',
             videoId: videoId,
             events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
+                onReady: onPlayerReady,
+                onStateChange: onPlayerStateChange,
+            },
         })
     } else {
         if (playerMobile) {
-            playerMobile.destroy();
+            playerMobile.destroy()
         }
 
         playerMobile = new YT.Player('containerFrameMobile', {
@@ -3574,18 +4444,18 @@ function onYouTubeIframeAPIReady(videoId) {
             width: '640',
             videoId: videoId,
             events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
+                onReady: onPlayerReady,
+                onStateChange: onPlayerStateChange,
+            },
         })
     }
 }
 
 function onPlayerReady(event) {
     if (screenWidth >= 1360) {
-        playerReady = true;
+        playerReady = true
     } else {
-        playerReadyMobile = true;
+        playerReadyMobile = true
     }
 }
 
@@ -3593,36 +4463,40 @@ function playVideo() {
     if (screenWidth >= 1360) {
         if (playerReady) {
             setTimeout(() => {
-                if (playerReady && player.getPlayerState() !== YT.PlayerState.PLAYING) {
-                    player.playVideo();
+                if (
+                    playerReady &&
+                    player.getPlayerState() !== YT.PlayerState.PLAYING
+                ) {
+                    player.playVideo()
                     totalDurationSetter()
                 }
-            }, 200);
-        } 
-        else {
-            var checkPlayerInterval = setInterval(function() {
+            }, 200)
+        } else {
+            var checkPlayerInterval = setInterval(function () {
                 if (playerReady) {
-                    clearInterval(checkPlayerInterval);
-                    playVideo();
+                    clearInterval(checkPlayerInterval)
+                    playVideo()
                 }
-            }, 100);
+            }, 100)
         }
     } else {
         if (playerReadyMobile) {
             setTimeout(() => {
-                if (playerReadyMobile && playerMobile.getPlayerState() !== YT.PlayerState.PLAYING) {
-                    playerMobile.playVideo();
+                if (
+                    playerReadyMobile &&
+                    playerMobile.getPlayerState() !== YT.PlayerState.PLAYING
+                ) {
+                    playerMobile.playVideo()
                     totalDurationSetter()
                 }
-            }, 200);
-        } 
-        else {
-            var checkPlayerInterval = setInterval(function() {
+            }, 200)
+        } else {
+            var checkPlayerInterval = setInterval(function () {
                 if (playerReadyMobile) {
-                    clearInterval(checkPlayerInterval);
-                    playVideo();
+                    clearInterval(checkPlayerInterval)
+                    playVideo()
                 }
-            }, 100);
+            }, 100)
         }
     }
 }
@@ -3630,16 +4504,22 @@ function playVideo() {
 function pauseVideo() {
     if (screenWidth >= 1360) {
         setTimeout(() => {
-            if (playerReady && player.getPlayerState() === YT.PlayerState.PLAYING) {
-                player.pauseVideo();
+            if (
+                playerReady &&
+                player.getPlayerState() === YT.PlayerState.PLAYING
+            ) {
+                player.pauseVideo()
             }
-        }, 200);
+        }, 200)
     } else {
         setTimeout(() => {
-            if (playerReadyMobile && playerMobile.getPlayerState() === YT.PlayerState.PLAYING) {
-                playerMobile.pauseVideo();
+            if (
+                playerReadyMobile &&
+                playerMobile.getPlayerState() === YT.PlayerState.PLAYING
+            ) {
+                playerMobile.pauseVideo()
             }
-        }, 200);
+        }, 200)
     }
 }
 
@@ -3649,7 +4529,7 @@ function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.ENDED) {
         if (screenWidth >= 1360) {
             if (!repeatToggleControl) {
-                musicAnimationStatus.classList.remove('run');
+                musicAnimationStatus.classList.remove('run')
                 audioControllerPlayFunctionNoPause()
             } else {
                 audioControllerNextFunction()
@@ -3693,27 +4573,27 @@ function setVideoVolume(volume) {
 
 function getVideoVolume() {
     if (playerReady) {
-        return player.getVolume();
+        return player.getVolume()
     }
 }
 
 function getVideoDuration() {
     if (screenWidth >= 1360) {
         if (playerReady) {
-            return player.getDuration();
+            return player.getDuration()
         }
     } else {
         if (playerReadyMobile) {
-            return playerMobile.getDuration();
+            return playerMobile.getDuration()
         }
     }
 }
 
 function totalDurationSetter() {
-    let minTotal = Math.floor(getVideoDuration() / 60);
-    let segTotal = Math.floor(getVideoDuration() % 60);
-    
-    if(segTotal < 10){
+    let minTotal = Math.floor(getVideoDuration() / 60)
+    let segTotal = Math.floor(getVideoDuration() % 60)
+
+    if (segTotal < 10) {
         segTotal = `0${segTotal}`
     }
 
@@ -3727,13 +4607,13 @@ function totalDurationSetter() {
 function getVideoCurrentTime() {
     if (screenWidth >= 1360) {
         if (playerReady) {
-            return player.getCurrentTime();
+            return player.getCurrentTime()
         } else {
             return 0
         }
     } else {
         if (playerReadyMobile) {
-            return playerMobile.getCurrentTime();
+            return playerMobile.getCurrentTime()
         } else {
             return 0
         }
@@ -3742,43 +4622,61 @@ function getVideoCurrentTime() {
 
 function curretDurationSetter() {
     if (screenWidth >= 1360) {
-        if(canMoveTheSliderDuration){
-            sliderMusicDuration.value = parseInt(getVideoCurrentTime() / getVideoDuration() * 100)
-            sliderMusicDuration.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`);
-            sliderMusicDurationDot.style.setProperty("left", `${(sliderMusicDuration.value)}%`)
+        if (canMoveTheSliderDuration) {
+            sliderMusicDuration.value = parseInt(
+                (getVideoCurrentTime() / getVideoDuration()) * 100
+            )
+            sliderMusicDuration.style.setProperty(
+                'background-image',
+                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+            )
+            sliderMusicDurationDot.style.setProperty(
+                'left',
+                `${sliderMusicDuration.value}%`
+            )
 
-            let minCurrent = Math.floor(getVideoCurrentTime() / 60);
-            let segCurrent = Math.floor(getVideoCurrentTime() % 60);
+            let minCurrent = Math.floor(getVideoCurrentTime() / 60)
+            let segCurrent = Math.floor(getVideoCurrentTime() % 60)
 
-            if(segCurrent < 10){
+            if (segCurrent < 10) {
                 segCurrent = `0${segCurrent}`
             }
 
             if (isNaN(minCurrent) || isNaN(segCurrent)) {
-                minCurrent = 0;
-                segCurrent = '00';
+                minCurrent = 0
+                segCurrent = '00'
             }
 
             currentDuration.innerHTML = `${minCurrent}:${segCurrent}`
-
         }
     } else {
-        if(canMoveTheSliderDuration){
-            sliderMusicDurationMobile.value = parseInt(getVideoCurrentTime() / getVideoDuration() * 100);
-            sliderMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-            displayMusicDurationMobile.style.setProperty("background-image", `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`);
-            sliderMusicDurationDotMobile.style.setProperty("left", `${(sliderMusicDurationMobile.value)}%`)
+        if (canMoveTheSliderDuration) {
+            sliderMusicDurationMobile.value = parseInt(
+                (getVideoCurrentTime() / getVideoDuration()) * 100
+            )
+            sliderMusicDurationMobile.style.setProperty(
+                'background-image',
+                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+            )
+            displayMusicDurationMobile.style.setProperty(
+                'background-image',
+                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+            )
+            sliderMusicDurationDotMobile.style.setProperty(
+                'left',
+                `${sliderMusicDurationMobile.value}%`
+            )
 
-            let minCurrent = Math.floor(getVideoCurrentTime() / 60);
-            let segCurrent = Math.floor(getVideoCurrentTime() % 60);
+            let minCurrent = Math.floor(getVideoCurrentTime() / 60)
+            let segCurrent = Math.floor(getVideoCurrentTime() % 60)
 
-            if(segCurrent < 10){
+            if (segCurrent < 10) {
                 segCurrent = `0${segCurrent}`
             }
 
             if (isNaN(minCurrent) || isNaN(segCurrent)) {
-                minCurrent = 0;
-                segCurrent = '00';
+                minCurrent = 0
+                segCurrent = '00'
             }
 
             currentDurationMobile.innerHTML = `${minCurrent}:${segCurrent}`
@@ -3789,11 +4687,11 @@ function curretDurationSetter() {
 function checkAndUnmute() {
     if (screenWidth >= 1360) {
         if (playerReady && player.isMuted()) {
-            player.unMute();
+            player.unMute()
         }
     } else {
         if (playerReadyMobile && playerMobile.isMuted()) {
-            playerMobile.unMute();
+            playerMobile.unMute()
         }
     }
 }
@@ -3811,30 +4709,32 @@ function changeVideoCurrentTime(time) {
 }
 
 async function musicListingService() {
-    const idUserConnected = getCookie("user")
+    const idUserConnected = getCookie('user')
 
-    const responseUser = await fetch(`/users/${idUserConnected}`);
-    const user = await responseUser.json();
+    const responseUser = await fetch(`/users/${idUserConnected}`)
+    const user = await responseUser.json()
 
-    userData = user.user;
+    userData = user.user
     userData.myPlaylists.reverse()
 
-    const responsePlaylists = await fetch(`/playlists/${idUserConnected}`);
-    const playlists = await responsePlaylists.json();
+    const responsePlaylists = await fetch(`/playlists/${idUserConnected}`)
+    const playlists = await responsePlaylists.json()
 
-    const responseSongs = await fetch(`/playlists-select/${idUserConnected}/?playlist=${userData.lastAccessedPlaylist}`);
-    const songs = await responseSongs.json();
+    const responseSongs = await fetch(
+        `/playlists-select/${idUserConnected}/?playlist=${userData.lastAccessedPlaylist}`
+    )
+    const songs = await responseSongs.json()
 
-    const responseAllSongs = await fetch("/songs");
-    const allSongs = await responseAllSongs.json();
+    const responseAllSongs = await fetch('/songs')
+    const allSongs = await responseAllSongs.json()
 
     allMusicData = allSongs.songs
-    musicData = songs.songs;
-    playlistData = playlists.playlists;
+    musicData = songs.songs
+    playlistData = playlists.playlists
 
-    musicDataShuffled = [...musicData];
+    musicDataShuffled = [...musicData]
 
-    inicia();
+    inicia()
 }
 
-musicListingService();
+musicListingService()

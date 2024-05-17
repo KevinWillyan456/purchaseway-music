@@ -1,6 +1,5 @@
 body {
     background-color: var(--color-blue-1);
-    
 }
 body::-webkit-scrollbar {
     width: 10px;
@@ -32,7 +31,8 @@ body::-webkit-scrollbar-thumb {
     width: 185px;
     z-index: 100;
 }
-.user-info .icon-user, .user-info-m .icon-user {
+.user-info .icon-user,
+.user-info-m .icon-user {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -43,16 +43,19 @@ body::-webkit-scrollbar-thumb {
     border: 2px solid var(--color-black);
     cursor: pointer;
 }
-.user-info .icon-user ion-icon, .user-info-m .icon-user ion-icon {
+.user-info .icon-user ion-icon,
+.user-info-m .icon-user ion-icon {
     width: 40px;
     height: 40px;
     color: var(--color-white-1);
 }
-.user-info .wrap-text .access, .user-info-m .wrap-text .access {
+.user-info .wrap-text .access,
+.user-info-m .wrap-text .access {
     color: var(--color-white-1);
     font-size: 12px;
 }
-.user-info .wrap-text .name, .user-info-m .wrap-text .name {
+.user-info .wrap-text .name,
+.user-info-m .wrap-text .name {
     color: var(--color-white-1);
     font-size: 16px;
     max-width: 120px;
@@ -89,7 +92,8 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer;
 }
 .warning {
-    animation: warning-anime-color 1s infinite alternate, warning-anime-entrace 500ms linear;
+    animation: warning-anime-color 1s infinite alternate,
+        warning-anime-entrace 500ms linear;
     position: fixed;
     top: 20px;
     left: 0;
@@ -214,7 +218,10 @@ body::-webkit-scrollbar-thumb {
     color: var(--color-white-1);
     font-size: 32px;
 }
-.container-playlist-overflow .container-playlist .header-playlist .btn-adicionar {
+.container-playlist-overflow
+    .container-playlist
+    .header-playlist
+    .btn-adicionar {
     width: 200px;
     height: 60px;
     border-radius: 10px;
@@ -228,7 +235,11 @@ body::-webkit-scrollbar-thumb {
     gap: 5px;
     cursor: pointer;
 }
-.container-playlist-overflow .container-playlist .header-playlist .btn-adicionar ion-icon {
+.container-playlist-overflow
+    .container-playlist
+    .header-playlist
+    .btn-adicionar
+    ion-icon {
     font-size: 30px;
 }
 .container-playlist-overflow .container-playlist .content-playlist {
@@ -338,7 +349,9 @@ body::-webkit-scrollbar-thumb {
     padding: 0 20px;
     margin-top: 115px;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .main-playlist {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .main-playlist {
     width: 100%;
     height: 265px;
     max-height: 265px;
@@ -382,16 +395,25 @@ body::-webkit-scrollbar-thumb {
     overflow: auto;
     padding-right: 10px;
 }
-.container-playlist-to-manage .main-playlist .content .description::-webkit-scrollbar {
+.container-playlist-to-manage
+    .main-playlist
+    .content
+    .description::-webkit-scrollbar {
     width: 10px;
     padding: 60px;
     position: absolute;
 }
-.container-playlist-to-manage .main-playlist .content .description::-webkit-scrollbar-track {
+.container-playlist-to-manage
+    .main-playlist
+    .content
+    .description::-webkit-scrollbar-track {
     background: var(--color-black);
     border-radius: 10px;
 }
-.container-playlist-to-manage .main-playlist .content .description::-webkit-scrollbar-thumb {
+.container-playlist-to-manage
+    .main-playlist
+    .content
+    .description::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
     border-radius: 10px;
 }
@@ -407,7 +429,9 @@ body::-webkit-scrollbar-thumb {
     text-overflow: ellipsis;
     max-width: 400px;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .interactions {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .interactions {
     margin-top: 20px;
     display: flex;
     gap: 20px;
@@ -482,22 +506,32 @@ body::-webkit-scrollbar-thumb {
     font-size: 30px;
 }
 
-.container-playlist-to-manage-overflow .container-playlist-to-manage .title-all-songs {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .title-all-songs {
     color: var(--color-white-1);
     font-size: 32px;
     margin-bottom: 20px;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .content-songs {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .no-songs {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .content-songs
+    .no-songs {
     color: var(--color-white-1);
     font-size: 20px;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .content-songs
+    .songs-item {
     width: 100%;
     height: 80px;
     background: var(--color-blue-3);
@@ -510,7 +544,11 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer;
     border-radius: 10px;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-cover {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .content-songs
+    .songs-item
+    .item-cover {
     width: 108px;
     height: 60px;
     display: flex;
@@ -520,15 +558,24 @@ body::-webkit-scrollbar-thumb {
     pointer-events: none;
     border-radius: 10px;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-cover img {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .content-songs
+    .songs-item
+    .item-cover
+    img {
     width: 100%;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-title {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .content-songs
+    .songs-item
+    .item-title {
     padding-left: 5px;
     margin-right: 20px;
     color: var(--color-white-1);
     font-size: 16px;
-    
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -539,7 +586,6 @@ body::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
 .container-playlist-to-manage-overflow .container-playlist-to-manage .focus {
-    
     position: fixed;
     top: 0;
     left: 0;
@@ -627,7 +673,8 @@ body::-webkit-scrollbar-thumb {
     gap: 5px;
     margin-top: 10px;
 }
-.focus .song .interactions .btn-editar, .focus .song .interactions .btn-excluir {
+.focus .song .interactions .btn-editar,
+.focus .song .interactions .btn-excluir {
     position: static;
 }
 .focus .song .interactions .btn-editar {
@@ -636,7 +683,9 @@ body::-webkit-scrollbar-thumb {
 .focus .song .interactions .btn-excluir {
     gap: 0px;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-song-overflow {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .form-song-overflow {
     position: fixed;
     top: 0;
     left: 0;
@@ -648,15 +697,21 @@ body::-webkit-scrollbar-thumb {
     overflow: auto;
     padding: 20px 0;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-song-overflow::-webkit-scrollbar {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .form-song-overflow::-webkit-scrollbar {
     width: 10px;
     padding: 60px;
     position: absolute;
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-song-overflow::-webkit-scrollbar-track {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .form-song-overflow::-webkit-scrollbar-track {
     background: var(--color-black);
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-song-overflow::-webkit-scrollbar-thumb {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .form-song-overflow::-webkit-scrollbar-thumb {
     background-color: var(--color-blue-2);
 }
 .form-song-overflow .form-song {
@@ -782,7 +837,9 @@ body::-webkit-scrollbar-thumb {
         filter: hue-rotate(360deg);
     }
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-song-delete-overflow {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .form-song-delete-overflow {
     position: fixed;
     top: 0;
     left: 0;
@@ -968,7 +1025,9 @@ body::-webkit-scrollbar-thumb {
     animation: animation-btn 1s infinite linear;
     box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
 }
-.container-playlist-to-manage-overflow .container-playlist-to-manage .form-playlist-delete-overflow {
+.container-playlist-to-manage-overflow
+    .container-playlist-to-manage
+    .form-playlist-delete-overflow {
     position: fixed;
     top: 0;
     left: 0;
@@ -1037,7 +1096,10 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     gap: 20px;
 }
-.form-playlist-delete-overflow .form-playlist-delete .interactions-delete .cancel {
+.form-playlist-delete-overflow
+    .form-playlist-delete
+    .interactions-delete
+    .cancel {
     width: 250px;
     height: 60px;
     border-radius: 10px;
@@ -1050,7 +1112,10 @@ body::-webkit-scrollbar-thumb {
     place-items: center;
     cursor: pointer;
 }
-.form-playlist-delete-overflow .form-playlist-delete .interactions-delete .delete {
+.form-playlist-delete-overflow
+    .form-playlist-delete
+    .interactions-delete
+    .delete {
     width: 250px;
     height: 60px;
     border-radius: 10px;
@@ -1119,13 +1184,20 @@ body::-webkit-scrollbar-thumb {
     .container-playlist-overflow .container-playlist .header-playlist .title {
         font-size: 20px;
     }
-    .container-playlist-overflow .container-playlist .header-playlist .btn-adicionar {
+    .container-playlist-overflow
+        .container-playlist
+        .header-playlist
+        .btn-adicionar {
         width: 100px;
         height: 30px;
         font-size: 14px;
         gap: 0px;
     }
-    .container-playlist-overflow .container-playlist .header-playlist .btn-adicionar ion-icon {
+    .container-playlist-overflow
+        .container-playlist
+        .header-playlist
+        .btn-adicionar
+        ion-icon {
         font-size: 21px;
     }
     .content-playlist .playlist-item {
@@ -1198,7 +1270,9 @@ body::-webkit-scrollbar-thumb {
     .container-playlist-to-manage .interactions .btn-excluir ion-icon {
         font-size: 16px;
     }
-    .container-playlist-to-manage-overflow .container-playlist-to-manage .main-playlist {
+    .container-playlist-to-manage-overflow
+        .container-playlist-to-manage
+        .main-playlist {
         height: 432px;
         max-height: 432px;
         display: flex;
@@ -1237,18 +1311,31 @@ body::-webkit-scrollbar-thumb {
         padding-right: 20px;
         padding-bottom: 20px;
     }
-    .container-playlist-to-manage-overflow .container-playlist-to-manage .title-all-songs {
+    .container-playlist-to-manage-overflow
+        .container-playlist-to-manage
+        .title-all-songs {
         font-size: 20px;
     }
-    .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item {
+    .container-playlist-to-manage-overflow
+        .container-playlist-to-manage
+        .content-songs
+        .songs-item {
         height: 60px;
         grid-template-columns: 70px 1fr;
     }
-    .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-cover {
+    .container-playlist-to-manage-overflow
+        .container-playlist-to-manage
+        .content-songs
+        .songs-item
+        .item-cover {
         width: 70px;
         height: 38.889px;
     }
-    .container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item .item-title {
+    .container-playlist-to-manage-overflow
+        .container-playlist-to-manage
+        .content-songs
+        .songs-item
+        .item-title {
         font-size: 14px;
     }
     .content-playlist .playlist-item .part {
@@ -1368,7 +1455,6 @@ body::-webkit-scrollbar-thumb {
     .form-playlist-delete-overflow .form-playlist-delete {
         width: 320px;
         height: 394px;
-
     }
     .form-playlist-delete-overflow .form-playlist-delete .title {
         margin-top: 60px;
@@ -1387,7 +1473,9 @@ body::-webkit-scrollbar-thumb {
         font-size: 16px;
         max-width: 280px;
     }
-    .form-playlist-delete-overflow .form-playlist-delete .playlist-delete-warning {
+    .form-playlist-delete-overflow
+        .form-playlist-delete
+        .playlist-delete-warning {
         margin-bottom: 10px;
         width: 280px;
         text-align: center;
@@ -1395,12 +1483,18 @@ body::-webkit-scrollbar-thumb {
     .form-playlist-delete-overflow .form-playlist-delete .interactions-delete {
         margin-top: 10px;
     }
-    .form-playlist-delete-overflow .form-playlist-delete .interactions-delete .cancel {
+    .form-playlist-delete-overflow
+        .form-playlist-delete
+        .interactions-delete
+        .cancel {
         width: 120px;
         height: 40px;
         font-size: 16px;
     }
-    .form-playlist-delete-overflow .form-playlist-delete .interactions-delete .delete {
+    .form-playlist-delete-overflow
+        .form-playlist-delete
+        .interactions-delete
+        .delete {
         width: 120px;
         height: 40px;
         font-size: 16px;

@@ -1,22 +1,22 @@
-const signup = document.querySelector("#signup");
-const login = document.querySelector("#login");
-const termsOfUse = document.querySelector(".terms-of-use");
-const termsOfUseText = document.querySelector(".terms-of-use-text");
-const termsOfUseClose = document.querySelector("#terms-of-use-close");
+const signup = document.querySelector('#signup')
+const login = document.querySelector('#login')
+const termsOfUse = document.querySelector('.terms-of-use')
+const termsOfUseText = document.querySelector('.terms-of-use-text')
+const termsOfUseClose = document.querySelector('#terms-of-use-close')
 
-signup.addEventListener("click", () => {
+signup.addEventListener('click', () => {
     window.location = '/signup'
 })
-login.addEventListener("click", () => {
+login.addEventListener('click', () => {
     window.location = '/login'
 })
-document.querySelector('.service-logo').addEventListener("click", () => {
+document.querySelector('.service-logo').addEventListener('click', () => {
     window.location = '/'
 })
 
-termsOfUse.addEventListener("click", () => {
-    termsOfUseText.classList.remove("hidden");
+termsOfUse.addEventListener('click', () => {
+    termsOfUseText.classList.remove('hidden')
 })
-termsOfUseClose.addEventListener("click", () => {
-    termsOfUseText.classList.add("hidden");
+termsOfUseClose.addEventListener('click', () => {
+    termsOfUseText.classList.add('hidden')
 })
