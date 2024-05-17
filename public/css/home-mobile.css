@@ -448,18 +448,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    max-width: 600px;
-    width: calc(100% - 40px);
+    max-width: 560px;
+    width: calc(100% - 30px);
     aspect-ratio: 16/9;
-}
-.main-display-mobile .current-cover-mobile img {
-    width: 100%;
-    pointer-events: none;
+    z-index: 1000;
 }
 .main-display-mobile .current-cover-mobile .container-frame-mobile {
     width: 100%;
