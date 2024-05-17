@@ -523,10 +523,6 @@ document.querySelector('.minhas-playlists-search-bar-input-mobile').addEventList
     generatorContainerMusicAddPlaylist()
 })
 
-document.querySelector('.service-logo').addEventListener("click", () => {
-    window.location = '/'
-})
-
 function inicia(){
     setScreenWidthAndHeight();
     allSongValueSetters();
@@ -629,6 +625,7 @@ function allSongValueSetters(){
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusic.src = musicDataShuffled[indexAudio].coverUrl;
+        coverCurrentMusic.alt = musicDataShuffled[indexAudio].title;
         backgroundCover.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
         titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender;
@@ -638,6 +635,7 @@ function allSongValueSetters(){
         indexAudioId = musicDataShuffled[indexAudio]._id;
         indexAudioGender = musicDataShuffled[indexAudio].gender;
         coverCurrentMusicMobile.src = musicDataShuffled[indexAudio].coverUrl;
+        coverCurrentMusicMobile.alt = musicDataShuffled[indexAudio].title;
         backgroundCoverMobile.style.setProperty("background-image", `url("${musicDataShuffled[indexAudio].coverUrl}")`);
         titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title;
         genderCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].gender;
@@ -769,7 +767,7 @@ function generatorContainerPlaylistData(){
                 <div class="item-playlist-mobile" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper">
                         <div class="cover-item">
-                            <img src="${element.coverUrl}">
+                            <img src="${element.coverUrl}" alt="${element.title}">
                         </div>
                         <div class="info-item">
                             <div class="title-info">
@@ -860,7 +858,7 @@ function generatorContainerPlaylistSelectData(){
             containerPlaylistSelect.innerHTML += `
                 <div class="item-select-playlist">
                     <div class="cover-item-select-playlist" data-gender="${element.gender}" data-title="${element.title}">
-                        <img src="${element.coverUrl}">
+                        <img src="${element.coverUrl}" alt="${element.title}">
                     </div>
                     <div class="info-item-select-playlist">
                         <div class="title-item-select-playlist">
@@ -902,7 +900,7 @@ function generatorContainerPlaylistSelectData(){
             containerPlaylistSelectMobile.innerHTML += `
                 <div class="item-select-playlist-mobile">
                     <div class="cover-item-select-playlist-mobile" data-gender="${element.gender}" data-title="${element.title}">
-                        <img src="${element.coverUrl}">
+                        <img src="${element.coverUrl}" alt="${element.title}">
                     </div>
                     <div class="info-item-select-playlist-mobile">
                         <div class="title-item-select-playlist-mobile">
@@ -983,7 +981,7 @@ function generatorContainerSearchData(){
                 <div class="item-playlist-search" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
-                            <img src="${element.coverUrl}">
+                            <img src="${element.coverUrl}" alt="${element.title}">
                         </div>
                         <div class="info-item-search">
                             <div class="title-info-search">
@@ -1016,7 +1014,7 @@ function generatorContainerSearchData(){
                 <div class="item-search-mobile" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
-                            <img src="${element.coverUrl}"">
+                            <img src="${element.coverUrl}" alt="${element.title}">
                         </div>
                         <div class="info-item-search">
                             <div class="title-info">
@@ -1126,7 +1124,7 @@ function generatorContainerFavoriteData(){
                 <div class="item-playlist-favorite" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-favorite">
                         <div class="cover-item-favorite">
-                            <img src="${element.coverUrl}">
+                            <img src="${element.coverUrl}" alt="${element.title}">
                         </div>
                         <div class="info-item-favorite">
                             <div class="title-info-favorite">
@@ -1150,7 +1148,7 @@ function generatorContainerFavoriteData(){
                 <div class="item-favorite-mobile" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-favorite">
                         <div class="cover-item-favorite">
-                            <img src="${element.coverUrl}">
+                            <img src="${element.coverUrl}" alt="${element.title}">
                         </div>
                         <div class="info-item-favorite">
                             <div class="title-info">
@@ -1262,7 +1260,7 @@ function generatorContainerHistoricData(){
                 <div class="item-playlist-historic" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-historic">
                         <div class="cover-item-historic">
-                            <img src="${element.coverUrl}">
+                            <img src="${element.coverUrl}" alt="${element.title}">
                         </div>
                         <div class="info-item-historic">
                             <div class="title-info-historic">
@@ -1286,7 +1284,7 @@ function generatorContainerHistoricData(){
                 <div class="item-historic-mobile" data-id="${element._id}" data-theme="${element.theme}">
                     <div class="box-wrapper-historic">
                         <div class="cover-item-historic">
-                            <img src="${element.coverUrl}">
+                            <img src="${element.coverUrl}" alt="${element.title}">
                         </div>
                         <div class="info-item-historic">
                             <div class="title-info">
@@ -1408,6 +1406,7 @@ function generatorContainerMusicAddPlaylist() {
                 document.querySelector('.main-minhas-playlists .main-playlist .content .details .created').textContent = converterData(element.additionDate);
                 document.querySelector('.main-minhas-playlists .main-playlist .content .details .total-song').textContent = `Total de ${element.totalSongs} ${element.totalSongs <= 1 ? 'música' : 'músicas'}`;
                 document.querySelector('.main-minhas-playlists .main-playlist .cover img').src = element.currentCoverUrl
+                document.querySelector('.main-minhas-playlists .main-playlist .cover img').alt = element.title;
                 indexMyPlaylistId = element._id;
                 document.querySelector('.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name').value = element.title;
                 document.querySelector('.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current').textContent = element.title;
@@ -1423,6 +1422,7 @@ function generatorContainerMusicAddPlaylist() {
                     divItemMinhasMusicas.addEventListener('click', () => {
                         document.querySelector('.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-title').textContent = musicaEncontrada.title;
                         document.querySelector('.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img').src = musicaEncontrada.coverUrl;
+                        document.querySelector('.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img').alt = musicaEncontrada.title;
                         document.querySelector('.music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container .music-delete-my-new-playlist-current').textContent = musicaEncontrada.title;
                         indexMyPlaylistAudioId = ele._id;
                         toggleMusicMinhaPlaylist()
@@ -1433,6 +1433,7 @@ function generatorContainerMusicAddPlaylist() {
 
                     let imgCover = document.createElement("img");
                     imgCover.src = musicaEncontrada.coverUrl;
+                    imgCover.alt = musicaEncontrada.title;
 
                     let divTitleItemMinhasMusicas = document.createElement("div");
                     divTitleItemMinhasMusicas.classList.add("title-item-minhas-musicas");
@@ -1451,6 +1452,7 @@ function generatorContainerMusicAddPlaylist() {
 
             let imgCover = document.createElement("img");
             imgCover.src = element.currentCoverUrl;
+            imgCover.alt = element.title;
 
             let divTitleItemMinhasPlaylists = document.createElement("div");
             divTitleItemMinhasPlaylists.classList.add("title-item-minhas-playlists");
@@ -1506,6 +1508,7 @@ function generatorContainerMusicAddPlaylist() {
                 document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .created-mobile').textContent = converterData(element.additionDate);
                 document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .total-song-mobile').textContent = `Total de ${element.totalSongs} ${element.totalSongs <= 1 ? 'música' : 'músicas'}`;
                 document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img').src = element.currentCoverUrl
+                document.querySelector('.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img').alt = element.title;
                 indexMyPlaylistId = element._id;
                 document.querySelector('.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile').value = element.title;
                 document.querySelector('.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile').textContent = element.title;
@@ -1521,6 +1524,7 @@ function generatorContainerMusicAddPlaylist() {
                     divItemMinhasMusicas.addEventListener('click', () => {
                         document.querySelector('.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-title-mobile').textContent = musicaEncontrada.title;
                         document.querySelector('.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img').src = musicaEncontrada.coverUrl;
+                        document.querySelector('.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img').alt = musicaEncontrada.title;
                         document.querySelector('.music-delete-my-new-playlist-overflow-mobile .music-delete-my-new-playlist-container-mobile .music-delete-my-new-playlist-current-mobile').textContent = musicaEncontrada.title;
                         indexMyPlaylistAudioId = ele._id;
                         toggleMusicMinhaPlaylist()
@@ -1531,6 +1535,7 @@ function generatorContainerMusicAddPlaylist() {
 
                     let imgCover = document.createElement("img");
                     imgCover.src = musicaEncontrada.coverUrl;
+                    imgCover.alt = musicaEncontrada.title;
 
                     let divTitleItemMinhasMusicas = document.createElement("div");
                     divTitleItemMinhasMusicas.classList.add("title-item-minhas-musicas-mobile");
@@ -1549,6 +1554,7 @@ function generatorContainerMusicAddPlaylist() {
 
             let imgCover = document.createElement("img");
             imgCover.src = element.currentCoverUrl;
+            imgCover.alt = element.title;
 
             let divTitleItemMinhasPlaylists = document.createElement("div");
             divTitleItemMinhasPlaylists.classList.add("title-item-minhas-playlists-mobile");
@@ -1808,6 +1814,7 @@ function themeChanger(selectedTheme){
         if(selectedTheme == "Original"){
             allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version", "hatsune-miku-version", "amv-brasileiro-version"));
             serviceLogo.src = "https://i.ibb.co/fdBXmh2/logo.png";
+            serviceLogo.alt = "Logo do serviço";
             return;
         }
         if(selectedTheme == "Rock Version"){
@@ -1816,6 +1823,7 @@ function themeChanger(selectedTheme){
                 element.classList.add("rock-version")
             });
             serviceLogo.src = "https://i.ibb.co/Mh46LMN/logo-rock-version.png";
+            serviceLogo.alt = "Logo do serviço";
             return;
         }
         if(selectedTheme == "Hatsune Miku Version"){
@@ -1824,6 +1832,7 @@ function themeChanger(selectedTheme){
                 element.classList.add("hatsune-miku-version")
             });
             serviceLogo.src = "https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png";
+            serviceLogo.alt = "Logo do serviço";
             return;
         }
         if(selectedTheme == "AMV Brasileiro Version"){
@@ -1832,6 +1841,7 @@ function themeChanger(selectedTheme){
                 element.classList.add("amv-brasileiro-version")
             });
             serviceLogo.src = "https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png";
+            serviceLogo.alt = "Logo do serviço";
             return;
         }
     } else {
@@ -1843,6 +1853,7 @@ function themeChanger(selectedTheme){
         if(selectedTheme == "Original"){
             allElementsChangeableByTheme.forEach(element => element.classList.remove("rock-version", "hatsune-miku-version", "amv-brasileiro-version"));
             serviceLogo.src = "https://i.ibb.co/fdBXmh2/logo.png";
+            serviceLogo.alt = "Logo do serviço";
             return;
         }
         if(selectedTheme == "Rock Version"){
@@ -1851,6 +1862,7 @@ function themeChanger(selectedTheme){
                 element.classList.add("rock-version")
             });
             serviceLogo.src = "https://i.ibb.co/Mh46LMN/logo-rock-version.png";
+            serviceLogo.alt = "Logo do serviço";
             return;
         }
         if(selectedTheme == "Hatsune Miku Version"){
@@ -1859,6 +1871,7 @@ function themeChanger(selectedTheme){
                 element.classList.add("hatsune-miku-version")
             });
             serviceLogo.src = "https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png";
+            serviceLogo.alt = "Logo do serviço";
             return;
         }
         if(selectedTheme == "AMV Brasileiro Version"){
@@ -1867,6 +1880,7 @@ function themeChanger(selectedTheme){
                 element.classList.add("amv-brasileiro-version")
             });
             serviceLogo.src = "https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png";
+            serviceLogo.alt = "Logo do serviço";
             return;
         }
     }
@@ -3164,9 +3178,11 @@ function setUserProfilePicture() {
             document.querySelector('#userSettingsPersonIcon').classList.add("hidden")
             document.querySelector('#userSettingsPersonContainer').classList.remove("hidden")
             document.querySelector('#userSettingsPersonImg').src = userData.profilePicture
+            document.querySelector('#userSettingsPersonImg').alt = "Foto de perfil do usuário"
             document.querySelector('#userPersonIcon').classList.add("hidden")
             document.querySelector('#userPersonContainer').classList.remove("hidden")
             document.querySelector('#userPersonImg').src = userData.profilePicture
+            document.querySelector('#userPersonImg').alt = "Foto de perfil do usuário"
             profilePictureInput.value = userData.profilePicture
         }
     } else {
@@ -3179,9 +3195,11 @@ function setUserProfilePicture() {
             document.querySelector('#userSettingsPersonIconMobile').classList.add("hidden")
             document.querySelector('#userSettingsPersonContainerMobile').classList.remove("hidden")
             document.querySelector('#userSettingsPersonImgMobile').src = userData.profilePicture
+            document.querySelector('#userSettingsPersonImgMobile').alt = "Foto de perfil do usuário"
             document.querySelector('#userPersonIconMobile').classList.add("hidden")
             document.querySelector('#userPersonContainerMobile').classList.remove("hidden")
             document.querySelector('#userPersonImgMobile').src = userData.profilePicture
+            document.querySelector('#userPersonImgMobile').alt = "Foto de perfil do usuário"
             profilePictureInputMobile.value = userData.profilePicture
         }
     }

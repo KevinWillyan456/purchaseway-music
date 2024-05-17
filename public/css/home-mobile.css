@@ -25,6 +25,7 @@
 .header-mobile .service-logo-mobile {
     cursor: pointer;
     width: 120px;
+    pointer-events: none;
 }
 .header-mobile .service-logo-mobile img {
     width: 100%;
@@ -248,6 +249,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    pointer-events: none;
 }
 .item-playlist-mobile .box-wrapper .cover-item img {
     width: 100%;
@@ -312,7 +314,7 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 60%, var(--color-white-1) 60%, var(--color-white-1) 100%);
+    background-image: linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%);
 }
 .main-controls-mobile .box-wrapper {
     display: flex;
@@ -327,6 +329,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    pointer-events: none;
 }
 .main-controls-mobile .box-wrapper .cover-item img {
     width: 100%;
@@ -945,6 +948,7 @@
     box-shadow: 0 0 20px var(--color-white-1);
 }
 .user-settings-person-img-mobile {
+    pointer-events: none;
     width: 100%;
 }
 .layer-profile-picture-mobile {
@@ -1067,6 +1071,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    pointer-events: none;
 }
 .item-favorite-mobile .box-wrapper-favorite .cover-item-favorite img {
     width: 100%;
@@ -1151,6 +1156,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    pointer-events: none;
 }
 .item-historic-mobile .box-wrapper-historic .cover-item-historic img {
     width: 100%;
@@ -1482,6 +1488,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    pointer-events: none;
 }
 .item-search-mobile .box-wrapper-search .cover-item-search img {
     width: 100%;

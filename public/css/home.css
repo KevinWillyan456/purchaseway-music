@@ -659,6 +659,7 @@ iframe {
 }
 .user-settings .user-settings-person-img {
     width: 100%;
+    pointer-events: none;
 }
 .layer-profile-picture {
     z-index: 1000;
@@ -773,6 +774,7 @@ iframe {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    pointer-events: none;
 }
 .item-playlist-favorite .cover-item-favorite img {
     width: 100%;
@@ -838,6 +840,7 @@ iframe {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    pointer-events: none;
 }
 .item-playlist-historic .cover-item-historic img {
     width: 100%;
@@ -1128,13 +1131,10 @@ iframe {
     height: 81px;
     margin-left: 20px;
     position: relative;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     pointer-events: none;
     border-radius: 10px;
 }
@@ -1234,17 +1234,14 @@ iframe {
     width: 100%;
     height: 12px;
     border-radius: 10px;
-
     outline: none;
     cursor: pointer;
     z-index: 100;
-
-    /* Será controlado por JavaScript */
     background-image: linear-gradient(
         to right,
         var(--color-blue-2) 0%,
-        var(--color-blue-2) 50%,
-        var(--color-white-1) 50%,
+        var(--color-blue-2) 0%,
+        var(--color-white-1) 0%,
         var(--color-white-1) 100%
     );
 }
@@ -1276,7 +1273,7 @@ iframe {
     transform: translateX(-10px);
     position: absolute;
     top: 0;
-    left: calc(2% - 10px);
+    left: 0;
     border: none;
     width: 20px;
     height: 20px;
@@ -1310,17 +1307,14 @@ iframe {
     width: 100%;
     height: 12px;
     border-radius: 10px;
-
     outline: none;
     cursor: pointer;
     z-index: 100;
-
-    /* Será controlado por JavaScript */
     background-image: linear-gradient(
         to right,
         var(--color-blue-2) 0%,
-        var(--color-blue-2) 50%,
-        var(--color-white-1) 50%,
+        var(--color-blue-2) 0%,
+        var(--color-white-1) 0%,
         var(--color-white-1) 100%
     );
 }
@@ -1366,9 +1360,8 @@ iframe {
 .container-side-2 .service-logo {
     display: flex;
     margin-left: 30px;
-    cursor: pointer;
+    pointer-events: none;
 }
-
 .main-select-playlists {
     width: 100%;
     min-height: 100vh;
@@ -1768,6 +1761,7 @@ iframe {
     justify-content: center;
     overflow: hidden;
     border-radius: 10px;
+    pointer-events: none;
 }
 .music-my-new-playlist-overflow
     .music-my-new-playlist-container
@@ -2435,16 +2429,12 @@ iframe {
     align-items: center;
     justify-content: center;
     background-color: var(--color-white-1);
-
     width: 100%;
     height: 258.75px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
