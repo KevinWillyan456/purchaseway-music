@@ -95,7 +95,7 @@ const formPlaylistEditDescription = document.querySelector(
 function listPlaylists() {
     contentPlaylist.innerHTML = ''
 
-    data[0].forEach((playlist) => {
+    data[0].forEach((playlist, index) => {
         let contador = 0
         let musicsByPlaylist = []
 
@@ -108,6 +108,7 @@ function listPlaylists() {
 
         let divPlaylistItem = document.createElement('div')
         divPlaylistItem.classList.add('playlist-item')
+        divPlaylistItem.style.animationDelay = `${index * 0.05}s`
         divPlaylistItem.addEventListener('click', () => {
             containerPlaylistToManage.classList.remove('hidden')
             document.body.style.overflow = 'hidden'
@@ -216,9 +217,10 @@ function listMusic(musics, playlistInfo) {
 
     contentSongs.innerHTML = ''
 
-    musics.forEach((music) => {
+    musics.forEach((music, index) => {
         const songsItem = document.createElement('div')
         songsItem.classList.add('songs-item')
+        songsItem.style.animationDelay = `${index * 0.05 + 0.3}s`
         songsItem.addEventListener('click', () => {
             focusSong.classList.remove('hidden')
             listFocusMusic(music)
@@ -845,8 +847,13 @@ function setUserProfilePicture() {
             .querySelector('#userPersonContainerMobile')
             .classList.remove('hidden')
         document.querySelector('#userPersonImg').src = userData.profilePicture
+        document.querySelector('#userPersonImg').alt = userData.name
         document.querySelector('#userPersonImgMobile').src =
             userData.profilePicture
+        document.querySelector('#userPersonImgMobile').alt = userData.name
+        document.querySelectorAll('.icon-person-container').forEach((item) => {
+            item.style.display = 'flex'
+        })
     }
 }
 
