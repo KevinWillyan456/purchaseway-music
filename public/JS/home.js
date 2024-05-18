@@ -4468,7 +4468,6 @@ function playVideo() {
                     player.getPlayerState() !== YT.PlayerState.PLAYING
                 ) {
                     player.playVideo()
-                    totalDurationSetter()
                 }
             }, 200)
         } else {
@@ -4477,7 +4476,7 @@ function playVideo() {
                     clearInterval(checkPlayerInterval)
                     playVideo()
                 }
-            }, 100)
+            }, 200)
         }
     } else {
         if (playerReadyMobile) {
@@ -4487,7 +4486,6 @@ function playVideo() {
                     playerMobile.getPlayerState() !== YT.PlayerState.PLAYING
                 ) {
                     playerMobile.playVideo()
-                    totalDurationSetter()
                 }
             }, 200)
         } else {
@@ -4546,6 +4544,7 @@ function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         setVideoVolume(sliderMusicVolume.value)
         checkAndUnmute()
+        totalDurationSetter()
         clearInterval(timerCurretDurationSetter)
         timerCurretDurationSetter = null
         timerCurretDurationSetter = setInterval(curretDurationSetter, 1000)
@@ -4700,10 +4699,12 @@ function changeVideoCurrentTime(time) {
     if (screenWidth >= 1360) {
         if (playerReady) {
             player.seekTo(time, true)
+            playVideo()
         }
     } else {
         if (playerReadyMobile) {
             playerMobile.seekTo(time, true)
+            playVideo()
         }
     }
 }
