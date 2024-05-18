@@ -2152,6 +2152,7 @@ iframe {
     width: 100%;
 }
 .container-minhas-playlists .item-minhas-playlists {
+    animation: animate-item-playlist 200ms backwards;
     transition: 200ms;
     width: 100%;
     min-height: 80px;
@@ -2395,6 +2396,7 @@ iframe {
     flex-direction: column;
 }
 .container-minhas-musicas .item-minhas-musicas {
+    animation: animate-item-playlist 200ms backwards;
     width: 100%;
     min-height: 80px;
     height: 80px;
@@ -2432,6 +2434,7 @@ iframe {
     text-overflow: ellipsis;
 }
 .container-select-playlists .item-select-playlist {
+    animation: animate-item-playlist 200ms backwards;
     width: 460px;
     background-color: var(--color-blue-3);
     border-radius: 10px;

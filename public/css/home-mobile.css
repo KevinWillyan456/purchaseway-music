@@ -816,6 +816,7 @@
     border-radius: 10px;
 }
 .container-select-playlists-mobile .item-select-playlist-mobile {
+    animation: animate-item-playlist-mobile 200ms backwards;
     width: 320px;
     background-color: var(--color-blue-3);
     border-radius: 10px;
@@ -1943,6 +1944,7 @@
     padding: 20px;
 }
 .container-minhas-playlists-mobile .item-minhas-playlists-mobile {
+    animation: animate-item-playlist-mobile 200ms backwards;
     width: calc(100% - 25px);
     margin: 0 auto;
     min-height: 60px;
@@ -2188,6 +2190,7 @@
     flex-direction: column;
 }
 .container-minhas-musicas-mobile .item-minhas-musicas-mobile {
+    animation: animate-item-playlist-mobile 200ms backwards;
     width: calc(100% - 40px);
     margin: 0 auto;
     min-height: 60px;

@@ -1179,10 +1179,14 @@ function generatorContainerPlaylistSelectData() {
     if (screenWidth >= 1360) {
         containerPlaylistSelect.innerHTML = ''
 
-        playlistDataFiltered.forEach((element) => {
+        playlistDataFiltered.forEach((element, index) => {
             containerPlaylistSelect.innerHTML += `
-                <div class="item-select-playlist">
-                    <div class="cover-item-select-playlist" data-gender="${element.gender}" data-title="${element.title}">
+                <div class="item-select-playlist" style="animation-delay: ${
+                    index * 0.05 + 0.1
+                }s">
+                    <div class="cover-item-select-playlist" data-gender="${
+                        element.gender
+                    }" data-title="${element.title}">
                         <img src="${element.coverUrl}" alt="${element.title}">
                     </div>
                     <div class="info-item-select-playlist">
@@ -1224,10 +1228,14 @@ function generatorContainerPlaylistSelectData() {
     } else {
         containerPlaylistSelectMobile.innerHTML = ''
 
-        playlistDataFilteredMobile.forEach((element) => {
+        playlistDataFilteredMobile.forEach((element, index) => {
             containerPlaylistSelectMobile.innerHTML += `
-                <div class="item-select-playlist-mobile">
-                    <div class="cover-item-select-playlist-mobile" data-gender="${element.gender}" data-title="${element.title}">
+                <div class="item-select-playlist-mobile" style="animation-delay: ${
+                    index * 0.05 + 0.1
+                }s">
+                    <div class="cover-item-select-playlist-mobile" data-gender="${
+                        element.gender
+                    }" data-title="${element.title}">
                         <img src="${element.coverUrl}" alt="${element.title}">
                     </div>
                     <div class="info-item-select-playlist-mobile">
@@ -1316,7 +1324,7 @@ function generatorContainerSearchData() {
                 <div class="item-playlist-search" data-id="${
                     element._id
                 }" data-theme="${element.theme}" style="animation-delay: ${
-                index * 0.05
+                index * 0.05 + 0.1
             }s">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
@@ -1849,9 +1857,12 @@ function generatorContainerMusicAddPlaylist() {
                 )
         )
 
-        myPlaylistsFiltered.forEach((element) => {
+        myPlaylistsFiltered.forEach((element, index) => {
             let divItemMinhasPlaylists = document.createElement('div')
             divItemMinhasPlaylists.classList.add('item-minhas-playlists')
+            divItemMinhasPlaylists.style.animationDelay = `${
+                index * 0.05 + 0.1
+            }s`
             divItemMinhasPlaylists.addEventListener('click', () => {
                 document.querySelector(
                     '.main-minhas-playlists .main-playlist .content .title'
@@ -1881,13 +1892,16 @@ function generatorContainerMusicAddPlaylist() {
 
                 containerMusic.innerHTML = ''
 
-                element.songs.reverse().forEach((ele) => {
+                element.songs.reverse().forEach((ele, index) => {
                     let musicaEncontrada = allMusicData.find(
                         (element) => element._id === ele.musicId
                     )
 
                     let divItemMinhasMusicas = document.createElement('div')
                     divItemMinhasMusicas.classList.add('item-minhas-musicas')
+                    divItemMinhasMusicas.style.animationDelay = `${
+                        index * 0.05 + 0.2
+                    }s`
                     divItemMinhasMusicas.addEventListener('click', () => {
                         document.querySelector(
                             '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-title'
@@ -2006,9 +2020,12 @@ function generatorContainerMusicAddPlaylist() {
                 )
         )
 
-        myPlaylistsFiltered.forEach((element) => {
+        myPlaylistsFiltered.forEach((element, index) => {
             let divItemMinhasPlaylists = document.createElement('div')
             divItemMinhasPlaylists.classList.add('item-minhas-playlists-mobile')
+            divItemMinhasPlaylists.style.animationDelay = `${
+                index * 0.05 + 0.1
+            }s`
             divItemMinhasPlaylists.addEventListener('click', () => {
                 document.querySelector(
                     '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile'
@@ -2038,7 +2055,7 @@ function generatorContainerMusicAddPlaylist() {
 
                 containerMusic.innerHTML = ''
 
-                element.songs.reverse().forEach((ele) => {
+                element.songs.reverse().forEach((ele, index) => {
                     let musicaEncontrada = allMusicData.find(
                         (element) => element._id === ele.musicId
                     )
@@ -2047,6 +2064,9 @@ function generatorContainerMusicAddPlaylist() {
                     divItemMinhasMusicas.classList.add(
                         'item-minhas-musicas-mobile'
                     )
+                    divItemMinhasMusicas.style.animationDelay = `${
+                        index * 0.05 + 0.1
+                    }s`
                     divItemMinhasMusicas.addEventListener('click', () => {
                         document.querySelector(
                             '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-title-mobile'
