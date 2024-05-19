@@ -3430,6 +3430,7 @@ function changeMobileOrDesktop() {
     indexAudioGender = musicDataShuffled[indexAudio].gender
     refreshFavorite()
     setMusicPlayTag()
+    durationSliderEventGenerator()
 }
 
 function setManagementSystem() {
