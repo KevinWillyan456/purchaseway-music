@@ -233,7 +233,7 @@ async function selectPlaylist(req: Request, res: Response) {
     const { id } = req.params
 
     if (!playlist) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+        return res.status(200).json({ songs: [] })
     }
 
     try {
