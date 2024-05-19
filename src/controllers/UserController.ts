@@ -66,6 +66,7 @@ async function storeUser(req: Request, res: Response) {
         additionDate: new Date(),
         lastAccessedPlaylist: lastAccessedPlaylist.gender,
         lastAccessedPlaylistName: lastAccessedPlaylist.title,
+        theme: 'original',
     })
 
     try {
@@ -873,6 +874,31 @@ async function deleteUserPlaylistSongs(
     }
 }
 
+async function updateUserTheme(
+    req: Request<{ id?: UpdateWithAggregationPipeline }>,
+    res: Response
+) {
+    const { theme } = req.body
+    const { id } = req.params
+
+    if (!theme) {
+        return res.status(400).json({ error: 'Theme is missing' })
+    }
+
+    const updateDoc = {
+        $set: { theme },
+    }
+
+    const filter = { _id: id }
+
+    try {
+        await User.updateOne(filter, updateDoc)
+        return res.status(200).json({ message: 'User updated successfully!' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
 export {
     indexUser,
     indexUserById,
@@ -891,4 +917,5 @@ export {
     deleteUserPlaylist,
     storeUserPlaylistSongs,
     deleteUserPlaylistSongs,
+    updateUserTheme,
 }

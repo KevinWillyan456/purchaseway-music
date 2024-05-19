@@ -17,6 +17,7 @@ export interface IUser {
     lastAccessedPlaylist: string
     lastAccessedPlaylistName: string
     profilePicture: string
+    theme: string
     myPlaylists: {
         _id: string
         title: string
@@ -51,6 +52,7 @@ const userSchema = new Schema<IUser>({
     lastAccessedPlaylist: { type: String, required: true, default: '' },
     lastAccessedPlaylistName: { type: String, required: true, default: '' },
     profilePicture: { type: String, default: '' },
+    theme: { type: String, required: true, default: 'original' },
     myPlaylists: [
         {
             _id: { type: String },

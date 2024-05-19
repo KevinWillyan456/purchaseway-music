@@ -25,6 +25,7 @@ import {
     updateUserPlaylist,
     updateUserPlaylistSelected,
     updateUserProfilePicture,
+    updateUserTheme,
 } from './controllers/UserController'
 
 import {
@@ -69,6 +70,7 @@ routes.delete(
     getUser,
     deleteUserPlaylistSongs
 )
+routes.patch('/users-theme/:id', getUser, updateUserTheme)
 
 routes.get('/playlists/:id', getUser, indexPlaylist)
 routes.get('/playlists-select/:id', getUser, selectPlaylist)

@@ -23,7 +23,7 @@ body {
 .main-playlist {
     position: relative;
     width: 500px;
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     height: 100%;
 }
 
@@ -49,7 +49,7 @@ body {
 .main-playlist .box-wrapper-info .more-playlist {
     color: var(--color-white-1);
     font-size: 20px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
 
     width: 80px;
     height: 40px;
@@ -69,7 +69,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     z-index: 100;
     display: none;
 }
@@ -80,7 +80,7 @@ body {
     background: var(--color-black);
 }
 .main-playlist .menu-options::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .main-playlist .menu-options .container-option {
     margin-top: 20px;
@@ -102,7 +102,7 @@ body {
 .main-playlist .menu-options .box-wrapper-info .back-menu-options {
     color: var(--color-white-1);
     font-size: 20px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     width: 80px;
     height: 40px;
     display: flex;
@@ -117,7 +117,7 @@ body {
     height: 80px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
     font-weight: 400;
@@ -147,7 +147,7 @@ body {
 }
 
 .container-playlist::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 
@@ -155,7 +155,7 @@ body {
     animation: animate-item-playlist 200ms backwards;
     width: 460px;
     margin: 0 auto 10px auto;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
 
     display: flex;
     padding: 10px 12px;
@@ -218,7 +218,7 @@ body {
     text-overflow: ellipsis;
 }
 .container-playlist .item-playlist .box-wrapper .info-item.music-playing {
-    color: var(--color-blue-5);
+    color: var(--color-base-5);
 }
 .info-item .title-info {
     max-width: 260px;
@@ -342,7 +342,7 @@ iframe {
     font-size: 14px;
 }
 .search-bar input:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 
 .search-bar .search-bar-close {
@@ -368,7 +368,7 @@ iframe {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 
     display: flex;
     align-items: center;
@@ -399,7 +399,7 @@ iframe {
 }
 
 .layer-search-result {
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     width: calc(100% - 40px);
     height: 100%;
     border-radius: 20px;
@@ -425,7 +425,7 @@ iframe {
     border-radius: 10px;
 }
 .box-search-result::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .box-search-result .title-search-result {
@@ -442,7 +442,7 @@ iframe {
 .item-playlist-search {
     animation: animate-item-playlist 200ms backwards;
     width: calc(100% - 5px);
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     margin-bottom: 10px;
 
     display: flex;
@@ -549,7 +549,8 @@ iframe {
     z-index: 30;
 }
 .layer-user-settings {
-    background-color: var(--color-blue-1);
+    transition: 200ms;
+    background-color: var(--color-base-1);
     width: calc(100% - 40px);
     height: 100%;
     border-radius: 20px;
@@ -577,7 +578,7 @@ iframe {
     border-radius: 10px;
 }
 .box-user-settings::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 
@@ -617,7 +618,7 @@ iframe {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 
     display: flex;
     align-items: center;
@@ -685,12 +686,13 @@ iframe {
     place-items: center;
 }
 .layer-profile-picture .container-profile-picture {
+    transition: 200ms;
     animation: animate-scale-opacity-entrace 500ms;
     width: 480px;
     height: 279px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -712,16 +714,16 @@ iframe {
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     margin-bottom: 20px;
 }
 .layer-profile-picture .container-profile-picture .field:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .layer-profile-picture .container-profile-picture .field::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .layer-profile-picture .container-profile-picture .save {
@@ -730,7 +732,7 @@ iframe {
     padding-top: 2px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
     display: flex;
@@ -762,15 +764,41 @@ iframe {
     justify-content: space-between;
     align-items: center;
 }
-
+.container-themes {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.container-themes .theme {
+    transition: 200ms;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #3c93cf;
+    cursor: pointer;
+    border: 3px solid var(--color-white-1);
+}
+.container-themes .theme.active {
+    box-shadow: 0 0 10px var(--color-white-1);
+}
+.container-themes .theme.rock-version {
+    background-color: #bf1f1f;
+}
+.container-themes .theme.hatsune-miku {
+    background-color: #229e89;
+}
+.container-themes .theme.amv-br {
+    background-color: #9e5a22;
+}
 .container-favorite {
     width: 100%;
     margin-top: 20px;
 }
-
 .item-playlist-favorite {
     width: calc(100% - 5px);
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     margin-bottom: 10px;
     display: flex;
     padding: 10px 12px;
@@ -836,7 +864,7 @@ iframe {
 
 .item-playlist-historic {
     width: calc(100% - 5px);
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     margin-bottom: 10px;
     display: flex;
     padding: 10px 12px;
@@ -927,12 +955,13 @@ iframe {
     place-items: center;
 }
 .form-delete-account-overflow .form-delete-account {
+    transition: 200ms;
     animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 396px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -963,16 +992,16 @@ iframe {
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     margin-bottom: 20px;
 }
 .form-delete-account-overflow .form-delete-account .field:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .form-delete-account-overflow .form-delete-account .field::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .form-delete-account-overflow .form-delete-account .delete-account-warning {
@@ -994,7 +1023,7 @@ iframe {
     padding-top: 2px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
     display: grid;
@@ -1049,10 +1078,11 @@ iframe {
     z-index: 2000;
 }
 .warning.success {
+    transition: 200ms;
     animation: warning-anime-color-2 1s infinite alternate;
-    color: var(--color-blue-2);
-    background-color: var(--color-blue-1);
-    border: 2px solid var(--color-blue-2);
+    color: var(--color-base-2);
+    background-color: var(--color-base-1);
+    border: 2px solid var(--color-base-2);
 }
 @keyframes warning-anime-color {
     0% {
@@ -1064,7 +1094,7 @@ iframe {
 }
 @keyframes warning-anime-color-2 {
     0% {
-        color: var(--color-blue-2);
+        color: var(--color-base-2);
     }
     100% {
         color: var(--color-white-1);
@@ -1089,7 +1119,7 @@ iframe {
     grid-column-start: 1;
     grid-column-end: 3;
 
-    background-image: linear-gradient(var(--color-blue-4), #000000);
+    background-image: linear-gradient(var(--color-base-4), #000000);
     height: 120px;
     max-height: 120px;
     overflow: hidden;
@@ -1179,7 +1209,7 @@ iframe {
 .container-side-1 .current-music-rating ion-icon {
     width: 20px;
     height: 20px;
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 
 .container-side-1 .current-music-add {
@@ -1194,7 +1224,7 @@ iframe {
 .container-side-1 .current-music-add ion-icon {
     width: 50px;
     height: 50px;
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
     cursor: pointer;
 }
 
@@ -1251,8 +1281,8 @@ iframe {
     z-index: 100;
     background-image: linear-gradient(
         to right,
-        var(--color-blue-2) 0%,
-        var(--color-blue-2) 0%,
+        var(--color-base-2) 0%,
+        var(--color-base-2) 0%,
         var(--color-white-1) 0%,
         var(--color-white-1) 100%
     );
@@ -1279,7 +1309,7 @@ iframe {
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .slider-music-volume .slider-music-volume-wrapper .slider-music-volume-dot {
     transform: translateX(-10px);
@@ -1292,7 +1322,7 @@ iframe {
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 
 .container-side-2 .container-volume {
@@ -1324,8 +1354,8 @@ iframe {
     z-index: 100;
     background-image: linear-gradient(
         to right,
-        var(--color-blue-2) 0%,
-        var(--color-blue-2) 0%,
+        var(--color-base-2) 0%,
+        var(--color-base-2) 0%,
         var(--color-white-1) 0%,
         var(--color-white-1) 100%
     );
@@ -1364,10 +1394,10 @@ iframe {
     display: flex;
 }
 .container-funcions .repeat-icon ion-icon.active {
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 .container-funcions .shuffle-icon ion-icon.active {
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 .container-side-2 .service-logo {
     display: flex;
@@ -1381,7 +1411,7 @@ iframe {
     top: 0;
     left: 0;
 
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     z-index: 1000;
 }
 .main-select-playlists .select-playlist-back {
@@ -1392,7 +1422,7 @@ iframe {
 
     width: 80px;
     height: 40px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     color: var(--color-white-1);
 
     border: 2px solid var(--color-white-1);
@@ -1438,7 +1468,7 @@ iframe {
     background: var(--color-black);
 }
 .main-select-playlists .container-select-playlists::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .main-select-playlists .playlists-search-bar {
     position: relative;
@@ -1462,7 +1492,7 @@ iframe {
     font-size: 14px;
 }
 .main-select-playlists .playlists-search-bar-input:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .main-select-playlists .playlists-search-bar-input::placeholder {
     color: var(--color-black);
@@ -1476,7 +1506,7 @@ iframe {
 }
 .container-select-playlists .no-playlist-found {
     animation: animate-scale-opacity-entrace 500ms;
-    background-color: var(--color-blue-4);
+    background-color: var(--color-base-4);
     color: var(--color-white-1);
     display: flex;
     flex-direction: column;
@@ -1500,12 +1530,13 @@ iframe {
     z-index: 1060;
 }
 .add-my-new-playlist-overflow .add-my-new-playlist-container {
+    transition: 200ms;
     animation: animate-scale-opacity-entrace 500ms;
     width: 540px;
     height: 319px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1527,7 +1558,7 @@ iframe {
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     padding: 0 10px;
@@ -1536,12 +1567,12 @@ iframe {
 .add-my-new-playlist-overflow
     .add-my-new-playlist-container
     .add-my-new-playlist-name:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .add-my-new-playlist-overflow
     .add-my-new-playlist-container
     .add-my-new-playlist-name::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .add-my-new-playlist-overflow
@@ -1550,7 +1581,7 @@ iframe {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 20px;
     border: none;
@@ -1572,12 +1603,13 @@ iframe {
     z-index: 1050;
 }
 .edit-my-new-playlist-overflow .edit-my-new-playlist-container {
+    transition: 200ms;
     animation: animate-scale-opacity-entrace 500ms;
     width: 540px;
     height: 319px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1599,7 +1631,7 @@ iframe {
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     padding: 0 10px;
@@ -1608,12 +1640,12 @@ iframe {
 .edit-my-new-playlist-overflow
     .edit-my-new-playlist-container
     .edit-my-new-playlist-name:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .edit-my-new-playlist-overflow
     .edit-my-new-playlist-container
     .edit-my-new-playlist-name::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .edit-my-new-playlist-overflow
@@ -1622,7 +1654,7 @@ iframe {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 20px;
     border: none;
@@ -1644,12 +1676,13 @@ iframe {
     z-index: 1050;
 }
 .delete-my-new-playlist-overflow .delete-my-new-playlist-container {
+    transition: 200ms;
     animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 392px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1682,7 +1715,7 @@ iframe {
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     padding: 0 10px;
@@ -1691,12 +1724,12 @@ iframe {
 .delete-my-new-playlist-overflow
     .delete-my-new-playlist-container
     .delete-my-new-playlist-name:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .delete-my-new-playlist-overflow
     .delete-my-new-playlist-container
     .delete-my-new-playlist-name::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .delete-my-new-playlist-overflow
@@ -1717,7 +1750,7 @@ iframe {
     height: 60px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
     display: flex;
@@ -1755,7 +1788,7 @@ iframe {
     animation: animate-scale-opacity-entrace 500ms;
     width: 1000px;
     height: 265px;
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     display: flex;
     gap: 20px;
     padding: 20px;
@@ -1806,7 +1839,7 @@ iframe {
 .music-my-new-playlist-overflow
     .music-my-new-playlist-container
     .music-my-new-playlist-title::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .music-my-new-playlist-overflow .music-my-new-playlist-delete-btn {
@@ -1843,12 +1876,13 @@ iframe {
     z-index: 1050;
 }
 .music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container {
+    transition: 200ms;
     animation: animate-scale-opacity-entrace 500ms;
     width: 720px;
     height: 342px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1891,7 +1925,7 @@ iframe {
     height: 60px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
     display: flex;
@@ -1927,13 +1961,14 @@ iframe {
     z-index: 1050;
 }
 .current-music-add-overflow .current-music-add-container {
+    transition: 200ms;
     animation: animate-scale-opacity-entrace 500ms;
     min-width: 300px;
     max-width: 600px;
     max-height: 600px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     padding: 20px 20px 30px 20px;
 }
 .current-music-add-favorite-container {
@@ -1946,7 +1981,7 @@ iframe {
 .current-music-add-favorite-container .current-music-add-favorite-icon {
     width: 40px;
     height: 40px;
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 .current-music-add-favorite-container
     .current-music-add-favorite-icon
@@ -1975,7 +2010,7 @@ iframe {
     border-radius: 10px;
 }
 .current-music-add-playlist-container::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .current-music-add-playlist-container .current-music-add-playlist-item {
@@ -1989,7 +2024,7 @@ iframe {
     .current-music-add-playlist-status {
     width: 25px;
     height: 25px;
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 .current-music-add-playlist-container
     .current-music-add-playlist-item
@@ -2011,7 +2046,7 @@ iframe {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 18px;
     border: none;
@@ -2025,7 +2060,7 @@ iframe {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 20px;
     border: none;
@@ -2044,7 +2079,7 @@ iframe {
     left: 0;
     overflow: auto;
 
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     z-index: 1000;
 }
 .main-minhas-playlists::-webkit-scrollbar {
@@ -2054,7 +2089,7 @@ iframe {
     background: var(--color-black);
 }
 .main-minhas-playlists::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .main-minhas-playlists .minhas-playlists-back {
     position: absolute;
@@ -2063,7 +2098,7 @@ iframe {
 
     width: 80px;
     height: 40px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     color: var(--color-white-1);
 
     border: 2px solid var(--color-white-1);
@@ -2108,7 +2143,7 @@ iframe {
     font-size: 14px;
 }
 .main-minhas-playlists .minhas-playlists-search-bar-input:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .main-minhas-playlists .minhas-playlists-search-bar-input::placeholder {
     color: var(--color-black);
@@ -2137,11 +2172,11 @@ iframe {
     background: var(--color-black);
 }
 .main-minhas-playlists .container-minhas-playlists::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .container-minhas-playlists .no-playlist {
     animation: animate-scale-opacity-entrace 500ms;
-    background-color: var(--color-blue-4);
+    background-color: var(--color-base-4);
     color: var(--color-white-1);
     display: flex;
     flex-direction: column;
@@ -2157,7 +2192,7 @@ iframe {
     width: 100%;
     min-height: 80px;
     height: 80px;
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
 
     display: grid;
     grid-template-columns: 108px 1fr 148px 20px;
@@ -2196,7 +2231,7 @@ iframe {
     padding-right: 20px;
 }
 .item-minhas-playlists .total-de-musicas-quantidade {
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
     font-size: 16px;
 }
 .container-minha-playlist {
@@ -2206,7 +2241,7 @@ iframe {
     display: flex;
     flex-direction: column;
     overflow: auto;
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     top: 0;
     left: 0;
 }
@@ -2217,7 +2252,7 @@ iframe {
     background: var(--color-black);
 }
 .container-minha-playlist::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .container-minha-playlist .container-minha-playlist-back {
     position: absolute;
@@ -2226,7 +2261,7 @@ iframe {
 
     width: 80px;
     height: 40px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     color: var(--color-white-1);
 
     border: 2px solid var(--color-white-1);
@@ -2246,7 +2281,7 @@ iframe {
     margin: 115px auto 0 auto;
     height: 265px;
     max-height: 265px;
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     display: grid;
     grid-template-columns: 400px 1fr;
     align-items: center;
@@ -2292,7 +2327,7 @@ iframe {
     border-radius: 10px;
 }
 .main-minhas-playlists .main-playlist .content .title::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .main-minhas-playlists .main-playlist .content .details {
@@ -2316,7 +2351,7 @@ iframe {
     height: 60px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 24px;
     display: flex;
@@ -2333,7 +2368,7 @@ iframe {
     height: 30px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 14px;
     display: none;
@@ -2350,7 +2385,7 @@ iframe {
     height: 60px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background-color: var(--color-blue-4);
+    background-color: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 24px;
     display: flex;
@@ -2400,7 +2435,7 @@ iframe {
     width: 100%;
     min-height: 80px;
     height: 80px;
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
 
     display: grid;
     grid-template-columns: 108px 1fr;
@@ -2436,7 +2471,7 @@ iframe {
 .container-select-playlists .item-select-playlist {
     animation: animate-item-playlist 200ms backwards;
     width: 460px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     border-radius: 10px;
 }
 .item-select-playlist .cover-item-select-playlist {
@@ -2495,7 +2530,7 @@ iframe {
 }
 .info-item-select-playlist
     .description-item-select-playlist::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .info-item-select-playlist .total-music-item-select-playlist {
@@ -2517,12 +2552,13 @@ iframe {
     z-index: 1050;
 }
 .confirm-logout-container {
+    transition: 200ms;
     animation: animate-scale-opacity-entrace 500ms;
     width: 400px;
     height: 259px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2537,7 +2573,7 @@ iframe {
     width: 160px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 20px;
     display: flex;

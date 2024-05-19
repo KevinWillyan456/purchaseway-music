@@ -1,5 +1,5 @@
 .super-main-mobile {
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     width: 100%;
     min-height: 100vh;
     padding-top: 20px;
@@ -57,7 +57,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@
 .main-playlist-mobile {
     position: relative;
     width: 100%;
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     margin: 0 auto;
 }
 .main-playlist-mobile .box-wrapper-info-mobile {
@@ -97,7 +97,7 @@
 .box-wrapper-info-mobile .more-playlist-mobile {
     color: var(--color-white-1);
     font-size: 16px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
 
     min-width: 60px;
     height: 30px;
@@ -118,7 +118,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     z-index: 100;
     display: none;
     padding-bottom: 20px;
@@ -130,7 +130,7 @@
     background: var(--color-black);
 }
 .main-playlist-mobile .menu-options-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile {
     display: flex;
@@ -165,7 +165,7 @@
     .back-menu-options-mobile {
     color: var(--color-white-1);
     font-size: 16px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     min-width: 60px;
     height: 30px;
     display: flex;
@@ -181,7 +181,7 @@
     height: 80px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
     font-weight: 400;
@@ -214,7 +214,7 @@
 }
 
 .container-playlist-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 
@@ -222,7 +222,7 @@
     animation: animate-item-playlist-mobile 200ms backwards;
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     display: flex;
     padding: 10px 10px;
     justify-content: space-between;
@@ -274,7 +274,7 @@
     .item-playlist-mobile
     .box-wrapper
     .info-item.music-playing {
-    color: var(--color-blue-5);
+    color: var(--color-base-5);
 }
 .item-playlist-mobile .info-item .title-info {
     max-width: calc(100vw - 176px);
@@ -307,7 +307,7 @@
     width: 100%;
     min-height: 100px;
     position: relative;
-    background-image: linear-gradient(var(--color-blue-4), #000000);
+    background-image: linear-gradient(var(--color-base-4), #000000);
     overflow: hidden;
 
     display: flex;
@@ -325,8 +325,8 @@
     height: 5px;
     background-image: linear-gradient(
         to right,
-        var(--color-blue-2) 0%,
-        var(--color-blue-2) 0%,
+        var(--color-base-2) 0%,
+        var(--color-base-2) 0%,
         var(--color-white-1) 0%,
         var(--color-white-1) 100%
     );
@@ -504,16 +504,16 @@
 
     padding-left: 2px;
 
-    text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
+    text-shadow: 0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1);
 }
 .main-display-mobile
     .info-current-music-mobile
@@ -526,16 +526,16 @@
 
     padding-left: 2px;
 
-    text-shadow: 0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1),
-        0 0 2px var(--color-blue-1), 0 0 2px var(--color-blue-1);
+    text-shadow: 0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1);
 }
 
 .main-display-mobile .current-music-add-mobile {
@@ -543,7 +543,7 @@
     bottom: 181.25px;
     right: calc(50% - 163px);
 
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
     width: 50px;
     height: 50px;
 
@@ -586,7 +586,7 @@
     cursor: pointer;
 }
 .main-display-mobile .repeat-icon-mobile ion-icon.active {
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 
 .main-display-mobile .shuffle-icon-mobile {
@@ -605,7 +605,7 @@
     cursor: pointer;
 }
 .main-display-mobile .shuffle-icon-mobile ion-icon.active {
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 
 .main-display-mobile .current-duration-mobile {
@@ -643,17 +643,14 @@
     width: 100%;
     height: 6px;
     border-radius: 10px;
-
     outline: none;
     cursor: pointer;
     z-index: 100;
-
-    /* Será controlado por JavaScript */
     background-image: linear-gradient(
         to right,
-        var(--color-blue-2) 0%,
-        var(--color-blue-2) 50%,
-        var(--color-white-1) 50%,
+        var(--color-base-2) 0%,
+        var(--color-base-2) 0%,
+        var(--color-white-1) 0%,
         var(--color-white-1) 100%
     );
 }
@@ -679,7 +676,7 @@
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 
 .main-select-playlists-mobile {
@@ -690,7 +687,7 @@
     top: 0;
     left: 0;
 
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     z-index: 1000;
 }
 .main-select-playlists-mobile .select-playlist-back-mobile {
@@ -701,7 +698,7 @@
 
     width: 65px;
     height: 30px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     color: var(--color-white-1);
 
     border: 2px solid var(--color-white-1);
@@ -748,10 +745,10 @@
     font-size: 14px;
 }
 .playlists-search-bar-input-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .playlists-search-bar-input-mobile::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 14px;
 }
 .playlists-search-bar-close-mobile {
@@ -770,7 +767,7 @@
     animation: animate-scale-opacity-entrace 500ms;
     color: var(--color-white-1);
     font-size: 20px;
-    background-color: var(--color-blue-4);
+    background-color: var(--color-base-4);
     text-align: center;
     grid-column: 1 / -1;
     padding: 20px;
@@ -813,13 +810,13 @@
 .main-select-playlists-mobile
     .container-select-playlists-wrapper
     .container-select-playlists-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .container-select-playlists-mobile .item-select-playlist-mobile {
     animation: animate-item-playlist-mobile 200ms backwards;
     width: 320px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     border-radius: 10px;
 }
 .item-select-playlist-mobile .cover-item-select-playlist-mobile {
@@ -878,7 +875,7 @@
 }
 .info-item-select-playlist-mobile
     .description-item-select-playlist-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .info-item-select-playlist-mobile .total-music-item-select-playlist-mobile {
@@ -893,7 +890,7 @@
     top: 0;
     left: 0;
 
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     z-index: 1000;
 }
 
@@ -943,7 +940,7 @@
     position: relative;
     width: 100px;
     height: 100px;
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     color: var(--color-white-1);
 
     border-radius: 50%;
@@ -1043,7 +1040,7 @@
     height: 279px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1065,18 +1062,18 @@
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     margin-bottom: 20px;
 }
 .layer-profile-picture-mobile .container-profile-picture-mobile .field:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .layer-profile-picture-mobile
     .container-profile-picture-mobile
     .field::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .layer-profile-picture-mobile .container-profile-picture-mobile .save {
@@ -1085,7 +1082,7 @@
     padding-top: 2px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
     display: flex;
@@ -1116,7 +1113,7 @@
 }
 
 .main-user-settings-mobile .content-profile-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 
@@ -1129,7 +1126,7 @@
 .container-favorite-mobile .item-favorite-mobile {
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     display: flex;
     padding: 10px 10px;
     justify-content: space-between;
@@ -1187,7 +1184,37 @@
     color: var(--color-white-1);
     cursor: pointer;
 }
-
+.container-themes-mobile {
+    width: calc(100% - 25px);
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 30px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.container-themes-mobile .theme-mobile {
+    transition: 200ms;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3c93cf;
+    cursor: pointer;
+    border: 3px solid var(--color-white-1);
+}
+.container-themes-mobile .theme-mobile.active {
+    box-shadow: 0 0 10px var(--color-white-1);
+}
+.container-themes-mobile .theme-mobile.rock-version {
+    background-color: #bf1f1f;
+}
+.container-themes-mobile .theme-mobile.hatsune-miku {
+    background-color: #229e89;
+}
+.container-themes-mobile .theme-mobile.amv-br {
+    background-color: #9e5a22;
+}
 .content-profile-mobile .title-2-wrapper-mobile {
     color: var(--color-white-1);
 
@@ -1214,7 +1241,7 @@
 .container-historic-mobile .item-historic-mobile {
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     display: flex;
     padding: 10px 10px;
     justify-content: space-between;
@@ -1311,7 +1338,7 @@
     height: 396px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1346,18 +1373,18 @@
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     margin-bottom: 20px;
 }
 .form-delete-account-overflow-mobile .form-delete-account-mobile .field:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .form-delete-account-overflow-mobile
     .form-delete-account-mobile
     .field::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .form-delete-account-overflow-mobile
@@ -1386,7 +1413,7 @@
     padding-top: 2px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     display: grid;
     place-items: center;
@@ -1466,7 +1493,7 @@
     top: 0;
     left: 0;
 
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     z-index: 1000;
 }
 
@@ -1515,7 +1542,7 @@
     font-size: 14px;
 }
 .main-search-mobile .search-bar-mobile input:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 
 .main-search-mobile .search-bar-mobile .search-bar-close-mobile {
@@ -1552,14 +1579,14 @@
 }
 
 .main-search-mobile .content-search-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .container-search-mobile .item-search-mobile {
     animation: animate-item-playlist-mobile 200ms backwards;
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     display: flex;
     padding: 10px 10px;
     justify-content: space-between;
@@ -1657,7 +1684,7 @@
     max-height: 600px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     padding: 20px 20px 30px 20px;
 }
 .current-music-add-favorite-container-mobile {
@@ -1670,7 +1697,7 @@
 .current-music-add-favorite-icon-mobile {
     width: 40px;
     height: 40px;
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 .current-music-add-favorite-icon-mobile ion-icon {
     width: 40px;
@@ -1697,7 +1724,7 @@
     border-radius: 10px;
 }
 .current-music-add-playlist-container-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .current-music-add-playlist-container-mobile
@@ -1712,7 +1739,7 @@
     .current-music-add-playlist-status-mobile {
     width: 25px;
     height: 25px;
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
 }
 .current-music-add-playlist-container-mobile
     .current-music-add-playlist-item-mobile
@@ -1734,7 +1761,7 @@
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 18px;
     border: none;
@@ -1748,7 +1775,7 @@
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 20px;
     border: none;
@@ -1777,7 +1804,7 @@
     height: 319px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1796,24 +1823,24 @@
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     padding: 0 10px;
     margin-bottom: 20px;
 }
 .add-my-new-playlist-name-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .add-my-new-playlist-name-mobile::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .add-my-new-playlist-adicionar-mobile {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 20px;
     border: none;
@@ -1830,7 +1857,7 @@
     left: 0;
     overflow: auto;
 
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     z-index: 1000;
 }
 .main-minhas-playlists-mobile::-webkit-scrollbar {
@@ -1840,7 +1867,7 @@
     background: var(--color-black);
 }
 .main-minhas-playlists-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .main-minhas-playlists-mobile .minhas-playlists-back-mobile {
     position: absolute;
@@ -1848,7 +1875,7 @@
     left: 20px;
     width: 65px;
     height: 30px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     color: var(--color-white-1);
     border: 2px solid var(--color-white-1);
     border-radius: 10px;
@@ -1890,7 +1917,7 @@
     font-size: 14px;
 }
 .main-minhas-playlists-mobile .minhas-playlists-search-bar-input-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .main-minhas-playlists-mobile
     .minhas-playlists-search-bar-input-mobile::placeholder {
@@ -1931,13 +1958,13 @@
 }
 .main-minhas-playlists-mobile
     .container-minhas-playlists-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .container-minhas-playlists-mobile .no-playlist-mobile {
     animation: animate-scale-opacity-entrace 500ms;
     color: var(--color-white-1);
     font-size: 20px;
-    background-color: var(--color-blue-4);
+    background-color: var(--color-base-4);
     width: calc(100% - 40px);
     margin: 0 auto;
     text-align: center;
@@ -1949,7 +1976,7 @@
     margin: 0 auto;
     min-height: 60px;
     height: 60px;
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     display: grid;
     grid-template-columns: 70px 1fr 22px 20px;
     padding-left: 10px;
@@ -1986,7 +2013,7 @@
     font-size: 14px;
 }
 .item-minhas-playlists-mobile .total-de-musicas-quantidade-mobile {
-    color: var(--color-blue-2);
+    color: var(--color-base-2);
     font-size: 14px;
     padding-left: 5px;
 }
@@ -1997,7 +2024,7 @@
     display: flex;
     flex-direction: column;
     overflow: auto;
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     top: 0;
     left: 0;
 }
@@ -2008,7 +2035,7 @@
     background: var(--color-black);
 }
 .container-minha-playlist-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
 }
 .container-minha-playlist-mobile .container-minha-playlist-back-mobile {
     position: absolute;
@@ -2017,7 +2044,7 @@
 
     width: 80px;
     height: 40px;
-    background-color: var(--color-blue-3);
+    background-color: var(--color-base-3);
     color: var(--color-white-1);
 
     border: 2px solid var(--color-white-1);
@@ -2041,7 +2068,7 @@
     width: calc(100% - 40px);
     height: 432px;
     max-height: 432px;
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -2101,7 +2128,7 @@
     .main-playlist-mobile
     .content-mobile
     .title-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .main-minhas-playlists-mobile
@@ -2122,7 +2149,7 @@
     height: 30px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 14px;
     align-items: center;
@@ -2137,7 +2164,7 @@
 .main-minhas-playlists-mobile .btn-editar-mobile {
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background-color: var(--color-blue-4);
+    background-color: var(--color-base-4);
     color: var(--color-white-1);
     display: flex;
     align-items: center;
@@ -2195,7 +2222,7 @@
     margin: 0 auto;
     min-height: 60px;
     height: 60px;
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
 
     display: grid;
     grid-template-columns: 70px 1fr 20px;
@@ -2251,7 +2278,7 @@
     flex-direction: column;
     padding: 0;
     gap: 10px;
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     align-items: center;
     border-radius: 10px;
 }
@@ -2288,7 +2315,7 @@
     border-radius: 10px;
 }
 .music-my-new-playlist-title-mobile::-webkit-scrollbar-thumb {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-base-2);
     border-radius: 10px;
 }
 .music-my-new-playlist-delete-btn-mobile {
@@ -2335,7 +2362,7 @@
     height: 306px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2375,7 +2402,7 @@
     padding-top: 2px;
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 16px;
 }
@@ -2412,7 +2439,7 @@
     height: 319px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2431,24 +2458,24 @@
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     padding: 0 10px;
     margin-bottom: 20px;
 }
 .edit-my-new-playlist-name-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .edit-my-new-playlist-name-mobile::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
 }
 .edit-my-new-playlist-adicionar-mobile {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 20px;
     border: none;
@@ -2476,7 +2503,7 @@
     height: 354px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2509,16 +2536,16 @@
     border-radius: 10px;
     border: 2px solid #000;
     background: var(--color-white-1);
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 15px;
     outline: none;
     margin-bottom: 20px;
 }
 .delete-my-new-playlist-name-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 .delete-my-new-playlist-name-mobile::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
     font-size: 12px;
 }
 .delete-my-new-playlist-warning-mobile {
@@ -2539,7 +2566,7 @@
     border-radius: 10px;
     padding-top: 2px;
     border: 2px solid var(--color-white-1);
-    background: var(--color-blue-3);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 16px;
     display: grid;
@@ -2579,7 +2606,7 @@
     height: 259px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
-    background: var(--color-blue-1);
+    background: var(--color-base-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2594,7 +2621,7 @@
     width: 160px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-blue-4);
+    background: var(--color-base-4);
     color: var(--color-white-1);
     font-size: 20px;
     display: flex;

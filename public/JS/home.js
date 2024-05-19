@@ -275,6 +275,55 @@ let playlistData = []
 
 let audioControllerPlayToggle = true
 
+const colorsThemes = {
+    original: {
+        base1: '#081b39',
+        base2: '#3c93cf',
+        base3: '#3e5162',
+        base4: '#0c264e',
+        base5: '#3decff',
+    },
+    'rock-version': {
+        base1: '#260101',
+        base2: '#bf1f1f',
+        base3: '#40060b',
+        base4: '#731010',
+        base5: '#f53636',
+    },
+    'hatsune-miku-version': {
+        base1: '#12211c',
+        base2: '#229e89',
+        base3: '#3f5d5b',
+        base4: '#0b5c54',
+        base5: '#3dffe8',
+    },
+    'amv-brasileiro-version': {
+        base1: '#211e12',
+        base2: '#9e5a22',
+        base3: '#5d523f',
+        base4: '#5c2e0b',
+        base5: '#fcff3d',
+    },
+}
+
+const serviceLogo = document.querySelector('.service-logo img')
+const serviceLogoMobile = document.querySelector(
+    '.header-mobile .service-logo-mobile img'
+)
+
+const allThemeTriggers = document.querySelectorAll(
+    '.container-themes .theme, .container-themes-mobile .theme-mobile'
+)
+
+allThemeTriggers.forEach((element) => {
+    element.addEventListener('click', () => {
+        const selectedTheme = element.dataset.theme
+        if (userData.theme == selectedTheme) return
+
+        themeChanger(selectedTheme)
+    })
+})
+
 audioControllerPlay.addEventListener('click', audioControllerPlayFunction)
 audioControllerNext.addEventListener('click', audioControllerNextFunction)
 audioControllerPrev.addEventListener('click', audioControllerPrevFunction)
@@ -306,7 +355,7 @@ document.addEventListener('keyup', function (event) {
                 break
         }
     }
-    if (canKeyboardEventsProfile && event.key == 'p') {
+    if (canKeyboardEventsProfile && (event.key == 'p' || event.key == 'P')) {
         toggleTemplateUser()
     }
 })
@@ -369,11 +418,13 @@ controlsMobile.addEventListener('click', () => {
 })
 btnDeleteAccount.addEventListener('click', () => {
     formDeleteAccount.classList.remove('hidden')
+    deleteAccountInputToConfirm.focus()
     canKeyboardEvents = false
     canKeyboardEventsProfile = false
 })
 btnDeleteAccountMobile.addEventListener('click', () => {
     formDeleteAccountMobile.classList.remove('hidden')
+    deleteAccountInputToConfirmMobile.focus()
 })
 formDeleteAccountCancel.addEventListener('click', () => {
     formDeleteAccount.classList.add('hidden')
@@ -462,13 +513,22 @@ btnSelectMyPlaylistMobile.addEventListener('click', () => {
     toggleMyPlaylists()
     selectUserMyPlaylist()
 })
-btnEditSelectMyPlaylist.addEventListener('click', toggleEditMinhaPlaylist)
-btnEditSelectMyPlaylistMobile.addEventListener('click', toggleEditMinhaPlaylist)
-btnDeleteSelectMyPlaylist.addEventListener('click', toggleDeleteMinhaPlaylist)
-btnDeleteSelectMyPlaylistMobile.addEventListener(
-    'click',
-    toggleDeleteMinhaPlaylist
-)
+btnEditSelectMyPlaylist.addEventListener('click', () => {
+    toggleEditMinhaPlaylist()
+    document.querySelector('.edit-my-new-playlist-name').focus()
+})
+btnEditSelectMyPlaylistMobile.addEventListener('click', () => {
+    toggleEditMinhaPlaylist()
+    document.querySelector('.edit-my-new-playlist-name-mobile').focus()
+})
+btnDeleteSelectMyPlaylist.addEventListener('click', () => {
+    toggleDeleteMinhaPlaylist()
+    document.querySelector('.delete-my-new-playlist-name').focus()
+})
+btnDeleteSelectMyPlaylistMobile.addEventListener('click', () => {
+    toggleDeleteMinhaPlaylist()
+    document.querySelector('.delete-my-new-playlist-name-mobile').focus()
+})
 
 document
     .querySelector('.add-my-new-playlist-overflow')
@@ -515,6 +575,7 @@ document
             event.target.classList.contains('delete-my-new-playlist-overflow')
         ) {
             event.target.classList.add('hidden')
+            document.querySelector('.delete-my-new-playlist-name').value = ''
             canKeyboardEvents = true
         }
     })
@@ -527,6 +588,9 @@ document
             )
         ) {
             event.target.classList.add('hidden')
+            document.querySelector(
+                '.delete-my-new-playlist-name-mobile'
+            ).value = ''
         }
     })
 document
@@ -645,10 +709,16 @@ document
     })
 document
     .querySelector('.current-music-add-create-new-playlist')
-    .addEventListener('click', toggleAddMinhaPlaylist)
+    .addEventListener('click', () => {
+        toggleAddMinhaPlaylist()
+        document.querySelector('.add-my-new-playlist-name').focus()
+    })
 document
     .querySelector('.current-music-add-create-new-playlist-mobile')
-    .addEventListener('click', toggleAddMinhaPlaylist)
+    .addEventListener('click', () => {
+        toggleAddMinhaPlaylist()
+        document.querySelector('.add-my-new-playlist-name-mobile').focus()
+    })
 document
     .querySelector('.current-music-add-confirm')
     .addEventListener('click', toggleAddOptions)
@@ -826,7 +896,6 @@ function inicia() {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    themeChanger(musicDataShuffled[indexAudio].theme)
     indexAudioId = musicDataShuffled[indexAudio]._id
     indexAudioGender = musicDataShuffled[indexAudio].gender
     $('.title-playlist').html(userData.lastAccessedPlaylistName)
@@ -834,6 +903,9 @@ function inicia() {
     setMusicPlayTag()
     refreshFavorite()
     initialDeviceDefinition()
+    initDurationSlider()
+    initVolumeSlider()
+    initThemeChanger(userData.theme)
 }
 
 function audioControllerPlayFunction() {
@@ -997,7 +1069,6 @@ function audioControllerNextFunction() {
     manageHistoric()
     refreshFavorite()
     generatorContainerCurrentMusicAddPlaylist()
-    themeChanger(selectedTheme)
 }
 function audioControllerPrevFunction() {
     indexAudio--
@@ -1015,7 +1086,6 @@ function audioControllerPrevFunction() {
     manageHistoric()
     refreshFavorite()
     generatorContainerCurrentMusicAddPlaylist()
-    themeChanger(selectedTheme)
 }
 
 function generatorContainerPlaylistData() {
@@ -1118,7 +1188,6 @@ function generatorContainerPlaylistDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme)
                 }
             })
         })
@@ -1159,7 +1228,6 @@ function generatorContainerPlaylistDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme)
                 }
             })
         })
@@ -1236,7 +1304,6 @@ function generatorContainerPlaylistSelectData() {
             }
         }
         if (emptyPlaylist) return
-        themeChanger(musicDataShuffled[indexAudio].theme)
     } else {
         containerPlaylistSelectMobile.innerHTML = ''
 
@@ -1285,7 +1352,6 @@ function generatorContainerPlaylistSelectData() {
             }
         }
         if (emptyPlaylist) return
-        themeChanger(musicDataShuffled[indexAudio].theme)
     }
 }
 
@@ -1437,7 +1503,6 @@ function generatorContainerSearchDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme)
 
                     $('.focus-shadow').hide(200)
                     $('.container-search-result').hide(200)
@@ -1485,7 +1550,6 @@ function generatorContainerSearchDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme)
 
                     profileWasClicked = true
                     canKeyboardEvents = true
@@ -1602,7 +1666,6 @@ function generatorContainerFavoriteDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme)
 
                     $('.focus-shadow').hide(200)
                     $('.container-user-settings').hide(200)
@@ -1650,7 +1713,6 @@ function generatorContainerFavoriteDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme)
 
                     profileWasClicked = true
                     canKeyboardEvents = true
@@ -1767,7 +1829,6 @@ function generatorContainerHistoricDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme)
 
                     $('.focus-shadow').hide(200)
                     $('.container-user-settings').hide(200)
@@ -1815,7 +1876,6 @@ function generatorContainerHistoricDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
-                    themeChanger(selectedTheme)
 
                     profileWasClicked = true
                     canKeyboardEvents = true
@@ -2410,121 +2470,140 @@ function generatorContainerCurrentMusicAddPlaylist() {
     }
 }
 
-function themeChanger(selectedTheme) {
-    if (screenWidth >= 1360) {
-        let allElementsChangeableByTheme = document.querySelectorAll(
-            '.main-playlist, .container-playlist, .search-bar, .container-settings .user-settings, .main-display, .container-side-1 .current-music-rating, .container-side-1 .current-music-add, .slider-music-duration, .slider-music-duration-wrapper .slider-music-duration-dot, .slider-music-volume-wrapper .slider-music-volume-dot, .container-volume .slider-music-volume, .container-volume .slider-music-volume, .container-playlist .item-playlist, .main-controls, .container-funcions .repeat-icon, .container-funcions .shuffle-icon, .layer-search-result, .box-search-result, .item-playlist-search, .layer-user-settings, .box-user-settings, .box-profile .user-settings, .item-playlist-favorite, .item-playlist-historic, .main-playlist .box-wrapper-info .more-playlist, .main-select-playlists, .main-select-playlists .select-playlist-back, .container-select-playlists .item-select-playlist, .main-playlist .menu-options, .main-playlist .menu-options .box-wrapper-info .back-menu-options, .main-playlist .menu-options .option, .info-item-select-playlist .description-item-select-playlist, .form-delete-account-overflow .form-delete-account .field, .form-delete-account-overflow .form-delete-account, .form-delete-account-overflow .form-delete-account .interactions-delete .cancel, .layer-profile-picture .container-profile-picture, .layer-profile-picture .container-profile-picture .field, .layer-profile-picture .container-profile-picture .save'
+async function initThemeChanger(theme = 'original') {
+    const themes = [
+        'original',
+        'rock-version',
+        'hatsune-miku-version',
+        'amv-brasileiro-version',
+    ]
+
+    themes.forEach((theme) => {
+        document
+            .querySelectorAll(`[data-theme="${theme}"]`)
+            .forEach((element) => {
+                element.classList.remove('active')
+            })
+    })
+
+    document.querySelectorAll(`[data-theme="${theme}"]`).forEach((element) => {
+        element.classList.add('active')
+    })
+
+    if (!themes.includes(theme)) {
+        console.warn(
+            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`
         )
-        let serviceLogo = document.querySelector('.service-logo img')
-
-        initDurationSlider()
-        initVolumeSlider()
-
-        if (selectedTheme == 'Original') {
-            allElementsChangeableByTheme.forEach((element) =>
-                element.classList.remove(
-                    'rock-version',
-                    'hatsune-miku-version',
-                    'amv-brasileiro-version'
-                )
-            )
-            serviceLogo.src = 'https://i.ibb.co/fdBXmh2/logo.png'
-            serviceLogo.alt = 'Logo do serviço'
-            return
-        }
-        if (selectedTheme == 'Rock Version') {
-            allElementsChangeableByTheme.forEach((element) => {
-                element.classList.remove(
-                    'hatsune-miku-version',
-                    'amv-brasileiro-version'
-                )
-                element.classList.add('rock-version')
-            })
-            serviceLogo.src = 'https://i.ibb.co/Mh46LMN/logo-rock-version.png'
-            serviceLogo.alt = 'Logo do serviço'
-            return
-        }
-        if (selectedTheme == 'Hatsune Miku Version') {
-            allElementsChangeableByTheme.forEach((element) => {
-                element.classList.remove(
-                    'rock-version',
-                    'amv-brasileiro-version'
-                )
-                element.classList.add('hatsune-miku-version')
-            })
-            serviceLogo.src =
-                'https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png'
-            serviceLogo.alt = 'Logo do serviço'
-            return
-        }
-        if (selectedTheme == 'AMV Brasileiro Version') {
-            allElementsChangeableByTheme.forEach((element) => {
-                element.classList.remove('rock-version', 'hatsune-miku-version')
-                element.classList.add('amv-brasileiro-version')
-            })
-            serviceLogo.src =
-                'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png'
-            serviceLogo.alt = 'Logo do serviço'
-            return
-        }
-    } else {
-        let allElementsChangeableByTheme = document.querySelectorAll(
-            '.super-main-mobile, .header-mobile .user-settings, .main-playlist-mobile, .box-wrapper-info-mobile .more-playlist-mobile, .container-playlist-mobile, .container-playlist-mobile .item-playlist-mobile, .main-controls-mobile, .main-controls-mobile .display-music-duration-mobile, .main-display-mobile .info-current-music-mobile .title-info-current-music-mobile, .main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile, .main-display-mobile, .main-display-mobile .repeat-icon-mobile, .main-display-mobile .shuffle-icon-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile, .slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile, .main-select-playlists-mobile, .main-select-playlists-mobile .select-playlist-back-mobile, .main-select-playlists-mobile .container-select-playlists-wrapper .container-select-playlists-mobile, .container-select-playlists-mobile .item-select-playlist-mobile, .main-user-settings-mobile, .main-user-settings-mobile .box-profile-mobile .user-settings-mobile, .main-user-settings-mobile .content-profile-mobile, .container-favorite-mobile .item-favorite-mobile, .container-historic-mobile .item-historic-mobile, .main-search-mobile, .main-search-mobile .search-bar-mobile, .main-search-mobile .content-search-mobile, .container-search-mobile .item-search-mobile, .main-playlist-mobile .menu-options-mobile, .main-playlist-mobile .menu-options-mobile .box-wrapper-info-mobile .back-menu-options-mobile, .main-playlist-mobile .menu-options-mobile .option-mobile, .info-item-select-playlist-mobile .description-item-select-playlist-mobile, .form-delete-account-overflow-mobile .form-delete-account-mobile .field, .form-delete-account-overflow-mobile .form-delete-account-mobile, .form-delete-account-overflow-mobile .form-delete-account-mobile .interactions-delete .cancel, .layer-profile-picture-mobile .container-profile-picture-mobile, .layer-profile-picture-mobile .container-profile-picture-mobile .field, .layer-profile-picture-mobile .container-profile-picture-mobile .save'
-        )
-        let serviceLogo = document.querySelector(
-            '.header-mobile .service-logo-mobile img'
-        )
-
-        initDurationSlider()
-
-        if (selectedTheme == 'Original') {
-            allElementsChangeableByTheme.forEach((element) =>
-                element.classList.remove(
-                    'rock-version',
-                    'hatsune-miku-version',
-                    'amv-brasileiro-version'
-                )
-            )
-            serviceLogo.src = 'https://i.ibb.co/fdBXmh2/logo.png'
-            serviceLogo.alt = 'Logo do serviço'
-            return
-        }
-        if (selectedTheme == 'Rock Version') {
-            allElementsChangeableByTheme.forEach((element) => {
-                element.classList.remove(
-                    'hatsune-miku-version',
-                    'amv-brasileiro-version'
-                )
-                element.classList.add('rock-version')
-            })
-            serviceLogo.src = 'https://i.ibb.co/Mh46LMN/logo-rock-version.png'
-            serviceLogo.alt = 'Logo do serviço'
-            return
-        }
-        if (selectedTheme == 'Hatsune Miku Version') {
-            allElementsChangeableByTheme.forEach((element) => {
-                element.classList.remove(
-                    'rock-version',
-                    'amv-brasileiro-version'
-                )
-                element.classList.add('hatsune-miku-version')
-            })
-            serviceLogo.src =
-                'https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png'
-            serviceLogo.alt = 'Logo do serviço'
-            return
-        }
-        if (selectedTheme == 'AMV Brasileiro Version') {
-            allElementsChangeableByTheme.forEach((element) => {
-                element.classList.remove('rock-version', 'hatsune-miku-version')
-                element.classList.add('amv-brasileiro-version')
-            })
-            serviceLogo.src =
-                'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png'
-            serviceLogo.alt = 'Logo do serviço'
-            return
-        }
+        theme = 'original'
     }
+
+    for (let i = 1; i <= 5; i++) {
+        document.documentElement.style.setProperty(
+            `--color-base-${i}`,
+            colorsThemes[theme][`base${i}`]
+        )
+    }
+
+    const logoUrls = {
+        original: 'https://i.ibb.co/fdBXmh2/logo.png',
+        'rock-version': 'https://i.ibb.co/Mh46LMN/logo-rock-version.png',
+        'hatsune-miku-version':
+            'https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png',
+        'amv-brasileiro-version':
+            'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png',
+    }
+
+    const logoSrc = logoUrls[theme]
+
+    if (screenWidth >= 1360) {
+        serviceLogo.src = logoSrc
+    } else {
+        serviceLogoMobile.src = logoSrc
+    }
+}
+
+async function themeChanger(theme = 'original') {
+    const themes = [
+        'original',
+        'rock-version',
+        'hatsune-miku-version',
+        'amv-brasileiro-version',
+    ]
+
+    themes.forEach((theme) => {
+        document
+            .querySelectorAll(`[data-theme="${theme}"]`)
+            .forEach((element) => {
+                element.classList.remove('active')
+            })
+    })
+
+    document.querySelectorAll(`[data-theme="${theme}"]`).forEach((element) => {
+        element.classList.add('active')
+    })
+
+    if (!themes.includes(theme)) {
+        console.warn(
+            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`
+        )
+        theme = 'original'
+    }
+
+    for (let i = 1; i <= 5; i++) {
+        document.documentElement.style.setProperty(
+            `--color-base-${i}`,
+            colorsThemes[theme][`base${i}`]
+        )
+    }
+
+    const logoUrls = {
+        original: 'https://i.ibb.co/fdBXmh2/logo.png',
+        'rock-version': 'https://i.ibb.co/Mh46LMN/logo-rock-version.png',
+        'hatsune-miku-version':
+            'https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png',
+        'amv-brasileiro-version':
+            'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png',
+    }
+
+    const logoSrc = logoUrls[theme]
+
+    if (screenWidth >= 1360) {
+        serviceLogo.src = logoSrc
+    } else {
+        serviceLogoMobile.src = logoSrc
+    }
+
+    await fetch(`/users-theme/${userData._id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            theme,
+        }),
+    })
+        .then((response) => {
+            if (response.status === 200) {
+                return (userData.theme = theme)
+            } else {
+                if (screenWidth >= 1360) {
+                    warning.classList.remove('hidden')
+                    warning.textContent = 'Internal Error!'
+                    setTimeout(() => {
+                        warning.classList.add('hidden')
+                    }, 3000)
+                } else {
+                    warningMobile.classList.remove('hidden')
+                    warningMobile.textContent = 'Internal Error!'
+                    setTimeout(() => {
+                        warningMobile.classList.add('hidden')
+                    }, 3000)
+                }
+            }
+        })
+        .catch((error) => {
+            console.error(error)
+        })
 }
 
 let canMoveTheSliderDuration = true
@@ -2567,7 +2646,7 @@ function durationSliderEventGenerator() {
         sliderMusicDuration.oninput = () => {
             sliderMusicDuration.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
             )
             sliderMusicDurationDot.style.setProperty(
                 'left',
@@ -2620,7 +2699,7 @@ function durationSliderEventGenerator() {
         sliderMusicDurationMobile.oninput = () => {
             sliderMusicDurationMobile.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
             )
             sliderMusicDurationDotMobile.style.setProperty(
                 'left',
@@ -2664,7 +2743,7 @@ function volumeSliderEventGenerator() {
     sliderMusicVolume.oninput = () => {
         sliderMusicVolume.style.setProperty(
             'background-image',
-            `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
+            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
         )
         sliderMusicVolumeDot.style.setProperty(
             'left',
@@ -2678,7 +2757,7 @@ function initDurationSlider() {
     if (screenWidth >= 1360) {
         sliderMusicDuration.style.setProperty(
             'background-image',
-            `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
         )
         sliderMusicDurationDot.style.setProperty(
             'left',
@@ -2687,11 +2766,11 @@ function initDurationSlider() {
     } else {
         sliderMusicDurationMobile.style.setProperty(
             'background-image',
-            `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
         )
         displayMusicDurationMobile.style.setProperty(
             'background-image',
-            `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
         )
         sliderMusicDurationDotMobile.style.setProperty(
             'left',
@@ -2701,9 +2780,11 @@ function initDurationSlider() {
 }
 
 function initVolumeSlider() {
+    if (screenWidth < 1360) return
+
     sliderMusicVolume.style.setProperty(
         'background-image',
-        `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
+        `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
     )
     sliderMusicVolumeDot.style.setProperty(
         'left',
@@ -2776,7 +2857,6 @@ function musicFilteringFunction() {
         generatorContainerSearchData()
         generatorContainerSearchDataPlay()
         if (!emptyPlaylist) {
-            themeChanger(musicDataShuffled[indexAudio].theme)
         }
 
         if (containerItemsSearch.innerHTML == '') {
@@ -2790,7 +2870,6 @@ function musicFilteringFunction() {
         generatorContainerSearchData()
         generatorContainerSearchDataPlay()
         if (!emptyPlaylist) {
-            themeChanger(musicDataShuffled[indexAudio].theme)
         }
 
         if (containerItemsSearchMobile.innerHTML == '') {
@@ -3094,7 +3173,6 @@ async function refreshUser() {
     }
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
-    themeChanger(musicDataShuffled[indexAudio].theme)
 }
 
 async function refreshFavorite() {
@@ -3141,7 +3219,6 @@ async function refreshFavorite() {
 
     generatorContainerFavoriteData()
     generatorContainerFavoriteDataPlay()
-    themeChanger(musicDataShuffled[indexAudio].theme)
 }
 
 function toggleMenu() {
@@ -3425,12 +3502,12 @@ function changeMobileOrDesktop() {
     generatorContainerCurrentMusicAddPlaylist()
     generatorContainerMusicAddPlaylist()
     if (emptyPlaylist) return
-    themeChanger(musicDataShuffled[indexAudio].theme)
     indexAudioId = musicDataShuffled[indexAudio]._id
     indexAudioGender = musicDataShuffled[indexAudio].gender
     refreshFavorite()
     setMusicPlayTag()
     durationSliderEventGenerator()
+    initThemeChanger(userData.theme)
 }
 
 function setManagementSystem() {
@@ -4345,7 +4422,6 @@ function selectUserMyPlaylist() {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    themeChanger(musicDataShuffled[indexAudio].theme)
     indexAudioId = musicDataShuffled[indexAudio]._id
     indexAudioGender = musicDataShuffled[indexAudio].gender
     setMusicPlayTag()
@@ -4442,7 +4518,6 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    themeChanger(musicDataShuffled[indexAudio].theme)
     indexAudioId = musicDataShuffled[indexAudio]._id
     indexAudioGender = musicDataShuffled[indexAudio].gender
     setMusicPlayTag()
@@ -4660,7 +4735,7 @@ function curretDurationSetter() {
             )
             sliderMusicDuration.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
             )
             sliderMusicDurationDot.style.setProperty(
                 'left',
@@ -4688,11 +4763,11 @@ function curretDurationSetter() {
             )
             sliderMusicDurationMobile.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
             )
             displayMusicDurationMobile.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-blue-2) 0%, var(--color-blue-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
             )
             sliderMusicDurationDotMobile.style.setProperty(
                 'left',
