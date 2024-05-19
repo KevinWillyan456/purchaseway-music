@@ -283,7 +283,12 @@ audioControllerPlayMobile.addEventListener('click', audioControllerPlayFunction)
 audioControllerNextMobile.addEventListener('click', audioControllerNextFunction)
 audioControllerPrevMobile.addEventListener('click', audioControllerPrevFunction)
 
-window.addEventListener('resize', allFunctionResizing)
+window.addEventListener('load', setFullHeight)
+window.addEventListener('orientationchange', setFullHeight)
+window.addEventListener('resize', () => {
+    allFunctionResizing()
+    setFullHeight()
+})
 
 let canKeyboardEvents = true
 let canKeyboardEventsProfile = true
@@ -787,6 +792,13 @@ document
     .addEventListener('input', () => {
         generatorContainerMusicAddPlaylist()
     })
+
+function setFullHeight() {
+    const vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+}
+
+setFullHeight()
 
 function inicia() {
     setScreenWidthAndHeight()

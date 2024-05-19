@@ -203,7 +203,7 @@ html {
 }
 .section-banner {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background-color: var(--color-blue-4);
 
     background-image: url('https://i.ibb.co/yRX0Ryk/background-1.png');
@@ -291,7 +291,7 @@ html {
 
 .section-listen {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background-color: var(--color-blue-4);
 
     background-image: url('https://i.ibb.co/MZZyv4r/background-2.jpg');
@@ -343,7 +343,7 @@ html {
 
 .section-very-high-quality {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background-color: var(--color-blue-4);
 
     background-image: url('https://i.ibb.co/HdDR6GQ/background-3.png');
@@ -403,7 +403,7 @@ html {
 
 .section-reactive {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background-color: var(--color-blue-4);
 
     background-image: url('https://i.ibb.co/HPLtT9j/background-4.png');

@@ -193,8 +193,8 @@
 .main-playlist-mobile .container-playlist-mobile {
     width: 100%;
     overflow-y: scroll;
-    min-height: calc(100vh - 235px);
-    height: calc(100vh - 235px);
+    min-height: calc(var(--vh, 1vh) * 100 - 235px);
+    height: calc(var(--vh, 1vh) * 100 - 235px);
 
     padding-right: 5px;
     margin-bottom: 5px;
@@ -388,7 +388,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
 
     background-color: var(--color-black);
 }
@@ -684,7 +684,8 @@
 
 .main-select-playlists-mobile {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+
     position: fixed;
     top: 0;
     left: 0;
@@ -791,8 +792,8 @@
     justify-items: center;
     align-content: flex-start;
 
-    min-height: calc(100vh - 200px);
-    height: calc(100vh - 200px);
+    min-height: calc(var(--vh, 1vh) * 100 - 200px);
+    height: calc(var(--vh, 1vh) * 100 - 200px);
     overflow-y: scroll;
 
     padding-left: 10px;
@@ -887,7 +888,7 @@
 
 .main-user-settings-mobile {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     position: fixed;
     top: 0;
     left: 0;
@@ -1030,7 +1031,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     background-color: #000000cc;
     display: grid;
     place-items: center;
@@ -1095,8 +1096,8 @@
 .main-user-settings-mobile .content-profile-mobile {
     width: 100%;
     overflow-y: scroll;
-    min-height: calc(100vh - 338px);
-    height: calc(100vh - 338px);
+    min-height: calc(var(--vh, 1vh) * 100 - 338px);
+    height: calc(var(--vh, 1vh) * 100 - 338px);
 
     padding-right: 5px;
     margin-bottom: 5px;
@@ -1299,7 +1300,7 @@
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: grid;
     place-items: center;
 }
@@ -1460,7 +1461,7 @@
 }
 .main-search-mobile {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     position: fixed;
     top: 0;
     left: 0;
@@ -1532,9 +1533,8 @@
 .main-search-mobile .content-search-mobile {
     width: 100%;
     overflow-y: scroll;
-    min-height: calc(100vh - 304px);
-    height: calc(100vh - 304px);
-
+    min-height: calc(var(--vh, 1vh) * 100 - 304px);
+    height: calc(var(--vh, 1vh) * 100 - 304px);
     padding-right: 5px;
     margin-bottom: 5px;
     padding-left: 0;
@@ -1642,7 +1642,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -1763,7 +1763,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1824,7 +1824,7 @@
 }
 .main-minhas-playlists-mobile {
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     position: fixed;
     top: 0;
     left: 0;
@@ -1992,7 +1992,7 @@
 }
 .container-minha-playlist-mobile {
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -2234,7 +2234,7 @@
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2322,7 +2322,7 @@
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2398,7 +2398,7 @@
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2463,7 +2463,7 @@
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2565,7 +2565,7 @@
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;

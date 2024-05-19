@@ -2,7 +2,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
 
     background-color: var(--color-blue-1);
     background-image: url('https://i.ibb.co/CtPQ8Np/background-5.png');
