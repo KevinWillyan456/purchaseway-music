@@ -64,8 +64,8 @@ async function storeUser(req: Request, res: Response) {
         name,
         password: encryptedPassword,
         additionDate: new Date(),
-        lastAccessedPlaylist: lastAccessedPlaylist.title,
-        lastAccessedPlaylistName: lastAccessedPlaylist.gender,
+        lastAccessedPlaylist: lastAccessedPlaylist.gender,
+        lastAccessedPlaylistName: lastAccessedPlaylist.title,
     })
 
     try {
