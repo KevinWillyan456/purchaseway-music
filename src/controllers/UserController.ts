@@ -39,11 +39,33 @@ async function storeUser(req: Request, res: Response) {
 
     const encryptedPassword = await bcrypt.hash(password, 8)
 
+    const lastAccessedPlaylist = await Playlist.find()
+        .sort({ title: 1 })
+        .collation({ locale: 'pt', strength: 2 })
+        .select('title gender')
+        .lean()
+        .then((data) => {
+            if (data.length === 0) {
+                return {
+                    title: '',
+                    gender: '',
+                }
+            }
+
+            const randomIndex = Math.floor(Math.random() * data.length)
+            return {
+                title: data[randomIndex].title,
+                gender: data[randomIndex].gender,
+            }
+        })
+
     const user = new User({
         _id: uuid(),
         name,
         password: encryptedPassword,
         additionDate: new Date(),
+        lastAccessedPlaylist: lastAccessedPlaylist.title,
+        lastAccessedPlaylistName: lastAccessedPlaylist.gender,
     })
 
     try {

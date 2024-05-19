@@ -48,8 +48,8 @@ const userSchema = new Schema<IUser>({
             musicGender: { type: String },
         },
     ],
-    lastAccessedPlaylist: { type: String, default: 'Nightcore' },
-    lastAccessedPlaylistName: { type: String, default: 'Nightcores' },
+    lastAccessedPlaylist: { type: String, required: true, default: '' },
+    lastAccessedPlaylistName: { type: String, required: true, default: '' },
     profilePicture: { type: String, default: '' },
     myPlaylists: [
         {
