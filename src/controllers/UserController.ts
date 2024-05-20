@@ -31,9 +31,9 @@ async function indexUserById(
 }
 
 async function storeUser(req: Request, res: Response) {
-    const { name, password } = req.body
+    const { name, email, password } = req.body
 
-    if (!name || !password) {
+    if (!name || !email || !password) {
         return res.status(400).json({ error: 'data is missing' })
     }
 
@@ -63,6 +63,7 @@ async function storeUser(req: Request, res: Response) {
         _id: uuid(),
         name,
         password: encryptedPassword,
+        email,
         additionDate: new Date(),
         lastAccessedPlaylist: lastAccessedPlaylist.gender,
         lastAccessedPlaylistName: lastAccessedPlaylist.title,
@@ -79,23 +80,23 @@ async function storeUser(req: Request, res: Response) {
 }
 
 async function loginUser(req: Request, res: Response) {
-    const { name, password, hasConnect } = req.body
+    const { email, password, hasConnect } = req.body
 
-    if (!name || !password) {
+    if (!email || !password) {
         return res.status(400).json({ error: 'data is missing' })
     }
 
     try {
-        const user = await User.findOne({ name })
+        const user = await User.findOne({ email })
         let dateTokenExpires: string | number
         let dateCookieExpires: number
 
         if (!user) {
-            return res.status(400).json({ error: 'wrong name or password' })
+            return res.status(400).json({ error: 'wrong email or password' })
         }
 
         if (!(await bcrypt.compare(password, user?.password))) {
-            return res.status(400).json({ error: 'wrong name or password' })
+            return res.status(400).json({ error: 'wrong email or password' })
         }
 
         if (hasConnect) {
@@ -127,10 +128,10 @@ async function updateUser(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
 ) {
-    const { name, password } = req.body
+    const { name, email, password } = req.body
     const { id } = req.params
 
-    if (!name && !password) {
+    if (!name && !email && !password) {
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
@@ -140,6 +141,7 @@ async function updateUser(
     const updateDoc = {
         $set: {
             name,
+            email,
             password: encryptedPassword,
         },
     }

@@ -24,15 +24,21 @@
     </head>
     <body>
         <section class="container">
-            <form action="">
-                <div class="warning hidden">Nome ou Senha incorretos!</div>
+            <form>
+                <div class="warning hidden">E-mail ou Senha incorretos!</div>
                 <div class="title">Faça login na sua conta</div>
 
-                <input class="input-nome" type="text" placeholder="Nome" />
                 <input
-                    class="input-senha"
+                    class="input"
+                    type="text"
+                    placeholder="E-mail"
+                    id="inputEmail"
+                />
+                <input
+                    class="input"
                     type="password"
                     placeholder="Senha"
+                    id="inputSenha"
                 />
                 <div class="input-checkbox">
                     <input type="checkbox" id="checkbox-conect" />

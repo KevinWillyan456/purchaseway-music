@@ -1,32 +1,27 @@
 const form = document.querySelector('.container form')
-const inputNameUser = document.querySelector('.input-nome')
-const inputPasswordUser = document.querySelector('.input-senha')
+const inputNameUser = document.querySelector('#inputNome')
+const inputEmailUser = document.querySelector('#inputEmail')
+const inputPasswordUser = document.querySelector('#inputSenha')
 const inputConectedUser = document.querySelector('#checkbox-conect')
 const btnSubmit = document.querySelector('.btn-submit')
 const warning = document.querySelector('.warning')
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
-})
-
-window.addEventListener('load', setFullHeight)
-window.addEventListener('orientationchange', setFullHeight)
-window.addEventListener('resize', setFullHeight)
-
-function setFullHeight() {
-    const vh = window.innerHeight * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
-}
-
-setFullHeight()
-
-btnSubmit.addEventListener('click', validationForm)
+const MIN_PASSWORD_LENGTH = 6
 
 let timer = null
 
-async function validationForm() {
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    return emailRegex.test(email)
+}
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
     let nameValue = inputNameUser.value.trim()
-    let passwordValue = inputPasswordUser.value
+    let emailValue = inputEmailUser.value.trim()
+    let passwordValue = inputPasswordUser.value.trim()
 
     if (timer != null) {
         clearTimeout(timer)
@@ -36,26 +31,43 @@ async function validationForm() {
     if (nameValue == '') {
         warning.classList.remove('hidden')
         warning.innerHTML = 'Nome está vazio!'
+        inputNameUser.focus()
+        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+    }
+    if (emailValue == '') {
+        warning.classList.remove('hidden')
+        warning.innerHTML = 'E-mail está vazio!'
+        inputEmailUser.focus()
+        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+    }
+    if (!isValidEmail(emailValue)) {
+        warning.classList.remove('hidden')
+        warning.innerHTML = 'E-mail inválido!'
+        inputEmailUser.focus()
         return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
     }
     if (passwordValue == '') {
         warning.classList.remove('hidden')
         warning.innerHTML = 'Senha está vazio!'
+        inputPasswordUser.focus()
         return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
     }
     if (passwordValue.includes(' ')) {
         warning.classList.remove('hidden')
         warning.innerHTML = 'Senha não pode ter espaços!'
+        inputPasswordUser.focus()
         return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
     }
-    if (passwordValue.length < 6) {
+    if (passwordValue.length < MIN_PASSWORD_LENGTH) {
         warning.classList.remove('hidden')
-        warning.innerHTML = 'Senha muito curta!'
+        warning.innerHTML = `Senha deve ter no mínimo ${MIN_PASSWORD_LENGTH} caracteres!`
+        inputPasswordUser.focus()
         return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
     }
 
     const user = {
         name: nameValue,
+        email: emailValue,
         password: passwordValue,
         hasConnect: inputConectedUserVerify(),
     }
@@ -78,6 +90,7 @@ async function validationForm() {
     })
     if (resposta.status == 201) {
         inputNameUser.disabled = true
+        inputEmailUser.disabled = true
         inputPasswordUser.disabled = true
         btnSubmit.disabled = true
         warning.innerHTML = 'Usuário Criado com sucesso!'
@@ -101,4 +114,4 @@ async function validationForm() {
     if (resposta2.status == 200) {
         return (timer = setTimeout(() => (window.location = '/home'), 2000))
     }
-}
+})

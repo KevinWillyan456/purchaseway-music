@@ -3,6 +3,7 @@ import { Schema, model } from 'mongoose'
 export interface IUser {
     _id: string
     name: string
+    email: string
     password: string
     additionDate: Date
     type: string
@@ -33,7 +34,8 @@ export interface IUser {
 
 const userSchema = new Schema<IUser>({
     _id: { type: String, required: true },
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     additionDate: { type: Date, required: true },
     type: { type: String, default: 'normal' },
@@ -56,7 +58,7 @@ const userSchema = new Schema<IUser>({
     myPlaylists: [
         {
             _id: { type: String },
-            title: { type: String, unique: true },
+            title: { type: String },
             currentCoverUrl: { type: String },
             totalSongs: { type: Number },
             additionDate: { type: Date },

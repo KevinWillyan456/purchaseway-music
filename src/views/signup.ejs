@@ -24,15 +24,30 @@
     </head>
     <body>
         <section class="container">
-            <form action="">
+            <form>
                 <div class="warning hidden"></div>
                 <div class="title">Crie uma conta PwMusic</div>
 
-                <input class="input-nome" type="text" placeholder="Nome" />
                 <input
-                    class="input-senha"
+                    class="input"
+                    type="text"
+                    placeholder="Nome"
+                    id="inputNome"
+                    required
+                />
+                <input
+                    class="input"
+                    type="email"
+                    placeholder="E-mail"
+                    id="inputEmail"
+                    required
+                />
+                <input
+                    class="input"
                     type="password"
                     placeholder="Senha"
+                    id="inputSenha"
+                    required
                 />
                 <div class="input-checkbox">
                     <input type="checkbox" id="checkbox-conect" />
