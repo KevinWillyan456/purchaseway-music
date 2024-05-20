@@ -1090,6 +1090,8 @@ function audioControllerPrevFunction() {
 
 function generatorContainerPlaylistData() {
     if (screenWidth >= 1360) {
+        containerPlaylist.innerHTML = ''
+
         musicDataShuffled.forEach((element, index) => {
             containerPlaylist.innerHTML += `
                 <div class="item-playlist" data-id="${
@@ -1120,6 +1122,8 @@ function generatorContainerPlaylistData() {
             `
         })
     } else {
+        containerPlaylistMobile.innerHTML = ''
+
         musicDataShuffled.forEach((element, index) => {
             containerPlaylistMobile.innerHTML += `
                 <div class="item-playlist-mobile" data-id="${
@@ -1177,7 +1181,6 @@ function generatorContainerPlaylistDataPlay() {
                         (element) => element._id == $(this).data('id')
                     )
                 )
-                let selectedTheme = $(this).data('theme')
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1215,7 +1218,6 @@ function generatorContainerPlaylistDataPlay() {
                         (element) => element._id == $(this).data('id')
                     )
                 )
-                let selectedTheme = $(this).data('theme')
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1492,7 +1494,6 @@ function generatorContainerSearchDataPlay() {
                         (element) => element._id == $(this).data('id')
                     )
                 )
-                let selectedTheme = $(this).data('theme')
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1536,7 +1537,6 @@ function generatorContainerSearchDataPlay() {
                         (element) => element._id == $(this).data('id')
                     )
                 )
-                let selectedTheme = $(this).data('theme')
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1655,7 +1655,6 @@ function generatorContainerFavoriteDataPlay() {
                         (element) => element._id == $(this).data('id')
                     )
                 )
-                let selectedTheme = $(this).data('theme')
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1699,7 +1698,6 @@ function generatorContainerFavoriteDataPlay() {
                         (element) => element._id == $(this).data('id')
                     )
                 )
-                let selectedTheme = $(this).data('theme')
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1818,7 +1816,6 @@ function generatorContainerHistoricDataPlay() {
                         (element) => element._id == $(this).data('id')
                     )
                 )
-                let selectedTheme = $(this).data('theme')
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1862,7 +1859,6 @@ function generatorContainerHistoricDataPlay() {
                         (element) => element._id == $(this).data('id')
                     )
                 )
-                let selectedTheme = $(this).data('theme')
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -3442,7 +3438,6 @@ function deviceDefinition() {
 
 function changeMobileOrDesktop() {
     if (screenWidth >= 1360) {
-        containerPlaylist.innerHTML = ''
         containerItemsSearch.innerHTML = ''
         containerItemsFavorite.innerHTML = ''
         containerItemsHistoric.innerHTML = ''
@@ -3458,7 +3453,6 @@ function changeMobileOrDesktop() {
             playerMobile.destroy()
         }
     } else {
-        containerPlaylistMobile.innerHTML = ''
         containerItemsSearchMobile.innerHTML = ''
         containerItemsFavoriteMobile.innerHTML = ''
         containerItemsHistoricMobile.innerHTML = ''
@@ -4382,12 +4376,10 @@ function selectUserMyPlaylist() {
     musicDataShuffled = [...musicData]
 
     if (screenWidth >= 1360) {
-        containerPlaylist.innerHTML = ''
         containerItemsSearch.innerHTML = ''
         containerItemsFavorite.innerHTML = ''
         containerItemsHistoric.innerHTML = ''
     } else {
-        containerPlaylistMobile.innerHTML = ''
         containerItemsSearchMobile.innerHTML = ''
         containerItemsFavoriteMobile.innerHTML = ''
         containerItemsHistoricMobile.innerHTML = ''
@@ -4440,8 +4432,34 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
 
     if (screenWidth >= 1360) {
         $('.title-playlist').html(playlistName)
+
+        containerPlaylist.innerHTML = `
+            <div class="loading-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        `
     } else {
         $('.title-playlist-mobile').html(playlistName)
+
+        containerPlaylistMobile.innerHTML = `
+            <div class="loading-roller-mobile">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        `
     }
 
     const resposta = await fetch(`/playlists-historic/${idUserConnected}`, {
@@ -4477,12 +4495,10 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     musicDataShuffled = [...musicData]
 
     if (screenWidth >= 1360) {
-        containerPlaylist.innerHTML = ''
         containerItemsSearch.innerHTML = ''
         containerItemsFavorite.innerHTML = ''
         containerItemsHistoric.innerHTML = ''
     } else {
-        containerPlaylistMobile.innerHTML = ''
         containerItemsSearchMobile.innerHTML = ''
         containerItemsFavoriteMobile.innerHTML = ''
         containerItemsHistoricMobile.innerHTML = ''
