@@ -7,6 +7,37 @@ let changedData = {
 }
 let userData
 
+const colorsThemes = {
+    original: {
+        base1: '#081b39',
+        base2: '#3c93cf',
+        base3: '#3e5162',
+        base4: '#0c264e',
+        base5: '#3decff',
+    },
+    'rock-version': {
+        base1: '#260101',
+        base2: '#bf1f1f',
+        base3: '#40060b',
+        base4: '#731010',
+        base5: '#f53636',
+    },
+    'hatsune-miku-version': {
+        base1: '#12211c',
+        base2: '#229e89',
+        base3: '#3f5d5b',
+        base4: '#0b5c54',
+        base5: '#3dffe8',
+    },
+    'amv-brasileiro-version': {
+        base1: '#211e12',
+        base2: '#9e5a22',
+        base3: '#5d523f',
+        base4: '#5c2e0b',
+        base5: '#fcff3d',
+    },
+}
+
 const containerPlaylistToManage = document.querySelector(
     '#containerPlaylistToManage'
 )
@@ -830,8 +861,32 @@ async function setUserInfo() {
 
     userData = user.user
 
+    initThemeChanger(userData.theme)
     document.querySelector('#userName').textContent = userData.name
     document.querySelector('#userNameMobile').textContent = userData.name
+}
+
+function initThemeChanger(theme = 'original') {
+    const themes = [
+        'original',
+        'rock-version',
+        'hatsune-miku-version',
+        'amv-brasileiro-version',
+    ]
+
+    if (!themes.includes(theme)) {
+        console.warn(
+            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`
+        )
+        theme = 'original'
+    }
+
+    for (let i = 1; i <= 5; i++) {
+        document.documentElement.style.setProperty(
+            `--color-base-${i}`,
+            colorsThemes[theme][`base${i}`]
+        )
+    }
 }
 
 function setUserProfilePicture() {

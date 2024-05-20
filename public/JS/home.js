@@ -2470,7 +2470,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
     }
 }
 
-async function initThemeChanger(theme = 'original') {
+function initThemeChanger(theme = 'original') {
     const themes = [
         'original',
         'rock-version',
