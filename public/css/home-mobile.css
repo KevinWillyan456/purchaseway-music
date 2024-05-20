@@ -193,8 +193,8 @@
 .main-playlist-mobile .container-playlist-mobile {
     width: 100%;
     overflow-y: scroll;
-    min-height: calc(var(--vh, 1vh) * 100 - 235px);
-    height: calc(var(--vh, 1vh) * 100 - 235px);
+    min-height: calc(var(--vh, 1vh) * 100 - 238px);
+    height: calc(var(--vh, 1vh) * 100 - 238px);
 
     padding-right: 5px;
     margin-bottom: 5px;
@@ -231,18 +231,12 @@
 }
 .container-playlist-mobile .empty-playlist-mobile {
     color: var(--color-white-1);
-    margin-left: 20px;
-}
-.container-playlist-mobile .empty-playlist-mobile h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-.container-playlist-mobile .empty-playlist-mobile p {
-    font-size: 16px;
-}
-.container-playlist-mobile .empty-playlist-mobile p:not(:last-child) {
-    margin-bottom: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    text-align: center;
 }
 .item-playlist-mobile .box-wrapper {
     display: flex;
@@ -427,6 +421,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-image: url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg');
 
     filter: blur(12.94px);
 }

@@ -6,7 +6,6 @@ export interface IMusic {
     title: string
     videoId: string
     gender: string
-    theme: string
     additionDate: Date
 }
 
@@ -16,7 +15,6 @@ const musicSchema = new Schema<IMusic>({
     title: { type: String, required: true },
     videoId: { type: String, required: true, unique: true },
     gender: { type: String, required: true },
-    theme: { type: String, required: true },
     additionDate: { type: Date, required: true },
 })
 

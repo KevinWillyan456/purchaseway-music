@@ -8,7 +8,7 @@ let screenWidth = 0
 let screenHeight = 0
 
 let initialDevice = ''
-let emptyPlaylist = false
+let emptyPlaylist = true
 let titlePlaylist = ''
 
 let player
@@ -413,6 +413,7 @@ backContainerMinhaPlaylistMobile.addEventListener(
     toggleContainerMinhaPlaylist
 )
 controlsMobile.addEventListener('click', () => {
+    if (emptyPlaylist) return
     toggleDisplayMobile()
     $('.menu-options-mobile').hide(200)
 })
@@ -885,7 +886,6 @@ function inicia() {
     searchEvents()
     generatorContainerCurrentMusicAddPlaylist()
     generatorContainerMusicAddPlaylist()
-    if (emptyPlaylist) return
     musicStateControllers()
     durationSliderEventGenerator()
     volumeSliderEventGenerator()
@@ -896,8 +896,8 @@ function inicia() {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    indexAudioId = musicDataShuffled[indexAudio]._id
-    indexAudioGender = musicDataShuffled[indexAudio].gender
+    indexAudioId = musicDataShuffled[indexAudio]?._id
+    indexAudioGender = musicDataShuffled[indexAudio]?.gender
     $('.title-playlist').html(userData.lastAccessedPlaylistName)
     $('.title-playlist-mobile').html(userData.lastAccessedPlaylistName)
     setMusicPlayTag()
@@ -909,6 +909,8 @@ function inicia() {
 }
 
 function audioControllerPlayFunction() {
+    if (emptyPlaylist) return
+
     if (screenWidth >= 1360) {
         if (audioControllerPlayToggle) {
             playVideo()
@@ -950,20 +952,14 @@ function allSongValueSetters() {
     emptyPlaylist = false
     if (musicData.length <= 0) {
         emptyPlaylist = true
-        if (screenWidth >= 1360) {
-            warning.classList.remove('hidden')
-            warning.textContent = 'A PlayList atual não tem conteúdo'
-            setTimeout(() => {
-                warning.classList.add('hidden')
-            }, 3000)
-        } else {
-            warningMobile.classList.remove('hidden')
-            warningMobile.textContent = 'A PlayList atual não tem conteúdo'
-            setTimeout(() => {
-                warningMobile.classList.add('hidden')
-            }, 3000)
-        }
 
+        if (screenWidth >= 1360) {
+            titleCurrentMusic.innerHTML = 'Nenhuma música encontrada'
+            genderCurrentMusic.innerHTML = 'Nenhuma música encontrada'
+        } else {
+            titleCurrentMusicMobile.innerHTML = 'Nenhuma música encontrada'
+            genderCurrentMusicMobile.innerHTML = 'Nenhuma música encontrada'
+        }
         return
     }
     if (screenWidth >= 1360) {
@@ -1054,12 +1050,13 @@ function setUserSettings() {
 }
 
 function audioControllerNextFunction() {
+    if (emptyPlaylist) return
+
     indexAudio++
     if (indexAudio >= musicDataShuffled.length) {
         indexAudio = 0
     }
 
-    let selectedTheme = musicDataShuffled[indexAudio].theme
     indexAudioId = musicDataShuffled[indexAudio]._id
     indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1071,12 +1068,13 @@ function audioControllerNextFunction() {
     generatorContainerCurrentMusicAddPlaylist()
 }
 function audioControllerPrevFunction() {
+    if (emptyPlaylist) return
+
     indexAudio--
     if (indexAudio < 0) {
         indexAudio = musicDataShuffled.length - 1
     }
 
-    let selectedTheme = musicDataShuffled[indexAudio].theme
     indexAudioId = musicDataShuffled[indexAudio]._id
     indexAudioGender = musicDataShuffled[indexAudio].gender
 
@@ -1096,9 +1094,7 @@ function generatorContainerPlaylistData() {
             containerPlaylist.innerHTML += `
                 <div class="item-playlist" data-id="${
                     element._id
-                }" data-theme="${element.theme}" style="animation-delay: ${
-                index * 0.05
-            }s">
+                }" style="animation-delay: ${index * 0.05}s">
                     <div class="box-wrapper">
                         <div class="cover-item">
                             <img src="${element.coverUrl}" alt="${
@@ -1128,9 +1124,7 @@ function generatorContainerPlaylistData() {
             containerPlaylistMobile.innerHTML += `
                 <div class="item-playlist-mobile" data-id="${
                     element._id
-                }" data-theme="${element.theme}" style="animation-delay: ${
-                index * 0.05
-            }s">
+                }" style="animation-delay: ${index * 0.05}s">
                     <div class="box-wrapper">
                         <div class="cover-item">
                             <img src="${element.coverUrl}" alt="${
@@ -1403,9 +1397,7 @@ function generatorContainerSearchData() {
             containerItemsSearch.innerHTML += `
                 <div class="item-playlist-search" data-id="${
                     element._id
-                }" data-theme="${element.theme}" style="animation-delay: ${
-                index * 0.05 + 0.1
-            }s">
+                }" style="animation-delay: ${index * 0.05 + 0.1}s">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
                             <img src="${element.coverUrl}" alt="${
@@ -1442,9 +1434,7 @@ function generatorContainerSearchData() {
             containerItemsSearchMobile.innerHTML += `
                 <div class="item-search-mobile" data-id="${
                     element._id
-                }" data-theme="${element.theme}" style="animation-delay: ${
-                index * 0.05
-            }s">
+                }" style="animation-delay: ${index * 0.05}s">
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
                             <img src="${element.coverUrl}" alt="${
@@ -1584,7 +1574,7 @@ function generatorContainerFavoriteData() {
     if (screenWidth >= 1360) {
         favoriteSongs.forEach((element) => {
             containerItemsFavorite.innerHTML += `
-                <div class="item-playlist-favorite" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="item-playlist-favorite" data-id="${element._id}">
                     <div class="box-wrapper-favorite">
                         <div class="cover-item-favorite">
                             <img src="${element.coverUrl}" alt="${element.title}">
@@ -1607,7 +1597,7 @@ function generatorContainerFavoriteData() {
     } else {
         favoriteSongs.forEach((element) => {
             containerItemsFavoriteMobile.innerHTML += `
-                <div class="item-favorite-mobile" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="item-favorite-mobile" data-id="${element._id}">
                     <div class="box-wrapper-favorite">
                         <div class="cover-item-favorite">
                             <img src="${element.coverUrl}" alt="${element.title}">
@@ -1745,7 +1735,7 @@ function generatorContainerHistoricData() {
     if (screenWidth >= 1360) {
         historicSongs.forEach((element) => {
             containerItemsHistoric.innerHTML += `
-                <div class="item-playlist-historic" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="item-playlist-historic" data-id="${element._id}">
                     <div class="box-wrapper-historic">
                         <div class="cover-item-historic">
                             <img src="${element.coverUrl}" alt="${element.title}">
@@ -1768,7 +1758,7 @@ function generatorContainerHistoricData() {
     } else {
         historicSongs.forEach((element) => {
             containerItemsHistoricMobile.innerHTML += `
-                <div class="item-historic-mobile" data-id="${element._id}" data-theme="${element.theme}">
+                <div class="item-historic-mobile" data-id="${element._id}">
                     <div class="box-wrapper-historic">
                         <div class="cover-item-historic">
                             <img src="${element.coverUrl}" alt="${element.title}">
@@ -2248,6 +2238,8 @@ function generatorContainerCurrentMusicAddPlaylist() {
             const divItem = document.createElement('div')
             divItem.classList.add('current-music-add-playlist-item')
             divItem.addEventListener('click', () => {
+                if (emptyPlaylist) return
+
                 divItem.style.pointerEvents = 'none'
                 if (song) {
                     fetch(
@@ -2621,6 +2613,8 @@ function durationSliderEventGenerator() {
             canMoveTheSliderDuration = false
         })
         sliderMusicDuration.addEventListener('mouseup', () => {
+            if (emptyPlaylist) return
+
             changeVideoCurrentTime(
                 (sliderMusicDuration.value / 100) * getVideoDuration()
             )
@@ -2640,6 +2634,8 @@ function durationSliderEventGenerator() {
         })
 
         sliderMusicDuration.oninput = () => {
+            if (emptyPlaylist) return
+
             sliderMusicDuration.style.setProperty(
                 'background-image',
                 `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
@@ -2745,6 +2741,8 @@ function volumeSliderEventGenerator() {
             'left',
             `${sliderMusicVolume.value}%`
         )
+
+        if (emptyPlaylist) return
         setVideoVolume(sliderMusicVolume.value)
     }
 }
@@ -3006,6 +3004,8 @@ function getCookie(k) {
 }
 
 async function manageHistoric() {
+    if (emptyPlaylist) return
+
     const idUserConnected = getCookie('user')
     let music = {
         musicId: indexAudioId,
@@ -3076,6 +3076,8 @@ async function manageHistoricClear() {
 }
 
 async function manageFavorite() {
+    if (emptyPlaylist) return
+
     const idUserConnected = getCookie('user')
     let music = {
         musicId: indexAudioId,
@@ -3175,7 +3177,7 @@ async function refreshFavorite() {
     let isFound = false
 
     let songFavorite = userData.favoriteSongs.find(
-        (element) => element.musicId == musicDataShuffled[indexAudio]._id
+        (element) => element.musicId == musicDataShuffled[indexAudio]?._id
     )
 
     if (screenWidth >= 1360) {
@@ -3363,6 +3365,8 @@ function toggleDisplayMobile() {
 }
 
 function toggleAddOptions() {
+    if (emptyPlaylist) return
+
     if (screenWidth >= 1360) {
         const addOptionsOverflow = document.querySelector(
             '.current-music-add-overflow'
@@ -3913,20 +3917,16 @@ function manageEmptyPlaylist() {
 
     if (screenWidth >= 1360) {
         containerPlaylist.innerHTML = `
-        <div class="empty-playlist">
-            <h1>Ops, isso não deveria acontecer</h1>
-            <p>Por algum motivo, não foi possível carregar esta playlist</p>
-            <p>Por favor, selecione outra playlist clicando no botão "Mais" e depois em "Selecionar Playlist"</p>
-        </div>
-    `
+            <div class="empty-playlist">
+                Playlist vazia
+            </div>
+        `
     } else {
         containerPlaylistMobile.innerHTML = `
-        <div class="empty-playlist-mobile">
-            <h1>Ops, isso não deveria acontecer</h1>
-            <p>Por algum motivo, não foi possível carregar esta playlist</p>
-            <p>Por favor, selecione outra playlist clicando no botão "Mais" e depois em "Selecionar Playlist"</p>
-        </div>
-    `
+            <div class="empty-playlist-mobile">
+                Playlist vazia
+            </div>
+        `
     }
 }
 
@@ -4445,6 +4445,23 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
                 <div></div>
             </div>
         `
+        if (player) {
+            player.destroy()
+        }
+
+        titleCurrentMusic.innerHTML = 'Carregando...'
+        genderCurrentMusic.innerHTML = 'Carregando...'
+        coverCurrentMusic.src =
+            'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
+        backgroundCover.style.backgroundImage = `url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg')`
+        clearInterval(timerCurretDurationSetter)
+        currentDuration.innerHTML = '0:00'
+        totalDuration.innerHTML = '0:00'
+        sliderMusicDuration.style.setProperty(
+            'background-image',
+            'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%'
+        )
+        sliderMusicDurationDot.style.setProperty('left', '0%')
     } else {
         $('.title-playlist-mobile').html(playlistName)
 
@@ -4460,6 +4477,22 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
                 <div></div>
             </div>
         `
+
+        if (playerMobile) {
+            playerMobile.destroy()
+        }
+
+        titleCurrentMusicMobile.innerHTML = 'Carregando...'
+        genderCurrentMusicMobile.innerHTML = 'Carregando...'
+        coverCurrentMusicMobile.src =
+            'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
+        backgroundCoverMobile.style.backgroundImage = `url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg')`
+
+        clearInterval(timerCurretDurationSetter)
+        displayMusicDurationMobile.style.setProperty(
+            'background-image',
+            'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%'
+        )
     }
 
     const resposta = await fetch(`/playlists-historic/${idUserConnected}`, {
@@ -4849,6 +4882,8 @@ async function musicListingService() {
         `/playlists-select/${idUserConnected}/?playlist=${userData.lastAccessedPlaylist}`
     )
     const songs = await responseSongs.json()
+
+    if (songs.songs.length > 0) emptyPlaylist = false
 
     const responseAllSongs = await fetch('/songs')
     const allSongs = await responseAllSongs.json()

@@ -176,17 +176,12 @@ body {
 }
 .container-playlist .empty-playlist {
     color: var(--color-white-1);
-}
-.container-playlist .empty-playlist h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-.container-playlist .empty-playlist p {
-    font-size: 20px;
-}
-.container-playlist .empty-playlist p:not(:last-child) {
-    margin-bottom: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    text-align: center;
 }
 .item-playlist .cover-item {
     width: 108px;
@@ -268,6 +263,7 @@ body {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-image: url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg');
 
     filter: blur(12.94px);
 }
