@@ -4,7 +4,7 @@ body {
     justify-content: center;
     min-height: calc(var(--vh, 1vh) * 100);
 
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     background-image: url('https://i.ibb.co/CtPQ8Np/background-5.png');
     background-position: center center;
     background-repeat: no-repeat;
@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-    background-color: var(--color-blue-1);
+    background-color: var(--color-base-1);
     width: 320px;
     height: 529px;
     border: 3px solid var(--color-white-1);
@@ -52,11 +52,11 @@ form .input-senha {
 }
 form .input-nome::placeholder,
 form .input-senha::placeholder {
-    color: var(--color-blue-3);
+    color: var(--color-base-3);
 }
 form .input-nome:focus,
 form .input-senha:focus {
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 
 .warning {
@@ -100,13 +100,13 @@ form .input-senha:focus {
 
 .warning.success {
     animation: warning-anime-color-2 1s infinite alternate;
-    color: var(--color-blue-2);
-    background-color: var(--color-blue-1);
-    border: 2px solid var(--color-blue-2);
+    color: var(--color-base-2);
+    background-color: var(--color-base-1);
+    border: 2px solid var(--color-base-2);
 }
 @keyframes warning-anime-color-2 {
     0% {
-        color: var(--color-blue-2);
+        color: var(--color-base-2);
     }
     100% {
         color: var(--color-white-1);
@@ -135,7 +135,7 @@ form .btn-submit {
     transition: 200ms;
     width: 250px;
     height: 60px;
-    background-color: var(--color-blue-4);
+    background-color: var(--color-base-4);
     border: none;
     color: inherit;
     font-size: 20px;
@@ -150,7 +150,7 @@ form .btn-submit {
 }
 form .btn-submit:hover {
     animation: anime 1s infinite linear;
-    box-shadow: 0 0 0 5px var(--color-blue-2), 0 0 25px var(--color-blue-2);
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
 @keyframes anime {
     0% {

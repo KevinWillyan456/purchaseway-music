@@ -1,7 +1,7 @@
 const signup = document.querySelector('#signup')
 const login = document.querySelector('#login')
 const termsOfUse = document.querySelector('.terms-of-use')
-const termsOfUseText = document.querySelector('.terms-of-use-text')
+const containertermsOfUse = document.querySelector('.container-terms-of-use')
 const termsOfUseClose = document.querySelector('#terms-of-use-close')
 
 window.addEventListener('load', setFullHeight)
@@ -26,8 +26,14 @@ document.querySelector('.service-logo').addEventListener('click', () => {
 })
 
 termsOfUse.addEventListener('click', () => {
-    termsOfUseText.classList.remove('hidden')
+    containertermsOfUse.classList.remove('hidden')
 })
 termsOfUseClose.addEventListener('click', () => {
-    termsOfUseText.classList.add('hidden')
+    containertermsOfUse.classList.add('hidden')
+})
+
+containertermsOfUse.addEventListener('click', (e) => {
+    if (e.target === containertermsOfUse) {
+        containertermsOfUse.classList.add('hidden')
+    }
 })
