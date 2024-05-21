@@ -3576,6 +3576,7 @@ async function manageUserAccountChangeName() {
         if (changeNameInput.value === '') {
             warning.classList.remove('hidden')
             warning.textContent = 'Por favor, escreva um nome válido.'
+            changeNameInput.focus()
             setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
@@ -3605,6 +3606,7 @@ async function manageUserAccountChangeName() {
         if (changeNameInputMobile.value.trim() === '') {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Por favor, escreva um nome válido.'
+            changeNameInputMobile.focus()
             setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
@@ -3637,6 +3639,7 @@ async function manageUserAccountDeletion() {
         ) {
             warning.classList.remove('hidden')
             warning.textContent = 'Por favor, escreva a frase corretamente.'
+            deleteAccountInputToConfirm.focus()
             setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
@@ -3659,6 +3662,7 @@ async function manageUserAccountDeletion() {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent =
                 'Por favor, escreva a frase corretamente.'
+            deleteAccountInputToConfirmMobile.focus()
             setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
@@ -3684,21 +3688,18 @@ function manageMyPlaylistEdition() {
             )
             .value.trim()
         if (playlistTitle === '') {
-            if (screenWidth >= 1360) {
-                warning.classList.remove('hidden')
-                warning.textContent =
-                    'Por favor, escreva o nome da playlist corretamente.'
-                setTimeout(() => {
-                    warning.classList.add('hidden')
-                }, 3000)
-            } else {
-                warningMobile.classList.remove('hidden')
-                warningMobile.textContent =
-                    'Por favor, escreva o nome da playlist corretamente.'
-                setTimeout(() => {
-                    warningMobile.classList.add('hidden')
-                }, 3000)
-            }
+            warning.classList.remove('hidden')
+            warning.textContent =
+                'Por favor, escreva o nome da playlist corretamente.'
+            document
+                .querySelector(
+                    '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                )
+                .focus()
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+
             return
         }
 
@@ -3794,21 +3795,18 @@ function manageMyPlaylistEdition() {
             )
             .value.trim()
         if (playlistTitle === '') {
-            if (screenWidth >= 1360) {
-                warning.classList.remove('hidden')
-                warning.textContent =
-                    'Por favor, escreva o nome da playlist corretamente.'
-                setTimeout(() => {
-                    warning.classList.add('hidden')
-                }, 3000)
-            } else {
-                warningMobile.classList.remove('hidden')
-                warningMobile.textContent =
-                    'Por favor, escreva o nome da playlist corretamente.'
-                setTimeout(() => {
-                    warningMobile.classList.add('hidden')
-                }, 3000)
-            }
+            document
+                .querySelector(
+                    '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+                )
+                .focus()
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent =
+                'Por favor, escreva o nome da playlist corretamente.'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+
             return
         }
 
@@ -3910,21 +3908,18 @@ function manageMyPlaylistDeletion() {
                 '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current'
             ).textContent
         ) {
-            if (screenWidth >= 1360) {
-                warning.classList.remove('hidden')
-                warning.textContent =
-                    'Por favor, escreva o nome da playlist corretamente.'
-                setTimeout(() => {
-                    warning.classList.add('hidden')
-                }, 3000)
-            } else {
-                warningMobile.classList.remove('hidden')
-                warningMobile.textContent =
-                    'Por favor, escreva o nome da playlist corretamente.'
-                setTimeout(() => {
-                    warningMobile.classList.add('hidden')
-                }, 3000)
-            }
+            document
+                .querySelector(
+                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name'
+                )
+                .focus()
+            warning.classList.remove('hidden')
+            warning.textContent =
+                'Por favor, escreva o nome da playlist corretamente.'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+
             return
         }
 
@@ -3968,21 +3963,18 @@ function manageMyPlaylistDeletion() {
                 '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile'
             ).textContent
         ) {
-            if (screenWidth >= 1360) {
-                warning.classList.remove('hidden')
-                warning.textContent =
-                    'Por favor, escreva o nome da playlist corretamente.'
-                setTimeout(() => {
-                    warning.classList.add('hidden')
-                }, 3000)
-            } else {
-                warningMobile.classList.remove('hidden')
-                warningMobile.textContent =
-                    'Por favor, escreva o nome da playlist corretamente.'
-                setTimeout(() => {
-                    warningMobile.classList.add('hidden')
-                }, 3000)
-            }
+            document
+                .querySelector(
+                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile'
+                )
+                .focus()
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent =
+                'Por favor, escreva o nome da playlist corretamente.'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+
             return
         }
 

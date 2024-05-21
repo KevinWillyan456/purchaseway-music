@@ -382,6 +382,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Nome.'
+        formAddPlaylistInputNome.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -396,6 +397,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'O Nome já existe, escolha outro.'
+        formAddPlaylistInputNome.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -406,6 +408,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Gênero.'
+        formAddPlaylistInputGenero.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -421,6 +424,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'O gênero já existe, escolha outro.'
+        formAddPlaylistInputGenero.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -431,6 +435,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Descrição.'
+        textareaDescricao.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -476,7 +481,8 @@ formPlaylist.addEventListener('submit', async function (event) {
         formAddPlaylistInputThumbnail.value = ''
         textareaDescricao.value = ''
         formAddPlaylistInputGenero.value = ''
-        formAddPlaylistPreviewThumbnail.src = ''
+        formAddPlaylistPreviewThumbnail.src =
+            'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
         formAddPlaylist.classList.add('hidden')
         document.body.style.overflow = 'auto'
 
@@ -705,6 +711,7 @@ formDeletePlaylistContent.addEventListener('submit', async (e) => {
         warning.classList.remove('success')
         warning.textContent =
             'Por favor, escreva o nome da playlist corretamente.'
+        playlistDeleteNameInputToConfirm.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -758,6 +765,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Nome.'
+        formPlaylistEditInputNome.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -769,6 +777,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Gênero.'
+        formPlaylistEditInputGender.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -780,6 +789,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo descrição.'
+        formPlaylistEditDescription.focus()
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -954,6 +964,7 @@ async function inicia() {
     })
     btnAddPlaylist.addEventListener('click', () => {
         formAddPlaylist.classList.remove('hidden')
+        formAddPlaylistInName.focus()
         document.body.style.overflow = 'hidden'
     })
     btnEditPlaylist.addEventListener('click', () => {
@@ -965,6 +976,7 @@ async function inicia() {
     })
     btnDeletePlaylist.addEventListener('click', () => {
         formDeletePlaylist.classList.remove('hidden')
+        playlistDeleteNameInputToConfirm.focus()
     })
     btnDeleteSong.addEventListener('click', () => {
         formDeleteSong.classList.remove('hidden')
@@ -993,6 +1005,7 @@ async function inicia() {
     })
     formDeletePlaylist.addEventListener('click', (e) => {
         if (e.target.classList[0] == 'form-playlist-delete-overflow') {
+            playlistDeleteNameInputToConfirm.value = ''
             formDeletePlaylist.classList.add('hidden')
         }
     })
