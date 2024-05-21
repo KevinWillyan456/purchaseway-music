@@ -4524,6 +4524,8 @@ function selectUserMyPlaylist() {
 }
 
 async function selectNewPlaylist(playlistSelect, playlistName) {
+    emptyPlaylist = true
+
     const idUserConnected = getCookie('user')
     let playlistSelectForSend = {
         lastAccessedPlaylist: playlistSelect,

@@ -17,9 +17,9 @@ async function indexMusic(req: Request, res: Response) {
 }
 
 async function storeMusic(req: Request, res: Response) {
-    const { videoId, gender, theme } = req.body
+    const { videoId, gender } = req.body
 
-    if (!videoId || !gender || !theme) {
+    if (!videoId || !gender) {
         return res.status(400).json({ error: 'data is missing' })
     }
 
@@ -27,7 +27,6 @@ async function storeMusic(req: Request, res: Response) {
         _id: uuid(),
         videoId,
         gender,
-        theme,
         coverUrl: await MusicHandlers.getVideoCover(videoId),
         title: await MusicHandlers.getVideoTitle(
             videoId,

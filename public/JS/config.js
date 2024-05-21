@@ -1,4 +1,7 @@
-let data = []
+let data = {
+    playlists: [],
+    songs: [],
+}
 let changedData = {
     playlistName: null,
     songId: null,
@@ -103,17 +106,16 @@ function setFullHeight() {
 setFullHeight()
 
 async function dataFetch() {
-    data = []
     const response = await fetch('/songs-playlists')
     const jsonResponse = await response.json()
 
-    data[0] = jsonResponse.playlists
-    data[1] = jsonResponse.songs
+    data.playlists = jsonResponse.playlists
+    data.songs = jsonResponse.songs
 }
 
 function defineTotalNumbers() {
-    totalPlaylists.textContent = data[0].length
-    totalMusics.textContent = data[1].length
+    totalPlaylists.textContent = data.playlists.length
+    totalMusics.textContent = data.songs.length
 }
 
 const formEditPlaylistIn = document.querySelector('#formEditPlaylistIn')
@@ -137,11 +139,11 @@ const formPlaylistEditDescription = document.querySelector(
 function listPlaylists() {
     contentPlaylist.innerHTML = ''
 
-    data[0].forEach((playlist, index) => {
+    data.playlists.forEach((playlist, index) => {
         let contador = 0
         let musicsByPlaylist = []
 
-        for (let playlist_music of data[1]) {
+        for (let playlist_music of data.songs) {
             if (playlist_music.gender === playlist.gender) {
                 musicsByPlaylist.push(playlist_music)
                 contador++
@@ -373,6 +375,8 @@ formAddPlaylistInputThumbnail.addEventListener('input', () => {
 })
 formPlaylistEditInputThumbnail.addEventListener('input', () => {
     formPlaylistEditPreviewThumbnail.src = formPlaylistEditInputThumbnail.value
+        ? formPlaylistEditInputThumbnail.value
+        : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
 })
 
 formPlaylist.addEventListener('submit', async function (event) {
@@ -388,7 +392,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         }, 3000)
         return
     }
-    const NomeExiste = data[0].some(
+    const NomeExiste = data.playlists.some(
         (playlist) =>
             playlist.title.toLowerCase() ===
             formAddPlaylistInputNome.value.trim().toLowerCase()
@@ -415,7 +419,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         return
     }
 
-    const generoExiste = data[0].some(
+    const generoExiste = data.playlists.some(
         (playlist) =>
             playlist.gender.toLowerCase() ===
             formAddPlaylistInputGenero.value.trim().toLowerCase()
@@ -542,8 +546,9 @@ formSong.addEventListener('submit', async function (event) {
 
     const dataResponse = {
         videoId: extrairIdDoVideo(formSongAddInputID.value.trim()),
-        gender: changedData.playlistName,
-        theme: 'Original',
+        gender: data.playlists.find(
+            (playlist) => playlist._id == changedData.playlistId
+        ).gender,
     }
 
     const response = await fetch(`/songs?userId=${userData._id}`, {
@@ -576,9 +581,27 @@ formSong.addEventListener('submit', async function (event) {
 
         formSongAddInputID.value = ''
         formAddSong.classList.add('hidden')
-        containerPlaylistToManage.classList.add('hidden')
-        document.body.style.overflow = 'auto'
         await dataFetch()
+
+        let musicsByPlaylist = []
+        for (let playlist_music of data.songs) {
+            if (
+                playlist_music.gender ===
+                data.playlists.find(
+                    (playlist) => playlist._id == changedData.playlistId
+                ).gender
+            ) {
+                musicsByPlaylist.push(playlist_music)
+            }
+        }
+
+        listMusic(
+            musicsByPlaylist,
+            data.playlists.find(
+                (playlist) => playlist._id == changedData.playlistId
+            )
+        )
+
         defineTotalNumbers()
         listPlaylists()
     }
@@ -651,9 +674,27 @@ formEditSongIn.addEventListener('submit', async function (event) {
         formSongEditInputID.value = ''
         formEditSong.classList.add('hidden')
         focusSong.classList.add('hidden')
-        containerPlaylistToManage.classList.add('hidden')
-        document.body.style.overflow = 'auto'
         await dataFetch()
+
+        let musicsByPlaylist = []
+        for (let playlist_music of data.songs) {
+            if (
+                playlist_music.gender ===
+                data.playlists.find(
+                    (playlist) => playlist._id == changedData.playlistId
+                ).gender
+            ) {
+                musicsByPlaylist.push(playlist_music)
+            }
+        }
+
+        listMusic(
+            musicsByPlaylist,
+            data.playlists.find(
+                (playlist) => playlist._id == changedData.playlistId
+            )
+        )
+
         defineTotalNumbers()
         listPlaylists()
     }
@@ -692,9 +733,27 @@ formSongDeleteBtn.addEventListener('click', async () => {
 
         formDeleteSong.classList.add('hidden')
         focusSong.classList.add('hidden')
-        containerPlaylistToManage.classList.add('hidden')
-        document.body.style.overflow = 'auto'
         await dataFetch()
+
+        let musicsByPlaylist = []
+        for (let playlist_music of data.songs) {
+            if (
+                playlist_music.gender ===
+                data.playlists.find(
+                    (playlist) => playlist._id == changedData.playlistId
+                ).gender
+            ) {
+                musicsByPlaylist.push(playlist_music)
+            }
+        }
+
+        listMusic(
+            musicsByPlaylist,
+            data.playlists.find(
+                (playlist) => playlist._id == changedData.playlistId
+            )
+        )
+
         defineTotalNumbers()
         listPlaylists()
     }
@@ -820,7 +879,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
     if (result.message != 'Playlist updated successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
-        warning.textContent = 'Internal Error'
+        warning.textContent = 'Playlists não podem ter o mesmo gênero.'
         setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
@@ -835,14 +894,44 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
             warning.classList.add('hidden')
         }, 3000)
 
-        formPlaylistEditInputNome.value = ''
-        formPlaylistEditInputThumbnail.value = ''
-        formPlaylistEditInputGender.value = ''
-        formPlaylistEditDescription.value = ''
         formEditPlaylist.classList.add('hidden')
-        containerPlaylistToManage.classList.add('hidden')
-        document.body.style.overflow = 'auto'
         await dataFetch()
+
+        formPlaylistEditInputNome.value = data.playlists.find(
+            (playlist) => playlist._id == changedData.playlistId
+        ).title
+        formPlaylistEditInputThumbnail.value = data.playlists.find(
+            (playlist) => playlist._id == changedData.playlistId
+        ).coverUrl
+        formPlaylistEditInputGender.value = data.playlists.find(
+            (playlist) => playlist._id == changedData.playlistId
+        ).gender
+        formPlaylistEditDescription.value = data.playlists.find(
+            (playlist) => playlist._id == changedData.playlistId
+        ).description
+        formPlaylistEditPreviewThumbnail.src = data.playlists.find(
+            (playlist) => playlist._id == changedData.playlistId
+        ).coverUrl
+
+        let musicsByPlaylist = []
+        for (let playlist_music of data.songs) {
+            if (
+                playlist_music.gender ===
+                data.playlists.find(
+                    (playlist) => playlist._id == changedData.playlistId
+                ).gender
+            ) {
+                musicsByPlaylist.push(playlist_music)
+            }
+        }
+
+        listMusic(
+            musicsByPlaylist,
+            data.playlists.find(
+                (playlist) => playlist._id == changedData.playlistId
+            )
+        )
+
         defineTotalNumbers()
         listPlaylists()
     }
