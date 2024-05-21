@@ -4667,7 +4667,6 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     generatorContainerPlaylistData()
     generatorContainerPlaylistDataPlay()
     manageEmptyPlaylist()
-    if (emptyPlaylist) return
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
@@ -4675,8 +4674,8 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    indexAudioId = musicDataShuffled[indexAudio]._id
-    indexAudioGender = musicDataShuffled[indexAudio].gender
+    indexAudioId = musicDataShuffled[indexAudio]?._id
+    indexAudioGender = musicDataShuffled[indexAudio]?.gender
     setMusicPlayTag()
     refreshFavorite()
     manageHistoric()
