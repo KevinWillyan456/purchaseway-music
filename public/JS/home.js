@@ -199,11 +199,18 @@ const containerItemsSearchMobile = document.querySelector(
 
 const searchBarInputMobile = document.querySelector('#search-bar-input-mobile')
 
+const btnChangeName = document.querySelector('#btnChangeName')
+const btnChangeNameMobile = document.querySelector('#btnChangeNameMobile')
 const btnDeleteAccount = document.querySelector('#btnDeleteAccount')
 const btnDeleteAccountMobile = document.querySelector('#btnDeleteAccountMobile')
+
 const formDeleteAccount = document.querySelector('#formDeleteAccount')
 const formDeleteAccountMobile = document.querySelector(
     '#formDeleteAccountMobile'
+)
+const formChangeNameAccount = document.querySelector('#formChangeNameAccount')
+const formChangeNameAccountMobile = document.querySelector(
+    '#formChangeNameAccountMobile'
 )
 const formDeleteAccountCancel = document.querySelector(
     '#formDeleteAccountCancel'
@@ -211,6 +218,8 @@ const formDeleteAccountCancel = document.querySelector(
 const formDeleteAccountCancelMobile = document.querySelector(
     '#formDeleteAccountCancelMobile'
 )
+const changeNameInput = document.querySelector('#changeNameInput')
+const changeNameInputMobile = document.querySelector('#changeNameInputMobile')
 const deleteAccountInputToConfirm = document.querySelector(
     '#deleteAccountInputToConfirm'
 )
@@ -417,6 +426,18 @@ controlsMobile.addEventListener('click', () => {
     toggleDisplayMobile()
     $('.menu-options-mobile').hide(200)
 })
+btnChangeName.addEventListener('click', () => {
+    formChangeNameAccount.classList.remove('hidden')
+    changeNameInput.value = userData.name
+    changeNameInput.focus()
+    canKeyboardEvents = false
+    canKeyboardEventsProfile = false
+})
+btnChangeNameMobile.addEventListener('click', () => {
+    formChangeNameAccountMobile.classList.remove('hidden')
+    changeNameInputMobile.value = userData.name
+    changeNameInputMobile.focus()
+})
 btnDeleteAccount.addEventListener('click', () => {
     formDeleteAccount.classList.remove('hidden')
     deleteAccountInputToConfirm.focus()
@@ -443,6 +464,19 @@ formDeleteAccount.addEventListener('click', (e) => {
         canKeyboardEventsProfile = true
     }
 })
+formChangeNameAccountMobile.addEventListener('click', (e) => {
+    if (e.target.classList[0] == 'form-change-name-account-mobile-overflow') {
+        formChangeNameAccountMobile.classList.add('hidden')
+        changeNameInputMobile.value = ''
+    }
+})
+formChangeNameAccount.addEventListener('click', (e) => {
+    if (e.target.classList[0] == 'form-change-name-account-overflow') {
+        formChangeNameAccount.classList.add('hidden')
+        changeNameInput.value = ''
+        canKeyboardEventsProfile = true
+    }
+})
 formDeleteAccountMobile.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'form-delete-account-overflow-mobile') {
         formDeleteAccountMobile.classList.add('hidden')
@@ -455,6 +489,18 @@ deleteAccountInputToConfirm.addEventListener('paste', (e) => {
 deleteAccountInputToConfirmMobile.addEventListener('paste', (e) => {
     e.preventDefault()
 })
+document
+    .querySelector('.form-change-name-account')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageUserAccountChangeName()
+    })
+document
+    .querySelector('.form-change-name-account-mobile')
+    .addEventListener('submit', (e) => {
+        e.preventDefault()
+        manageUserAccountChangeName()
+    })
 document
     .querySelector('.form-delete-account')
     .addEventListener('submit', (e) => {
@@ -3021,7 +3067,7 @@ async function manageHistoric() {
         body: JSON.stringify(music),
     })
     if (resposta.status == 200) {
-        refreshUser()
+        await refreshUser()
     }
     if (resposta.status != 200) {
         if (screenWidth >= 1360) {
@@ -3056,7 +3102,7 @@ async function manageHistoricClear() {
         body: JSON.stringify(music),
     })
     if (resposta.status == 200) {
-        refreshUser()
+        await refreshUser()
     }
     if (resposta.status != 200) {
         if (screenWidth >= 1360) {
@@ -3519,6 +3565,68 @@ function setManagementSystem() {
     selectManagementSystemMobile.addEventListener('click', () => {
         window.location = '/config'
     })
+}
+
+async function manageUserAccountChangeName() {
+    if (screenWidth >= 1360) {
+        if (changeNameInput.value.trim() === userData.name) {
+            formChangeNameAccount.classList.add('hidden')
+        }
+
+        if (changeNameInput.value === '') {
+            warning.classList.remove('hidden')
+            warning.textContent = 'Por favor, escreva um nome válido.'
+            setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
+        } else {
+            const userToChangeName = await fetch(`/users/${userData._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: changeNameInput.value.trim(),
+                }),
+            })
+            const response = await userToChangeName.json()
+
+            if (response.message === 'User updated successfully!') {
+                await refreshUser()
+                formChangeNameAccount.classList.add('hidden')
+                setUserSettings()
+            }
+        }
+    } else {
+        if (changeNameInputMobile.value.trim() === userData.name) {
+            formChangeNameAccountMobile.classList.add('hidden')
+        }
+
+        if (changeNameInputMobile.value.trim() === '') {
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Por favor, escreva um nome válido.'
+            setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+        } else {
+            const userToChangeName = await fetch(`/users/${userData._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: changeNameInputMobile.value.trim(),
+                }),
+            })
+            const response = await userToChangeName.json()
+
+            if (response.message === 'User updated successfully!') {
+                await refreshUser()
+                formChangeNameAccountMobile.classList.add('hidden')
+                setUserSettings()
+            }
+        }
+    }
 }
 
 async function manageUserAccountDeletion() {

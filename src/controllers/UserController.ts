@@ -135,6 +135,22 @@ async function updateUser(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
+    if (name && !email && !password) {
+        const filterName = { _id: id }
+        const updateDocName = {
+            $set: { name },
+        }
+
+        try {
+            await User.updateOne(filterName, updateDocName)
+            return res
+                .status(200)
+                .json({ message: 'User updated successfully!' })
+        } catch (err) {
+            res.status(500).json({ error: err })
+        }
+    }
+
     const encryptedPassword = await bcrypt.hash(password, 8)
 
     const filter = { _id: id }

@@ -222,7 +222,13 @@
 
                             <div class="container-historic"></div>
 
-                            <div class="container-delete-account">
+                            <div class="container-options-account">
+                                <button
+                                    class="btn-change-name"
+                                    id="btnChangeName"
+                                >
+                                    Alterar nome
+                                </button>
                                 <button
                                     class="btn-delete-account"
                                     id="btnDeleteAccount"
@@ -269,6 +275,24 @@
                                             Excluir
                                         </button>
                                     </div>
+                                </form>
+                            </div>
+
+                            <div
+                                class="form-change-name-account-overflow hidden"
+                                id="formChangeNameAccount"
+                            >
+                                <form class="form-change-name-account">
+                                    <div class="title">Alterar nome</div>
+                                    <input
+                                        class="field"
+                                        type="text"
+                                        placeholder="Nome"
+                                        id="changeNameInput"
+                                    />
+                                    <button class="save" type="submit">
+                                        Salvar
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -903,7 +927,13 @@
 
                     <div class="container-historic-mobile"></div>
 
-                    <div class="container-delete-account-mobile">
+                    <div class="container-options-account-mobile">
+                        <button
+                            class="btn-change-name-mobile"
+                            id="btnChangeNameMobile"
+                        >
+                            Alterar nome
+                        </button>
                         <button
                             class="btn-delete-account-mobile"
                             id="btnDeleteAccountMobile"
@@ -948,6 +978,22 @@
                                     Excluir
                                 </button>
                             </div>
+                        </form>
+                    </div>
+
+                    <div
+                        class="form-change-name-account-mobile-overflow hidden"
+                        id="formChangeNameAccountMobile"
+                    >
+                        <form class="form-change-name-account-mobile">
+                            <div class="title">Alterar nome</div>
+                            <input
+                                class="field"
+                                type="text"
+                                placeholder="Nome"
+                                id="changeNameInputMobile"
+                            />
+                            <button class="save" type="submit">Salvar</button>
                         </form>
                     </div>
                 </div>

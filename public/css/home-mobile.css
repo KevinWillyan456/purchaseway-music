@@ -1294,15 +1294,30 @@
     color: var(--color-white-1);
     cursor: pointer;
 }
-.container-delete-account-mobile {
+.container-options-account-mobile {
     margin-top: 40px;
     width: 100%;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 }
-.container-delete-account-mobile .btn-delete-account-mobile {
+.container-options-account-mobile .btn-change-name-mobile {
+    width: 220px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background-color: var(--color-base-3);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.container-options-account-mobile .btn-delete-account-mobile {
     width: 220px;
     height: 60px;
     border-radius: 10px;
@@ -1315,6 +1330,82 @@
     justify-content: center;
     cursor: pointer;
     margin-left: 30px;
+}
+.form-change-name-account-mobile-overflow {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: #000000cc;
+    display: grid;
+    place-items: center;
+}
+.form-change-name-account-mobile-overflow .form-change-name-account-mobile {
+    animation: animate-scale-opacity-entrace 500ms;
+    max-width: 480px;
+    width: calc(100% - 40px);
+    height: 279px;
+    border-radius: 10px;
+    border: 3px solid var(--color-white-1);
+    background: var(--color-base-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-change-name-account-mobile-overflow
+    .form-change-name-account-mobile
+    .title {
+    color: var(--color-white-1);
+    font-size: 20px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+.form-change-name-account-mobile-overflow
+    .form-change-name-account-mobile
+    .field {
+    transition: 200ms;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    height: 40px;
+    padding: 0 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: var(--color-white-1);
+    color: var(--color-base-3);
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 20px;
+}
+.form-change-name-account-mobile-overflow
+    .form-change-name-account-mobile
+    .field:focus {
+    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+}
+.form-change-name-account-mobile-overflow
+    .form-change-name-account-mobile
+    .field::placeholder {
+    color: var(--color-base-3);
+    font-size: 15px;
+}
+.form-change-name-account-mobile-overflow
+    .form-change-name-account-mobile
+    .save {
+    width: 200px;
+    height: 60px;
+    padding-top: 2px;
+    border-radius: 10px;
+    border: 2px solid var(--color-white-1);
+    background: var(--color-base-3);
+    color: var(--color-white-1);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 .form-delete-account-overflow-mobile {
     position: fixed;
