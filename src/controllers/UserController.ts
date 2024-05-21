@@ -9,7 +9,10 @@ import { Playlist } from '../models/Playlist'
 
 async function indexUser(req: Request, res: Response) {
     try {
-        const users = await User.find({}, '-password')
+        const users = await User.find(
+            {},
+            '-password -musicHistory -favoriteSongs -myPlaylists'
+        )
         return res.status(200).json({ users })
     } catch (err) {
         res.status(500).json({ error: err })
@@ -121,6 +124,63 @@ async function loginUser(req: Request, res: Response) {
         })
     } catch (err) {
         return res.status(500).json({ error: err })
+    }
+}
+async function logoutUser(req: Request, res: Response) {
+    const { id } = req.params
+
+    const filter = { _id: id }
+
+    try {
+        const user = await User.findById(id)
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        const tokens = user.tokens.filter((token) => {
+            const date = new Date(token.additionDate)
+            const dateNow = new Date()
+            const diff = dateNow.getTime() - date.getTime()
+            const diffDays = diff / (1000 * 60 * 60 * 24)
+
+            return diffDays <= 7
+        })
+
+        await User.updateOne(filter, {
+            $set: {
+                tokens,
+            },
+        })
+
+        const token = req.cookies.token
+
+        if (!token) {
+            return res.status(400).json({ error: 'Token is missing' })
+        }
+
+        const tokenFormated = token.split(' ')[1]
+
+        if (tokenFormated) {
+            await User.updateOne(filter, {
+                $push: {
+                    tokens: {
+                        token: tokenFormated,
+                        additionDate: new Date(),
+                    },
+                },
+            })
+        } else {
+            return res.status(400).json({ error: 'Token is invalid' })
+        }
+
+        res.clearCookie('token')
+        res.clearCookie('user')
+
+        return res
+            .status(200)
+            .json({ message: 'User logged out successfully!' })
+    } catch (error) {
+        return res.status(500).json({ error })
     }
 }
 
@@ -922,6 +982,7 @@ export {
     indexUserById,
     storeUser,
     loginUser,
+    logoutUser,
     updateUser,
     deleteUser,
     updateUserFavoriteSongs,

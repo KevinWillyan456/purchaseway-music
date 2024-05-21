@@ -849,15 +849,15 @@ document
     })
 document
     .querySelector('.confirm-logout-container')
-    .addEventListener('submit', (e) => {
+    .addEventListener('submit', async (e) => {
         e.preventDefault()
-        logoutService()
+        await logoutService()
     })
 document
     .querySelector('.confirm-logout-container-mobile')
-    .addEventListener('submit', (e) => {
+    .addEventListener('submit', async (e) => {
         e.preventDefault()
-        logoutService()
+        await logoutService()
     })
 document
     .querySelector('.minhas-playlists-search-bar-close')
@@ -3024,14 +3024,38 @@ function setScreenWidthAndHeight() {
     screenHeight = window.innerHeight
 }
 
-function logoutService() {
-    document.cookie.split(';').forEach(function (c) {
-        document.cookie = c
-            .replace(/^ +/, '')
-            .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/')
+async function logoutService() {
+    await fetch('/logout/' + userData._id, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
     })
+        .then(() => {
+            document.cookie.split(';').forEach(function (c) {
+                document.cookie = c
+                    .replace(/^ +/, '')
+                    .replace(
+                        /=.*/,
+                        '=;expires=' + new Date().toUTCString() + ';path=/'
+                    )
+            })
 
-    window.location = '/'
+            window.location = '/'
+        })
+        .catch((error) => {
+            document.cookie.split(';').forEach(function (c) {
+                document.cookie = c
+                    .replace(/^ +/, '')
+                    .replace(
+                        /=.*/,
+                        '=;expires=' + new Date().toUTCString() + ';path=/'
+                    )
+            })
+
+            window.location = '/'
+            console.error(error)
+        })
 }
 
 function getCookie(k) {
@@ -3652,7 +3676,7 @@ async function manageUserAccountDeletion() {
         const response = await userToDelete.json()
 
         if (response.message === 'User removed successfully!') {
-            logoutService()
+            await logoutService()
         }
     } else {
         if (
@@ -3675,7 +3699,7 @@ async function manageUserAccountDeletion() {
         const response = await userToDelete.json()
 
         if (response.message === 'User removed successfully!') {
-            logoutService()
+            await logoutService()
         }
     }
 }

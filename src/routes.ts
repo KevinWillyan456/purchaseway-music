@@ -16,6 +16,7 @@ import {
     indexUserById,
     indexUserPlaylist,
     loginUser,
+    logoutUser,
     storeUser,
     storeUserPlaylist,
     storeUserPlaylistSongs,
@@ -52,6 +53,7 @@ routes.delete('/songs/:id', eAdminManagerRequest, getMusic, deleteMusic)
 routes.get('/users', eAdminManagerRequest, indexUser)
 routes.post('/users', storeUser)
 routes.post('/login', loginUser)
+routes.post('/logout/:id', logoutUser)
 routes.get('/users/:id', getUser, indexUserById)
 routes.put('/users/:id', getUser, updateUser)
 routes.delete('/users/:id', getUser, deleteUser)

@@ -30,6 +30,10 @@ export interface IUser {
             musicId: string
         }[]
     }[]
+    tokens: {
+        token: string
+        additionDate: Date
+    }[]
 }
 
 const userSchema = new Schema<IUser>({
@@ -68,6 +72,12 @@ const userSchema = new Schema<IUser>({
                     musicId: { type: String },
                 },
             ],
+        },
+    ],
+    tokens: [
+        {
+            token: { type: String, required: true },
+            additionDate: { type: Date, default: Date.now, required: true },
         },
     ],
 })
