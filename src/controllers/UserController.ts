@@ -11,7 +11,7 @@ async function indexUser(req: Request, res: Response) {
     try {
         const users = await User.find(
             {},
-            '-password -musicHistory -favoriteSongs -myPlaylists'
+            '-password -tokens -musicHistory -favoriteSongs -myPlaylists -__v'
         )
         return res.status(200).json({ users })
     } catch (err) {
@@ -26,7 +26,7 @@ async function indexUserById(
     const { id } = req.params
 
     try {
-        const user = await User.findById(id, '-password')
+        const user = await User.findById(id, '-password -tokens -__v')
         return res.status(200).json({ user })
     } catch (err) {
         res.status(500).json({ error: err })
@@ -257,7 +257,7 @@ async function updateUserFavoriteSongs(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    const user: IUser | null = await User.findById(id, '-password')
+    const user: IUser | null = await User.findById(id, '-password -tokens')
     const musicGenderUser: string[] = await Music.distinct('gender')
 
     if (!musicGenderUser.includes(musicGender)) {
@@ -364,7 +364,7 @@ async function updateUserMusicHistoric(
         return res.status(400).json({ error: 'You must enter a new data' })
     }
 
-    const user: IUser | null = await User.findById(id, '-password')
+    const user: IUser | null = await User.findById(id, '-password -tokens')
     const musicGenderUser: string[] = await Music.distinct('gender')
 
     if (!musicGenderUser.includes(musicGender)) {

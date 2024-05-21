@@ -15,7 +15,10 @@ async function indexPlaylist(req: Request, res: Response) {
             let totalSongs: number
 
             if (field.gender == 'Favorite') {
-                const user: IUser | null = await User.findById(id, '-password')
+                const user: IUser | null = await User.findById(
+                    id,
+                    '-password -email'
+                )
 
                 if (user != null) {
                     totalSongs = user?.favoriteSongs.length
@@ -238,7 +241,10 @@ async function selectPlaylist(req: Request, res: Response) {
 
     try {
         if (playlist == 'Favorite') {
-            const user: IUser | null = await User.findById(id, '-password')
+            const user: IUser | null = await User.findById(
+                id,
+                '-password -email'
+            )
             const userFavoriteSongs: string[] = []
 
             if (user != null) {
