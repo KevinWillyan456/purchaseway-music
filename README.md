@@ -352,7 +352,7 @@ _Tela Inicial_
 _Tela Home_
 
 ![home-profile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/7b209178-1833-4e06-a644-856fa67ab71f)
-_Tela Home - Pefil_
+_Tela Home - Perfil_
 
 ![home-playlists](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/79d7f92f-1735-4075-bb30-7b1921eff20a)
 _Tela Home - Playlists_
@@ -390,7 +390,7 @@ _Tela Inicial na versão mobile_
 _Tela Home na versão mobile_
 
 ![home-profile-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/7ec2b4c1-283f-4bf3-a70a-a324eb2cd0a4)
-_Tela Home na versão mobile - Pefil_
+_Tela Home na versão mobile - Perfil_
 
 ![home-playlists-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/7a6104eb-8034-47fa-a3c2-df273dc747d8)
 _Tela Home na versão mobile - Playlists_
