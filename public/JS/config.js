@@ -214,16 +214,14 @@ const formEditSongIn = document.querySelector('#formEditSongIn')
 
 const formSongEditInputID = document.querySelector('#formSongEditInputID')
 
-function listMusic(musics, playlistInfo) {
-    document.querySelector('#containerPlaylistToManageCover').src =
-        playlistInfo.coverUrl
-    document.querySelector('#containerPlaylistToManageTitle').textContent =
-        playlistInfo.title
-    document.querySelector(
-        '#containerPlaylistToManageDescription'
-    ).textContent = playlistInfo.description
+function formatarData(dataISO) {
+    try {
+        const data = new Date(dataISO)
 
-    function converterData(dataString) {
+        if (isNaN(data.getTime())) {
+            throw new Error('Data inválida')
+        }
+
         const meses = [
             'janeiro',
             'fevereiro',
@@ -239,19 +237,27 @@ function listMusic(musics, playlistInfo) {
             'dezembro',
         ]
 
-        const data = new Date(dataString)
-        const dia = data.getDate()
-        const mes = meses[data.getMonth()]
-        const ano = data.getFullYear()
+        const dia = data.getUTCDate()
+        const mes = data.getUTCMonth()
+        const ano = data.getUTCFullYear()
 
-        return `Criada em: ${dia} de ${mes} de ${ano}`
+        return `${dia} de ${meses[mes]} de ${ano}`
+    } catch (error) {
+        return 'Formato de data inválido'
     }
+}
 
-    const dataOriginal = playlistInfo.additionDate
-    const novaData = converterData(dataOriginal)
-
-    document.querySelector('#containerPlaylistToManageCreated').textContent =
-        novaData
+function listMusic(musics, playlistInfo) {
+    document.querySelector('#containerPlaylistToManageCover').src =
+        playlistInfo.coverUrl
+    document.querySelector('#containerPlaylistToManageTitle').textContent =
+        playlistInfo.title
+    document.querySelector(
+        '#containerPlaylistToManageDescription'
+    ).textContent = playlistInfo.description
+    document.querySelector(
+        '#containerPlaylistToManageCreated'
+    ).textContent = `Criada em: ${formatarData(playlistInfo.additionDate)}`
     document.querySelector(
         '#containerPlaylistToManageTotalMusics'
     ).textContent = `Total de ${musics.length} ${
@@ -297,36 +303,9 @@ function listMusic(musics, playlistInfo) {
 function listFocusMusic(music) {
     document.querySelector('#focusSongCover').src = music.coverUrl
     document.querySelector('#focusSongTitle').textContent = music.title
-
-    function converterData(dataString) {
-        const meses = [
-            'janeiro',
-            'fevereiro',
-            'março',
-            'abril',
-            'maio',
-            'junho',
-            'julho',
-            'agosto',
-            'setembro',
-            'outubro',
-            'novembro',
-            'dezembro',
-        ]
-
-        const data = new Date(dataString)
-        const dia = data.getDate()
-        const mes = meses[data.getMonth()]
-        const ano = data.getFullYear()
-
-        return `Criada em: ${dia} de ${mes} de ${ano}`
-    }
-
-    const dataOriginal = music.additionDate
-    const novaData = converterData(dataOriginal)
-
-    document.querySelector('#focusSongCreated').textContent = novaData
-
+    document.querySelector(
+        '#focusSongCreated'
+    ).textContent = `Criada em: ${formatarData(music.additionDate)}`
     document.querySelector(
         '#focusSongURL'
     ).href = `https://youtu.be/${music.videoId}`

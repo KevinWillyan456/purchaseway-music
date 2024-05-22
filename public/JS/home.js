@@ -1044,55 +1044,49 @@ function allSongValueSetters() {
     }
 }
 
-function setUserSettings() {
-    let day = parseInt(userData.additionDate.substring(8, 10))
-    let month = parseInt(userData.additionDate.substring(5, 7))
-    let year = parseInt(userData.additionDate.substring(0, 4))
+function formatarData(dataISO) {
+    try {
+        const data = new Date(dataISO)
 
-    switch (month) {
-        case 1:
-            month = 'janeiro'
-            break
-        case 2:
-            month = 'fevereiro'
-            break
-        case 3:
-            month = 'março'
-            break
-        case 4:
-            month = 'abril'
-            break
-        case 5:
-            month = 'maio'
-            break
-        case 6:
-            month = 'junho'
-            break
-        case 7:
-            month = 'julho'
-            break
-        case 8:
-            month = 'agosto'
-            break
-        case 9:
-            month = 'setembro'
-            break
-        case 10:
-            month = 'outubro'
-            break
-        case 11:
-            month = 'novembro'
-            break
-        case 12:
-            month = 'dezembro'
-            break
+        if (isNaN(data.getTime())) {
+            throw new Error('Data inválida')
+        }
+
+        const meses = [
+            'janeiro',
+            'fevereiro',
+            'março',
+            'abril',
+            'maio',
+            'junho',
+            'julho',
+            'agosto',
+            'setembro',
+            'outubro',
+            'novembro',
+            'dezembro',
+        ]
+
+        const dia = data.getUTCDate()
+        const mes = data.getUTCMonth()
+        const ano = data.getUTCFullYear()
+
+        return `${dia} de ${meses[mes]} de ${ano}`
+    } catch (error) {
+        return 'Formato de data inválido'
     }
+}
 
+function setUserSettings() {
     if (screenWidth >= 1360) {
-        registrationDate.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`
+        registrationDate.innerHTML = `Registrou-se em: ${formatarData(
+            userData.additionDate
+        )}`
         userName.innerHTML = userData.name
     } else {
-        registrationDateMobile.innerHTML = `Registrou-se em: ${day} de ${month} ${year}`
+        registrationDateMobile.innerHTML = `Registrou-se em: ${formatarData(
+            userData.additionDate
+        )}`
         userNameMobile.innerHTML = userData.name
     }
 }
@@ -1938,30 +1932,6 @@ function generatorContainerHistoricDataPlay() {
     }
 }
 function generatorContainerMusicAddPlaylist() {
-    function converterData(dataString) {
-        const meses = [
-            'janeiro',
-            'fevereiro',
-            'março',
-            'abril',
-            'maio',
-            'junho',
-            'julho',
-            'agosto',
-            'setembro',
-            'outubro',
-            'novembro',
-            'dezembro',
-        ]
-
-        const data = new Date(dataString)
-        const dia = data.getDate()
-        const mes = meses[data.getMonth()]
-        const ano = data.getFullYear()
-
-        return `Criada em: ${dia} de ${mes} de ${ano}`
-    }
-
     if (screenWidth >= 1360) {
         const container = document.querySelector('.container-minhas-playlists')
         const containerMusic = document.querySelector(
@@ -1993,7 +1963,9 @@ function generatorContainerMusicAddPlaylist() {
                 ).textContent = element.title
                 document.querySelector(
                     '.main-minhas-playlists .main-playlist .content .details .created'
-                ).textContent = converterData(element.additionDate)
+                ).textContent = `Criada em: ${formatarData(
+                    element.additionDate
+                )}`
                 document.querySelector(
                     '.main-minhas-playlists .main-playlist .content .details .total-song'
                 ).textContent = `Total de ${element.totalSongs} ${
@@ -2156,7 +2128,9 @@ function generatorContainerMusicAddPlaylist() {
                 ).textContent = element.title
                 document.querySelector(
                     '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .created-mobile'
-                ).textContent = converterData(element.additionDate)
+                ).textContent = `Criada em: ${formatarData(
+                    element.additionDate
+                )}`
                 document.querySelector(
                     '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .total-song-mobile'
                 ).textContent = `Total de ${element.totalSongs} ${
