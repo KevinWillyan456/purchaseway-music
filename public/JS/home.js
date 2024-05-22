@@ -2880,10 +2880,6 @@ function repeatToggle() {
         repeatToggleControl = false
         repeatIcon.classList.add('active')
         repeatIconMobile.classList.add('active')
-
-        if (!shuffleToggleControl) {
-            shuffleToggle()
-        }
     } else {
         repeatToggleControl = true
         repeatIcon.classList.remove('active')
@@ -2919,6 +2915,14 @@ function shuffleToggle() {
         if (!repeatToggleControl) {
             repeatToggle()
         }
+
+        indexAudio = 1
+        audioControllerPrevFunction()
+        generatorContainerPlaylistData()
+        generatorContainerPlaylistDataPlay()
+        setMusicPlayTag()
+        containerPlaylist.scrollTop = 0
+        containerPlaylistMobile.scrollTop = 0
     } else {
         shuffleIcon.classList.remove('active')
         shuffleIconMobile.classList.remove('active')
@@ -2927,6 +2931,11 @@ function shuffleToggle() {
         musicDataShuffled = [...musicData]
         indexAudio = 1
         audioControllerPrevFunction()
+        generatorContainerPlaylistData()
+        generatorContainerPlaylistDataPlay()
+        setMusicPlayTag()
+        containerPlaylist.scrollTop = 0
+        containerPlaylistMobile.scrollTop = 0
     }
 }
 
