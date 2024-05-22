@@ -45,7 +45,6 @@ async function eAdmin(req: Request, res: Response, next: NextFunction) {
         }
 
         if (user.tokens.find((t) => t.token === token)) {
-            console.log('Token válido')
             res.clearCookie('user')
             res.clearCookie('token')
             return res.status(400).redirect('/denied')
