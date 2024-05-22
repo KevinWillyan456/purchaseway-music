@@ -1321,7 +1321,16 @@ function generatorContainerPlaylistSelectData() {
                             ${element.description}
                         </div>
                         <div class="total-music-item-select-playlist">
-                            Total de ${element.totalSongs} músicas
+                            Total de ${
+                                allMusicData.filter(
+                                    (music) => music.gender == element.gender
+                                ).length
+                            } ${
+                allMusicData.filter((music) => music.gender == element.gender)
+                    .length > 1
+                    ? 'músicas'
+                    : 'música'
+            }
                         </div>
                     </div>
                 </div>
@@ -1369,7 +1378,16 @@ function generatorContainerPlaylistSelectData() {
                             ${element.description}
                         </div>
                         <div class="total-music-item-select-playlist-mobile">
-                            Total de ${element.totalSongs} músicas
+                            Total de ${
+                                allMusicData.filter(
+                                    (music) => music.gender == element.gender
+                                ).length
+                            } ${
+                allMusicData.filter((music) => music.gender == element.gender)
+                    .length > 1
+                    ? 'músicas'
+                    : 'música'
+            }
                         </div>
                     </div>
                 </div>
