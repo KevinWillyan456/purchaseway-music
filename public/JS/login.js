@@ -7,7 +7,7 @@ const warning = document.querySelector('.warning')
 
 const MIN_PASSWORD_LENGTH = 6
 
-let timer = null
+let timerAlertMessage = null
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault()
@@ -15,25 +15,34 @@ form.addEventListener('submit', async (e) => {
     let emailValue = inputEmailUser.value.trim()
     let passwordValue = inputPasswordUser.value
 
-    if (timer != null) {
-        clearTimeout(timer)
-        timer = null
+    if (timerAlertMessage != null) {
+        clearTimeout(timerAlertMessage)
+        timerAlertMessage = null
     }
 
     if (emailValue == '') {
         warning.classList.remove('hidden')
         warning.innerHTML = 'E-mail ou Senha incorretos!'
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
     if (passwordValue == '') {
         warning.classList.remove('hidden')
         warning.innerHTML = 'E-mail ou Senha incorretos!'
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
     if (passwordValue.length < MIN_PASSWORD_LENGTH) {
         warning.classList.remove('hidden')
         warning.innerHTML = 'E-mail ou Senha incorretos!'
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
 
     const user = {
@@ -65,11 +74,17 @@ form.addEventListener('submit', async (e) => {
         warning.innerHTML = 'Login realizado com sucesso!'
         warning.classList.add('success')
         warning.classList.remove('hidden')
-        return (timer = setTimeout(() => (window.location = '/home'), 2000))
+        return (timerAlertMessage = setTimeout(
+            () => (window.location = '/home'),
+            2000
+        ))
     }
     if (resposta.status != 200) {
         warning.innerHTML = 'E-mail ou Senha incorretos!'
         warning.classList.remove('hidden')
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
 })

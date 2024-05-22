@@ -17,6 +17,8 @@ let playerReady = false
 let playerMobile
 let playerReadyMobile = false
 
+let timerAlertMessage = null
+
 const audioControllerPrev = document.querySelector('#audio-prev')
 const audioControllerPlay = document.querySelector('#audio-play')
 const audioControllerNext = document.querySelector('#audio-next')
@@ -2303,14 +2305,22 @@ function generatorContainerCurrentMusicAddPlaylist() {
                                 if (screenWidth >= 1360) {
                                     warning.classList.remove('hidden')
                                     warning.textContent = 'Internal Error!'
-                                    setTimeout(() => {
+                                    if (timerAlertMessage != null) {
+                                        clearTimeout(timerAlertMessage)
+                                        timerAlertMessage = null
+                                    }
+                                    timerAlertMessage = setTimeout(() => {
                                         warning.classList.add('hidden')
                                     }, 3000)
                                 } else {
                                     warningMobile.classList.remove('hidden')
                                     warningMobile.textContent =
                                         'Internal Error!'
-                                    setTimeout(() => {
+                                    if (timerAlertMessage != null) {
+                                        clearTimeout(timerAlertMessage)
+                                        timerAlertMessage = null
+                                    }
+                                    timerAlertMessage = setTimeout(() => {
                                         warningMobile.classList.add('hidden')
                                     }, 3000)
                                 }
@@ -2342,14 +2352,22 @@ function generatorContainerCurrentMusicAddPlaylist() {
                                 if (screenWidth >= 1360) {
                                     warning.classList.remove('hidden')
                                     warning.textContent = 'Internal Error!'
-                                    setTimeout(() => {
+                                    if (timerAlertMessage != null) {
+                                        clearTimeout(timerAlertMessage)
+                                        timerAlertMessage = null
+                                    }
+                                    timerAlertMessage = setTimeout(() => {
                                         warning.classList.add('hidden')
                                     }, 3000)
                                 } else {
                                     warningMobile.classList.remove('hidden')
                                     warningMobile.textContent =
                                         'Internal Error!'
-                                    setTimeout(() => {
+                                    if (timerAlertMessage != null) {
+                                        clearTimeout(timerAlertMessage)
+                                        timerAlertMessage = null
+                                    }
+                                    timerAlertMessage = setTimeout(() => {
                                         warningMobile.classList.add('hidden')
                                     }, 3000)
                                 }
@@ -2418,14 +2436,22 @@ function generatorContainerCurrentMusicAddPlaylist() {
                                 if (screenWidth >= 1360) {
                                     warning.classList.remove('hidden')
                                     warning.textContent = 'Internal Error!'
-                                    setTimeout(() => {
+                                    if (timerAlertMessage != null) {
+                                        clearTimeout(timerAlertMessage)
+                                        timerAlertMessage = null
+                                    }
+                                    timerAlertMessage = setTimeout(() => {
                                         warning.classList.add('hidden')
                                     }, 3000)
                                 } else {
                                     warningMobile.classList.remove('hidden')
                                     warningMobile.textContent =
                                         'Internal Error!'
-                                    setTimeout(() => {
+                                    if (timerAlertMessage != null) {
+                                        clearTimeout(timerAlertMessage)
+                                        timerAlertMessage = null
+                                    }
+                                    timerAlertMessage = setTimeout(() => {
                                         warningMobile.classList.add('hidden')
                                     }, 3000)
                                 }
@@ -2457,14 +2483,22 @@ function generatorContainerCurrentMusicAddPlaylist() {
                                 if (screenWidth >= 1360) {
                                     warning.classList.remove('hidden')
                                     warning.textContent = 'Internal Error!'
-                                    setTimeout(() => {
+                                    if (timerAlertMessage != null) {
+                                        clearTimeout(timerAlertMessage)
+                                        timerAlertMessage = null
+                                    }
+                                    timerAlertMessage = setTimeout(() => {
                                         warning.classList.add('hidden')
                                     }, 3000)
                                 } else {
                                     warningMobile.classList.remove('hidden')
                                     warningMobile.textContent =
                                         'Internal Error!'
-                                    setTimeout(() => {
+                                    if (timerAlertMessage != null) {
+                                        clearTimeout(timerAlertMessage)
+                                        timerAlertMessage = null
+                                    }
+                                    timerAlertMessage = setTimeout(() => {
                                         warningMobile.classList.add('hidden')
                                     }, 3000)
                                 }
@@ -2623,13 +2657,21 @@ async function themeChanger(theme = 'original') {
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -3097,13 +3139,21 @@ async function manageHistoric() {
         if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'Internal Error!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
         } else {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Internal Error!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
         }
@@ -3132,13 +3182,21 @@ async function manageHistoricClear() {
         if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'Internal Error!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
         } else {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Internal Error!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
         }
@@ -3175,13 +3233,21 @@ async function manageFavorite() {
         if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'Limite de músicas favoritas atingido!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
         } else {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Limite de músicas favoritas atingido!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
         }
@@ -3200,14 +3266,22 @@ async function manageFavorite() {
             musicFavoriteIcon.style.pointerEvents = 'auto'
             warning.classList.remove('hidden')
             warning.textContent = 'Internal Error!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
         } else {
             musicFavoriteIconMobile.style.pointerEvents = 'auto'
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Internal Error!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
         }
@@ -3601,7 +3675,11 @@ async function manageUserAccountChangeName() {
             warning.classList.remove('hidden')
             warning.textContent = 'Por favor, escreva um nome válido.'
             changeNameInput.focus()
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
         } else {
@@ -3631,7 +3709,11 @@ async function manageUserAccountChangeName() {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Por favor, escreva um nome válido.'
             changeNameInputMobile.focus()
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
         } else {
@@ -3664,7 +3746,11 @@ async function manageUserAccountDeletion() {
             warning.classList.remove('hidden')
             warning.textContent = 'Por favor, escreva a frase corretamente.'
             deleteAccountInputToConfirm.focus()
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
             return
@@ -3687,7 +3773,11 @@ async function manageUserAccountDeletion() {
             warningMobile.textContent =
                 'Por favor, escreva a frase corretamente.'
             deleteAccountInputToConfirmMobile.focus()
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
             return
@@ -3720,7 +3810,11 @@ function manageMyPlaylistEdition() {
                     '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
                 )
                 .focus()
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
 
@@ -3747,14 +3841,22 @@ function manageMyPlaylistEdition() {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Já existe uma playlist com esse nome.'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
                 warningMobile.textContent =
                     'Já existe uma playlist com esse nome.'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
@@ -3799,14 +3901,22 @@ function manageMyPlaylistEdition() {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
 
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
 
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -3827,7 +3937,11 @@ function manageMyPlaylistEdition() {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent =
                 'Por favor, escreva o nome da playlist corretamente.'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
 
@@ -3854,14 +3968,22 @@ function manageMyPlaylistEdition() {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Já existe uma playlist com esse nome.'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
                 warningMobile.textContent =
                     'Já existe uma playlist com esse nome.'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
@@ -3906,14 +4028,22 @@ function manageMyPlaylistEdition() {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
 
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
 
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -3940,7 +4070,11 @@ function manageMyPlaylistDeletion() {
             warning.classList.remove('hidden')
             warning.textContent =
                 'Por favor, escreva o nome da playlist corretamente.'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
 
@@ -3965,14 +4099,22 @@ function manageMyPlaylistDeletion() {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
 
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
 
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -3995,7 +4137,11 @@ function manageMyPlaylistDeletion() {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent =
                 'Por favor, escreva o nome da playlist corretamente.'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
 
@@ -4020,14 +4166,22 @@ function manageMyPlaylistDeletion() {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Internal Error!'
 
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Internal Error!'
 
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -4102,13 +4256,21 @@ function manageMyPlaylistMusicDeletion() {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Internal Error!'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
                 warningMobile.textContent = 'Internal Error!'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
@@ -4142,13 +4304,21 @@ async function manageUserProfilePicture() {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Internal Error!'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
                 warningMobile.textContent = 'Internal Error!'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
@@ -4185,13 +4355,21 @@ async function manageUserProfilePicture() {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent = 'Internal Error!'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
                 warningMobile.textContent = 'Internal Error!'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
@@ -4291,14 +4469,22 @@ async function manageUserCreatePlaylist() {
                 warning.classList.remove('hidden')
                 warning.textContent =
                     'Por favor, digite um nome para a playlist.'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
                 warningMobile.textContent =
                     'Por favor, digite um nome para a playlist.'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
@@ -4311,14 +4497,22 @@ async function manageUserCreatePlaylist() {
                     warning.classList.remove('hidden')
                     warning.textContent =
                         'Já existe uma playlist com esse nome.'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent =
                         'Já existe uma playlist com esse nome.'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -4342,7 +4536,11 @@ async function manageUserCreatePlaylist() {
                     warning.classList.remove('hidden')
                     warning.classList.add('success')
                     warning.textContent = 'Playlist criada com sucesso!'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.remove('success')
                         warning.classList.add('hidden')
                     }, 3000)
@@ -4350,7 +4548,11 @@ async function manageUserCreatePlaylist() {
                     warningMobile.classList.remove('hidden')
                     warningMobile.classList.add('success')
                     warningMobile.textContent = 'Playlist criada com sucesso!'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.remove('success')
                         warningMobile.classList.add('hidden')
                     }, 3000)
@@ -4363,13 +4565,21 @@ async function manageUserCreatePlaylist() {
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Erro ao criar a playlist.'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Erro ao criar a playlist.'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -4387,14 +4597,22 @@ async function manageUserCreatePlaylist() {
                 warning.classList.remove('hidden')
                 warning.textContent =
                     'Por favor, digite um nome para a playlist.'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warning.classList.add('hidden')
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
                 warningMobile.textContent =
                     'Por favor, digite um nome para a playlist.'
-                setTimeout(() => {
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
                     warningMobile.classList.add('hidden')
                 }, 3000)
             }
@@ -4407,14 +4625,22 @@ async function manageUserCreatePlaylist() {
                     warning.classList.remove('hidden')
                     warning.textContent =
                         'Já existe uma playlist com esse nome.'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent =
                         'Já existe uma playlist com esse nome.'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -4438,7 +4664,11 @@ async function manageUserCreatePlaylist() {
                     warning.classList.remove('hidden')
                     warning.classList.add('success')
                     warning.textContent = 'Playlist criada com sucesso!'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.remove('success')
                         warning.classList.add('hidden')
                     }, 3000)
@@ -4446,7 +4676,11 @@ async function manageUserCreatePlaylist() {
                     warningMobile.classList.remove('hidden')
                     warningMobile.classList.add('success')
                     warningMobile.textContent = 'Playlist criada com sucesso!'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.remove('success')
                         warningMobile.classList.add('hidden')
                     }, 3000)
@@ -4461,13 +4695,21 @@ async function manageUserCreatePlaylist() {
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent = 'Erro ao criar a playlist.'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warning.classList.add('hidden')
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
                     warningMobile.textContent = 'Erro ao criar a playlist.'
-                    setTimeout(() => {
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
                         warningMobile.classList.add('hidden')
                     }, 3000)
                 }
@@ -4633,13 +4875,21 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
             warning.textContent = 'Internal Error!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warning.classList.add('hidden')
             }, 3000)
         } else {
             warningMobile.classList.remove('hidden')
             warningMobile.textContent = 'Internal Error!'
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 warningMobile.classList.add('hidden')
             }, 3000)
         }
@@ -4744,7 +4994,11 @@ function onPlayerReady(event) {
 function playVideo() {
     if (screenWidth >= 1360) {
         if (playerReady) {
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 if (
                     playerReady &&
                     player.getPlayerState() !== YT.PlayerState.PLAYING
@@ -4762,7 +5016,11 @@ function playVideo() {
         }
     } else {
         if (playerReadyMobile) {
-            setTimeout(() => {
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
+            }
+            timerAlertMessage = setTimeout(() => {
                 if (
                     playerReadyMobile &&
                     playerMobile.getPlayerState() !== YT.PlayerState.PLAYING
@@ -4783,7 +5041,11 @@ function playVideo() {
 
 function pauseVideo() {
     if (screenWidth >= 1360) {
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             if (
                 playerReady &&
                 player.getPlayerState() === YT.PlayerState.PLAYING
@@ -4792,7 +5054,11 @@ function pauseVideo() {
             }
         }, 200)
     } else {
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             if (
                 playerReadyMobile &&
                 playerMobile.getPlayerState() === YT.PlayerState.PLAYING

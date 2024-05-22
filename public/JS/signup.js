@@ -8,7 +8,7 @@ const warning = document.querySelector('.warning')
 
 const MIN_PASSWORD_LENGTH = 6
 
-let timer = null
+let timerAlertMessage = null
 
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -23,46 +23,64 @@ form.addEventListener('submit', async (e) => {
     let emailValue = inputEmailUser.value.trim()
     let passwordValue = inputPasswordUser.value.trim()
 
-    if (timer != null) {
-        clearTimeout(timer)
-        timer = null
+    if (timerAlertMessage != null) {
+        clearTimeout(timerAlertMessage)
+        timerAlertMessage = null
     }
 
     if (nameValue == '') {
         warning.classList.remove('hidden')
         warning.innerHTML = 'Nome está vazio!'
         inputNameUser.focus()
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
     if (emailValue == '') {
         warning.classList.remove('hidden')
         warning.innerHTML = 'E-mail está vazio!'
         inputEmailUser.focus()
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
     if (!isValidEmail(emailValue)) {
         warning.classList.remove('hidden')
         warning.innerHTML = 'E-mail inválido!'
         inputEmailUser.focus()
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
     if (passwordValue == '') {
         warning.classList.remove('hidden')
         warning.innerHTML = 'Senha está vazio!'
         inputPasswordUser.focus()
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
     if (passwordValue.includes(' ')) {
         warning.classList.remove('hidden')
         warning.innerHTML = 'Senha não pode ter espaços!'
         inputPasswordUser.focus()
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
     if (passwordValue.length < MIN_PASSWORD_LENGTH) {
         warning.classList.remove('hidden')
         warning.innerHTML = `Senha deve ter no mínimo ${MIN_PASSWORD_LENGTH} caracteres!`
         inputPasswordUser.focus()
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
 
     const user = {
@@ -100,7 +118,10 @@ form.addEventListener('submit', async (e) => {
     if (resposta.status != 201) {
         warning.innerHTML = 'Usuário já existe'
         warning.classList.remove('hidden')
-        return (timer = setTimeout(() => warning.classList.add('hidden'), 3000))
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
     }
 
     const resposta2 = await fetch('/login', {
@@ -112,6 +133,9 @@ form.addEventListener('submit', async (e) => {
         body: JSON.stringify(user),
     })
     if (resposta2.status == 200) {
-        return (timer = setTimeout(() => (window.location = '/home'), 2000))
+        return (timerAlertMessage = setTimeout(
+            () => (window.location = '/home'),
+            2000
+        ))
     }
 })

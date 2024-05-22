@@ -10,6 +10,8 @@ let changedData = {
 }
 let userData
 
+let timerAlertMessage = null
+
 const colorsThemes = {
     original: {
         base1: '#081b39',
@@ -387,7 +389,11 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Nome.'
         formAddPlaylistInputNome.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -402,7 +408,11 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'O Nome já existe, escolha outro.'
         formAddPlaylistInputNome.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -413,7 +423,11 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Gênero.'
         formAddPlaylistInputGenero.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -429,7 +443,11 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'O gênero já existe, escolha outro.'
         formAddPlaylistInputGenero.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -440,7 +458,11 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Descrição.'
         textareaDescricao.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -467,7 +489,11 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -477,7 +503,11 @@ formPlaylist.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Playlist adicionada com sucesso!'
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -527,7 +557,11 @@ formSong.addEventListener('submit', async function (event) {
         warning.textContent = 'Por favor, preencha o campo ID do YouTube.'
         formSongAddInputID.focus()
 
-        timerFormsong = setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerFormsong = timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -538,7 +572,11 @@ formSong.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'ID do YouTube inválido.'
         formSongAddInputID.focus()
-        timerFormsong = setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerFormsong = timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -565,7 +603,11 @@ formSong.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Música já adicionada.'
-        timerFormsong = setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerFormsong = timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -575,7 +617,11 @@ formSong.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Música adicionada com sucesso!'
-        timerFormsong = setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerFormsong = timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -618,7 +664,11 @@ formEditSongIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo ID do YouTube.'
-        timerFormEditSong = setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerFormEditSong = timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -630,7 +680,11 @@ formEditSongIn.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'ID do YouTube inválido.'
         formSongEditInputID.focus()
-        timerFormsong = setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerFormsong = timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -657,7 +711,11 @@ formEditSongIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'ID do YouTube inválido.'
-        timerFormEditSong = setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerFormEditSong = timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -667,7 +725,11 @@ formEditSongIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Música atualizada com sucesso!'
-        timerFormEditSong = setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerFormEditSong = timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -717,7 +779,11 @@ formSongDeleteBtn.addEventListener('click', async () => {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -727,7 +793,11 @@ formSongDeleteBtn.addEventListener('click', async () => {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Música deletada com sucesso!'
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -771,7 +841,11 @@ formDeletePlaylistContent.addEventListener('submit', async (e) => {
         warning.textContent =
             'Por favor, escreva o nome da playlist corretamente.'
         playlistDeleteNameInputToConfirm.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -793,7 +867,11 @@ formDeletePlaylistContent.addEventListener('submit', async (e) => {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Internal Error'
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -803,7 +881,11 @@ formDeletePlaylistContent.addEventListener('submit', async (e) => {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Playlist deletada com sucesso!'
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -825,7 +907,11 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Nome.'
         formPlaylistEditInputNome.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -837,7 +923,11 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo Gênero.'
         formPlaylistEditInputGender.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -849,7 +939,11 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('success')
         warning.textContent = 'Por favor, preencha o campo descrição.'
         formPlaylistEditDescription.focus()
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 
@@ -880,7 +974,11 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
         warning.textContent = 'Playlists não podem ter o mesmo gênero.'
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
         return
@@ -890,7 +988,11 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         warning.classList.remove('hidden')
         warning.classList.add('success')
         warning.textContent = 'Playlist atualizada com sucesso!'
-        setTimeout(() => {
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
             warning.classList.add('hidden')
         }, 3000)
 

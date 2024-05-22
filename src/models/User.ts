@@ -42,34 +42,34 @@ const userSchema = new Schema<IUser>({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     additionDate: { type: Date, required: true },
-    type: { type: String, default: 'normal' },
+    type: { type: String, required: true, default: 'normal' },
     favoriteSongs: [
         {
-            musicId: { type: String },
-            musicGender: { type: String },
+            musicId: { type: String, required: true },
+            musicGender: { type: String, required: true },
         },
     ],
     musicHistory: [
         {
-            musicId: { type: String },
-            musicGender: { type: String },
+            musicId: { type: String, required: true },
+            musicGender: { type: String, required: true },
         },
     ],
     lastAccessedPlaylist: { type: String, required: true, default: '' },
     lastAccessedPlaylistName: { type: String, required: true, default: '' },
-    profilePicture: { type: String, default: '' },
+    profilePicture: { type: String, default: '', required: true },
     theme: { type: String, required: true, default: 'original' },
     myPlaylists: [
         {
-            _id: { type: String },
-            title: { type: String },
-            currentCoverUrl: { type: String },
-            totalSongs: { type: Number },
-            additionDate: { type: Date },
+            _id: { type: String, required: true },
+            title: { type: String, required: true },
+            currentCoverUrl: { type: String, required: true },
+            totalSongs: { type: Number, required: true },
+            additionDate: { type: Date, required: true },
             songs: [
                 {
-                    _id: { type: String },
-                    musicId: { type: String },
+                    _id: { type: String, required: true },
+                    musicId: { type: String, required: true },
                 },
             ],
         },
