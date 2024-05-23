@@ -341,6 +341,52 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: Arquivo de imagem.
 - **Resposta**: JSON confirmando a atualização.
 
+## Ativação de Usuário Admin
+
+Atualmente, a ativação de um usuário como admin só pode ser feita manualmente através da alteração direta no banco de dados MongoDB. Siga os passos abaixo para alterar um usuário para admin.
+
+### Passos para Ativar um Usuário Admin
+
+1. **Acesse o MongoDB**:
+
+    Utilize uma ferramenta de gerenciamento de MongoDB, como o MongoDB Compass, ou conecte-se ao MongoDB via linha de comando.
+
+2. **Navegue até a Coleção de Usuários**:
+
+    Vá para a sua base de dados configurada e selecione a coleção `users`.
+
+3. **Encontre o Usuário**:
+
+    Encontre o documento do usuário que deseja promover para admin. Pode usar uma query baseada no email ou no ID do usuário.
+
+    ```json
+    { "email": "usuario@example.com" }
+    ```
+
+4. **Atualize o Tipo do Usuário**:
+
+    Altere o campo `type` de `"normal"` para `"admin"`.
+
+    ```json
+    {
+        "$set": { "type": "admin" }
+    }
+    ```
+
+5. **Salve a Alteração**:
+
+    Salve as alterações no documento.
+
+### Benefícios dos Usuários Admin
+
+Os usuários com tipo `admin` têm acesso a funcionalidades administrativas, incluindo:
+
+- Acesso à página de configuração (`/config`)
+- Capacidade de ler, criar, editar e excluir playlists
+- Adicionar, remover e editar músicas às playlists
+
+Após seguir esses passos, o usuário selecionado terá privilégios de administrador na aplicação.
+
 ## Capturas de telas
 
 ## Desktop
