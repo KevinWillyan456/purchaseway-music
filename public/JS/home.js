@@ -2904,10 +2904,6 @@ function shuffleToggle() {
 
         shuffleArray(musicDataShuffled)
 
-        if (!repeatToggleControl) {
-            repeatToggle()
-        }
-
         indexAudio = 1
         audioControllerPrevFunction()
         generatorContainerPlaylistData()
