@@ -68,8 +68,6 @@ const searchButton = document.querySelector('.container-search .search-icon')
 const containerItemsSearch = document.querySelector('.container-items')
 const searchBarInput = document.querySelector('#search-bar-input')
 
-const userSettings = document.querySelector('.user-settings')
-
 const containerItemsFavorite = document.querySelector('.container-favorite')
 const containerItemsHistoric = document.querySelector('.container-historic')
 
@@ -2998,11 +2996,6 @@ function searchEvents() {
     $('.container-settings .user-settings').click(function () {
         toggleTemplateUser()
     })
-    $('.header-mobile .box-wrapper-header-mobile .user-settings').click(
-        function () {
-            toggleTemplateUser()
-        }
-    )
 
     $('.focus-shadow').click(() => {
         $('.focus-shadow').hide(200)
@@ -3576,6 +3569,9 @@ function initialDeviceDefinition() {
     }
 }
 
+let currentVideoTime = 0
+let itsPlaying = false
+
 function deviceDefinition() {
     let previousDevice, nextDevice
 
@@ -3607,7 +3603,19 @@ function changeMobileOrDesktop() {
         musicFilteringFunction()
         sliderMusicVolume.value = getVideoVolume()
 
+        itsPlaying = false
+
         if (playerMobile) {
+            if (playerMobile.getPlayerState) {
+                if (playerMobile.getPlayerState() == 1) {
+                    itsPlaying = true
+                }
+            }
+
+            if (playerMobile.getCurrentTime) {
+                currentVideoTime = playerMobile.getCurrentTime()
+            }
+
             playerMobile.destroy()
         }
     } else {
@@ -3622,7 +3630,34 @@ function changeMobileOrDesktop() {
         $('.main-search-mobile .search-bar-mobile input').val('')
         musicFilteringFunction()
 
+        if (!emptyPlaylist) {
+            if (!displayMobile.classList.contains('show')) {
+                displayMobile.classList.remove('exit')
+                displayMobile.classList.add('show')
+                audioControllerPlayFunctionNoPause()
+                $('.main-search-mobile').hide(200)
+                $('.main-controls-mobile').removeClass('fixed')
+                $('.main-user-settings-mobile').hide(200)
+                $('.main-minhas-playlists-mobile').hide(200)
+                $('.main-select-playlists-mobile').hide(200)
+            }
+        }
+
+        $('.menu-options-mobile').hide(200)
+
+        itsPlaying = false
+
         if (player) {
+            if (player.getPlayerState) {
+                if (player.getPlayerState() == 1) {
+                    itsPlaying = true
+                }
+            }
+
+            if (player.getCurrentTime) {
+                currentVideoTime = player.getCurrentTime()
+            }
+
             player.destroy()
         }
     }
@@ -3660,6 +3695,45 @@ function changeMobileOrDesktop() {
     setMusicPlayTag()
     durationSliderEventGenerator()
     initThemeChanger(userData.theme)
+    continueVideo()
+}
+
+let checkPlayerContinueInterval = null
+
+function continueVideo() {
+    if (!itsPlaying) return
+
+    if (screenWidth >= 1360) {
+        if (playerReady && itsPlaying) {
+            player.seekTo(currentVideoTime)
+            playVideo()
+        } else {
+            checkPlayerContinueInterval = setInterval(function () {
+                if (playerReady && itsPlaying) {
+                    clearInterval(checkPlayerContinueInterval)
+                    continueVideo()
+                }
+                if (!itsPlaying) {
+                    clearInterval(checkPlayerContinueInterval)
+                }
+            }, 200)
+        }
+    } else {
+        if (playerReadyMobile && itsPlaying) {
+            playerMobile.seekTo(currentVideoTime)
+            playVideo()
+        } else {
+            checkPlayerContinueInterval = setInterval(function () {
+                if (playerReadyMobile && itsPlaying) {
+                    clearInterval(checkPlayerContinueInterval)
+                    continueVideo()
+                }
+                if (!itsPlaying) {
+                    clearInterval(checkPlayerContinueInterval)
+                }
+            }, 200)
+        }
+    }
 }
 
 function setManagementSystem() {
@@ -5001,6 +5075,9 @@ function onPlayerReady(event) {
     }
 }
 
+let checkPlayerInterval = null
+let checkPlayerIntervalMobile = null
+
 function playVideo() {
     if (screenWidth >= 1360) {
         if (playerReady) {
@@ -5018,7 +5095,7 @@ function playVideo() {
                 }
             }, 200)
         } else {
-            var checkPlayerInterval = setInterval(function () {
+            checkPlayerInterval = setInterval(function () {
                 if (playerReady) {
                     clearInterval(checkPlayerInterval)
                     playVideo()
@@ -5040,9 +5117,9 @@ function playVideo() {
                 }
             }, 200)
         } else {
-            var checkPlayerInterval = setInterval(function () {
+            checkPlayerIntervalMobile = setInterval(function () {
                 if (playerReadyMobile) {
-                    clearInterval(checkPlayerInterval)
+                    clearInterval(checkPlayerIntervalMobile)
                     playVideo()
                 }
             }, 100)
