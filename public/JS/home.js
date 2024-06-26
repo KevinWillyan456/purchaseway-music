@@ -54,6 +54,7 @@ const sliderMusicVolume = document.querySelector(
 const sliderMusicVolumeDot = document.querySelector(
     '.slider-music-volume-wrapper .slider-music-volume-dot'
 )
+const volumeIcon = document.querySelector('.volume-icon ion-icon')
 
 const repeatIcon = document.querySelector(
     '.container-funcions .repeat-icon ion-icon'
@@ -2813,17 +2814,34 @@ function volumeSliderEventGenerator() {
     })
 
     sliderMusicVolume.oninput = () => {
-        sliderMusicVolume.style.setProperty(
-            'background-image',
-            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
-        )
-        sliderMusicVolumeDot.style.setProperty(
-            'left',
-            `${sliderMusicVolume.value}%`
-        )
+        setSliderMusicVolume()
+        setVolumeStorage(sliderMusicVolume.value)
 
         if (emptyPlaylist) return
         setVideoVolume(sliderMusicVolume.value)
+        setVolumeIcon()
+    }
+}
+
+function setSliderMusicVolume() {
+    sliderMusicVolume.style.setProperty(
+        'background-image',
+        `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
+    )
+    sliderMusicVolumeDot.style.setProperty(
+        'left',
+        `${sliderMusicVolume.value}%`
+    )
+}
+function setVolumeIcon() {
+    if (sliderMusicVolume.value == 0) {
+        volumeIcon.name = 'volume-mute'
+    } else if (sliderMusicVolume.value > 0 && sliderMusicVolume.value <= 33) {
+        volumeIcon.name = 'volume-low'
+    } else if (sliderMusicVolume.value > 20 && sliderMusicVolume.value <= 66) {
+        volumeIcon.name = 'volume-medium'
+    } else {
+        volumeIcon.name = 'volume-high'
     }
 }
 
@@ -2856,14 +2874,9 @@ function initDurationSlider() {
 function initVolumeSlider() {
     if (screenWidth < 1360) return
 
-    sliderMusicVolume.style.setProperty(
-        'background-image',
-        `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
-    )
-    sliderMusicVolumeDot.style.setProperty(
-        'left',
-        `${sliderMusicVolume.value}%`
-    )
+    sliderMusicVolume.value = getVolumeStorage()
+    setSliderMusicVolume()
+    setVolumeIcon()
 }
 
 let repeatToggleControl = true
@@ -5001,6 +5014,7 @@ function playVideo() {
                     player.getPlayerState() !== YT.PlayerState.PLAYING
                 ) {
                     player.playVideo()
+                    setVolumeStorage(sliderMusicVolume.value)
                 }
             }, 200)
         } else {
@@ -5090,6 +5104,9 @@ function onPlayerStateChange(event) {
         setVideoVolume(sliderMusicVolume.value)
         checkAndUnmute()
         totalDurationSetter()
+        clearInterval(timerSyncSliderVolume)
+        timerSyncSliderVolume = null
+        timerSyncSliderVolume = setInterval(syncSliderVolume, 1000)
         clearInterval(timerCurretDurationSetter)
         timerCurretDurationSetter = null
         timerCurretDurationSetter = setInterval(curretDurationSetter, 1000)
@@ -5106,6 +5123,10 @@ function setVideoVolume(volume) {
         if (playerReady) {
             if (volume >= 0 && volume <= 100) {
                 player.setVolume(volume)
+
+                if (player.isMuted()) {
+                    player.unMute()
+                }
             }
         }
     } else {
@@ -5113,6 +5134,23 @@ function setVideoVolume(volume) {
             playerMobile.setVolume(100)
         }
     }
+}
+
+let timerSyncSliderVolume = null
+
+function syncSliderVolume() {
+    if (playerReady) {
+        sliderMusicVolume.value = getVideoVolume()
+        setSliderMusicVolume()
+        setVolumeIcon()
+    }
+}
+
+function getVolumeStorage() {
+    return localStorage.getItem('volume')
+}
+function setVolumeStorage(volume) {
+    localStorage.setItem('volume', volume)
 }
 
 function getVideoVolume() {
