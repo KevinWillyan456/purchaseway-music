@@ -5178,7 +5178,7 @@ function onPlayerStateChange(event) {
     }
 
     if (event.data === YT.PlayerState.PLAYING) {
-        setVideoVolume(sliderMusicVolume.value)
+        setVideoVolume(getVolumeStorage())
         checkAndUnmute()
         totalDurationSetter()
         clearInterval(timerSyncSliderVolume)
@@ -5224,7 +5224,7 @@ function syncSliderVolume() {
 }
 
 function getVolumeStorage() {
-    return localStorage.getItem('volume')
+    return localStorage.getItem('volume') || sliderMusicVolume.value || 60
 }
 function setVolumeStorage(volume) {
     localStorage.setItem('volume', volume)
