@@ -961,37 +961,44 @@ function audioControllerPlayFunction() {
     if (screenWidth >= 1360) {
         if (audioControllerPlayToggle) {
             playVideo()
-            audioControllerPlayToggle = false
-            audioControllerPlay.name = 'pause-circle'
-            musicAnimationStatus.classList.add('run')
         } else {
             pauseVideo()
-            audioControllerPlayToggle = true
-            audioControllerPlay.name = 'play-circle'
-            musicAnimationStatus.classList.remove('run')
         }
     } else {
         if (audioControllerPlayToggle) {
             playVideo()
-            audioControllerPlayToggle = false
-            audioControllerPlayMobile.name = 'pause-circle'
         } else {
             pauseVideo()
-            audioControllerPlayToggle = true
-            audioControllerPlayMobile.name = 'play-circle'
         }
     }
 }
 function audioControllerPlayFunctionNoPause() {
     if (screenWidth >= 1360) {
         playVideo()
+    } else {
+        playVideo()
+    }
+}
+
+function startAnimationAudioControllerPlay() {
+    if (screenWidth >= 1360) {
         audioControllerPlayToggle = false
         audioControllerPlay.name = 'pause-circle'
         musicAnimationStatus.classList.add('run')
     } else {
-        playVideo()
         audioControllerPlayToggle = false
         audioControllerPlayMobile.name = 'pause-circle'
+    }
+}
+
+function stopAnimationAudioControllerPlay() {
+    if (screenWidth >= 1360) {
+        audioControllerPlayToggle = true
+        audioControllerPlay.name = 'play-circle'
+        musicAnimationStatus.classList.remove('run')
+    } else {
+        audioControllerPlayToggle = true
+        audioControllerPlayMobile.name = 'play-circle'
     }
 }
 
@@ -1556,6 +1563,7 @@ function generatorContainerSearchDataPlay() {
 
                     $('.focus-shadow').hide(200)
                     $('.container-search-result').hide(200)
+                    $('.search-bar').hide(200)
                     profileWasClicked = true
                     canKeyboardEvents = true
                     canKeyboardEventsProfile = true
@@ -2697,18 +2705,14 @@ function durationSliderEventGenerator() {
             changeVideoCurrentTime(
                 (sliderMusicDuration.value / 100) * getVideoDuration()
             )
-            audioControllerPlayToggle = false
-            audioControllerPlay.name = 'pause-circle'
-            musicAnimationStatus.classList.add('run')
+
             canMoveTheSliderDuration = true
         })
         sliderMusicDuration.addEventListener('touchend', () => {
             changeVideoCurrentTime(
                 (sliderMusicDuration.value / 100) * getVideoDuration()
             )
-            audioControllerPlayToggle = false
-            audioControllerPlay.name = 'pause-circle'
-            musicAnimationStatus.classList.add('run')
+
             canMoveTheSliderDuration = true
         })
 
@@ -2752,18 +2756,14 @@ function durationSliderEventGenerator() {
             changeVideoCurrentTime(
                 (sliderMusicDurationMobile.value / 100) * getVideoDuration()
             )
-            audioControllerPlayToggle = false
-            audioControllerPlayMobile.name = 'pause-circle'
-            musicAnimationStatus.classList.add('run')
+
             canMoveTheSliderDuration = true
         })
         sliderMusicDurationMobile.addEventListener('touchend', () => {
             changeVideoCurrentTime(
                 (sliderMusicDurationMobile.value / 100) * getVideoDuration()
             )
-            audioControllerPlayToggle = false
-            audioControllerPlayMobile.name = 'pause-circle'
-            musicAnimationStatus.classList.add('run')
+
             canMoveTheSliderDuration = true
         })
 
@@ -3616,6 +3616,8 @@ function changeMobileOrDesktop() {
                 currentVideoTime = playerMobile.getCurrentTime()
             }
 
+            stopAnimationAudioControllerPlay()
+
             playerMobile.destroy()
         }
     } else {
@@ -3658,18 +3660,11 @@ function changeMobileOrDesktop() {
                 currentVideoTime = player.getCurrentTime()
             }
 
+            stopAnimationAudioControllerPlay()
+
             player.destroy()
         }
     }
-
-    if (screenWidth >= 1360) {
-        audioControllerPlay.name = 'play-circle'
-        musicAnimationStatus.classList.remove('run')
-    } else {
-        audioControllerPlayMobile.name = 'play-circle'
-    }
-
-    audioControllerPlayToggle = true
 
     allSongValueSetters()
     generatorContainerPlaylistSelectData()
@@ -4838,14 +4833,6 @@ function selectUserMyPlaylist() {
     indexAudio = 0
 
     if (screenWidth >= 1360) {
-        audioControllerPlay.name = 'play-circle'
-        musicAnimationStatus.classList.remove('run')
-    } else {
-        audioControllerPlayMobile.name = 'play-circle'
-    }
-    audioControllerPlayToggle = true
-
-    if (screenWidth >= 1360) {
         shuffleIcon.classList.remove('active')
     } else {
         shuffleIconMobile.classList.remove('active')
@@ -4897,6 +4884,9 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
                 <div></div>
             </div>
         `
+
+        stopAnimationAudioControllerPlay()
+
         if (player) {
             player.destroy()
         }
@@ -4929,6 +4919,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
                 <div></div>
             </div>
         `
+        stopAnimationAudioControllerPlay()
 
         if (playerMobile) {
             playerMobile.destroy()
@@ -5000,14 +4991,6 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     indexAudio = 0
 
     if (screenWidth >= 1360) {
-        audioControllerPlay.name = 'play-circle'
-        musicAnimationStatus.classList.remove('run')
-    } else {
-        audioControllerPlayMobile.name = 'play-circle'
-    }
-    audioControllerPlayToggle = true
-
-    if (screenWidth >= 1360) {
         shuffleIcon.classList.remove('active')
     } else {
         shuffleIconMobile.classList.remove('active')
@@ -5037,6 +5020,8 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
 
 function onYouTubeIframeAPIReady(videoId) {
     if (screenWidth >= 1360) {
+        stopAnimationAudioControllerPlay()
+
         if (player) {
             player.destroy()
         }
@@ -5051,6 +5036,8 @@ function onYouTubeIframeAPIReady(videoId) {
             },
         })
     } else {
+        stopAnimationAudioControllerPlay()
+
         if (playerMobile) {
             playerMobile.destroy()
         }
@@ -5075,9 +5062,6 @@ function onPlayerReady(event) {
     }
 }
 
-let checkPlayerInterval = null
-let checkPlayerIntervalMobile = null
-
 function playVideo() {
     if (screenWidth >= 1360) {
         if (playerReady) {
@@ -5095,7 +5079,7 @@ function playVideo() {
                 }
             }, 200)
         } else {
-            checkPlayerInterval = setInterval(function () {
+            var checkPlayerInterval = setInterval(function () {
                 if (playerReady) {
                     clearInterval(checkPlayerInterval)
                     playVideo()
@@ -5117,12 +5101,12 @@ function playVideo() {
                 }
             }, 200)
         } else {
-            checkPlayerIntervalMobile = setInterval(function () {
+            var checkPlayerInterval = setInterval(function () {
                 if (playerReadyMobile) {
-                    clearInterval(checkPlayerIntervalMobile)
+                    clearInterval(checkPlayerInterval)
                     playVideo()
                 }
-            }, 100)
+            }, 200)
         }
     }
 }
@@ -5181,6 +5165,7 @@ function onPlayerStateChange(event) {
         setVideoVolume(getVolumeStorage())
         checkAndUnmute()
         totalDurationSetter()
+        startAnimationAudioControllerPlay()
         clearInterval(timerSyncSliderVolume)
         timerSyncSliderVolume = null
         timerSyncSliderVolume = setInterval(syncSliderVolume, 1000)
@@ -5190,6 +5175,7 @@ function onPlayerStateChange(event) {
     }
 
     if (event.data === YT.PlayerState.PAUSED) {
+        stopAnimationAudioControllerPlay()
         clearInterval(timerCurretDurationSetter)
         timerCurretDurationSetter = null
     }
