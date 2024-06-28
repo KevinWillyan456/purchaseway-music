@@ -4283,19 +4283,29 @@ function manageMyPlaylistDeletion() {
     }
 }
 
-function manageEmptyPlaylist() {
+function manageEmptyPlaylist(itsMyPlaylist = false) {
     if (!emptyPlaylist) return
 
     if (screenWidth >= 1360) {
         containerPlaylist.innerHTML = `
             <div class="empty-playlist">
-                Playlist vazia
+                ${
+                    userData.lastAccessedPlaylist === 'Favorite' &&
+                    !itsMyPlaylist
+                        ? 'Sem músicas favoritas'
+                        : 'Playlist vazia'
+                }
             </div>
         `
     } else {
         containerPlaylistMobile.innerHTML = `
             <div class="empty-playlist-mobile">
-                Playlist vazia
+                ${
+                    userData.lastAccessedPlaylist === 'Favorite' &&
+                    !itsMyPlaylist
+                        ? 'Sem músicas favoritas'
+                        : 'Playlist vazia'
+                }
             </div>
         `
     }
@@ -4856,7 +4866,7 @@ function selectUserMyPlaylist() {
     allSongValueSetters()
     generatorContainerPlaylistData()
     generatorContainerPlaylistDataPlay()
-    manageEmptyPlaylist()
+    manageEmptyPlaylist(true)
     if (emptyPlaylist) return
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
