@@ -285,6 +285,13 @@ let playlistData = []
 
 let audioControllerPlayToggle = true
 
+const themes = [
+    'original',
+    'rock-version',
+    'hatsune-miku-version',
+    'amv-brasileiro-version',
+]
+
 const colorsThemes = {
     original: {
         base1: '#081b39',
@@ -947,12 +954,12 @@ function inicia() {
     indexAudioGender = musicDataShuffled[indexAudio]?.gender
     $('.title-playlist').html(userData.lastAccessedPlaylistName)
     $('.title-playlist-mobile').html(userData.lastAccessedPlaylistName)
+
     setMusicPlayTag()
     refreshFavorite()
     initialDeviceDefinition()
     initDurationSlider()
     initVolumeSlider()
-    initThemeChanger(userData.theme)
 }
 
 function audioControllerPlayFunction() {
@@ -2537,14 +2544,22 @@ function generatorContainerCurrentMusicAddPlaylist() {
     }
 }
 
-function initThemeChanger(theme = 'original') {
-    const themes = [
-        'original',
-        'rock-version',
-        'hatsune-miku-version',
-        'amv-brasileiro-version',
-    ]
+function getThemeStorage() {
+    return localStorage.getItem('theme') || 'original'
+}
 
+function setThemeStorage(theme) {
+    if (!themes.includes(theme)) {
+        console.warn(
+            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`
+        )
+        theme = 'original'
+    }
+
+    localStorage.setItem('theme', theme)
+}
+
+function initThemeChanger(theme = 'original') {
     themes.forEach((theme) => {
         document
             .querySelectorAll(`[data-theme="${theme}"]`)
@@ -2587,16 +2602,15 @@ function initThemeChanger(theme = 'original') {
     } else {
         serviceLogoMobile.src = logoSrc
     }
+
+    if (userData?.theme) {
+        setThemeStorage(theme)
+    }
 }
 
-async function themeChanger(theme = 'original') {
-    const themes = [
-        'original',
-        'rock-version',
-        'hatsune-miku-version',
-        'amv-brasileiro-version',
-    ]
+initThemeChanger(getThemeStorage())
 
+async function themeChanger(theme = 'original') {
     themes.forEach((theme) => {
         document
             .querySelectorAll(`[data-theme="${theme}"]`)
@@ -2651,6 +2665,7 @@ async function themeChanger(theme = 'original') {
     })
         .then((response) => {
             if (response.status === 200) {
+                setThemeStorage(theme)
                 return (userData.theme = theme)
             } else {
                 if (screenWidth >= 1360) {
@@ -3689,7 +3704,6 @@ function changeMobileOrDesktop() {
     refreshFavorite()
     setMusicPlayTag()
     durationSliderEventGenerator()
-    initThemeChanger(userData.theme)
     continueVideo()
 }
 
@@ -5206,12 +5220,14 @@ function syncSliderVolume() {
         sliderMusicVolume.value = getVideoVolume()
         setSliderMusicVolume()
         setVolumeIcon()
+        setVolumeStorage(sliderMusicVolume.value)
     }
 }
 
 function getVolumeStorage() {
     return localStorage.getItem('volume') || sliderMusicVolume.value || 60
 }
+
 function setVolumeStorage(volume) {
     localStorage.setItem('volume', volume)
 }

@@ -1041,9 +1041,12 @@ async function setUserInfo() {
 
     userData = user.user
 
-    initThemeChanger(userData.theme)
     document.querySelector('#userName').textContent = userData.name
     document.querySelector('#userNameMobile').textContent = userData.name
+}
+
+function getThemeStorage() {
+    return localStorage.getItem('theme') || 'original'
 }
 
 function initThemeChanger(theme = 'original') {
@@ -1068,6 +1071,8 @@ function initThemeChanger(theme = 'original') {
         )
     }
 }
+
+initThemeChanger(getThemeStorage())
 
 function setUserProfilePicture() {
     if (userData.profilePicture == '') {
