@@ -1050,6 +1050,8 @@ async function setUserInfo() {
 
     document.querySelector('#userName').textContent = userData.name
     document.querySelector('#userNameMobile').textContent = userData.name
+
+    initThemeChanger(userData.theme)
 }
 
 function getThemeStorage() {

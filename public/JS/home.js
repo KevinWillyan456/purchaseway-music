@@ -968,6 +968,7 @@ function inicia() {
     initialDeviceDefinition()
     initDurationSlider()
     initVolumeSlider()
+    initThemeChanger(userData.theme)
 }
 
 function audioControllerPlayFunction() {
