@@ -781,6 +781,7 @@ body::-webkit-scrollbar-thumb {
     font-size: 15px;
     outline: none;
     margin-bottom: 20px;
+    resize: none;
 }
 .form-playlist-overflow .form-playlist .field-area:focus {
     box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);

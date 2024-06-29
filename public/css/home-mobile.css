@@ -1210,6 +1210,9 @@
 .container-themes-mobile .theme-mobile.amv-br {
     background-color: #9e5a22;
 }
+.container-themes-mobile .theme-mobile.dark-mode {
+    background-color: #6e6e6e;
+}
 .content-profile-mobile .title-2-wrapper-mobile {
     color: var(--color-white-1);
 

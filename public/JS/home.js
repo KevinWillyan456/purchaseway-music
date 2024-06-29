@@ -290,6 +290,7 @@ const themes = [
     'rock-version',
     'hatsune-miku-version',
     'amv-brasileiro-version',
+    'dark-mode-version',
 ]
 
 const colorsThemes = {
@@ -320,6 +321,13 @@ const colorsThemes = {
         base3: '#5d523f',
         base4: '#5c2e0b',
         base5: '#fcff3d',
+    },
+    'dark-mode-version': {
+        base1: '#0b0b0b',
+        base2: '#6E6E6E',
+        base3: '#2F2F2F',
+        base4: '#4B4B4B',
+        base5: '#cecece',
     },
 }
 
@@ -2593,6 +2601,8 @@ function initThemeChanger(theme = 'original') {
             'https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png',
         'amv-brasileiro-version':
             'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png',
+        'dark-mode-version':
+            'https://i.ibb.co/D56Ds5x/logo-dark-mode-version.png',
     }
 
     const logoSrc = logoUrls[theme]
@@ -2644,6 +2654,8 @@ async function themeChanger(theme = 'original') {
             'https://i.ibb.co/YysSGkz/logo-hatsune-miku-version.png',
         'amv-brasileiro-version':
             'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png',
+        'dark-mode-version':
+            'https://i.ibb.co/D56Ds5x/logo-dark-mode-version.png',
     }
 
     const logoSrc = logoUrls[theme]

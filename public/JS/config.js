@@ -41,6 +41,13 @@ const colorsThemes = {
         base4: '#5c2e0b',
         base5: '#fcff3d',
     },
+    'dark-mode-version': {
+        base1: '#0b0b0b',
+        base2: '#6E6E6E',
+        base3: '#2F2F2F',
+        base4: '#4B4B4B',
+        base5: '#cecece',
+    },
 }
 
 const containerPlaylistToManage = document.querySelector(
@@ -1055,6 +1062,7 @@ function initThemeChanger(theme = 'original') {
         'rock-version',
         'hatsune-miku-version',
         'amv-brasileiro-version',
+        'dark-mode-version',
     ]
 
     if (!themes.includes(theme)) {

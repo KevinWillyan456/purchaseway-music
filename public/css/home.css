@@ -259,7 +259,6 @@ body {
     height: 100%;
     background-color: black;
     z-index: -500;
-
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -787,6 +786,9 @@ iframe {
 }
 .container-themes .theme.amv-br {
     background-color: #9e5a22;
+}
+.container-themes .theme.dark-mode {
+    background-color: #6e6e6e;
 }
 .container-favorite {
     width: 100%;
