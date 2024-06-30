@@ -99,6 +99,54 @@ const playlistDeleteNameInputToConfirm = document.querySelector(
 
 const warning = document.querySelector('#warning')
 
+const scrollTop = document.querySelector('#scrollTop')
+const HEIGHT_TO_SHOW_SCROLL_TOP = 300
+
+scrollTop.addEventListener('click', () => {
+    if (
+        document
+            .querySelector('.container-playlist-to-manage-overflow')
+            .classList.contains('hidden')
+    ) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+        document
+            .querySelector('.container-playlist-to-manage-overflow')
+            .scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            })
+    }
+})
+
+window.addEventListener('scroll', manageScrollTop)
+document
+    .querySelector('.container-playlist-to-manage-overflow')
+    .addEventListener('scroll', manageScrollTop)
+
+function manageScrollTop() {
+    if (
+        document
+            .querySelector('.container-playlist-to-manage-overflow')
+            .classList.contains('hidden')
+    ) {
+        if (window.scrollY > HEIGHT_TO_SHOW_SCROLL_TOP) {
+            scrollTop.classList.remove('hidden')
+        } else {
+            scrollTop.classList.add('hidden')
+        }
+    } else {
+        if (
+            document.querySelector('.container-playlist-to-manage-overflow')
+                .scrollTop > HEIGHT_TO_SHOW_SCROLL_TOP
+        ) {
+            scrollTop.classList.remove('hidden')
+        } else {
+            scrollTop.classList.add('hidden')
+        }
+    }
+}
+
 playlistDeleteNameInputToConfirm.addEventListener('paste', (e) => {
     e.preventDefault()
 })

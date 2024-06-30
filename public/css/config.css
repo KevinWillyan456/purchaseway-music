@@ -1513,6 +1513,30 @@ body::-webkit-scrollbar-thumb {
         font-size: 16px;
     }
 }
+.scroll-top {
+    transition: 200ms;
+    animation: animate-scale-opacity-entrace 500ms;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-base-3);
+    color: var(--color-white-1);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: none;
+    box-shadow: 0 0 0 2px var(--color-base-2);
+    outline: none;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    }
+}
 @keyframes animate-scale-opacity-entrace {
     from {
         transform: scale(0);
