@@ -62,11 +62,30 @@
         <div class="container-playlist-overflow">
             <div class="container-playlist">
                 <div class="header-playlist">
-                    <div class="title">Todas as Playlists</div>
-                    <button class="btn-adicionar" id="btnAddPlaylist">
-                        <ion-icon name="add"></ion-icon>
-                        Adicionar
-                    </button>
+                    <div class="wrap">
+                        <div class="title">Todas as Playlists</div>
+                        <button class="btn-adicionar" id="btnAddPlaylist">
+                            <ion-icon name="add"></ion-icon>
+                            Adicionar
+                        </button>
+                    </div>
+                    <div class="search">
+                        <button class="btn-search">
+                            <ion-icon name="search"></ion-icon>
+                        </button>
+                        <input
+                            class="field-search"
+                            type="text"
+                            placeholder="Busque por uma playlist..."
+                            id="searchPlaylist"
+                        />
+                        <button
+                            class="btn-close-search"
+                            id="clearSearchPlaylist"
+                        >
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                    </div>
                 </div>
                 <div class="content-playlist" id="contentPlaylist"></div>
             </div>
@@ -191,6 +210,22 @@
                     </button>
                 </div>
                 <div class="title-all-songs">Todas as Músicas</div>
+
+                <div class="search">
+                    <button class="btn-search">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                    <input
+                        class="field-search"
+                        type="text"
+                        placeholder="Busque por uma música..."
+                        id="searchSong"
+                    />
+                    <button class="btn-close-search" id="clearSearchSong">
+                        <ion-icon name="close"></ion-icon>
+                    </button>
+                </div>
+
                 <div class="content-songs" id="contentSongs">
                     <div class="songs-item">
                         <div class="item-cover">
