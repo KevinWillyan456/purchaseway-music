@@ -1784,6 +1784,17 @@ body::-webkit-scrollbar-thumb {
         box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
     }
 }
+.blank {
+    animation: animate-item-playlist 200ms backwards;
+    color: var(--color-white-1);
+    font-size: 26px;
+    text-align: center;
+    margin-top: 10px;
+
+    @media (max-width: 1359px) {
+        font-size: 20px;
+    }
+}
 @keyframes animate-scale-opacity-entrace {
     from {
         transform: scale(0);

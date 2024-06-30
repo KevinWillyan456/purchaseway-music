@@ -80,14 +80,19 @@
                             id="searchPlaylist"
                         />
                         <button
-                            class="btn-close-search"
+                            class="btn-close-search hidden"
                             id="clearSearchPlaylist"
                         >
                             <ion-icon name="close"></ion-icon>
                         </button>
                     </div>
                 </div>
+
                 <div class="content-playlist" id="contentPlaylist"></div>
+
+                <div class="blank hidden" id="blankPlaylist">
+                    Nenhuma playlist foi encontrada
+                </div>
             </div>
         </div>
 
@@ -221,22 +226,20 @@
                         placeholder="Busque por uma música..."
                         id="searchSong"
                     />
-                    <button class="btn-close-search" id="clearSearchSong">
+                    <button
+                        class="btn-close-search hidden"
+                        id="clearSearchSong"
+                    >
                         <ion-icon name="close"></ion-icon>
                     </button>
                 </div>
 
-                <div class="content-songs" id="contentSongs">
-                    <div class="songs-item">
-                        <div class="item-cover">
-                            <img
-                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
-                                alt="Capa da música"
-                            />
-                        </div>
-                        <div class="item-title"></div>
-                    </div>
+                <div class="content-songs" id="contentSongs"></div>
+
+                <div class="blank hidden" id="blankSong">
+                    Nenhuma música foi encontrada
                 </div>
+
                 <div class="blank"></div>
                 <div class="focus hidden" id="focusSong">
                     <div class="song">

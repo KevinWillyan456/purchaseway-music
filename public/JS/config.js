@@ -102,6 +102,102 @@ const warning = document.querySelector('#warning')
 const scrollTop = document.querySelector('#scrollTop')
 const HEIGHT_TO_SHOW_SCROLL_TOP = 300
 
+const searchPlaylist = document.querySelector('#searchPlaylist')
+const clearSearchPlaylist = document.querySelector('#clearSearchPlaylist')
+const blankPlaylist = document.querySelector('#blankPlaylist')
+
+const searchSong = document.querySelector('#searchSong')
+const clearSearchSong = document.querySelector('#clearSearchSong')
+const blankSong = document.querySelector('#blankSong')
+
+searchPlaylist.addEventListener('input', () => {
+    if (searchPlaylist.value.trim() === '') {
+        clearSearchPlaylist.classList.add('hidden')
+    } else {
+        clearSearchPlaylist.classList.remove('hidden')
+    }
+
+    const playlists = document.querySelectorAll('.playlist-item')
+
+    playlists.forEach((playlist) => {
+        if (
+            playlist
+                .querySelector('.item-title')
+                .textContent.toLowerCase()
+                .includes(searchPlaylist.value.trim().toLowerCase())
+        ) {
+            playlist.classList.remove('hidden')
+        } else {
+            playlist.classList.add('hidden')
+        }
+    })
+
+    const hiddenPlaylists = document.querySelectorAll('.playlist-item.hidden')
+
+    if (playlists.length === hiddenPlaylists.length && playlists.length > 0) {
+        blankPlaylist.classList.remove('hidden')
+    } else {
+        blankPlaylist.classList.add('hidden')
+    }
+})
+
+clearSearchPlaylist.addEventListener('click', () => {
+    searchPlaylist.value = ''
+    clearSearchPlaylist.classList.add('hidden')
+
+    const playlists = document.querySelectorAll('.playlist-item')
+
+    playlists.forEach((playlist) => {
+        playlist.classList.remove('hidden')
+    })
+
+    blankPlaylist.classList.add('hidden')
+})
+
+searchSong.addEventListener('input', () => {
+    if (searchSong.value.trim() === '') {
+        clearSearchSong.classList.add('hidden')
+    } else {
+        clearSearchSong.classList.remove('hidden')
+    }
+
+    const songs = document.querySelectorAll('.songs-item')
+
+    songs.forEach((song) => {
+        if (
+            song
+                .querySelector('.item-title')
+                .textContent.toLowerCase()
+                .includes(searchSong.value.trim().toLowerCase())
+        ) {
+            song.classList.remove('hidden')
+        } else {
+            song.classList.add('hidden')
+        }
+    })
+
+    const hiddenSongs = document.querySelectorAll('.songs-item.hidden')
+
+    if (songs.length === hiddenSongs.length && songs.length > 0) {
+        blankSong.classList.remove('hidden')
+    } else {
+        blankSong.classList.add('hidden')
+    }
+})
+
+clearSearchSong.addEventListener('click', () => {
+    searchSong.value = ''
+    clearSearchSong.classList.add('hidden')
+
+    const songs = document.querySelectorAll('.songs-item')
+
+    songs.forEach((song) => {
+        song.classList.remove('hidden')
+    })
+
+    blankSong.classList.add('hidden')
+})
+
 scrollTop.addEventListener('click', () => {
     if (
         document
@@ -225,6 +321,8 @@ function listPlaylists() {
 
             document.querySelector('#playlistDeleteName').textContent =
                 playlist.title
+            searchSong.value = ''
+            blankSong.classList.add('hidden')
         })
 
         let divItemCover = document.createElement('div')
