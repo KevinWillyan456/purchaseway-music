@@ -9,7 +9,6 @@
         display: block !important;
     }
 }
-
 .header-mobile {
     width: calc(100% - 40px);
     margin: 0 auto;
@@ -35,15 +34,12 @@
     height: 50px;
     background-color: var(--color-black);
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
     margin-right: 20px;
 }
-
 .header-mobile .search-icon-mobile:hover {
     box-shadow: 0 0 10px var(--color-white-1);
 }
@@ -52,7 +48,6 @@
     height: 33.333px;
     color: var(--color-white-1);
 }
-
 .header-mobile .user-settings {
     width: 50px;
     height: 50px;
@@ -71,7 +66,6 @@
     height: 34px;
     color: var(--color-white-1);
 }
-
 .main-playlist-mobile {
     position: relative;
     width: 100%;
@@ -189,7 +183,6 @@
     place-items: center;
     cursor: pointer;
 }
-
 .main-playlist-mobile .container-playlist-mobile {
     width: 100%;
     overflow-y: scroll;
@@ -202,7 +195,6 @@
 
     margin-left: -5px;
 }
-
 .container-playlist-mobile::-webkit-scrollbar {
     width: 10px;
     padding: 60px;
@@ -212,12 +204,10 @@
     background: var(--color-black);
     border-radius: 10px;
 }
-
 .container-playlist-mobile::-webkit-scrollbar-thumb {
     background-color: var(--color-base-2);
     border-radius: 10px;
 }
-
 .container-playlist-mobile .item-playlist-mobile {
     animation: animate-item-playlist-mobile 200ms backwards;
     width: calc(100% - 25px);
@@ -295,7 +285,6 @@
     color: var(--color-white-1);
     cursor: pointer;
 }
-
 .main-controls-mobile {
     padding: 0 20px;
     width: 100%;
@@ -303,7 +292,6 @@
     position: relative;
     background-image: linear-gradient(var(--color-base-4), #000000);
     overflow: hidden;
-
     display: flex;
     justify-content: space-between;
     cursor: pointer;
@@ -376,14 +364,12 @@
     color: var(--color-white-1);
     cursor: pointer;
 }
-
 .main-display-mobile {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     min-height: calc(var(--vh, 1vh) * 100);
-
     background-color: var(--color-black);
 }
 .main-display-mobile.show {
@@ -411,12 +397,10 @@
         transform: translateY(100vh);
     }
 }
-
 .main-display-mobile .background-cover-mobile {
     position: absolute;
     width: 100%;
     height: 100%;
-
     z-index: -500;
     background-position: center center;
     background-repeat: no-repeat;
@@ -441,7 +425,6 @@
     z-index: -400;
     background-image: linear-gradient(0deg, #000000, #00000000);
 }
-
 .main-display-mobile .display-back {
     position: absolute;
     top: 30px;
@@ -455,7 +438,6 @@
     width: 100%;
     height: 100%;
 }
-
 .main-display-mobile .current-cover-mobile {
     position: absolute;
     top: 50%;
@@ -479,7 +461,6 @@
     width: 100%;
     height: 100%;
 }
-
 .main-display-mobile .info-current-music-mobile {
     position: absolute;
     bottom: 185px;
@@ -487,18 +468,14 @@
     max-width: 270px;
     color: var(--color-white-1);
 }
-
 .main-display-mobile
     .info-current-music-mobile
     .title-info-current-music-mobile {
     font-size: 20px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
     padding-left: 2px;
-
     text-shadow: 0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
         0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
         0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
@@ -514,13 +491,10 @@
     .info-current-music-mobile
     .gender-info-current-music-mobile {
     font-size: 16px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
     padding-left: 2px;
-
     text-shadow: 0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
         0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
         0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
@@ -532,7 +506,6 @@
         0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
         0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1);
 }
-
 .main-display-mobile .current-music-add-mobile {
     position: absolute;
     bottom: 181.25px;
@@ -544,12 +517,10 @@
 
     cursor: pointer;
 }
-
 .main-display-mobile .current-music-add-mobile ion-icon {
     width: 100%;
     height: 100%;
 }
-
 .main-display-mobile .container-controls-mobile {
     position: absolute;
     bottom: 55px;
@@ -564,13 +535,11 @@
     color: var(--color-white-1);
     cursor: pointer;
 }
-
 .main-display-mobile .repeat-icon-mobile {
     position: absolute;
     bottom: 60px;
     left: 50%;
     transform: translateX(calc(-50% - 130px));
-
     display: flex;
 }
 .main-display-mobile .repeat-icon-mobile ion-icon {
@@ -583,7 +552,6 @@
 .main-display-mobile .repeat-icon-mobile ion-icon.active {
     color: var(--color-base-2);
 }
-
 .main-display-mobile .shuffle-icon-mobile {
     position: absolute;
     bottom: 60px;
@@ -602,7 +570,6 @@
 .main-display-mobile .shuffle-icon-mobile ion-icon.active {
     color: var(--color-base-2);
 }
-
 .main-display-mobile .current-duration-mobile {
     position: absolute;
     bottom: 126px;
@@ -624,7 +591,6 @@
     width: 320px;
     padding-right: 7px;
 }
-
 .main-display-mobile
     .slider-music-duration-mobile
     .slider-music-duration-wrapper-mobile {
@@ -657,7 +623,6 @@
     height: 0;
     background-color: transparent;
 }
-
 .slider-music-duration-mobile
     .slider-music-duration-wrapper-mobile
     .slider-music-duration-dot-mobile {
@@ -673,38 +638,29 @@
     pointer-events: none;
     background-color: var(--color-base-2);
 }
-
 .main-select-playlists-mobile {
     width: 100%;
     min-height: calc(var(--vh, 1vh) * 100);
-
     position: fixed;
     top: 0;
     left: 0;
-
     background-color: var(--color-base-1);
     z-index: 1000;
 }
 .main-select-playlists-mobile .select-playlist-back-mobile {
     position: absolute;
-
     top: 20px;
     left: 20px;
-
     width: 65px;
     height: 30px;
     background-color: var(--color-base-3);
     color: var(--color-white-1);
-
     border: 2px solid var(--color-white-1);
     border-radius: 10px;
-
     font-size: 16px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
 }
 .main-select-playlists-mobile .title-select-playlist-mobile {
@@ -712,7 +668,6 @@
     margin-top: 60px;
     margin-bottom: 40px;
     text-align: center;
-
     font-size: 24px;
     color: var(--color-white-1);
 }
@@ -776,18 +731,15 @@
     .container-select-playlists-mobile {
     display: grid;
     width: 100%;
-
     grid-template-columns: repeat(auto-fill, 320px);
     gap: 40px;
     align-items: flex-start;
     justify-content: center;
     justify-items: center;
     align-content: flex-start;
-
     min-height: calc(var(--vh, 1vh) * 100 - 200px);
     height: calc(var(--vh, 1vh) * 100 - 200px);
     overflow-y: scroll;
-
     padding-left: 10px;
     padding-bottom: 20px;
 }
@@ -829,7 +781,6 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
 .item-select-playlist-mobile .cover-item-select-playlist-mobile:hover img {
     animation: cover-item-select-playlist-animation-in 200ms forwards;
 }
@@ -877,18 +828,15 @@
     margin-top: 20px;
     font-size: 12px;
 }
-
 .main-user-settings-mobile {
     width: 100%;
     min-height: calc(var(--vh, 1vh) * 100);
     position: fixed;
     top: 0;
     left: 0;
-
     background-color: var(--color-base-1);
     z-index: 1000;
 }
-
 .main-user-settings-mobile .display-back {
     position: absolute;
     top: 20px;
@@ -915,7 +863,6 @@
     width: 100%;
     height: 100%;
 }
-
 .main-user-settings-mobile .title-profile-mobile {
     font-size: 36px;
     color: var(--color-white-1);
@@ -924,7 +871,6 @@
     margin-top: 40px;
     margin-bottom: 40px;
 }
-
 .main-user-settings-mobile .box-profile-mobile {
     display: flex;
     flex-direction: column;
@@ -937,13 +883,10 @@
     height: 100px;
     background-color: var(--color-base-2);
     color: var(--color-white-1);
-
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 2px solid var(--color-black);
     cursor: pointer;
 }
@@ -961,11 +904,9 @@
     .user-name-mobile {
     font-size: 24px;
     max-width: 320px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
     text-align: center;
 }
 .main-user-settings-mobile
@@ -1106,12 +1047,10 @@
     background: var(--color-black);
     border-radius: 10px;
 }
-
 .main-user-settings-mobile .content-profile-mobile::-webkit-scrollbar-thumb {
     background-color: var(--color-base-2);
     border-radius: 10px;
 }
-
 .main-user-settings-mobile .title-2-profile-mobile {
     font-size: 16px;
     color: var(--color-white-1);
@@ -1149,7 +1088,6 @@
     transition: 200ms;
     color: var(--color-white-1);
     padding-left: 5px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1164,7 +1102,6 @@
 .item-favorite-mobile .info-item-favorite .gender-info {
     max-width: 180px;
     font-size: 10px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1215,7 +1152,6 @@
 }
 .content-profile-mobile .title-2-wrapper-mobile {
     color: var(--color-white-1);
-
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -1227,7 +1163,6 @@
     width: 24px;
     height: 24px;
     margin-right: 13px;
-
     display: flex;
     cursor: pointer;
 }
@@ -1235,7 +1170,6 @@
     width: 100%;
     height: 100%;
 }
-
 .container-historic-mobile .item-historic-mobile {
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
@@ -1267,7 +1201,6 @@
     transition: 200ms;
     color: var(--color-white-1);
     padding-left: 5px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1282,7 +1215,6 @@
 .item-historic-mobile .info-item-historic .gender-info {
     max-width: 180px;
     font-size: 10px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1539,7 +1471,6 @@
     animation: warning-anime-color 1s infinite alternate,
         warning-anime-entrace 500ms linear;
     position: absolute;
-
     top: 20px;
     left: 0;
     color: var(--color-red-2);
@@ -1550,7 +1481,6 @@
     text-align: center;
     transform: translateX(20px);
     height: 60px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1585,7 +1515,6 @@
     background-color: var(--color-base-1);
     z-index: 1000;
 }
-
 .main-search-mobile .display-back {
     position: absolute;
     top: 20px;
@@ -1633,7 +1562,6 @@
 .main-search-mobile .search-bar-mobile input:focus {
     box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
-
 .main-search-mobile .search-bar-mobile .search-bar-close-mobile {
     position: absolute;
     right: 30px;
@@ -1654,7 +1582,6 @@
     padding-right: 5px;
     margin-bottom: 5px;
     padding-left: 0;
-
     margin-left: -5px;
 }
 .main-search-mobile .content-search-mobile::-webkit-scrollbar {
@@ -1666,7 +1593,6 @@
     background: var(--color-black);
     border-radius: 10px;
 }
-
 .main-search-mobile .content-search-mobile::-webkit-scrollbar-thumb {
     background-color: var(--color-base-2);
     border-radius: 10px;
@@ -1945,7 +1871,6 @@
     top: 0;
     left: 0;
     overflow: auto;
-
     background-color: var(--color-base-1);
     z-index: 1000;
 }
@@ -2092,7 +2017,6 @@
     font-size: 14px;
     padding-left: 5px;
     padding-right: 20px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2130,23 +2054,17 @@
     position: absolute;
     top: 40px;
     left: 40px;
-
     width: 80px;
     height: 40px;
     background-color: var(--color-base-3);
     color: var(--color-white-1);
-
     border: 2px solid var(--color-white-1);
     border-radius: 10px;
-
     font-size: 20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
-
     top: 40px;
     left: 20px;
     width: 65px;
@@ -2806,7 +2724,6 @@
         transform: rotate(360deg);
     }
 }
-
 @keyframes song-not-found-mobile-animation {
     0% {
         opacity: 0;

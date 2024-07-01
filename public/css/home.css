@@ -11,28 +11,21 @@ body {
     max-height: 100vh;
     grid-template-rows: calc(100vh - 120px) auto;
 }
-
 @media (max-width: 1359px) {
     .super-main {
         display: none;
     }
 }
-
-/* Main PlayList */
-
 .main-playlist {
     position: relative;
     width: 500px;
     background-color: var(--color-base-1);
     height: 100%;
 }
-
 .main-playlist .box-wrapper-info {
     display: flex;
     justify-content: space-between;
-
     width: 100%;
-
     padding-top: 35px;
     padding-left: 20px;
     padding-right: 20px;
@@ -50,14 +43,11 @@ body {
     color: var(--color-white-1);
     font-size: 20px;
     background-color: var(--color-base-3);
-
     width: 80px;
     height: 40px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
     cursor: pointer;
@@ -130,8 +120,6 @@ body {
     overflow-y: auto;
     max-height: calc(100vh - 220px);
     height: calc(100vh - 220px);
-
-    /* Settings Scroll */
     margin-left: -5px;
     padding: 0 0 0 20px;
 }
@@ -140,17 +128,14 @@ body {
     padding: 60px;
     position: absolute;
 }
-
 .container-playlist::-webkit-scrollbar-track {
     background: var(--color-black);
     border-radius: 10px;
 }
-
 .container-playlist::-webkit-scrollbar-thumb {
     background-color: var(--color-base-2);
     border-radius: 10px;
 }
-
 .container-playlist .item-playlist {
     animation: animate-item-playlist 200ms backwards;
     width: 460px;
@@ -186,9 +171,7 @@ body {
 .item-playlist .cover-item {
     width: 108px;
     height: 60px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,7 +182,6 @@ body {
     width: 100%;
     cursor: pointer;
 }
-
 .item-playlist .box-wrapper {
     display: flex;
 }
@@ -207,7 +189,6 @@ body {
     transition: 200ms;
     color: var(--color-white-1);
     padding-left: 5px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -218,7 +199,6 @@ body {
 .info-item .title-info {
     max-width: 260px;
     font-size: 16px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -226,7 +206,6 @@ body {
 .info-item .gender-info {
     max-width: 260px;
     font-size: 12px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -241,13 +220,9 @@ body {
     color: var(--color-white-1);
     cursor: pointer;
 }
-
-/* Main Diplay */
-
 .main-display {
     width: 100%;
     position: relative;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -263,7 +238,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg');
-
     filter: blur(12.94px);
 }
 .main-display .background-cover::before {
@@ -315,7 +289,6 @@ iframe {
     height: 40px;
     color: var(--color-white-1);
 }
-
 .container-search .search-bar {
     margin-left: 5px;
     display: flex;
@@ -339,7 +312,6 @@ iframe {
 .search-bar input:focus {
     box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
-
 .search-bar .search-bar-close {
     display: flex;
     align-items: center;
@@ -351,12 +323,10 @@ iframe {
     width: 20px;
     height: 20px;
 }
-
 .main-display .container-settings {
     position: absolute;
     top: 20px;
     right: 20px;
-
     display: flex;
 }
 .container-settings .user-settings {
@@ -364,7 +334,6 @@ iframe {
     height: 60px;
     border-radius: 50%;
     background-color: var(--color-base-2);
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -377,29 +346,21 @@ iframe {
     height: 40px;
     color: var(--color-white-1);
 }
-
-/* Search */
-
 .container-search-result {
     width: 100%;
     height: calc(100% - 120px);
-
     position: absolute;
     top: 100px;
-
     display: flex;
     justify-content: center;
-
     z-index: 30;
 }
-
 .layer-search-result {
     background-color: var(--color-base-1);
     width: calc(100% - 40px);
     height: 100%;
     border-radius: 20px;
     border: 2px solid var(--color-white-1);
-
     display: flex;
     align-items: center;
 }
@@ -433,26 +394,21 @@ iframe {
     width: 100%;
     margin-top: 20px;
 }
-
 .item-playlist-search {
     animation: animate-item-playlist 200ms backwards;
     width: calc(100% - 5px);
     background-color: var(--color-base-3);
     margin-bottom: 10px;
-
     display: flex;
     padding: 10px 20px;
     justify-content: space-between;
-
     cursor: pointer;
     border-radius: 10px;
 }
 .item-playlist-search .cover-item-search {
     width: 108px;
     height: 60px;
-
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -462,14 +418,12 @@ iframe {
     width: 100%;
     cursor: pointer;
 }
-
 .item-playlist-search .box-wrapper-search {
     display: flex;
 }
 .item-playlist-search .info-item-search {
     color: var(--color-white-1);
     padding-left: 5px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -499,7 +453,6 @@ iframe {
     color: var(--color-white-1);
     cursor: pointer;
 }
-
 .focus-shadow {
     position: absolute;
     top: 0;
@@ -510,7 +463,6 @@ iframe {
     cursor: pointer;
     z-index: 20;
 }
-
 .song-not-found {
     animation: song-not-found-animation 500ms;
     position: absolute;
@@ -528,19 +480,13 @@ iframe {
         opacity: 1;
     }
 }
-
-/* Profile */
-
 .container-user-settings {
     width: 100%;
     height: calc(100% - 120px);
-
     position: absolute;
     top: 100px;
-
     display: flex;
     justify-content: center;
-
     z-index: 30;
 }
 .layer-user-settings {
@@ -550,7 +496,6 @@ iframe {
     height: 100%;
     border-radius: 20px;
     border: 2px solid var(--color-white-1);
-
     display: flex;
     align-items: center;
 }
@@ -576,7 +521,6 @@ iframe {
     background-color: var(--color-base-2);
     border-radius: 10px;
 }
-
 .box-user-settings .logout {
     position: absolute;
     top: 32.5px;
@@ -584,22 +528,18 @@ iframe {
     font-size: 40px;
     cursor: pointer;
 }
-
 .box-user-settings .title-profile {
     font-size: 36px;
     width: 500px;
     color: var(--color-white-1);
     padding-top: 32.5px;
 }
-
 .trash-icon {
     padding-top: 28.5px;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin-right: 25px;
 }
 .trash-icon ion-icon {
@@ -607,18 +547,15 @@ iframe {
     height: 40px;
     color: var(--color-white-1);
 }
-
 .box-profile .user-settings {
     position: relative;
     width: 100px;
     height: 100px;
     border-radius: 50%;
     background-color: var(--color-base-2);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 2px solid var(--color-black);
     cursor: pointer;
 }
@@ -735,7 +672,6 @@ iframe {
     justify-content: center;
     cursor: pointer;
 }
-
 .box-user-information {
     display: flex;
     flex-direction: column;
@@ -752,7 +688,6 @@ iframe {
 .box-user-information .registration-date {
     font-size: 12px;
 }
-
 .title-wrapper {
     display: flex;
     width: 100%;
@@ -839,7 +774,6 @@ iframe {
 .info-item-favorite .gender-info-favorite {
     max-width: 260px;
     font-size: 12px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -854,12 +788,10 @@ iframe {
     color: var(--color-white-1);
     cursor: pointer;
 }
-
 .container-historic {
     width: 100%;
     margin-top: 20px;
 }
-
 .item-playlist-historic {
     width: calc(100% - 5px);
     background-color: var(--color-base-3);
@@ -898,7 +830,6 @@ iframe {
 .info-item-historic .title-info-historic {
     max-width: calc(100vw - 790px);
     font-size: 16px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -906,7 +837,6 @@ iframe {
 .info-item-historic .gender-info-historic {
     max-width: 260px;
     font-size: 12px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1190,24 +1120,18 @@ iframe {
         opacity: 1;
     }
 }
-
-/* Main Controls */
-
 .main-controls {
     width: 100%;
     display: flex;
     grid-column-start: 1;
     grid-column-end: 3;
-
     background-image: linear-gradient(var(--color-base-4), #000000);
     height: 120px;
     max-height: 120px;
     overflow: hidden;
 }
-
 .main-controls .container-side-1 {
     min-width: 500px;
-
     display: flex;
     align-items: center;
     position: relative;
@@ -1225,7 +1149,6 @@ iframe {
     animation: music-animation-status 200ms infinite alternate linear var(--i)
         backwards;
 }
-
 .music-animation-status div:nth-child(1) {
     width: 5px;
     height: 20px;
@@ -1247,7 +1170,6 @@ iframe {
         height: 25px;
     }
 }
-
 .container-side-1 .cover-current-music {
     width: 144px;
     height: 81px;
@@ -1263,7 +1185,6 @@ iframe {
 .cover-current-music img {
     width: 100%;
 }
-
 .container-side-1 .info-current-music {
     max-width: 204px;
     color: var(--color-white-1);
@@ -1271,19 +1192,19 @@ iframe {
 }
 .info-current-music .title-info-current-music {
     font-size: 20px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .info-current-music .gender-info-current-music {
     font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-
 .container-side-1 .current-music-rating {
     min-width: 108px;
     display: flex;
-
     position: absolute;
 }
 .container-side-1 .current-music-rating ion-icon {
@@ -1291,13 +1212,11 @@ iframe {
     height: 20px;
     color: var(--color-base-2);
 }
-
 .container-side-1 .current-music-add {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: -3px;
-
     position: absolute;
     right: 20px;
 }
@@ -1307,7 +1226,6 @@ iframe {
     color: var(--color-base-2);
     cursor: pointer;
 }
-
 .main-controls .container-side-2 {
     width: 100%;
     display: flex;
@@ -1322,7 +1240,6 @@ iframe {
     color: var(--color-white-1);
     cursor: pointer;
 }
-
 .container-side-2 .container-duration-status {
     display: flex;
     margin-left: 20px;
@@ -1367,7 +1284,6 @@ iframe {
         var(--color-white-1) 100%
     );
 }
-
 .slider-music-duration
     .slider-music-duration-wrapper
     input[type='range']::-webkit-slider-thumb {
@@ -1404,7 +1320,6 @@ iframe {
     pointer-events: none;
     background-color: var(--color-base-2);
 }
-
 .container-side-2 .container-volume {
     margin-left: 40px;
     display: flex;
@@ -1448,11 +1363,9 @@ iframe {
     height: 0;
     background-color: transparent;
 }
-
 .container-funcions {
     display: flex;
     align-items: center;
-
     margin-left: 40px;
 }
 .container-funcions .repeat-icon {
@@ -1466,7 +1379,6 @@ iframe {
     height: 40px;
     color: var(--color-white-1);
     cursor: pointer;
-
     margin-right: 20px;
 }
 .container-funcions .shuffle-icon,
@@ -1496,24 +1408,18 @@ iframe {
 }
 .main-select-playlists .select-playlist-back {
     position: absolute;
-
     top: 40px;
     left: 40px;
-
     width: 80px;
     height: 40px;
     background-color: var(--color-base-3);
     color: var(--color-white-1);
-
     border: 2px solid var(--color-white-1);
     border-radius: 10px;
-
     font-size: 20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
 }
 .main-select-playlists .title-select-playlist {
@@ -1521,22 +1427,18 @@ iframe {
     margin-top: 40px;
     margin-bottom: 40px;
     text-align: center;
-
     font-size: 64px;
     color: var(--color-white-1);
 }
-
 .main-select-playlists .container-select-playlists {
     display: grid;
     width: 100%;
-
     grid-template-columns: repeat(auto-fill, 460px);
     gap: 40px;
     align-items: flex-start;
     justify-content: center;
     justify-items: center;
     align-content: flex-start;
-
     height: 70vh;
     overflow-y: auto;
     padding-bottom: 100px;
@@ -2150,7 +2052,6 @@ iframe {
     justify-content: center;
     margin: 0 auto;
 }
-
 .main-minhas-playlists {
     width: 100%;
     height: 100vh;
@@ -2175,21 +2076,16 @@ iframe {
     position: absolute;
     top: 40px;
     left: 40px;
-
     width: 80px;
     height: 40px;
     background-color: var(--color-base-3);
     color: var(--color-white-1);
-
     border: 2px solid var(--color-white-1);
     border-radius: 10px;
-
     font-size: 20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
 }
 .main-minhas-playlists .title-minhas-playlists {
@@ -2197,7 +2093,6 @@ iframe {
     margin-top: 40px;
     margin-bottom: 40px;
     text-align: center;
-
     font-size: 64px;
     color: var(--color-white-1);
 }
@@ -2273,7 +2168,6 @@ iframe {
     min-height: 80px;
     height: 80px;
     background: var(--color-base-3);
-
     display: grid;
     grid-template-columns: 108px 1fr 148px 20px;
     padding-left: 10px;
@@ -2338,21 +2232,16 @@ iframe {
     position: absolute;
     top: 40px;
     left: 40px;
-
     width: 80px;
     height: 40px;
     background-color: var(--color-base-3);
     color: var(--color-white-1);
-
     border: 2px solid var(--color-white-1);
     border-radius: 10px;
-
     font-size: 20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
 }
 .main-minhas-playlists .main-playlist {
@@ -2516,7 +2405,6 @@ iframe {
     min-height: 80px;
     height: 80px;
     background: var(--color-base-3);
-
     display: grid;
     grid-template-columns: 108px 1fr;
     padding-left: 10px;
@@ -2569,7 +2457,6 @@ iframe {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
 .item-select-playlist .cover-item-select-playlist:hover img {
     animation: cover-item-select-playlist-animation-in 200ms forwards;
 }
@@ -2623,11 +2510,9 @@ iframe {
     left: 0;
     width: 100%;
     height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: #000000cc;
     z-index: 1050;
 }
@@ -2749,7 +2634,6 @@ iframe {
         transform: rotate(360deg);
     }
 }
-
 .hidden {
     display: none !important;
 }

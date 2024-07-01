@@ -1,22 +1,19 @@
 body {
     display: flex;
     align-items: center;
-    min-height: calc(var(--vh, 1vh) * 100);
-
+    min-height: 100vh;
     background-color: var(--color-base-1);
     background-image: url('https://i.ibb.co/m4H1B6S/background-6.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 .container {
     padding-left: 100px;
 
     display: flex;
     flex-direction: column;
 }
-
 .container .title-1 {
     color: var(--color-white-1);
 
@@ -30,14 +27,11 @@ body {
         0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
         0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
         0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1);
-
     font-size: 70px;
     margin-bottom: 12px;
 }
-
 .container .title-2 {
     color: var(--color-white-1);
-
     text-shadow: 0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
         0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
         0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),

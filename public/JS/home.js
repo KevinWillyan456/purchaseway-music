@@ -9,7 +9,6 @@ let screenHeight = 0
 
 let initialDevice = ''
 let emptyPlaylist = true
-let titlePlaylist = ''
 
 let player
 let playerReady = false
@@ -960,8 +959,16 @@ function inicia() {
 
     indexAudioId = musicDataShuffled[indexAudio]?._id
     indexAudioGender = musicDataShuffled[indexAudio]?.gender
-    $('.title-playlist').html(userData.lastAccessedPlaylistName)
-    $('.title-playlist-mobile').html(userData.lastAccessedPlaylistName)
+    $('.title-playlist').html(
+        emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
+            ? 'Sem Playlist'
+            : userData.lastAccessedPlaylistName
+    )
+    $('.title-playlist-mobile').html(
+        emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
+            ? 'Sem Playlist'
+            : userData.lastAccessedPlaylistName
+    )
 
     setMusicPlayTag()
     refreshFavorite()
@@ -3695,7 +3702,9 @@ function changeMobileOrDesktop() {
         containerItemsHistoric.innerHTML = ''
         containerPlaylistSelect.innerHTML = ''
         $('.title-playlist').html(
-            titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName
+            emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
+                ? 'Sem Playlist'
+                : userData.lastAccessedPlaylistName
         )
         $('.search-bar input').val('')
         musicFilteringFunction()
@@ -3725,7 +3734,9 @@ function changeMobileOrDesktop() {
         containerFrameVideo.innerHTML = ''
         containerPlaylistSelectMobile.innerHTML = ''
         $('.title-playlist-mobile').html(
-            titlePlaylist ? titlePlaylist : userData.lastAccessedPlaylistName
+            emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
+                ? 'Sem Playlist'
+                : userData.lastAccessedPlaylistName
         )
         $('.main-search-mobile .search-bar-mobile input').val('')
         musicFilteringFunction()
@@ -3936,6 +3947,7 @@ async function manageUserAccountDeletion() {
         const response = await userToDelete.json()
 
         if (response.message === 'User removed successfully!') {
+            localStorage.clear()
             await logoutService()
         }
     } else {
@@ -3963,6 +3975,7 @@ async function manageUserAccountDeletion() {
         const response = await userToDelete.json()
 
         if (response.message === 'User removed successfully!') {
+            localStorage.clear()
             await logoutService()
         }
     }
@@ -4649,6 +4662,8 @@ async function manageUserCreatePlaylist() {
             .value.trim()
 
         if (newPlaylistName === '') {
+            document.querySelector('.add-my-new-playlist-name').focus()
+
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent =
@@ -4777,6 +4792,8 @@ async function manageUserCreatePlaylist() {
             .value.trim()
 
         if (newPlaylistName === '') {
+            document.querySelector('.add-my-new-playlist-name-mobile').focus()
+
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
                 warning.textContent =
@@ -4904,7 +4921,7 @@ async function manageUserCreatePlaylist() {
     }
 }
 
-function selectUserMyPlaylist() {
+async function selectUserMyPlaylist() {
     const playlist = userData.myPlaylists.find(
         (item) => item._id === indexMyPlaylistId
     )
@@ -4913,8 +4930,6 @@ function selectUserMyPlaylist() {
             playlist.songs.map((item) => item.musicId).includes(song._id)
         )
         .sort((a, b) => a.title.localeCompare(b.title))
-
-    titlePlaylist = playlist.title
 
     if (screenWidth >= 1360) {
         $('.title-playlist').html(playlist.title)
@@ -4947,7 +4962,6 @@ function selectUserMyPlaylist() {
     allSongValueSetters()
     generatorContainerPlaylistData()
     generatorContainerPlaylistDataPlay()
-    manageEmptyPlaylist(true)
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
@@ -4960,7 +4974,8 @@ function selectUserMyPlaylist() {
     setMusicPlayTag()
     refreshFavorite()
     manageHistoric()
-    refreshUserWithNewPlaylist()
+    await refreshUserWithNewPlaylist()
+    manageEmptyPlaylist(true)
     setManagementSystem()
 }
 
@@ -5087,12 +5102,10 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         shuffleIconMobile.classList.remove('active')
     }
     shuffleToggleControl = true
-    titlePlaylist = ''
 
     allSongValueSetters()
     generatorContainerPlaylistData()
     generatorContainerPlaylistDataPlay()
-    manageEmptyPlaylist()
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
@@ -5105,7 +5118,8 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     setMusicPlayTag()
     refreshFavorite()
     manageHistoric()
-    refreshUserWithNewPlaylist()
+    await refreshUserWithNewPlaylist()
+    manageEmptyPlaylist()
     setManagementSystem()
 }
 
@@ -5311,7 +5325,9 @@ function setVolumeStorage(volume) {
 
 function getVideoVolume() {
     if (playerReady) {
-        return player.getVolume()
+        if (player?.getVolume) {
+            return player.getVolume()
+        }
     }
 }
 

@@ -9,7 +9,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 .container {
     background-color: var(--color-base-1);
     width: 320px;
@@ -17,20 +16,17 @@ body {
     border: 3px solid var(--color-white-1);
     border-radius: 10px;
 }
-
 .container form {
     display: flex;
     flex-direction: column;
     text-align: center;
     color: var(--color-white-1);
 }
-
 form .title {
     font-size: 24px;
     margin-top: 80px;
     margin-bottom: 60px;
 }
-
 form .input {
     transition: 200ms;
     background-color: var(--color-white-1);
@@ -52,12 +48,10 @@ form .input::placeholder {
 form .input:focus {
     box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
-
 .warning {
     animation: warning-anime-color 1s infinite alternate,
         warning-anime-entrace 500ms linear;
     position: absolute;
-
     top: 20px;
     left: 0;
     color: var(--color-red-2);
@@ -66,7 +60,6 @@ form .input:focus {
     width: calc(100% - 40px);
     transform: translateX(20px);
     height: 60px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +84,6 @@ form .input:focus {
         opacity: 1;
     }
 }
-
 .warning.success {
     animation: warning-anime-color-2 1s infinite alternate;
     color: var(--color-base-2);
@@ -106,7 +98,6 @@ form .input:focus {
         color: var(--color-white-1);
     }
 }
-
 form .input-checkbox {
     display: flex;
     margin-left: 20px;
@@ -119,12 +110,10 @@ form .input-checkbox input {
     cursor: pointer;
     outline: none;
 }
-
 form .input-checkbox label {
     font-size: 15px;
     cursor: pointer;
 }
-
 form .btn-submit {
     transition: 200ms;
     width: 250px;
@@ -135,7 +124,6 @@ form .btn-submit {
     font-size: 20px;
     border-radius: 10px;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,7 +142,6 @@ form .btn-submit:hover {
         filter: hue-rotate(360deg);
     }
 }
-
 form .info {
     width: auto;
     margin: 0 auto;
@@ -167,7 +154,6 @@ form .info a {
     margin-left: 5px;
     font-weight: bold;
 }
-
 .hidden {
     display: none;
 }

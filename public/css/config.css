@@ -4,11 +4,9 @@ body {
 body::-webkit-scrollbar {
     width: 10px;
 }
-
 body::-webkit-scrollbar-track {
     background: var(--color-black);
 }
-
 body::-webkit-scrollbar-thumb {
     background-color: var(--color-base-2);
 }
@@ -129,7 +127,6 @@ body::-webkit-scrollbar-thumb {
         opacity: 1;
     }
 }
-
 .warning.success {
     animation: warning-anime-color-2 1s infinite alternate;
     color: var(--color-base-2);
@@ -378,6 +375,13 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column;
     gap: 10px;
 }
+.container-playlist-overflow
+    .container-playlist
+    .content-playlist
+    .no-playlist {
+    color: var(--color-white-1);
+    font-size: 20px;
+}
 .content-playlist .playlist-item {
     animation: animate-item-playlist 200ms backwards;
     width: 100%;
@@ -443,9 +447,6 @@ body::-webkit-scrollbar-thumb {
     color: var(--color-base-2);
     font-size: 16px;
 }
-
-/* Playlist to Manage */
-
 .container-playlist-to-manage-overflow {
     animation: animate-scale-opacity-entrace 500ms;
     top: 0;
@@ -461,11 +462,9 @@ body::-webkit-scrollbar-thumb {
 .container-playlist-to-manage-overflow::-webkit-scrollbar {
     width: 10px;
 }
-
 .container-playlist-to-manage-overflow::-webkit-scrollbar-track {
     background: var(--color-black);
 }
-
 .container-playlist-to-manage-overflow::-webkit-scrollbar-thumb {
     background-color: var(--color-base-2);
 }
@@ -494,6 +493,7 @@ body::-webkit-scrollbar-thumb {
     .container-playlist-to-manage
     .main-playlist {
     width: 100%;
+    min-width: 1320px;
     height: 265px;
     max-height: 265px;
     background: var(--color-base-3);
@@ -646,7 +646,6 @@ body::-webkit-scrollbar-thumb {
 .container-playlist-to-manage .interactions .btn-excluir ion-icon {
     font-size: 30px;
 }
-
 .container-playlist-to-manage-overflow
     .container-playlist-to-manage
     .title-all-songs {
@@ -1227,7 +1226,6 @@ body::-webkit-scrollbar-thumb {
     font-size: 15px;
     outline: none;
 }
-
 .form-playlist-overflow .form-playlist .fields .field:focus {
     box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
 }
@@ -1533,6 +1531,7 @@ body::-webkit-scrollbar-thumb {
     .container-playlist-to-manage-overflow
         .container-playlist-to-manage
         .main-playlist {
+        min-width: 100%;
         height: 432px;
         max-height: 432px;
         display: flex;

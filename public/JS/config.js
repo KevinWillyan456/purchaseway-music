@@ -361,6 +361,11 @@ function listPlaylists() {
 
         contentPlaylist.appendChild(divPlaylistItem)
     })
+
+    if (data.playlists.length <= 0) {
+        contentPlaylist.innerHTML =
+            '<div class="no-playlist">Sem Playlists<div>'
+    }
 }
 
 const formEditSongIn = document.querySelector('#formEditSongIn')
