@@ -1030,6 +1030,14 @@ function allSongValueSetters() {
             coverCurrentMusic.src =
                 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
             backgroundCover.style.backgroundImage = `url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg')`
+            currentDuration.innerHTML = '0:00'
+            totalDuration.innerHTML = '0:00'
+            clearInterval(timerCurretDurationSetter)
+            sliderMusicDuration.style.setProperty(
+                'background-image',
+                'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%'
+            )
+            sliderMusicDurationDot.style.setProperty('left', '0%')
 
             if (player) {
                 player.destroy()
@@ -3722,20 +3730,6 @@ function changeMobileOrDesktop() {
         $('.main-search-mobile .search-bar-mobile input').val('')
         musicFilteringFunction()
 
-        if (!emptyPlaylist) {
-            if (!displayMobile.classList.contains('show')) {
-                displayMobile.classList.remove('exit')
-                displayMobile.classList.add('show')
-                $('.main-search-mobile').hide(200)
-                $('.main-controls-mobile').removeClass('fixed')
-                $('.main-user-settings-mobile').hide(200)
-                $('.main-minhas-playlists-mobile').hide(200)
-                $('.main-select-playlists-mobile').hide(200)
-            }
-        }
-
-        $('.menu-options-mobile').hide(200)
-
         itsPlaying = false
 
         if (player) {
@@ -3752,6 +3746,19 @@ function changeMobileOrDesktop() {
             stopAnimationAudioControllerPlay()
 
             player.destroy()
+        }
+
+        if (!emptyPlaylist) {
+            if (!displayMobile.classList.contains('show') && itsPlaying) {
+                displayMobile.classList.remove('exit')
+                displayMobile.classList.add('show')
+                $('.main-search-mobile').hide(200)
+                $('.main-controls-mobile').removeClass('fixed')
+                $('.main-user-settings-mobile').hide(200)
+                $('.main-minhas-playlists-mobile').hide(200)
+                $('.main-select-playlists-mobile').hide(200)
+                $('.menu-options-mobile').hide(200)
+            }
         }
     }
 
@@ -4994,13 +5001,6 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
             'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
         backgroundCover.style.backgroundImage = `url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg')`
         clearInterval(timerCurretDurationSetter)
-        currentDuration.innerHTML = '0:00'
-        totalDuration.innerHTML = '0:00'
-        sliderMusicDuration.style.setProperty(
-            'background-image',
-            'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%'
-        )
-        sliderMusicDurationDot.style.setProperty('left', '0%')
     } else {
         $('.title-playlist-mobile').html(playlistName)
 
@@ -5027,12 +5027,6 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         coverCurrentMusicMobile.src =
             'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
         backgroundCoverMobile.style.backgroundImage = `url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg')`
-
-        clearInterval(timerCurretDurationSetter)
-        displayMusicDurationMobile.style.setProperty(
-            'background-image',
-            'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%'
-        )
     }
 
     const resposta = await fetch(`/playlists-historic/${idUserConnected}`, {
