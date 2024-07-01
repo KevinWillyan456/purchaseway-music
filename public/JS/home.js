@@ -988,6 +988,7 @@ function audioControllerPlayFunction() {
         }
     }
 }
+
 function audioControllerPlayFunctionNoPause() {
     if (screenWidth >= 1360) {
         playVideo()
@@ -1026,9 +1027,30 @@ function allSongValueSetters() {
         if (screenWidth >= 1360) {
             titleCurrentMusic.innerHTML = 'Nenhuma música encontrada'
             genderCurrentMusic.innerHTML = 'Nenhuma música encontrada'
+            coverCurrentMusic.src =
+                'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
+            backgroundCover.style.backgroundImage = `url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg')`
+
+            if (player) {
+                player.destroy()
+                stopAnimationAudioControllerPlay()
+            }
         } else {
             titleCurrentMusicMobile.innerHTML = 'Nenhuma música encontrada'
             genderCurrentMusicMobile.innerHTML = 'Nenhuma música encontrada'
+            coverCurrentMusicMobile.src =
+                'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
+            backgroundCoverMobile.style.backgroundImage = `url('https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg')`
+            clearInterval(timerCurretDurationSetter)
+            displayMusicDurationMobile.style.setProperty(
+                'background-image',
+                'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%'
+            )
+
+            if (playerMobile) {
+                playerMobile.destroy()
+                stopAnimationAudioControllerPlay()
+            }
         }
         return
     }
@@ -1131,6 +1153,7 @@ function audioControllerNextFunction() {
     refreshFavorite()
     generatorContainerCurrentMusicAddPlaylist()
 }
+
 function audioControllerPrevFunction() {
     if (emptyPlaylist) return
 
@@ -1152,6 +1175,8 @@ function audioControllerPrevFunction() {
 
 function generatorContainerPlaylistData() {
     if (screenWidth >= 1360) {
+        if (emptyPlaylist) return
+
         containerPlaylist.innerHTML = ''
 
         musicDataShuffled.forEach((element, index) => {
@@ -1232,6 +1257,8 @@ function generatorContainerPlaylistDataPlay() {
                     )
                 ) {
                     cannotPlayTheMusic = true
+
+                    audioControllerPlayFunctionNoPause()
                 }
 
                 indexAudio = musicDataShuffled.indexOf(
@@ -1559,6 +1586,15 @@ function generatorContainerSearchDataPlay() {
                     )
                 ) {
                     cannotPlayTheMusic = true
+
+                    audioControllerPlayFunctionNoPause()
+
+                    $('.focus-shadow').hide(200)
+                    $('.container-search-result').hide(200)
+                    $('.search-bar').hide(200)
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
 
                 indexAudio = musicDataShuffled.indexOf(
@@ -1721,6 +1757,14 @@ function generatorContainerFavoriteDataPlay() {
                     )
                 ) {
                     cannotPlayTheMusic = true
+
+                    audioControllerPlayFunctionNoPause()
+
+                    $('.focus-shadow').hide(200)
+                    $('.container-user-settings').hide(200)
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
 
                 indexAudio = musicDataShuffled.indexOf(
@@ -1882,6 +1926,14 @@ function generatorContainerHistoricDataPlay() {
                     )
                 ) {
                     cannotPlayTheMusic = true
+
+                    audioControllerPlayFunctionNoPause()
+
+                    $('.focus-shadow').hide(200)
+                    $('.container-user-settings').hide(200)
+                    profileWasClicked = true
+                    canKeyboardEvents = true
+                    canKeyboardEventsProfile = true
                 }
 
                 indexAudio = musicDataShuffled.indexOf(
@@ -1954,6 +2006,7 @@ function generatorContainerHistoricDataPlay() {
         })
     }
 }
+
 function generatorContainerMusicAddPlaylist() {
     if (screenWidth >= 1360) {
         const container = document.querySelector('.container-minhas-playlists')
@@ -2285,6 +2338,7 @@ function generatorContainerMusicAddPlaylist() {
         }
     }
 }
+
 function generatorContainerCurrentMusicAddPlaylist() {
     if (screenWidth >= 1360) {
         const currentMusicAddPlaylistContainer = document.querySelector(
@@ -2859,6 +2913,7 @@ function setSliderMusicVolume() {
         `${sliderMusicVolume.value}%`
     )
 }
+
 function setVolumeIcon() {
     if (sliderMusicVolume.value == 0) {
         volumeIcon.name = 'volume-mute'
@@ -2906,6 +2961,7 @@ function initVolumeSlider() {
 }
 
 let repeatToggleControl = true
+
 function repeatToggle() {
     if (repeatToggleControl) {
         repeatToggleControl = false
@@ -3409,6 +3465,7 @@ function toggleMorePlaylists() {
         $('.main-select-playlists-mobile').toggle(200)
     }
 }
+
 function toggleMyPlaylists() {
     if (screenWidth >= 1360) {
         $('.main-minhas-playlists').toggle(200)
@@ -3416,6 +3473,7 @@ function toggleMyPlaylists() {
         $('.main-minhas-playlists-mobile').toggle(200)
     }
 }
+
 function toggleContainerMinhaPlaylist() {
     if (screenWidth >= 1360) {
         $('.container-minha-playlist').toggle(200)
@@ -3446,6 +3504,7 @@ function toggleAddMinhaPlaylist() {
         }
     }
 }
+
 function toggleEditMinhaPlaylist() {
     if (screenWidth >= 1360) {
         const editOverflow = document.querySelector(
@@ -3469,6 +3528,7 @@ function toggleEditMinhaPlaylist() {
         }
     }
 }
+
 function toggleDeleteMinhaPlaylist() {
     if (screenWidth >= 1360) {
         const deleteOverflow = document.querySelector(
@@ -3492,6 +3552,7 @@ function toggleDeleteMinhaPlaylist() {
         }
     }
 }
+
 function toggleMusicMinhaPlaylist() {
     if (screenWidth >= 1360) {
         const musicOverflow = document.querySelector(
@@ -3513,6 +3574,7 @@ function toggleMusicMinhaPlaylist() {
         }
     }
 }
+
 function toggleDeleteMusicMinhaPlaylist() {
     if (screenWidth >= 1360) {
         $('.music-delete-my-new-playlist-overflow').toggle(200)
@@ -3664,7 +3726,6 @@ function changeMobileOrDesktop() {
             if (!displayMobile.classList.contains('show')) {
                 displayMobile.classList.remove('exit')
                 displayMobile.classList.add('show')
-                audioControllerPlayFunctionNoPause()
                 $('.main-search-mobile').hide(200)
                 $('.main-controls-mobile').removeClass('fixed')
                 $('.main-user-settings-mobile').hide(200)
@@ -4880,7 +4941,6 @@ function selectUserMyPlaylist() {
     generatorContainerPlaylistData()
     generatorContainerPlaylistDataPlay()
     manageEmptyPlaylist(true)
-    if (emptyPlaylist) return
     generatorContainerSearchData()
     generatorContainerSearchDataPlay()
     generatorContainerFavoriteData()
@@ -4888,8 +4948,8 @@ function selectUserMyPlaylist() {
     generatorContainerHistoricData()
     generatorContainerHistoricDataPlay()
 
-    indexAudioId = musicDataShuffled[indexAudio]._id
-    indexAudioGender = musicDataShuffled[indexAudio].gender
+    indexAudioId = musicDataShuffled[indexAudio]?._id
+    indexAudioGender = musicDataShuffled[indexAudio]?.gender
     setMusicPlayTag()
     refreshFavorite()
     manageHistoric()
