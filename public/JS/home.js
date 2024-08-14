@@ -1049,6 +1049,9 @@ function allSongValueSetters() {
             if (player) {
                 player.destroy()
                 stopAnimationAudioControllerPlay()
+
+                clearInterval(timerSyncSliderVolume)
+                timerSyncSliderVolume = null
             }
         } else {
             titleCurrentMusicMobile.innerHTML = 'Nenhuma música encontrada'
@@ -3757,6 +3760,9 @@ function changeMobileOrDesktop() {
             stopAnimationAudioControllerPlay()
 
             player.destroy()
+
+            clearInterval(timerSyncSliderVolume)
+            timerSyncSliderVolume = null
         }
 
         if (!emptyPlaylist) {
@@ -5008,6 +5014,9 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
 
         if (player) {
             player.destroy()
+
+            clearInterval(timerSyncSliderVolume)
+            timerSyncSliderVolume = null
         }
 
         titleCurrentMusic.innerHTML = 'Carregando...'
@@ -5129,6 +5138,9 @@ function onYouTubeIframeAPIReady(videoId) {
 
         if (player) {
             player.destroy()
+
+            clearInterval(timerSyncSliderVolume)
+            timerSyncSliderVolume = null
         }
 
         player = new YT.Player('containerFrame', {
