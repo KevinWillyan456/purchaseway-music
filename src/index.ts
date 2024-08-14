@@ -7,9 +7,11 @@ import { routes } from './routes'
 import { eAdmin } from './middlewares/AuthMiddleware'
 import { verifyTokenExists } from './middlewares/verifyMiddleware'
 import { eAdminManager } from './middlewares/AuthAdminMiddleware'
+import { checkEnvVars } from './middlewares/EnvCheckMiddleware'
 
 config()
 connectToDatabase()
+checkEnvVars()
 
 const app = express()
 const port = process.env.PORT || 3000
