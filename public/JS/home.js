@@ -272,6 +272,10 @@ const btnDeleteSelectMyPlaylist = document.querySelector(
 const btnDeleteSelectMyPlaylistMobile = document.querySelector(
     '#btnDeleteSelectMyPlaylistMobile'
 )
+const favoriteEmpty = document.querySelector('#favoriteEmpty')
+const favoriteEmptyMobile = document.querySelector('#favoriteEmptyMobile')
+const historicEmpty = document.querySelector('#historicEmpty')
+const historicEmptyMobile = document.querySelector('#historicEmptyMobile')
 
 let allMusicData = []
 let musicData = []
@@ -1709,6 +1713,12 @@ function generatorContainerFavoriteData() {
     favoriteSongs.reverse()
 
     if (screenWidth >= 1360) {
+        if (favoriteSongs.length <= 0) {
+            favoriteEmpty.classList.remove('hidden')
+        } else {
+            favoriteEmpty.classList.add('hidden')
+        }
+
         favoriteSongs.forEach((element) => {
             containerItemsFavorite.innerHTML += `
                 <div class="item-playlist-favorite" data-id="${element._id}">
@@ -1732,6 +1742,12 @@ function generatorContainerFavoriteData() {
             `
         })
     } else {
+        if (favoriteSongs.length <= 0) {
+            favoriteEmptyMobile.classList.remove('hidden')
+        } else {
+            favoriteEmptyMobile.classList.add('hidden')
+        }
+
         favoriteSongs.forEach((element) => {
             containerItemsFavoriteMobile.innerHTML += `
                 <div class="item-favorite-mobile" data-id="${element._id}">
@@ -1878,6 +1894,12 @@ function generatorContainerHistoricData() {
     historicSongs.reverse()
 
     if (screenWidth >= 1360) {
+        if (historicSongs.length <= 0) {
+            historicEmpty.classList.remove('hidden')
+        } else {
+            historicEmpty.classList.add('hidden')
+        }
+
         historicSongs.forEach((element) => {
             containerItemsHistoric.innerHTML += `
                 <div class="item-playlist-historic" data-id="${element._id}">
@@ -1901,6 +1923,12 @@ function generatorContainerHistoricData() {
             `
         })
     } else {
+        if (historicSongs.length <= 0) {
+            historicEmptyMobile.classList.remove('hidden')
+        } else {
+            historicEmptyMobile.classList.add('hidden')
+        }
+
         historicSongs.forEach((element) => {
             containerItemsHistoricMobile.innerHTML += `
                 <div class="item-historic-mobile" data-id="${element._id}">

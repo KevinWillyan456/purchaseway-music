@@ -729,6 +729,10 @@ iframe {
     width: 100%;
     margin-top: 20px;
 }
+.favorite-empty {
+    color: var(--color-white-1);
+    font-size: 20px;
+}
 .item-playlist-favorite {
     width: calc(100% - 5px);
     background-color: var(--color-base-3);
@@ -791,6 +795,10 @@ iframe {
 .container-historic {
     width: 100%;
     margin-top: 20px;
+}
+.historic-empty {
+    color: var(--color-white-1);
+    font-size: 20px;
 }
 .item-playlist-historic {
     width: calc(100% - 5px);

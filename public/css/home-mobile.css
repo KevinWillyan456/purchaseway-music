@@ -1057,6 +1057,11 @@
     margin-left: 20px;
     margin-bottom: 10px;
 }
+.favorite-empty-mobile {
+    color: var(--color-white-1);
+    font-size: 12px;
+    margin-left: 25px;
+}
 .container-favorite-mobile .item-favorite-mobile {
     width: calc(100% - 25px);
     margin: 0 0 10px 25px;
@@ -1169,6 +1174,11 @@
 .content-profile-mobile .title-2-wrapper-mobile .trash-icon-mobile ion-icon {
     width: 100%;
     height: 100%;
+}
+.historic-empty-mobile {
+    color: var(--color-white-1);
+    font-size: 12px;
+    margin-left: 25px;
 }
 .container-historic-mobile .item-historic-mobile {
     width: calc(100% - 25px);
