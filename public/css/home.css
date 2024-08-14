@@ -1563,10 +1563,10 @@ iframe {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-base-4);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
-    border: none;
+    border: 2px solid var(--color-white-1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1636,10 +1636,10 @@ iframe {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-base-4);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
-    border: none;
+    border: 2px solid var(--color-white-1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2028,10 +2028,10 @@ iframe {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-base-4);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 18px;
-    border: none;
+    border: 2px solid var(--color-white-1);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -2042,10 +2042,10 @@ iframe {
     width: 250px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-base-4);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
-    border: none;
+    border: 2px solid var(--color-white-1);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -2538,13 +2538,13 @@ iframe {
     width: 160px;
     height: 60px;
     border-radius: 10px;
-    background: var(--color-base-4);
+    background: var(--color-base-3);
     color: var(--color-white-1);
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
+    border: 2px solid var(--color-white-1);
     cursor: pointer;
 }
 .loading-roller {
