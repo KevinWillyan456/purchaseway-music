@@ -750,6 +750,30 @@
     align-content: flex-start;
     padding-left: 10px;
 }
+.scroll-top-playlist-mobile {
+    transition: 200ms;
+    animation: animate-scale-opacity-entrace 500ms;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-base-3);
+    color: var(--color-white-1);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: none;
+    box-shadow: 0 0 0 2px var(--color-base-2);
+    outline: none;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    }
+}
 .container-select-playlists-mobile .item-select-playlist-mobile {
     animation: animate-item-playlist-mobile 200ms backwards;
     width: 320px;

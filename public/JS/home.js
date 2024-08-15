@@ -334,6 +334,55 @@ const colorsThemes = {
     },
 }
 
+const HEIGHT_TO_SHOW_SCROLL_TOP = 300
+
+const scrollTopPlaylists = document.querySelector('#scrollTopPlaylists')
+const scrollTopPlaylistsMobile = document.querySelector(
+    '#scrollTopPlaylistsMobile'
+)
+
+scrollTopPlaylists.addEventListener('click', () => {
+    document.querySelector('.main-select-playlists').scrollTo({
+        top: 0,
+        behavior: 'smooth',
+    })
+})
+scrollTopPlaylistsMobile.addEventListener('click', () => {
+    document.querySelector('.main-select-playlists-mobile').scrollTo({
+        top: 0,
+        behavior: 'smooth',
+    })
+})
+
+document
+    .querySelector('.main-select-playlists')
+    .addEventListener('scroll', manageScrollTop)
+document
+    .querySelector('.main-select-playlists-mobile')
+    .addEventListener('scroll', manageScrollTop)
+
+function manageScrollTop() {
+    if (screenWidth >= 1360) {
+        if (
+            document.querySelector('.main-select-playlists').scrollTop >
+            HEIGHT_TO_SHOW_SCROLL_TOP
+        ) {
+            scrollTopPlaylists.classList.remove('hidden')
+        } else {
+            scrollTopPlaylists.classList.add('hidden')
+        }
+    } else {
+        if (
+            document.querySelector('.main-select-playlists-mobile').scrollTop >
+            HEIGHT_TO_SHOW_SCROLL_TOP
+        ) {
+            scrollTopPlaylistsMobile.classList.remove('hidden')
+        } else {
+            scrollTopPlaylistsMobile.classList.add('hidden')
+        }
+    }
+}
+
 const serviceLogo = document.querySelector('.service-logo img')
 const serviceLogoMobile = document.querySelector(
     '.header-mobile .service-logo-mobile img'

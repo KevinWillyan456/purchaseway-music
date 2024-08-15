@@ -118,8 +118,8 @@ body {
 .container-playlist {
     width: 100%;
     overflow-y: auto;
-    max-height: calc(100vh - 220px);
-    height: calc(100vh - 220px);
+    max-height: calc(100vh - 226px);
+    height: calc(100vh - 226px);
     margin-left: -5px;
     padding: 0 0 0 20px;
 }
@@ -1504,6 +1504,30 @@ iframe {
     grid-column: 1 / -1;
     width: 100%;
     max-width: 1320px;
+}
+.scroll-top-playlist {
+    transition: 200ms;
+    animation: animate-scale-opacity-entrace 500ms;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-base-3);
+    color: var(--color-white-1);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: none;
+    box-shadow: 0 0 0 2px var(--color-base-2);
+    outline: none;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    }
 }
 .add-my-new-playlist-overflow {
     position: fixed;
