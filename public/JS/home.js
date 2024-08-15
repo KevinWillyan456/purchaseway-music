@@ -4726,6 +4726,8 @@ async function manageUserCreatePlaylist() {
 
         for (let i = 0; i < userData.myPlaylists.length; i++) {
             if (userData.myPlaylists[i].title === newPlaylistName) {
+                document.querySelector('.add-my-new-playlist-name').focus()
+
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent =
@@ -4856,6 +4858,10 @@ async function manageUserCreatePlaylist() {
 
         for (let i = 0; i < userData.myPlaylists.length; i++) {
             if (userData.myPlaylists[i].title === newPlaylistName) {
+                document
+                    .querySelector('.add-my-new-playlist-name-mobile')
+                    .focus()
+
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
                     warning.textContent =
