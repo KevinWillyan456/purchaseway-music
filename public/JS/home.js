@@ -431,6 +431,12 @@ document.addEventListener('keyup', function (event) {
             case 'ArrowLeft':
                 audioControllerPrevFunction()
                 break
+            case 'ArrowUp':
+                volumeUp()
+                break
+            case 'ArrowDown':
+                volumeDown()
+                break
         }
     }
     if (canKeyboardEventsProfile && (event.key == 'p' || event.key == 'P')) {
@@ -3001,10 +3007,10 @@ function volumeSliderEventGenerator() {
     sliderMusicVolume.oninput = () => {
         setSliderMusicVolume()
         setVolumeStorage(sliderMusicVolume.value)
+        setVolumeIcon()
 
         if (emptyPlaylist) return
         setVideoVolume(sliderMusicVolume.value)
-        setVolumeIcon()
     }
 }
 
@@ -3028,6 +3034,50 @@ function setVolumeIcon() {
         volumeIcon.name = 'volume-medium'
     } else {
         volumeIcon.name = 'volume-high'
+    }
+}
+
+const VOLUME_VARIATION_VALUE = 10
+
+function volumeUp() {
+    if (sliderMusicVolume.value < 100) {
+        sliderMusicVolume.value =
+            parseInt(sliderMusicVolume.value) + VOLUME_VARIATION_VALUE
+        setSliderMusicVolume()
+        setVolumeStorage(sliderMusicVolume.value)
+        setVolumeIcon()
+
+        if (emptyPlaylist) return
+        setVideoVolume(sliderMusicVolume.value)
+    } else {
+        sliderMusicVolume.value = 100
+        setSliderMusicVolume()
+        setVolumeStorage(sliderMusicVolume.value)
+        setVolumeIcon()
+
+        if (emptyPlaylist) return
+        setVideoVolume(sliderMusicVolume.value)
+    }
+}
+
+function volumeDown() {
+    if (sliderMusicVolume.value > 0) {
+        sliderMusicVolume.value =
+            parseInt(sliderMusicVolume.value) - VOLUME_VARIATION_VALUE
+        setSliderMusicVolume()
+        setVolumeStorage(sliderMusicVolume.value)
+        setVolumeIcon()
+
+        if (emptyPlaylist) return
+        setVideoVolume(sliderMusicVolume.value)
+    } else {
+        sliderMusicVolume.value = 0
+        setSliderMusicVolume()
+        setVolumeStorage(sliderMusicVolume.value)
+        setVolumeIcon()
+
+        if (emptyPlaylist) return
+        setVideoVolume(sliderMusicVolume.value)
     }
 }
 
