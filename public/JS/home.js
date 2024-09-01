@@ -2,6 +2,7 @@ let indexAudio = 0
 let indexAudioId = ''
 let indexAudioGender = ''
 let indexMyPlaylistId = ''
+let indexMyPlaylistIdCurrent = ''
 let indexMyPlaylistAudioId = ''
 
 let screenWidth = 0
@@ -4108,28 +4109,15 @@ function manageMyPlaylistEdition() {
         }
 
         if (playlistExists.length >= 1) {
-            if (screenWidth >= 1360) {
-                warning.classList.remove('hidden')
-                warning.textContent = 'Já existe uma playlist com esse nome.'
-                if (timerAlertMessage != null) {
-                    clearTimeout(timerAlertMessage)
-                    timerAlertMessage = null
-                }
-                timerAlertMessage = setTimeout(() => {
-                    warning.classList.add('hidden')
-                }, 3000)
-            } else {
-                warningMobile.classList.remove('hidden')
-                warningMobile.textContent =
-                    'Já existe uma playlist com esse nome.'
-                if (timerAlertMessage != null) {
-                    clearTimeout(timerAlertMessage)
-                    timerAlertMessage = null
-                }
-                timerAlertMessage = setTimeout(() => {
-                    warningMobile.classList.add('hidden')
-                }, 3000)
+            warning.classList.remove('hidden')
+            warning.textContent = 'Já existe uma playlist com esse nome.'
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
             }
+            timerAlertMessage = setTimeout(() => {
+                warning.classList.add('hidden')
+            }, 3000)
             return
         }
 
@@ -4147,49 +4135,29 @@ function manageMyPlaylistEdition() {
             }),
         }).then((response) => {
             if (response.status === 200) {
-                if (screenWidth >= 1360) {
+                if (indexMyPlaylistId === indexMyPlaylistIdCurrent) {
                     document.querySelector('.title-playlist').textContent =
                         document
                             .querySelector(
                                 '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
                             )
                             .value.trim()
-                } else {
-                    document.querySelector(
-                        '.title-playlist-mobile'
-                    ).textContent = document
-                        .querySelector(
-                            '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
-                        )
-                        .value.trim()
                 }
+
                 toggleContainerMinhaPlaylist()
                 toggleEditMinhaPlaylist()
                 refreshUserWithNewPlaylist()
             } else {
-                if (screenWidth >= 1360) {
-                    warning.classList.remove('hidden')
-                    warning.textContent = 'Internal Error!'
+                warning.classList.remove('hidden')
+                warning.textContent = 'Internal Error!'
 
-                    if (timerAlertMessage != null) {
-                        clearTimeout(timerAlertMessage)
-                        timerAlertMessage = null
-                    }
-                    timerAlertMessage = setTimeout(() => {
-                        warning.classList.add('hidden')
-                    }, 3000)
-                } else {
-                    warningMobile.classList.remove('hidden')
-                    warningMobile.textContent = 'Internal Error!'
-
-                    if (timerAlertMessage != null) {
-                        clearTimeout(timerAlertMessage)
-                        timerAlertMessage = null
-                    }
-                    timerAlertMessage = setTimeout(() => {
-                        warningMobile.classList.add('hidden')
-                    }, 3000)
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
                 }
+                timerAlertMessage = setTimeout(() => {
+                    warning.classList.add('hidden')
+                }, 3000)
             }
         })
     } else {
@@ -4235,28 +4203,16 @@ function manageMyPlaylistEdition() {
         }
 
         if (playlistExists.length >= 1) {
-            if (screenWidth >= 1360) {
-                warning.classList.remove('hidden')
-                warning.textContent = 'Já existe uma playlist com esse nome.'
-                if (timerAlertMessage != null) {
-                    clearTimeout(timerAlertMessage)
-                    timerAlertMessage = null
-                }
-                timerAlertMessage = setTimeout(() => {
-                    warning.classList.add('hidden')
-                }, 3000)
-            } else {
-                warningMobile.classList.remove('hidden')
-                warningMobile.textContent =
-                    'Já existe uma playlist com esse nome.'
-                if (timerAlertMessage != null) {
-                    clearTimeout(timerAlertMessage)
-                    timerAlertMessage = null
-                }
-                timerAlertMessage = setTimeout(() => {
-                    warningMobile.classList.add('hidden')
-                }, 3000)
+            warningMobile.classList.remove('hidden')
+            warningMobile.textContent = 'Já existe uma playlist com esse nome.'
+            if (timerAlertMessage != null) {
+                clearTimeout(timerAlertMessage)
+                timerAlertMessage = null
             }
+            timerAlertMessage = setTimeout(() => {
+                warningMobile.classList.add('hidden')
+            }, 3000)
+
             return
         }
 
@@ -4274,49 +4230,30 @@ function manageMyPlaylistEdition() {
             }),
         }).then((response) => {
             if (response.status === 200) {
-                if (screenWidth >= 1360) {
-                    document.querySelector('.title-playlist').textContent =
-                        document
-                            .querySelector(
-                                '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
-                            )
-                            .value.trim()
-                } else {
+                if (indexMyPlaylistId === indexMyPlaylistIdCurrent) {
                     document.querySelector(
                         '.title-playlist-mobile'
                     ).textContent = document
                         .querySelector(
-                            '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                            '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
                         )
                         .value.trim()
                 }
+
                 toggleContainerMinhaPlaylist()
                 toggleEditMinhaPlaylist()
                 refreshUserWithNewPlaylist()
             } else {
-                if (screenWidth >= 1360) {
-                    warning.classList.remove('hidden')
-                    warning.textContent = 'Internal Error!'
+                warningMobile.classList.remove('hidden')
+                warningMobile.textContent = 'Internal Error!'
 
-                    if (timerAlertMessage != null) {
-                        clearTimeout(timerAlertMessage)
-                        timerAlertMessage = null
-                    }
-                    timerAlertMessage = setTimeout(() => {
-                        warning.classList.add('hidden')
-                    }, 3000)
-                } else {
-                    warningMobile.classList.remove('hidden')
-                    warningMobile.textContent = 'Internal Error!'
-
-                    if (timerAlertMessage != null) {
-                        clearTimeout(timerAlertMessage)
-                        timerAlertMessage = null
-                    }
-                    timerAlertMessage = setTimeout(() => {
-                        warningMobile.classList.add('hidden')
-                    }, 3000)
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
                 }
+                timerAlertMessage = setTimeout(() => {
+                    warningMobile.classList.add('hidden')
+                }, 3000)
             }
         })
     }
@@ -5011,6 +4948,8 @@ async function manageUserCreatePlaylist() {
 }
 
 async function selectUserMyPlaylist() {
+    indexMyPlaylistIdCurrent = indexMyPlaylistId
+
     const playlist = userData.myPlaylists.find(
         (item) => item._id === indexMyPlaylistId
     )
