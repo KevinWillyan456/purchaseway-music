@@ -445,6 +445,8 @@ clearHistoricIconMobile.addEventListener('click', manageHistoricClear)
 musicFavoriteIcon.addEventListener('click', manageFavorite)
 musicFavoriteIconMobile.addEventListener('click', manageFavorite)
 selectPlaylist.addEventListener('click', () => {
+    canKeyboardEventsProfile = false
+    canKeyboardEvents = false
     toggleMenu()
     toggleMorePlaylists()
 })
@@ -462,6 +464,7 @@ selectFavoritesMobile.addEventListener('click', () => {
 })
 selectMyPlaylist.addEventListener('click', () => {
     canKeyboardEventsProfile = false
+    canKeyboardEvents = false
     toggleMenu()
     toggleMyPlaylists()
 })
@@ -473,12 +476,17 @@ selectMyPlaylistMobile.addEventListener('click', () => {
 morePlaylist.addEventListener('click', toggleMenu)
 backMenu.addEventListener('click', toggleMenu)
 backMenuMobile.addEventListener('click', toggleMenu)
-backPlaylist.addEventListener('click', toggleMorePlaylists)
+backPlaylist.addEventListener('click', () => {
+    canKeyboardEventsProfile = true
+    canKeyboardEvents = true
+    toggleMorePlaylists()
+})
 backDisplayMobile.addEventListener('click', toggleDisplayMobile)
 morePlaylistMobile.addEventListener('click', toggleMenu)
 backPlaylistMobile.addEventListener('click', toggleMorePlaylists)
 backMyPlaylist.addEventListener('click', () => {
     canKeyboardEventsProfile = true
+    canKeyboardEvents = true
     toggleMyPlaylists()
 })
 backMyPlaylistMobile.addEventListener('click', toggleMyPlaylists)
@@ -620,6 +628,7 @@ document
     })
 btnSelectMyPlaylist.addEventListener('click', () => {
     canKeyboardEventsProfile = true
+    canKeyboardEvents = true
     toggleContainerMinhaPlaylist()
     toggleMyPlaylists()
     selectUserMyPlaylist()
@@ -692,7 +701,6 @@ document
         ) {
             event.target.classList.add('hidden')
             document.querySelector('.delete-my-new-playlist-name').value = ''
-            canKeyboardEvents = true
         }
     })
 document
@@ -712,7 +720,6 @@ document
 document
     .querySelector('.delete-my-new-playlist-btn-cancel')
     .addEventListener('click', (event) => {
-        canKeyboardEvents = true
         event.target.parentElement.parentElement.parentElement.classList.add(
             'hidden'
         )
@@ -1544,6 +1551,8 @@ function generatorContainerPlaylistSelectDataPlay() {
                 const playlistName = $(this).data('title')
                 toggleMorePlaylists()
                 selectNewPlaylist(playlistValue, playlistName)
+                canKeyboardEvents = true
+                canKeyboardEventsProfile = true
             })
         })
     } else {
@@ -3608,10 +3617,8 @@ function toggleEditMinhaPlaylist() {
         )
         if (editOverflow.classList.contains('hidden')) {
             editOverflow.classList.remove('hidden')
-            canKeyboardEvents = false
         } else {
             editOverflow.classList.add('hidden')
-            canKeyboardEvents = true
         }
     } else {
         const editOverflow = document.querySelector(
@@ -3632,10 +3639,8 @@ function toggleDeleteMinhaPlaylist() {
         )
         if (deleteOverflow.classList.contains('hidden')) {
             deleteOverflow.classList.remove('hidden')
-            canKeyboardEvents = false
         } else {
             deleteOverflow.classList.add('hidden')
-            canKeyboardEvents = true
         }
     } else {
         const deleteOverflow = document.querySelector(
