@@ -534,6 +534,10 @@ iframe {
     color: var(--color-white-1);
     padding-top: 32.5px;
 }
+.container-options {
+    width: 100%;
+    margin-top: 20px;
+}
 .trash-icon {
     padding-top: 28.5px;
     cursor: pointer;

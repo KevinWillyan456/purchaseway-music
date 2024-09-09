@@ -278,6 +278,9 @@ const favoriteEmptyMobile = document.querySelector('#favoriteEmptyMobile')
 const historicEmpty = document.querySelector('#historicEmpty')
 const historicEmptyMobile = document.querySelector('#historicEmptyMobile')
 
+const setFullscreen = document.querySelector('#setFullscreen')
+const setFullscreenMobile = document.querySelector('#setFullscreenMobile')
+
 let allMusicData = []
 let musicData = []
 let musicDataShuffled = []
@@ -991,6 +994,26 @@ document
     .addEventListener('input', () => {
         generatorContainerMusicAddPlaylist()
     })
+setFullscreen.checked = getFullScreenStorage()
+setFullscreenMobile.checked = getFullScreenStorage()
+setFullscreen.addEventListener('change', () => {
+    if (setFullscreen.checked) {
+        setFullScreenStorage(true)
+        setFullscreenMobile.checked = true
+    } else {
+        setFullScreenStorage(false)
+        setFullscreenMobile.checked = false
+    }
+})
+setFullscreenMobile.addEventListener('change', () => {
+    if (setFullscreenMobile.checked) {
+        setFullScreenStorage(true)
+        setFullscreen.checked = true
+    } else {
+        setFullScreenStorage(false)
+        setFullscreen.checked = false
+    }
+})
 
 function setFullHeight() {
     const vh = window.innerHeight * 0.01
@@ -1114,7 +1137,7 @@ function allSongValueSetters() {
             sliderMusicDurationDot.style.setProperty('left', '0%')
 
             if (player) {
-                player.destroy()
+                destroyPlayer()
                 stopAnimationAudioControllerPlay()
 
                 clearInterval(timerSyncSliderVolume)
@@ -1133,7 +1156,7 @@ function allSongValueSetters() {
             )
 
             if (playerMobile) {
-                playerMobile.destroy()
+                destroyPlayer()
                 stopAnimationAudioControllerPlay()
             }
         }
@@ -5090,8 +5113,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         stopAnimationAudioControllerPlay()
 
         if (player) {
-            player.destroy()
-
+            destroyPlayer()
             clearInterval(timerSyncSliderVolume)
             timerSyncSliderVolume = null
         }
@@ -5120,7 +5142,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
         stopAnimationAudioControllerPlay()
 
         if (playerMobile) {
-            playerMobile.destroy()
+            destroyPlayer()
         }
 
         titleCurrentMusicMobile.innerHTML = 'Carregando...'
@@ -5214,8 +5236,7 @@ function onYouTubeIframeAPIReady(videoId) {
         stopAnimationAudioControllerPlay()
 
         if (player) {
-            player.destroy()
-
+            destroyPlayer()
             clearInterval(timerSyncSliderVolume)
             timerSyncSliderVolume = null
         }
@@ -5233,7 +5254,7 @@ function onYouTubeIframeAPIReady(videoId) {
         stopAnimationAudioControllerPlay()
 
         if (playerMobile) {
-            playerMobile.destroy()
+            destroyPlayer()
         }
 
         playerMobile = new YT.Player('containerFrameMobile', {
@@ -5269,6 +5290,13 @@ function playVideo() {
                     player.getPlayerState() !== YT.PlayerState.PLAYING
                 ) {
                     player.playVideo()
+
+                    if (getFullScreenStorage()) {
+                        enterFullScreen(
+                            document.querySelector('#containerFrame')
+                        )
+                    }
+
                     setVolumeStorage(sliderMusicVolume.value)
                 }
             }, 200)
@@ -5292,6 +5320,12 @@ function playVideo() {
                     playerMobile.getPlayerState() !== YT.PlayerState.PLAYING
                 ) {
                     playerMobile.playVideo()
+
+                    if (getFullScreenStorage()) {
+                        enterFullScreen(
+                            document.querySelector('#containerFrameMobile')
+                        )
+                    }
                 }
             }, 200)
         } else {
@@ -5410,6 +5444,17 @@ function getVolumeStorage() {
 
 function setVolumeStorage(volume) {
     localStorage.setItem('volume', volume)
+}
+
+function getFullScreenStorage() {
+    const fullScreen =
+        localStorage.getItem('fullScreen') == 'true' ? true : false
+
+    return fullScreen
+}
+
+function setFullScreenStorage(fullScreen) {
+    localStorage.setItem('fullScreen', fullScreen)
 }
 
 function getVideoVolume() {
@@ -5549,6 +5594,30 @@ function changeVideoCurrentTime(time) {
         if (playerReadyMobile) {
             playerMobile.seekTo(time, true)
             playVideo()
+        }
+    }
+}
+
+function enterFullScreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen()
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen()
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen()
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen()
+    }
+}
+
+function destroyPlayer() {
+    if (screenWidth >= 1360) {
+        if (player) {
+            player.destroy()
+        }
+    } else {
+        if (playerMobile) {
+            playerMobile.destroy()
         }
     }
 }

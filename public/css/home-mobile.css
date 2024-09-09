@@ -886,6 +886,11 @@
     margin-top: 40px;
     margin-bottom: 40px;
 }
+.content-profile-mobile .container-options-mobile {
+    color: var(--color-white-1);
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
 .main-user-settings-mobile .box-profile-mobile {
     display: flex;
     flex-direction: column;
