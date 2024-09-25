@@ -12,7 +12,6 @@
 .header-mobile {
     width: calc(100% - 40px);
     margin: 0 auto;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,7 +22,10 @@
 .header-mobile .service-logo-mobile {
     cursor: pointer;
     width: 120px;
+    height: 33.78px;
+    max-height: 33.78px;
     pointer-events: none;
+    overflow: hidden;
 }
 .header-mobile .service-logo-mobile img {
     width: 100%;
@@ -2753,6 +2755,21 @@
     100% {
         transform: rotate(360deg);
     }
+}
+.load-more-mobile {
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-white-1);
+    font-size: 20px;
+    background: var(--color-base-3);
+    border: 2px solid var(--color-white-1);
+    border-radius: 10px;
+    margin: 20px auto;
+    transform: translateX(16px);
 }
 @keyframes song-not-found-mobile-animation {
     0% {

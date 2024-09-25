@@ -2670,6 +2670,20 @@ iframe {
         transform: rotate(360deg);
     }
 }
+.load-more {
+    width: 220px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-white-1);
+    font-size: 20px;
+    background: var(--color-base-3);
+    border: 2px solid var(--color-white-1);
+    border-radius: 10px;
+    margin: 20px auto;
+}
 .hidden {
     display: none !important;
 }

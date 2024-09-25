@@ -5,6 +5,9 @@ let indexMyPlaylistId = ''
 let indexMyPlaylistIdCurrent = ''
 let indexMyPlaylistAudioId = ''
 
+let itensPerPage = 10
+let indexPage = 0
+
 let screenWidth = 0
 let screenHeight = 0
 
@@ -280,6 +283,11 @@ const historicEmptyMobile = document.querySelector('#historicEmptyMobile')
 
 const setFullscreen = document.querySelector('#setFullscreen')
 const setFullscreenMobile = document.querySelector('#setFullscreenMobile')
+
+const loadingRoller = document.querySelector('#loadingRoller')
+const loadingRollerMobile = document.querySelector('#loadingRollerMobile')
+const loadMore = document.querySelector('#loadMore')
+const loadMoreMobile = document.querySelector('#loadMoreMobile')
 
 let allMusicData = []
 let musicData = []
@@ -994,6 +1002,12 @@ document
     .addEventListener('input', () => {
         generatorContainerMusicAddPlaylist()
     })
+loadMore.addEventListener('click', () => {
+    loadMoreContainerPlaylistData()
+})
+loadMoreMobile.addEventListener('click', () => {
+    loadMoreContainerPlaylistData()
+})
 setFullscreen.checked = getFullScreenStorage()
 setFullscreenMobile.checked = getFullScreenStorage()
 setFullscreen.addEventListener('change', () => {
@@ -1281,69 +1295,158 @@ function audioControllerPrevFunction() {
     generatorContainerCurrentMusicAddPlaylist()
 }
 
+function loadMoreContainerPlaylistData() {
+    generatorContainerPlaylistData()
+    generatorContainerPlaylistDataPlay()
+    setMusicPlayTag()
+}
+
 function generatorContainerPlaylistData() {
+    if (emptyPlaylist) return
+
     if (screenWidth >= 1360) {
-        if (emptyPlaylist) return
+        loadingRoller.classList.add('hidden')
 
-        containerPlaylist.innerHTML = ''
+        const nextPage = musicDataShuffled.slice(
+            indexPage,
+            indexPage + itensPerPage
+        )
 
-        musicDataShuffled.forEach((element, index) => {
-            containerPlaylist.innerHTML += `
-                <div class="item-playlist" data-id="${
-                    element._id
-                }" style="animation-delay: ${index * 0.05}s">
-                    <div class="box-wrapper">
-                        <div class="cover-item">
-                            <img src="${element.coverUrl}" alt="${
-                element.title
-            }">
-                        </div>
-                        <div class="info-item">
-                            <div class="title-info">
-                                ${element.title}
-                            </div>
-                            <div class="gender-info">
-                                ${element.gender}
-                            </div>
-                        </div>
-                    </div>
+        nextPage.forEach((element, index) => {
+            const itemPlaylist = document.createElement('div')
+            itemPlaylist.className = 'item-playlist'
+            itemPlaylist.setAttribute('data-id', element._id)
+            itemPlaylist.style.animationDelay = `${index * 0.05}s`
 
-                    <div class="play-button-item">
-                        <ion-icon name="play-circle"></ion-icon>
-                    </div>
-                </div>
-            `
+            const boxWrapper = document.createElement('div')
+            boxWrapper.className = 'box-wrapper'
+
+            const coverItem = document.createElement('div')
+            coverItem.className = 'cover-item'
+
+            const coverImg = document.createElement('img')
+            coverImg.src = element.coverUrl
+            coverImg.alt = element.title
+
+            coverItem.appendChild(coverImg)
+
+            const infoItem = document.createElement('div')
+            infoItem.className = 'info-item'
+
+            const titleInfo = document.createElement('div')
+            titleInfo.className = 'title-info'
+            titleInfo.textContent = element.title
+
+            const genderInfo = document.createElement('div')
+            genderInfo.className = 'gender-info'
+            genderInfo.textContent = element.gender
+
+            infoItem.appendChild(titleInfo)
+            infoItem.appendChild(genderInfo)
+
+            boxWrapper.appendChild(coverItem)
+            boxWrapper.appendChild(infoItem)
+
+            const playButtonItem = document.createElement('div')
+            playButtonItem.className = 'play-button-item'
+
+            const playIcon = document.createElement('ion-icon')
+            playIcon.setAttribute('name', 'play-circle')
+
+            playButtonItem.appendChild(playIcon)
+
+            itemPlaylist.appendChild(boxWrapper)
+            itemPlaylist.appendChild(playButtonItem)
+
+            const lastChild = containerPlaylist.lastElementChild
+
+            if (lastChild) {
+                containerPlaylist.insertBefore(itemPlaylist, lastChild)
+            } else {
+                containerPlaylist.appendChild(itemPlaylist)
+            }
         })
+
+        indexPage += itensPerPage
+
+        if (indexPage >= musicDataShuffled.length) {
+            loadMore.classList.add('hidden')
+        } else {
+            loadMore.classList.remove('hidden')
+        }
     } else {
-        containerPlaylistMobile.innerHTML = ''
+        loadingRollerMobile.classList.add('hidden')
 
-        musicDataShuffled.forEach((element, index) => {
-            containerPlaylistMobile.innerHTML += `
-                <div class="item-playlist-mobile" data-id="${
-                    element._id
-                }" style="animation-delay: ${index * 0.05}s">
-                    <div class="box-wrapper">
-                        <div class="cover-item">
-                            <img src="${element.coverUrl}" alt="${
-                element.title
-            }">
-                        </div>
-                        <div class="info-item">
-                            <div class="title-info">
-                                ${element.title}
-                            </div>
-                            <div class="gender-info">
-                                ${element.gender}
-                            </div>
-                        </div>
-                    </div>
+        const nextPage = musicDataShuffled.slice(
+            indexPage,
+            indexPage + itensPerPage
+        )
 
-                    <div class="play-button-item">
-                        <ion-icon name="play-circle"></ion-icon>
-                    </div>
-                </div>
-            `
+        nextPage.forEach((element, index) => {
+            const itemPlaylistMobile = document.createElement('div')
+            itemPlaylistMobile.className = 'item-playlist-mobile'
+            itemPlaylistMobile.setAttribute('data-id', element._id)
+            itemPlaylistMobile.style.animationDelay = `${index * 0.05}s`
+
+            const boxWrapper = document.createElement('div')
+            boxWrapper.className = 'box-wrapper'
+
+            const coverItem = document.createElement('div')
+            coverItem.className = 'cover-item'
+
+            const coverImg = document.createElement('img')
+            coverImg.src = element.coverUrl
+            coverImg.alt = element.title
+
+            coverItem.appendChild(coverImg)
+
+            const infoItem = document.createElement('div')
+            infoItem.className = 'info-item'
+
+            const titleInfo = document.createElement('div')
+            titleInfo.className = 'title-info'
+            titleInfo.textContent = element.title
+
+            const genderInfo = document.createElement('div')
+            genderInfo.className = 'gender-info'
+            genderInfo.textContent = element.gender
+
+            infoItem.appendChild(titleInfo)
+            infoItem.appendChild(genderInfo)
+
+            boxWrapper.appendChild(coverItem)
+            boxWrapper.appendChild(infoItem)
+
+            const playButtonItem = document.createElement('div')
+            playButtonItem.className = 'play-button-item'
+
+            const playIcon = document.createElement('ion-icon')
+            playIcon.setAttribute('name', 'play-circle')
+
+            playButtonItem.appendChild(playIcon)
+
+            itemPlaylistMobile.appendChild(boxWrapper)
+            itemPlaylistMobile.appendChild(playButtonItem)
+
+            const lastChild = containerPlaylistMobile.lastElementChild
+
+            if (lastChild) {
+                containerPlaylistMobile.insertBefore(
+                    itemPlaylistMobile,
+                    lastChild
+                )
+            } else {
+                containerPlaylistMobile.appendChild(itemPlaylistMobile)
+            }
         })
+
+        indexPage += itensPerPage
+
+        if (indexPage >= musicDataShuffled.length) {
+            loadMoreMobile.classList.add('hidden')
+        } else {
+            loadMoreMobile.classList.remove('hidden')
+        }
     }
 }
 
@@ -3178,6 +3281,8 @@ function shuffleToggle() {
         shuffleArray(musicDataShuffled)
 
         indexAudio = 1
+        indexPage = 0
+        clearPlaylistData()
         audioControllerPrevFunction()
         generatorContainerPlaylistData()
         generatorContainerPlaylistDataPlay()
@@ -3191,6 +3296,8 @@ function shuffleToggle() {
         shuffleToggleControl = true
         musicDataShuffled = [...musicData]
         indexAudio = 1
+        indexPage = 0
+        clearPlaylistData()
         audioControllerPrevFunction()
         generatorContainerPlaylistData()
         generatorContainerPlaylistDataPlay()
@@ -3935,6 +4042,9 @@ function changeMobileOrDesktop() {
         }
     }
 
+    indexPage = 0
+
+    clearPlaylistData()
     allSongValueSetters()
     generatorContainerPlaylistSelectData()
     generatorContainerPlaylistSelectDataPlay()
@@ -4479,27 +4589,58 @@ function manageEmptyPlaylist(itsMyPlaylist = false) {
     if (!emptyPlaylist) return
 
     if (screenWidth >= 1360) {
-        containerPlaylist.innerHTML = `
-            <div class="empty-playlist">
-                ${
-                    userData.lastAccessedPlaylist === 'Favorite' &&
-                    !itsMyPlaylist
-                        ? 'Sem músicas favoritas'
-                        : 'Playlist vazia'
-                }
-            </div>
-        `
+        loadingRoller.classList.add('hidden')
+        loadMore.classList.add('hidden')
+
+        if (!document.querySelector('.empty-playlist')) {
+            const emptyPlaylist = document.createElement('div')
+            emptyPlaylist.className = 'empty-playlist'
+
+            if (
+                userData.lastAccessedPlaylist === 'Favorite' &&
+                !itsMyPlaylist
+            ) {
+                emptyPlaylist.textContent = 'Sem músicas favoritas'
+            } else {
+                emptyPlaylist.textContent = 'Playlist vazia'
+            }
+
+            const lastChild = containerPlaylist.lastElementChild
+
+            if (lastChild) {
+                containerPlaylist.insertBefore(emptyPlaylist, lastChild)
+            } else {
+                containerPlaylist.appendChild(emptyPlaylist)
+            }
+        }
     } else {
-        containerPlaylistMobile.innerHTML = `
-            <div class="empty-playlist-mobile">
-                ${
-                    userData.lastAccessedPlaylist === 'Favorite' &&
-                    !itsMyPlaylist
-                        ? 'Sem músicas favoritas'
-                        : 'Playlist vazia'
-                }
-            </div>
-        `
+        loadingRollerMobile.classList.add('hidden')
+        loadMoreMobile.classList.add('hidden')
+
+        if (!document.querySelector('.empty-playlist-mobile')) {
+            const emptyPlaylistMobile = document.createElement('div')
+            emptyPlaylistMobile.className = 'empty-playlist-mobile'
+
+            if (
+                userData.lastAccessedPlaylist === 'Favorite' &&
+                !itsMyPlaylist
+            ) {
+                emptyPlaylistMobile.textContent = 'Sem músicas favoritas'
+            } else {
+                emptyPlaylistMobile.textContent = 'Playlist vazia'
+            }
+
+            const lastChild = containerPlaylistMobile.lastElementChild
+
+            if (lastChild) {
+                containerPlaylistMobile.insertBefore(
+                    emptyPlaylistMobile,
+                    lastChild
+                )
+            } else {
+                containerPlaylistMobile.appendChild(emptyPlaylistMobile)
+            }
+        }
     }
 }
 
@@ -5087,6 +5228,7 @@ async function selectUserMyPlaylist() {
 
 async function selectNewPlaylist(playlistSelect, playlistName) {
     emptyPlaylist = true
+    clearPlaylistData()
 
     const idUserConnected = getCookie('user')
     let playlistSelectForSend = {
@@ -5097,18 +5239,9 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     if (screenWidth >= 1360) {
         $('.title-playlist').html(playlistName)
 
-        containerPlaylist.innerHTML = `
-            <div class="loading-roller">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        `
+        loadingRoller.classList.remove('hidden')
+        loadMore.classList.add('hidden')
+        document.querySelector('.empty-playlist')?.remove()
 
         stopAnimationAudioControllerPlay()
 
@@ -5127,18 +5260,10 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     } else {
         $('.title-playlist-mobile').html(playlistName)
 
-        containerPlaylistMobile.innerHTML = `
-            <div class="loading-roller-mobile">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        `
+        loadingRollerMobile.classList.remove('hidden')
+        loadMoreMobile.classList.add('hidden')
+        document.querySelector('.empty-playlist-mobile')?.remove()
+
         stopAnimationAudioControllerPlay()
 
         if (playerMobile) {
@@ -5203,6 +5328,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     }
 
     indexAudio = 0
+    indexPage = 0
 
     if (screenWidth >= 1360) {
         shuffleIcon.classList.remove('active')
@@ -5229,6 +5355,24 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     await refreshUserWithNewPlaylist()
     manageEmptyPlaylist()
     setManagementSystem()
+}
+
+function clearPlaylistData() {
+    if (screenWidth >= 1360) {
+        const itemPlaylist = document.querySelectorAll(
+            '.container-playlist .item-playlist'
+        )
+        itemPlaylist.forEach((item) => {
+            item.remove()
+        })
+    } else {
+        const itemPlaylistMobile = document.querySelectorAll(
+            '.container-playlist-mobile .item-playlist-mobile'
+        )
+        itemPlaylistMobile.forEach((item) => {
+            item.remove()
+        })
+    }
 }
 
 function onYouTubeIframeAPIReady(videoId) {
