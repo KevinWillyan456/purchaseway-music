@@ -961,10 +961,51 @@ document
     .addEventListener('click', () => {
         document.querySelector('.minhas-playlists-search-bar-input').value = ''
         generatorContainerMusicAddPlaylist()
+
+        if (
+            document
+                .querySelector('.minhas-playlists-search-bar-input')
+                .value.trim() === ''
+        ) {
+            document
+                .querySelector('.minhas-playlists-search-bar-close')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.minhas-playlists-search-bar-close')
+                .classList.remove('hidden')
+        }
     })
+if (
+    document
+        .querySelector('.minhas-playlists-search-bar-input')
+        .value.trim() === ''
+) {
+    document
+        .querySelector('.minhas-playlists-search-bar-close')
+        .classList.add('hidden')
+} else {
+    document
+        .querySelector('.minhas-playlists-search-bar-close')
+        .classList.remove('hidden')
+}
 document
     .querySelector('.minhas-playlists-search-bar-input')
     .addEventListener('input', () => {
+        if (
+            document
+                .querySelector('.minhas-playlists-search-bar-input')
+                .value.trim() === ''
+        ) {
+            document
+                .querySelector('.minhas-playlists-search-bar-close')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.minhas-playlists-search-bar-close')
+                .classList.remove('hidden')
+        }
+
         generatorContainerMusicAddPlaylist()
     })
 document
@@ -973,12 +1014,49 @@ document
         document.querySelector('.playlists-search-bar-input').value = ''
         generatorContainerPlaylistSelectData()
         generatorContainerPlaylistSelectDataPlay()
+
+        if (
+            document
+                .querySelector('.playlists-search-bar-input')
+                .value.trim() === ''
+        ) {
+            document
+                .querySelector('.playlists-search-bar-close')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.playlists-search-bar-close')
+                .classList.remove('hidden')
+        }
     })
+if (document.querySelector('.playlists-search-bar-input').value.trim() === '') {
+    document
+        .querySelector('.playlists-search-bar-close')
+        .classList.add('hidden')
+} else {
+    document
+        .querySelector('.playlists-search-bar-close')
+        .classList.remove('hidden')
+}
 document
     .querySelector('.playlists-search-bar-input')
     .addEventListener('input', () => {
         generatorContainerPlaylistSelectData()
         generatorContainerPlaylistSelectDataPlay()
+
+        if (
+            document
+                .querySelector('.playlists-search-bar-input')
+                .value.trim() === ''
+        ) {
+            document
+                .querySelector('.playlists-search-bar-close')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.playlists-search-bar-close')
+                .classList.remove('hidden')
+        }
     })
 document
     .querySelector('.playlists-search-bar-close-mobile')
@@ -986,12 +1064,53 @@ document
         document.querySelector('.playlists-search-bar-input-mobile').value = ''
         generatorContainerPlaylistSelectData()
         generatorContainerPlaylistSelectDataPlay()
+
+        if (
+            document
+                .querySelector('.playlists-search-bar-input-mobile')
+                .value.trim() === ''
+        ) {
+            document
+                .querySelector('.playlists-search-bar-close-mobile')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.playlists-search-bar-close-mobile')
+                .classList.remove('hidden')
+        }
     })
+if (
+    document
+        .querySelector('.playlists-search-bar-input-mobile')
+        .value.trim() === ''
+) {
+    document
+        .querySelector('.playlists-search-bar-close-mobile')
+        .classList.add('hidden')
+} else {
+    document
+        .querySelector('.playlists-search-bar-close-mobile')
+        .classList.remove('hidden')
+}
 document
     .querySelector('.playlists-search-bar-input-mobile')
     .addEventListener('input', () => {
         generatorContainerPlaylistSelectData()
         generatorContainerPlaylistSelectDataPlay()
+
+        if (
+            document
+                .querySelector('.playlists-search-bar-input-mobile')
+                .value.trim() === ''
+        ) {
+            document
+                .querySelector('.playlists-search-bar-close-mobile')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.playlists-search-bar-close-mobile')
+                .classList.remove('hidden')
+        }
     })
 document
     .querySelector('.minhas-playlists-search-bar-close-mobile')
@@ -1000,10 +1119,51 @@ document
             '.minhas-playlists-search-bar-input-mobile'
         ).value = ''
         generatorContainerMusicAddPlaylist()
+
+        if (
+            document
+                .querySelector('.minhas-playlists-search-bar-input-mobile')
+                .value.trim() === ''
+        ) {
+            document
+                .querySelector('.minhas-playlists-search-bar-close-mobile')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.minhas-playlists-search-bar-close-mobile')
+                .classList.remove('hidden')
+        }
     })
+if (
+    document
+        .querySelector('.minhas-playlists-search-bar-input-mobile')
+        .value.trim() === ''
+) {
+    document
+        .querySelector('.minhas-playlists-search-bar-close-mobile')
+        .classList.add('hidden')
+} else {
+    document
+        .querySelector('.minhas-playlists-search-bar-close-mobile')
+        .classList.remove('hidden')
+}
 document
     .querySelector('.minhas-playlists-search-bar-input-mobile')
     .addEventListener('input', () => {
+        if (
+            document
+                .querySelector('.minhas-playlists-search-bar-input-mobile')
+                .value.trim() === ''
+        ) {
+            document
+                .querySelector('.minhas-playlists-search-bar-close-mobile')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.minhas-playlists-search-bar-close-mobile')
+                .classList.remove('hidden')
+        }
+
         generatorContainerMusicAddPlaylist()
     })
 loadMore.addEventListener('click', () => {
@@ -3331,6 +3491,14 @@ function musicFilteringFunction() {
         if (containerItemsSearch.innerHTML == '') {
             $('.song-not-found').show()
         }
+
+        if (searchBarInput.value.trim() === '') {
+            document.querySelector('.search-bar-close').classList.add('hidden')
+        } else {
+            document
+                .querySelector('.search-bar-close')
+                .classList.remove('hidden')
+        }
     } else {
         containerItemsSearchMobile.innerHTML = ''
 
@@ -3343,6 +3511,16 @@ function musicFilteringFunction() {
 
         if (containerItemsSearchMobile.innerHTML == '') {
             $('.song-not-found-mobile').show()
+        }
+
+        if (searchBarInputMobile.value.trim() === '') {
+            document
+                .querySelector('.search-bar-close-mobile')
+                .classList.add('hidden')
+        } else {
+            document
+                .querySelector('.search-bar-close-mobile')
+                .classList.remove('hidden')
         }
     }
 }
@@ -3389,8 +3567,25 @@ function searchEvents() {
     searchBarInput.oninput = () => {
         musicFilteringFunction()
     }
+
+    if (searchBarInput.value.trim() === '') {
+        document.querySelector('.search-bar-close').classList.add('hidden')
+    } else {
+        document.querySelector('.search-bar-close').classList.remove('hidden')
+    }
+
     searchBarInputMobile.oninput = () => {
         musicFilteringFunction()
+    }
+
+    if (searchBarInputMobile.value.trim() === '') {
+        document
+            .querySelector('.search-bar-close-mobile')
+            .classList.add('hidden')
+    } else {
+        document
+            .querySelector('.search-bar-close-mobile')
+            .classList.remove('hidden')
     }
 
     $('.header-mobile .user-settings').click(() => {
