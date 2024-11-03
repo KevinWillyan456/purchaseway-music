@@ -22,6 +22,8 @@ let playerReadyMobile = false
 
 let timerAlertMessage = null
 
+let isMyPlaylist = false
+
 const audioControllerPrev = document.querySelector('#audio-prev')
 const audioControllerPlay = document.querySelector('#audio-play')
 const audioControllerNext = document.querySelector('#audio-next')
@@ -644,6 +646,7 @@ document
         manageUserProfilePicture()
     })
 btnSelectMyPlaylist.addEventListener('click', () => {
+    isMyPlaylist = true
     canKeyboardEventsProfile = true
     canKeyboardEvents = true
     toggleContainerMinhaPlaylist()
@@ -651,6 +654,7 @@ btnSelectMyPlaylist.addEventListener('click', () => {
     selectUserMyPlaylist()
 })
 btnSelectMyPlaylistMobile.addEventListener('click', () => {
+    isMyPlaylist = true
     toggleContainerMinhaPlaylist()
     toggleMyPlaylists()
     selectUserMyPlaylist()
@@ -1457,6 +1461,8 @@ function generatorContainerPlaylistDataPlay() {
         )
 
         itemsPlaylist.forEach((element) => {
+            if (element.getAttribute('data-click') === 'true') return
+            element.setAttribute('data-click', 'true')
             element.addEventListener('click', function () {
                 let cannotPlayTheMusic = false
                 if (
@@ -1496,6 +1502,8 @@ function generatorContainerPlaylistDataPlay() {
         )
 
         itemsPlaylistMobile.forEach((element) => {
+            if (element.getAttribute('data-click') === 'true') return
+            element.setAttribute('data-click', 'true')
             element.addEventListener('click', function () {
                 let cannotPlayTheMusic = false
                 if (
@@ -1679,6 +1687,7 @@ function generatorContainerPlaylistSelectDataPlay() {
 
         itemsSelectPlaylist.forEach((element) => {
             element.addEventListener('click', function () {
+                isMyPlaylist = false
                 const playlistValue = $(this).data('gender')
                 const playlistName = $(this).data('title')
                 toggleMorePlaylists()
@@ -1694,6 +1703,7 @@ function generatorContainerPlaylistSelectDataPlay() {
 
         itemsSelectPlaylistMobile.forEach((element) => {
             element.addEventListener('click', function () {
+                isMyPlaylist = false
                 const playlistValue = $(this).data('gender')
                 const playlistName = $(this).data('title')
                 toggleMorePlaylists()
@@ -3967,11 +3977,22 @@ function changeMobileOrDesktop() {
         containerItemsFavorite.innerHTML = ''
         containerItemsHistoric.innerHTML = ''
         containerPlaylistSelect.innerHTML = ''
-        $('.title-playlist').html(
-            emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
-                ? 'Sem Playlist'
-                : userData.lastAccessedPlaylistName
-        )
+
+        if (isMyPlaylist) {
+            userData.myPlaylists.forEach((playlist) => {
+                if (playlist._id === indexMyPlaylistId) {
+                    document.querySelector('.title-playlist').textContent =
+                        playlist.title
+                }
+            })
+        } else {
+            $('.title-playlist').html(
+                emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
+                    ? 'Sem Playlist'
+                    : userData.lastAccessedPlaylistName
+            )
+        }
+
         $('.search-bar input').val('')
         musicFilteringFunction()
         sliderMusicVolume.value = getVideoVolume()
@@ -3999,11 +4020,23 @@ function changeMobileOrDesktop() {
         containerItemsHistoricMobile.innerHTML = ''
         containerFrameVideo.innerHTML = ''
         containerPlaylistSelectMobile.innerHTML = ''
-        $('.title-playlist-mobile').html(
-            emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
-                ? 'Sem Playlist'
-                : userData.lastAccessedPlaylistName
-        )
+
+        if (isMyPlaylist) {
+            userData.myPlaylists.forEach((playlist) => {
+                if (playlist._id === indexMyPlaylistId) {
+                    document.querySelector(
+                        '.title-playlist-mobile'
+                    ).textContent = playlist.title
+                }
+            })
+        } else {
+            $('.title-playlist-mobile').html(
+                emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
+                    ? 'Sem Playlist'
+                    : userData.lastAccessedPlaylistName
+            )
+        }
+
         $('.main-search-mobile .search-bar-mobile input').val('')
         musicFilteringFunction()
 
@@ -5207,6 +5240,9 @@ async function selectUserMyPlaylist() {
     shuffleToggleControl = true
 
     allSongValueSetters()
+    indexAudio = 0
+    indexPage = 0
+    clearPlaylistData()
     generatorContainerPlaylistData()
     generatorContainerPlaylistDataPlay()
     generatorContainerSearchData()

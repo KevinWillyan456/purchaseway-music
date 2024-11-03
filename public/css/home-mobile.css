@@ -1727,7 +1727,7 @@
 .current-music-add-container-mobile {
     animation: animate-scale-opacity-entrace 500ms;
     min-width: 300px;
-    max-width: 600px;
+    max-width: 320px;
     max-height: 600px;
     border-radius: 10px;
     border: 3px solid var(--color-white-1);
@@ -1757,8 +1757,8 @@
 .current-music-add-playlist-container-mobile {
     padding-left: 8px;
     display: flex;
-    min-height: 150px;
-    max-height: 335px;
+    min-height: 190px;
+    max-height: 190px;
     flex-direction: column;
     gap: 5px;
     overflow: auto;
