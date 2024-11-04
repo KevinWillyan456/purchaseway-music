@@ -3430,13 +3430,12 @@ function shuffleArray(preShuffleArray) {
     let currentIndex = size - 1
 
     while (currentIndex > 0) {
-        let ramdomIndex = Math.floor(Math.random() * size)
+        let randomIndex = Math.floor(Math.random() * size)
         let aux = preShuffleArray[currentIndex]
-        preShuffleArray[currentIndex] = preShuffleArray[ramdomIndex]
-        preShuffleArray[ramdomIndex] = aux
+        preShuffleArray[currentIndex] = preShuffleArray[randomIndex]
+        preShuffleArray[randomIndex] = aux
         currentIndex -= 1
     }
-    audioControllerPrevFunction()
 }
 
 let shuffleToggleControl = true
@@ -3450,10 +3449,11 @@ function shuffleToggle() {
 
         shuffleArray(musicDataShuffled)
 
-        indexAudio = 1
+        indexAudio = musicDataShuffled.findIndex(
+            (element) => element._id === indexAudioId
+        )
         indexPage = 0
         clearPlaylistData()
-        audioControllerPrevFunction()
         generatorContainerPlaylistData()
         generatorContainerPlaylistDataPlay()
         setMusicPlayTag()
@@ -3465,10 +3465,11 @@ function shuffleToggle() {
 
         shuffleToggleControl = true
         musicDataShuffled = [...musicData]
-        indexAudio = 1
+        indexAudio = musicDataShuffled.findIndex(
+            (element) => element._id === indexAudioId
+        )
         indexPage = 0
         clearPlaylistData()
-        audioControllerPrevFunction()
         generatorContainerPlaylistData()
         generatorContainerPlaylistDataPlay()
         setMusicPlayTag()
