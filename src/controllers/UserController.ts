@@ -569,10 +569,12 @@ async function allSongAndPlaylistData(req: Request, res: Response) {
         const playlists = await Playlist.find()
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
+            .select('-__v')
 
         const songs = await Music.find()
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
+            .select('-__v')
 
         return res.status(200).json({ playlists, songs })
     } catch (err) {

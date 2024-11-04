@@ -1244,6 +1244,7 @@ function inicia() {
     initDurationSlider()
     initVolumeSlider()
     initThemeChanger(userData.theme)
+    incrementViewCount()
 }
 
 function audioControllerPlayFunction() {
@@ -1653,6 +1654,7 @@ function generatorContainerPlaylistDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
+                    incrementViewCount()
                 }
             })
         })
@@ -1995,6 +1997,7 @@ function generatorContainerSearchDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
+                    incrementViewCount()
 
                     $('.focus-shadow').hide(200)
                     $('.container-search-result').hide(200)
@@ -2177,6 +2180,7 @@ function generatorContainerFavoriteDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
+                    incrementViewCount()
 
                     $('.focus-shadow').hide(200)
                     $('.container-user-settings').hide(200)
@@ -2358,6 +2362,7 @@ function generatorContainerHistoricDataPlay() {
                     manageHistoric()
                     refreshFavorite()
                     generatorContainerCurrentMusicAddPlaylist()
+                    incrementViewCount()
 
                     $('.focus-shadow').hide(200)
                     $('.container-user-settings').hide(200)
@@ -4344,10 +4349,10 @@ function setManagementSystem() {
         selectManagementSystemMobile.classList.remove('hidden')
     }
     selectManagementSystem.addEventListener('click', () => {
-        window.location = '/config'
+        window.open('/config', '_blank')
     })
     selectManagementSystemMobile.addEventListener('click', () => {
-        window.location = '/config'
+        window.open('/config', '_blank')
     })
 }
 
@@ -5996,6 +6001,66 @@ function destroyPlayer() {
             playerMobile.destroy()
         }
     }
+}
+
+async function incrementViewCount() {
+    await fetch(`/songs-view-count/${indexAudioId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userId: userData._id,
+        }),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                if (screenWidth >= 1360) {
+                    warning.classList.remove('hidden')
+                    warning.textContent = 'Internal Error!'
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
+                        warning.classList.add('hidden')
+                    }, 3000)
+                } else {
+                    warningMobile.classList.remove('hidden')
+                    warningMobile.textContent = 'Internal Error!'
+                    if (timerAlertMessage != null) {
+                        clearTimeout(timerAlertMessage)
+                        timerAlertMessage = null
+                    }
+                    timerAlertMessage = setTimeout(() => {
+                        warningMobile.classList.add('hidden')
+                    }, 3000)
+                }
+            }
+        })
+        .catch(() => {
+            if (screenWidth >= 1360) {
+                warning.classList.remove('hidden')
+                warning.textContent = 'Internal Error!'
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
+                    warning.classList.add('hidden')
+                }, 3000)
+            } else {
+                warningMobile.classList.remove('hidden')
+                warningMobile.textContent = 'Internal Error!'
+                if (timerAlertMessage != null) {
+                    clearTimeout(timerAlertMessage)
+                    timerAlertMessage = null
+                }
+                timerAlertMessage = setTimeout(() => {
+                    warningMobile.classList.add('hidden')
+                }, 3000)
+            }
+        })
 }
 
 async function musicListingService() {

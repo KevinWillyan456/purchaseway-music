@@ -657,6 +657,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         formAddPlaylist.classList.add('hidden')
         document.body.style.overflow = 'auto'
         searchPlaylist.value = ''
+        blankPlaylist.classList.add('hidden')
 
         await dataFetch()
         defineTotalNumbers()
@@ -766,6 +767,7 @@ formSong.addEventListener('submit', async function (event) {
         formSongAddInputID.value = ''
         formAddSong.classList.add('hidden')
         searchSong.value = ''
+        blankSong.classList.add('hidden')
         await dataFetch()
 
         let musicsByPlaylist = []

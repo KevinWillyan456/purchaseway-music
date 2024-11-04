@@ -10,6 +10,7 @@ async function indexPlaylist(req: Request, res: Response) {
         const playlists = await Playlist.find()
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
+            .select('-__v')
 
         return res.status(200).json({ playlists })
     } catch (err) {
@@ -224,6 +225,7 @@ async function selectPlaylist(req: Request, res: Response) {
             const songs = await Music.find({ _id: { $in: userFavoriteSongs } })
                 .sort({ title: 1 })
                 .collation({ locale: 'pt', strength: 2 })
+                .select('-__v')
 
             return res.status(200).json({ songs })
         }
@@ -231,6 +233,7 @@ async function selectPlaylist(req: Request, res: Response) {
         const songs = await Music.find({ gender: playlist })
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
+            .select('-__v')
 
         return res.status(200).json({ songs })
     } catch (err) {

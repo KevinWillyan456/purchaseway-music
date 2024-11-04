@@ -222,6 +222,7 @@ body {
 }
 .main-display {
     width: 100%;
+    background-color: var(--color-white-1);
     position: relative;
     display: flex;
     align-items: center;

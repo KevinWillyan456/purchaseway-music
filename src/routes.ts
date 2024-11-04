@@ -2,6 +2,7 @@ import express from 'express'
 
 import {
     deleteMusic,
+    incrementViewCount,
     indexMusic,
     storeMusic,
     updateMusic,
@@ -31,17 +32,17 @@ import {
 
 import {
     deletePlaylist,
+    deletePlaylistAndSongs,
     indexPlaylist,
+    selectPlaylist,
     storePlaylist,
     updatePlaylist,
-    selectPlaylist,
-    deletePlaylistAndSongs,
 } from './controllers/PlaylistController'
 
-import { getMusic } from './middlewares/MusicMiddleware'
-import { getUser } from './middlewares/UserMiddleware'
-import { getPlaylist } from './middlewares/PlaylistMiddleware'
 import { eAdminManagerRequest } from './middlewares/AuthAdminMiddleware'
+import { getMusic } from './middlewares/MusicMiddleware'
+import { getPlaylist } from './middlewares/PlaylistMiddleware'
+import { getUser } from './middlewares/UserMiddleware'
 
 export const routes = express.Router()
 
@@ -49,6 +50,7 @@ routes.get('/songs', indexMusic)
 routes.post('/songs', eAdminManagerRequest, storeMusic)
 routes.put('/songs/:id', eAdminManagerRequest, getMusic, updateMusic)
 routes.delete('/songs/:id', eAdminManagerRequest, getMusic, deleteMusic)
+routes.put('/songs-view-count/:id', incrementViewCount)
 
 routes.get('/users', eAdminManagerRequest, indexUser)
 routes.post('/users', storeUser)
