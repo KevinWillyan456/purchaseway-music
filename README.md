@@ -2,6 +2,56 @@
 
 Este repositório contém uma aplicação de gerenciamento de playlists de músicas construída com Node.js e TypeScript. A aplicação utiliza diversas tecnologias e bibliotecas, incluindo Express, MongoDB, Mongoose, JSON Web Token, Cookie-Parser, BcryptJS, CORS, EJS e UUID.
 
+## Índice
+
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Funcionalidades](#funcionalidades)
+- [Instalação Local](#instalação-local)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Passos de Instalação](#passos-de-instalação)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Documentação dos Endpoints da API](#documentação-dos-endpoints-da-api)
+  - [Músicas](#músicas)
+    - [Listar músicas](#listar-músicas)
+    - [Adicionar música](#adicionar-música)
+    - [Atualizar música](#atualizar-música)
+    - [Deletar música](#deletar-música)
+  - [Usuários](#usuários)
+    - [Listar usuários](#listar-usuários)
+    - [Adicionar usuário](#adicionar-usuário)
+    - [Login do usuário](#login-do-usuário)
+    - [Logout do usuário](#logout-do-usuário)
+    - [Obter detalhes do usuário](#obter-detalhes-do-usuário)
+    - [Atualizar usuário](#atualizar-usuário)
+    - [Deletar usuário](#deletar-usuário)
+  - [Funcionalidades do Usuário](#funcionalidades-do-usuário)
+    - [Atualizar músicas favoritas](#atualizar-músicas-favoritas)
+    - [Atualizar histórico de músicas](#atualizar-histórico-de-músicas)
+    - [Atualizar playlist selecionada](#atualizar-playlist-selecionada)
+    - [Obter playlists do usuário](#obter-playlists-do-usuário)
+    - [Adicionar playlist do usuário](#adicionar-playlist-do-usuário)
+    - [Atualizar playlist do usuário](#atualizar-playlist-do-usuário)
+    - [Deletar playlist do usuário](#deletar-playlist-do-usuário)
+    - [Adicionar música à playlist do usuário](#adicionar-música-à-playlist-do-usuário)
+    - [Deletar música da playlist do usuário](#deletar-música-da-playlist-do-usuário)
+    - [Atualizar tema do usuário](#atualizar-tema-do-usuário)
+    - [Atualizar foto de perfil do usuário](#atualizar-foto-de-perfil-do-usuário)
+  - [Playlists](#playlists)
+    - [Obter detalhes da playlist](#obter-detalhes-da-playlist)
+    - [Selecionar playlist](#selecionar-playlist)
+    - [Adicionar playlist](#adicionar-playlist)
+    - [Atualizar playlist](#atualizar-playlist)
+    - [Deletar playlist](#deletar-playlist)
+    - [Deletar playlist e músicas](#deletar-playlist-e-músicas)
+    - [Obter dados de todas as músicas e playlists](#obter-dados-de-todas-as-músicas-e-playlists)
+- [Ativação de Usuário Admin](#ativação-de-usuário-admin)
+  - [Passos para Ativar um Usuário Admin](#passos-para-ativar-um-usuário-admin)
+  - [Benefícios dos Usuários Admin](#benefícios-dos-usuários-admin)
+- [Capturas de telas](#capturas-de-telas)
+  - [Desktop](#desktop)
+  - [Mobile](#mobile)
+- [Licença](#licença)
+
 ## Tecnologias Utilizadas
 
 - **Node.js**: Ambiente de execução JavaScript server-side.
@@ -18,10 +68,10 @@ Este repositório contém uma aplicação de gerenciamento de playlists de músi
 
 ## Funcionalidades
 
-- Autenticação de usuários com JWT
-- Criação, leitura, atualização e exclusão de playlists
-- Adição e remoção de músicas nas playlists
-- Interface web com EJS para interação do usuário
+- Autenticação de usuários com JWT.
+- Criação, leitura, atualização e exclusão de playlists.
+- Adição e remoção de músicas nas playlists.
+- Interface web com EJS para interação do usuário.
 
 ## Instalação Local
 
@@ -29,8 +79,8 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 ### Pré-requisitos
 
-- [Node.js](https://nodejs.org/) v14 ou superior
-- [MongoDB](https://www.mongodb.com/try/download/community) instalado e em execução
+- [Node.js](https://nodejs.org/) v14 ou superior.
+- [MongoDB](https://www.mongodb.com/try/download/community) instalado e em execução.
 
 ### Passos de Instalação
 
@@ -80,8 +130,8 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 ## Estrutura do Projeto
 
-- **public/**: Arquivos CSS e JavaScript estáticos para serem utilizados no Front-end.
-- **src/controllers/**: Controladores que contêm a lógica das rotas.
+- **public/**: Arquivos CSS e JavaScript estáticos para o front-end.
+- **src/controllers/**: Controladores com a lógica das rotas.
 - **src/middleware/**: Middlewares para processamento de requisições.
 - **src/models/**: Modelos Mongoose para as entidades do MongoDB.
 - **src/utils/**: Funções utilitárias.
@@ -92,16 +142,16 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 ## Documentação dos Endpoints da API
 
-## Músicas
+### Músicas
 
-### Listar músicas
+#### Listar músicas
 
 **GET** `/songs`
 
 - Retorna a lista de todas as músicas.
 - **Resposta**: JSON com a lista de músicas.
 
-### Adicionar música
+#### Adicionar música
 
 **POST** `/songs`
 
@@ -110,7 +160,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os detalhes da música.
 - **Resposta**: JSON com a música adicionada.
 
-### Atualizar música
+#### Atualizar música
 
 **PUT** `/songs/:id`
 
@@ -119,7 +169,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os novos detalhes da música.
 - **Resposta**: JSON com a música atualizada.
 
-### Deletar música
+#### Deletar música
 
 **DELETE** `/songs/:id`
 
@@ -127,9 +177,9 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `eAdminManagerRequest`, `getMusic`
 - **Resposta**: JSON confirmando a exclusão.
 
-## Usuários
+### Usuários
 
-### Listar usuários
+#### Listar usuários
 
 **GET** `/users`
 
@@ -137,7 +187,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `eAdminManagerRequest`
 - **Resposta**: JSON com a lista de usuários.
 
-### Adicionar usuário
+#### Adicionar usuário
 
 **POST** `/users`
 
@@ -145,7 +195,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os detalhes do usuário.
 - **Resposta**: JSON com o usuário adicionado.
 
-### Login do usuário
+#### Login do usuário
 
 **POST** `/login`
 
@@ -153,14 +203,14 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com as credenciais do usuário.
 - **Resposta**: JSON com o token de autenticação.
 
-### Logout do usuário
+#### Logout do usuário
 
 **POST** `/logout/:id`
 
 - Realiza o logout do usuário.
 - **Resposta**: JSON confirmando o logout.
 
-### Obter detalhes do usuário
+#### Obter detalhes do usuário
 
 **GET** `/users/:id`
 
@@ -168,7 +218,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `getUser`
 - **Resposta**: JSON com os detalhes do usuário.
 
-### Atualizar usuário
+#### Atualizar usuário
 
 **PUT** `/users/:id`
 
@@ -177,7 +227,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os novos detalhes do usuário.
 - **Resposta**: JSON com o usuário atualizado.
 
-### Deletar usuário
+#### Deletar usuário
 
 **DELETE** `/users/:id`
 
@@ -185,9 +235,9 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `getUser`
 - **Resposta**: JSON confirmando a exclusão.
 
-## Funcionalidades do Usuário
+### Funcionalidades do Usuário
 
-### Atualizar músicas favoritas
+#### Atualizar músicas favoritas
 
 **PUT** `/songs-favorite/:id`
 
@@ -196,7 +246,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com a lista de músicas favoritas.
 - **Resposta**: JSON confirmando a atualização.
 
-### Atualizar histórico de músicas
+#### Atualizar histórico de músicas
 
 **PUT** `/songs-historic/:id`
 
@@ -205,7 +255,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com o histórico de músicas.
 - **Resposta**: JSON confirmando a atualização.
 
-### Atualizar playlist selecionada
+#### Atualizar playlist selecionada
 
 **PUT** `/playlists-historic/:id`
 
@@ -214,7 +264,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com a playlist selecionada.
 - **Resposta**: JSON confirmando a atualização.
 
-### Obter playlists do usuário
+#### Obter playlists do usuário
 
 **GET** `/users-playlist/:id`
 
@@ -222,7 +272,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `getUser`
 - **Resposta**: JSON com as playlists do usuário.
 
-### Adicionar playlist do usuário
+#### Adicionar playlist do usuário
 
 **POST** `/users-playlist/:id`
 
@@ -231,7 +281,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os detalhes da playlist.
 - **Resposta**: JSON com a playlist adicionada.
 
-### Atualizar playlist do usuário
+#### Atualizar playlist do usuário
 
 **PUT** `/users-playlist/:id/:pid`
 
@@ -240,7 +290,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os novos detalhes da playlist.
 - **Resposta**: JSON com a playlist atualizada.
 
-### Deletar playlist do usuário
+#### Deletar playlist do usuário
 
 **DELETE** `/users-playlist/:id/:pid`
 
@@ -248,7 +298,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `getUser`
 - **Resposta**: JSON confirmando a exclusão.
 
-### Adicionar música à playlist do usuário
+#### Adicionar música à playlist do usuário
 
 **POST** `/users-playlist-song/:id/:pid`
 
@@ -257,7 +307,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os detalhes da música.
 - **Resposta**: JSON confirmando a adição.
 
-### Deletar música da playlist do usuário
+#### Deletar música da playlist do usuário
 
 **DELETE** `/users-playlist-song/:id/:pid/:sid`
 
@@ -265,7 +315,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `getUser`
 - **Resposta**: JSON confirmando a exclusão.
 
-### Atualizar tema do usuário
+#### Atualizar tema do usuário
 
 **PATCH** `/users-theme/:id`
 
@@ -274,9 +324,17 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os detalhes do novo tema.
 - **Resposta**: JSON confirmando a atualização.
 
-## Playlists
+#### Atualizar foto de perfil do usuário
 
-### Obter detalhes da playlist
+**PUT** `/users-profile-picture/:id`
+
+- Atualiza a foto de perfil do usuário.
+- **Requisição**: URL de imagem.
+- **Resposta**: JSON confirmando a atualização.
+
+### Playlists
+
+#### Obter detalhes da playlist
 
 **GET** `/playlists/:id`
 
@@ -284,7 +342,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `getUser`
 - **Resposta**: JSON com os detalhes da playlist.
 
-### Selecionar playlist
+#### Selecionar playlist
 
 **GET** `/playlists-select/:id`
 
@@ -292,7 +350,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `getUser`
 - **Resposta**: JSON confirmando a seleção.
 
-### Adicionar playlist
+#### Adicionar playlist
 
 **POST** `/playlists`
 
@@ -301,7 +359,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os detalhes da playlist.
 - **Resposta**: JSON com a playlist adicionada.
 
-### Atualizar playlist
+#### Atualizar playlist
 
 **PUT** `/playlists/:id`
 
@@ -310,7 +368,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Requisição**: JSON com os novos detalhes da playlist.
 - **Resposta**: JSON com a playlist atualizada.
 
-### Deletar playlist
+#### Deletar playlist
 
 **DELETE** `/playlists/:id`
 
@@ -318,7 +376,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `eAdminManagerRequest`, `getPlaylist`
 - **Resposta**: JSON confirmando a exclusão.
 
-### Deletar playlist e músicas
+#### Deletar playlist e músicas
 
 **DELETE** `/songs-playlists/:id`
 
@@ -326,46 +384,34 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **Middleware**: `eAdminManagerRequest`, `getPlaylist`
 - **Resposta**: JSON confirmando a exclusão.
 
-### Obter dados de todas as músicas e playlists
+#### Obter dados de todas as músicas e playlists
 
 **GET** `/songs-playlists`
 
 - Retorna todos os dados de músicas e playlists.
 - **Resposta**: JSON com os dados de músicas e playlists.
 
-### Atualizar foto de perfil do usuário
-
-**PUT** `/users-profile-picture/:id`
-
-- Atualiza a foto de perfil do usuário.
-- **Requisição**: Arquivo de imagem.
-- **Resposta**: JSON confirmando a atualização.
-
 ## Ativação de Usuário Admin
 
-Atualmente, a ativação de um usuário como admin só pode ser feita manualmente através da alteração direta no banco de dados MongoDB. Siga os passos abaixo para alterar um usuário para admin.
+Atualmente, a ativação de um usuário como admin é feita manualmente através da alteração direta no banco de dados MongoDB.
 
 ### Passos para Ativar um Usuário Admin
 
 1. **Acesse o MongoDB**:
 
-    Utilize uma ferramenta de gerenciamento de MongoDB, como o MongoDB Compass, ou conecte-se ao MongoDB via linha de comando.
+    Utilize uma ferramenta como o MongoDB Compass ou conecte-se via linha de comando.
 
 2. **Navegue até a Coleção de Usuários**:
 
-    Vá para a sua base de dados configurada e selecione a coleção `users`.
+    Selecione a base de dados e acesse a coleção `users`.
 
 3. **Encontre o Usuário**:
 
-    Encontre o documento do usuário que deseja promover para admin. Pode usar uma query baseada no email ou no ID do usuário.
-
-    ```json
-    { "email": "usuario@example.com" }
-    ```
+    Localize o documento do usuário a ser promovido.
 
 4. **Atualize o Tipo do Usuário**:
 
-    Altere o campo `type` de `"normal"` para `"admin"`.
+    Altere o campo `type` para `"admin"`:
 
     ```json
     {
@@ -375,21 +421,18 @@ Atualmente, a ativação de um usuário como admin só pode ser feita manualment
 
 5. **Salve a Alteração**:
 
-    Salve as alterações no documento.
+    Confirme e salve as mudanças.
 
 ### Benefícios dos Usuários Admin
 
-Os usuários com tipo `admin` têm acesso a funcionalidades administrativas, incluindo:
+Usuários com tipo `admin` têm acesso a funcionalidades como:
 
-- Acesso à página de configuração (`/config`)
-- Capacidade de ler, criar, editar e excluir playlists
-- Adicionar, remover e editar músicas às playlists
-
-Após seguir esses passos, o usuário selecionado terá privilégios de administrador na aplicação.
+- Acesso à página de configuração (`/config`).
+- Permissão para gerenciar playlists e músicas.
 
 ## Capturas de telas
 
-## Desktop
+### Desktop
 
 ![inicio](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/189b8771-f002-4560-ad2c-09c17a97c3f9)
 _Tela Inicial_
@@ -425,48 +468,48 @@ _Tela Denied_
 _Tela Login_
 
 ![singup](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/02d3b927-af56-4527-87b0-0f51d0a63314)
-_Tela Singup_
+_Tela Signup_
 
-## Mobile
+### Mobile
 
 ![inicio-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/34555d65-bcde-43f3-bd3b-6edd82750a42)
-_Tela Inicial na versão mobile_
+_Tela Inicial Mobile_
 
 ![home-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/221747fe-9a8e-41b2-8916-a36e4c5781f6)
-_Tela Home na versão mobile_
+_Tela Home Mobile_
 
 ![home-profile-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/7ec2b4c1-283f-4bf3-a70a-a324eb2cd0a4)
-_Tela Home na versão mobile - Perfil_
+_Tela Home Mobile - Perfil_
 
 ![home-playlists-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/7a6104eb-8034-47fa-a3c2-df273dc747d8)
-_Tela Home na versão mobile - Playlists_
+_Tela Home Mobile - Playlists_
 
 ![home-display-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/9897737e-7c4e-4080-994a-89ef398b3730)
-_Tela Home na versão mobile - Display_
+_Tela Home Mobile - Display_
 
 ![config-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/9983fc9f-292d-4b95-a876-08a522c9cca9)
-_Tela Config na versão mobile_
+_Tela Config Mobile_
 
 ![config-add-playlist-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/0f6d79e2-e05a-4493-83d2-02c97744ca30)
-_Tela Config na versão mobile - Adicionar playlist_
+_Tela Config Mobile - Adicionar playlist_
 
 ![config-playlist-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/9c334acf-27f5-405a-9c27-c1dc2000f57e)
-_Tela Config na versão mobile - Playlist_
+_Tela Config Mobile - Playlist_
 
 ![config-add-song-playlist-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/27801ebd-97fd-49d3-9067-7283b6a115a9)
-_Tela Config na versão mobile - Adicionar música na playlist_
+_Tela Config Mobile - Adicionar música na playlist_
 
 ![config-playlist-song-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/e8fecf4f-e665-4432-bd4a-53b07fcacc8c)
-_Tela Config na versão mobile - Visualizar música na playlist_
+_Tela Config Mobile - Visualizar música na playlist_
 
 ![denied-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/6f113a61-15c2-4598-9d0c-64a73840bed4)
-_Tela Denied na versão mobile_
+_Tela Denied Mobile_
 
 ![login-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/28be8f48-bcdf-4803-b774-cb2f5a4c8a32)
-_Tela Login na versão mobile_
+_Tela Login Mobile_
 
 ![singup-mobile](https://github.com/KevinWillyan456/purchaseway-music/assets/115520107/d2aa8530-7920-4a68-8680-085ddfcfd561)
-_Tela Singup na versão mobile_
+_Tela Signup Mobile_
 
 ## Licença
 
