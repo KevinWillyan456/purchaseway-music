@@ -2480,6 +2480,7 @@ iframe {
     background-color: var(--color-base-3);
     border-radius: 10px;
     box-shadow: 0 0 10px 0 var(--color-base-2);
+    max-height: 424.617px;
 }
 .item-select-playlist .cover-item-select-playlist {
     display: flex;
@@ -2517,6 +2518,9 @@ iframe {
 }
 .info-item-select-playlist .title-item-select-playlist {
     font-size: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .info-item-select-playlist .description-item-select-playlist {
     font-size: 12px;

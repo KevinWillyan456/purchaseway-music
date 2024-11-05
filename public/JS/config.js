@@ -323,6 +323,7 @@ function listPlaylists() {
                 playlist.title
             searchSong.value = ''
             blankSong.classList.add('hidden')
+            generateChartSongs(playlist.gender)
         })
 
         let divItemCover = document.createElement('div')
@@ -464,9 +465,11 @@ function listFocusMusic(music) {
     document.querySelector(
         '#focusSongCreated'
     ).textContent = `Criada em: ${formatarData(music.additionDate)}`
+
     document.querySelector(
         '#focusSongURL'
     ).href = `https://youtu.be/${music.videoId}`
+
     document.querySelector(
         '#focusSongURL'
     ).textContent = `https://youtu.be/${music.videoId}`
@@ -474,6 +477,10 @@ function listFocusMusic(music) {
     document.querySelector(
         '#focusSongGender'
     ).textContent = `Gênero: ${music.gender}`
+
+    document.querySelector('#focusSongViewCount').textContent = `${
+        music.viewCount === 1 ? 'Visualização' : 'Visualizações'
+    }: ${formatViewCount(music.viewCount)}`
 
     changedData.songId = music._id
     changedData.previousThumbnail = music.coverUrl
@@ -489,6 +496,41 @@ function listFocusMusic(music) {
     formSongEditInputID.value = gerarLinkDoVideo(music.videoId)
 
     document.querySelector('#songDeleteName').textContent = music.title
+}
+
+function formatViewCount(count) {
+    if (count < 1000) return count.toString()
+    if (count < 100000)
+        return (
+            (count % 1000 === 0
+                ? (count / 1000).toString()
+                : (Math.floor(count / 100) / 10).toFixed(1).replace('.', ',')) +
+            'k'
+        )
+    if (count < 1000000) return Math.floor(count / 1000).toString() + 'k'
+    if (count < 1000000000)
+        return (
+            (count % 1000000 === 0
+                ? (count / 1000000).toString()
+                : (Math.floor(count / 100000) / 10)
+                      .toFixed(1)
+                      .replace('.', ',')) + 'M'
+        )
+    if (count < 1000000000000)
+        return (
+            (count % 1000000000 === 0
+                ? (count / 1000000000).toString()
+                : (Math.floor(count / 100000000) / 10)
+                      .toFixed(1)
+                      .replace('.', ',')) + 'B'
+        )
+    return (
+        (count % 1000000000000 === 0
+            ? (count / 1000000000000).toString()
+            : (Math.floor(count / 100000000000) / 10)
+                  .toFixed(1)
+                  .replace('.', ',')) + 'T'
+    )
 }
 
 const formAddPlaylistInputNome = document.querySelector(
@@ -625,7 +667,7 @@ formPlaylist.addEventListener('submit', async function (event) {
     if (result.message != 'Playlist added successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
-        warning.textContent = 'Internal Error'
+        warning.textContent = 'Erro ao adicionar a playlist.'
         if (timerAlertMessage != null) {
             clearTimeout(timerAlertMessage)
             timerAlertMessage = null
@@ -1116,7 +1158,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
     if (result.message != 'Playlist updated successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
-        warning.textContent = 'Playlists não podem ter o mesmo gênero.'
+        warning.textContent = 'Atualização falhou.'
         if (timerAlertMessage != null) {
             clearTimeout(timerAlertMessage)
             timerAlertMessage = null
@@ -1275,10 +1317,333 @@ function setUserProfilePicture() {
     }
 }
 
+function defineTotalViewsPlaylists(maxlength) {
+    let playlists = []
+    let genreViewCount = {}
+
+    data.songs.forEach((song) => {
+        if (!genreViewCount[song.gender]) {
+            genreViewCount[song.gender] = 0
+        }
+        genreViewCount[song.gender] += song.viewCount
+    })
+
+    data.playlists.forEach((playlist) => {
+        let totalViewsPlaylists = genreViewCount[playlist.gender] || 0
+
+        playlists.push({
+            name:
+                playlist.title.length > 20
+                    ? playlist.title.slice(0, 20) + '...'
+                    : playlist.title,
+            views: totalViewsPlaylists,
+        })
+    })
+
+    playlists.sort((a, b) => b.views - a.views)
+
+    if (maxlength) {
+        playlists = playlists.slice(0, maxlength)
+    }
+
+    return playlists
+}
+
+function defineTotalViewsSongs(maxlength, gender) {
+    let songs = []
+
+    data.songs.forEach((song) => {
+        if (!gender || song.gender === gender) {
+            songs.push({
+                name:
+                    song.title.length > 20
+                        ? song.title.slice(0, 20) + '...'
+                        : song.title,
+                views: song.viewCount,
+            })
+        }
+    })
+
+    songs.sort((a, b) => b.views - a.views)
+
+    if (maxlength) {
+        songs = songs.slice(0, maxlength)
+    }
+
+    return songs
+}
+
+function generateChartPlaylists() {
+    zingchart.exec('chartPlaylists', 'destroy')
+
+    var chartData = {
+        type: 'bar',
+        title: {
+            text: 'Popularidade das Playlists',
+            fontColor: 'var(--color-white-1)',
+            fontSize: window.innerWidth < 700 ? 20 : 32,
+        },
+        plotarea: {
+            backgroundColor: 'var(--color-base-1)',
+        },
+        backgroundColor: 'var(--color-base-1)',
+        plot: {
+            animation: {
+                effect: 4,
+                sequence: 2,
+                speed: 1000,
+            },
+        },
+        scaleX: {
+            values: defineTotalViewsPlaylists(calculateBarCount()).map(
+                (playlist) => playlist.name
+            ),
+            title: {
+                text: 'Playlist',
+                fontColor: 'var(--color-white-1)',
+            },
+            lineColor: 'var(--color-white-1)',
+            tick: {
+                lineColor: 'var(--color-white-1)',
+            },
+            item: {
+                fontSize: 14,
+                fontColor: 'var(--color-white-1)',
+                fontWeight: 'bold',
+                wrapText: true,
+            },
+        },
+        scaleY: {
+            title: {
+                text: 'Visualizações',
+                fontColor: 'var(--color-white-1)',
+            },
+            item: {
+                formatter: function (v) {
+                    return v.toLocaleString()
+                },
+                fontColor: 'var(--color-white-1)',
+            },
+            lineColor: 'var(--color-white-1)',
+            tick: {
+                lineColor: 'var(--color-white-1)',
+            },
+        },
+        series: [
+            {
+                values: defineTotalViewsPlaylists(calculateBarCount()).map(
+                    (playlist) => playlist.views
+                ),
+                backgroundColor: 'var(--color-base-1)',
+                gradientColors: 'var(--color-base-5) var(--color-base-1)',
+                gradientStops: '0.3 0.8',
+                cursor: 'pointer',
+            },
+        ],
+        gui: {
+            contextMenu: {
+                button: {
+                    visible: false,
+                },
+            },
+        },
+    }
+
+    zingchart.render({
+        id: 'chartPlaylists',
+        data: chartData,
+        height: '100%',
+        width: '100%',
+    })
+
+    zingchart.bind('chartPlaylists', 'contextmenu', function () {
+        return false
+    })
+
+    zingchart.bind('chartPlaylists', 'node_click', function (e) {
+        const playlist = data.playlists.find(
+            (playlist) =>
+                playlist.title === e.scaleval ||
+                playlist.title.slice(0, 20) === e.scaleval.slice(0, -3)
+        )
+
+        if (!playlist) return
+
+        let musicsByPlaylist = []
+
+        for (let playlist_music of data.songs) {
+            if (playlist_music.gender === playlist.gender) {
+                musicsByPlaylist.push(playlist_music)
+            }
+        }
+
+        containerPlaylistToManage.classList.remove('hidden')
+        document.body.style.overflow = 'hidden'
+        listMusic(musicsByPlaylist, playlist)
+        changedData.playlistName = playlist.gender
+        changedData.playlistId = playlist._id
+
+        formPlaylistEditInputNome.value = playlist.title
+        formPlaylistEditInputGender.value = playlist.gender
+        formPlaylistEditInputThumbnail.value = playlist.coverUrl
+        formPlaylistEditPreviewThumbnail.src = playlist.coverUrl
+        formPlaylistEditDescription.value = playlist.description
+
+        document.querySelector('#playlistDeleteName').textContent =
+            playlist.title
+        searchSong.value = ''
+        blankSong.classList.add('hidden')
+        generateChartSongs(playlist.gender)
+    })
+}
+
+function generateChartSongs(gender) {
+    zingchart.exec('chartSongs', 'destroy')
+
+    var chartData = {
+        type: 'bar',
+        title: {
+            text: 'Popularidade das Músicas',
+            fontColor: 'var(--color-white-1)',
+            fontSize: window.innerWidth < 700 ? 20 : 32,
+        },
+        plotarea: {
+            backgroundColor: 'var(--color-base-1)',
+        },
+        backgroundColor: 'var(--color-base-1)',
+        plot: {
+            animation: {
+                effect: 4,
+                sequence: 2,
+                speed: 1000,
+            },
+        },
+        scaleX: {
+            values: defineTotalViewsSongs(calculateBarCount(), gender).map(
+                (playlist) => playlist.name
+            ),
+            title: {
+                text: 'Música',
+                fontColor: 'var(--color-white-1)',
+            },
+            lineColor: 'var(--color-white-1)',
+            tick: {
+                lineColor: 'var(--color-white-1)',
+            },
+            item: {
+                fontSize: 14,
+                fontColor: 'var(--color-white-1)',
+                fontWeight: 'bold',
+                wrapText: true,
+            },
+        },
+        scaleY: {
+            title: {
+                text: 'Visualizações',
+                fontColor: 'var(--color-white-1)',
+            },
+            item: {
+                formatter: function (v) {
+                    return v.toLocaleString()
+                },
+                fontColor: 'var(--color-white-1)',
+            },
+            lineColor: 'var(--color-white-1)',
+            tick: {
+                lineColor: 'var(--color-white-1)',
+            },
+        },
+        series: [
+            {
+                values: defineTotalViewsSongs(calculateBarCount(), gender).map(
+                    (playlist) => playlist.views
+                ),
+                backgroundColor: 'var(--color-base-1)',
+                gradientColors: 'var(--color-base-5) var(--color-base-1)',
+                gradientStops: '0.3 0.8',
+                cursor: 'pointer',
+            },
+        ],
+        gui: {
+            contextMenu: {
+                button: {
+                    visible: false,
+                },
+            },
+        },
+    }
+
+    zingchart.render({
+        id: 'chartSongs',
+        data: chartData,
+        height: '100%',
+        width: '100%',
+    })
+
+    zingchart.bind('chartSongs', 'contextmenu', function () {
+        return false
+    })
+
+    zingchart.bind('chartSongs', 'node_click', function (e) {
+        const music = data.songs.find(
+            (song) =>
+                song.title === e.scaleval ||
+                song.title.slice(0, 20) === e.scaleval.slice(0, -3)
+        )
+
+        if (!music) return
+
+        focusSong.classList.remove('hidden')
+        listFocusMusic(music)
+    })
+}
+
+let previousWidth = window.innerWidth
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth !== previousWidth) {
+        if (
+            document
+                .querySelector('.container-playlist-to-manage-overflow')
+                .classList.contains('hidden')
+        ) {
+            generateChartPlaylists()
+        } else {
+            generateChartSongs(
+                data.playlists.find(
+                    (playlist) => playlist._id == changedData.playlistId
+                ).gender
+            )
+        }
+
+        previousWidth = window.innerWidth
+    }
+})
+
+function calculateBarCount() {
+    let barCount = 6
+
+    if (window.innerWidth >= 1200) {
+        return barCount
+    } else if (window.innerWidth < 1200 && window.innerWidth >= 900) {
+        barCount = 4
+    } else if (window.innerWidth < 900 && window.innerWidth >= 630) {
+        barCount = 3
+    } else if (window.innerWidth < 630 && window.innerWidth >= 370) {
+        barCount = 2
+    } else {
+        barCount = 1
+    }
+
+    return barCount
+}
+
 async function inicia() {
     await dataFetch()
     defineTotalNumbers()
     listPlaylists()
+    generateChartPlaylists()
+    generateChartSongs()
     await setUserInfo()
 
     playlistItems.forEach((item) => {
@@ -1295,6 +1660,7 @@ async function inicia() {
     playlistToManageBack.addEventListener('click', () => {
         containerPlaylistToManage.classList.add('hidden')
         document.body.style.overflow = 'auto'
+        generateChartPlaylists()
     })
     btnAddSong.addEventListener('click', () => {
         formAddSong.classList.remove('hidden')

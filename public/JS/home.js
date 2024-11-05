@@ -1467,6 +1467,7 @@ function audioControllerNextFunction() {
     manageHistoric()
     refreshFavorite()
     generatorContainerCurrentMusicAddPlaylist()
+    incrementViewCount()
 }
 
 function audioControllerPrevFunction() {
@@ -1486,6 +1487,7 @@ function audioControllerPrevFunction() {
     manageHistoric()
     refreshFavorite()
     generatorContainerCurrentMusicAddPlaylist()
+    incrementViewCount()
 }
 
 function loadMoreContainerPlaylistData() {
@@ -5635,6 +5637,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     await refreshUserWithNewPlaylist()
     manageEmptyPlaylist()
     setManagementSystem()
+    incrementViewCount()
 }
 
 function clearPlaylistData() {

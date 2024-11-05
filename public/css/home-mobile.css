@@ -783,6 +783,7 @@ body {
 .container-select-playlists-mobile .item-select-playlist-mobile {
     animation: animate-item-playlist-mobile 200ms backwards;
     width: 320px;
+    max-height: 369.2px;
     background-color: var(--color-base-3);
     border-radius: 10px;
     box-shadow: 0 0 10px 0 var(--color-base-2);
@@ -823,6 +824,9 @@ body {
 }
 .info-item-select-playlist-mobile .title-item-select-playlist-mobile {
     font-size: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .info-item-select-playlist-mobile .description-item-select-playlist-mobile {
     font-size: 12px;

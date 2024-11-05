@@ -19,6 +19,7 @@
             href="https://i.ibb.co/L0T3ZXL/pw-music-icon.png"
             type="image/x-icon"
         />
+        <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
         <link rel="stylesheet" href="/css/globalStyles.css" />
         <link rel="stylesheet" href="/css/config.css" />
     </head>
@@ -62,6 +63,11 @@
         <div class="container-playlist-overflow">
             <div class="container-playlist">
                 <div class="header-playlist">
+                    <div class="container-chart-playlists">
+                        <div id="chartPlaylists"></div>
+                        <div class="cover-watermark"></div>
+                    </div>
+
                     <div class="wrap">
                         <div class="title">Todas as Playlists</div>
                         <button class="btn-adicionar" id="btnAddPlaylist">
@@ -214,6 +220,12 @@
                         Excluir
                     </button>
                 </div>
+
+                <div class="container-chart-songs">
+                    <div id="chartSongs"></div>
+                    <div class="cover-watermark"></div>
+                </div>
+
                 <div class="title-all-songs">Todas as Músicas</div>
 
                 <div class="search">
@@ -269,6 +281,10 @@
                                     <div
                                         class="gender"
                                         id="focusSongGender"
+                                    ></div>
+                                    <div
+                                        class="viewCount"
+                                        id="focusSongViewCount"
                                     ></div>
                                 </div>
                             </div>

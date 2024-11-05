@@ -1794,6 +1794,28 @@ body::-webkit-scrollbar-thumb {
         font-size: 20px;
     }
 }
+#chartPlaylists,
+#chartSongs {
+    width: 100%;
+    height: 400px;
+    margin: auto;
+}
+.container-chart-playlists {
+    position: relative;
+}
+.container-chart-songs {
+    position: relative;
+    margin-top: 20px;
+}
+.container-chart-playlists .cover-watermark,
+.container-chart-songs .cover-watermark {
+    position: absolute;
+    background-color: var(--color-base-1);
+    width: 200px;
+    height: 22px;
+    bottom: 0;
+    right: 0;
+}
 @keyframes animate-scale-opacity-entrace {
     from {
         transform: scale(0);

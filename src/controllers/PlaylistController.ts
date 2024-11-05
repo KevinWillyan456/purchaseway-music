@@ -5,6 +5,8 @@ import { Music } from '../models/Music'
 import { Playlist } from '../models/Playlist'
 import { IUser, User } from '../models/User'
 
+const MAX_LENGTH_TITLE_PLAYLIST = 20
+
 async function indexPlaylist(req: Request, res: Response) {
     try {
         const playlists = await Playlist.find()
@@ -23,6 +25,12 @@ async function storePlaylist(req: Request, res: Response) {
 
     if (!title || !description || !gender) {
         return res.status(400).json({ error: 'data is missing' })
+    }
+
+    if (title.length > MAX_LENGTH_TITLE_PLAYLIST) {
+        return res.status(400).json({
+            error: `The title must have a maximum of ${MAX_LENGTH_TITLE_PLAYLIST} characters`,
+        })
     }
 
     const currentCoverUrl = coverUrl
@@ -60,6 +68,12 @@ async function updatePlaylist(
 
     if (!title && !currentCoverUrl && !description && !gender) {
         return res.status(400).json({ error: 'You must enter a new data' })
+    }
+
+    if (title && title.length > MAX_LENGTH_TITLE_PLAYLIST) {
+        return res.status(400).json({
+            error: `The title must have a maximum of ${MAX_LENGTH_TITLE_PLAYLIST} characters`,
+        })
     }
 
     const filter = { _id: id }
