@@ -1,3 +1,6 @@
+body {
+    background-color: #000000;
+}
 .super-main-mobile {
     background-color: var(--color-base-1);
     width: 100%;
@@ -297,6 +300,7 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    transform: translateY(3px);
 }
 .main-controls-mobile.fixed {
     z-index: 1500;
@@ -891,6 +895,9 @@
 .content-profile-mobile .container-options-mobile {
     color: var(--color-white-1);
     margin-left: 20px;
+    margin-bottom: 10px;
+}
+.content-profile-mobile .container-options-mobile div:not(:last-child) {
     margin-bottom: 10px;
 }
 .main-user-settings-mobile .box-profile-mobile {

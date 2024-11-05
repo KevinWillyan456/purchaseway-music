@@ -539,6 +539,9 @@ iframe {
     width: 100%;
     margin-top: 20px;
 }
+.container-options div:not(:last-child) {
+    margin-bottom: 10px;
+}
 .trash-icon {
     padding-top: 28.5px;
     cursor: pointer;

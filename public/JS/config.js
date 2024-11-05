@@ -657,6 +657,7 @@ formPlaylist.addEventListener('submit', async function (event) {
         formAddPlaylist.classList.add('hidden')
         document.body.style.overflow = 'auto'
         searchPlaylist.value = ''
+        clearSearchPlaylist.classList.add('hidden')
         blankPlaylist.classList.add('hidden')
 
         await dataFetch()
@@ -767,6 +768,7 @@ formSong.addEventListener('submit', async function (event) {
         formSongAddInputID.value = ''
         formAddSong.classList.add('hidden')
         searchSong.value = ''
+        clearSearchSong.classList.add('hidden')
         blankSong.classList.add('hidden')
         await dataFetch()
 

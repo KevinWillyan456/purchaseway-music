@@ -286,6 +286,13 @@ const historicEmptyMobile = document.querySelector('#historicEmptyMobile')
 const setFullscreen = document.querySelector('#setFullscreen')
 const setFullscreenMobile = document.querySelector('#setFullscreenMobile')
 
+const setOpenManagementSystem = document.querySelector(
+    '#setOpenManagementSystem'
+)
+const setOpenManagementSystemMobile = document.querySelector(
+    '#setOpenManagementSystemMobile'
+)
+
 const loadingRoller = document.querySelector('#loadingRoller')
 const loadingRollerMobile = document.querySelector('#loadingRollerMobile')
 const loadMore = document.querySelector('#loadMore')
@@ -1190,6 +1197,27 @@ setFullscreenMobile.addEventListener('change', () => {
     } else {
         setFullScreenStorage(false)
         setFullscreen.checked = false
+    }
+})
+
+setOpenManagementSystem.checked = getManagementSystemStorage()
+setOpenManagementSystemMobile.checked = getManagementSystemStorage()
+setOpenManagementSystem.addEventListener('change', () => {
+    if (setOpenManagementSystem.checked) {
+        setManagementSystemStorage(true)
+        setOpenManagementSystemMobile.checked = true
+    } else {
+        setManagementSystemStorage(false)
+        setOpenManagementSystemMobile.checked = false
+    }
+})
+setOpenManagementSystemMobile.addEventListener('change', () => {
+    if (setOpenManagementSystemMobile.checked) {
+        setManagementSystemStorage(true)
+        setOpenManagementSystem.checked = true
+    } else {
+        setManagementSystemStorage(false)
+        setOpenManagementSystem.checked = false
     }
 })
 
@@ -4347,12 +4375,27 @@ function setManagementSystem() {
     if (userData.type == 'admin') {
         selectManagementSystem.classList.remove('hidden')
         selectManagementSystemMobile.classList.remove('hidden')
+        document
+            .querySelector('#setOpenManagementSystem')
+            .parentElement.classList.remove('hidden')
+        document
+            .querySelector('#setOpenManagementSystemMobile')
+            .parentElement.classList.remove('hidden')
     }
     selectManagementSystem.addEventListener('click', () => {
-        window.open('/config', '_blank')
+        if (getManagementSystemStorage()) {
+            window.open('/config', '_blank')
+        } else {
+            window.location = '/config'
+        }
     })
+
     selectManagementSystemMobile.addEventListener('click', () => {
-        window.open('/config', '_blank')
+        if (getManagementSystemStorage()) {
+            window.open('/config', '_blank')
+        } else {
+            window.location = '/config'
+        }
     })
 }
 
@@ -5836,6 +5879,16 @@ function getFullScreenStorage() {
 
 function setFullScreenStorage(fullScreen) {
     localStorage.setItem('fullScreen', fullScreen)
+}
+
+function getManagementSystemStorage() {
+    const managementSystem =
+        localStorage.getItem('managementSystem') == 'true' ? true : false
+    return managementSystem
+}
+
+function setManagementSystemStorage(managementSystem) {
+    localStorage.setItem('managementSystem', managementSystem)
 }
 
 function getVideoVolume() {
