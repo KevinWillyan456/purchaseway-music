@@ -50,6 +50,8 @@ const colorsThemes = {
     },
 }
 
+const MAX_LENGTH_TITLE_PLAYLIST = 50
+
 const containerPlaylistToManage = document.querySelector(
     '#containerPlaylistToManage'
 )
@@ -577,6 +579,24 @@ formPlaylist.addEventListener('submit', async function (event) {
         }, 3000)
         return
     }
+
+    if (
+        formAddPlaylistInputNome.value.trim().length > MAX_LENGTH_TITLE_PLAYLIST
+    ) {
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = `O nome da playlist deve ter no máximo ${MAX_LENGTH_TITLE_PLAYLIST} caracteres.`
+        formAddPlaylistInputNome.focus()
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+        return
+    }
+
     const NomeExiste = data.playlists.some(
         (playlist) =>
             playlist.title.toLowerCase() ===
@@ -1103,6 +1123,25 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         return
     }
 
+    if (
+        formPlaylistEditInputNome.value.trim().length >
+        MAX_LENGTH_TITLE_PLAYLIST
+    ) {
+        warning.classList.remove('hidden')
+        warning.classList.remove('success')
+        warning.textContent = `O nome da playlist deve ter no máximo ${MAX_LENGTH_TITLE_PLAYLIST} caracteres.`
+        formPlaylistEditInputNome.focus()
+        if (timerAlertMessage != null) {
+            clearTimeout(timerAlertMessage)
+            timerAlertMessage = null
+        }
+        timerAlertMessage = setTimeout(() => {
+            warning.classList.add('hidden')
+        }, 3000)
+
+        return
+    }
+
     if (formPlaylistEditInputGender.value.trim() === '') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
@@ -1438,6 +1477,9 @@ function generateChartPlaylists() {
                 gradientColors: 'var(--color-base-5) var(--color-base-1)',
                 gradientStops: '0.3 0.8',
                 cursor: 'pointer',
+                hoverState: {
+                    visible: false,
+                },
             },
         ],
         gui: {
@@ -1454,46 +1496,79 @@ function generateChartPlaylists() {
         data: chartData,
         height: '100%',
         width: '100%',
+        events: {
+            click: function (e) {
+                if (e.targetid == 'chart-img') return
+                const index = Number(
+                    e.targetid.split('-')[e.targetid.split('-').length - 1]
+                )
+                if (isNaN(index)) return
+
+                if (
+                    !Array.isArray(data.songs) ||
+                    !Array.isArray(data.playlists)
+                ) {
+                    console.error('Data is not an array.')
+                    return
+                }
+
+                let playlists = []
+                let genreViewCount = {}
+
+                data.songs.forEach((song) => {
+                    if (!genreViewCount[song.gender]) {
+                        genreViewCount[song.gender] = 0
+                    }
+                    genreViewCount[song.gender] += song.viewCount
+                })
+
+                data.playlists.forEach((playlist) => {
+                    let totalViewsPlaylists =
+                        genreViewCount[playlist.gender] || 0
+
+                    playlists.push({
+                        ...playlist,
+                        views: totalViewsPlaylists,
+                    })
+                })
+
+                playlists.sort((a, b) => b.views - a.views)
+
+                const playlist = playlists[index]
+
+                if (!playlist) return
+
+                let musicsByPlaylist = []
+
+                for (let playlist_music of data.songs) {
+                    if (playlist_music.gender === playlist.gender) {
+                        musicsByPlaylist.push(playlist_music)
+                    }
+                }
+
+                containerPlaylistToManage.classList.remove('hidden')
+                document.body.style.overflow = 'hidden'
+                listMusic(musicsByPlaylist, playlist)
+                changedData.playlistName = playlist.gender
+                changedData.playlistId = playlist._id
+
+                formPlaylistEditInputNome.value = playlist.title
+                formPlaylistEditInputGender.value = playlist.gender
+                formPlaylistEditInputThumbnail.value = playlist.coverUrl
+                formPlaylistEditPreviewThumbnail.src = playlist.coverUrl
+                formPlaylistEditDescription.value = playlist.description
+
+                document.querySelector('#playlistDeleteName').textContent =
+                    playlist.title
+                searchSong.value = ''
+                blankSong.classList.add('hidden')
+                generateChartSongs(playlist.gender)
+            },
+        },
     })
 
     zingchart.bind('chartPlaylists', 'contextmenu', function () {
         return false
-    })
-
-    zingchart.bind('chartPlaylists', 'node_click', function (e) {
-        const playlist = data.playlists.find(
-            (playlist) =>
-                playlist.title === e.scaleval ||
-                playlist.title.slice(0, 20) === e.scaleval.slice(0, -3)
-        )
-
-        if (!playlist) return
-
-        let musicsByPlaylist = []
-
-        for (let playlist_music of data.songs) {
-            if (playlist_music.gender === playlist.gender) {
-                musicsByPlaylist.push(playlist_music)
-            }
-        }
-
-        containerPlaylistToManage.classList.remove('hidden')
-        document.body.style.overflow = 'hidden'
-        listMusic(musicsByPlaylist, playlist)
-        changedData.playlistName = playlist.gender
-        changedData.playlistId = playlist._id
-
-        formPlaylistEditInputNome.value = playlist.title
-        formPlaylistEditInputGender.value = playlist.gender
-        formPlaylistEditInputThumbnail.value = playlist.coverUrl
-        formPlaylistEditPreviewThumbnail.src = playlist.coverUrl
-        formPlaylistEditDescription.value = playlist.description
-
-        document.querySelector('#playlistDeleteName').textContent =
-            playlist.title
-        searchSong.value = ''
-        blankSong.classList.add('hidden')
-        generateChartSongs(playlist.gender)
     })
 }
 
@@ -1562,6 +1637,9 @@ function generateChartSongs(gender) {
                 gradientColors: 'var(--color-base-5) var(--color-base-1)',
                 gradientStops: '0.3 0.8',
                 cursor: 'pointer',
+                hoverState: {
+                    visible: false,
+                },
             },
         ],
         gui: {
@@ -1578,23 +1656,49 @@ function generateChartSongs(gender) {
         data: chartData,
         height: '100%',
         width: '100%',
+        events: {
+            click: function (e) {
+                if (e.targetid == 'chart-img') return
+                const index = Number(
+                    e.targetid.split('-')[e.targetid.split('-').length - 1]
+                )
+                if (isNaN(index)) return
+
+                if (
+                    !Array.isArray(data.songs) ||
+                    !Array.isArray(data.playlists)
+                ) {
+                    console.error('Data is not an array.')
+                    return
+                }
+
+                let songs = []
+
+                data.songs.forEach((song) => {
+                    if (!gender || song.gender === gender) {
+                        songs.push({
+                            ...song,
+                            views: song.viewCount,
+                        })
+                    }
+                })
+
+                songs.sort((a, b) => b.views - a.views)
+
+                const music = songs[index]
+
+                if (!music) return
+
+                setTimeout(() => {
+                    focusSong.classList.remove('hidden')
+                    listFocusMusic(music)
+                }, 100)
+            },
+        },
     })
 
     zingchart.bind('chartSongs', 'contextmenu', function () {
         return false
-    })
-
-    zingchart.bind('chartSongs', 'node_click', function (e) {
-        const music = data.songs.find(
-            (song) =>
-                song.title === e.scaleval ||
-                song.title.slice(0, 20) === e.scaleval.slice(0, -3)
-        )
-
-        if (!music) return
-
-        focusSong.classList.remove('hidden')
-        listFocusMusic(music)
     })
 }
 

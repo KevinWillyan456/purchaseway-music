@@ -5,7 +5,7 @@ import { Music } from '../models/Music'
 import { Playlist } from '../models/Playlist'
 import { IUser, User } from '../models/User'
 
-const MAX_LENGTH_TITLE_PLAYLIST = 20
+const MAX_LENGTH_TITLE_PLAYLIST = 50
 
 async function indexPlaylist(req: Request, res: Response) {
     try {
