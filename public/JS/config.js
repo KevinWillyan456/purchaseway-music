@@ -833,6 +833,11 @@ formSong.addEventListener('submit', async function (event) {
         clearSearchSong.classList.add('hidden')
         blankSong.classList.add('hidden')
         await dataFetch()
+        generateChartSongs(
+            data.playlists.find(
+                (playlist) => playlist._id == changedData.playlistId
+            ).gender
+        )
 
         let musicsByPlaylist = []
         for (let playlist_music of data.songs) {
@@ -942,6 +947,11 @@ formEditSongIn.addEventListener('submit', async function (event) {
         formEditSong.classList.add('hidden')
         focusSong.classList.add('hidden')
         await dataFetch()
+        generateChartSongs(
+            data.playlists.find(
+                (playlist) => playlist._id == changedData.playlistId
+            ).gender
+        )
 
         let musicsByPlaylist = []
         for (let playlist_music of data.songs) {
@@ -1009,6 +1019,11 @@ formSongDeleteBtn.addEventListener('click', async () => {
         formDeleteSong.classList.add('hidden')
         focusSong.classList.add('hidden')
         await dataFetch()
+        generateChartSongs(
+            data.playlists.find(
+                (playlist) => playlist._id == changedData.playlistId
+            ).gender
+        )
 
         let musicsByPlaylist = []
         for (let playlist_music of data.songs) {
@@ -1101,6 +1116,7 @@ formDeletePlaylistContent.addEventListener('submit', async (e) => {
         await dataFetch()
         defineTotalNumbers()
         listPlaylists()
+        generateChartPlaylists()
     }
 })
 
@@ -1222,6 +1238,11 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
 
         formEditPlaylist.classList.add('hidden')
         await dataFetch()
+        generateChartSongs(
+            data.playlists.find(
+                (playlist) => playlist._id == changedData.playlistId
+            ).gender
+        )
 
         formPlaylistEditInputNome.value = data.playlists.find(
             (playlist) => playlist._id == changedData.playlistId
