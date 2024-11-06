@@ -413,20 +413,37 @@ function listMusic(musics, playlistInfo) {
         playlistInfo.coverUrl
     document.querySelector('#containerPlaylistToManageTitle').textContent =
         playlistInfo.title
+
     document.querySelector(
         '#containerPlaylistToManageDescription'
     ).textContent = playlistInfo.description
+
     document.querySelector(
         '#containerPlaylistToManageCreated'
     ).textContent = `Criada em: ${formatarData(playlistInfo.additionDate)}`
+
     document.querySelector(
         '#containerPlaylistToManageTotalMusics'
     ).textContent = `Total de ${musics.length} ${
         musics.length === 1 || musics.length === 0 ? 'música' : 'músicas'
     }`
+
     document.querySelector(
         '#containerPlaylistToManageGender'
     ).textContent = `Gênero: ${playlistInfo.gender}`
+
+    const totalViewCountPlaylist = data.songs.reduce((acc, music) => {
+        if (music.gender === playlistInfo.gender) {
+            return acc + music.viewCount.length
+        }
+        return acc
+    }, 0)
+
+    document.querySelector(
+        '#containerPlaylistToManageViewCount'
+    ).textContent = `${
+        totalViewCountPlaylist === 1 ? 'Visualização' : 'Visualizações'
+    }: ${formatViewCount(totalViewCountPlaylist)}`
 
     contentSongs.innerHTML = ''
 
@@ -481,8 +498,8 @@ function listFocusMusic(music) {
     ).textContent = `Gênero: ${music.gender}`
 
     document.querySelector('#focusSongViewCount').textContent = `${
-        music.viewCount === 1 ? 'Visualização' : 'Visualizações'
-    }: ${formatViewCount(music.viewCount)}`
+        music.viewCount.length === 1 ? 'Visualização' : 'Visualizações'
+    }: ${formatViewCount(music.viewCount.length)}`
 
     changedData.songId = music._id
     changedData.previousThumbnail = music.coverUrl
@@ -1385,7 +1402,7 @@ function defineTotalViewsPlaylists(maxlength) {
         if (!genreViewCount[song.gender]) {
             genreViewCount[song.gender] = 0
         }
-        genreViewCount[song.gender] += song.viewCount
+        genreViewCount[song.gender] += song.viewCount.length
     })
 
     data.playlists.forEach((playlist) => {
@@ -1419,7 +1436,7 @@ function defineTotalViewsSongs(maxlength, gender) {
                     song.title.length > 20
                         ? song.title.slice(0, 20) + '...'
                         : song.title,
-                views: song.viewCount,
+                views: song.viewCount.length,
             })
         }
     })
@@ -1540,7 +1557,7 @@ function generateChartPlaylists() {
                     if (!genreViewCount[song.gender]) {
                         genreViewCount[song.gender] = 0
                     }
-                    genreViewCount[song.gender] += song.viewCount
+                    genreViewCount[song.gender] += song.viewCount.length
                 })
 
                 data.playlists.forEach((playlist) => {
@@ -1699,7 +1716,7 @@ function generateChartSongs(gender) {
                     if (!gender || song.gender === gender) {
                         songs.push({
                             ...song,
-                            views: song.viewCount,
+                            views: song.viewCount.length,
                         })
                     }
                 })

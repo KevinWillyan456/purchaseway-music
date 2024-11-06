@@ -8,10 +8,12 @@ export interface IUser {
     additionDate: Date
     type: string
     favoriteSongs: {
+        _id: string
         musicId: string
         musicGender: string
     }[]
     musicHistory: {
+        _id: string
         musicId: string
         musicGender: string
     }[]
@@ -31,6 +33,7 @@ export interface IUser {
         }[]
     }[]
     tokens: {
+        _id: string
         token: string
         additionDate: Date
     }[]
@@ -45,12 +48,14 @@ const userSchema = new Schema<IUser>({
     type: { type: String, required: true, default: 'normal' },
     favoriteSongs: [
         {
+            _id: { type: String, required: true },
             musicId: { type: String, required: true },
             musicGender: { type: String, required: true },
         },
     ],
     musicHistory: [
         {
+            _id: { type: String, required: true },
             musicId: { type: String, required: true },
             musicGender: { type: String, required: true },
         },
@@ -76,6 +81,7 @@ const userSchema = new Schema<IUser>({
     ],
     tokens: [
         {
+            _id: { type: String, required: true },
             token: { type: String, required: true },
             additionDate: { type: Date, default: Date.now, required: true },
         },

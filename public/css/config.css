@@ -520,7 +520,6 @@ body::-webkit-scrollbar-thumb {
 .container-playlist-to-manage .main-playlist .content {
     max-width: 1320px;
     width: 100%;
-    height: 225px;
     overflow: hidden;
 }
 .container-playlist-to-manage .main-playlist .content .title {
@@ -1532,8 +1531,8 @@ body::-webkit-scrollbar-thumb {
         .container-playlist-to-manage
         .main-playlist {
         min-width: 100%;
-        height: 432px;
-        max-height: 432px;
+        height: 462px;
+        max-height: 462px;
         display: flex;
         flex-direction: column;
         padding: 0;

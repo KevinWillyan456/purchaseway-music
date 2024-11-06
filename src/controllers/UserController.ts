@@ -164,6 +164,7 @@ async function logoutUser(req: Request, res: Response) {
             await User.updateOne(filter, {
                 $push: {
                     tokens: {
+                        _id: uuid(),
                         token: tokenFormated,
                         additionDate: new Date(),
                     },
@@ -314,7 +315,13 @@ async function updateUserFavoriteSongs(
     const favoriteSize = favoriteSizeDefinition()
 
     const updateDoc1 = {
-        $push: { favoriteSongs: { musicId, musicGender } },
+        $push: {
+            favoriteSongs: {
+                _id: uuid(),
+                musicId,
+                musicGender,
+            },
+        },
     }
     const updateDoc2 = {
         $pull: { favoriteSongs: { musicId } },
@@ -467,7 +474,13 @@ async function updateUserMusicHistoric(
     )
 
     const updateDoc1 = {
-        $push: { musicHistory: { musicId, musicGender } },
+        $push: {
+            musicHistory: {
+                _id: uuid(),
+                musicId,
+                musicGender,
+            },
+        },
     }
     const updateDoc2 = {
         $pull: {

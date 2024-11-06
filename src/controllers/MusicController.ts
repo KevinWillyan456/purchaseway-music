@@ -188,7 +188,40 @@ async function incrementViewCount(req: Request<{ id: string }>, res: Response) {
             return res.status(404).json({ error: 'Music not found' })
         }
 
-        music.viewCount += 1
+        if (music.viewCount.length === 1 && !music.viewCount[0].userId) {
+            music.viewCount = []
+        }
+
+        const lastView = music.viewCount
+            .filter((view) => view.userId === userId)
+            .sort((a, b) => {
+                return (
+                    new Date(b.viewDate).getTime() -
+                    new Date(a.viewDate).getTime()
+                )
+            })[0]
+
+        if (lastView) {
+            const lastViewDate = new Date(lastView.viewDate)
+            const currentDate = new Date()
+
+            const diffInHours = Math.abs(
+                (currentDate.getTime() - lastViewDate.getTime()) / 3600000
+            )
+
+            if (diffInHours < 6) {
+                return res.status(200).json({
+                    error: 'View not added. You can only view once every 6 hours',
+                })
+            }
+        }
+
+        music.viewCount.push({
+            _id: uuid(),
+            userId,
+            viewDate: new Date(),
+        })
+
         await music.save()
 
         return res

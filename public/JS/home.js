@@ -6060,6 +6060,8 @@ function destroyPlayer() {
 }
 
 async function incrementViewCount() {
+    if (emptyPlaylist) return
+
     await fetch(`/songs-view-count/${indexAudioId}`, {
         method: 'PUT',
         headers: {
