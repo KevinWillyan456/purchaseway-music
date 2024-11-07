@@ -5678,6 +5678,9 @@ function onYouTubeIframeAPIReady(videoId) {
     if (screenWidth >= 1360) {
         stopAnimationAudioControllerPlay()
 
+        if (player && !player.loadVideoById) {
+            location.reload(true)
+        }
         if (player) {
             player.loadVideoById(videoId)
             onPlayerReady()
