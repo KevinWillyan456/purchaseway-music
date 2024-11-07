@@ -4308,6 +4308,11 @@ function changeMobileOrDesktop() {
 
     indexPage = 0
 
+    playerReady = false
+    playerReadyMobile = false
+    player = null
+    playerMobile = null
+
     clearPlaylistData()
     allSongValueSetters()
     generatorContainerPlaylistSelectData()
@@ -5478,6 +5483,12 @@ async function selectUserMyPlaylist() {
 
     indexAudio = 0
 
+    destroyPlayer()
+    playerReady = false
+    playerReadyMobile = false
+    player = null
+    playerMobile = null
+
     if (screenWidth >= 1360) {
         shuffleIcon.classList.remove('active')
     } else {
@@ -5612,6 +5623,11 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     indexAudio = 0
     indexPage = 0
 
+    playerReady = false
+    playerReadyMobile = false
+    player = null
+    playerMobile = null
+
     if (screenWidth >= 1360) {
         shuffleIcon.classList.remove('active')
     } else {
@@ -5663,9 +5679,12 @@ function onYouTubeIframeAPIReady(videoId) {
         stopAnimationAudioControllerPlay()
 
         if (player) {
-            destroyPlayer()
+            player.loadVideoById(videoId)
+            onPlayerReady()
             clearInterval(timerSyncSliderVolume)
             timerSyncSliderVolume = null
+
+            return
         }
 
         player = new YT.Player('containerFrame', {
@@ -5680,8 +5699,13 @@ function onYouTubeIframeAPIReady(videoId) {
     } else {
         stopAnimationAudioControllerPlay()
 
+        if (playerMobile && !playerMobile.loadVideoById) {
+            location.reload(true)
+        }
         if (playerMobile) {
-            destroyPlayer()
+            playerMobile.loadVideoById(videoId)
+            onPlayerReady()
+            return
         }
 
         playerMobile = new YT.Player('containerFrameMobile', {
