@@ -1,6 +1,6 @@
 # Purchaseway Music
 
-Este repositório contém uma aplicação de gerenciamento de playlists de músicas construída com Node.js e TypeScript. A aplicação utiliza diversas tecnologias e bibliotecas, incluindo Express, MongoDB, Mongoose, JSON Web Token, Cookie-Parser, BcryptJS, CORS, EJS e UUID.
+Este repositório contém uma aplicação de gerenciamento de playlists de músicas construída com Node.js e TypeScript. A aplicação utiliza diversas tecnologias e bibliotecas, incluindo Express, MongoDB, Mongoose, JSON Web Token, Cookie-Parser, BcryptJS, CORS, EJS, UUID e ZingChart.
 
 ## Índice
 
@@ -65,6 +65,7 @@ Este repositório contém uma aplicação de gerenciamento de playlists de músi
 - **cors**: Middleware para habilitar CORS (Cross-Origin Resource Sharing).
 - **ejs**: Motor de templates para gerar HTML com dados dinâmicos.
 - **uuid**: Biblioteca para gerar identificadores únicos universais (UUID).
+- **ZingChart**: Biblioteca de gráficos para visualização de dados.
 
 ## Funcionalidades
 
@@ -72,6 +73,7 @@ Este repositório contém uma aplicação de gerenciamento de playlists de músi
 - Criação, leitura, atualização e exclusão de playlists.
 - Adição e remoção de músicas nas playlists.
 - Interface web com EJS para interação do usuário.
+- Visualização de dados com gráficos utilizando ZingChart.
 
 ## Instalação Local
 
@@ -176,6 +178,14 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - Deleta uma música.
 - **Middleware**: `eAdminManagerRequest`, `getMusic`
 - **Resposta**: JSON confirmando a exclusão.
+
+#### Incrementar contagem de visualizações
+
+**PUT** `/songs-view-count/:id`
+
+- Incrementa a contagem de visualizações de uma música.
+- **Middleware**: `incrementViewCount`
+- **Resposta**: JSON confirmando a atualização.
 
 ### Usuários
 

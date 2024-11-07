@@ -75,6 +75,7 @@ routes.delete(
     deleteUserPlaylistSongs
 )
 routes.patch('/users-theme/:id', getUser, updateUserTheme)
+routes.put('/users-profile-picture/:id', updateUserProfilePicture)
 
 routes.get('/playlists/:id', getUser, indexPlaylist)
 routes.get('/playlists-select/:id', getUser, selectPlaylist)
@@ -94,5 +95,3 @@ routes.delete(
 )
 
 routes.get('/songs-playlists', allSongAndPlaylistData)
-
-routes.put('/users-profile-picture/:id', updateUserProfilePicture)
