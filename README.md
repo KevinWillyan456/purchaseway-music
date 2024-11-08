@@ -16,6 +16,7 @@ Este repositório contém uma aplicação de gerenciamento de playlists de músi
     - [Adicionar música](#adicionar-música)
     - [Atualizar música](#atualizar-música)
     - [Deletar música](#deletar-música)
+    - [Incrementar contagem de visualizações](#incrementar-contagem-de-visualizações)
   - [Usuários](#usuários)
     - [Listar usuários](#listar-usuários)
     - [Adicionar usuário](#adicionar-usuário)

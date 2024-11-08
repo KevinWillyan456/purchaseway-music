@@ -3439,8 +3439,6 @@ function initDurationSlider() {
 }
 
 function initVolumeSlider() {
-    if (screenWidth < 1360) return
-
     sliderMusicVolume.value = getVolumeStorage()
     setSliderMusicVolume()
     setVolumeIcon()
@@ -4178,6 +4176,9 @@ function initialDeviceDefinition() {
         initialDevice = 'Desktop'
     } else {
         initialDevice = 'Mobile'
+
+        canKeyboardEventsProfile = false
+        canKeyboardEvents = false
     }
 }
 
@@ -4245,6 +4246,9 @@ function changeMobileOrDesktop() {
 
             playerMobile.destroy()
         }
+
+        canKeyboardEventsProfile = true
+        canKeyboardEvents = true
     } else {
         containerItemsSearchMobile.innerHTML = ''
         containerItemsFavoriteMobile.innerHTML = ''
@@ -4304,6 +4308,9 @@ function changeMobileOrDesktop() {
                 $('.menu-options-mobile').hide(200)
             }
         }
+
+        canKeyboardEventsProfile = false
+        canKeyboardEvents = false
     }
 
     indexPage = 0
