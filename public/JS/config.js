@@ -261,7 +261,8 @@ function setFullHeight() {
 setFullHeight()
 
 async function dataFetch() {
-    const response = await fetch('/songs-playlists')
+    const response = await fetch(`/songs-playlists/${getCookie('user')}`)
+
     const jsonResponse = await response.json()
 
     data.playlists = jsonResponse.playlists
@@ -1301,22 +1302,22 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
     }
 })
 
+function getCookie(k) {
+    var cookies = ' ' + document.cookie
+    var key = ' ' + k + '='
+    var start = cookies.indexOf(key)
+
+    if (start === -1) return null
+
+    var pos = start + key.length
+    var last = cookies.indexOf(';', pos)
+
+    if (last !== -1) return cookies.substring(pos, last)
+
+    return cookies.substring(pos)
+}
+
 async function setUserInfo() {
-    function getCookie(k) {
-        var cookies = ' ' + document.cookie
-        var key = ' ' + k + '='
-        var start = cookies.indexOf(key)
-
-        if (start === -1) return null
-
-        var pos = start + key.length
-        var last = cookies.indexOf(';', pos)
-
-        if (last !== -1) return cookies.substring(pos, last)
-
-        return cookies.substring(pos)
-    }
-
     const idUserConnected = getCookie('user')
 
     const responseUser = await fetch(`/users/${idUserConnected}`)

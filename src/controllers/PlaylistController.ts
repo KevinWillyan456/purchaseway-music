@@ -256,10 +256,10 @@ async function selectPlaylist(req: Request, res: Response) {
 }
 
 export {
-    indexPlaylist,
-    storePlaylist,
-    updatePlaylist,
     deletePlaylist,
     deletePlaylistAndSongs,
+    indexPlaylist,
     selectPlaylist,
+    storePlaylist,
+    updatePlaylist,
 }

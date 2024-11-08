@@ -4,6 +4,7 @@ import {
     deleteMusic,
     incrementViewCount,
     indexMusic,
+    indexMusicById,
     storeMusic,
     updateMusic,
 } from './controllers/MusicController'
@@ -47,6 +48,7 @@ import { getUser } from './middlewares/UserMiddleware'
 export const routes = express.Router()
 
 routes.get('/songs', indexMusic)
+routes.get('/song/:id', indexMusicById)
 routes.post('/songs', eAdminManagerRequest, storeMusic)
 routes.put('/songs/:id', eAdminManagerRequest, getMusic, updateMusic)
 routes.delete('/songs/:id', eAdminManagerRequest, getMusic, deleteMusic)
@@ -94,4 +96,4 @@ routes.delete(
     deletePlaylistAndSongs
 )
 
-routes.get('/songs-playlists', allSongAndPlaylistData)
+routes.get('/songs-playlists/:userId', allSongAndPlaylistData)

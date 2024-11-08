@@ -10,8 +10,24 @@ async function indexMusic(req: Request, res: Response) {
         const songs = await Music.find()
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
-            .select('-__v')
+            .select('-__v -viewCount')
         return res.status(200).json({ songs })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+async function indexMusicById(req: Request<{ id: string }>, res: Response) {
+    const { id } = req.params
+
+    try {
+        const music = await Music.findById(id).select('-__v -viewCount')
+
+        if (!music) {
+            return res.status(404).json({ error: 'Music not found' })
+        }
+
+        return res.status(200).json({ music })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -232,4 +248,11 @@ async function incrementViewCount(req: Request<{ id: string }>, res: Response) {
     }
 }
 
-export { indexMusic, storeMusic, updateMusic, deleteMusic, incrementViewCount }
+export {
+    deleteMusic,
+    incrementViewCount,
+    indexMusic,
+    indexMusicById,
+    storeMusic,
+    updateMusic,
+}

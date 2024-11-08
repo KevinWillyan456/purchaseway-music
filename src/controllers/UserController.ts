@@ -1,11 +1,11 @@
-import { Request, Response } from 'express'
-import { UpdateWithAggregationPipeline } from 'mongoose'
-import { v4 as uuid } from 'uuid'
 import bcrypt from 'bcryptjs'
+import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
-import { IUser, User } from '../models/User'
+import { UpdateWithAggregationPipeline } from 'mongoose'
+import { validate as isUuid, v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
 import { Playlist } from '../models/Playlist'
+import { IUser, User } from '../models/User'
 
 async function indexUser(req: Request, res: Response) {
     try {
@@ -577,8 +577,27 @@ async function updateUserPlaylistSelected(
     }
 }
 
-async function allSongAndPlaylistData(req: Request, res: Response) {
+async function allSongAndPlaylistData(
+    req: Request<{ userId: string }>,
+    res: Response
+) {
+    const { userId } = req.params
+
+    if (!isUuid(userId)) {
+        return res.status(400).json({ error: 'Invalid user id' })
+    }
+
     try {
+        const user = await User.findById(userId)
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        if (user.type !== 'admin') {
+            return res.status(401).json({ error: 'User is not an admin' })
+        }
+
         const playlists = await Playlist.find()
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
@@ -993,23 +1012,23 @@ async function updateUserTheme(
 }
 
 export {
+    allSongAndPlaylistData,
+    deleteUser,
+    deleteUserPlaylist,
+    deleteUserPlaylistSongs,
     indexUser,
     indexUserById,
-    storeUser,
+    indexUserPlaylist,
     loginUser,
     logoutUser,
+    storeUser,
+    storeUserPlaylist,
+    storeUserPlaylistSongs,
     updateUser,
-    deleteUser,
     updateUserFavoriteSongs,
     updateUserMusicHistoric,
-    updateUserPlaylistSelected,
-    allSongAndPlaylistData,
-    updateUserProfilePicture,
-    indexUserPlaylist,
-    storeUserPlaylist,
     updateUserPlaylist,
-    deleteUserPlaylist,
-    storeUserPlaylistSongs,
-    deleteUserPlaylistSongs,
+    updateUserPlaylistSelected,
+    updateUserProfilePicture,
     updateUserTheme,
 }
