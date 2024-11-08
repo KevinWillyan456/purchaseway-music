@@ -2,42 +2,68 @@ import { Request, Response, NextFunction } from 'express'
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 import { User } from '../models/User'
 
-async function eAdminManager(req: Request, res: Response, next: NextFunction) {
-    const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
+const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
+const MAX_AGE_COOKIE = 604800000
 
+async function eAdminManager(req: Request, res: Response, next: NextFunction) {
     interface CustomRequest extends Request {
         token: string | JwtPayload
     }
 
     try {
         const authToken = req.cookies.token
-        const authId = req.cookies.user
 
-        if (!authToken || !authId) {
+        if (!authToken) {
+            res.clearCookie('user')
+            res.clearCookie('token')
             return res.status(400).redirect('/login')
         }
 
         const [, token] = authToken.split(' ')
 
         if (!token) {
+            res.clearCookie('user')
+            res.clearCookie('token')
             return res.status(400).redirect('/login')
         }
 
-        const decoded = jwt.verify(token, SECRET_KEY)
+        const decoded = jwt.verify(token, SECRET_KEY) as JwtPayload
         ;(req as CustomRequest).token = decoded
 
-        const user = await User.findById(authId, '-password')
+        if (!decoded.id) {
+            res.clearCookie('user')
+            res.clearCookie('token')
+            return res.status(400).redirect('/login')
+        }
+
+        const userId = decoded.id
+
+        const user = await User.findById(userId, '-password')
 
         if (!user) {
+            res.clearCookie('user')
+            res.clearCookie('token')
             return res.status(400).redirect('/login')
         }
 
         if (user.type !== 'admin') {
-            return res.status(400).redirect('/login')
+            return res.status(403).redirect('/login')
         }
+
+        if (user.tokens.find((t) => t.token === token)) {
+            res.clearCookie('user')
+            res.clearCookie('token')
+            return res.status(400).redirect('/denied')
+        }
+
+        res.cookie('user', userId, {
+            maxAge: MAX_AGE_COOKIE,
+        })
 
         next()
     } catch (err) {
+        res.clearCookie('user')
+        res.clearCookie('token')
         return res.status(400).redirect('/login')
     }
 }

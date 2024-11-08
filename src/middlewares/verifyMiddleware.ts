@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
 import jwt, { Secret } from 'jsonwebtoken'
 
+const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
+
 async function verifyTokenExists(
     req: Request,
     res: Response,
     next: NextFunction
 ) {
-    const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
-
     try {
         const authHeader = req.cookies.token
 

@@ -2,9 +2,10 @@ import { Request, Response, NextFunction } from 'express'
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 import { User } from '../models/User'
 
-async function eAdmin(req: Request, res: Response, next: NextFunction) {
-    const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
+const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
+const MAX_AGE_COOKIE = 604800000
 
+async function eAdmin(req: Request, res: Response, next: NextFunction) {
     interface CustomRequest extends Request {
         token: string | JwtPayload
     }
@@ -33,7 +34,7 @@ async function eAdmin(req: Request, res: Response, next: NextFunction) {
         ;(req as CustomRequest).token = decoded
 
         res.cookie('user', (<idUser>decoded).id, {
-            maxAge: 604800000,
+            maxAge: MAX_AGE_COOKIE,
         })
 
         const user = await User.findById((<idUser>decoded).id)

@@ -1,11 +1,17 @@
 import bcrypt from 'bcryptjs'
 import { Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
+import jwt, { Secret } from 'jsonwebtoken'
 import { UpdateWithAggregationPipeline } from 'mongoose'
 import { validate as isUuid, v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
 import { Playlist } from '../models/Playlist'
 import { IUser, User } from '../models/User'
+
+const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
+const MAX_AGE_COOKIE = 604800000
+const MAX_AGE_COOKIE_10_MINUTES = 600000
+const MAX_AGE_TOKEN = '7d'
+const MAX_AGE_TOKEN_10_MINUTES = 600
 
 async function indexUser(req: Request, res: Response) {
     try {
@@ -103,14 +109,14 @@ async function loginUser(req: Request, res: Response) {
         }
 
         if (hasConnect) {
-            dateTokenExpires = '7d'
-            dateCookieExpires = 604800000
+            dateTokenExpires = MAX_AGE_TOKEN
+            dateCookieExpires = MAX_AGE_COOKIE
         } else {
-            dateTokenExpires = 600
-            dateCookieExpires = 600000
+            dateTokenExpires = MAX_AGE_TOKEN_10_MINUTES
+            dateCookieExpires = MAX_AGE_COOKIE_10_MINUTES
         }
 
-        const token = jwt.sign({ id: user?._id }, `${process.env.JWT_SECRET}`, {
+        const token = jwt.sign({ id: user?._id }, SECRET_KEY, {
             expiresIn: dateTokenExpires,
         })
 
