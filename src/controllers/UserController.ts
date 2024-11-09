@@ -6,6 +6,7 @@ import { validate as isUuid, v4 as uuid } from 'uuid'
 import { Music } from '../models/Music'
 import { Playlist } from '../models/Playlist'
 import { IUser, User } from '../models/User'
+import { sendEmail } from '../services/EmailService'
 
 const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
 const MAX_AGE_COOKIE = 604800000
@@ -79,8 +80,70 @@ async function storeUser(req: Request, res: Response) {
         theme: 'original',
     })
 
+    function getMonthName(monthIndex: number): string {
+        const months: string[] = [
+            'janeiro',
+            'fevereiro',
+            'março',
+            'abril',
+            'maio',
+            'junho',
+            'julho',
+            'agosto',
+            'setembro',
+            'outubro',
+            'novembro',
+            'dezembro',
+        ]
+        return months[monthIndex]
+    }
+
     try {
         await user.save()
+
+        const formattedDate = `
+            Seu cadastro foi feito no dia ${user.additionDate.getDate()} de ${getMonthName(
+            user.additionDate.getMonth()
+        )} 
+            de ${user.additionDate.getFullYear()} às ${user.additionDate.getHours()}h${user.additionDate
+            .getMinutes()
+            .toString()
+            .padStart(2, '0')}min.
+        `
+
+        await sendEmail({
+            to: email,
+            subject: 'Bem-vindo ao Purchaseway Music',
+            html: `
+                <h2>👋Olá, ${name}!</h2>
+                <p>Seja bem-vindo ao <strong>Purchaseway Music</strong>! 🚀</p>
+                <p>Estamos muito felizes em ter você conosco!</p>
+                <p>🎉🎉🎉</p>
+                <p>
+                    Aproveite para ouvir suas músicas favoritas e criar suas
+                    próprias playlists!
+                </p>
+                <br />
+                <br />
+                <img
+                    src="https://i.ibb.co/fdBXmh2/logo.png"
+                    alt="Logo do serviço"
+                />
+                <br />
+                <br />
+                <br />
+                <p>
+                    Qualquer dúvida, problema ou sugestão, entre em contato por este
+                    e-mail. Respondemos assim que possível!
+                </p>
+
+                <p>Você se cadastrou com o e-mail: ${email}</p>
+                <p>${formattedDate}</p>
+                <br />
+                <p>Atenciosamente, Equipe Purchaseway Music.</p>
+                <p><i> Este e-mail foi enviado automaticamente. </i></p>
+            `,
+        })
 
         return res.status(201).json({ message: 'User added successfully!' })
     } catch (err) {
