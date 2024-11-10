@@ -376,37 +376,16 @@ const formEditSongIn = document.querySelector('#formEditSongIn')
 
 const formSongEditInputID = document.querySelector('#formSongEditInputID')
 
-function formatarData(dataISO) {
-    try {
-        const data = new Date(dataISO)
+function formatarData(dataUTC) {
+    const data = new Date(dataUTC)
 
-        if (isNaN(data.getTime())) {
-            throw new Error('Data inválida')
-        }
-
-        const meses = [
-            'janeiro',
-            'fevereiro',
-            'março',
-            'abril',
-            'maio',
-            'junho',
-            'julho',
-            'agosto',
-            'setembro',
-            'outubro',
-            'novembro',
-            'dezembro',
-        ]
-
-        const dia = data.getUTCDate()
-        const mes = data.getUTCMonth()
-        const ano = data.getUTCFullYear()
-
-        return `${dia} de ${meses[mes]} de ${ano}`
-    } catch (error) {
-        return 'Formato de data inválido'
+    const opcoes = {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
     }
+
+    return data.toLocaleDateString('pt-BR', opcoes)
 }
 
 function listMusic(musics, playlistInfo) {
@@ -1011,7 +990,7 @@ formSongDeleteBtn.addEventListener('click', async () => {
     if (result.message != 'Music removed successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
-        warning.textContent = 'Internal Error'
+        warning.textContent = 'Algo deu errado.'
         if (timerAlertMessage != null) {
             clearTimeout(timerAlertMessage)
             timerAlertMessage = null
@@ -1036,6 +1015,10 @@ formSongDeleteBtn.addEventListener('click', async () => {
 
         formDeleteSong.classList.add('hidden')
         focusSong.classList.add('hidden')
+        searchSong.value = ''
+        clearSearchSong.classList.add('hidden')
+        blankSong.classList.add('hidden')
+
         await dataFetch()
         generateChartSongs(
             data.playlists.find(
@@ -1104,7 +1087,7 @@ formDeletePlaylistContent.addEventListener('submit', async (e) => {
     if (result.message != 'Playlist and songs removed successfully!') {
         warning.classList.remove('hidden')
         warning.classList.remove('success')
-        warning.textContent = 'Internal Error'
+        warning.textContent = 'Algo deu errado.'
         if (timerAlertMessage != null) {
             clearTimeout(timerAlertMessage)
             timerAlertMessage = null
@@ -1131,6 +1114,9 @@ formDeletePlaylistContent.addEventListener('submit', async (e) => {
         formDeletePlaylist.classList.add('hidden')
         containerPlaylistToManage.classList.add('hidden')
         document.body.style.overflow = 'auto'
+        searchPlaylist.value = ''
+        clearSearchPlaylist.classList.add('hidden')
+        blankPlaylist.classList.add('hidden')
         await dataFetch()
         defineTotalNumbers()
         listPlaylists()

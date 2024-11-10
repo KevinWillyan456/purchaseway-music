@@ -1403,37 +1403,16 @@ function allSongValueSetters() {
     }
 }
 
-function formatarData(dataISO) {
-    try {
-        const data = new Date(dataISO)
+function formatarData(dataUTC) {
+    const data = new Date(dataUTC)
 
-        if (isNaN(data.getTime())) {
-            throw new Error('Data inválida')
-        }
-
-        const meses = [
-            'janeiro',
-            'fevereiro',
-            'março',
-            'abril',
-            'maio',
-            'junho',
-            'julho',
-            'agosto',
-            'setembro',
-            'outubro',
-            'novembro',
-            'dezembro',
-        ]
-
-        const dia = data.getUTCDate()
-        const mes = data.getUTCMonth()
-        const ano = data.getUTCFullYear()
-
-        return `${dia} de ${meses[mes]} de ${ano}`
-    } catch (error) {
-        return 'Formato de data inválido'
+    const opcoes = {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
     }
+
+    return data.toLocaleDateString('pt-BR', opcoes)
 }
 
 function setUserSettings() {
@@ -2815,7 +2794,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                             else {
                                 if (screenWidth >= 1360) {
                                     warning.classList.remove('hidden')
-                                    warning.textContent = 'Internal Error!'
+                                    warning.textContent = 'Algo deu errado.'
                                     if (timerAlertMessage != null) {
                                         clearTimeout(timerAlertMessage)
                                         timerAlertMessage = null
@@ -2826,7 +2805,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                                 } else {
                                     warningMobile.classList.remove('hidden')
                                     warningMobile.textContent =
-                                        'Internal Error!'
+                                        'Algo deu errado.'
                                     if (timerAlertMessage != null) {
                                         clearTimeout(timerAlertMessage)
                                         timerAlertMessage = null
@@ -2862,7 +2841,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                             else {
                                 if (screenWidth >= 1360) {
                                     warning.classList.remove('hidden')
-                                    warning.textContent = 'Internal Error!'
+                                    warning.textContent = 'Algo deu errado.'
                                     if (timerAlertMessage != null) {
                                         clearTimeout(timerAlertMessage)
                                         timerAlertMessage = null
@@ -2873,7 +2852,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                                 } else {
                                     warningMobile.classList.remove('hidden')
                                     warningMobile.textContent =
-                                        'Internal Error!'
+                                        'Algo deu errado.'
                                     if (timerAlertMessage != null) {
                                         clearTimeout(timerAlertMessage)
                                         timerAlertMessage = null
@@ -2946,7 +2925,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                             else {
                                 if (screenWidth >= 1360) {
                                     warning.classList.remove('hidden')
-                                    warning.textContent = 'Internal Error!'
+                                    warning.textContent = 'Algo deu errado.'
                                     if (timerAlertMessage != null) {
                                         clearTimeout(timerAlertMessage)
                                         timerAlertMessage = null
@@ -2957,7 +2936,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                                 } else {
                                     warningMobile.classList.remove('hidden')
                                     warningMobile.textContent =
-                                        'Internal Error!'
+                                        'Algo deu errado.'
                                     if (timerAlertMessage != null) {
                                         clearTimeout(timerAlertMessage)
                                         timerAlertMessage = null
@@ -2993,7 +2972,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                             else {
                                 if (screenWidth >= 1360) {
                                     warning.classList.remove('hidden')
-                                    warning.textContent = 'Internal Error!'
+                                    warning.textContent = 'Algo deu errado.'
                                     if (timerAlertMessage != null) {
                                         clearTimeout(timerAlertMessage)
                                         timerAlertMessage = null
@@ -3004,7 +2983,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                                 } else {
                                     warningMobile.classList.remove('hidden')
                                     warningMobile.textContent =
-                                        'Internal Error!'
+                                        'Algo deu errado.'
                                     if (timerAlertMessage != null) {
                                         clearTimeout(timerAlertMessage)
                                         timerAlertMessage = null
@@ -3179,7 +3158,7 @@ async function themeChanger(theme = 'original') {
             } else {
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
-                    warning.textContent = 'Internal Error!'
+                    warning.textContent = 'Algo deu errado.'
                     if (timerAlertMessage != null) {
                         clearTimeout(timerAlertMessage)
                         timerAlertMessage = null
@@ -3189,7 +3168,7 @@ async function themeChanger(theme = 'original') {
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
-                    warningMobile.textContent = 'Internal Error!'
+                    warningMobile.textContent = 'Algo deu errado.'
                     if (timerAlertMessage != null) {
                         clearTimeout(timerAlertMessage)
                         timerAlertMessage = null
@@ -3749,7 +3728,7 @@ async function manageHistoric() {
     if (resposta.status != 200) {
         if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
-            warning.textContent = 'Internal Error!'
+            warning.textContent = 'Algo deu errado.'
             if (timerAlertMessage != null) {
                 clearTimeout(timerAlertMessage)
                 timerAlertMessage = null
@@ -3759,7 +3738,7 @@ async function manageHistoric() {
             }, 3000)
         } else {
             warningMobile.classList.remove('hidden')
-            warningMobile.textContent = 'Internal Error!'
+            warningMobile.textContent = 'Algo deu errado.'
             if (timerAlertMessage != null) {
                 clearTimeout(timerAlertMessage)
                 timerAlertMessage = null
@@ -3792,7 +3771,7 @@ async function manageHistoricClear() {
     if (resposta.status != 200) {
         if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
-            warning.textContent = 'Internal Error!'
+            warning.textContent = 'Algo deu errado.'
             if (timerAlertMessage != null) {
                 clearTimeout(timerAlertMessage)
                 timerAlertMessage = null
@@ -3802,7 +3781,7 @@ async function manageHistoricClear() {
             }, 3000)
         } else {
             warningMobile.classList.remove('hidden')
-            warningMobile.textContent = 'Internal Error!'
+            warningMobile.textContent = 'Algo deu errado.'
             if (timerAlertMessage != null) {
                 clearTimeout(timerAlertMessage)
                 timerAlertMessage = null
@@ -3876,7 +3855,7 @@ async function manageFavorite() {
         if (screenWidth >= 1360) {
             musicFavoriteIcon.style.pointerEvents = 'auto'
             warning.classList.remove('hidden')
-            warning.textContent = 'Internal Error!'
+            warning.textContent = 'Algo deu errado.'
             if (timerAlertMessage != null) {
                 clearTimeout(timerAlertMessage)
                 timerAlertMessage = null
@@ -3887,7 +3866,7 @@ async function manageFavorite() {
         } else {
             musicFavoriteIconMobile.style.pointerEvents = 'auto'
             warningMobile.classList.remove('hidden')
-            warningMobile.textContent = 'Internal Error!'
+            warningMobile.textContent = 'Algo deu errado.'
             if (timerAlertMessage != null) {
                 clearTimeout(timerAlertMessage)
                 timerAlertMessage = null
@@ -4628,7 +4607,7 @@ function manageMyPlaylistEdition() {
                 refreshUserWithNewPlaylist()
             } else {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Internal Error!'
+                warning.textContent = 'Algo deu errado.'
 
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
@@ -4724,7 +4703,7 @@ function manageMyPlaylistEdition() {
                 refreshUserWithNewPlaylist()
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Internal Error!'
+                warningMobile.textContent = 'Algo deu errado.'
 
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
@@ -4783,7 +4762,7 @@ function manageMyPlaylistDeletion() {
             } else {
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
-                    warning.textContent = 'Internal Error!'
+                    warning.textContent = 'Algo deu errado.'
 
                     if (timerAlertMessage != null) {
                         clearTimeout(timerAlertMessage)
@@ -4794,7 +4773,7 @@ function manageMyPlaylistDeletion() {
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
-                    warningMobile.textContent = 'Internal Error!'
+                    warningMobile.textContent = 'Algo deu errado.'
 
                     if (timerAlertMessage != null) {
                         clearTimeout(timerAlertMessage)
@@ -4850,7 +4829,7 @@ function manageMyPlaylistDeletion() {
             } else {
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
-                    warning.textContent = 'Internal Error!'
+                    warning.textContent = 'Algo deu errado.'
 
                     if (timerAlertMessage != null) {
                         clearTimeout(timerAlertMessage)
@@ -4861,7 +4840,7 @@ function manageMyPlaylistDeletion() {
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
-                    warningMobile.textContent = 'Internal Error!'
+                    warningMobile.textContent = 'Algo deu errado.'
 
                     if (timerAlertMessage != null) {
                         clearTimeout(timerAlertMessage)
@@ -4982,7 +4961,7 @@ function manageMyPlaylistMusicDeletion() {
         } else {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Internal Error!'
+                warning.textContent = 'Algo deu errado.'
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
                     timerAlertMessage = null
@@ -4992,7 +4971,7 @@ function manageMyPlaylistMusicDeletion() {
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Internal Error!'
+                warningMobile.textContent = 'Algo deu errado.'
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
                     timerAlertMessage = null
@@ -5030,7 +5009,7 @@ async function manageUserProfilePicture() {
         if (resposta.status != 200) {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Internal Error!'
+                warning.textContent = 'Algo deu errado.'
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
                     timerAlertMessage = null
@@ -5040,7 +5019,7 @@ async function manageUserProfilePicture() {
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Internal Error!'
+                warningMobile.textContent = 'Algo deu errado.'
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
                     timerAlertMessage = null
@@ -5081,7 +5060,7 @@ async function manageUserProfilePicture() {
         if (resposta.status != 200) {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Internal Error!'
+                warning.textContent = 'Algo deu errado.'
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
                     timerAlertMessage = null
@@ -5091,7 +5070,7 @@ async function manageUserProfilePicture() {
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Internal Error!'
+                warningMobile.textContent = 'Algo deu errado.'
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
                     timerAlertMessage = null
@@ -5588,7 +5567,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     if (resposta.status != 200) {
         if (screenWidth >= 1360) {
             warning.classList.remove('hidden')
-            warning.textContent = 'Internal Error!'
+            warning.textContent = 'Algo deu errado.'
             if (timerAlertMessage != null) {
                 clearTimeout(timerAlertMessage)
                 timerAlertMessage = null
@@ -5598,7 +5577,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
             }, 3000)
         } else {
             warningMobile.classList.remove('hidden')
-            warningMobile.textContent = 'Internal Error!'
+            warningMobile.textContent = 'Algo deu errado.'
             if (timerAlertMessage != null) {
                 clearTimeout(timerAlertMessage)
                 timerAlertMessage = null
@@ -6109,7 +6088,7 @@ async function incrementViewCount() {
             if (!response.ok) {
                 if (screenWidth >= 1360) {
                     warning.classList.remove('hidden')
-                    warning.textContent = 'Internal Error!'
+                    warning.textContent = 'Algo deu errado.'
                     if (timerAlertMessage != null) {
                         clearTimeout(timerAlertMessage)
                         timerAlertMessage = null
@@ -6119,7 +6098,7 @@ async function incrementViewCount() {
                     }, 3000)
                 } else {
                     warningMobile.classList.remove('hidden')
-                    warningMobile.textContent = 'Internal Error!'
+                    warningMobile.textContent = 'Algo deu errado.'
                     if (timerAlertMessage != null) {
                         clearTimeout(timerAlertMessage)
                         timerAlertMessage = null
@@ -6133,7 +6112,7 @@ async function incrementViewCount() {
         .catch(() => {
             if (screenWidth >= 1360) {
                 warning.classList.remove('hidden')
-                warning.textContent = 'Internal Error!'
+                warning.textContent = 'Algo deu errado.'
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
                     timerAlertMessage = null
@@ -6143,7 +6122,7 @@ async function incrementViewCount() {
                 }, 3000)
             } else {
                 warningMobile.classList.remove('hidden')
-                warningMobile.textContent = 'Internal Error!'
+                warningMobile.textContent = 'Algo deu errado.'
                 if (timerAlertMessage != null) {
                     clearTimeout(timerAlertMessage)
                     timerAlertMessage = null
