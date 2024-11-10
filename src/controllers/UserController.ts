@@ -40,6 +40,24 @@ async function indexUserById(
     }
 }
 
+function getMonthName(monthIndex: number): string {
+    const months: string[] = [
+        'janeiro',
+        'fevereiro',
+        'março',
+        'abril',
+        'maio',
+        'junho',
+        'julho',
+        'agosto',
+        'setembro',
+        'outubro',
+        'novembro',
+        'dezembro',
+    ]
+    return months[monthIndex]
+}
+
 async function storeUser(req: Request, res: Response) {
     const { name, email, password } = req.body
 
@@ -80,24 +98,6 @@ async function storeUser(req: Request, res: Response) {
         theme: 'original',
     })
 
-    function getMonthName(monthIndex: number): string {
-        const months: string[] = [
-            'janeiro',
-            'fevereiro',
-            'março',
-            'abril',
-            'maio',
-            'junho',
-            'julho',
-            'agosto',
-            'setembro',
-            'outubro',
-            'novembro',
-            'dezembro',
-        ]
-        return months[monthIndex]
-    }
-
     try {
         await user.save()
 
@@ -111,39 +111,41 @@ async function storeUser(req: Request, res: Response) {
             .padStart(2, '0')}min.
         `
 
-        await sendEmail({
-            to: email,
-            subject: 'Bem-vindo ao Purchaseway Music',
-            html: `
-                <h2>👋Olá, ${name}!</h2>
-                <p>Seja bem-vindo ao <strong>Purchaseway Music</strong>! 🚀</p>
-                <p>Estamos muito felizes em ter você conosco!</p>
-                <p>🎉🎉🎉</p>
-                <p>
-                    Aproveite para ouvir suas músicas favoritas e criar suas
-                    próprias playlists!
-                </p>
-                <br />
-                <br />
-                <img
-                    src="https://i.ibb.co/fdBXmh2/logo.png"
-                    alt="Logo do serviço"
-                />
-                <br />
-                <br />
-                <br />
-                <p>
-                    Qualquer dúvida, problema ou sugestão, entre em contato por este
-                    e-mail. Respondemos assim que possível!
-                </p>
-
-                <p>Você se cadastrou com o e-mail: ${email}</p>
-                <p>${formattedDate}</p>
-                <br />
-                <p>Atenciosamente, Equipe Purchaseway Music.</p>
-                <p><i> Este e-mail foi enviado automaticamente. </i></p>
-            `,
-        })
+        if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+            sendEmail({
+                to: email,
+                subject: 'Bem-vindo ao Purchaseway Music',
+                html: `
+                    <h2>👋Olá, ${name}!</h2>
+                    <p>Seja bem-vindo(a) ao <strong>Purchaseway Music</strong>! 🚀</p>
+                    <p>Estamos muito felizes em ter você conosco!</p>
+                    <p>🎉🎉🎉</p>
+                    <p>
+                        Aproveite para ouvir suas músicas favoritas e criar suas
+                        próprias playlists!
+                    </p>
+                    <br />
+                    <br />
+                    <img
+                        src="https://i.ibb.co/fdBXmh2/logo.png"
+                        alt="Logo do serviço"
+                    />
+                    <br />
+                    <br />
+                    <br />
+                    <p>
+                        Qualquer dúvida, problema ou sugestão, entre em contato por este
+                        e-mail. Respondemos assim que possível!
+                    </p>
+    
+                    <p>Você se cadastrou com o e-mail: ${email}</p>
+                    <p>${formattedDate}</p>
+                    <br />
+                    <p>Atenciosamente, Equipe Purchaseway Music.</p>
+                    <p><i> Este e-mail foi enviado automaticamente. </i></p>
+                `,
+            })
+        }
 
         return res.status(201).json({ message: 'User added successfully!' })
     } catch (err) {
@@ -309,7 +311,52 @@ async function deleteUser(
     const filter = { _id: id }
 
     try {
+        const user = await User.findById(id)
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
+        }
+
         await User.deleteOne(filter)
+
+        if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+            const formattedDate = `Você ficou conosco desde ${user.additionDate.getDate()} de ${getMonthName(
+                user.additionDate.getMonth()
+            )}
+            de ${user.additionDate.getFullYear()} às ${user.additionDate.getHours()}h${user.additionDate
+                .getMinutes()
+                .toString()
+                .padStart(2, '0')}min.`
+
+            sendEmail({
+                to: user.email,
+                subject: 'Até logo. Purchaseway Music',
+                html: `
+                    <h2>👋Olá, ${user.name}!</h2>
+                    <p>É uma pena que você decidiu sair do <strong>Purchaseway Music</strong>! 😢</p>
+                    <p>Esperamos que tenha aproveitado o tempo que passou conosco!</p>
+                    <p>
+                        Se você mudar de ideia, estaremos sempre de braços abertos para
+                        recebê-lo(a) de volta!
+                    </p>
+                    <p>Seus dados foram removidos de nossa base de dados.</p>
+                    <br />
+                    <br />
+                    <img
+                        src="https://i.ibb.co/fdBXmh2/logo.png"
+                        alt="Logo do serviço"
+                    />
+                    <br />
+                    <br />
+                    <br />
+
+                    <p>${formattedDate}</p>
+                    <p>Atenciosamente, Equipe Purchaseway Music.</p>
+                    <p><i> Este e-mail foi enviado automaticamente. </i></p>
+                `,
+            })
+        }
+
         return res.status(200).json({ message: 'User removed successfully!' })
     } catch (err) {
         return res.status(500).json({ error: err })

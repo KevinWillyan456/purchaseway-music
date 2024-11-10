@@ -10,6 +10,13 @@ const checkEnvVars = (): void => {
         console.error(`Missing variables: ${missingVars.join(', ')}`)
         process.exit(1)
     }
+
+    if (process.env.EMAIL_USER && !process.env.EMAIL_PASS) {
+        console.error(
+            'Server configuration error: EMAIL_USER is defined but EMAIL_PASS is missing'
+        )
+        process.exit(1)
+    }
 }
 
 export { checkEnvVars }
