@@ -1087,7 +1087,6 @@ iframe {
     animation: warning-anime-color 1s infinite alternate,
         warning-anime-entrace 500ms linear;
     position: absolute;
-
     top: 20px;
     left: 0;
     color: var(--color-red-2);
@@ -1095,8 +1094,8 @@ iframe {
     font-size: 22px;
     width: calc(100% - 40px);
     transform: translateX(20px);
-    height: 60px;
-
+    padding: 10px;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;

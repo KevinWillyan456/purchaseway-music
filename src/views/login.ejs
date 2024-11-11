@@ -33,17 +33,23 @@
                     type="text"
                     placeholder="E-mail"
                     id="inputEmail"
+                    required
                 />
                 <input
                     class="input"
                     type="password"
                     placeholder="Senha"
                     id="inputSenha"
+                    required
                 />
                 <div class="input-checkbox">
                     <input type="checkbox" id="checkbox-conect" />
                     <label for="checkbox-conect">Manter Conectado</label>
                 </div>
+
+                <button class="btn-forgot" type="button" id="btnForgot">
+                    Esqueceu sua senha?
+                </button>
 
                 <button class="btn-submit" type="submit">Entrar</button>
                 <div class="info">
@@ -52,6 +58,23 @@
                 </div>
             </form>
         </section>
+
+        <div class="layer-forgot hidden" id="layerForgot">
+            <form class="container-forgot">
+                <div class="title">Adicione seu E-mail</div>
+                <div class="description">
+                    Nós enviaremos um link para você redefinir sua senha
+                </div>
+                <input
+                    class="field"
+                    type="text"
+                    placeholder="E-mail"
+                    id="forgotEmail"
+                    required
+                />
+                <button class="send" type="submit">Enviar</button>
+            </form>
+        </div>
 
         <script src="/JS/login.js"></script>
     </body>

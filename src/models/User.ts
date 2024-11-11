@@ -37,6 +37,8 @@ export interface IUser {
         token: string
         additionDate: Date
     }[]
+    resetPasswordToken?: string
+    resetPasswordExpires?: Date
 }
 
 const userSchema = new Schema<IUser>({
@@ -86,6 +88,8 @@ const userSchema = new Schema<IUser>({
             additionDate: { type: Date, default: Date.now, required: true },
         },
     ],
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
 })
 
 export const User = model<IUser>('User', userSchema)

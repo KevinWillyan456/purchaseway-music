@@ -19,6 +19,8 @@ import {
     indexUserPlaylist,
     loginUser,
     logoutUser,
+    requestPasswordReset,
+    resetPassword,
     storeUser,
     storeUserPlaylist,
     storeUserPlaylistSongs,
@@ -55,12 +57,14 @@ routes.delete('/songs/:id', eAdminManagerRequest, getMusic, deleteMusic)
 routes.put('/songs-view-count/:id', incrementViewCount)
 
 routes.get('/users', eAdminManagerRequest, indexUser)
+routes.get('/users/:id', getUser, indexUserById)
 routes.post('/users', storeUser)
 routes.post('/login', loginUser)
 routes.post('/logout/:id', logoutUser)
-routes.get('/users/:id', getUser, indexUserById)
 routes.put('/users/:id', getUser, updateUser)
 routes.delete('/users/:id', getUser, deleteUser)
+routes.post('/request-reset', requestPasswordReset)
+routes.post('/reset-password', resetPassword)
 
 routes.put('/songs-favorite/:id', getUser, updateUserFavoriteSongs)
 routes.put('/songs-historic/:id', getUser, updateUserMusicHistoric)

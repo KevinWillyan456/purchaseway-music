@@ -45,6 +45,9 @@ app.get('/login', verifyTokenExists, (req, res) => {
 app.get('/config', eAdminManager, (req, res) => {
     res.render('config')
 })
+app.get('/reset-password', (req, res) => {
+    res.render('reset-password')
+})
 app.use((req, res) => {
     res.redirect('/')
 })

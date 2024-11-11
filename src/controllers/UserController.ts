@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs'
+import crypto from 'crypto'
 import { Request, Response } from 'express'
 import jwt, { Secret } from 'jsonwebtoken'
 import { UpdateWithAggregationPipeline } from 'mongoose'
@@ -9,6 +10,7 @@ import { IUser, User } from '../models/User'
 import { sendEmail } from '../services/EmailService'
 
 const SECRET_KEY: Secret = `${process.env.JWT_SECRET}`
+const MIN_PASSWORD_LENGTH = 6
 const MAX_AGE_COOKIE = 604800000
 const MAX_AGE_COOKIE_10_MINUTES = 600000
 const MAX_AGE_TOKEN = '7d'
@@ -18,7 +20,7 @@ async function indexUser(req: Request, res: Response) {
     try {
         const users = await User.find(
             {},
-            '-password -tokens -musicHistory -favoriteSongs -myPlaylists -__v'
+            '-password -tokens -musicHistory -favoriteSongs -myPlaylists -__v -resetPasswordToken -resetPasswordExpires'
         )
         return res.status(200).json({ users })
     } catch (err) {
@@ -33,7 +35,10 @@ async function indexUserById(
     const { id } = req.params
 
     try {
-        const user = await User.findById(id, '-password -tokens -__v')
+        const user = await User.findById(
+            id,
+            '-password -tokens -__v -resetPasswordToken -resetPasswordExpires'
+        )
         return res.status(200).json({ user })
     } catch (err) {
         res.status(500).json({ error: err })
@@ -63,6 +68,12 @@ async function storeUser(req: Request, res: Response) {
 
     if (!name || !email || !password) {
         return res.status(400).json({ error: 'data is missing' })
+    }
+
+    if (password.length < MIN_PASSWORD_LENGTH) {
+        return res.status(400).json({
+            error: `Password must have at least ${MIN_PASSWORD_LENGTH} characters`,
+        })
     }
 
     const encryptedPassword = await bcrypt.hash(password, 8)
@@ -142,7 +153,7 @@ async function storeUser(req: Request, res: Response) {
                     <p>${formattedDate}</p>
                     <br />
                     <p>Atenciosamente, Equipe Purchaseway Music.</p>
-                    <p><i> Este e-mail foi enviado automaticamente. </i></p>
+                    <p><i>Este e-mail foi enviado automaticamente.</i></p>
                 `,
             })
         }
@@ -352,7 +363,7 @@ async function deleteUser(
 
                     <p>${formattedDate}</p>
                     <p>Atenciosamente, Equipe Purchaseway Music.</p>
-                    <p><i> Este e-mail foi enviado automaticamente. </i></p>
+                    <p><i>Este e-mail foi enviado automaticamente.</i></p>
                 `,
             })
         }
@@ -1127,6 +1138,103 @@ async function updateUserTheme(
     }
 }
 
+async function requestPasswordReset(req: Request, res: Response) {
+    const { email } = req.body
+    const user = await User.findOne({ email })
+
+    if (!user) return res.status(404).json({ error: 'User not found' })
+
+    if (
+        !process.env.EMAIL_USER ||
+        !process.env.EMAIL_PASS ||
+        !process.env.CLIENT_URL
+    ) {
+        return res.status(500).json({
+            error: 'Password reset is not available because email service is not configured',
+        })
+    }
+
+    try {
+        const token = crypto.randomBytes(20).toString('hex')
+        user.resetPasswordToken = token
+        user.resetPasswordExpires = new Date(Date.now() + 3600000)
+        await user.save()
+
+        sendEmail({
+            to: email,
+            subject: 'Redefinição de senha - Purchaseway Music',
+            html: `
+            <h2>👋Olá, ${user.name}!</h2>
+            <p>Você solicitou a redefinição de senha para sua conta no <strong>Purchaseway Music</strong>.</p>
+            <p>Se você não solicitou isso, ignore este e-mail e sua senha permanecerá inalterada.</p>
+            <p>Para redefinir sua senha, clique no link abaixo:</p>
+            <p style="color: #bf1f1f;">Não compartilhe este link com ninguém.</p>
+            <a href="${process.env.CLIENT_URL}/reset-password/?token=${token}">Redefinir senha</a>
+            <p>O link expirará em 1 hora.</p>
+            <br />
+            <br />
+            <img
+                src="https://i.ibb.co/fdBXmh2/logo.png"
+                alt="Logo do serviço"
+            />
+            <br />
+            <br />
+            <br />
+            <p>Se você tiver problemas ao clicar no botão "Redefinir senha", copie e cole o URL abaixo em seu navegador:</p>
+            <p>${process.env.CLIENT_URL}/reset-password/?token=${token}</p>
+            <br />
+            <p>Atenciosamente, Equipe Purchaseway Music.</p>
+            <p><i> Este e-mail foi enviado automaticamente.</i></p>
+        `,
+        })
+
+        return res.status(200).json({ message: 'Password reset email sent' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+async function resetPassword(req: Request, res: Response) {
+    const { token, newPassword } = req.body
+
+    if (!token || !newPassword) {
+        return res.status(400).json({ error: 'Token or password is missing' })
+    }
+
+    if (newPassword.length < MIN_PASSWORD_LENGTH) {
+        return res.status(400).json({
+            error: `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`,
+        })
+    }
+
+    try {
+        const user = await User.findOne({
+            resetPasswordToken: token,
+            resetPasswordExpires: { $gt: new Date() },
+        })
+
+        if (!user)
+            return res.status(400).json({ error: 'Invalid or expired token' })
+
+        if (await bcrypt.compare(newPassword, user.password)) {
+            return res.status(400).json({
+                error: 'New password must be different from the current one',
+            })
+        }
+
+        const encryptedPassword = await bcrypt.hash(newPassword, 8)
+
+        user.password = encryptedPassword
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpires = undefined
+        await user.save()
+
+        return res.status(200).json({ message: 'Password reset successfully' })
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
 export {
     allSongAndPlaylistData,
     deleteUser,
@@ -1137,6 +1245,8 @@ export {
     indexUserPlaylist,
     loginUser,
     logoutUser,
+    requestPasswordReset,
+    resetPassword,
     storeUser,
     storeUserPlaylist,
     storeUserPlaylistSongs,

@@ -154,7 +154,16 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 **GET** `/songs`
 
 - Retorna a lista de todas as músicas.
+- **Handler**: `indexMusic`
 - **Resposta**: JSON com a lista de músicas.
+
+#### Obter música por ID
+
+**GET** `/song/:id`
+
+- Retorna os detalhes de uma música específica.
+- **Handler**: `indexMusicById`
+- **Resposta**: JSON com os detalhes da música.
 
 #### Adicionar música
 
@@ -162,6 +171,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Adiciona uma nova música.
 - **Middleware**: `eAdminManagerRequest`
+- **Handler**: `storeMusic`
 - **Requisição**: JSON com os detalhes da música.
 - **Resposta**: JSON com a música adicionada.
 
@@ -171,6 +181,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Atualiza os detalhes de uma música existente.
 - **Middleware**: `eAdminManagerRequest`, `getMusic`
+- **Handler**: `updateMusic`
 - **Requisição**: JSON com os novos detalhes da música.
 - **Resposta**: JSON com a música atualizada.
 
@@ -180,6 +191,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Deleta uma música.
 - **Middleware**: `eAdminManagerRequest`, `getMusic`
+- **Handler**: `deleteMusic`
 - **Resposta**: JSON confirmando a exclusão.
 
 #### Incrementar contagem de visualizações
@@ -187,7 +199,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 **PUT** `/songs-view-count/:id`
 
 - Incrementa a contagem de visualizações de uma música.
-- **Middleware**: `incrementViewCount`
+- **Handler**: `incrementViewCount`
 - **Resposta**: JSON confirmando a atualização.
 
 ### Usuários
@@ -198,6 +210,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Retorna a lista de todos os usuários.
 - **Middleware**: `eAdminManagerRequest`
+- **Handler**: `indexUser`
 - **Resposta**: JSON com a lista de usuários.
 
 #### Adicionar usuário
@@ -205,6 +218,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 **POST** `/users`
 
 - Adiciona um novo usuário.
+- **Handler**: `storeUser`
 - **Requisição**: JSON com os detalhes do usuário.
 - **Resposta**: JSON com o usuário adicionado.
 
@@ -213,6 +227,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 **POST** `/login`
 
 - Realiza o login do usuário.
+- **Handler**: `loginUser`
 - **Requisição**: JSON com as credenciais do usuário.
 - **Resposta**: JSON com o token de autenticação.
 
@@ -221,6 +236,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 **POST** `/logout/:id`
 
 - Realiza o logout do usuário.
+- **Handler**: `logoutUser`
 - **Resposta**: JSON confirmando o logout.
 
 #### Obter detalhes do usuário
@@ -229,6 +245,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Retorna os detalhes de um usuário específico.
 - **Middleware**: `getUser`
+- **Handler**: `indexUserById`
 - **Resposta**: JSON com os detalhes do usuário.
 
 #### Atualizar usuário
@@ -237,6 +254,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Atualiza os detalhes de um usuário específico.
 - **Middleware**: `getUser`
+- **Handler**: `updateUser`
 - **Requisição**: JSON com os novos detalhes do usuário.
 - **Resposta**: JSON com o usuário atualizado.
 
@@ -246,7 +264,26 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Deleta um usuário específico.
 - **Middleware**: `getUser`
+- **Handler**: `deleteUser`
 - **Resposta**: JSON confirmando a exclusão.
+
+#### Solicitar redefinição de senha
+
+**POST** `/request-reset`
+
+- Solicita a redefinição de senha do usuário.
+- **Handler**: `requestPasswordReset`
+- **Requisição**: JSON com o e-mail do usuário.
+- **Resposta**: JSON confirmando a solicitação.
+
+#### Redefinir senha
+
+**POST** `/reset-password`
+
+- Redefine a senha do usuário.
+- **Handler**: `resetPassword`
+- **Requisição**: JSON com o token e a nova senha.
+- **Resposta**: JSON confirmando a redefinição.
 
 ### Funcionalidades do Usuário
 
@@ -256,6 +293,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Atualiza as músicas favoritas do usuário.
 - **Middleware**: `getUser`
+- **Handler**: `updateUserFavoriteSongs`
 - **Requisição**: JSON com a lista de músicas favoritas.
 - **Resposta**: JSON confirmando a atualização.
 
@@ -265,6 +303,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Atualiza o histórico de músicas do usuário.
 - **Middleware**: `getUser`
+- **Handler**: `updateUserMusicHistoric`
 - **Requisição**: JSON com o histórico de músicas.
 - **Resposta**: JSON confirmando a atualização.
 
@@ -274,6 +313,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Atualiza a playlist selecionada no histórico do usuário.
 - **Middleware**: `getUser`
+- **Handler**: `updateUserPlaylistSelected`
 - **Requisição**: JSON com a playlist selecionada.
 - **Resposta**: JSON confirmando a atualização.
 
@@ -283,6 +323,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Retorna as playlists de um usuário específico.
 - **Middleware**: `getUser`
+- **Handler**: `indexUserPlaylist`
 - **Resposta**: JSON com as playlists do usuário.
 
 #### Adicionar playlist do usuário
@@ -291,6 +332,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Adiciona uma nova playlist para o usuário.
 - **Middleware**: `getUser`
+- **Handler**: `storeUserPlaylist`
 - **Requisição**: JSON com os detalhes da playlist.
 - **Resposta**: JSON com a playlist adicionada.
 
@@ -300,6 +342,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Atualiza uma playlist específica do usuário.
 - **Middleware**: `getUser`
+- **Handler**: `updateUserPlaylist`
 - **Requisição**: JSON com os novos detalhes da playlist.
 - **Resposta**: JSON com a playlist atualizada.
 
@@ -309,6 +352,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Deleta uma playlist específica do usuário.
 - **Middleware**: `getUser`
+- **Handler**: `deleteUserPlaylist`
 - **Resposta**: JSON confirmando a exclusão.
 
 #### Adicionar música à playlist do usuário
@@ -317,6 +361,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Adiciona uma música a uma playlist específica do usuário.
 - **Middleware**: `getUser`
+- **Handler**: `storeUserPlaylistSongs`
 - **Requisição**: JSON com os detalhes da música.
 - **Resposta**: JSON confirmando a adição.
 
@@ -326,6 +371,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Deleta uma música específica de uma playlist do usuário.
 - **Middleware**: `getUser`
+- **Handler**: `deleteUserPlaylistSongs`
 - **Resposta**: JSON confirmando a exclusão.
 
 #### Atualizar tema do usuário
@@ -334,6 +380,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Atualiza o tema do usuário.
 - **Middleware**: `getUser`
+- **Handler**: `updateUserTheme`
 - **Requisição**: JSON com os detalhes do novo tema.
 - **Resposta**: JSON confirmando a atualização.
 
@@ -342,6 +389,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 **PUT** `/users-profile-picture/:id`
 
 - Atualiza a foto de perfil do usuário.
+- **Handler**: `updateUserProfilePicture`
 - **Requisição**: URL de imagem.
 - **Resposta**: JSON confirmando a atualização.
 
@@ -353,6 +401,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Retorna os detalhes de uma playlist específica.
 - **Middleware**: `getUser`
+- **Handler**: `indexPlaylist`
 - **Resposta**: JSON com os detalhes da playlist.
 
 #### Selecionar playlist
@@ -361,6 +410,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Seleciona uma playlist específica.
 - **Middleware**: `getUser`
+- **Handler**: `selectPlaylist`
 - **Resposta**: JSON confirmando a seleção.
 
 #### Adicionar playlist
@@ -369,6 +419,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Adiciona uma nova playlist.
 - **Middleware**: `eAdminManagerRequest`
+- **Handler**: `storePlaylist`
 - **Requisição**: JSON com os detalhes da playlist.
 - **Resposta**: JSON com a playlist adicionada.
 
@@ -378,6 +429,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Atualiza os detalhes de uma playlist existente.
 - **Middleware**: `eAdminManagerRequest`, `getPlaylist`
+- **Handler**: `updatePlaylist`
 - **Requisição**: JSON com os novos detalhes da playlist.
 - **Resposta**: JSON com a playlist atualizada.
 
@@ -387,6 +439,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Deleta uma playlist.
 - **Middleware**: `eAdminManagerRequest`, `getPlaylist`
+- **Handler**: `deletePlaylist`
 - **Resposta**: JSON confirmando a exclusão.
 
 #### Deletar playlist e músicas
@@ -395,6 +448,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 
 - Deleta uma playlist e todas as músicas associadas.
 - **Middleware**: `eAdminManagerRequest`, `getPlaylist`
+- **Handler**: `deletePlaylistAndSongs`
 - **Resposta**: JSON confirmando a exclusão.
 
 #### Obter dados de todas as músicas e playlists
@@ -402,6 +456,7 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 **GET** `/songs-playlists/:userId`
 
 - Retorna todos os dados de músicas e playlists.
+- **Handler**: `allSongAndPlaylistData`
 - **Resposta**: JSON com os dados de músicas e playlists.
 
 ## Ativação de Usuário Admin
