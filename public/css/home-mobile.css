@@ -1,5 +1,5 @@
 body {
-    background-color: #000000;
+    background-color: var(--color-black);
 }
 .super-main-mobile {
     background-color: var(--color-base-1);
@@ -1029,7 +1029,7 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1351,7 +1351,7 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1435,7 +1435,7 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1879,7 +1879,7 @@ body {
     width: calc(100% - 40px);
     height: 40px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -2506,7 +2506,7 @@ body {
     width: calc(100% - 40px);
     height: 40px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -2584,7 +2584,7 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;

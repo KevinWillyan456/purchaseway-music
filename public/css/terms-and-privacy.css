@@ -1,0 +1,90 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--color-base-1);
+    background-image: url('https://i.ibb.co/CtPQ8Np/background-5.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--color-white-1);
+    padding: 20px;
+}
+body::-webkit-scrollbar {
+    width: 10px;
+}
+body::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: var(--color-base-2);
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000099;
+    z-index: -1;
+}
+.terms-and-privacy {
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--color-base-1);
+    padding: 40px 20px;
+    border: 3px solid var(--color-white-1);
+    border-radius: 10px;
+}
+.terms-and-privacy .title {
+    margin-bottom: 40px;
+    text-align: center;
+}
+.terms-and-privacy .title:not(:first-child) {
+    margin-top: 40px;
+}
+.terms-and-privacy .text {
+    line-height: 1.5;
+}
+.text p:not(:last-child) {
+    margin-bottom: 20px;
+}
+.text a {
+    color: var(--color-base-2);
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.terms-and-privacy .btn-back {
+    transition: 200ms;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 150px;
+    color: var(--color-white-1);
+    font-size: 25px;
+    padding: 15px 0;
+    background-color: var(--color-base-4);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.terms-and-privacy .btn-back:hover {
+    animation: color-button 500ms infinite alternate;
+}
+@keyframes color-button {
+    0% {
+        box-shadow: 0 0 5px var(--color-base-2), 0 0 10px var(--color-base-2);
+        color: var(--color-base-2);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--color-white-1), 0 0 10px var(--color-white-1);
+        color: var(--color-white-1);
+    }
+}

@@ -652,7 +652,7 @@ iframe {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -940,7 +940,7 @@ iframe {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1016,7 +1016,7 @@ iframe {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1575,7 +1575,7 @@ iframe {
     width: 400px;
     height: 40px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1648,7 +1648,7 @@ iframe {
     width: 400px;
     height: 40px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1732,7 +1732,7 @@ iframe {
     width: 400px;
     height: 40px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -2015,8 +2015,8 @@ iframe {
 .current-music-add-playlist-container {
     padding-left: 8px;
     display: flex;
-    min-height: 150px;
-    max-height: 335px;
+    min-height: 190px;
+    max-height: 190px;
     flex-direction: column;
     gap: 5px;
     overflow: auto;

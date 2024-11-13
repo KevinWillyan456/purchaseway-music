@@ -1,8 +1,8 @@
 const signup = document.querySelector('#signup')
 const login = document.querySelector('#login')
-const termsOfUse = document.querySelector('.terms-of-use')
-const containertermsOfUse = document.querySelector('.container-terms-of-use')
-const termsOfUseClose = document.querySelector('#terms-of-use-close')
+const serviceLogo = document.querySelector('.service-logo')
+const termsOfUse = document.querySelector('.terms-and-privacy')
+const termsText = document.querySelector('.terms-text')
 
 signup.addEventListener('click', () => {
     window.location = '/signup'
@@ -10,19 +10,15 @@ signup.addEventListener('click', () => {
 login.addEventListener('click', () => {
     window.location = '/login'
 })
-document.querySelector('.service-logo').addEventListener('click', () => {
+serviceLogo.addEventListener('click', () => {
     window.location = '/'
 })
-
 termsOfUse.addEventListener('click', () => {
-    containertermsOfUse.classList.remove('hidden')
+    window.location = '/terms-and-privacy'
 })
-termsOfUseClose.addEventListener('click', () => {
-    containertermsOfUse.classList.add('hidden')
+termsOfUse.addEventListener('mouseenter', () => {
+    termsText.style.display = 'block'
 })
-
-containertermsOfUse.addEventListener('click', (e) => {
-    if (e.target === containertermsOfUse) {
-        containertermsOfUse.classList.add('hidden')
-    }
+termsOfUse.addEventListener('mouseleave', () => {
+    termsText.style.display = 'none'
 })

@@ -48,6 +48,9 @@ app.get('/config', eAdminManager, (req, res) => {
 app.get('/reset-password', (req, res) => {
     res.render('reset-password')
 })
+app.get('/terms-and-privacy', (req, res) => {
+    res.render('terms-and-privacy')
+})
 app.use((req, res) => {
     res.redirect('/')
 })

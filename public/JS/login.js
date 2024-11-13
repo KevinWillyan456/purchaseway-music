@@ -165,6 +165,7 @@ layerForgot.addEventListener('submit', async (e) => {
         })
 
     if (response.ok) {
+        forgotEmailInput.value = ''
         warning.innerHTML = 'Link de redefinição de senha enviado com sucesso!'
         warning.classList.add('success')
         warning.classList.remove('hidden')

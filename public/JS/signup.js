@@ -5,6 +5,7 @@ const inputPasswordUser = document.querySelector('#inputSenha')
 const inputConectedUser = document.querySelector('#checkbox-conect')
 const btnSubmit = document.querySelector('.btn-submit')
 const warning = document.querySelector('.warning')
+const checkboxTermsPrivacy = document.querySelector('#checkbox-terms-privacy')
 
 const MIN_PASSWORD_LENGTH = 6
 
@@ -77,6 +78,15 @@ form.addEventListener('submit', async (e) => {
         warning.classList.remove('hidden')
         warning.innerHTML = `Senha deve ter no mínimo ${MIN_PASSWORD_LENGTH} caracteres!`
         inputPasswordUser.focus()
+        return (timerAlertMessage = setTimeout(
+            () => warning.classList.add('hidden'),
+            3000
+        ))
+    }
+    if (!checkboxTermsPrivacy.checked) {
+        warning.classList.remove('hidden')
+        warning.innerHTML = 'Você deve aceitar os termos de uso e privacidade!'
+        checkboxTermsPrivacy.focus()
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
             3000

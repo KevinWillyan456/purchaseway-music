@@ -997,7 +997,7 @@ body::-webkit-scrollbar-thumb {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1014,7 +1014,7 @@ body::-webkit-scrollbar-thumb {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1219,7 +1219,7 @@ body::-webkit-scrollbar-thumb {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
@@ -1323,7 +1323,7 @@ body::-webkit-scrollbar-thumb {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-black);
     background: var(--color-white-1);
     color: var(--color-base-3);
     font-size: 15px;
