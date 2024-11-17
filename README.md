@@ -10,6 +10,15 @@ Este repositório contém uma aplicação de gerenciamento de playlists de músi
   - [Pré-requisitos](#pré-requisitos)
   - [Passos de Instalação](#passos-de-instalação)
 - [Estrutura do Projeto](#estrutura-do-projeto)
+- [Documentação das Páginas](#documentação-das-páginas)
+  - [Landing Page](#landing-page)
+  - [Home](#home)
+  - [Acesso Negado](#acesso-negado)
+  - [Cadastro](#cadastro)
+  - [Login](#login)
+  - [Configurações](#configurações)
+  - [Redefinir Senha](#redefinir-senha)
+  - [Termos e Privacidade](#termos-e-privacidade)
 - [Documentação dos Endpoints da API](#documentação-dos-endpoints-da-api)
   - [Músicas](#músicas)
     - [Listar músicas](#listar-músicas)
@@ -25,6 +34,8 @@ Este repositório contém uma aplicação de gerenciamento de playlists de músi
     - [Obter detalhes do usuário](#obter-detalhes-do-usuário)
     - [Atualizar usuário](#atualizar-usuário)
     - [Deletar usuário](#deletar-usuário)
+    - [Solicitar redefinição de senha](#solicitar-redefinição-de-senha)
+    - [Redefinir senha](#redefinir-senha-1)
   - [Funcionalidades do Usuário](#funcionalidades-do-usuário)
     - [Atualizar músicas favoritas](#atualizar-músicas-favoritas)
     - [Atualizar histórico de músicas](#atualizar-histórico-de-músicas)
@@ -118,11 +129,18 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
     # JWT Secret key for token generation
     JWT_SECRET=
 
-    # Port for the server to run on
+    # Port for the server to run on (default: 3000)
     PORT=
 
     # Youtube API key for fetching videos
     API_YOUTUBE_KEY=
+
+    # Email configuration for sending emails (optional) (Required for password reset)
+    EMAIL_USER=
+    EMAIL_PASS=
+
+    # Client URL for sending email verification link (optional) (Required for email verification)
+    CLIENT_URL=
     ```
 
 5. **Execute a aplicação:**
@@ -144,6 +162,67 @@ Siga as instruções abaixo para configurar e executar a aplicação localmente.
 - **src/database.ts**: Conexão com o banco de dados MongoDB.
 - **src/index.ts**: Inicialização do servidor.
 - **src/routes.ts**: Definições de rotas da aplicação.
+
+## Documentação das Páginas
+
+### Landing Page
+
+**GET** `/`
+
+- Renderiza a página inicial.
+- **Handler**: Renderiza `index`.
+
+### Home
+
+**GET** `/home`
+
+- Renderiza a página principal do usuário.
+- **Middleware**: `eAdmin`
+- **Handler**: Renderiza `home`.
+
+### Acesso Negado
+
+**GET** `/denied`
+
+- Renderiza a página de acesso negado.
+- **Handler**: Renderiza `denied`.
+
+### Cadastro
+
+**GET** `/signup`
+
+- Renderiza a página de cadastro.
+- **Handler**: Renderiza `signup`.
+
+### Login
+
+**GET** `/login`
+
+- Renderiza a página de login.
+- **Middleware**: `verifyTokenExists`
+- **Handler**: Renderiza `login`.
+
+### Configurações
+
+**GET** `/config`
+
+- Renderiza a página de configurações.
+- **Middleware**: `eAdminManager`
+- **Handler**: Renderiza `config`.
+
+### Redefinir Senha
+
+**GET** `/reset-password`
+
+- Renderiza a página de redefinição de senha.
+- **Handler**: Renderiza `reset-password`.
+
+### Termos e Privacidade
+
+**GET** `/terms-and-privacy`
+
+- Renderiza a página de termos e privacidade.
+- **Handler**: Renderiza `terms-and-privacy`.
 
 ## Documentação dos Endpoints da API
 
