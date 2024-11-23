@@ -2,13 +2,18 @@ import { Request, Response, NextFunction } from 'express'
 import { validate as isUuid } from 'uuid'
 import { User } from '../models/User'
 
-async function getUser(req: Request, res: Response, next: NextFunction) {
+async function getUser(
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> {
     const { id } = req.params
 
     if (!isUuid(id)) {
         res.clearCookie('user')
         res.clearCookie('token')
-        return res.status(400).json({ error: 'Invalid ID' })
+        res.status(400).json({ error: 'Invalid ID' })
+        return
     }
 
     try {
@@ -17,10 +22,12 @@ async function getUser(req: Request, res: Response, next: NextFunction) {
         if (!user) {
             res.clearCookie('user')
             res.clearCookie('token')
-            return res.status(404).json({ error: 'User not found' })
+            res.status(404).json({ error: 'User not found' })
+            return
         }
     } catch (err) {
-        return res.status(500).json({ error: err })
+        res.status(500).json({ error: err })
+        return
     }
 
     next()

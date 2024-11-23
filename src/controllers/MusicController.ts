@@ -5,39 +5,44 @@ import { Music } from '../models/Music'
 import { User } from '../models/User'
 import MusicHandlers from '../utils/MusicHandlers'
 
-async function indexMusic(req: Request, res: Response) {
+async function indexMusic(req: Request, res: Response): Promise<void> {
     try {
         const songs = await Music.find()
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
             .select('-__v -viewCount')
-        return res.status(200).json({ songs })
+        res.status(200).json({ songs })
     } catch (err) {
         res.status(500).json({ error: err })
     }
 }
 
-async function indexMusicById(req: Request<{ id: string }>, res: Response) {
+async function indexMusicById(
+    req: Request<{ id: string }>,
+    res: Response
+): Promise<void> {
     const { id } = req.params
 
     try {
         const music = await Music.findById(id).select('-__v -viewCount')
 
         if (!music) {
-            return res.status(404).json({ error: 'Music not found' })
+            res.status(404).json({ error: 'Music not found' })
+            return
         }
 
-        return res.status(200).json({ music })
+        res.status(200).json({ music })
     } catch (err) {
         res.status(500).json({ error: err })
     }
 }
 
-async function storeMusic(req: Request, res: Response) {
+async function storeMusic(req: Request, res: Response): Promise<void> {
     const { videoId, gender } = req.body
 
     if (!videoId || !gender) {
-        return res.status(400).json({ error: 'data is missing' })
+        res.status(400).json({ error: 'data is missing' })
+        return
     }
 
     const music = new Music({
@@ -53,7 +58,8 @@ async function storeMusic(req: Request, res: Response) {
     })
 
     if (!music.title) {
-        return res.status(400).json({ error: 'Invalid videoId' })
+        res.status(400).json({ error: 'Invalid videoId' })
+        return
     }
 
     try {
@@ -63,23 +69,29 @@ async function storeMusic(req: Request, res: Response) {
         )
 
         if (songAlreadyExists) {
-            return res.status(400).json({ error: 'Music already exists' })
+            res.status(400).json({ error: 'Music already exists' })
+            return
         }
 
         await music.save()
 
-        return res.status(201).json({ message: 'Music added successfully!' })
+        res.status(201).json({ message: 'Music added successfully!' })
+        return
     } catch (err) {
         res.status(400).json({ error: err })
     }
 }
 
-async function updateMusic(req: Request<{ id: string }>, res: Response) {
+async function updateMusic(
+    req: Request<{ id: string }>,
+    res: Response
+): Promise<void> {
     const { videoId } = req.body
     const { id } = req.params
 
     if (!videoId) {
-        return res.status(400).json({ error: 'VideoId is missing' })
+        res.status(400).json({ error: 'VideoId is missing' })
+        return
     }
 
     const filter = { _id: id }
@@ -95,13 +107,14 @@ async function updateMusic(req: Request<{ id: string }>, res: Response) {
     }
 
     if (!updateDoc.$set.title) {
-        return res.status(400).json({ error: 'Invalid videoId' })
+        res.status(400).json({ error: 'Invalid videoId' })
+        return
     }
 
     try {
         await Music.updateOne(filter, updateDoc)
 
-        return res.status(200).json({ message: 'Music updated successfully!' })
+        res.status(200).json({ message: 'Music updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -110,7 +123,7 @@ async function updateMusic(req: Request<{ id: string }>, res: Response) {
 async function deleteMusic(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
-) {
+): Promise<void> {
     const { id } = req.params
     const filter = { _id: id }
 
@@ -179,29 +192,35 @@ async function deleteMusic(
         })
 
         await Music.deleteOne(filter)
-        return res.status(200).json({ message: 'Music removed successfully!' })
+        res.status(200).json({ message: 'Music removed successfully!' })
     } catch (err) {
-        return res.status(500).json({ error: err })
+        res.status(500).json({ error: err })
     }
 }
 
-async function incrementViewCount(req: Request<{ id: string }>, res: Response) {
+async function incrementViewCount(
+    req: Request<{ id: string }>,
+    res: Response
+): Promise<void> {
     const { id } = req.params
     const userId = req.body.userId
 
     if (!userId) {
-        return res.status(400).json({ error: 'UserId is missing' })
+        res.status(400).json({ error: 'UserId is missing' })
+        return
     }
 
     try {
         const user = await User.findById(userId)
         if (!user) {
-            return res.status(404).json({ error: 'User not found' })
+            res.status(404).json({ error: 'User not found' })
+            return
         }
 
         const music = await Music.findById(id)
         if (!music) {
-            return res.status(404).json({ error: 'Music not found' })
+            res.status(404).json({ error: 'Music not found' })
+            return
         }
 
         if (music.viewCount.length === 1 && !music.viewCount[0].userId) {
@@ -226,9 +245,10 @@ async function incrementViewCount(req: Request<{ id: string }>, res: Response) {
             )
 
             if (diffInHours < 6) {
-                return res.status(200).json({
+                res.status(200).json({
                     error: 'View not added. You can only view once every 6 hours',
                 })
+                return
             }
         }
 
@@ -240,11 +260,11 @@ async function incrementViewCount(req: Request<{ id: string }>, res: Response) {
 
         await music.save()
 
-        return res
-            .status(200)
-            .json({ message: 'View count incremented successfully!' })
+        res.status(200).json({
+            message: 'View count incremented successfully!',
+        })
     } catch (err) {
-        return res.status(500).json({ error: err })
+        res.status(500).json({ error: err })
     }
 }
 

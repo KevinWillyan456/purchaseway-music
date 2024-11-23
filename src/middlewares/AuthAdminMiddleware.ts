@@ -72,7 +72,7 @@ async function eAdminManagerRequest(
     req: Request,
     res: Response,
     next: NextFunction
-) {
+): Promise<void> {
     const userId = req.query.userId
 
     try {
@@ -81,10 +81,10 @@ async function eAdminManagerRequest(
         if (user && user.type === 'admin') {
             next()
         } else {
-            return res.status(403).json({ message: 'Access denied' })
+            res.status(403).json({ message: 'Access denied' })
         }
     } catch (err) {
-        return res.status(500).json({ error: err })
+        res.status(500).json({ error: err })
     }
 }
 

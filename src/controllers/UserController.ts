@@ -16,13 +16,14 @@ const MAX_AGE_COOKIE_10_MINUTES = 600000
 const MAX_AGE_TOKEN = '7d'
 const MAX_AGE_TOKEN_10_MINUTES = 600
 
-async function indexUser(req: Request, res: Response) {
+async function indexUser(req: Request, res: Response): Promise<void> {
     try {
         const users = await User.find(
             {},
             '-password -tokens -musicHistory -favoriteSongs -myPlaylists -__v -resetPasswordToken -resetPasswordExpires'
         )
-        return res.status(200).json({ users })
+
+        res.status(200).json({ users })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -39,7 +40,8 @@ async function indexUserById(
             id,
             '-password -tokens -__v -resetPasswordToken -resetPasswordExpires'
         )
-        return res.status(200).json({ user })
+        res.status(200).json({ user })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -63,17 +65,19 @@ function getMonthName(monthIndex: number): string {
     return months[monthIndex]
 }
 
-async function storeUser(req: Request, res: Response) {
+async function storeUser(req: Request, res: Response): Promise<void> {
     const { name, email, password } = req.body
 
     if (!name || !email || !password) {
-        return res.status(400).json({ error: 'data is missing' })
+        res.status(400).json({ error: 'data is missing' })
+        return
     }
 
     if (password.length < MIN_PASSWORD_LENGTH) {
-        return res.status(400).json({
+        res.status(400).json({
             error: `Password must have at least ${MIN_PASSWORD_LENGTH} characters`,
         })
+        return
     }
 
     const encryptedPassword = await bcrypt.hash(password, 8)
@@ -158,17 +162,19 @@ async function storeUser(req: Request, res: Response) {
             })
         }
 
-        return res.status(201).json({ message: 'User added successfully!' })
+        res.status(201).json({ message: 'User added successfully!' })
+        return
     } catch (err) {
         res.status(400).json({ error: err })
     }
 }
 
-async function loginUser(req: Request, res: Response) {
+async function loginUser(req: Request, res: Response): Promise<void> {
     const { email, password, hasConnect } = req.body
 
     if (!email || !password) {
-        return res.status(400).json({ error: 'data is missing' })
+        res.status(400).json({ error: 'data is missing' })
+        return
     }
 
     try {
@@ -177,11 +183,13 @@ async function loginUser(req: Request, res: Response) {
         let dateCookieExpires: number
 
         if (!user) {
-            return res.status(400).json({ error: 'wrong email or password' })
+            res.status(400).json({ error: 'wrong email or password' })
+            return
         }
 
         if (!(await bcrypt.compare(password, user?.password))) {
-            return res.status(400).json({ error: 'wrong email or password' })
+            res.status(400).json({ error: 'wrong email or password' })
+            return
         }
 
         if (hasConnect) {
@@ -199,16 +207,16 @@ async function loginUser(req: Request, res: Response) {
         res.cookie('token', `Bearer ${token}`, {
             maxAge: dateCookieExpires,
         })
-        return res.status(200).json({
+        res.status(200).json({
             erro: false,
             mensagem: 'Login',
             token,
         })
     } catch (err) {
-        return res.status(500).json({ error: err })
+        res.status(500).json({ error: err })
     }
 }
-async function logoutUser(req: Request, res: Response) {
+async function logoutUser(req: Request, res: Response): Promise<void> {
     const { id } = req.params
 
     const filter = { _id: id }
@@ -216,7 +224,8 @@ async function logoutUser(req: Request, res: Response) {
     try {
         const user = await User.findById(id)
         if (!user) {
-            return res.status(404).json({ error: 'User not found' })
+            res.status(404).json({ error: 'User not found' })
+            return
         }
 
         const tokens = user.tokens.filter((token) => {
@@ -237,7 +246,8 @@ async function logoutUser(req: Request, res: Response) {
         const token = req.cookies.token
 
         if (!token) {
-            return res.status(400).json({ error: 'Token is missing' })
+            res.status(400).json({ error: 'Token is missing' })
+            return
         }
 
         const tokenFormated = token.split(' ')[1]
@@ -253,29 +263,29 @@ async function logoutUser(req: Request, res: Response) {
                 },
             })
         } else {
-            return res.status(400).json({ error: 'Token is invalid' })
+            res.status(400).json({ error: 'Token is invalid' })
+            return
         }
 
         res.clearCookie('token')
         res.clearCookie('user')
 
-        return res
-            .status(200)
-            .json({ message: 'User logged out successfully!' })
+        res.status(200).json({ message: 'User logged out successfully!' })
     } catch (error) {
-        return res.status(500).json({ error })
+        res.status(500).json({ error })
     }
 }
 
 async function updateUser(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
-) {
+): Promise<void> {
     const { name, email, password } = req.body
     const { id } = req.params
 
     if (!name && !email && !password) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+        res.status(400).json({ error: 'You must enter a new data' })
+        return
     }
 
     if (name && !email && !password) {
@@ -286,9 +296,8 @@ async function updateUser(
 
         try {
             await User.updateOne(filterName, updateDocName)
-            return res
-                .status(200)
-                .json({ message: 'User updated successfully!' })
+            res.status(200).json({ message: 'User updated successfully!' })
+            return
         } catch (err) {
             res.status(500).json({ error: err })
         }
@@ -308,7 +317,8 @@ async function updateUser(
     try {
         await User.updateOne(filter, updateDoc)
 
-        return res.status(200).json({ message: 'User updated successfully!' })
+        res.status(200).json({ message: 'User updated successfully!' })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -325,7 +335,8 @@ async function deleteUser(
         const user = await User.findById(id)
 
         if (!user) {
-            return res.status(404).json({ error: 'User not found' })
+            res.status(404).json({ error: 'User not found' })
+            return
         }
 
         await User.deleteOne(filter)
@@ -368,28 +379,32 @@ async function deleteUser(
             })
         }
 
-        return res.status(200).json({ message: 'User removed successfully!' })
+        res.status(200).json({ message: 'User removed successfully!' })
+        return
     } catch (err) {
-        return res.status(500).json({ error: err })
+        res.status(500).json({ error: err })
+        return
     }
 }
 
 async function updateUserFavoriteSongs(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
-) {
+): Promise<void> {
     const { musicId, musicGender } = req.body
     const { id } = req.params
 
     if (!musicId || !musicGender) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+        res.status(400).json({ error: 'You must enter a new data' })
+        return
     }
 
     const user: IUser | null = await User.findById(id, '-password -tokens')
     const musicGenderUser: string[] = await Music.distinct('gender')
 
     if (!musicGenderUser.includes(musicGender)) {
-        return res.status(400).json({ error: 'You must enter valid values' })
+        res.status(400).json({ error: 'You must enter valid values' })
+        return
     }
 
     interface Contador {
@@ -466,21 +481,21 @@ async function updateUserFavoriteSongs(
 
         if (musicExists) {
             await User.updateOne(filter, updateDoc2)
-            return res
-                .status(200)
-                .json({ message: 'User updated successfully!' })
+            res.status(200).json({ message: 'User updated successfully!' })
+            return
         }
         if (favoriteSize >= maxSizeFavorite) {
-            return res.status(200).json({ message: 'limit reached' })
+            res.status(200).json({ message: 'limit reached' })
+            return
         }
         if (!musicExists) {
             await User.updateOne(filter, updateDoc1)
-            return res
-                .status(200)
-                .json({ message: 'User updated successfully!' })
+            res.status(200).json({ message: 'User updated successfully!' })
+            return
         }
 
-        return res.status(200).json({ message: 'User updated successfully!' })
+        res.status(200).json({ message: 'User updated successfully!' })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -489,20 +504,22 @@ async function updateUserFavoriteSongs(
 async function updateUserMusicHistoric(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
-) {
+): Promise<void> {
     const { musicId, musicGender } = req.body
     const { id } = req.params
     const maxSizeHistoric = 10
 
     if (!musicId || !musicGender) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+        res.status(400).json({ error: 'You must enter a new data' })
+        return
     }
 
     const user: IUser | null = await User.findById(id, '-password -tokens')
     const musicGenderUser: string[] = await Music.distinct('gender')
 
     if (!musicGenderUser.includes(musicGender)) {
-        return res.status(400).json({ error: 'You must enter valid values' })
+        res.status(400).json({ error: 'You must enter valid values' })
+        return
     }
 
     interface Contador {
@@ -631,9 +648,8 @@ async function updateUserMusicHistoric(
     try {
         if (musicId == 'clear') {
             await User.updateOne(filter, updateDoc4)
-            return res
-                .status(200)
-                .json({ message: 'User updated successfully!' })
+            res.status(200).json({ message: 'User updated successfully!' })
+            return
         }
 
         const [...musicHistory] = user?.musicHistory || []
@@ -642,9 +658,8 @@ async function updateUserMusicHistoric(
         )
 
         if (musicExists && historySize <= 1) {
-            return res
-                .status(200)
-                .json({ message: 'User updated successfully!' })
+            res.status(200).json({ message: 'User updated successfully!' })
+            return
         }
         if (musicExists) {
             await User.updateOne(filter, updateDoc3)
@@ -653,27 +668,24 @@ async function updateUserMusicHistoric(
             if (historySize > maxSizeHistoric) {
                 await User.updateOne(filter, updateDoc2)
             }
-            return res
-                .status(200)
-                .json({ message: 'User updated successfully!' })
+            res.status(200).json({ message: 'User updated successfully!' })
+            return
         }
         if (historySize < maxSizeHistoric) {
             await User.updateOne(filter, updateDoc1)
 
-            return res
-                .status(200)
-                .json({ message: 'User updated successfully!' })
+            res.status(200).json({ message: 'User updated successfully!' })
+            return
         }
         if (historySize >= maxSizeHistoric) {
             await User.updateOne(filter, updateDoc2a)
             await User.updateOne(filter, updateDoc1)
 
-            return res
-                .status(200)
-                .json({ message: 'User updated successfully!' })
+            res.status(200).json({ message: 'User updated successfully!' })
+            return
         }
 
-        return res.status(200).json({ message: 'User updated successfully!' })
+        res.status(200).json({ message: 'User updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -687,7 +699,8 @@ async function updateUserPlaylistSelected(
     const { id } = req.params
 
     if (!lastAccessedPlaylist || !lastAccessedPlaylistName) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+        res.status(400).json({ error: 'You must enter a new data' })
+        return
     }
 
     const updateDoc1 = {
@@ -698,7 +711,8 @@ async function updateUserPlaylistSelected(
 
     try {
         await User.updateOne(filter, updateDoc1)
-        return res.status(200).json({ message: 'User updated successfully!' })
+        res.status(200).json({ message: 'User updated successfully!' })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -711,18 +725,21 @@ async function allSongAndPlaylistData(
     const { userId } = req.params
 
     if (!isUuid(userId)) {
-        return res.status(400).json({ error: 'Invalid user id' })
+        res.status(400).json({ error: 'Invalid user id' })
+        return
     }
 
     try {
         const user = await User.findById(userId)
 
         if (!user) {
-            return res.status(404).json({ error: 'User not found' })
+            res.status(404).json({ error: 'User not found' })
+            return
         }
 
         if (user.type !== 'admin') {
-            return res.status(401).json({ error: 'User is not an admin' })
+            res.status(401).json({ error: 'User is not an admin' })
+            return
         }
 
         const playlists = await Playlist.find()
@@ -735,7 +752,8 @@ async function allSongAndPlaylistData(
             .collation({ locale: 'pt', strength: 2 })
             .select('-__v')
 
-        return res.status(200).json({ playlists, songs })
+        res.status(200).json({ playlists, songs })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -762,7 +780,8 @@ async function updateUserProfilePicture(
 
     try {
         await User.updateOne(filter, updateDoc)
-        return res.status(200).json({ message: 'User updated successfully!' })
+        res.status(200).json({ message: 'User updated successfully!' })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -778,10 +797,12 @@ async function indexUserPlaylist(
         const user: IUser | null = await User.findById(id)
 
         if (!user) {
-            return res.status(404).json({ error: 'User playlist not found' })
+            res.status(404).json({ error: 'User playlist not found' })
+            return
         }
 
-        return res.status(200).json({ myPlaylists: user.myPlaylists })
+        res.status(200).json({ myPlaylists: user.myPlaylists })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -790,12 +811,13 @@ async function indexUserPlaylist(
 async function storeUserPlaylist(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
-) {
+): Promise<void> {
     const { title } = req.body
     const { id } = req.params
 
     if (!title) {
-        return res.status(400).json({ error: 'data is missing' })
+        res.status(400).json({ error: 'data is missing' })
+        return
     }
 
     const filter = { _id: id }
@@ -814,9 +836,7 @@ async function storeUserPlaylist(
 
     try {
         await User.updateOne(filter, updateDoc)
-        return res
-            .status(201)
-            .json({ message: 'User playlist added successfully!' })
+        res.status(201).json({ message: 'User playlist added successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -828,12 +848,13 @@ async function updateUserPlaylist(
         pid?: UpdateWithAggregationPipeline
     }>,
     res: Response
-) {
+): Promise<void> {
     const { title, currentCoverUrl } = req.body
     const { id, pid } = req.params
 
     if (!title && !currentCoverUrl) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+        res.status(400).json({ error: 'You must enter a new data' })
+        return
     }
 
     const filter = { _id: id, 'myPlaylists._id': pid }
@@ -848,12 +869,11 @@ async function updateUserPlaylist(
         const result = await User.updateOne(filter, updateDoc)
 
         if (result.matchedCount < 1) {
-            return res.status(404).json({ error: 'User playlist not found' })
+            res.status(404).json({ error: 'User playlist not found' })
+            return
         }
 
-        return res
-            .status(200)
-            .json({ message: 'User playlist updated successfully!' })
+        res.status(200).json({ message: 'User playlist updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -865,7 +885,7 @@ async function deleteUserPlaylist(
         pid?: UpdateWithAggregationPipeline
     }>,
     res: Response
-) {
+): Promise<void> {
     const { id, pid } = req.params
 
     const filter = { _id: id }
@@ -878,12 +898,11 @@ async function deleteUserPlaylist(
     try {
         const result = await User.updateOne(filter, updateDoc)
         if (result.modifiedCount < 1) {
-            return res.status(404).json({ error: 'User playlist not found' })
+            res.status(404).json({ error: 'User playlist not found' })
+            return
         }
 
-        return res
-            .status(200)
-            .json({ message: 'User playlist removed successfully!' })
+        res.status(200).json({ message: 'User playlist removed successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -895,22 +914,25 @@ async function storeUserPlaylistSongs(
         pid?: UpdateWithAggregationPipeline
     }>,
     res: Response
-) {
+): Promise<void> {
     const { musicIds } = req.body
     const { id, pid } = req.params
 
     if (!musicIds || !Array.isArray(musicIds)) {
-        return res.status(400).json({ error: 'data is missing' })
+        res.status(400).json({ error: 'data is missing' })
+        return
     }
 
     const lastMusicId = musicIds[musicIds.length - 1]
     const music = await Music.findOne({ _id: lastMusicId })
     if (!music) {
-        return res.status(404).json({ error: 'Music not found' })
+        res.status(404).json({ error: 'Music not found' })
+        return
     }
     const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
     if (!user) {
-        return res.status(404).json({ error: 'User playlist not found' })
+        res.status(404).json({ error: 'User playlist not found' })
+        return
     }
 
     const filter = { _id: id, 'myPlaylists._id': pid }
@@ -975,9 +997,9 @@ async function storeUserPlaylistSongs(
         user.myPlaylists.forEach(async (playlist) => {
             await updatePlaylistTotalSongs(user._id, playlist._id)
         })
-        return res
-            .status(201)
-            .json({ message: 'User playlist songs added successfully!' })
+        res.status(201).json({
+            message: 'User playlist songs added successfully!',
+        })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -990,7 +1012,7 @@ async function deleteUserPlaylistSongs(
         sid?: UpdateWithAggregationPipeline
     }>,
     res: Response
-) {
+): Promise<void> {
     const { id, pid, sid } = req.params
 
     const filter = { _id: id, 'myPlaylists._id': pid }
@@ -1045,13 +1067,13 @@ async function deleteUserPlaylistSongs(
     try {
         const result = await User.updateOne(filter, updateDoc, options)
         if (result.modifiedCount < 1) {
-            return res
-                .status(404)
-                .json({ error: 'User playlist song not found' })
+            res.status(404).json({ error: 'User playlist song not found' })
+            return
         }
         const user = await User.findOne({ _id: id, 'myPlaylists._id': pid })
         if (!user) {
-            return res.status(404).json({ error: 'User playlist not found' })
+            res.status(404).json({ error: 'User playlist not found' })
+            return
         }
         user.myPlaylists.forEach(async (playlist) => {
             await updatePlaylistTotalSongs(user._id, playlist._id)
@@ -1078,9 +1100,10 @@ async function deleteUserPlaylistSongs(
                 }
             )
 
-            return res
-                .status(200)
-                .json({ message: 'User playlist song deleted successfully!' })
+            res.status(200).json({
+                message: 'User playlist song deleted successfully!',
+            })
+            return
         }
 
         const music = await Music.findOne({
@@ -1090,7 +1113,8 @@ async function deleteUserPlaylistSongs(
         })
 
         if (!music) {
-            return res.status(404).json({ error: 'Music not found' })
+            res.status(404).json({ error: 'Music not found' })
+            return
         }
 
         await User.updateOne(
@@ -1105,9 +1129,9 @@ async function deleteUserPlaylistSongs(
             }
         )
 
-        return res
-            .status(200)
-            .json({ message: 'User playlist song deleted successfully!' })
+        res.status(200).json({
+            message: 'User playlist song deleted successfully!',
+        })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -1121,7 +1145,8 @@ async function updateUserTheme(
     const { id } = req.params
 
     if (!theme) {
-        return res.status(400).json({ error: 'Theme is missing' })
+        res.status(400).json({ error: 'Theme is missing' })
+        return
     }
 
     const updateDoc = {
@@ -1132,26 +1157,34 @@ async function updateUserTheme(
 
     try {
         await User.updateOne(filter, updateDoc)
-        return res.status(200).json({ message: 'User updated successfully!' })
+        res.status(200).json({ message: 'User updated successfully!' })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
 }
 
-async function requestPasswordReset(req: Request, res: Response) {
+async function requestPasswordReset(
+    req: Request,
+    res: Response
+): Promise<void> {
     const { email } = req.body
     const user = await User.findOne({ email })
 
-    if (!user) return res.status(404).json({ error: 'User not found' })
+    if (!user) {
+        res.status(404).json({ error: 'User not found' })
+        return
+    }
 
     if (
         !process.env.EMAIL_USER ||
         !process.env.EMAIL_PASS ||
         !process.env.CLIENT_URL
     ) {
-        return res.status(500).json({
+        res.status(500).json({
             error: 'Password reset is not available because email service is not configured',
         })
+        return
     }
 
     try {
@@ -1188,23 +1221,26 @@ async function requestPasswordReset(req: Request, res: Response) {
         `,
         })
 
-        return res.status(200).json({ message: 'Password reset email sent' })
+        res.status(200).json({ message: 'Password reset email sent' })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
 }
 
-async function resetPassword(req: Request, res: Response) {
+async function resetPassword(req: Request, res: Response): Promise<void> {
     const { token, newPassword } = req.body
 
     if (!token || !newPassword) {
-        return res.status(400).json({ error: 'Token or password is missing' })
+        res.status(400).json({ error: 'Token or password is missing' })
+        return
     }
 
     if (newPassword.length < MIN_PASSWORD_LENGTH) {
-        return res.status(400).json({
+        res.status(400).json({
             error: `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`,
         })
+        return
     }
 
     try {
@@ -1213,13 +1249,16 @@ async function resetPassword(req: Request, res: Response) {
             resetPasswordExpires: { $gt: new Date() },
         })
 
-        if (!user)
-            return res.status(400).json({ error: 'Invalid or expired token' })
+        if (!user) {
+            res.status(400).json({ error: 'Invalid or expired token' })
+            return
+        }
 
         if (await bcrypt.compare(newPassword, user.password)) {
-            return res.status(400).json({
+            res.status(400).json({
                 error: 'New password must be different from the current one',
             })
+            return
         }
 
         const encryptedPassword = await bcrypt.hash(newPassword, 8)
@@ -1229,7 +1268,8 @@ async function resetPassword(req: Request, res: Response) {
         user.resetPasswordExpires = undefined
         await user.save()
 
-        return res.status(200).json({ message: 'Password reset successfully' })
+        res.status(200).json({ message: 'Password reset successfully' })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }

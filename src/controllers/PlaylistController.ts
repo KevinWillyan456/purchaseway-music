@@ -7,30 +7,33 @@ import { IUser, User } from '../models/User'
 
 const MAX_LENGTH_TITLE_PLAYLIST = 50
 
-async function indexPlaylist(req: Request, res: Response) {
+async function indexPlaylist(req: Request, res: Response): Promise<void> {
     try {
         const playlists = await Playlist.find()
             .sort({ title: 1 })
             .collation({ locale: 'pt', strength: 2 })
             .select('-__v')
 
-        return res.status(200).json({ playlists })
+        res.status(200).json({ playlists })
+        return
     } catch (err) {
         res.status(500).json({ error: err })
     }
 }
 
-async function storePlaylist(req: Request, res: Response) {
+async function storePlaylist(req: Request, res: Response): Promise<void> {
     const { title, coverUrl, description, gender } = req.body
 
     if (!title || !description || !gender) {
-        return res.status(400).json({ error: 'data is missing' })
+        res.status(400).json({ error: 'data is missing' })
+        return
     }
 
     if (title.length > MAX_LENGTH_TITLE_PLAYLIST) {
-        return res.status(400).json({
+        res.status(400).json({
             error: `The title must have a maximum of ${MAX_LENGTH_TITLE_PLAYLIST} characters`,
         })
+        return
     }
 
     const currentCoverUrl = coverUrl
@@ -49,7 +52,7 @@ async function storePlaylist(req: Request, res: Response) {
     try {
         await playlist.save()
 
-        return res.status(201).json({ message: 'Playlist added successfully!' })
+        res.status(201).json({ message: 'Playlist added successfully!' })
     } catch (err) {
         res.status(400).json({ error: err })
     }
@@ -58,7 +61,7 @@ async function storePlaylist(req: Request, res: Response) {
 async function updatePlaylist(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
-) {
+): Promise<void> {
     const { title, coverUrl, description, gender } = req.body
     const { id } = req.params
 
@@ -67,13 +70,15 @@ async function updatePlaylist(
         : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'
 
     if (!title && !currentCoverUrl && !description && !gender) {
-        return res.status(400).json({ error: 'You must enter a new data' })
+        res.status(400).json({ error: 'You must enter a new data' })
+        return
     }
 
     if (title && title.length > MAX_LENGTH_TITLE_PLAYLIST) {
-        return res.status(400).json({
+        res.status(400).json({
             error: `The title must have a maximum of ${MAX_LENGTH_TITLE_PLAYLIST} characters`,
         })
+        return
     }
 
     const filter = { _id: id }
@@ -101,9 +106,7 @@ async function updatePlaylist(
             )
         }
 
-        return res
-            .status(200)
-            .json({ message: 'Playlist updated successfully!' })
+        res.status(200).json({ message: 'Playlist updated successfully!' })
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -112,24 +115,22 @@ async function updatePlaylist(
 async function deletePlaylist(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
-) {
+): Promise<void> {
     const { id } = req.params
     const filter = { _id: id }
 
     try {
         await Playlist.deleteOne(filter)
-        return res
-            .status(200)
-            .json({ message: 'Playlist removed successfully!' })
+        res.status(200).json({ message: 'Playlist removed successfully!' })
     } catch (err) {
-        return res.status(500).json({ error: err })
+        res.status(500).json({ error: err })
     }
 }
 
 async function deletePlaylistAndSongs(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
     res: Response
-) {
+): Promise<void> {
     const { id } = req.params
     const filter = { _id: id }
 
@@ -206,20 +207,21 @@ async function deletePlaylistAndSongs(
         })
 
         await Playlist.deleteOne(filter)
-        return res
-            .status(200)
-            .json({ message: 'Playlist and songs removed successfully!' })
+        res.status(200).json({
+            message: 'Playlist and songs removed successfully!',
+        })
     } catch (err) {
-        return res.status(500).json({ error: err })
+        res.status(500).json({ error: err })
     }
 }
 
-async function selectPlaylist(req: Request, res: Response) {
+async function selectPlaylist(req: Request, res: Response): Promise<void> {
     const { playlist } = req.query
     const { id } = req.params
 
     if (!playlist) {
-        return res.status(200).json({ songs: [] })
+        res.status(200).json({ songs: [] })
+        return
     }
 
     try {
@@ -241,7 +243,8 @@ async function selectPlaylist(req: Request, res: Response) {
                 .collation({ locale: 'pt', strength: 2 })
                 .select('-__v')
 
-            return res.status(200).json({ songs })
+            res.status(200).json({ songs })
+            return
         }
 
         const songs = await Music.find({ gender: playlist })
@@ -249,7 +252,7 @@ async function selectPlaylist(req: Request, res: Response) {
             .collation({ locale: 'pt', strength: 2 })
             .select('-__v')
 
-        return res.status(200).json({ songs })
+        res.status(200).json({ songs })
     } catch (err) {
         res.status(500).json({ error: err })
     }

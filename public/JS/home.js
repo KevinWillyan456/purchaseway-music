@@ -4862,6 +4862,10 @@ function manageEmptyPlaylist(itsMyPlaylist = false) {
         loadingRoller.classList.add('hidden')
         loadMore.classList.add('hidden')
 
+        if (document.querySelector('.empty-playlist')) {
+            document.querySelector('.empty-playlist').remove()
+        }
+
         if (!document.querySelector('.empty-playlist')) {
             const emptyPlaylist = document.createElement('div')
             emptyPlaylist.className = 'empty-playlist'
@@ -4886,6 +4890,10 @@ function manageEmptyPlaylist(itsMyPlaylist = false) {
     } else {
         loadingRollerMobile.classList.add('hidden')
         loadMoreMobile.classList.add('hidden')
+
+        if (document.querySelector('.empty-playlist-mobile')) {
+            document.querySelector('.empty-playlist-mobile').remove()
+        }
 
         if (!document.querySelector('.empty-playlist-mobile')) {
             const emptyPlaylistMobile = document.createElement('div')
