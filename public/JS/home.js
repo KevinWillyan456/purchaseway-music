@@ -430,6 +430,10 @@ audioControllerPlayMobile.addEventListener('click', audioControllerPlayFunction)
 audioControllerNextMobile.addEventListener('click', audioControllerNextFunction)
 audioControllerPrevMobile.addEventListener('click', audioControllerPrevFunction)
 
+window.addEventListener('resize', () => {
+    allFunctionResizing()
+})
+
 let canKeyboardEvents = true
 let canKeyboardEventsProfile = true
 document.addEventListener('keyup', function (event) {
