@@ -3,13 +3,13 @@ html {
     height: 100%;
 }
 body {
-    max-height: 100vh;
+    max-height: 100dvh;
 }
 .super-main {
     display: grid;
     grid-template-columns: 500px auto;
-    max-height: 100vh;
-    grid-template-rows: calc(100vh - 120px) auto;
+    max-height: 100dvh;
+    grid-template-rows: calc(100dvh - 120px) auto;
 }
 @media (max-width: 1359px) {
     .super-main {
@@ -118,8 +118,8 @@ body {
 .container-playlist {
     width: 100%;
     overflow-y: auto;
-    max-height: calc(100vh - 226px);
-    height: calc(100vh - 226px);
+    max-height: calc(100dvh - 226px);
+    height: calc(100dvh - 226px);
     margin-left: -5px;
     padding: 0 0 0 20px;
 }
@@ -251,7 +251,7 @@ body {
 }
 .container-frame {
     aspect-ratio: 16 / 9;
-    min-width: calc(100vh);
+    min-width: calc(100dvh);
 }
 iframe {
     width: 100%;
@@ -311,7 +311,9 @@ iframe {
     font-size: 14px;
 }
 .search-bar input:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .search-bar .search-bar-close {
     display: flex;
@@ -620,7 +622,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     background-color: #000000cc;
     display: grid;
     place-items: center;
@@ -660,7 +662,9 @@ iframe {
     margin-bottom: 20px;
 }
 .layer-profile-picture .container-profile-picture .field:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .layer-profile-picture .container-profile-picture .field::placeholder {
     color: var(--color-base-3);
@@ -908,7 +912,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     background-color: #000000cc;
     display: grid;
     place-items: center;
@@ -948,7 +952,9 @@ iframe {
     margin-bottom: 20px;
 }
 .form-change-name-account-overflow .form-change-name-account .field:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-change-name-account-overflow
     .form-change-name-account
@@ -976,7 +982,7 @@ iframe {
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     display: grid;
     place-items: center;
 }
@@ -1024,7 +1030,9 @@ iframe {
     margin-bottom: 20px;
 }
 .form-delete-account-overflow .form-delete-account .field:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-delete-account-overflow .form-delete-account .field::placeholder {
     color: var(--color-base-3);
@@ -1084,7 +1092,8 @@ iframe {
     }
 }
 .warning {
-    animation: warning-anime-color 1s infinite alternate,
+    animation:
+        warning-anime-color 1s infinite alternate,
         warning-anime-entrace 500ms linear;
     position: absolute;
     top: 20px;
@@ -1413,7 +1422,7 @@ iframe {
 }
 .main-select-playlists {
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     position: fixed;
     top: 0;
     left: 0;
@@ -1487,7 +1496,9 @@ iframe {
     font-size: 14px;
 }
 .main-select-playlists .playlists-search-bar-input:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .main-select-playlists .playlists-search-bar-input::placeholder {
     color: var(--color-black);
@@ -1533,7 +1544,9 @@ iframe {
 
     &:hover,
     &:focus {
-        box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+        box-shadow:
+            0 0 0 5px var(--color-base-2),
+            0 0 25px var(--color-base-2);
     }
 }
 .add-my-new-playlist-overflow {
@@ -1541,7 +1554,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1586,7 +1599,9 @@ iframe {
 .add-my-new-playlist-overflow
     .add-my-new-playlist-container
     .add-my-new-playlist-name:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .add-my-new-playlist-overflow
     .add-my-new-playlist-container
@@ -1614,7 +1629,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1659,7 +1674,9 @@ iframe {
 .edit-my-new-playlist-overflow
     .edit-my-new-playlist-container
     .edit-my-new-playlist-name:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .edit-my-new-playlist-overflow
     .edit-my-new-playlist-container
@@ -1687,7 +1704,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1743,7 +1760,9 @@ iframe {
 .delete-my-new-playlist-overflow
     .delete-my-new-playlist-container
     .delete-my-new-playlist-name:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .delete-my-new-playlist-overflow
     .delete-my-new-playlist-container
@@ -1795,7 +1814,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -1886,7 +1905,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -1971,7 +1990,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -2091,7 +2110,7 @@ iframe {
 }
 .main-minhas-playlists {
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     position: fixed;
     top: 0;
     left: 0;
@@ -2155,7 +2174,9 @@ iframe {
     font-size: 14px;
 }
 .main-minhas-playlists .minhas-playlists-search-bar-input:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .main-minhas-playlists .minhas-playlists-search-bar-input::placeholder {
     color: var(--color-black);
@@ -2247,7 +2268,7 @@ iframe {
 }
 .container-minha-playlist {
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -2552,7 +2573,7 @@ iframe {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2690,6 +2711,15 @@ iframe {
     border: 2px solid var(--color-white-1);
     border-radius: 10px;
     margin: 20px auto;
+}
+.loading-screen {
+    width: 100%;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--color-base-1);
+    z-index: 1050;
 }
 .hidden {
     display: none !important;

@@ -2,7 +2,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 100dvh;
     background-color: var(--color-base-1);
     background-image: url('https://i.ibb.co/CtPQ8Np/background-5.png');
     background-position: center center;
@@ -80,11 +80,15 @@ body::before {
 }
 @keyframes color-button {
     0% {
-        box-shadow: 0 0 5px var(--color-base-2), 0 0 10px var(--color-base-2);
+        box-shadow:
+            0 0 5px var(--color-base-2),
+            0 0 10px var(--color-base-2);
         color: var(--color-base-2);
     }
     100% {
-        box-shadow: 0 0 5px var(--color-white-1), 0 0 10px var(--color-white-1);
+        box-shadow:
+            0 0 5px var(--color-white-1),
+            0 0 10px var(--color-white-1);
         color: var(--color-white-1);
     }
 }

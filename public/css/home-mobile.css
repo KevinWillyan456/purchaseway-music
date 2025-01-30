@@ -4,7 +4,7 @@ body {
 .super-main-mobile {
     background-color: var(--color-base-1);
     width: 100%;
-    min-height: 100vh;
+    min-height: 100dvh;
     padding-top: 20px;
 }
 @media (max-width: 1359px) {
@@ -191,8 +191,8 @@ body {
 .main-playlist-mobile .container-playlist-mobile {
     width: 100%;
     overflow-y: scroll;
-    min-height: calc(var(--vh, 1vh) * 100 - 238px);
-    height: calc(var(--vh, 1vh) * 100 - 238px);
+    min-height: calc(var(--dvh, 1dvh) * 100 - 238px);
+    height: calc(var(--dvh, 1dvh) * 100 - 238px);
 
     padding-right: 5px;
     margin-bottom: 5px;
@@ -375,7 +375,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: calc(var(--dvh, 1dvh) * 100);
     background-color: var(--color-black);
 }
 .main-display-mobile.show {
@@ -389,7 +389,7 @@ body {
 
 @keyframes up-display {
     0% {
-        transform: translateY(100vh);
+        transform: translateY(100dvh);
     }
     100% {
         transform: translateY(0%);
@@ -400,7 +400,7 @@ body {
         transform: translateY(0%);
     }
     100% {
-        transform: translateY(100vh);
+        transform: translateY(100dvh);
     }
 }
 .main-display-mobile .background-cover-mobile {
@@ -418,7 +418,7 @@ body {
 .main-display-mobile .background-layer-1-mobile {
     position: absolute;
     top: 0;
-    min-height: 50vh;
+    min-height: 50dvh;
     width: 100%;
     z-index: -400;
     background-image: linear-gradient(180deg, #000000, #00000000);
@@ -426,7 +426,7 @@ body {
 .main-display-mobile .background-layer-2-mobile {
     position: absolute;
     bottom: 0;
-    min-height: 50vh;
+    min-height: 50dvh;
     width: 100%;
     z-index: -400;
     background-image: linear-gradient(0deg, #000000, #00000000);
@@ -482,16 +482,27 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     padding-left: 2px;
-    text-shadow: 0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1);
+    text-shadow:
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1);
 }
 .main-display-mobile
     .info-current-music-mobile
@@ -501,16 +512,27 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     padding-left: 2px;
-    text-shadow: 0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1),
-        0 0 2px var(--color-base-1), 0 0 2px var(--color-base-1);
+    text-shadow:
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1),
+        0 0 2px var(--color-base-1);
 }
 .main-display-mobile .current-music-add-mobile {
     position: absolute;
@@ -646,7 +668,7 @@ body {
 }
 .main-select-playlists-mobile {
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     position: fixed;
     top: 0;
     left: 0;
@@ -712,7 +734,9 @@ body {
     font-size: 14px;
 }
 .playlists-search-bar-input-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .playlists-search-bar-input-mobile::placeholder {
     color: var(--color-base-3);
@@ -777,7 +801,9 @@ body {
 
     &:hover,
     &:focus {
-        box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+        box-shadow:
+            0 0 0 5px var(--color-base-2),
+            0 0 25px var(--color-base-2);
     }
 }
 .container-select-playlists-mobile .item-select-playlist-mobile {
@@ -855,7 +881,7 @@ body {
 }
 .main-user-settings-mobile {
     width: 100%;
-    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: calc(var(--dvh, 1dvh) * 100);
     position: fixed;
     top: 0;
     left: 0;
@@ -997,7 +1023,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     background-color: #000000cc;
     display: grid;
     place-items: center;
@@ -1037,7 +1063,9 @@ body {
     margin-bottom: 20px;
 }
 .layer-profile-picture-mobile .container-profile-picture-mobile .field:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .layer-profile-picture-mobile
     .container-profile-picture-mobile
@@ -1062,8 +1090,8 @@ body {
 .main-user-settings-mobile .content-profile-mobile {
     width: 100%;
     overflow-y: scroll;
-    min-height: calc(var(--vh, 1vh) * 100 - 338px);
-    height: calc(var(--vh, 1vh) * 100 - 338px);
+    min-height: calc(var(--dvh, 1dvh) * 100 - 338px);
+    height: calc(var(--dvh, 1dvh) * 100 - 338px);
 
     padding-right: 5px;
     margin-bottom: 5px;
@@ -1315,7 +1343,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     background-color: #000000cc;
     display: grid;
     place-items: center;
@@ -1361,7 +1389,9 @@ body {
 .form-change-name-account-mobile-overflow
     .form-change-name-account-mobile
     .field:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-change-name-account-mobile-overflow
     .form-change-name-account-mobile
@@ -1391,7 +1421,7 @@ body {
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     display: grid;
     place-items: center;
 }
@@ -1443,7 +1473,9 @@ body {
     margin-bottom: 20px;
 }
 .form-delete-account-overflow-mobile .form-delete-account-mobile .field:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-delete-account-overflow-mobile
     .form-delete-account-mobile
@@ -1511,7 +1543,8 @@ body {
     }
 }
 .warning {
-    animation: warning-anime-color 1s infinite alternate,
+    animation:
+        warning-anime-color 1s infinite alternate,
         warning-anime-entrace 500ms linear;
     position: absolute;
     top: 20px;
@@ -1550,7 +1583,7 @@ body {
 }
 .main-search-mobile {
     width: 100%;
-    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: calc(var(--dvh, 1dvh) * 100);
     position: fixed;
     top: 0;
     left: 0;
@@ -1603,7 +1636,9 @@ body {
     font-size: 14px;
 }
 .main-search-mobile .search-bar-mobile input:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .main-search-mobile .search-bar-mobile .search-bar-close-mobile {
     position: absolute;
@@ -1620,8 +1655,8 @@ body {
 .main-search-mobile .content-search-mobile {
     width: 100%;
     overflow-y: scroll;
-    min-height: calc(var(--vh, 1vh) * 100 - 304px);
-    height: calc(var(--vh, 1vh) * 100 - 304px);
+    min-height: calc(var(--dvh, 1dvh) * 100 - 304px);
+    height: calc(var(--dvh, 1dvh) * 100 - 304px);
     padding-right: 5px;
     margin-bottom: 5px;
     padding-left: 0;
@@ -1727,7 +1762,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -1848,7 +1883,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1888,7 +1923,9 @@ body {
     margin-bottom: 20px;
 }
 .add-my-new-playlist-name-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .add-my-new-playlist-name-mobile::placeholder {
     color: var(--color-base-3);
@@ -1909,7 +1946,7 @@ body {
 }
 .main-minhas-playlists-mobile {
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     position: fixed;
     top: 0;
     left: 0;
@@ -1974,7 +2011,9 @@ body {
     font-size: 14px;
 }
 .main-minhas-playlists-mobile .minhas-playlists-search-bar-input-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .main-minhas-playlists-mobile
     .minhas-playlists-search-bar-input-mobile::placeholder {
@@ -2075,7 +2114,7 @@ body {
 }
 .container-minha-playlist-mobile {
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -2311,7 +2350,7 @@ body {
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2399,7 +2438,7 @@ body {
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2475,7 +2514,7 @@ body {
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2515,7 +2554,9 @@ body {
     margin-bottom: 20px;
 }
 .edit-my-new-playlist-name-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .edit-my-new-playlist-name-mobile::placeholder {
     color: var(--color-base-3);
@@ -2540,7 +2581,7 @@ body {
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2592,7 +2633,9 @@ body {
     margin-bottom: 20px;
 }
 .delete-my-new-playlist-name-mobile:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .delete-my-new-playlist-name-mobile::placeholder {
     color: var(--color-base-3);
@@ -2642,7 +2685,7 @@ body {
     left: 0;
     background: #000000cc;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--dvh, 1dvh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;

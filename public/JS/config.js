@@ -53,15 +53,15 @@ const colorsThemes = {
 const MAX_LENGTH_TITLE_PLAYLIST = 50
 
 const containerPlaylistToManage = document.querySelector(
-    '#containerPlaylistToManage'
+    '#containerPlaylistToManage',
 )
 const focusSong = document.querySelector('#focusSong')
 
 const playlistItems = document.querySelectorAll(
-    '.content-playlist .playlist-item'
+    '.content-playlist .playlist-item',
 )
 const songItems = document.querySelectorAll(
-    '.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item'
+    '.container-playlist-to-manage-overflow .container-playlist-to-manage .content-songs .songs-item',
 )
 
 const playlistToManageBack = document.querySelector('#playlistToManageBack')
@@ -87,7 +87,7 @@ const formPlaylistCancel = document.querySelector('#formPlaylistCancel')
 
 const formSongDeleteBtn = document.querySelector('#formSongDeleteBtn')
 const formDeletePlaylistContent = document.querySelector(
-    '#formDeletePlaylistContent'
+    '#formDeletePlaylistContent',
 )
 
 const totalPlaylists = document.querySelector('#totalPlaylists')
@@ -96,7 +96,7 @@ const contentPlaylist = document.querySelector('#contentPlaylist')
 const contentSongs = document.querySelector('#contentSongs')
 
 const playlistDeleteNameInputToConfirm = document.querySelector(
-    '#playlistDeleteNameInputToConfirm'
+    '#playlistDeleteNameInputToConfirm',
 )
 
 const warning = document.querySelector('#warning')
@@ -249,17 +249,6 @@ playlistDeleteNameInputToConfirm.addEventListener('paste', (e) => {
     e.preventDefault()
 })
 
-window.addEventListener('load', setFullHeight)
-window.addEventListener('orientationchange', setFullHeight)
-window.addEventListener('resize', setFullHeight)
-
-function setFullHeight() {
-    const vh = window.innerHeight * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
-}
-
-setFullHeight()
-
 async function dataFetch() {
     const response = await fetch(`/songs-playlists/${getCookie('user')}`)
 
@@ -277,19 +266,19 @@ function defineTotalNumbers() {
 const formEditPlaylistIn = document.querySelector('#formEditPlaylistIn')
 
 const formPlaylistEditInputNome = document.querySelector(
-    '#formPlaylistEditInputNome'
+    '#formPlaylistEditInputNome',
 )
 const formPlaylistEditInputGender = document.querySelector(
-    '#formPlaylistEditInputGender'
+    '#formPlaylistEditInputGender',
 )
 const formPlaylistEditInputThumbnail = document.querySelector(
-    '#formPlaylistEditInputThumbnail'
+    '#formPlaylistEditInputThumbnail',
 )
 const formPlaylistEditPreviewThumbnail = document.querySelector(
-    '#formPlaylistEditPreviewThumbnail'
+    '#formPlaylistEditPreviewThumbnail',
 )
 const formPlaylistEditDescription = document.querySelector(
-    '#formPlaylistEditDescription'
+    '#formPlaylistEditDescription',
 )
 
 function listPlaylists() {
@@ -395,22 +384,20 @@ function listMusic(musics, playlistInfo) {
         playlistInfo.title
 
     document.querySelector(
-        '#containerPlaylistToManageDescription'
+        '#containerPlaylistToManageDescription',
     ).textContent = playlistInfo.description
 
-    document.querySelector(
-        '#containerPlaylistToManageCreated'
-    ).textContent = `Criada em: ${formatarData(playlistInfo.additionDate)}`
+    document.querySelector('#containerPlaylistToManageCreated').textContent =
+        `Criada em: ${formatarData(playlistInfo.additionDate)}`
 
     document.querySelector(
-        '#containerPlaylistToManageTotalMusics'
+        '#containerPlaylistToManageTotalMusics',
     ).textContent = `Total de ${musics.length} ${
         musics.length === 1 || musics.length === 0 ? 'música' : 'músicas'
     }`
 
-    document.querySelector(
-        '#containerPlaylistToManageGender'
-    ).textContent = `Gênero: ${playlistInfo.gender}`
+    document.querySelector('#containerPlaylistToManageGender').textContent =
+        `Gênero: ${playlistInfo.gender}`
 
     const totalViewCountPlaylist = data.songs.reduce((acc, music) => {
         if (music.gender === playlistInfo.gender) {
@@ -419,11 +406,10 @@ function listMusic(musics, playlistInfo) {
         return acc
     }, 0)
 
-    document.querySelector(
-        '#containerPlaylistToManageViewCount'
-    ).textContent = `${
-        totalViewCountPlaylist === 1 ? 'Visualização' : 'Visualizações'
-    }: ${formatViewCount(totalViewCountPlaylist)}`
+    document.querySelector('#containerPlaylistToManageViewCount').textContent =
+        `${
+            totalViewCountPlaylist === 1 ? 'Visualização' : 'Visualizações'
+        }: ${formatViewCount(totalViewCountPlaylist)}`
 
     contentSongs.innerHTML = ''
 
@@ -461,21 +447,17 @@ function listMusic(musics, playlistInfo) {
 function listFocusMusic(music) {
     document.querySelector('#focusSongCover').src = music.coverUrl
     document.querySelector('#focusSongTitle').textContent = music.title
-    document.querySelector(
-        '#focusSongCreated'
-    ).textContent = `Criada em: ${formatarData(music.additionDate)}`
+    document.querySelector('#focusSongCreated').textContent =
+        `Criada em: ${formatarData(music.additionDate)}`
 
-    document.querySelector(
-        '#focusSongURL'
-    ).href = `https://youtu.be/${music.videoId}`
+    document.querySelector('#focusSongURL').href =
+        `https://youtu.be/${music.videoId}`
 
-    document.querySelector(
-        '#focusSongURL'
-    ).textContent = `https://youtu.be/${music.videoId}`
+    document.querySelector('#focusSongURL').textContent =
+        `https://youtu.be/${music.videoId}`
 
-    document.querySelector(
-        '#focusSongGender'
-    ).textContent = `Gênero: ${music.gender}`
+    document.querySelector('#focusSongGender').textContent =
+        `Gênero: ${music.gender}`
 
     document.querySelector('#focusSongViewCount').textContent = `${
         music.viewCount.length === 1 ? 'Visualização' : 'Visualizações'
@@ -533,19 +515,19 @@ function formatViewCount(count) {
 }
 
 const formAddPlaylistInputNome = document.querySelector(
-    '#formAddPlaylistInName'
+    '#formAddPlaylistInName',
 )
 const formAddPlaylistInputGenero = document.querySelector(
-    '#formAddPlaylistInGender'
+    '#formAddPlaylistInGender',
 )
 const formAddPlaylistInputThumbnail = document.querySelector(
-    '#formAddPlaylistInThumbnail'
+    '#formAddPlaylistInThumbnail',
 )
 const formAddPlaylistPreviewThumbnail = document.querySelector(
-    '#formAddPlaylistInPreviewThumbnail'
+    '#formAddPlaylistInPreviewThumbnail',
 )
 const textareaDescricao = document.querySelector(
-    '#formAddPlaylistInDescription'
+    '#formAddPlaylistInDescription',
 )
 
 const formPlaylist = document.querySelector('#formAddPlaylistIn')
@@ -597,7 +579,7 @@ formPlaylist.addEventListener('submit', async function (event) {
     const NomeExiste = data.playlists.some(
         (playlist) =>
             playlist.title.toLowerCase() ===
-            formAddPlaylistInputNome.value.trim().toLowerCase()
+            formAddPlaylistInputNome.value.trim().toLowerCase(),
     )
     if (NomeExiste) {
         warning.classList.remove('hidden')
@@ -632,7 +614,7 @@ formPlaylist.addEventListener('submit', async function (event) {
     const generoExiste = data.playlists.some(
         (playlist) =>
             playlist.gender.toLowerCase() ===
-            formAddPlaylistInputGenero.value.trim().toLowerCase()
+            formAddPlaylistInputGenero.value.trim().toLowerCase(),
     )
     if (generoExiste) {
         warning.classList.remove('hidden')
@@ -735,14 +717,14 @@ function extrairIdDoVideo(url) {
     return url.length === 11
         ? url
         : url.split('https://youtu.be/')[1]
-        ? url.split('https://youtu.be/')[1].slice(0, 11)
-        : url.split('https://youtube.com/watch?v=')[1]
-        ? url.split('https://youtube.com/watch?v=')[1].slice(0, 11)
-        : url.split('https://www.youtube.com/watch?v=')[1]
-        ? url.split('https://www.youtube.com/watch?v=')[1].slice(0, 11)
-        : url.split('https://m.youtube.com/watch?v=')[1]
-        ? url.split('https://m.youtube.com/watch?v=')[1].slice(0, 11)
-        : null
+          ? url.split('https://youtu.be/')[1].slice(0, 11)
+          : url.split('https://youtube.com/watch?v=')[1]
+            ? url.split('https://youtube.com/watch?v=')[1].slice(0, 11)
+            : url.split('https://www.youtube.com/watch?v=')[1]
+              ? url.split('https://www.youtube.com/watch?v=')[1].slice(0, 11)
+              : url.split('https://m.youtube.com/watch?v=')[1]
+                ? url.split('https://m.youtube.com/watch?v=')[1].slice(0, 11)
+                : null
 }
 
 formSong.addEventListener('submit', async function (event) {
@@ -784,7 +766,7 @@ formSong.addEventListener('submit', async function (event) {
     const dataResponse = {
         videoId: extrairIdDoVideo(formSongAddInputID.value.trim()),
         gender: data.playlists.find(
-            (playlist) => playlist._id == changedData.playlistId
+            (playlist) => playlist._id == changedData.playlistId,
         ).gender,
     }
 
@@ -832,8 +814,8 @@ formSong.addEventListener('submit', async function (event) {
         await dataFetch()
         generateChartSongs(
             data.playlists.find(
-                (playlist) => playlist._id == changedData.playlistId
-            ).gender
+                (playlist) => playlist._id == changedData.playlistId,
+            ).gender,
         )
 
         let musicsByPlaylist = []
@@ -841,7 +823,7 @@ formSong.addEventListener('submit', async function (event) {
             if (
                 playlist_music.gender ===
                 data.playlists.find(
-                    (playlist) => playlist._id == changedData.playlistId
+                    (playlist) => playlist._id == changedData.playlistId,
                 ).gender
             ) {
                 musicsByPlaylist.push(playlist_music)
@@ -851,8 +833,8 @@ formSong.addEventListener('submit', async function (event) {
         listMusic(
             musicsByPlaylist,
             data.playlists.find(
-                (playlist) => playlist._id == changedData.playlistId
-            )
+                (playlist) => playlist._id == changedData.playlistId,
+            ),
         )
 
         defineTotalNumbers()
@@ -909,7 +891,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(dataResponse),
-        }
+        },
     )
 
     const result = await response.json()
@@ -946,8 +928,8 @@ formEditSongIn.addEventListener('submit', async function (event) {
         await dataFetch()
         generateChartSongs(
             data.playlists.find(
-                (playlist) => playlist._id == changedData.playlistId
-            ).gender
+                (playlist) => playlist._id == changedData.playlistId,
+            ).gender,
         )
 
         let musicsByPlaylist = []
@@ -955,7 +937,7 @@ formEditSongIn.addEventListener('submit', async function (event) {
             if (
                 playlist_music.gender ===
                 data.playlists.find(
-                    (playlist) => playlist._id == changedData.playlistId
+                    (playlist) => playlist._id == changedData.playlistId,
                 ).gender
             ) {
                 musicsByPlaylist.push(playlist_music)
@@ -965,8 +947,8 @@ formEditSongIn.addEventListener('submit', async function (event) {
         listMusic(
             musicsByPlaylist,
             data.playlists.find(
-                (playlist) => playlist._id == changedData.playlistId
-            )
+                (playlist) => playlist._id == changedData.playlistId,
+            ),
         )
 
         defineTotalNumbers()
@@ -982,7 +964,7 @@ formSongDeleteBtn.addEventListener('click', async () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-        }
+        },
     )
 
     const result = await response.json()
@@ -1022,8 +1004,8 @@ formSongDeleteBtn.addEventListener('click', async () => {
         await dataFetch()
         generateChartSongs(
             data.playlists.find(
-                (playlist) => playlist._id == changedData.playlistId
-            ).gender
+                (playlist) => playlist._id == changedData.playlistId,
+            ).gender,
         )
 
         let musicsByPlaylist = []
@@ -1031,7 +1013,7 @@ formSongDeleteBtn.addEventListener('click', async () => {
             if (
                 playlist_music.gender ===
                 data.playlists.find(
-                    (playlist) => playlist._id == changedData.playlistId
+                    (playlist) => playlist._id == changedData.playlistId,
                 ).gender
             ) {
                 musicsByPlaylist.push(playlist_music)
@@ -1041,8 +1023,8 @@ formSongDeleteBtn.addEventListener('click', async () => {
         listMusic(
             musicsByPlaylist,
             data.playlists.find(
-                (playlist) => playlist._id == changedData.playlistId
-            )
+                (playlist) => playlist._id == changedData.playlistId,
+            ),
         )
 
         defineTotalNumbers()
@@ -1079,7 +1061,7 @@ formDeletePlaylistContent.addEventListener('submit', async (e) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-        }
+        },
     )
 
     const result = await response.json()
@@ -1209,7 +1191,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(dataResponse),
-        }
+        },
     )
 
     const result = await response.json()
@@ -1244,24 +1226,24 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         await dataFetch()
         generateChartSongs(
             data.playlists.find(
-                (playlist) => playlist._id == changedData.playlistId
-            ).gender
+                (playlist) => playlist._id == changedData.playlistId,
+            ).gender,
         )
 
         formPlaylistEditInputNome.value = data.playlists.find(
-            (playlist) => playlist._id == changedData.playlistId
+            (playlist) => playlist._id == changedData.playlistId,
         ).title
         formPlaylistEditInputThumbnail.value = data.playlists.find(
-            (playlist) => playlist._id == changedData.playlistId
+            (playlist) => playlist._id == changedData.playlistId,
         ).coverUrl
         formPlaylistEditInputGender.value = data.playlists.find(
-            (playlist) => playlist._id == changedData.playlistId
+            (playlist) => playlist._id == changedData.playlistId,
         ).gender
         formPlaylistEditDescription.value = data.playlists.find(
-            (playlist) => playlist._id == changedData.playlistId
+            (playlist) => playlist._id == changedData.playlistId,
         ).description
         formPlaylistEditPreviewThumbnail.src = data.playlists.find(
-            (playlist) => playlist._id == changedData.playlistId
+            (playlist) => playlist._id == changedData.playlistId,
         ).coverUrl
 
         let musicsByPlaylist = []
@@ -1269,7 +1251,7 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
             if (
                 playlist_music.gender ===
                 data.playlists.find(
-                    (playlist) => playlist._id == changedData.playlistId
+                    (playlist) => playlist._id == changedData.playlistId,
                 ).gender
             ) {
                 musicsByPlaylist.push(playlist_music)
@@ -1279,8 +1261,8 @@ formEditPlaylistIn.addEventListener('submit', async function (event) {
         listMusic(
             musicsByPlaylist,
             data.playlists.find(
-                (playlist) => playlist._id == changedData.playlistId
-            )
+                (playlist) => playlist._id == changedData.playlistId,
+            ),
         )
 
         defineTotalNumbers()
@@ -1332,7 +1314,7 @@ function initThemeChanger(theme = 'original') {
 
     if (!themes.includes(theme)) {
         console.warn(
-            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`
+            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`,
         )
         theme = 'original'
     }
@@ -1340,7 +1322,7 @@ function initThemeChanger(theme = 'original') {
     for (let i = 1; i <= 5; i++) {
         document.documentElement.style.setProperty(
             `--color-base-${i}`,
-            colorsThemes[theme][`base${i}`]
+            colorsThemes[theme][`base${i}`],
         )
     }
 }
@@ -1460,7 +1442,7 @@ function generateChartPlaylists() {
         },
         scaleX: {
             values: defineTotalViewsPlaylists(calculateBarCount()).map(
-                (playlist) => playlist.name
+                (playlist) => playlist.name,
             ),
             title: {
                 text: 'Playlist',
@@ -1496,7 +1478,7 @@ function generateChartPlaylists() {
         series: [
             {
                 values: defineTotalViewsPlaylists(calculateBarCount()).map(
-                    (playlist) => playlist.views
+                    (playlist) => playlist.views,
                 ),
                 backgroundColor: 'var(--color-base-1)',
                 gradientColors: 'var(--color-base-5) var(--color-base-1)',
@@ -1525,7 +1507,7 @@ function generateChartPlaylists() {
             click: function (e) {
                 if (e.targetid == 'chart-img') return
                 const index = Number(
-                    e.targetid.split('-')[e.targetid.split('-').length - 1]
+                    e.targetid.split('-')[e.targetid.split('-').length - 1],
                 )
                 if (isNaN(index)) return
 
@@ -1620,7 +1602,7 @@ function generateChartSongs(gender) {
         },
         scaleX: {
             values: defineTotalViewsSongs(calculateBarCount(), gender).map(
-                (playlist) => playlist.name
+                (playlist) => playlist.name,
             ),
             title: {
                 text: 'Música',
@@ -1656,7 +1638,7 @@ function generateChartSongs(gender) {
         series: [
             {
                 values: defineTotalViewsSongs(calculateBarCount(), gender).map(
-                    (playlist) => playlist.views
+                    (playlist) => playlist.views,
                 ),
                 backgroundColor: 'var(--color-base-1)',
                 gradientColors: 'var(--color-base-5) var(--color-base-1)',
@@ -1685,7 +1667,7 @@ function generateChartSongs(gender) {
             click: function (e) {
                 if (e.targetid == 'chart-img') return
                 const index = Number(
-                    e.targetid.split('-')[e.targetid.split('-').length - 1]
+                    e.targetid.split('-')[e.targetid.split('-').length - 1],
                 )
                 if (isNaN(index)) return
 
@@ -1740,8 +1722,8 @@ window.addEventListener('resize', () => {
         } else {
             generateChartSongs(
                 data.playlists.find(
-                    (playlist) => playlist._id == changedData.playlistId
-                ).gender
+                    (playlist) => playlist._id == changedData.playlistId,
+                ).gender,
             )
         }
 
@@ -1768,6 +1750,8 @@ function calculateBarCount() {
 }
 
 async function inicia() {
+    document.querySelector('body').style.overflow = 'hidden'
+
     await dataFetch()
     defineTotalNumbers()
     listPlaylists()
@@ -1864,6 +1848,9 @@ async function inicia() {
         }
     })
     setUserProfilePicture()
+
+    document.querySelector('.loading-screen').classList.add('hidden')
+    document.querySelector('body').style.overflow = 'auto'
 }
 
 inicia()

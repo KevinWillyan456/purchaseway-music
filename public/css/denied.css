@@ -1,7 +1,7 @@
 body {
     display: flex;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100dvh;
     background-color: var(--color-base-1);
     background-image: url('https://i.ibb.co/m4H1B6S/background-6.png');
     background-position: center center;
@@ -17,31 +17,53 @@ body {
 .container .title-1 {
     color: var(--color-white-1);
 
-    text-shadow: 0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1);
+    text-shadow:
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1);
     font-size: 70px;
     margin-bottom: 12px;
 }
 .container .title-2 {
     color: var(--color-white-1);
-    text-shadow: 0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1),
-        0 0 4px var(--color-base-1), 0 0 4px var(--color-base-1);
+    text-shadow:
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1),
+        0 0 4px var(--color-base-1);
 
     font-size: 32px;
     margin-bottom: 20px;
@@ -64,11 +86,15 @@ body {
 }
 @keyframes color-button {
     0% {
-        box-shadow: 0 0 5px var(--color-base-2), 0 0 10px var(--color-base-2);
+        box-shadow:
+            0 0 5px var(--color-base-2),
+            0 0 10px var(--color-base-2);
         color: var(--color-base-2);
     }
     100% {
-        box-shadow: 0 0 5px var(--color-white-1), 0 0 10px var(--color-white-1);
+        box-shadow:
+            0 0 5px var(--color-white-1),
+            0 0 10px var(--color-white-1);
         color: var(--color-white-1);
     }
 }

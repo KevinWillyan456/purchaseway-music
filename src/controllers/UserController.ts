@@ -20,7 +20,7 @@ async function indexUser(req: Request, res: Response): Promise<void> {
     try {
         const users = await User.find(
             {},
-            '-password -tokens -musicHistory -favoriteSongs -myPlaylists -__v -resetPasswordToken -resetPasswordExpires'
+            '-password -tokens -musicHistory -favoriteSongs -myPlaylists -__v -resetPasswordToken -resetPasswordExpires',
         )
 
         res.status(200).json({ users })
@@ -31,14 +31,14 @@ async function indexUser(req: Request, res: Response): Promise<void> {
 
 async function indexUserById(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ) {
     const { id } = req.params
 
     try {
         const user = await User.findById(
             id,
-            '-password -tokens -__v -resetPasswordToken -resetPasswordExpires'
+            '-password -tokens -__v -resetPasswordToken -resetPasswordExpires',
         )
         res.status(200).json({ user })
         return
@@ -118,12 +118,12 @@ async function storeUser(req: Request, res: Response): Promise<void> {
 
         const formattedDate = `
             Seu cadastro foi feito no dia ${user.additionDate.getDate()} de ${getMonthName(
-            user.additionDate.getMonth()
-        )} 
+                user.additionDate.getMonth(),
+            )} 
             de ${user.additionDate.getFullYear()} às ${user.additionDate.getHours()}h${user.additionDate
-            .getMinutes()
-            .toString()
-            .padStart(2, '0')}min.
+                .getMinutes()
+                .toString()
+                .padStart(2, '0')}min.
         `
 
         if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
@@ -179,7 +179,7 @@ async function loginUser(req: Request, res: Response): Promise<void> {
 
     try {
         const user = await User.findOne({ email })
-        let dateTokenExpires: string | number
+        let dateTokenExpires: '7d' | number
         let dateCookieExpires: number
 
         if (!user) {
@@ -200,7 +200,7 @@ async function loginUser(req: Request, res: Response): Promise<void> {
             dateCookieExpires = MAX_AGE_COOKIE_10_MINUTES
         }
 
-        const token = jwt.sign({ id: user?._id }, SECRET_KEY, {
+        const token = jwt.sign({ id: user._id }, SECRET_KEY, {
             expiresIn: dateTokenExpires,
         })
 
@@ -278,7 +278,7 @@ async function logoutUser(req: Request, res: Response): Promise<void> {
 
 async function updateUser(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { name, email, password } = req.body
     const { id } = req.params
@@ -326,7 +326,7 @@ async function updateUser(
 
 async function deleteUser(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ) {
     const { id } = req.params
     const filter = { _id: id }
@@ -343,7 +343,7 @@ async function deleteUser(
 
         if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
             const formattedDate = `Você ficou conosco desde ${user.additionDate.getDate()} de ${getMonthName(
-                user.additionDate.getMonth()
+                user.additionDate.getMonth(),
             )}
             de ${user.additionDate.getFullYear()} às ${user.additionDate.getHours()}h${user.additionDate
                 .getMinutes()
@@ -389,7 +389,7 @@ async function deleteUser(
 
 async function updateUserFavoriteSongs(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { musicId, musicGender } = req.body
     const { id } = req.params
@@ -414,7 +414,7 @@ async function updateUserFavoriteSongs(
 
     const counterDistinctPlaylists = (
         musicGender: string[],
-        user: IUser | null
+        user: IUser | null,
     ) => {
         const countsPre: Contador[] = []
 
@@ -474,7 +474,7 @@ async function updateUserFavoriteSongs(
     try {
         const [...favoriteSongs] = user?.favoriteSongs || []
         const musicExists = favoriteSongs.find(
-            (music) => music.musicId == musicId
+            (music) => music.musicId == musicId,
         )
 
         const maxSizeFavorite = 20
@@ -503,7 +503,7 @@ async function updateUserFavoriteSongs(
 
 async function updateUserMusicHistoric(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { musicId, musicGender } = req.body
     const { id } = req.params
@@ -529,7 +529,7 @@ async function updateUserMusicHistoric(
 
     const counterDistinctPlaylists = (
         musicGender: string[],
-        user: IUser | null
+        user: IUser | null,
     ) => {
         const countsPre: Contador[] = []
 
@@ -554,12 +554,12 @@ async function updateUserMusicHistoric(
     const checkArrayExceedsSize = (
         user: IUser | null,
         tamanhoMaximoDeHistorico: number,
-        currentGender: string
+        currentGender: string,
     ): string[] => {
         const historyExeceeds: string[] = []
         if (user != null) {
             const currentHistoric = user.musicHistory.filter(
-                (music) => music.musicGender == currentGender
+                (music) => music.musicGender == currentGender,
             )
 
             currentHistoric.reverse()
@@ -606,7 +606,7 @@ async function updateUserMusicHistoric(
     const checkArrayExceedsSizeResult = checkArrayExceedsSize(
         user,
         maxSizeHistoric,
-        musicGender
+        musicGender,
     )
 
     const maxSizeHistoricOneLess = maxSizeHistoric - 1
@@ -614,7 +614,7 @@ async function updateUserMusicHistoric(
     const checkArrayExceedsSizeResultA = checkArrayExceedsSize(
         user,
         maxSizeHistoricOneLess,
-        musicGender
+        musicGender,
     )
 
     const updateDoc1 = {
@@ -654,7 +654,7 @@ async function updateUserMusicHistoric(
 
         const [...musicHistory] = user?.musicHistory || []
         const musicExists = musicHistory.find(
-            (music) => music.musicId == musicId
+            (music) => music.musicId == musicId,
         )
 
         if (musicExists && historySize <= 1) {
@@ -693,7 +693,7 @@ async function updateUserMusicHistoric(
 
 async function updateUserPlaylistSelected(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ) {
     const { lastAccessedPlaylist, lastAccessedPlaylistName } = req.body
     const { id } = req.params
@@ -720,7 +720,7 @@ async function updateUserPlaylistSelected(
 
 async function allSongAndPlaylistData(
     req: Request<{ userId: string }>,
-    res: Response
+    res: Response,
 ) {
     const { userId } = req.params
 
@@ -761,7 +761,7 @@ async function allSongAndPlaylistData(
 
 async function updateUserProfilePicture(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ) {
     const { profilePicture } = req.body
     const { id } = req.params
@@ -789,7 +789,7 @@ async function updateUserProfilePicture(
 
 async function indexUserPlaylist(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ) {
     const { id } = req.params
 
@@ -810,7 +810,7 @@ async function indexUserPlaylist(
 
 async function storeUserPlaylist(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { title } = req.body
     const { id } = req.params
@@ -847,7 +847,7 @@ async function updateUserPlaylist(
         id?: UpdateWithAggregationPipeline
         pid?: UpdateWithAggregationPipeline
     }>,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { title, currentCoverUrl } = req.body
     const { id, pid } = req.params
@@ -884,7 +884,7 @@ async function deleteUserPlaylist(
         id?: UpdateWithAggregationPipeline
         pid?: UpdateWithAggregationPipeline
     }>,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { id, pid } = req.params
 
@@ -913,7 +913,7 @@ async function storeUserPlaylistSongs(
         id?: UpdateWithAggregationPipeline
         pid?: UpdateWithAggregationPipeline
     }>,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { musicIds } = req.body
     const { id, pid } = req.params
@@ -955,7 +955,7 @@ async function storeUserPlaylistSongs(
 
     async function updatePlaylistTotalSongs(
         userId: string,
-        playlistId: string
+        playlistId: string,
     ) {
         try {
             const user = await User.findOne({
@@ -966,7 +966,7 @@ async function storeUserPlaylistSongs(
             if (!user) return
 
             const playlistIndex = user.myPlaylists.findIndex(
-                (playlist) => playlist._id == playlistId
+                (playlist) => playlist._id == playlistId,
             )
 
             if (playlistIndex == -1) return
@@ -985,7 +985,7 @@ async function storeUserPlaylistSongs(
                     $set: {
                         'myPlaylists.$.totalSongs': totalSongs,
                     },
-                }
+                },
             )
         } catch (err) {
             console.error(err)
@@ -1011,7 +1011,7 @@ async function deleteUserPlaylistSongs(
         pid?: UpdateWithAggregationPipeline
         sid?: UpdateWithAggregationPipeline
     }>,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { id, pid, sid } = req.params
 
@@ -1027,7 +1027,7 @@ async function deleteUserPlaylistSongs(
 
     async function updatePlaylistTotalSongs(
         userId: string,
-        playlistId: string
+        playlistId: string,
     ) {
         try {
             const user = await User.findOne({
@@ -1038,7 +1038,7 @@ async function deleteUserPlaylistSongs(
             if (!user) return
 
             const playlistIndex = user.myPlaylists.findIndex(
-                (playlist) => playlist._id == playlistId
+                (playlist) => playlist._id == playlistId,
             )
 
             if (playlistIndex == -1) return
@@ -1057,7 +1057,7 @@ async function deleteUserPlaylistSongs(
                     $set: {
                         'myPlaylists.$.totalSongs': totalSongs,
                     },
-                }
+                },
             )
         } catch (err) {
             console.error(err)
@@ -1080,7 +1080,7 @@ async function deleteUserPlaylistSongs(
         })
 
         const userLastPlaylistSongCover = user?.myPlaylists.find(
-            (playlist) => playlist._id === (pid as unknown as string)
+            (playlist) => playlist._id === (pid as unknown as string),
         )?.songs
 
         if (
@@ -1097,7 +1097,7 @@ async function deleteUserPlaylistSongs(
                 },
                 {
                     arrayFilters: [{ 'playlist._id': pid }],
-                }
+                },
             )
 
             res.status(200).json({
@@ -1108,7 +1108,7 @@ async function deleteUserPlaylistSongs(
 
         const music = await Music.findOne({
             _id: user?.myPlaylists.find(
-                (playlist) => playlist._id === (pid as unknown as string)
+                (playlist) => playlist._id === (pid as unknown as string),
             )?.songs[userLastPlaylistSongCover?.length - 1].musicId,
         })
 
@@ -1126,7 +1126,7 @@ async function deleteUserPlaylistSongs(
             },
             {
                 arrayFilters: [{ 'playlist._id': pid }],
-            }
+            },
         )
 
         res.status(200).json({
@@ -1139,7 +1139,7 @@ async function deleteUserPlaylistSongs(
 
 async function updateUserTheme(
     req: Request<{ id?: UpdateWithAggregationPipeline }>,
-    res: Response
+    res: Response,
 ) {
     const { theme } = req.body
     const { id } = req.params
@@ -1166,7 +1166,7 @@ async function updateUserTheme(
 
 async function requestPasswordReset(
     req: Request,
-    res: Response
+    res: Response,
 ): Promise<void> {
     const { email } = req.body
     const user = await User.findOne({ email })

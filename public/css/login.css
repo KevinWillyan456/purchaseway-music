@@ -2,7 +2,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100dvh;
     background-color: var(--color-base-1);
     background-image: url('https://i.ibb.co/CtPQ8Np/background-5.png');
     background-position: center center;
@@ -45,10 +45,13 @@ form .input::placeholder {
     color: var(--color-base-3);
 }
 form .input:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .warning {
-    animation: warning-anime-color 1s infinite alternate,
+    animation:
+        warning-anime-color 1s infinite alternate,
         warning-anime-entrace 500ms linear;
     position: absolute;
     top: 20px;
@@ -130,7 +133,9 @@ form .btn-forgot {
 }
 form .btn-forgot:hover {
     animation: anime 1s infinite linear;
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 form .btn-submit {
     transition: 200ms;
@@ -150,7 +155,9 @@ form .btn-submit {
 }
 form .btn-submit:hover {
     animation: anime 1s infinite linear;
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 @keyframes anime {
     0% {
@@ -178,7 +185,7 @@ form .info a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     background-color: #000000cc;
     display: grid;
     place-items: center;
@@ -225,7 +232,9 @@ form .info a {
     margin-bottom: 20px;
 }
 .layer-forgot .container-forgot .field:focus {
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .layer-forgot .container-forgot .field::placeholder {
     color: var(--color-base-3);
@@ -247,7 +256,9 @@ form .info a {
 }
 .layer-forgot .container-forgot .send:hover {
     animation: anime 1s infinite linear;
-    box-shadow: 0 0 0 5px var(--color-base-2), 0 0 25px var(--color-base-2);
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 @keyframes animate-scale-opacity-entrace {
     from {

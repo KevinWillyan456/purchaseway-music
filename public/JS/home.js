@@ -32,7 +32,7 @@ const coverCurrentMusic = document.querySelector('.cover-current-music img')
 const titleCurrentMusic = document.querySelector('.title-info-current-music')
 const genderCurrentMusic = document.querySelector('.gender-info-current-music')
 const backgroundCover = document.querySelector(
-    '.main-display .background-cover'
+    '.main-display .background-cover',
 )
 
 const musicAnimationStatus = document.querySelector('.music-animation-status')
@@ -41,31 +41,31 @@ const containerPlaylist = document.querySelector('.container-playlist')
 const body = document.body
 
 const currentDuration = document.querySelector(
-    '.container-duration-status .current-duration'
+    '.container-duration-status .current-duration',
 )
 const sliderMusicDuration = document.querySelector(
-    '.slider-music-duration .slider-music-duration-wrapper input'
+    '.slider-music-duration .slider-music-duration-wrapper input',
 )
 const sliderMusicDurationDot = document.querySelector(
-    '.slider-music-duration-wrapper .slider-music-duration-dot'
+    '.slider-music-duration-wrapper .slider-music-duration-dot',
 )
 const totalDuration = document.querySelector(
-    '.container-duration-status .total-duration'
+    '.container-duration-status .total-duration',
 )
 
 const sliderMusicVolume = document.querySelector(
-    '.slider-music-volume .slider-music-volume-wrapper input'
+    '.slider-music-volume .slider-music-volume-wrapper input',
 )
 const sliderMusicVolumeDot = document.querySelector(
-    '.slider-music-volume-wrapper .slider-music-volume-dot'
+    '.slider-music-volume-wrapper .slider-music-volume-dot',
 )
 const volumeIcon = document.querySelector('.volume-icon ion-icon')
 
 const repeatIcon = document.querySelector(
-    '.container-funcions .repeat-icon ion-icon'
+    '.container-funcions .repeat-icon ion-icon',
 )
 const shuffleIcon = document.querySelector(
-    '.container-funcions .shuffle-icon ion-icon'
+    '.container-funcions .shuffle-icon ion-icon',
 )
 
 const searchButton = document.querySelector('.container-search .search-icon')
@@ -84,11 +84,11 @@ const containerFrameVideo = document.querySelector('.container-frame')
 const logout = document.querySelector('.logout')
 
 const musicFavoriteIcon = document.querySelector(
-    '.current-music-add-favorite-container'
+    '.current-music-add-favorite-container',
 )
 const musicAddIcon = document.querySelector('.current-music-add ion-icon')
 const musicAddIconMobile = document.querySelector(
-    '.current-music-add-mobile ion-icon'
+    '.current-music-add-mobile ion-icon',
 )
 
 const clearHistoricIcon = document.querySelector('.trash-icon')
@@ -98,7 +98,7 @@ const selectPlaylist = document.querySelector('#selectPlaylist')
 const selectPlaylistMobile = document.querySelector('#selectPlaylistMobile')
 const selectManagementSystem = document.querySelector('#selectManagementSystem')
 const selectManagementSystemMobile = document.querySelector(
-    '#selectManagementSystemMobile'
+    '#selectManagementSystemMobile',
 )
 const selectFavorites = document.querySelector('#selectFavorites')
 const selectFavoritesMobile = document.querySelector('#selectFavoritesMobile')
@@ -107,36 +107,36 @@ const backMenuMobile = document.querySelector('#backMenuMobile')
 const backPlaylist = document.querySelector('.select-playlist-back')
 
 const containerPlaylistSelect = document.querySelector(
-    '.container-select-playlists'
+    '.container-select-playlists',
 )
 
 const containerPlaylistMobile = document.querySelector(
-    '.container-playlist-mobile'
+    '.container-playlist-mobile',
 )
 
 const coverCurrentMusicMobile = document.querySelector(
-    '.main-controls-mobile .box-wrapper .cover-item img'
+    '.main-controls-mobile .box-wrapper .cover-item img',
 )
 const titleCurrentMusicMobile = document.querySelector(
-    '.main-controls-mobile .box-wrapper .info-item .title-info'
+    '.main-controls-mobile .box-wrapper .info-item .title-info',
 )
 const genderCurrentMusicMobile = document.querySelector(
-    '.main-controls-mobile .box-wrapper .info-item .gender-info'
+    '.main-controls-mobile .box-wrapper .info-item .gender-info',
 )
 const titleCurrentMusicDisplayMobile = document.querySelector(
-    '.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile'
+    '.main-display-mobile .info-current-music-mobile .title-info-current-music-mobile',
 )
 const genderCurrentMusicDisplayMobile = document.querySelector(
-    '.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile'
+    '.main-display-mobile .info-current-music-mobile .gender-info-current-music-mobile',
 )
 
 const controlsMobile = document.querySelector('.main-controls-mobile')
 const displayMobile = document.querySelector('.main-display-mobile')
 const backgroundCoverMobile = document.querySelector(
-    '.main-display-mobile .background-cover-mobile'
+    '.main-display-mobile .background-cover-mobile',
 )
 const backDisplayMobile = document.querySelector(
-    '.main-display-mobile .display-back'
+    '.main-display-mobile .display-back',
 )
 
 const audioControllerPrevMobile = document.querySelector('#audio-prev-mobile')
@@ -144,63 +144,63 @@ const audioControllerPlayMobile = document.querySelector('#audio-play-mobile')
 const audioControllerNextMobile = document.querySelector('#audio-next-mobile')
 
 const repeatIconMobile = document.querySelector(
-    '.main-display-mobile .repeat-icon-mobile ion-icon'
+    '.main-display-mobile .repeat-icon-mobile ion-icon',
 )
 const shuffleIconMobile = document.querySelector(
-    '.main-display-mobile .shuffle-icon-mobile ion-icon'
+    '.main-display-mobile .shuffle-icon-mobile ion-icon',
 )
 
 const sliderMusicDurationMobile = document.querySelector(
-    '.slider-music-duration-mobile .slider-music-duration-wrapper-mobile input'
+    '.slider-music-duration-mobile .slider-music-duration-wrapper-mobile input',
 )
 const sliderMusicDurationDotMobile = document.querySelector(
-    '.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile'
+    '.slider-music-duration-mobile .slider-music-duration-wrapper-mobile .slider-music-duration-dot-mobile',
 )
 
 const currentDurationMobile = document.querySelector(
-    '.main-display-mobile .current-duration-mobile'
+    '.main-display-mobile .current-duration-mobile',
 )
 const totalDurationMobile = document.querySelector(
-    '.main-display-mobile .total-duration-mobile'
+    '.main-display-mobile .total-duration-mobile',
 )
 
 const morePlaylistMobile = document.querySelector('.more-playlist-mobile')
 const backPlaylistMobile = document.querySelector(
-    '.select-playlist-back-mobile'
+    '.select-playlist-back-mobile',
 )
 
 const containerPlaylistSelectMobile = document.querySelector(
-    '.container-select-playlists-mobile'
+    '.container-select-playlists-mobile',
 )
 
 const displayMusicDurationMobile = document.querySelector(
-    '.main-controls-mobile .display-music-duration-mobile'
+    '.main-controls-mobile .display-music-duration-mobile',
 )
 
 const userNameMobile = document.querySelector('.user-name-mobile')
 const registrationDateMobile = document.querySelector(
-    '.registration-date-mobile'
+    '.registration-date-mobile',
 )
 
 const containerItemsFavoriteMobile = document.querySelector(
-    '.container-favorite-mobile'
+    '.container-favorite-mobile',
 )
 const containerItemsHistoricMobile = document.querySelector(
-    '.container-historic-mobile'
+    '.container-historic-mobile',
 )
 
 const musicFavoriteIconMobile = document.querySelector(
-    '.current-music-add-favorite-container-mobile'
+    '.current-music-add-favorite-container-mobile',
 )
 
 const logoutMobile = document.querySelector('.logout-mobile')
 
 const clearHistoricIconMobile = document.querySelector(
-    '.content-profile-mobile .title-2-wrapper-mobile .trash-icon-mobile'
+    '.content-profile-mobile .title-2-wrapper-mobile .trash-icon-mobile',
 )
 
 const containerItemsSearchMobile = document.querySelector(
-    '.container-search-mobile'
+    '.container-search-mobile',
 )
 
 const searchBarInputMobile = document.querySelector('#search-bar-input-mobile')
@@ -212,25 +212,25 @@ const btnDeleteAccountMobile = document.querySelector('#btnDeleteAccountMobile')
 
 const formDeleteAccount = document.querySelector('#formDeleteAccount')
 const formDeleteAccountMobile = document.querySelector(
-    '#formDeleteAccountMobile'
+    '#formDeleteAccountMobile',
 )
 const formChangeNameAccount = document.querySelector('#formChangeNameAccount')
 const formChangeNameAccountMobile = document.querySelector(
-    '#formChangeNameAccountMobile'
+    '#formChangeNameAccountMobile',
 )
 const formDeleteAccountCancel = document.querySelector(
-    '#formDeleteAccountCancel'
+    '#formDeleteAccountCancel',
 )
 const formDeleteAccountCancelMobile = document.querySelector(
-    '#formDeleteAccountCancelMobile'
+    '#formDeleteAccountCancelMobile',
 )
 const changeNameInput = document.querySelector('#changeNameInput')
 const changeNameInputMobile = document.querySelector('#changeNameInputMobile')
 const deleteAccountInputToConfirm = document.querySelector(
-    '#deleteAccountInputToConfirm'
+    '#deleteAccountInputToConfirm',
 )
 const deleteAccountInputToConfirmMobile = document.querySelector(
-    '#deleteAccountInputToConfirmMobile'
+    '#deleteAccountInputToConfirmMobile',
 )
 const warning = document.querySelector('#warning')
 const warningMobile = document.querySelector('#warningMobile')
@@ -239,24 +239,24 @@ const profilePictureEdit = document.querySelector('#profilePictureEdit')
 const layerProfilePicture = document.querySelector('#layerProfilePicture')
 const profilePictureInput = document.querySelector('#profilePictureInput')
 const profilePictureEditMobile = document.querySelector(
-    '#profilePictureEditMobile'
+    '#profilePictureEditMobile',
 )
 const layerProfilePictureMobile = document.querySelector(
-    '#layerProfilePictureMobile'
+    '#layerProfilePictureMobile',
 )
 const profilePictureInputMobile = document.querySelector(
-    '#profilePictureInputMobile'
+    '#profilePictureInputMobile',
 )
 
 const backMyPlaylist = document.querySelector('.minhas-playlists-back')
 const backMyPlaylistMobile = document.querySelector(
-    '.minhas-playlists-back-mobile'
+    '.minhas-playlists-back-mobile',
 )
 const backContainerMinhaPlaylist = document.querySelector(
-    '.container-minha-playlist-back'
+    '.container-minha-playlist-back',
 )
 const backContainerMinhaPlaylistMobile = document.querySelector(
-    '.container-minha-playlist-back-mobile'
+    '.container-minha-playlist-back-mobile',
 )
 const selectMyPlaylist = document.querySelector('#selectMyPlaylist')
 const selectMyPlaylistMobile = document.querySelector('#selectMyPlaylistMobile')
@@ -264,19 +264,19 @@ const selectMyPlaylistMobile = document.querySelector('#selectMyPlaylistMobile')
 const containerMinhaPlaylist = document.querySelector('#containerMinhaPlaylist')
 const btnSelectMyPlaylist = document.querySelector('#btnSelectMyPlaylist')
 const btnSelectMyPlaylistMobile = document.querySelector(
-    '#btnSelectMyPlaylistMobile'
+    '#btnSelectMyPlaylistMobile',
 )
 const btnEditSelectMyPlaylist = document.querySelector(
-    '#btnEditSelectMyPlaylist'
+    '#btnEditSelectMyPlaylist',
 )
 const btnEditSelectMyPlaylistMobile = document.querySelector(
-    '#btnEditSelectMyPlaylistMobile'
+    '#btnEditSelectMyPlaylistMobile',
 )
 const btnDeleteSelectMyPlaylist = document.querySelector(
-    '#btnDeleteSelectMyPlaylist'
+    '#btnDeleteSelectMyPlaylist',
 )
 const btnDeleteSelectMyPlaylistMobile = document.querySelector(
-    '#btnDeleteSelectMyPlaylistMobile'
+    '#btnDeleteSelectMyPlaylistMobile',
 )
 const favoriteEmpty = document.querySelector('#favoriteEmpty')
 const favoriteEmptyMobile = document.querySelector('#favoriteEmptyMobile')
@@ -287,10 +287,10 @@ const setFullscreen = document.querySelector('#setFullscreen')
 const setFullscreenMobile = document.querySelector('#setFullscreenMobile')
 
 const setOpenManagementSystem = document.querySelector(
-    '#setOpenManagementSystem'
+    '#setOpenManagementSystem',
 )
 const setOpenManagementSystemMobile = document.querySelector(
-    '#setOpenManagementSystemMobile'
+    '#setOpenManagementSystemMobile',
 )
 
 const loadingRoller = document.querySelector('#loadingRoller')
@@ -359,7 +359,7 @@ const HEIGHT_TO_SHOW_SCROLL_TOP = 300
 
 const scrollTopPlaylists = document.querySelector('#scrollTopPlaylists')
 const scrollTopPlaylistsMobile = document.querySelector(
-    '#scrollTopPlaylistsMobile'
+    '#scrollTopPlaylistsMobile',
 )
 
 scrollTopPlaylists.addEventListener('click', () => {
@@ -406,11 +406,11 @@ function manageScrollTop() {
 
 const serviceLogo = document.querySelector('.service-logo img')
 const serviceLogoMobile = document.querySelector(
-    '.header-mobile .service-logo-mobile img'
+    '.header-mobile .service-logo-mobile img',
 )
 
 const allThemeTriggers = document.querySelectorAll(
-    '.container-themes .theme, .container-themes-mobile .theme-mobile'
+    '.container-themes .theme, .container-themes-mobile .theme-mobile',
 )
 
 allThemeTriggers.forEach((element) => {
@@ -429,13 +429,6 @@ audioControllerPrev.addEventListener('click', audioControllerPrevFunction)
 audioControllerPlayMobile.addEventListener('click', audioControllerPlayFunction)
 audioControllerNextMobile.addEventListener('click', audioControllerNextFunction)
 audioControllerPrevMobile.addEventListener('click', audioControllerPrevFunction)
-
-window.addEventListener('load', setFullHeight)
-window.addEventListener('orientationchange', setFullHeight)
-window.addEventListener('resize', () => {
-    allFunctionResizing()
-    setFullHeight()
-})
 
 let canKeyboardEvents = true
 let canKeyboardEventsProfile = true
@@ -518,11 +511,11 @@ backMyPlaylist.addEventListener('click', () => {
 backMyPlaylistMobile.addEventListener('click', toggleMyPlaylists)
 backContainerMinhaPlaylist.addEventListener(
     'click',
-    toggleContainerMinhaPlaylist
+    toggleContainerMinhaPlaylist,
 )
 backContainerMinhaPlaylistMobile.addEventListener(
     'click',
-    toggleContainerMinhaPlaylist
+    toggleContainerMinhaPlaylist,
 )
 controlsMobile.addEventListener('click', () => {
     if (emptyPlaylist) return
@@ -696,7 +689,7 @@ document
     .addEventListener('click', (event) => {
         if (
             event.target.classList.contains(
-                'add-my-new-playlist-overflow-mobile'
+                'add-my-new-playlist-overflow-mobile',
             )
         ) {
             event.target.classList.add('hidden')
@@ -715,7 +708,7 @@ document
     .addEventListener('click', (event) => {
         if (
             event.target.classList.contains(
-                'edit-my-new-playlist-overflow-mobile'
+                'edit-my-new-playlist-overflow-mobile',
             )
         ) {
             event.target.classList.add('hidden')
@@ -736,12 +729,12 @@ document
     .addEventListener('click', (event) => {
         if (
             event.target.classList.contains(
-                'delete-my-new-playlist-overflow-mobile'
+                'delete-my-new-playlist-overflow-mobile',
             )
         ) {
             event.target.classList.add('hidden')
             document.querySelector(
-                '.delete-my-new-playlist-name-mobile'
+                '.delete-my-new-playlist-name-mobile',
             ).value = ''
         }
     })
@@ -749,14 +742,14 @@ document
     .querySelector('.delete-my-new-playlist-btn-cancel')
     .addEventListener('click', (event) => {
         event.target.parentElement.parentElement.parentElement.classList.add(
-            'hidden'
+            'hidden',
         )
     })
 document
     .querySelector('.delete-my-new-playlist-btn-cancel-mobile')
     .addEventListener('click', (event) => {
         event.target.parentElement.parentElement.parentElement.classList.add(
-            'hidden'
+            'hidden',
         )
     })
 document
@@ -771,7 +764,7 @@ document
     .addEventListener('click', (event) => {
         if (
             event.target.classList.contains(
-                'music-my-new-playlist-overflow-mobile'
+                'music-my-new-playlist-overflow-mobile',
             )
         ) {
             event.target.classList.add('hidden')
@@ -796,7 +789,7 @@ document
     .addEventListener('click', (event) => {
         if (
             event.target.classList.contains(
-                'music-delete-my-new-playlist-overflow'
+                'music-delete-my-new-playlist-overflow',
             )
         ) {
             event.target.classList.add('hidden')
@@ -807,7 +800,7 @@ document
     .addEventListener('click', (event) => {
         if (
             event.target.classList.contains(
-                'music-delete-my-new-playlist-overflow-mobile'
+                'music-delete-my-new-playlist-overflow-mobile',
             )
         ) {
             event.target.classList.add('hidden')
@@ -818,11 +811,11 @@ document
     .addEventListener('click', (event) => {
         if (
             event.target.classList.contains(
-                'music-delete-my-new-playlist-btn-cancel'
+                'music-delete-my-new-playlist-btn-cancel',
             )
         ) {
             event.target.parentElement.parentElement.parentElement.classList.add(
-                'hidden'
+                'hidden',
             )
         }
     })
@@ -831,11 +824,11 @@ document
     .addEventListener('click', (event) => {
         if (
             event.target.classList.contains(
-                'music-delete-my-new-playlist-btn-cancel-mobile'
+                'music-delete-my-new-playlist-btn-cancel-mobile',
             )
         ) {
             event.target.parentElement.parentElement.parentElement.classList.add(
-                'hidden'
+                'hidden',
             )
         }
     })
@@ -908,21 +901,21 @@ document
     })
 document
     .querySelector(
-        '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name'
+        '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name',
     )
     .addEventListener('paste', (e) => {
         e.preventDefault()
     })
 document
     .querySelector(
-        '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile'
+        '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile',
     )
     .addEventListener('paste', (e) => {
         e.preventDefault()
     })
 document
     .querySelector(
-        '.edit-my-new-playlist-overflow .edit-my-new-playlist-container'
+        '.edit-my-new-playlist-overflow .edit-my-new-playlist-container',
     )
     .addEventListener('submit', (e) => {
         e.preventDefault()
@@ -930,7 +923,7 @@ document
     })
 document
     .querySelector(
-        '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile'
+        '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile',
     )
     .addEventListener('submit', (e) => {
         e.preventDefault()
@@ -1123,7 +1116,7 @@ document
     .querySelector('.minhas-playlists-search-bar-close-mobile')
     .addEventListener('click', () => {
         document.querySelector(
-            '.minhas-playlists-search-bar-input-mobile'
+            '.minhas-playlists-search-bar-input-mobile',
         ).value = ''
         generatorContainerMusicAddPlaylist()
 
@@ -1221,13 +1214,6 @@ setOpenManagementSystemMobile.addEventListener('change', () => {
     }
 })
 
-function setFullHeight() {
-    const vh = window.innerHeight * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
-}
-
-setFullHeight()
-
 function inicia() {
     setScreenWidthAndHeight()
     allSongValueSetters()
@@ -1258,12 +1244,12 @@ function inicia() {
     $('.title-playlist').html(
         emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
             ? 'Sem Playlist'
-            : userData.lastAccessedPlaylistName
+            : userData.lastAccessedPlaylistName,
     )
     $('.title-playlist-mobile').html(
         emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
             ? 'Sem Playlist'
-            : userData.lastAccessedPlaylistName
+            : userData.lastAccessedPlaylistName,
     )
 
     setMusicPlayTag()
@@ -1273,6 +1259,8 @@ function inicia() {
     initVolumeSlider()
     initThemeChanger(userData.theme)
     incrementViewCount()
+
+    document.querySelector('.loading-screen').classList.add('hidden')
 }
 
 function audioControllerPlayFunction() {
@@ -1339,7 +1327,7 @@ function allSongValueSetters() {
             clearInterval(timerCurretDurationSetter)
             sliderMusicDuration.style.setProperty(
                 'background-image',
-                'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%'
+                'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%',
             )
             sliderMusicDurationDot.style.setProperty('left', '0%')
 
@@ -1359,7 +1347,7 @@ function allSongValueSetters() {
             clearInterval(timerCurretDurationSetter)
             displayMusicDurationMobile.style.setProperty(
                 'background-image',
-                'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%'
+                'linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) 0%, var(--color-white-1) 0%, var(--color-white-1) 100%',
             )
 
             if (playerMobile) {
@@ -1378,7 +1366,7 @@ function allSongValueSetters() {
         coverCurrentMusic.alt = musicDataShuffled[indexAudio].title
         backgroundCover.style.setProperty(
             'background-image',
-            `url("${musicDataShuffled[indexAudio].coverUrl}")`
+            `url("${musicDataShuffled[indexAudio].coverUrl}")`,
         )
         titleCurrentMusic.innerHTML = musicDataShuffled[indexAudio].title
         genderCurrentMusic.innerHTML = musicDataShuffled[indexAudio].gender
@@ -1391,7 +1379,7 @@ function allSongValueSetters() {
         coverCurrentMusicMobile.alt = musicDataShuffled[indexAudio].title
         backgroundCoverMobile.style.setProperty(
             'background-image',
-            `url("${musicDataShuffled[indexAudio].coverUrl}")`
+            `url("${musicDataShuffled[indexAudio].coverUrl}")`,
         )
         titleCurrentMusicMobile.innerHTML = musicDataShuffled[indexAudio].title
         genderCurrentMusicMobile.innerHTML =
@@ -1418,12 +1406,12 @@ function formatarData(dataUTC) {
 function setUserSettings() {
     if (screenWidth >= 1360) {
         registrationDate.innerHTML = `Registrou-se em: ${formatarData(
-            userData.additionDate
+            userData.additionDate,
         )}`
         userName.innerHTML = userData.name
     } else {
         registrationDateMobile.innerHTML = `Registrou-se em: ${formatarData(
-            userData.additionDate
+            userData.additionDate,
         )}`
         userNameMobile.innerHTML = userData.name
     }
@@ -1483,7 +1471,7 @@ function generatorContainerPlaylistData() {
 
         const nextPage = musicDataShuffled.slice(
             indexPage,
-            indexPage + itensPerPage
+            indexPage + itensPerPage,
         )
 
         nextPage.forEach((element, index) => {
@@ -1553,7 +1541,7 @@ function generatorContainerPlaylistData() {
 
         const nextPage = musicDataShuffled.slice(
             indexPage,
-            indexPage + itensPerPage
+            indexPage + itensPerPage,
         )
 
         nextPage.forEach((element, index) => {
@@ -1607,7 +1595,7 @@ function generatorContainerPlaylistData() {
             if (lastChild) {
                 containerPlaylistMobile.insertBefore(
                     itemPlaylistMobile,
-                    lastChild
+                    lastChild,
                 )
             } else {
                 containerPlaylistMobile.appendChild(itemPlaylistMobile)
@@ -1627,7 +1615,7 @@ function generatorContainerPlaylistData() {
 function generatorContainerPlaylistDataPlay() {
     if (screenWidth >= 1360) {
         const itemsPlaylist = document.querySelectorAll(
-            '.container-playlist .item-playlist'
+            '.container-playlist .item-playlist',
         )
 
         itemsPlaylist.forEach((element) => {
@@ -1639,8 +1627,8 @@ function generatorContainerPlaylistDataPlay() {
                     indexAudio ==
                     musicDataShuffled.indexOf(
                         musicDataShuffled.find(
-                            (element) => element._id == $(this).data('id')
-                        )
+                            (element) => element._id == $(this).data('id'),
+                        ),
                     )
                 ) {
                     cannotPlayTheMusic = true
@@ -1650,8 +1638,8 @@ function generatorContainerPlaylistDataPlay() {
 
                 indexAudio = musicDataShuffled.indexOf(
                     musicDataShuffled.find(
-                        (element) => element._id == $(this).data('id')
-                    )
+                        (element) => element._id == $(this).data('id'),
+                    ),
                 )
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
@@ -1669,7 +1657,7 @@ function generatorContainerPlaylistDataPlay() {
         })
     } else {
         const itemsPlaylistMobile = document.querySelectorAll(
-            '.container-playlist-mobile .item-playlist-mobile'
+            '.container-playlist-mobile .item-playlist-mobile',
         )
 
         itemsPlaylistMobile.forEach((element) => {
@@ -1681,8 +1669,8 @@ function generatorContainerPlaylistDataPlay() {
                     indexAudio ==
                     musicDataShuffled.indexOf(
                         musicDataShuffled.find(
-                            (element) => element._id == $(this).data('id')
-                        )
+                            (element) => element._id == $(this).data('id'),
+                        ),
                     )
                 ) {
                     cannotPlayTheMusic = true
@@ -1690,8 +1678,8 @@ function generatorContainerPlaylistDataPlay() {
 
                 indexAudio = musicDataShuffled.indexOf(
                     musicDataShuffled.find(
-                        (element) => element._id == $(this).data('id')
-                    )
+                        (element) => element._id == $(this).data('id'),
+                    ),
                 )
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
@@ -1719,8 +1707,8 @@ function generatorContainerPlaylistSelectData() {
                 document
                     .querySelector('.playlists-search-bar-input')
                     .value.trim()
-                    .toLowerCase()
-            )
+                    .toLowerCase(),
+            ),
     )
     const playlistDataFilteredMobile = playlistData.filter((playlist) =>
         playlist.title
@@ -1729,8 +1717,8 @@ function generatorContainerPlaylistSelectData() {
                 document
                     .querySelector('.playlists-search-bar-input-mobile')
                     .value.trim()
-                    .toLowerCase()
-            )
+                    .toLowerCase(),
+            ),
     )
 
     if (screenWidth >= 1360) {
@@ -1756,14 +1744,15 @@ function generatorContainerPlaylistSelectData() {
                         <div class="total-music-item-select-playlist">
                             Total de ${
                                 allMusicData.filter(
-                                    (music) => music.gender == element.gender
+                                    (music) => music.gender == element.gender,
                                 ).length
                             } ${
-                allMusicData.filter((music) => music.gender == element.gender)
-                    .length > 1
-                    ? 'músicas'
-                    : 'música'
-            }
+                                allMusicData.filter(
+                                    (music) => music.gender == element.gender,
+                                ).length > 1
+                                    ? 'músicas'
+                                    : 'música'
+                            }
                         </div>
                     </div>
                 </div>
@@ -1813,14 +1802,15 @@ function generatorContainerPlaylistSelectData() {
                         <div class="total-music-item-select-playlist-mobile">
                             Total de ${
                                 allMusicData.filter(
-                                    (music) => music.gender == element.gender
+                                    (music) => music.gender == element.gender,
                                 ).length
                             } ${
-                allMusicData.filter((music) => music.gender == element.gender)
-                    .length > 1
-                    ? 'músicas'
-                    : 'música'
-            }
+                                allMusicData.filter(
+                                    (music) => music.gender == element.gender,
+                                ).length > 1
+                                    ? 'músicas'
+                                    : 'música'
+                            }
                         </div>
                     </div>
                 </div>
@@ -1853,7 +1843,7 @@ function generatorContainerPlaylistSelectData() {
 function generatorContainerPlaylistSelectDataPlay() {
     if (screenWidth >= 1360) {
         const itemsSelectPlaylist = document.querySelectorAll(
-            '.container-select-playlists .item-select-playlist .cover-item-select-playlist'
+            '.container-select-playlists .item-select-playlist .cover-item-select-playlist',
         )
 
         itemsSelectPlaylist.forEach((element) => {
@@ -1869,7 +1859,7 @@ function generatorContainerPlaylistSelectDataPlay() {
         })
     } else {
         const itemsSelectPlaylistMobile = document.querySelectorAll(
-            '.item-select-playlist-mobile .cover-item-select-playlist-mobile'
+            '.item-select-playlist-mobile .cover-item-select-playlist-mobile',
         )
 
         itemsSelectPlaylistMobile.forEach((element) => {
@@ -1889,7 +1879,7 @@ function generatorContainerSearchData() {
         musicDataFiltered = musicData.filter((music) =>
             music.title
                 .toLowerCase()
-                .includes(searchBarInput.value.toLowerCase())
+                .includes(searchBarInput.value.toLowerCase()),
         )
 
         while (musicDataFiltered.length > 10) {
@@ -1904,8 +1894,8 @@ function generatorContainerSearchData() {
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
                             <img src="${element.coverUrl}" alt="${
-                element.title
-            }">
+                                element.title
+                            }">
                         </div>
                         <div class="info-item-search">
                             <div class="title-info-search">
@@ -1926,7 +1916,7 @@ function generatorContainerSearchData() {
         musicDataFiltered = musicData.filter((music) =>
             music.title
                 .toLowerCase()
-                .includes(searchBarInputMobile.value.toLowerCase())
+                .includes(searchBarInputMobile.value.toLowerCase()),
         )
 
         while (musicDataFiltered.length > 10) {
@@ -1941,8 +1931,8 @@ function generatorContainerSearchData() {
                     <div class="box-wrapper-search">
                         <div class="cover-item-search">
                             <img src="${element.coverUrl}" alt="${
-                element.title
-            }">
+                                element.title
+                            }">
                         </div>
                         <div class="info-item-search">
                             <div class="title-info">
@@ -1965,7 +1955,7 @@ function generatorContainerSearchData() {
 function generatorContainerSearchDataPlay() {
     if (screenWidth >= 1360) {
         const itemsPlaylistSearch = document.querySelectorAll(
-            '.container-items .item-playlist-search'
+            '.container-items .item-playlist-search',
         )
 
         itemsPlaylistSearch.forEach((element) => {
@@ -1975,8 +1965,8 @@ function generatorContainerSearchDataPlay() {
                     indexAudio ==
                     musicDataShuffled.indexOf(
                         musicDataShuffled.find(
-                            (element) => element._id == $(this).data('id')
-                        )
+                            (element) => element._id == $(this).data('id'),
+                        ),
                     )
                 ) {
                     cannotPlayTheMusic = true
@@ -1993,8 +1983,8 @@ function generatorContainerSearchDataPlay() {
 
                 indexAudio = musicDataShuffled.indexOf(
                     musicDataShuffled.find(
-                        (element) => element._id == $(this).data('id')
-                    )
+                        (element) => element._id == $(this).data('id'),
+                    ),
                 )
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
@@ -2019,7 +2009,7 @@ function generatorContainerSearchDataPlay() {
         })
     } else {
         const itemsPlaylistSearchMobile = document.querySelectorAll(
-            '.container-search-mobile .item-search-mobile'
+            '.container-search-mobile .item-search-mobile',
         )
 
         itemsPlaylistSearchMobile.forEach((element) => {
@@ -2029,8 +2019,8 @@ function generatorContainerSearchDataPlay() {
                     indexAudio ==
                     musicDataShuffled.indexOf(
                         musicDataShuffled.find(
-                            (element) => element._id == $(this).data('id')
-                        )
+                            (element) => element._id == $(this).data('id'),
+                        ),
                     )
                 ) {
                     cannotPlayTheMusic = true
@@ -2038,8 +2028,8 @@ function generatorContainerSearchDataPlay() {
 
                 indexAudio = musicDataShuffled.indexOf(
                     musicDataShuffled.find(
-                        (element) => element._id == $(this).data('id')
-                    )
+                        (element) => element._id == $(this).data('id'),
+                    ),
                 )
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
@@ -2069,13 +2059,13 @@ function generatorContainerFavoriteData() {
 
     for (let i = 0; i < userData.favoriteSongs.length; i++) {
         let song = musicDataShuffled.find(
-            (element) => element._id == userData.favoriteSongs[i].musicId
+            (element) => element._id == userData.favoriteSongs[i].musicId,
         )
         if (song) {
             if (
                 !favoriteSongs.find(
                     (element) =>
-                        element._id == userData.favoriteSongs[i].musicId
+                        element._id == userData.favoriteSongs[i].musicId,
                 )
             ) {
                 favoriteSongs.push(song)
@@ -2149,7 +2139,7 @@ function generatorContainerFavoriteData() {
 function generatorContainerFavoriteDataPlay() {
     if (screenWidth >= 1360) {
         const itemsPlaylistFavorite = document.querySelectorAll(
-            '.container-favorite .item-playlist-favorite'
+            '.container-favorite .item-playlist-favorite',
         )
 
         itemsPlaylistFavorite.forEach((element) => {
@@ -2159,8 +2149,8 @@ function generatorContainerFavoriteDataPlay() {
                     indexAudio ==
                     musicDataShuffled.indexOf(
                         musicDataShuffled.find(
-                            (element) => element._id == $(this).data('id')
-                        )
+                            (element) => element._id == $(this).data('id'),
+                        ),
                     )
                 ) {
                     cannotPlayTheMusic = true
@@ -2176,8 +2166,8 @@ function generatorContainerFavoriteDataPlay() {
 
                 indexAudio = musicDataShuffled.indexOf(
                     musicDataShuffled.find(
-                        (element) => element._id == $(this).data('id')
-                    )
+                        (element) => element._id == $(this).data('id'),
+                    ),
                 )
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
@@ -2201,7 +2191,7 @@ function generatorContainerFavoriteDataPlay() {
         })
     } else {
         const itemsPlaylistFavoriteMobile = document.querySelectorAll(
-            '.container-favorite-mobile .item-favorite-mobile'
+            '.container-favorite-mobile .item-favorite-mobile',
         )
 
         itemsPlaylistFavoriteMobile.forEach((element) => {
@@ -2211,8 +2201,8 @@ function generatorContainerFavoriteDataPlay() {
                     indexAudio ==
                     musicDataShuffled.indexOf(
                         musicDataShuffled.find(
-                            (element) => element._id == $(this).data('id')
-                        )
+                            (element) => element._id == $(this).data('id'),
+                        ),
                     )
                 ) {
                     cannotPlayTheMusic = true
@@ -2220,8 +2210,8 @@ function generatorContainerFavoriteDataPlay() {
 
                 indexAudio = musicDataShuffled.indexOf(
                     musicDataShuffled.find(
-                        (element) => element._id == $(this).data('id')
-                    )
+                        (element) => element._id == $(this).data('id'),
+                    ),
                 )
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
@@ -2251,13 +2241,14 @@ function generatorContainerHistoricData() {
 
     for (let i = 0; i < userData.musicHistory.length; i++) {
         let song = musicDataShuffled.find(
-            (element) => element._id == userData.musicHistory[i].musicId
+            (element) => element._id == userData.musicHistory[i].musicId,
         )
 
         if (song) {
             if (
                 !historicSongs.find(
-                    (element) => element._id == userData.musicHistory[i].musicId
+                    (element) =>
+                        element._id == userData.musicHistory[i].musicId,
                 )
             ) {
                 historicSongs.push(song)
@@ -2331,7 +2322,7 @@ function generatorContainerHistoricData() {
 function generatorContainerHistoricDataPlay() {
     if (screenWidth >= 1360) {
         const itemsPlaylistHistoric = document.querySelectorAll(
-            '.container-historic .item-playlist-historic'
+            '.container-historic .item-playlist-historic',
         )
 
         itemsPlaylistHistoric.forEach((element) => {
@@ -2341,8 +2332,8 @@ function generatorContainerHistoricDataPlay() {
                     indexAudio ==
                     musicDataShuffled.indexOf(
                         musicDataShuffled.find(
-                            (element) => element._id == $(this).data('id')
-                        )
+                            (element) => element._id == $(this).data('id'),
+                        ),
                     )
                 ) {
                     cannotPlayTheMusic = true
@@ -2358,8 +2349,8 @@ function generatorContainerHistoricDataPlay() {
 
                 indexAudio = musicDataShuffled.indexOf(
                     musicDataShuffled.find(
-                        (element) => element._id == $(this).data('id')
-                    )
+                        (element) => element._id == $(this).data('id'),
+                    ),
                 )
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
@@ -2383,7 +2374,7 @@ function generatorContainerHistoricDataPlay() {
         })
     } else {
         const itemsPlaylistHistoricMobile = document.querySelectorAll(
-            '.container-historic-mobile .item-historic-mobile'
+            '.container-historic-mobile .item-historic-mobile',
         )
 
         itemsPlaylistHistoricMobile.forEach((element) => {
@@ -2393,8 +2384,8 @@ function generatorContainerHistoricDataPlay() {
                     indexAudio ==
                     musicDataShuffled.indexOf(
                         musicDataShuffled.find(
-                            (element) => element._id == $(this).data('id')
-                        )
+                            (element) => element._id == $(this).data('id'),
+                        ),
                     )
                 ) {
                     cannotPlayTheMusic = true
@@ -2402,8 +2393,8 @@ function generatorContainerHistoricDataPlay() {
 
                 indexAudio = musicDataShuffled.indexOf(
                     musicDataShuffled.find(
-                        (element) => element._id == $(this).data('id')
-                    )
+                        (element) => element._id == $(this).data('id'),
+                    ),
                 )
                 indexAudioId = musicDataShuffled[indexAudio]._id
                 indexAudioGender = musicDataShuffled[indexAudio].gender
@@ -2432,7 +2423,7 @@ function generatorContainerMusicAddPlaylist() {
     if (screenWidth >= 1360) {
         const container = document.querySelector('.container-minhas-playlists')
         const containerMusic = document.querySelector(
-            '.container-minhas-musicas'
+            '.container-minhas-musicas',
         )
 
         container.innerHTML = ''
@@ -2444,8 +2435,8 @@ function generatorContainerMusicAddPlaylist() {
                     document
                         .querySelector('.minhas-playlists-search-bar-input')
                         .value.trim()
-                        .toLowerCase()
-                )
+                        .toLowerCase(),
+                ),
         )
 
         myPlaylistsFiltered.forEach((element, index) => {
@@ -2456,30 +2447,30 @@ function generatorContainerMusicAddPlaylist() {
             }s`
             divItemMinhasPlaylists.addEventListener('click', () => {
                 document.querySelector(
-                    '.main-minhas-playlists .main-playlist .content .title'
+                    '.main-minhas-playlists .main-playlist .content .title',
                 ).textContent = element.title
                 document.querySelector(
-                    '.main-minhas-playlists .main-playlist .content .details .created'
+                    '.main-minhas-playlists .main-playlist .content .details .created',
                 ).textContent = `Criada em: ${formatarData(
-                    element.additionDate
+                    element.additionDate,
                 )}`
                 document.querySelector(
-                    '.main-minhas-playlists .main-playlist .content .details .total-song'
+                    '.main-minhas-playlists .main-playlist .content .details .total-song',
                 ).textContent = `Total de ${element.totalSongs} ${
                     element.totalSongs <= 1 ? 'música' : 'músicas'
                 }`
                 document.querySelector(
-                    '.main-minhas-playlists .main-playlist .cover img'
+                    '.main-minhas-playlists .main-playlist .cover img',
                 ).src = element.currentCoverUrl
                 document.querySelector(
-                    '.main-minhas-playlists .main-playlist .cover img'
+                    '.main-minhas-playlists .main-playlist .cover img',
                 ).alt = element.title
                 indexMyPlaylistId = element._id
                 document.querySelector(
-                    '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                    '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name',
                 ).value = element.title
                 document.querySelector(
-                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current'
+                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current',
                 ).textContent = element.title
                 toggleContainerMinhaPlaylist()
 
@@ -2487,7 +2478,7 @@ function generatorContainerMusicAddPlaylist() {
 
                 element.songs.reverse().forEach((ele, index) => {
                     let musicaEncontrada = allMusicData.find(
-                        (element) => element._id === ele.musicId
+                        (element) => element._id === ele.musicId,
                     )
 
                     let divItemMinhasMusicas = document.createElement('div')
@@ -2497,16 +2488,16 @@ function generatorContainerMusicAddPlaylist() {
                     }s`
                     divItemMinhasMusicas.addEventListener('click', () => {
                         document.querySelector(
-                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-title'
+                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-title',
                         ).textContent = musicaEncontrada.title
                         document.querySelector(
-                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img'
+                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img',
                         ).src = musicaEncontrada.coverUrl
                         document.querySelector(
-                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img'
+                            '.music-my-new-playlist-overflow .music-my-new-playlist-container .music-my-new-playlist-cover img',
                         ).alt = musicaEncontrada.title
                         document.querySelector(
-                            '.music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container .music-delete-my-new-playlist-current'
+                            '.music-delete-my-new-playlist-overflow .music-delete-my-new-playlist-container .music-delete-my-new-playlist-current',
                         ).textContent = musicaEncontrada.title
                         indexMyPlaylistAudioId = ele._id
                         toggleMusicMinhaPlaylist()
@@ -2515,7 +2506,7 @@ function generatorContainerMusicAddPlaylist() {
                     let divCoverItemMinhasMusicas =
                         document.createElement('div')
                     divCoverItemMinhasMusicas.classList.add(
-                        'cover-item-minhas-musicas'
+                        'cover-item-minhas-musicas',
                     )
 
                     let imgCover = document.createElement('img')
@@ -2525,7 +2516,7 @@ function generatorContainerMusicAddPlaylist() {
                     let divTitleItemMinhasMusicas =
                         document.createElement('div')
                     divTitleItemMinhasMusicas.classList.add(
-                        'title-item-minhas-musicas'
+                        'title-item-minhas-musicas',
                     )
                     divTitleItemMinhasMusicas.textContent =
                         musicaEncontrada.title
@@ -2540,7 +2531,7 @@ function generatorContainerMusicAddPlaylist() {
 
             let divCoverItemMinhasPlaylists = document.createElement('div')
             divCoverItemMinhasPlaylists.classList.add(
-                'cover-item-minhas-playlists'
+                'cover-item-minhas-playlists',
             )
 
             let imgCover = document.createElement('img')
@@ -2549,7 +2540,7 @@ function generatorContainerMusicAddPlaylist() {
 
             let divTitleItemMinhasPlaylists = document.createElement('div')
             divTitleItemMinhasPlaylists.classList.add(
-                'title-item-minhas-playlists'
+                'title-item-minhas-playlists',
             )
             divTitleItemMinhasPlaylists.textContent = element.title
 
@@ -2559,7 +2550,7 @@ function generatorContainerMusicAddPlaylist() {
 
             let divTotalDeMusicasQuantidade = document.createElement('div')
             divTotalDeMusicasQuantidade.classList.add(
-                'total-de-musicas-quantidade'
+                'total-de-musicas-quantidade',
             )
             divTotalDeMusicasQuantidade.textContent = element.totalSongs
 
@@ -2592,10 +2583,10 @@ function generatorContainerMusicAddPlaylist() {
         }
     } else {
         const container = document.querySelector(
-            '.container-minhas-playlists-mobile'
+            '.container-minhas-playlists-mobile',
         )
         const containerMusic = document.querySelector(
-            '.container-minhas-musicas-mobile'
+            '.container-minhas-musicas-mobile',
         )
 
         container.innerHTML = ''
@@ -2606,11 +2597,11 @@ function generatorContainerMusicAddPlaylist() {
                 .includes(
                     document
                         .querySelector(
-                            '.minhas-playlists-search-bar-input-mobile'
+                            '.minhas-playlists-search-bar-input-mobile',
                         )
                         .value.trim()
-                        .toLowerCase()
-                )
+                        .toLowerCase(),
+                ),
         )
 
         myPlaylistsFiltered.forEach((element, index) => {
@@ -2621,30 +2612,30 @@ function generatorContainerMusicAddPlaylist() {
             }s`
             divItemMinhasPlaylists.addEventListener('click', () => {
                 document.querySelector(
-                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile'
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .title-mobile',
                 ).textContent = element.title
                 document.querySelector(
-                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .created-mobile'
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .created-mobile',
                 ).textContent = `Criada em: ${formatarData(
-                    element.additionDate
+                    element.additionDate,
                 )}`
                 document.querySelector(
-                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .total-song-mobile'
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .content-mobile .details-mobile .total-song-mobile',
                 ).textContent = `Total de ${element.totalSongs} ${
                     element.totalSongs <= 1 ? 'música' : 'músicas'
                 }`
                 document.querySelector(
-                    '.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img'
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img',
                 ).src = element.currentCoverUrl
                 document.querySelector(
-                    '.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img'
+                    '.main-minhas-playlists-mobile .main-playlist-mobile .cover-mobile img',
                 ).alt = element.title
                 indexMyPlaylistId = element._id
                 document.querySelector(
-                    '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+                    '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile',
                 ).value = element.title
                 document.querySelector(
-                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile'
+                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile',
                 ).textContent = element.title
                 toggleContainerMinhaPlaylist()
 
@@ -2652,28 +2643,28 @@ function generatorContainerMusicAddPlaylist() {
 
                 element.songs.reverse().forEach((ele, index) => {
                     let musicaEncontrada = allMusicData.find(
-                        (element) => element._id === ele.musicId
+                        (element) => element._id === ele.musicId,
                     )
 
                     let divItemMinhasMusicas = document.createElement('div')
                     divItemMinhasMusicas.classList.add(
-                        'item-minhas-musicas-mobile'
+                        'item-minhas-musicas-mobile',
                     )
                     divItemMinhasMusicas.style.animationDelay = `${
                         index * 0.05 + 0.1
                     }s`
                     divItemMinhasMusicas.addEventListener('click', () => {
                         document.querySelector(
-                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-title-mobile'
+                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-title-mobile',
                         ).textContent = musicaEncontrada.title
                         document.querySelector(
-                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img'
+                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img',
                         ).src = musicaEncontrada.coverUrl
                         document.querySelector(
-                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img'
+                            '.music-my-new-playlist-overflow-mobile .music-my-new-playlist-container-mobile .music-my-new-playlist-cover-mobile img',
                         ).alt = musicaEncontrada.title
                         document.querySelector(
-                            '.music-delete-my-new-playlist-overflow-mobile .music-delete-my-new-playlist-container-mobile .music-delete-my-new-playlist-current-mobile'
+                            '.music-delete-my-new-playlist-overflow-mobile .music-delete-my-new-playlist-container-mobile .music-delete-my-new-playlist-current-mobile',
                         ).textContent = musicaEncontrada.title
                         indexMyPlaylistAudioId = ele._id
                         toggleMusicMinhaPlaylist()
@@ -2682,7 +2673,7 @@ function generatorContainerMusicAddPlaylist() {
                     let divCoverItemMinhasMusicas =
                         document.createElement('div')
                     divCoverItemMinhasMusicas.classList.add(
-                        'cover-item-minhas-musicas-mobile'
+                        'cover-item-minhas-musicas-mobile',
                     )
 
                     let imgCover = document.createElement('img')
@@ -2692,7 +2683,7 @@ function generatorContainerMusicAddPlaylist() {
                     let divTitleItemMinhasMusicas =
                         document.createElement('div')
                     divTitleItemMinhasMusicas.classList.add(
-                        'title-item-minhas-musicas-mobile'
+                        'title-item-minhas-musicas-mobile',
                     )
                     divTitleItemMinhasMusicas.textContent =
                         musicaEncontrada.title
@@ -2707,7 +2698,7 @@ function generatorContainerMusicAddPlaylist() {
 
             let divCoverItemMinhasPlaylists = document.createElement('div')
             divCoverItemMinhasPlaylists.classList.add(
-                'cover-item-minhas-playlists-mobile'
+                'cover-item-minhas-playlists-mobile',
             )
 
             let imgCover = document.createElement('img')
@@ -2716,7 +2707,7 @@ function generatorContainerMusicAddPlaylist() {
 
             let divTitleItemMinhasPlaylists = document.createElement('div')
             divTitleItemMinhasPlaylists.classList.add(
-                'title-item-minhas-playlists-mobile'
+                'title-item-minhas-playlists-mobile',
             )
             divTitleItemMinhasPlaylists.textContent = element.title
 
@@ -2726,7 +2717,7 @@ function generatorContainerMusicAddPlaylist() {
 
             let divTotalDeMusicasQuantidade = document.createElement('div')
             divTotalDeMusicasQuantidade.classList.add(
-                'total-de-musicas-quantidade-mobile'
+                'total-de-musicas-quantidade-mobile',
             )
             divTotalDeMusicasQuantidade.textContent = element.totalSongs
 
@@ -2763,14 +2754,14 @@ function generatorContainerMusicAddPlaylist() {
 function generatorContainerCurrentMusicAddPlaylist() {
     if (screenWidth >= 1360) {
         const currentMusicAddPlaylistContainer = document.querySelector(
-            '.current-music-add-playlist-container'
+            '.current-music-add-playlist-container',
         )
 
         currentMusicAddPlaylistContainer.innerHTML = ''
 
         userData.myPlaylists.forEach((element) => {
             const song = element.songs.find(
-                (song) => song.musicId === indexAudioId
+                (song) => song.musicId === indexAudioId,
             )
 
             const divItem = document.createElement('div')
@@ -2787,7 +2778,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                        }
+                        },
                     )
                         .then((response) => {
                             if (response.status === 200) return
@@ -2834,7 +2825,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                             body: JSON.stringify({
                                 musicIds: [indexAudioId],
                             }),
-                        }
+                        },
                     )
                         .then((response) => {
                             if (response.status === 201) return
@@ -2896,14 +2887,14 @@ function generatorContainerCurrentMusicAddPlaylist() {
         })
     } else {
         const currentMusicAddPlaylistContainerMobile = document.querySelector(
-            '.current-music-add-playlist-container-mobile'
+            '.current-music-add-playlist-container-mobile',
         )
 
         currentMusicAddPlaylistContainerMobile.innerHTML = ''
 
         userData.myPlaylists.forEach((element) => {
             const song = element.songs.find(
-                (song) => song.musicId === indexAudioId
+                (song) => song.musicId === indexAudioId,
             )
 
             const divItem = document.createElement('div')
@@ -2918,7 +2909,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                        }
+                        },
                     )
                         .then((response) => {
                             if (response.status === 200) return
@@ -2965,7 +2956,7 @@ function generatorContainerCurrentMusicAddPlaylist() {
                             body: JSON.stringify({
                                 musicIds: [indexAudioId],
                             }),
-                        }
+                        },
                     )
                         .then((response) => {
                             if (response.status === 201) return
@@ -3035,7 +3026,7 @@ function getThemeStorage() {
 function setThemeStorage(theme) {
     if (!themes.includes(theme)) {
         console.warn(
-            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`
+            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`,
         )
         theme = 'original'
     }
@@ -3058,7 +3049,7 @@ function initThemeChanger(theme = 'original') {
 
     if (!themes.includes(theme)) {
         console.warn(
-            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`
+            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`,
         )
         theme = 'original'
     }
@@ -3066,7 +3057,7 @@ function initThemeChanger(theme = 'original') {
     for (let i = 1; i <= 5; i++) {
         document.documentElement.style.setProperty(
             `--color-base-${i}`,
-            colorsThemes[theme][`base${i}`]
+            colorsThemes[theme][`base${i}`],
         )
     }
 
@@ -3111,7 +3102,7 @@ async function themeChanger(theme = 'original') {
 
     if (!themes.includes(theme)) {
         console.warn(
-            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`
+            `Tema "${theme}" não reconhecido. Utilizando tema padrão "original".`,
         )
         theme = 'original'
     }
@@ -3119,7 +3110,7 @@ async function themeChanger(theme = 'original') {
     for (let i = 1; i <= 5; i++) {
         document.documentElement.style.setProperty(
             `--color-base-${i}`,
-            colorsThemes[theme][`base${i}`]
+            colorsThemes[theme][`base${i}`],
         )
     }
 
@@ -3206,14 +3197,14 @@ function durationSliderEventGenerator() {
             if (emptyPlaylist) return
 
             changeVideoCurrentTime(
-                (sliderMusicDuration.value / 100) * getVideoDuration()
+                (sliderMusicDuration.value / 100) * getVideoDuration(),
             )
 
             canMoveTheSliderDuration = true
         })
         sliderMusicDuration.addEventListener('touchend', () => {
             changeVideoCurrentTime(
-                (sliderMusicDuration.value / 100) * getVideoDuration()
+                (sliderMusicDuration.value / 100) * getVideoDuration(),
             )
 
             canMoveTheSliderDuration = true
@@ -3224,11 +3215,11 @@ function durationSliderEventGenerator() {
 
             sliderMusicDuration.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`,
             )
             sliderMusicDurationDot.style.setProperty(
                 'left',
-                `${sliderMusicDuration.value}%`
+                `${sliderMusicDuration.value}%`,
             )
 
             let interactionWithTheSlider =
@@ -3257,14 +3248,14 @@ function durationSliderEventGenerator() {
         })
         sliderMusicDurationMobile.addEventListener('mouseup', () => {
             changeVideoCurrentTime(
-                (sliderMusicDurationMobile.value / 100) * getVideoDuration()
+                (sliderMusicDurationMobile.value / 100) * getVideoDuration(),
             )
 
             canMoveTheSliderDuration = true
         })
         sliderMusicDurationMobile.addEventListener('touchend', () => {
             changeVideoCurrentTime(
-                (sliderMusicDurationMobile.value / 100) * getVideoDuration()
+                (sliderMusicDurationMobile.value / 100) * getVideoDuration(),
             )
 
             canMoveTheSliderDuration = true
@@ -3273,11 +3264,11 @@ function durationSliderEventGenerator() {
         sliderMusicDurationMobile.oninput = () => {
             sliderMusicDurationMobile.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`,
             )
             sliderMusicDurationDotMobile.style.setProperty(
                 'left',
-                `${sliderMusicDurationMobile.value}%`
+                `${sliderMusicDurationMobile.value}%`,
             )
 
             let interactionWithTheSlider =
@@ -3327,11 +3318,11 @@ function volumeSliderEventGenerator() {
 function setSliderMusicVolume() {
     sliderMusicVolume.style.setProperty(
         'background-image',
-        `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`
+        `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicVolume.value}%, var(--color-white-1) ${sliderMusicVolume.value}%, var(--color-white-1) 100%`,
     )
     sliderMusicVolumeDot.style.setProperty(
         'left',
-        `${sliderMusicVolume.value}%`
+        `${sliderMusicVolume.value}%`,
     )
 }
 
@@ -3395,24 +3386,24 @@ function initDurationSlider() {
     if (screenWidth >= 1360) {
         sliderMusicDuration.style.setProperty(
             'background-image',
-            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`,
         )
         sliderMusicDurationDot.style.setProperty(
             'left',
-            `${sliderMusicDuration.value}%`
+            `${sliderMusicDuration.value}%`,
         )
     } else {
         sliderMusicDurationMobile.style.setProperty(
             'background-image',
-            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`,
         )
         displayMusicDurationMobile.style.setProperty(
             'background-image',
-            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+            `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`,
         )
         sliderMusicDurationDotMobile.style.setProperty(
             'left',
-            `${sliderMusicDurationMobile.value}%`
+            `${sliderMusicDurationMobile.value}%`,
         )
     }
 }
@@ -3462,7 +3453,7 @@ function shuffleToggle() {
         shuffleArray(musicDataShuffled)
 
         indexAudio = musicDataShuffled.findIndex(
-            (element) => element._id === indexAudioId
+            (element) => element._id === indexAudioId,
         )
         indexPage = 0
         clearPlaylistData()
@@ -3478,7 +3469,7 @@ function shuffleToggle() {
         shuffleToggleControl = true
         musicDataShuffled = [...musicData]
         indexAudio = musicDataShuffled.findIndex(
-            (element) => element._id === indexAudioId
+            (element) => element._id === indexAudioId,
         )
         indexPage = 0
         clearPlaylistData()
@@ -3561,7 +3552,7 @@ function searchEvents() {
         () => {
             $('.main-search-mobile .search-bar-mobile input').val('')
             musicFilteringFunction()
-        }
+        },
     )
     $('.container-settings .user-settings').click(function () {
         toggleTemplateUser()
@@ -3642,7 +3633,7 @@ function toggleTemplateUser() {
 function setMusicPlayTag() {
     $('.music-playing').removeClass('music-playing')
     $(`div[data-id="${indexAudioId}"] .box-wrapper .info-item`).addClass(
-        'music-playing'
+        'music-playing',
     )
 }
 
@@ -3669,7 +3660,7 @@ async function logoutService() {
                     .replace(/^ +/, '')
                     .replace(
                         /=.*/,
-                        '=;expires=' + new Date().toUTCString() + ';path=/'
+                        '=;expires=' + new Date().toUTCString() + ';path=/',
                     )
             })
 
@@ -3681,7 +3672,7 @@ async function logoutService() {
                     .replace(/^ +/, '')
                     .replace(
                         /=.*/,
-                        '=;expires=' + new Date().toUTCString() + ';path=/'
+                        '=;expires=' + new Date().toUTCString() + ';path=/',
                     )
             })
 
@@ -3911,20 +3902,20 @@ async function refreshFavorite() {
     let isFound = false
 
     let songFavorite = userData.favoriteSongs.find(
-        (element) => element.musicId == musicDataShuffled[indexAudio]?._id
+        (element) => element.musicId == musicDataShuffled[indexAudio]?._id,
     )
 
     if (screenWidth >= 1360) {
         if (songFavorite) {
             document.querySelector(
-                '.current-music-add-favorite-icon ion-icon'
+                '.current-music-add-favorite-icon ion-icon',
             ).name = 'heart'
             isFound = true
         }
 
         if (!isFound) {
             document.querySelector(
-                '.current-music-add-favorite-icon ion-icon'
+                '.current-music-add-favorite-icon ion-icon',
             ).name = 'heart-outline'
         }
 
@@ -3933,7 +3924,7 @@ async function refreshFavorite() {
         if (songFavorite) {
             musicFavoriteIconMobile.name = 'heart'
             document.querySelector(
-                '.current-music-add-favorite-icon-mobile ion-icon'
+                '.current-music-add-favorite-icon-mobile ion-icon',
             ).name = 'heart'
 
             isFound = true
@@ -3942,7 +3933,7 @@ async function refreshFavorite() {
         if (!isFound) {
             musicFavoriteIconMobile.name = 'heart-outline'
             document.querySelector(
-                '.current-music-add-favorite-icon-mobile ion-icon'
+                '.current-music-add-favorite-icon-mobile ion-icon',
             ).name = 'heart-outline'
         }
 
@@ -3987,7 +3978,7 @@ function toggleContainerMinhaPlaylist() {
 function toggleAddMinhaPlaylist() {
     if (screenWidth >= 1360) {
         const addMyNewPlaylistOverflow = document.querySelector(
-            '.add-my-new-playlist-overflow'
+            '.add-my-new-playlist-overflow',
         )
         if (addMyNewPlaylistOverflow.classList.contains('hidden')) {
             addMyNewPlaylistOverflow.classList.remove('hidden')
@@ -3998,7 +3989,7 @@ function toggleAddMinhaPlaylist() {
         }
     } else {
         const addMyNewPlaylistOverflow = document.querySelector(
-            '.add-my-new-playlist-overflow-mobile'
+            '.add-my-new-playlist-overflow-mobile',
         )
         if (addMyNewPlaylistOverflow.classList.contains('hidden')) {
             addMyNewPlaylistOverflow.classList.remove('hidden')
@@ -4011,7 +4002,7 @@ function toggleAddMinhaPlaylist() {
 function toggleEditMinhaPlaylist() {
     if (screenWidth >= 1360) {
         const editOverflow = document.querySelector(
-            '.edit-my-new-playlist-overflow'
+            '.edit-my-new-playlist-overflow',
         )
         if (editOverflow.classList.contains('hidden')) {
             editOverflow.classList.remove('hidden')
@@ -4020,7 +4011,7 @@ function toggleEditMinhaPlaylist() {
         }
     } else {
         const editOverflow = document.querySelector(
-            '.edit-my-new-playlist-overflow-mobile'
+            '.edit-my-new-playlist-overflow-mobile',
         )
         if (editOverflow.classList.contains('hidden')) {
             editOverflow.classList.remove('hidden')
@@ -4033,7 +4024,7 @@ function toggleEditMinhaPlaylist() {
 function toggleDeleteMinhaPlaylist() {
     if (screenWidth >= 1360) {
         const deleteOverflow = document.querySelector(
-            '.delete-my-new-playlist-overflow'
+            '.delete-my-new-playlist-overflow',
         )
         if (deleteOverflow.classList.contains('hidden')) {
             deleteOverflow.classList.remove('hidden')
@@ -4042,7 +4033,7 @@ function toggleDeleteMinhaPlaylist() {
         }
     } else {
         const deleteOverflow = document.querySelector(
-            '.delete-my-new-playlist-overflow-mobile'
+            '.delete-my-new-playlist-overflow-mobile',
         )
         if (deleteOverflow.classList.contains('hidden')) {
             deleteOverflow.classList.remove('hidden')
@@ -4055,7 +4046,7 @@ function toggleDeleteMinhaPlaylist() {
 function toggleMusicMinhaPlaylist() {
     if (screenWidth >= 1360) {
         const musicOverflow = document.querySelector(
-            '.music-my-new-playlist-overflow'
+            '.music-my-new-playlist-overflow',
         )
         if (musicOverflow.classList.contains('hidden')) {
             musicOverflow.classList.remove('hidden')
@@ -4064,7 +4055,7 @@ function toggleMusicMinhaPlaylist() {
         }
     } else {
         const musicOverflow = document.querySelector(
-            '.music-my-new-playlist-overflow-mobile'
+            '.music-my-new-playlist-overflow-mobile',
         )
         if (musicOverflow.classList.contains('hidden')) {
             musicOverflow.classList.remove('hidden')
@@ -4105,7 +4096,7 @@ function toggleAddOptions() {
 
     if (screenWidth >= 1360) {
         const addOptionsOverflow = document.querySelector(
-            '.current-music-add-overflow'
+            '.current-music-add-overflow',
         )
         if (addOptionsOverflow.classList.contains('hidden')) {
             addOptionsOverflow.classList.remove('hidden')
@@ -4116,7 +4107,7 @@ function toggleAddOptions() {
         }
     } else {
         const addOptionsOverflow = document.querySelector(
-            '.current-music-add-overflow-mobile'
+            '.current-music-add-overflow-mobile',
         )
         if (addOptionsOverflow.classList.contains('hidden')) {
             addOptionsOverflow.classList.remove('hidden')
@@ -4129,7 +4120,7 @@ function toggleAddOptions() {
 function toggleLogout() {
     if (screenWidth >= 1360) {
         const logoutOverflow = document.querySelector(
-            '.confirm-logout-overflow'
+            '.confirm-logout-overflow',
         )
         if (logoutOverflow.classList.contains('hidden')) {
             logoutOverflow.classList.remove('hidden')
@@ -4140,7 +4131,7 @@ function toggleLogout() {
         }
     } else {
         const logoutOverflow = document.querySelector(
-            '.confirm-logout-overflow-mobile'
+            '.confirm-logout-overflow-mobile',
         )
         if (logoutOverflow.classList.contains('hidden')) {
             logoutOverflow.classList.remove('hidden')
@@ -4200,7 +4191,7 @@ function changeMobileOrDesktop() {
             $('.title-playlist').html(
                 emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
                     ? 'Sem Playlist'
-                    : userData.lastAccessedPlaylistName
+                    : userData.lastAccessedPlaylistName,
             )
         }
 
@@ -4239,7 +4230,7 @@ function changeMobileOrDesktop() {
             userData.myPlaylists.forEach((playlist) => {
                 if (playlist._id === indexMyPlaylistId) {
                     document.querySelector(
-                        '.title-playlist-mobile'
+                        '.title-playlist-mobile',
                     ).textContent = playlist.title
                 }
             })
@@ -4247,7 +4238,7 @@ function changeMobileOrDesktop() {
             $('.title-playlist-mobile').html(
                 emptyPlaylist && userData.lastAccessedPlaylist !== 'Favorite'
                     ? 'Sem Playlist'
-                    : userData.lastAccessedPlaylistName
+                    : userData.lastAccessedPlaylistName,
             )
         }
 
@@ -4527,7 +4518,7 @@ function manageMyPlaylistEdition() {
     if (screenWidth >= 1360) {
         const playlistTitle = document
             .querySelector(
-                '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name',
             )
             .value.trim()
         if (playlistTitle === '') {
@@ -4536,7 +4527,7 @@ function manageMyPlaylistEdition() {
                 'Por favor, escreva o nome da playlist corretamente.'
             document
                 .querySelector(
-                    '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                    '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name',
                 )
                 .focus()
             if (timerAlertMessage != null) {
@@ -4551,14 +4542,14 @@ function manageMyPlaylistEdition() {
         }
 
         const playlistExists = userData.myPlaylists.filter(
-            (playlist) => playlist.title === playlistTitle
+            (playlist) => playlist.title === playlistTitle,
         )
 
         if (
             userData.myPlaylists.find(
                 (playlist) =>
                     playlist.title === playlistTitle &&
-                    playlist._id === indexMyPlaylistId
+                    playlist._id === indexMyPlaylistId,
             )
         ) {
             toggleContainerMinhaPlaylist()
@@ -4587,7 +4578,7 @@ function manageMyPlaylistEdition() {
             body: JSON.stringify({
                 title: document
                     .querySelector(
-                        '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                        '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name',
                     )
                     .value.trim(),
             }),
@@ -4597,7 +4588,7 @@ function manageMyPlaylistEdition() {
                     document.querySelector('.title-playlist').textContent =
                         document
                             .querySelector(
-                                '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name'
+                                '.edit-my-new-playlist-overflow .edit-my-new-playlist-container .edit-my-new-playlist-name',
                             )
                             .value.trim()
                 }
@@ -4621,13 +4612,13 @@ function manageMyPlaylistEdition() {
     } else {
         const playlistTitle = document
             .querySelector(
-                '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+                '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile',
             )
             .value.trim()
         if (playlistTitle === '') {
             document
                 .querySelector(
-                    '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+                    '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile',
                 )
                 .focus()
             warningMobile.classList.remove('hidden')
@@ -4645,14 +4636,14 @@ function manageMyPlaylistEdition() {
         }
 
         const playlistExists = userData.myPlaylists.filter(
-            (playlist) => playlist.title === playlistTitle
+            (playlist) => playlist.title === playlistTitle,
         )
 
         if (
             userData.myPlaylists.find(
                 (playlist) =>
                     playlist.title === playlistTitle &&
-                    playlist._id === indexMyPlaylistId
+                    playlist._id === indexMyPlaylistId,
             )
         ) {
             toggleContainerMinhaPlaylist()
@@ -4682,7 +4673,7 @@ function manageMyPlaylistEdition() {
             body: JSON.stringify({
                 title: document
                     .querySelector(
-                        '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+                        '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile',
                     )
                     .value.trim(),
             }),
@@ -4690,10 +4681,10 @@ function manageMyPlaylistEdition() {
             if (response.status === 200) {
                 if (indexMyPlaylistId === indexMyPlaylistIdCurrent) {
                     document.querySelector(
-                        '.title-playlist-mobile'
+                        '.title-playlist-mobile',
                     ).textContent = document
                         .querySelector(
-                            '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile'
+                            '.edit-my-new-playlist-overflow-mobile .edit-my-new-playlist-container-mobile .edit-my-new-playlist-name-mobile',
                         )
                         .value.trim()
                 }
@@ -4721,15 +4712,15 @@ function manageMyPlaylistDeletion() {
     if (screenWidth >= 1360) {
         if (
             document.querySelector(
-                '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name'
+                '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name',
             ).value !==
             document.querySelector(
-                '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current'
+                '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-current',
             ).textContent
         ) {
             document
                 .querySelector(
-                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name'
+                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name',
                 )
                 .focus()
             warning.classList.remove('hidden')
@@ -4754,7 +4745,7 @@ function manageMyPlaylistDeletion() {
         }).then((response) => {
             if (response.status === 200) {
                 document.querySelector(
-                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name'
+                    '.delete-my-new-playlist-overflow .delete-my-new-playlist-container .delete-my-new-playlist-name',
                 ).value = ''
                 toggleContainerMinhaPlaylist()
                 toggleDeleteMinhaPlaylist()
@@ -4788,15 +4779,15 @@ function manageMyPlaylistDeletion() {
     } else {
         if (
             document.querySelector(
-                '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile'
+                '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile',
             ).value !==
             document.querySelector(
-                '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile'
+                '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-current-mobile',
             ).textContent
         ) {
             document
                 .querySelector(
-                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile'
+                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile',
                 )
                 .focus()
             warningMobile.classList.remove('hidden')
@@ -4821,7 +4812,7 @@ function manageMyPlaylistDeletion() {
         }).then((response) => {
             if (response.status === 200) {
                 document.querySelector(
-                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile'
+                    '.delete-my-new-playlist-overflow-mobile .delete-my-new-playlist-container-mobile .delete-my-new-playlist-name-mobile',
                 ).value = ''
                 toggleContainerMinhaPlaylist()
                 toggleDeleteMinhaPlaylist()
@@ -4913,7 +4904,7 @@ function manageEmptyPlaylist(itsMyPlaylist = false) {
             if (lastChild) {
                 containerPlaylistMobile.insertBefore(
                     emptyPlaylistMobile,
-                    lastChild
+                    lastChild,
                 )
             } else {
                 containerPlaylistMobile.appendChild(emptyPlaylistMobile)
@@ -4930,7 +4921,7 @@ function manageMyPlaylistMusicDeletion() {
             headers: {
                 'Content-Type': 'application/json',
             },
-        }
+        },
     ).then((response) => {
         if (response.status === 200) {
             toggleContainerMinhaPlaylist()
@@ -4940,7 +4931,7 @@ function manageMyPlaylistMusicDeletion() {
                     document
                         .querySelector('.music-delete-my-new-playlist-overflow')
                         .classList.contains(
-                            'music-delete-my-new-playlist-overflow'
+                            'music-delete-my-new-playlist-overflow',
                         )
                 ) {
                     document
@@ -4951,15 +4942,15 @@ function manageMyPlaylistMusicDeletion() {
                 if (
                     document
                         .querySelector(
-                            '.music-delete-my-new-playlist-overflow-mobile'
+                            '.music-delete-my-new-playlist-overflow-mobile',
                         )
                         .classList.contains(
-                            'music-delete-my-new-playlist-overflow-mobile'
+                            'music-delete-my-new-playlist-overflow-mobile',
                         )
                 ) {
                     document
                         .querySelector(
-                            '.music-delete-my-new-playlist-overflow-mobile'
+                            '.music-delete-my-new-playlist-overflow-mobile',
                         )
                         .classList.add('hidden')
                 }
@@ -5412,7 +5403,7 @@ async function manageUserCreatePlaylist() {
 
                 await refreshUserWithNewPlaylist()
                 document.querySelector(
-                    '.add-my-new-playlist-name-mobile'
+                    '.add-my-new-playlist-name-mobile',
                 ).value = ''
                 toggleAddMinhaPlaylist()
             } else {
@@ -5448,11 +5439,11 @@ async function selectUserMyPlaylist() {
     indexMyPlaylistIdCurrent = indexMyPlaylistId
 
     const playlist = userData.myPlaylists.find(
-        (item) => item._id === indexMyPlaylistId
+        (item) => item._id === indexMyPlaylistId,
     )
     const matchingSongs = allMusicData
         .filter((song) =>
-            playlist.songs.map((item) => item.musicId).includes(song._id)
+            playlist.songs.map((item) => item.musicId).includes(song._id),
         )
         .sort((a, b) => a.title.localeCompare(b.title))
 
@@ -5597,7 +5588,7 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
     }
 
     const responsePlaylist = await fetch(
-        `/playlists-select/${idUserConnected}/?playlist=${playlistSelect}`
+        `/playlists-select/${idUserConnected}/?playlist=${playlistSelect}`,
     )
     const playlist = await responsePlaylist.json()
 
@@ -5653,14 +5644,14 @@ async function selectNewPlaylist(playlistSelect, playlistName) {
 function clearPlaylistData() {
     if (screenWidth >= 1360) {
         const itemPlaylist = document.querySelectorAll(
-            '.container-playlist .item-playlist'
+            '.container-playlist .item-playlist',
         )
         itemPlaylist.forEach((item) => {
             item.remove()
         })
     } else {
         const itemPlaylistMobile = document.querySelectorAll(
-            '.container-playlist-mobile .item-playlist-mobile'
+            '.container-playlist-mobile .item-playlist-mobile',
         )
         itemPlaylistMobile.forEach((item) => {
             item.remove()
@@ -5741,7 +5732,7 @@ function playVideo() {
 
                     if (getFullScreenStorage()) {
                         enterFullScreen(
-                            document.querySelector('#containerFrame')
+                            document.querySelector('#containerFrame'),
                         )
                     }
 
@@ -5771,7 +5762,7 @@ function playVideo() {
 
                     if (getFullScreenStorage()) {
                         enterFullScreen(
-                            document.querySelector('#containerFrameMobile')
+                            document.querySelector('#containerFrameMobile'),
                         )
                     }
                 }
@@ -5970,15 +5961,15 @@ function curretDurationSetter() {
     if (screenWidth >= 1360) {
         if (canMoveTheSliderDuration) {
             sliderMusicDuration.value = parseInt(
-                (getVideoCurrentTime() / getVideoDuration()) * 100
+                (getVideoCurrentTime() / getVideoDuration()) * 100,
             )
             sliderMusicDuration.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDuration.value}%, var(--color-white-1) ${sliderMusicDuration.value}%, var(--color-white-1) 100%`,
             )
             sliderMusicDurationDot.style.setProperty(
                 'left',
-                `${sliderMusicDuration.value}%`
+                `${sliderMusicDuration.value}%`,
             )
 
             let minCurrent = Math.floor(getVideoCurrentTime() / 60)
@@ -5998,19 +5989,19 @@ function curretDurationSetter() {
     } else {
         if (canMoveTheSliderDuration) {
             sliderMusicDurationMobile.value = parseInt(
-                (getVideoCurrentTime() / getVideoDuration()) * 100
+                (getVideoCurrentTime() / getVideoDuration()) * 100,
             )
             sliderMusicDurationMobile.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`,
             )
             displayMusicDurationMobile.style.setProperty(
                 'background-image',
-                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`
+                `linear-gradient(to right, var(--color-base-2) 0%, var(--color-base-2) ${sliderMusicDurationMobile.value}%, var(--color-white-1) ${sliderMusicDurationMobile.value}%, var(--color-white-1) 100%`,
             )
             sliderMusicDurationDotMobile.style.setProperty(
                 'left',
-                `${sliderMusicDurationMobile.value}%`
+                `${sliderMusicDurationMobile.value}%`,
             )
 
             let minCurrent = Math.floor(getVideoCurrentTime() / 60)
@@ -6155,7 +6146,7 @@ async function musicListingService() {
     const playlists = await responsePlaylists.json()
 
     const responseSongs = await fetch(
-        `/playlists-select/${idUserConnected}/?playlist=${userData.lastAccessedPlaylist}`
+        `/playlists-select/${idUserConnected}/?playlist=${userData.lastAccessedPlaylist}`,
     )
     const songs = await responseSongs.json()
 
