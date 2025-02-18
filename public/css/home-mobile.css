@@ -1216,6 +1216,9 @@ body {
 .container-themes-mobile .theme-mobile.dark-mode {
     background-color: #6e6e6e;
 }
+.container-themes-mobile .theme-mobile.phonk {
+    background-color: #9407f2;
+}
 .content-profile-mobile .title-2-wrapper-mobile {
     color: var(--color-white-1);
     display: flex;

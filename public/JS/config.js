@@ -48,6 +48,13 @@ const colorsThemes = {
         base4: '#4B4B4B',
         base5: '#cecece',
     },
+    'phonk-version': {
+        base1: '#150526',
+        base2: '#9407F2',
+        base3: '#50295B',
+        base4: '#3C0F59',
+        base5: '#EE07F2',
+    },
 }
 
 const MAX_LENGTH_TITLE_PLAYLIST = 50
@@ -1310,6 +1317,7 @@ function initThemeChanger(theme = 'original') {
         'hatsune-miku-version',
         'amv-brasileiro-version',
         'dark-mode-version',
+        'phonk-version',
     ]
 
     if (!themes.includes(theme)) {

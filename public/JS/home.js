@@ -315,6 +315,7 @@ const themes = [
     'hatsune-miku-version',
     'amv-brasileiro-version',
     'dark-mode-version',
+    'phonk-version',
 ]
 
 const colorsThemes = {
@@ -352,6 +353,13 @@ const colorsThemes = {
         base3: '#2F2F2F',
         base4: '#4B4B4B',
         base5: '#cecece',
+    },
+    'phonk-version': {
+        base1: '#150526',
+        base2: '#9407F2',
+        base3: '#50295B',
+        base4: '#3C0F59',
+        base5: '#EE07F2',
     },
 }
 
@@ -3074,6 +3082,7 @@ function initThemeChanger(theme = 'original') {
             'https://i.ibb.co/StK28mr/logo-amv-brasileiro-version.png',
         'dark-mode-version':
             'https://i.ibb.co/D56Ds5x/logo-dark-mode-version.png',
+        'phonk-version': 'https://i.ibb.co/dJMpSzmQ/logo-phonk-version.png',
     }
 
     const logoSrc = logoUrls[theme]
