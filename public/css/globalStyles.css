@@ -20,3 +20,15 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--color-base-1);
 }
+input[type='checkbox'] {
+    accent-color: var(--color-base-2);
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+input[type='checkbox']:focus {
+    outline: none;
+    box-shadow:
+        0 0 0 2px var(--color-base-2),
+        0 0 15px var(--color-base-2);
+}

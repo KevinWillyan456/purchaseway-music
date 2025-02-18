@@ -35,7 +35,7 @@ form.addEventListener('submit', async (e) => {
         inputNameUser.focus()
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
-            3000
+            3000,
         ))
     }
     if (emailValue == '') {
@@ -44,7 +44,7 @@ form.addEventListener('submit', async (e) => {
         inputEmailUser.focus()
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
-            3000
+            3000,
         ))
     }
     if (!isValidEmail(emailValue)) {
@@ -53,7 +53,7 @@ form.addEventListener('submit', async (e) => {
         inputEmailUser.focus()
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
-            3000
+            3000,
         ))
     }
     if (passwordValue == '') {
@@ -62,7 +62,7 @@ form.addEventListener('submit', async (e) => {
         inputPasswordUser.focus()
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
-            3000
+            3000,
         ))
     }
     if (passwordValue.includes(' ')) {
@@ -71,7 +71,7 @@ form.addEventListener('submit', async (e) => {
         inputPasswordUser.focus()
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
-            3000
+            3000,
         ))
     }
     if (passwordValue.length < MIN_PASSWORD_LENGTH) {
@@ -80,7 +80,7 @@ form.addEventListener('submit', async (e) => {
         inputPasswordUser.focus()
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
-            3000
+            3000,
         ))
     }
     if (!checkboxTermsPrivacy.checked) {
@@ -89,7 +89,7 @@ form.addEventListener('submit', async (e) => {
         checkboxTermsPrivacy.focus()
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
-            3000
+            3000,
         ))
     }
 
@@ -126,11 +126,11 @@ form.addEventListener('submit', async (e) => {
         warning.classList.remove('hidden')
     }
     if (resposta.status != 201) {
-        warning.innerHTML = 'Usuário já existe'
+        warning.innerHTML = 'E-mail já cadastrado!'
         warning.classList.remove('hidden')
         return (timerAlertMessage = setTimeout(
             () => warning.classList.add('hidden'),
-            3000
+            3000,
         ))
     }
 
@@ -145,7 +145,7 @@ form.addEventListener('submit', async (e) => {
     if (resposta2.status == 200) {
         return (timerAlertMessage = setTimeout(
             () => (window.location = '/home'),
-            2000
+            2000,
         ))
     }
 })

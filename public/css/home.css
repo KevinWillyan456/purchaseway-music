@@ -2724,12 +2724,6 @@ iframe {
     background-color: var(--color-base-1);
     z-index: 1050;
 }
-input[type='checkbox'] {
-    accent-color: var(--color-base-2);
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
 .hidden {
     display: none !important;
 }

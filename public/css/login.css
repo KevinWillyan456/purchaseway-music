@@ -130,8 +130,10 @@ form .btn-forgot {
     border: 2px solid var(--color-white-1);
     color: var(--color-white-1);
     margin: 0 auto 20px auto;
+    outline: none;
 }
-form .btn-forgot:hover {
+form .btn-forgot:hover,
+form .btn-forgot:focus {
     animation: anime 1s infinite linear;
     box-shadow:
         0 0 0 5px var(--color-base-2),
@@ -153,7 +155,8 @@ form .btn-submit {
     margin: 0 auto 20px auto;
     outline: none;
 }
-form .btn-submit:hover {
+form .btn-submit:hover,
+form .btn-submit:focus {
     animation: anime 1s infinite linear;
     box-shadow:
         0 0 0 5px var(--color-base-2),
@@ -178,6 +181,11 @@ form .info a {
     cursor: pointer;
     margin-left: 5px;
     font-weight: bold;
+    outline: none;
+}
+form .info a:hover,
+form .info a:focus {
+    text-decoration: underline;
 }
 .layer-forgot {
     z-index: 1000;

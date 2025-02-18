@@ -1798,6 +1798,7 @@ async function inicia() {
     })
     btnEditPlaylist.addEventListener('click', () => {
         formEditPlaylist.classList.remove('hidden')
+        formPlaylistEditInputNome.focus()
     })
     btnEditSong.addEventListener('click', () => {
         formEditSong.classList.remove('hidden')

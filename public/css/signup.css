@@ -105,8 +105,9 @@ form .input:focus {
 }
 form .input-checkbox {
     display: flex;
-    gap: 2px;
+    gap: 4px;
     margin-bottom: 16px;
+    align-items: center;
 }
 
 form .input-checkbox input {
@@ -126,6 +127,11 @@ form .input-checkbox a {
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
+    outline: none;
+}
+form .input-checkbox a:hover,
+form .input-checkbox a:focus {
+    text-decoration: underline;
 }
 form .btn-submit {
     transition: 200ms;
@@ -144,7 +150,8 @@ form .btn-submit {
     margin: 10px auto 20px auto;
     outline: none;
 }
-form .btn-submit:hover {
+form .btn-submit:hover,
+form .btn-submit:focus {
     animation: anime 1s infinite linear;
     box-shadow:
         0 0 0 5px var(--color-base-2),
@@ -169,6 +176,11 @@ form .info a {
     cursor: pointer;
     margin-left: 5px;
     font-weight: bold;
+    outline: none;
+}
+form .info a:hover,
+form .info a:focus {
+    text-decoration: underline;
 }
 .hidden {
     display: none;

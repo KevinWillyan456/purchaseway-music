@@ -74,6 +74,7 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
 }
 .voltar-para-o-site {
+    transition: 200ms;
     position: absolute;
     top: 40px;
     left: 40px;
@@ -88,6 +89,13 @@ body::-webkit-scrollbar-thumb {
     place-items: center;
     text-decoration: none;
     cursor: pointer;
+    outline: none;
+}
+.voltar-para-o-site:hover,
+.voltar-para-o-site:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .warning {
     animation:
@@ -227,6 +235,7 @@ body::-webkit-scrollbar-thumb {
     .header-playlist
     .wrap
     .btn-adicionar {
+    transition: 200ms;
     width: 200px;
     height: 60px;
     border-radius: 10px;
@@ -239,6 +248,21 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     gap: 5px;
     cursor: pointer;
+    outline: none;
+}
+.container-playlist-overflow
+    .container-playlist
+    .header-playlist
+    .wrap
+    .btn-adicionar:hover,
+.container-playlist-overflow
+    .container-playlist
+    .header-playlist
+    .wrap
+    .btn-adicionar:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .container-playlist-overflow
     .container-playlist
@@ -473,6 +497,7 @@ body::-webkit-scrollbar-thumb {
     background-color: var(--color-base-2);
 }
 .container-playlist-to-manage-overflow .playlist-to-manage-back {
+    transition: 200ms;
     position: absolute;
     top: 40px;
     left: 40px;
@@ -486,6 +511,13 @@ body::-webkit-scrollbar-thumb {
     display: grid;
     place-items: center;
     cursor: pointer;
+    outline: none;
+}
+.container-playlist-to-manage-overflow .playlist-to-manage-back:hover,
+.container-playlist-to-manage-overflow .playlist-to-manage-back:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .container-playlist-to-manage-overflow .container-playlist-to-manage {
     max-width: 1360px;
@@ -582,6 +614,7 @@ body::-webkit-scrollbar-thumb {
     justify-content: flex-end;
 }
 .container-playlist-to-manage .interactions .btn-adicionar {
+    transition: 200ms;
     width: 280px;
     height: 60px;
     border-radius: 10px;
@@ -594,11 +627,19 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     gap: 5px;
     cursor: pointer;
+    outline: none;
+}
+.container-playlist-to-manage .interactions .btn-adicionar:hover,
+.container-playlist-to-manage .interactions .btn-adicionar:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .container-playlist-to-manage .interactions .btn-adicionar ion-icon {
     font-size: 30px;
 }
 .container-playlist-to-manage .interactions .btn-adicionar-m {
+    transition: 200ms;
     width: 80px;
     height: 30px;
     border-radius: 10px;
@@ -611,11 +652,19 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     gap: 0px;
     cursor: pointer;
+    outline: none;
+}
+.container-playlist-to-manage .interactions .btn-adicionar-m:hover,
+.container-playlist-to-manage .interactions .btn-adicionar-m:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .container-playlist-to-manage .interactions .btn-adicionar-m ion-icon {
     font-size: 20px;
 }
 .container-playlist-to-manage .interactions .btn-editar {
+    transition: 200ms;
     width: 200px;
     height: 60px;
     border-radius: 10px;
@@ -628,11 +677,19 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     gap: 5px;
     cursor: pointer;
+    outline: none;
+}
+.container-playlist-to-manage .interactions .btn-editar:hover,
+.container-playlist-to-manage .interactions .btn-editar:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .container-playlist-to-manage .interactions .btn-editar ion-icon {
     font-size: 30px;
 }
 .container-playlist-to-manage .interactions .btn-excluir {
+    transition: 200ms;
     width: 200px;
     height: 60px;
     border-radius: 10px;
@@ -645,6 +702,13 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     gap: 5px;
     cursor: pointer;
+    outline: none;
+}
+.container-playlist-to-manage .interactions .btn-excluir:hover,
+.container-playlist-to-manage .interactions .btn-excluir:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .container-playlist-to-manage .interactions .btn-excluir ion-icon {
     font-size: 30px;
@@ -926,6 +990,12 @@ body::-webkit-scrollbar-thumb {
 }
 .focus .song .main-song .content .details .url a {
     color: inherit;
+    outline: none;
+    text-decoration: none;
+}
+.focus .song .main-song .content .details .url a:hover,
+.focus .song .main-song .content .details .url a:focus {
+    text-decoration: underline;
 }
 .focus .song .interactions {
     gap: 5px;
@@ -1071,8 +1141,10 @@ body::-webkit-scrollbar-thumb {
     font-size: 20px;
     border: none;
     cursor: pointer;
+    outline: none;
 }
-.form-song-overflow .form-song .btn-add:hover {
+.form-song-overflow .form-song .btn-add:hover,
+.form-song-overflow .form-song .btn-add:focus {
     animation: animation-btn 1s infinite linear;
     box-shadow:
         0 0 0 5px var(--color-base-2),
@@ -1152,6 +1224,7 @@ body::-webkit-scrollbar-thumb {
     gap: 20px;
 }
 .form-song-delete-overflow .form-song-delete .interactions-delete .cancel {
+    transition: 200ms;
     width: 250px;
     height: 60px;
     border-radius: 10px;
@@ -1163,8 +1236,19 @@ body::-webkit-scrollbar-thumb {
     place-items: center;
     cursor: pointer;
     padding-top: 2px;
+    outline: none;
+}
+.form-song-delete-overflow .form-song-delete .interactions-delete .cancel:hover,
+.form-song-delete-overflow
+    .form-song-delete
+    .interactions-delete
+    .cancel:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-song-delete-overflow .form-song-delete .interactions-delete .delete {
+    transition: 200ms;
     width: 250px;
     height: 60px;
     border-radius: 10px;
@@ -1176,6 +1260,16 @@ body::-webkit-scrollbar-thumb {
     place-items: center;
     cursor: pointer;
     padding-top: 2px;
+    outline: none;
+}
+.form-song-delete-overflow .form-song-delete .interactions-delete .delete:hover,
+.form-song-delete-overflow
+    .form-song-delete
+    .interactions-delete
+    .delete:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-playlist-overflow {
     position: fixed;
@@ -1288,8 +1382,10 @@ body::-webkit-scrollbar-thumb {
     font-size: 20px;
     border: none;
     cursor: pointer;
+    outline: none;
 }
-.form-playlist-overflow .form-playlist .btn-add:hover {
+.form-playlist-overflow .form-playlist .btn-add:hover,
+.form-playlist-overflow .form-playlist .btn-add:focus {
     animation: animation-btn 1s infinite linear;
     box-shadow:
         0 0 0 5px var(--color-base-2),
@@ -1372,6 +1468,7 @@ body::-webkit-scrollbar-thumb {
     .form-playlist-delete
     .interactions-delete
     .cancel {
+    transition: 200ms;
     width: 250px;
     height: 60px;
     border-radius: 10px;
@@ -1383,11 +1480,25 @@ body::-webkit-scrollbar-thumb {
     display: grid;
     place-items: center;
     cursor: pointer;
+    outline: none;
+}
+.form-playlist-delete-overflow
+    .form-playlist-delete
+    .interactions-delete
+    .cancel:hover,
+.form-playlist-delete-overflow
+    .form-playlist-delete
+    .interactions-delete
+    .cancel:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-playlist-delete-overflow
     .form-playlist-delete
     .interactions-delete
     .delete {
+    transition: 200ms;
     width: 250px;
     height: 60px;
     border-radius: 10px;
@@ -1399,6 +1510,19 @@ body::-webkit-scrollbar-thumb {
     display: grid;
     place-items: center;
     cursor: pointer;
+    outline: none;
+}
+.form-playlist-delete-overflow
+    .form-playlist-delete
+    .interactions-delete
+    .delete:hover,
+.form-playlist-delete-overflow
+    .form-playlist-delete
+    .interactions-delete
+    .delete:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 
 @media (max-width: 1359px) {
