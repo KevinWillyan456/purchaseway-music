@@ -1,13 +1,13 @@
-import express from 'express'
-import { config } from 'dotenv'
-import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
+import { config } from 'dotenv'
+import express from 'express'
 import { connectToDatabase } from './database'
-import { routes } from './routes'
-import { eAdmin } from './middlewares/AuthMiddleware'
-import { verifyTokenExists } from './middlewares/verifyMiddleware'
 import { eAdminManager } from './middlewares/AuthAdminMiddleware'
+import { eAdmin } from './middlewares/AuthMiddleware'
 import { checkEnvVars } from './middlewares/EnvCheckMiddleware'
+import { verifyTokenExists } from './middlewares/verifyMiddleware'
+import { routes } from './routes'
 
 config()
 connectToDatabase()
@@ -56,5 +56,7 @@ app.use((req, res) => {
 })
 
 app.listen(port, () =>
-    console.log(`Servidor rodando na porta: ${port} - http://localhost:${port}`)
+    console.log(
+        `🚀 Server running on port: ${port} - 🌐 http://localhost:${port}`,
+    ),
 )

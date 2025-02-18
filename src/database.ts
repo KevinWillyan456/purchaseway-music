@@ -5,5 +5,5 @@ export function connectToDatabase() {
 
     const db = mongoose.connection
     db.on('error', (error) => console.error(error))
-    db.once('open', () => console.log('Conectou ao Banco de Dados'))
+    db.once('open', () => console.log('✅ Connected to the Database!'))
 }
