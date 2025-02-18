@@ -2714,6 +2714,7 @@ body {
     margin-bottom: 60px;
 }
 .confirm-logout-btn-mobile {
+    transition: 200ms;
     width: 160px;
     height: 60px;
     border-radius: 10px;
@@ -2725,6 +2726,13 @@ body {
     justify-content: center;
     border: 2px solid var(--color-white-1);
     cursor: pointer;
+    outline: none;
+}
+.confirm-logout-btn-mobile:hover,
+.confirm-logout-btn-mobile:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .loading-roller-mobile {
     display: inline-block;

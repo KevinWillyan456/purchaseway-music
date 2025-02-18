@@ -4137,6 +4137,7 @@ function toggleLogout() {
         )
         if (logoutOverflow.classList.contains('hidden')) {
             logoutOverflow.classList.remove('hidden')
+            document.querySelector('.confirm-logout-btn').focus()
             canKeyboardEventsProfile = false
         } else {
             logoutOverflow.classList.add('hidden')
@@ -4148,6 +4149,7 @@ function toggleLogout() {
         )
         if (logoutOverflow.classList.contains('hidden')) {
             logoutOverflow.classList.remove('hidden')
+            document.querySelector('.confirm-logout-btn-mobile').focus()
         } else {
             logoutOverflow.classList.add('hidden')
         }

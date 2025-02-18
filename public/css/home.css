@@ -40,6 +40,7 @@ body {
     text-overflow: ellipsis;
 }
 .main-playlist .box-wrapper-info .more-playlist {
+    transition: 200ms;
     color: var(--color-white-1);
     font-size: 20px;
     background-color: var(--color-base-3);
@@ -51,9 +52,17 @@ body {
     border-radius: 10px;
     border: 2px solid var(--color-white-1);
     cursor: pointer;
+    outline: none;
+}
+.main-playlist .box-wrapper-info .more-playlist:hover,
+.main-playlist .box-wrapper-info .more-playlist:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .main-playlist .menu-options {
     overflow: auto;
+    outline: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -276,13 +285,15 @@ iframe {
     height: 60px;
     background-color: var(--color-black);
     border-radius: 50%;
-
+    border: none;
+    outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 }
-.container-search .search-icon:hover {
+.container-search .search-icon:hover,
+.container-search .search-icon:focus {
     box-shadow: 0 0 20px var(--color-white-1);
 }
 .search-icon ion-icon {
@@ -525,11 +536,23 @@ iframe {
     border-radius: 10px;
 }
 .box-user-settings .logout {
+    transition: 200ms;
     position: absolute;
     top: 32.5px;
     right: 20px;
     font-size: 40px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: var(--color-white-1);
+    background-color: transparent;
+    outline: none;
+}
+.box-user-settings .logout:hover,
+.box-user-settings .logout:focus {
+    color: var(--color-base-5);
 }
 .box-user-settings .title-profile {
     font-size: 36px;
@@ -545,17 +568,28 @@ iframe {
     margin-bottom: 10px;
 }
 .trash-icon {
+    transition: 200ms;
     padding-top: 28.5px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: var(--color-white-1);
+}
+.trash-icon:hover,
+.trash-icon:focus {
+    color: var(--color-base-5);
 }
 .trash-icon ion-icon {
     width: 40px;
     height: 40px;
-    color: var(--color-white-1);
 }
 .box-profile .user-settings {
     position: relative;
@@ -584,10 +618,13 @@ iframe {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    border: none;
     cursor: pointer;
     padding: 5px;
+    outline: none;
 }
-.box-profile .user-settings .edit-profile-picture:hover {
+.box-profile .user-settings .edit-profile-picture:hover,
+.box-profile .user-settings .edit-profile-picture:focus {
     box-shadow: 0 0 10px var(--color-white-1);
 }
 .box-profile .user-settings .edit-profile-picture ion-icon {
@@ -608,9 +645,9 @@ iframe {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-}
-.user-settings-person-container:hover {
-    box-shadow: 0 0 10px var(--color-white-1);
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 .user-settings .user-settings-person-img {
     width: 100%;
@@ -671,6 +708,7 @@ iframe {
     font-size: 15px;
 }
 .layer-profile-picture .container-profile-picture .save {
+    transition: 200ms;
     width: 200px;
     height: 60px;
     padding-top: 2px;
@@ -683,6 +721,13 @@ iframe {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    outline: none;
+}
+.layer-profile-picture .container-profile-picture .save:hover,
+.layer-profile-picture .container-profile-picture .save:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .box-user-information {
     display: flex;
@@ -721,6 +766,13 @@ iframe {
     background-color: #3c93cf;
     cursor: pointer;
     border: 3px solid var(--color-white-1);
+    outline: none;
+}
+.container-themes .theme:hover,
+.container-themes .theme:focus {
+    box-shadow:
+        0 0 0 2px var(--color-white-1),
+        0 0 15px var(--color-white-1);
 }
 .container-themes .theme.active {
     box-shadow: 0 0 10px var(--color-white-1);
@@ -885,6 +937,7 @@ iframe {
     gap: 20px;
 }
 .container-options-account .btn-change-name {
+    transition: 200ms;
     width: 220px;
     height: 60px;
     border-radius: 10px;
@@ -895,8 +948,16 @@ iframe {
     display: grid;
     place-items: center;
     cursor: pointer;
+    outline: none;
+}
+.container-options-account .btn-change-name:hover,
+.container-options-account .btn-change-name:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .container-options-account .btn-delete-account {
+    transition: 200ms;
     width: 220px;
     height: 60px;
     border-radius: 10px;
@@ -908,6 +969,13 @@ iframe {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    outline: none;
+}
+.container-options-account .btn-delete-account:hover,
+.container-options-account .btn-delete-account:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-change-name-account-overflow {
     z-index: 1000;
@@ -966,6 +1034,7 @@ iframe {
     font-size: 15px;
 }
 .form-change-name-account-overflow .form-change-name-account .save {
+    transition: 200ms;
     width: 200px;
     height: 60px;
     padding-top: 2px;
@@ -978,6 +1047,13 @@ iframe {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    outline: none;
+}
+.form-change-name-account-overflow .form-change-name-account .save:hover,
+.form-change-name-account-overflow .form-change-name-account .save:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-delete-account-overflow {
     position: fixed;
@@ -1055,6 +1131,7 @@ iframe {
     .form-delete-account
     .interactions-delete
     .cancel {
+    transition: 200ms;
     width: 250px;
     height: 60px;
     padding-top: 2px;
@@ -1066,11 +1143,25 @@ iframe {
     display: grid;
     place-items: center;
     cursor: pointer;
+    outline: none;
+}
+.form-delete-account-overflow
+    .form-delete-account
+    .interactions-delete
+    .cancel:hover,
+.form-delete-account-overflow
+    .form-delete-account
+    .interactions-delete
+    .cancel:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .form-delete-account-overflow
     .form-delete-account
     .interactions-delete
     .delete {
+    transition: 200ms;
     width: 250px;
     height: 60px;
     padding-top: 2px;
@@ -1083,6 +1174,19 @@ iframe {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    outline: none;
+}
+.form-delete-account-overflow
+    .form-delete-account
+    .interactions-delete
+    .delete:hover,
+.form-delete-account-overflow
+    .form-delete-account
+    .interactions-delete
+    .delete:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 @keyframes animate-scale-opacity-entrace {
     from {
@@ -1432,6 +1536,7 @@ iframe {
     background-color: var(--color-base-1);
     z-index: 1000;
     overflow: auto;
+    outline: none;
     padding-bottom: 40px;
 }
 .main-select-playlists::-webkit-scrollbar {
@@ -1863,6 +1968,7 @@ iframe {
     width: 100%;
     padding-right: 10px;
     overflow: auto;
+    outline: none;
 }
 .music-my-new-playlist-overflow
     .music-my-new-playlist-container
@@ -2042,6 +2148,7 @@ iframe {
     flex-direction: column;
     gap: 5px;
     overflow: auto;
+    outline: none;
 }
 .current-music-add-playlist-container::-webkit-scrollbar {
     width: 10px;
@@ -2118,7 +2225,7 @@ iframe {
     top: 0;
     left: 0;
     overflow: auto;
-
+    outline: none;
     background-color: var(--color-base-1);
     z-index: 1000;
 }
@@ -2276,6 +2383,7 @@ iframe {
     display: flex;
     flex-direction: column;
     overflow: auto;
+    outline: none;
     background-color: var(--color-base-1);
     top: 0;
     left: 0;
@@ -2346,6 +2454,7 @@ iframe {
     height: 180px;
     padding-right: 10px;
     overflow: auto;
+    outline: none;
 }
 .main-minhas-playlists .main-playlist .content .title::-webkit-scrollbar {
     width: 10px;
@@ -2551,6 +2660,7 @@ iframe {
     height: 60px;
     padding-right: 5px;
     overflow: auto;
+    outline: none;
     line-height: 1.5;
 }
 .info-item-select-playlist
@@ -2602,6 +2712,7 @@ iframe {
     margin-bottom: 60px;
 }
 .confirm-logout-btn {
+    transition: 200ms;
     width: 160px;
     height: 60px;
     border-radius: 10px;
@@ -2613,6 +2724,13 @@ iframe {
     justify-content: center;
     border: 2px solid var(--color-white-1);
     cursor: pointer;
+    outline: none;
+}
+.confirm-logout-btn:hover,
+.confirm-logout-btn:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .loading-roller {
     display: inline-block;
@@ -2702,6 +2820,7 @@ iframe {
     }
 }
 .load-more {
+    transition: 200ms;
     width: 220px;
     height: 60px;
     display: flex;
@@ -2714,6 +2833,13 @@ iframe {
     border: 2px solid var(--color-white-1);
     border-radius: 10px;
     margin: 20px auto;
+    outline: none;
+}
+.load-more:hover,
+.load-more:focus {
+    box-shadow:
+        0 0 0 5px var(--color-base-2),
+        0 0 25px var(--color-base-2);
 }
 .loading-screen {
     width: 100%;

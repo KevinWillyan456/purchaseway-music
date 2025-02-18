@@ -67,7 +67,7 @@
             <section class="main-playlist">
                 <div class="box-wrapper-info">
                     <div class="title-playlist">Carregando...</div>
-                    <div class="more-playlist">Mais</div>
+                    <button class="more-playlist">Mais</button>
                 </div>
 
                 <div class="container-playlist">
@@ -113,9 +113,9 @@
                 <div class="background-cover"></div>
 
                 <div class="container-search">
-                    <div class="search-icon">
+                    <button class="search-icon">
                         <ion-icon name="search"></ion-icon>
-                    </div>
+                    </button>
                     <div class="search-bar" style="display: none">
                         <input
                             id="search-bar-input"
@@ -135,7 +135,7 @@
                 <div class="container-settings">
                     <div class="user-settings">
                         <ion-icon name="person" id="userPersonIcon"></ion-icon>
-                        <div
+                        <button
                             class="user-settings-person-container hidden"
                             id="userPersonContainer"
                         >
@@ -145,7 +145,7 @@
                                 class="user-settings-person-img"
                                 id="userPersonImg"
                             />
-                        </div>
+                        </button>
                     </div>
                 </div>
 
@@ -168,9 +168,9 @@
                     <div class="layer-user-settings">
                         <div class="box-user-settings">
                             <div class="title-profile">Perfil</div>
-                            <div class="logout">
+                            <button class="logout">
                                 <ion-icon name="exit"></ion-icon>
-                            </div>
+                            </button>
                             <div class="box-profile">
                                 <div class="user-settings">
                                     <ion-icon
@@ -188,12 +188,12 @@
                                             id="userSettingsPersonImg"
                                         />
                                     </div>
-                                    <div
+                                    <button
                                         class="edit-profile-picture"
                                         id="profilePictureEdit"
                                     >
                                         <ion-icon name="pencil"></ion-icon>
-                                    </div>
+                                    </button>
                                 </div>
                                 <div class="box-user-information">
                                     <div class="user-name">Carregando...</div>
@@ -224,27 +224,30 @@
                             <div class="title-profile">Temas</div>
 
                             <div class="container-themes">
-                                <div class="theme" data-theme="original"></div>
-                                <div
+                                <button
+                                    class="theme"
+                                    data-theme="original"
+                                ></button>
+                                <button
                                     class="theme rock-version"
                                     data-theme="rock-version"
-                                ></div>
-                                <div
+                                ></button>
+                                <button
                                     class="theme hatsune-miku"
                                     data-theme="hatsune-miku-version"
-                                ></div>
-                                <div
+                                ></button>
+                                <button
                                     class="theme amv-br"
                                     data-theme="amv-brasileiro-version"
-                                ></div>
-                                <div
+                                ></button>
+                                <button
                                     class="theme dark-mode"
                                     data-theme="dark-mode-version"
-                                ></div>
-                                <div
+                                ></button>
+                                <button
                                     class="theme phonk"
                                     data-theme="phonk-version"
-                                ></div>
+                                ></button>
                             </div>
 
                             <div class="title-profile">Músicas Favoritas</div>
@@ -260,9 +263,9 @@
 
                             <div class="title-wrapper">
                                 <div class="title-profile">Histórico</div>
-                                <div class="trash-icon">
+                                <button class="trash-icon">
                                     <ion-icon name="trash-outline"></ion-icon>
-                                </div>
+                                </button>
                             </div>
 
                             <div class="container-historic"></div>
