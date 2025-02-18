@@ -1,15 +1,15 @@
 class MusicHandlers {
     public static async getVideoTitle(
         videoId: string,
-        API_KEY: string
+        API_KEY: string,
     ): Promise<string | undefined> {
         try {
             const response = await fetch(
-                `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`
+                `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`,
             )
             const data = await response.json()
             return data.items[0].snippet.title || undefined
-        } catch (err) {
+        } catch {
             return undefined
         }
     }

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 import { User } from '../models/User'
 
@@ -61,7 +61,7 @@ async function eAdminManager(req: Request, res: Response, next: NextFunction) {
         })
 
         next()
-    } catch (err) {
+    } catch {
         res.clearCookie('user')
         res.clearCookie('token')
         return res.status(400).redirect('/login')
@@ -71,7 +71,7 @@ async function eAdminManager(req: Request, res: Response, next: NextFunction) {
 async function eAdminManagerRequest(
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ): Promise<void> {
     const userId = req.query.userId
 

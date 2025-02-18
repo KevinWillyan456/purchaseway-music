@@ -78,7 +78,7 @@ routes.post('/users-playlist-song/:id/:pid', getUser, storeUserPlaylistSongs)
 routes.delete(
     '/users-playlist-song/:id/:pid/:sid',
     getUser,
-    deleteUserPlaylistSongs
+    deleteUserPlaylistSongs,
 )
 routes.patch('/users-theme/:id', getUser, updateUserTheme)
 routes.put('/users-profile-picture/:id', updateUserProfilePicture)
@@ -91,13 +91,13 @@ routes.delete(
     '/playlists/:id',
     eAdminManagerRequest,
     getPlaylist,
-    deletePlaylist
+    deletePlaylist,
 )
 routes.delete(
     '/songs-playlists/:id',
     eAdminManagerRequest,
     getPlaylist,
-    deletePlaylistAndSongs
+    deletePlaylistAndSongs,
 )
 
 routes.get('/songs-playlists/:userId', allSongAndPlaylistData)

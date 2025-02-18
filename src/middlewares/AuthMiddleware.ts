@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 import { User } from '../models/User'
 
@@ -52,7 +52,7 @@ async function eAdmin(req: Request, res: Response, next: NextFunction) {
         }
 
         next()
-    } catch (err) {
+    } catch {
         res.clearCookie('user')
         res.clearCookie('token')
         return res.status(400).redirect('/denied')
