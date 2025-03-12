@@ -4,6 +4,10 @@ const serviceLogo = document.querySelector('.service-logo')
 const termsOfUse = document.querySelector('.terms-and-privacy')
 const termsText = document.querySelector('.terms-text')
 
+const copyRight = document.querySelector('.copyright')
+const year = new Date().getFullYear()
+copyRight.innerHTML = `&copy; ${year} Todos os direitos reservados`
+
 signup.addEventListener('click', () => {
     window.location = '/signup'
 })
